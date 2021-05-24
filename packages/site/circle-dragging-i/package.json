@@ -1,0 +1,14 @@
+{
+  "name": "@d3/circle-dragging-i",
+  "main": "989198863e10b38a@125.js",
+  "version": "125.0.0",
+  "homepage": "https://observablehq.com/@d3/circle-dragging-i",
+  "author": {
+    "name": "D3",
+    "url": "https://observablehq.com/@d3"
+  },
+  "type": "module",
+  "peerDependencies": {
+    "@observablehq/runtime": "4"
+  }
+}

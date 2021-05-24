@@ -1,0 +1,61 @@
+{
+  "name": "F6",
+  "private": true,
+  "workspaces": ["packages/*"],
+  "scripts": {
+    "analysis:mobile": "cd ./packages/mobile && npm run analysis",
+    "build:demos-mobile": "cd ./packages/mobile && npm run demos",
+    "build:mobile": "cd ./packages/mobile && npm run build",
+    "build:all": "npm run build:core && npm run build:element && npm run build:plugin && npm run build:pc && npm run build:g6 && npm run build:mobile",
+    "lint:mobile": "cd ./packages/mobile && npm run lint",
+    "build": "lerna run build --include-dependencies --stream",
+    "lint": "npm run lint:all",
+    "test": "npm run test:core && npm run test:element && npm run test:plugin && npm run test:pc",
+    "prettier": "prettier --write '**/*.{js,jsx,tsx,ts,less,md,json}'",
+    "pretty-quick": "pretty-quick",
+    "clean": "lerna clean -y",
+    "clear": "lerna clean && lerna clean -y",
+    "clean:modules": "rimraf node_modules",
+    "bootstrap": "lerna bootstrap",
+    "ci": "npm run clean && npm run clean:modules && npm install && npm run bootstrap && npm run build:all && npm run lint:all && npm run test",
+    "ls": "lerna list"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged && lerna run --concurrency 1 --stream precommit"
+    }
+  },
+  "lint-staged": {
+    "*.{js,jsx,tsx,ts,less,md,json}": ["pretty-quick —-staged"]
+  },
+  "devDependencies": {
+    "eslint": "^7.11.0",
+    "eslint-config-prettier": "^6.7.0",
+    "eslint-plugin-import": "^2.22.1",
+    "husky": "^4.2.5",
+    "lint-staged": "^10.2.2",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^2.1.2",
+    "pretty-quick": "^3.0.2",
+    "rimraf": "^3.0.0",
+    "tslint": "^6.1.3",
+    "tslint-config-airbnb": "^5.11.2",
+    "tslint-config-prettier": "^1.18.0",
+    "tslint-eslint-rules": "^5.4.0",
+    "typescript": "^3.9.5",
+    "lerna": "^3.22.1",
+    "@types/react": "^16.9.35",
+    "@types/react-dom": "^16.9.8",
+    "@umijs/fabric": "^2.3.1",
+    "eslint-plugin-eslint-comments": "^3.2.0",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-react": "^7.22.0",
+    "eslint-plugin-react-hooks": "^4.2.0",
+    "eslint-plugin-unicorn": "^27.0.0",
+    "pre-commit": "^1.2.2",
+    "react-scripts": "3.1.2"
+  },
+  "resolutions": {
+    "@types/react": "^16.9.35"
+  }
+}
