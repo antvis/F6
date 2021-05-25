@@ -1,11 +1,11 @@
-### G6 Mobile
+### F6 Mobile
 
 ## Usage
 
-#### Graph with g6-mobile
+#### Graph with F6
 
 ```ts
-import G6 from '@antv/g6-mobile';
+import F6 from '@antv/f6';
 
 Page({
   data: {
@@ -15,10 +15,10 @@ Page({
 
   onLoad() {
     this.ctx = my.createCanvasContext('canvas');
-    this.drawG6();
+    this.drawF6();
   },
 
-  drawG6() {
+  drawF6() {
     const { canvasWidth, canvasHeight } = this.data;
     const data = {
       nodes: [
@@ -43,7 +43,7 @@ Page({
       ],
     };
 
-    const graph = new G6.Graph({
+    const graph = new F6.Graph({
       container: null,
       context: this.ctx,
       renderer: 'mini',
@@ -77,13 +77,13 @@ Page({
 });
 ```
 
-#### TreeGraph with g6-mobile extends package
+#### TreeGraph with f6 extends package
 
 ```ts
-import G6 from '@antv/g6-mobile';
-import TreeGraph from '@antv/g6-mobile/dist/extends/graph/treeGraph';
+import F6 from '@antv/f6';
+import TreeGraph from '@antv/f6/dist/extends/graph/treeGraph';
 
-G6.registerGraph('TreeGraph', TreeGraph);
+F6.registerGraph('TreeGraph', TreeGraph);
 
 Page({
   data: {
@@ -93,10 +93,10 @@ Page({
 
   onLoad() {
     this.ctx = my.createCanvasContext('canvas');
-    this.drawG6();
+    this.drawF6();
   },
 
-  drawG6() {
+  drawF6() {
     const { canvasWidth, canvasHeight } = this.data;
 
     const data = {
@@ -127,7 +127,7 @@ Page({
       ],
     };
 
-    const graph = new G6.TreeGraph({
+    const graph = new F6.TreeGraph({
       container: null,
       context: this.ctx,
       renderer: 'mini',
@@ -166,13 +166,13 @@ Page({
 });
 ```
 
-#### Layout with g6-mobile extends package
+#### Layout with F6 extends package
 
 ```ts
-import G6 from '@antv/g6-mobile';
-import CircularLayout from '@antv/g6-mobile/dist/extends/layout/circularLayout';
+import F6 from '@antv/f6';
+import CircularLayout from '@antv/f6/dist/extends/layout/circularLayout';
 
-G6.registerLayout('circle', CircularLayout);
+F6.registerLayout('circle', CircularLayout);
 
 Page({
   data: {
@@ -182,10 +182,10 @@ Page({
 
   onLoad() {
     this.ctx = my.createCanvasContext('canvas');
-    this.drawG6();
+    this.drawF6();
   },
 
-  drawG6() {
+  drawF6() {
     const { canvasWidth, canvasHeight } = this.data;
     const data = {
       nodes: [
@@ -258,8 +258,8 @@ Page({
       ],
     };
 
-    // console.log('hello', G6.Layout)
-    const graph = new G6.Graph({
+    // console.log('hello', F6.Layout)
+    const graph = new F6.Graph({
       container: null,
       context: this.ctx,
       renderer: 'mini',
@@ -322,13 +322,13 @@ Page({
 }
 ```
 
-#### Layout with g6-mobile extends package
+#### Layout with F6 extends package
 
 ```ts
-import G6 from '@antv/g6-mobile';
-import CircularLayout from '@antv/g6-mobile/dist/extends/layout/circularLayout';
+import F6 from '@antv/f6';
+import CircularLayout from '@antv/f6-mobile/dist/extends/layout/circularLayout';
 
-G6.registerLayout('circle', CircularLayout);
+F6.registerLayout('circle', CircularLayout);
 
 Page({
   data: {
@@ -338,10 +338,10 @@ Page({
 
   onLoad() {
     this.ctx = my.createCanvasContext('canvas');
-    this.drawG6();
+    this.drawF6();
   },
 
-  drawG6() {
+  drawF6() {
     const { canvasWidth, canvasHeight } = this.data;
     const data = {
       nodes: [
@@ -414,8 +414,8 @@ Page({
       ],
     };
 
-    // console.log('hello', G6.Layout)
-    const graph = new G6.Graph({
+    // console.log('hello', F6.Layout)
+    const graph = new F6.Graph({
       container: null,
       context: this.ctx,
       renderer: 'mini',
