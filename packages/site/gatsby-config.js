@@ -11,7 +11,7 @@ module.exports = {
   ],
   // Customize your site metadata:
   siteMetadata: {
-    title: 'G6',
+    title: 'F6',
     description: 'A collection of charts made with the Grammar of Graphics',
     siteUrl: homepage,
     githubUrl: repository.url,

@@ -16,7 +16,7 @@ import Util from './util';
 import './element';
 import './behavior';
 
-const G6 = {
+const F6 = {
   version: Global.version,
   Graph,
   Util,
@@ -30,21 +30,20 @@ const G6 = {
   Algorithm,
   Arrow,
   Marker,
-  Shape
+  Shape,
 };
 
 function registerExtenderWrapper<T1, T2>(
   registerExtender: (registerName: T1, registerFunction: T2, global: Object) => Object,
 ): (registerName: T1, registerFunction: T2) => Object {
   return function (...args) {
-    return registerExtender.apply(null, [...args, G6]);
+    return registerExtender.apply(null, [...args, F6]);
   };
 }
 
 const registerGraph = registerExtenderWrapper(oRegisterGraph);
 
-(G6 as any).registerGraph = registerGraph;
-
+(F6 as any).registerGraph = registerGraph;
 
 export * from '@antv/g6-core';
 export * from './types';
@@ -67,4 +66,4 @@ export {
   IShape,
 };
 
-export default G6;
+export default F6;

@@ -21,13 +21,13 @@ const IndexPage = () => {
     {
       icon:
         'https://gw.alipayobjects.com/zos/basement_prod/0e03c123-031b-48ed-9050-4ee18c903e94.svg',
-      title: t('专注关系，完备基建'),
-      description: t('G6 是一个专注于关系数据的、完备的图可视化引擎'),
+      title: t('跨端 · 全面'),
+      description: t('F6 是一个专注于关系数据的、完备的移动端图可视化引擎。'),
     },
     {
       icon:
         'https://gw.alipayobjects.com/zos/basement_prod/42d17359-8607-4227-af93-7509eabb3163.svg',
-      title: t('领域深钻，顶尖方案'),
+      title: t('简洁 · 高效'),
       description: t('扎根实际具体业务场景、结合业界领先成果，沉淀顶尖解决方案'),
     },
     {
@@ -142,21 +142,21 @@ const IndexPage = () => {
     },
     {
       type: t('推荐'),
-      title: t('G6 4.0: 不仅成长了一点'),
-      date: '2020.11.22',
-      link: 'https://www.yuque.com/antv/g6-blog/nnmqbk',
+      title: t('G6 4.2.0 开放 · 生态'),
+      date: '2020.03.12',
+      link: 'https://www.yuque.com/antv/g6-blog/xpu1zo',
     },
   ];
 
   return (
     <>
-      <SEO title={t('G6 图可视化引擎')} titleSuffix="AntV" lang={i18n.language} />
+      <SEO title={t('F6 移动端图可视化引擎')} titleSuffix="AntV" lang={i18n.language} />
       <Banner
         notifications={insNotifications}
         coverImage={coverImage}
-        title={t('G6 图可视化引擎')}
+        title={t('F6 移动端图可视化引擎')}
         description={t(
-          'G6 是一个简单、易用、完备的图可视化引擎，它在高定制能力的基础上，提供了一系列设计优雅、便于使用的图可视化解决方案。能帮助开发者搭建属于自己的图可视化、图分析、或图编辑器应用。',
+          'F6 是一个简单、易用、完备的移动端图可视化引擎，它在高定制能力的基础上，提供了一系列设计优雅、便于使用的图可视化解决方案。能帮助开发者搭建属于自己的图可视化、图分析、或图编辑器应用。',
         )}
         className="banner"
         buttons={bannerButtons}
