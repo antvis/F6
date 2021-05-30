@@ -8,7 +8,7 @@ const resolve = require('path').resolve;
 // eslint-disable-next-line prefer-destructuring
 
 let entry = {
-  g6: './src/index.ts',
+  f6: './src/index.ts',
 };
 
 const graphExtenders = fs.readdirSync(path.join(__dirname, './src/extends/graph'));
@@ -26,8 +26,8 @@ module.exports = {
     filename: (pathData) => {
       const chunkName = pathData.chunk.name;
       let filename = 'index.js';
-      if ('g6' === chunkName) {
-        filename = 'g6.js';
+      if ('f6' === chunkName) {
+        filename = 'f6.js';
       }
       if (/graph/i.test(chunkName)) {
         filename = 'extends/graph/[name].js';
@@ -37,7 +37,7 @@ module.exports = {
       }
       return filename;
     },
-    library: 'G6',
+    library: 'f6',
     libraryTarget: 'umd',
     libraryExport: 'default',
     path: resolve(process.cwd(), 'dist/'),
@@ -57,7 +57,7 @@ module.exports = {
             loader: 'worker-loader',
             options: {
               inline: 'fallback',
-              filename: 'g6Layout.worker.js',
+              filename: 'f6Layout.worker.js',
             },
           },
         ],

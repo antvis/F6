@@ -13,6 +13,7 @@
     "lint:f6": "cd ./packages/f6 && npm run lint",
     "build": "lerna run build --include-dependencies --stream",
     "lint": "npm run lint:all",
+    "test:f6": "cd ./packages/f6 && npm run test",
     "test": "npm run test:f6",
     "prettier": "prettier --write '**/*.{js,jsx,tsx,ts,less,md,json}'",
     "pretty-quick": "pretty-quick",
@@ -45,12 +46,14 @@
     "eslint-plugin-react-hooks": "^4.2.0",
     "eslint-plugin-unicorn": "^27.0.0",
     "husky": "^4.2.5",
+    "jest": "^27.0.2",
     "lerna": "^3.22.1",
     "lint-staged": "^10.2.2",
     "npm-run-all": "^4.1.5",
     "pre-commit": "^1.2.2",
     "prettier": "^2.1.2",
     "pretty-quick": "^3.0.2",
+    "react": "^17.0.2",
     "react-scripts": "3.1.2",
     "rimraf": "^3.0.0",
     "tslib": "^2.2.0",
@@ -62,5 +65,8 @@
   },
   "resolutions": {
     "@types/react": "^16.9.35"
+  },
+  "peerDependencies": {
+    "react": "^17.0.2"
   }
 }
