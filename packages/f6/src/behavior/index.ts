@@ -1,5 +1,5 @@
 import { each } from '@antv/util';
-import { registerBehavior } from '@antv/g6-core';
+import { registerBehavior } from '@antv/f6-core';
 import DragCanvas from './drag-canvas';
 import DragNode from './drag-node';
 import ActivateRelations from './activate-relations';

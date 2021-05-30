@@ -5,7 +5,7 @@
  */
 import { each } from '@antv/util';
 import { IGroup } from '@antv/g-base';
-import { G6Event, IG6GraphEvent, Item, ComboConfig, ICombo, INode } from '@antv/g6-core';
+import { G6Event, IG6GraphEvent, Item, ComboConfig, ICombo, INode } from '@antv/f6-core';
 import { IGraph } from '../interface/graph';
 import Util from '../util';
 import Global from '../global';

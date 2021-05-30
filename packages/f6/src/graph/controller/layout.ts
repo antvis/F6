@@ -1,4 +1,4 @@
-import { AbstractLayout, GraphData } from '@antv/g6-core';
+import { AbstractLayout, GraphData } from '@antv/f6-core';
 import { Layout } from '../../layout';
 import { mix, clone } from '@antv/util';
 

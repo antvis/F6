@@ -1,4 +1,4 @@
-import { IPoint, TreeGraphData, Util } from '@antv/g6-core';
+import { IPoint, TreeGraphData, Util } from '@antv/f6-core';
 import { isNumber } from '@antv/util';
 
 const { traverseTree } = Util;

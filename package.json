@@ -67,6 +67,7 @@
     "@types/react": "^16.9.35"
   },
   "peerDependencies": {
-    "react": "^17.0.2"
+    "react": "^17.0.2",
+    "@typescript-eslint/parser": "^4.25.0"
   }
 }

@@ -1,4 +1,4 @@
-import { G6Event } from '@antv/g6-core';
+import { G6Event } from '@antv/f6-core';
 
 export default {
   firstScale: null,

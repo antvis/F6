@@ -1,4 +1,4 @@
-import { G6Event, IG6GraphEvent } from '@antv/g6-core';
+import { G6Event, IG6GraphEvent } from '@antv/f6-core';
 
 const DEFAULT_TRIGGER = 'click';
 const ALLOW_EVENTS = ['click', 'dblclick'];

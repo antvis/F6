@@ -9,7 +9,7 @@ import {
   ShapeStyle,
   TreeGraphData,
   GraphOptions,
-} from '@antv/g6-core';
+} from '@antv/f6-core';
 import { ITreeGraph } from '../../../interface/graph';
 // import { makeExtender } from '../../../util/extender';
 

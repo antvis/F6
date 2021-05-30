@@ -1,4 +1,4 @@
-import { IAbstractGraph, Item, ShapeStyle, TreeGraphData } from '@antv/g6-core';
+import { IAbstractGraph, Item, ShapeStyle, TreeGraphData } from '@antv/f6-core';
 import { WaterMarkerConfig } from '../types';
 
 import PluginBase from '../plugin/base';

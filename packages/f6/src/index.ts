@@ -6,7 +6,7 @@ import {
   Arrow,
   Marker,
   Shape,
-} from '@antv/g6-core';
+} from '@antv/f6-core';
 import { ICanvas, IGroup, IShape } from '@antv/g-base';
 import * as Algorithm from '@antv/algorithm';
 import Graph, { registerGraph as oRegisterGraph } from './graph/graph';
@@ -45,7 +45,7 @@ const registerGraph = registerExtenderWrapper(oRegisterGraph);
 
 (F6 as any).registerGraph = registerGraph;
 
-export * from '@antv/g6-core';
+export * from '@antv/f6-core';
 export * from './types';
 export * from './interface/graph';
 

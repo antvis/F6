@@ -1,5 +1,5 @@
 import { each } from '@antv/util';
-import { G6Event, IG6GraphEvent } from '@antv/g6-core';
+import { G6Event, IG6GraphEvent } from '@antv/f6-core';
 
 export default {
   getDefaultCfg(): object {

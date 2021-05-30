@@ -1,6 +1,6 @@
 import { wrapBehavior, each, deepMix } from '@antv/util';
 import { IGraph } from '../interface/graph';
-import { IG6GraphEvent } from '@antv/g6-core';
+import { IG6GraphEvent } from '@antv/f6-core';
 
 export interface IPluginBaseConfig {
   container?: HTMLDivElement | string | null;

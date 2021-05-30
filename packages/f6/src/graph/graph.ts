@@ -3,7 +3,7 @@ import { IGroup } from '@antv/g-base';
 import { mat3 } from '@antv/matrix-util';
 import { clone, deepMix, each, isString, isNumber } from '@antv/util';
 import { IGraph, DataUrlType } from '../interface/graph';
-import { AbstractGraph, GraphOptions } from '@antv/g6-core';
+import { AbstractGraph, GraphOptions } from '@antv/f6-core';
 
 import { WaterMarkerConfig } from '../types';
 import Global from '../global';
@@ -90,7 +90,6 @@ export default class Graph extends AbstractGraph implements IGraph {
     const fitView: boolean = this.get('fitView');
     // native canvas 会传递 requestAnimationFrame, clearAnimationFrame 等函数进来
     const extra: any = this.get('extra');
-
     const canvasCfg: any = {
       container,
       context,

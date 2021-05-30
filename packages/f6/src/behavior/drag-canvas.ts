@@ -1,4 +1,4 @@
-import { G6Event, IG6GraphEvent } from '@antv/g6-core';
+import { G6Event, IG6GraphEvent } from '@antv/f6-core';
 import { IGraph } from '../interface/graph';
 import Util from '../util';
 

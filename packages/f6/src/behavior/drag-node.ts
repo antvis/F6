@@ -7,7 +7,7 @@
  */
 import { Point } from '@antv/g-base';
 import { deepMix, clone } from '@antv/util';
-import { G6Event, IG6GraphEvent, Item, NodeConfig, INode, ICombo } from '@antv/g6-core';
+import { G6Event, IG6GraphEvent, Item, NodeConfig, INode, ICombo } from '@antv/f6-core';
 import { IGraph } from '../interface/graph';
 import Global from '../global';
 

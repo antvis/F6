@@ -1,6 +1,6 @@
 import { ICanvas, IGroup, IShape } from '@antv/g-base';
 import { each, wrapBehavior } from '@antv/util';
-import { AbstractEvent, IG6GraphEvent, Matrix, Item, Util } from '@antv/g6-core';
+import { AbstractEvent, IG6GraphEvent, Matrix, Item, Util } from '@antv/f6-core';
 import Graph from '../graph';
 
 const { cloneEvent, isViewportChanged } = Util;

@@ -1,4 +1,4 @@
-import { G6Event, IG6GraphEvent, EdgeConfig } from '@antv/g6-core';
+import { G6Event, IG6GraphEvent, EdgeConfig } from '@antv/f6-core';
 import { IGraph } from '../interface/graph';
 
 const DEFAULT_TRIGGER = 'click';
