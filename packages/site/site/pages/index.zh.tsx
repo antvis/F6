@@ -123,8 +123,8 @@ const IndexPage = () => {
 
   const bannerButtons = [
     {
-      text: t('图表示例'),
-      link: `/${i18n.language}/examples/tree/compactBox`,
+      text: t('官方示例'),
+      link: `/${i18n.language}/examples/gallery`,
       type: 'primary',
     },
     {

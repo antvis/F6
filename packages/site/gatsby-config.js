@@ -12,14 +12,13 @@ module.exports = {
   // Customize your site metadata:
   siteMetadata: {
     title: 'F6',
-    description: 'A collection of charts made with the Grammar of Graphics',
+    description: 'A library for mobile graph visualization, simple and extendable.',
     siteUrl: homepage,
     githubUrl: repository.url,
     showAPIDoc: true,
     isAntVSite: false,
     versions: {
-      [version]: 'https://g6.antv.vision',
-      '3.2.x': 'https://g6-v3-2.antv.vision',
+      [version]: 'https://f6.antv.vision',
     },
     navs: [
       {
@@ -27,13 +26,6 @@ module.exports = {
         title: {
           zh: '设计体系',
           en: 'Design System',
-        },
-      },
-      {
-        slug: 'graphmarker',
-        title: {
-          zh: '交互式文档',
-          en: 'GraphMarker',
         },
       },
       {

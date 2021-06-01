@@ -1,4 +1,6 @@
-![](https://user-images.githubusercontent.com/6113694/45008751-ea465300-b036-11e8-8e2a-166cbb338ce2.png)
+# F6：移动端图可视化引擎
+
+![](https://gw.alipayobjects.com/mdn/rms_5c3b4a/afts/img/A*KV1pSIPeJPAAAAAAAAAAAAAAARQnAQ)
 
 [![travis-ci](https://img.shields.io/travis/antvis/f6.svg)](https://travis-ci.org/antvis/f6) [![codecov](https://codecov.io/gh/antvis/f6/branch/master/graph/badge.svg)](https://codecov.io/gh/antvis/f6) ![typescript](https://img.shields.io/badge/language-typescript-red.svg) ![MIT](https://img.shields.io/badge/license-MIT-000000.svg) [![npm package](https://img.shields.io/npm/v/@antv/f6.svg)](https://www.npmjs.com/package/@antv/f6) [![NPM downloads](http://img.shields.io/npm/dm/@antv/f6.svg)](https://npmjs.org/package/@antv/f6) [![Percentage of issues still open](http://isitmaintained.com/badge/open/antvis/f6.svg)](http://isitmaintained.com/project/antvis/f6 'Percentage of issues still open')
 
@@ -6,15 +8,11 @@
 
 ## 什么是 f6
 
-[f6](https://github.com/antvis/f6) 是一个图可视化引擎。它提供了图的绘制、布局、分析、交互、动画等图可视化的基础能力。旨在让关系变得透明，简单。让用户获得关系数据的 Insight。
+[F6](https://github.com/antvis/f6) 是一个移动端图可视化引擎。它提供了图的绘制、布局、分析、交互、动画等图可视化的基础能力。旨在让关系变得透明，简单。让用户获得关系数据的 Insight。
 
 <img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*zTjwQaXokeQAAAAAAAAAAABkARQnAQ' width=550 alt='' />
 
-基于 f6，用户可以快速搭建自己的 **图分析** 或 **图编辑** 应用。
-
-<img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*zau8QJcVpDQAAAAAAAAAAABkARQnAQ' height=200 alt='' /><img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*RIlETY_S6IoAAAAAAAAAAABkARQnAQ' height=200 alt='' />
-
-<img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*cDzXR4jIWr8AAAAAAAAAAABkARQnAQ' height=150 alt='' /><img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*DifbSahOblAAAAAAAAAAAABkARQnAQ' height=150 /><img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*HTasSJGC4koAAAAAAAAAAABkARQnAQ' height=150 alt='' />
+基于 F6，用户可以快速搭建自己的 **图分析** 应用。 ![](https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*cDzXR4jIWr8AAAAAAAAAAABkARQnAQ)
 
 > 强大的动画及交互
 
@@ -24,9 +22,9 @@
 
 > 强大的布局
 
-## f6 的特性
+## F6 的特性
 
-f6 作为一款专业的图可视化引擎，具有以下特性：
+F6 作为一款专业的图可视化引擎，具有以下特性：
 
 - 丰富的元素：内置丰富的节点与边元素，自由配置，支持自定义；
 - 可控的交互：内置 10+ 交互行为，支持自定义交互；
@@ -51,7 +49,7 @@ $ npm install @antv/f6
 <img src="https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*khbvSrptr0kAAAAAAAAAAABkARQnAQ" width=437 height=148 alt='' />
 
 ```js
-import f6 from '@antv/f6';
+import F6 from '@antv/f6';
 
 const data = {
   nodes: [
@@ -76,7 +74,7 @@ const data = {
   ],
 };
 
-const graph = new f6.Graph({
+const graph = new F6.Graph({
   container: 'container',
   width: 500,
   height: 500,
@@ -106,9 +104,7 @@ graph.data(data);
 graph.render();
 ```
 
-[![Edit compassionate-lalande-5lxm7](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/compassionate-lalande-5lxm7?fontsize=14&hidenavigation=1&theme=dark)
-
-更多关于 f6 使用的问题，请参考[快速上手](https://antv-f6.gitee.io/zh/docs/manual/getting-started)。
+更多关于 F6 使用的问题，请参考[快速上手](https://f6.antv.vision/zh/docs/manual/getting-started)。
 
 ## 开发
 
@@ -140,31 +136,9 @@ DEBUG_MODE=1 npm test -- --watch ./tests/unit/algorithm/find-path-spec
 - <a href='https://f6.antv.vision/zh/docs/manual/advanced/coordinate-system' target='_blank'>扩展阅读</a>
 - <a href='https://f6.antv.vision/zh/docs/api/Graph' target='_blank'>API</a>
 
-## React 项目集成
+## F6 图可视化交流群
 
-针对 React 项目集成，我们有一款单独的产品推荐：[Graphin](https://graphin.antv.vision)，它是基于 f6 封装的 React 组件库，专注在关系分析领域，简单高效，开箱即用。
-
-目前 Graphin 在商业图分析项目中均有良好的实践，具体查看[《谁在使用 Graphin》](https://github.com/antvis/Graphin/issues/212)
-
-## f6 图可视化交流群
-
-欢迎各界 f6 使用者、图可视化爱好者加入 **f6 图可视化交流群** 及 **f6 图可视化交流二群**（钉钉群，使用钉钉扫一扫加入）讨论与交流。Graphin 的使用者，爱好者请加入 **Graphin's Group Chat**
-
-> **f6 图可视化交流群** 已满员，该群会不定期移除不活跃的成员。
-
-> 由于维护精力有限，**f6 图可视化交流群** 仅供社区同学相互交流，不进行答疑。欢迎对 f6 感兴趣的同学加入到答疑中来，非常感谢！
-
-<p >
-  <a href="https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*-RO_R7SCvroAAAAAAAAAAAAAARQnAQ" >
-    <img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*-RO_R7SCvroAAAAAAAAAAAAAARQnAQ' style='width:250px;display:inline-block;vertical-align:top;' alt='' />
-  </a>
-  <a href="https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*hzfaSrAj0jkAAAAAAAAAAABkARQnAQ" >
-    <img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*hzfaSrAj0jkAAAAAAAAAAABkARQnAQ' style='width:250px;display:inline-block;vertical-align:top;' alt='' />
-  </a>
-  <a href="https://graphin.antv.vision/" >
-   <img src='https://camo.githubusercontent.com/5e6624abcdde991f9fd89fce4933ad133a48d8fb603d1852c670da329df73ef7/68747470733a2f2f67772e616c697061796f626a656374732e636f6d2f6d646e2f726d735f3430326331612f616674732f696d672f412a2d717a6f54704c672d3163414141414141414141414141414152516e4151' style='width:250px;display:inline-block;vertical-align: top;' alt='' />
-  </a>
-</p>
+欢迎各界 F6 使用者、图可视化爱好者加入 **F6 超级服务群**（钉钉群，使用钉钉扫一扫加入）讨论与交流。 ![](https://gw.alipayobjects.com/mdn/rms_5c3b4a/afts/img/A*J5qVTo11-1MAAAAAAAAAAAAAARQnAQ)
 
 ## 如何贡献
 
