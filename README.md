@@ -46,62 +46,83 @@ $ npm install @antv/f6
 
 ## Usage
 
-<img src="https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*khbvSrptr0kAAAAAAAAAAABkARQnAQ" width=437 height=148 alt='' />
+<img src="https://gw.alipayobjects.com/mdn/rms_5c3b4a/afts/img/A*g8A8T6urwOEAAAAAAAAAAAAAARQnAQ" width=500 alt='' />
+
+- <a href='https://herbox-embed.alipay.com/p/f6/demo' target='_blank'>demo</a>
 
 ```js
 import F6 from '@antv/f6';
+import graphData from './data';
+import dagreLayout from '@antv/f6/dist/extends/layout/dagreLayout';
+import TreeGraph from '@antv/f6/dist/extends/graph/treeGraph';
 
-const data = {
-  nodes: [
-    {
-      id: 'node1',
-      label: 'Circle1',
-      x: 150,
-      y: 150,
-    },
-    {
-      id: 'node2',
-      label: 'Circle2',
-      x: 400,
-      y: 150,
-    },
-  ],
-  edges: [
-    {
-      source: 'node1',
-      target: 'node2',
-    },
-  ],
-};
+F6.registerLayout('dagreLayout', dagreLayout);
+F6.registerGraph('TreeGraph', TreeGraph);
 
-const graph = new F6.Graph({
-  container: 'container',
-  width: 500,
-  height: 500,
-  defaultNode: {
-    type: 'circle',
-    size: [100],
-    color: '#5B8FF9',
-    style: {
-      fill: '#9EC9FF',
-      lineWidth: 3,
-    },
-    labelCfg: {
-      style: {
-        fill: '#fff',
-        fontSize: 20,
-      },
-    },
+Page({
+  data: {
+    width: 300,
+    height: 400,
+    pixelRatio: 1,
   },
-  defaultEdge: {
-    style: {
-      stroke: '#e2e2e2',
-    },
+  onLoad() {
+    const { windowWidth, windowHeight, pixelRatio } = my.getSystemInfoSync();
+    this.setData({
+      width: windowWidth,
+      height: windowHeight,
+      pixelRatio: pixelRatio,
+    });
+  },
+  onCanvasInit(ctx, rect, canvas, renderer) {
+    console.log(ctx, rect, canvas, renderer);
+    this.graph = new F6.TreeGraph({
+      context: ctx,
+      renderer,
+      width: this.data.width,
+      height: this.data.height,
+      linkCenter: true,
+      modes: {
+        default: ['drag-canvas', 'zoom-canvas'],
+      },
+      defaultNode: {
+        size: 40,
+      },
+      layout: {
+        type: 'compactBox',
+        direction: 'RL',
+        getId: function getId(d) {
+          return d.id;
+        },
+        getHeight: () => {
+          return 26;
+        },
+        getWidth: () => {
+          return 26;
+        },
+        getVGap: () => {
+          return 20;
+        },
+        getHGap: () => {
+          return 30;
+        },
+        radial: false,
+      },
+    });
+
+    this.graph.node(function (node) {
+      return {
+        label: node.id,
+      };
+    });
+
+    this.graph.data(graphData);
+    this.graph.render();
+    this.graph.fitView();
+  },
+  onTouch(e) {
+    this.graph.emitEvent(e);
   },
 });
-
-graph.data(data);
-graph.render();
 ```
 
 For more information of the usage, please refer to [Getting Started](https://antv-f6.gitee.io/en/docs/manual/getting-started).
@@ -138,9 +159,9 @@ DEBUG_MODE=1 npm test -- --watch ./tests/unit/algorithm/find-path-spec
 
 ## F6 Communication Group
 
-Welcome to join the **F6 Communication Group** or **F6 Communication Group-2** (DingTalk groups). We also welcome the github issues.
+Welcome to join the **F6 Communication Group** (DingTalk groups). We also welcome the github issues.
 
-![](https://gw.alipayobjects.com/mdn/rms_5c3b4a/afts/img/A*J5qVTo11-1MAAAAAAAAAAAAAARQnAQ)
+<img src='https://gw.alipayobjects.com/mdn/rms_5c3b4a/afts/img/A*J5qVTo11-1MAAAAAAAAAAAAAARQnAQ' width=550 alt='' />
 
 ## How to Contribute
 

@@ -27,14 +27,16 @@ const IndexPage = () => {
     {
       icon:
         'https://gw.alipayobjects.com/zos/basement_prod/42d17359-8607-4227-af93-7509eabb3163.svg',
-      title: t('简洁 · 高效'),
-      description: t('扎根实际具体业务场景、结合业界领先成果，沉淀顶尖解决方案'),
+      title: t('易用 · 流畅'),
+      description: t('针对移动端场景定向优化，不论是小程序还是移动端网页都可以获得极致体验。'),
     },
     {
       icon:
         'https://gw.alipayobjects.com/zos/basement_prod/acd8d1f3-d256-42b7-8340-27e5d5fde92c.svg',
-      title: t('简单易用，扩展灵活'),
-      description: t('精心设计的简单、灵活、高可拓展的接口，满足你的无限创意'),
+      title: t('轻量 · 强悍'),
+      description: t(
+        '体积小巧，但能力突出。精心设计的简单、灵活、高可拓展的接口，满足你的无限创意。',
+      ),
     },
   ];
 

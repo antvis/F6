@@ -1,6 +1,6 @@
 {
-  "name": "@antv/f6-core",
-  "version": "0.0.2",
+  "name": "@antv/f6-element",
+  "version": "0.0.1",
   "description": "A Graph Visualization Framework in JavaScript",
   "keywords": [
     "antv",
@@ -13,52 +13,56 @@
   ],
   "homepage": "https://g6.antv.vision",
   "bugs": {
-    "url": "https://github.com/antvis/f6/issues"
+    "url": "https://github.com/antvis/g6/issues"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/antvis/f6"
+    "url": "https://github.com/antvis/g6"
   },
   "license": "MIT",
   "author": "https://github.com/orgs/antvis/people",
-  "files": ["package.json", "es", "lib", "dist", "LICENSE", "README.md"],
+  "files": [
+    "package.json",
+    "es",
+    "lib",
+    "dist",
+    "LICENSE",
+    "README.md"
+  ],
   "main": "lib/index.js",
   "module": "es/index.js",
   "types": "lib/index.d.ts",
   "scripts": {
-    "start": "father build --watch",
     "build": "npm run clean && father build",
     "ci": "npm run build && npm run coverage",
-    "clean": "rimraf es lib",
+    "clean": "rimraf es esm lib dist",
     "coverage": "jest --coverage",
-    "doc": "rimraf apis && typedoc",
     "lint": "eslint --ext .js,.jsx,.ts,.tsx --format=pretty \"./\"",
     "lint:src": "eslint --ext .ts --format=pretty \"./src\"",
     "prettier": "prettier -c --write \"**/*\"",
     "test": "jest",
-    "test-live": "DEBUG_MODE=1 jest --watch  ./tests/unit/graph/graph-spec.ts",
+    "test-live": "DEBUG_MODE=1 jest --watch  ./tests/unit/graph/graph-watermarker-spec.ts",
     "lint-staged:js": "eslint --ext .js,.jsx,.ts,.tsx",
     "watch": "father build -w"
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged & npm run test"
+      "pre-commit": "lint-staged"
     }
   },
   "lint-staged": {
-    "**/*.{js,jsx,ts,tsx}": ["npm run lint-staged:js"]
+    "**/*.{js,jsx,ts,tsx}": [
+      "npm run lint-staged:js",
+      "prettier --write"
+    ],
+    "**/*.{less,md,json}": [
+      "prettier --write"
+    ]
   },
   "dependencies": {
-    "@antv/algorithm": "^0.1.8",
-    "@antv/dom-util": "^2.0.1",
-    "@antv/event-emitter": "~0.1.0",
     "@antv/g-base": "^0.5.9",
-    "@antv/g-math": "^0.1.1",
-    "@antv/matrix-util": "^3.1.0-beta.2",
-    "@antv/path-util": "^2.0.3",
-    "@antv/util": "~2.0.5",
-    "ml-matrix": "^6.5.0",
-    "tslib": "^2.1.0"
+    "@antv/f6-core": "*",
+    "@antv/util": "~2.0.5"
   },
   "devDependencies": {
     "@babel/core": "^7.7.7",
@@ -82,6 +86,7 @@
     "rimraf": "^3.0.0",
     "ts-jest": "^24.1.0",
     "ts-loader": "^7.0.3",
-    "typescript": "^3.9.5"
+    "typescript": "^3.9.5",
+    "@antv/g6": "*"
   }
 }
