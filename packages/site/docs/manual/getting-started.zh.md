@@ -5,68 +5,135 @@ order: 1
 
 ## 第一个示例
 
-<iframe
-     src="https://codesandbox.io/embed/compassionate-lalande-5lxm7?fontsize=14&hidenavigation=1&theme=dark"
-     style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;"
-     title="compassionate-lalande-5lxm7"
-     allow="geolocation; microphone; camera; midi; vr; accelerometer; gyroscope; payment; ambient-light-sensor; encrypted-media; usb"
-     sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"
-   ></iframe>
+<img src='https://gw.alipayobjects.com/mdn/rms_5c3b4a/afts/img/A*P4PNSZbNiM4AAAAAAAAAAAAAARQnAQ' width=400 alt='img'/>
 
-## 安装 & 引用
-
-在项目中引入 G6 有以下两种方式：NPM 引入；CDN 引入。
+## 安装
 
 ### 1 在项目中使用 NPM 包引入
 
 **Step 1:** 使用命令行在项目目录下执行以下命令：
 
 ```bash
- npm install --save @antv/g6
+ npm install --save @antv/f6
 ```
 
-**Step 2:** 在需要用的 G6 的 JS 文件中导入：
+**Step 2:** 在需要用的 F6 的 JS 文件中导入：
 
 ```javascript
-import G6 from '@antv/g6';
+import F6 from '@antv/f6';
+```
+
+<span style="background-color: rgb(251, 233, 231); color: rgb(139, 53, 56)"><strong>⚠️ 注意:</strong></span>
+
+- F6 同时支持了小程序和 H5，所以在不论是小程序还是 H5，都可以使用 npm 的方式使用
+- 在小程序中配套使用 F6 可以通过 F6 组件快速实现
+
+支付宝小程序组件
+
+```bash
+npm install --save @antv/f6-alipay
+```
+
+微信小程序组件
+
+```bash
+npm install --save @antv/f6-wx
 ```
 
 ### 2 在 HTML 中使用  CDN 引入
 
 ```html
-// version <= 3.2
-<script src="https://gw.alipayobjects.com/os/antv/pkg/_antv.g6-{$version}/build/g6.js"></script>
-
-// version >= 3.3
-<script src="https://gw.alipayobjects.com/os/lib/antv/g6/{$version}/dist/g6.min.js"></script>
+<script src="https://gw.alipayobjects.com/os/lib/antv/f6/{$version}/dist/f6.min.js"></script>
 ```
 
 <span style="background-color: rgb(251, 233, 231); color: rgb(139, 53, 56)"><strong>⚠️ 注意:</strong></span>
 
-- 在  `{$version}` 中填写版本号，例如  `3.7.1`；
-- 最新版可以在  <a href='https://www.npmjs.com/package/@antv/g6' target='_blank'>NPM</a>  查看最新版本及版本号；
-- 详情参考 Github 分支：<a href='https://github.com/antvis/g6/tree/master' target='_blank'>https://github.com/antvis/g6/tree/master</a>。
+- 在  `{$version}` 中填写版本号，例如  `0.0.1`；
+- 最新版可以在  <a href='https://www.npmjs.com/package/@antv/f6' target='_blank'>NPM</a>  查看最新版本及版本号；
+- 详情参考 Github 分支：<a href='https://github.com/antvis/f6/tree/master' target='_blank'>https://github.com/antvis/f6/tree/master</a>。
+
+### 3 在 Native 应用中使用
+
+- 💗 敬请期待
 
 ## 快速试用
 
-创建一个 G6 的关系图仅需要下面几个步骤：
+创建一个 F6 的关系图仅需要下面几个步骤：
 
-1. 创建关系图的 HTML 容器；
+1. 创建关系图的容器；
 2. 数据准备；
 3. 创建关系图；
 4. 配置数据源，渲染。
 
 ### Step 1 创建容器
 
-需要在 HTML 中创建一个用于容纳 G6 绘制的图的容器，通常为 `div`  标签。G6 在绘制时会在该容器下追加 `canvas` 标签，然后将图绘制在其中。
+#### H5
+
+需要在 HTML 中创建一个用于容纳 F6 绘制的图的容器，通常为 `div`  标签。F6 在绘制时会在该容器下追加 `canvas` 标签，然后将图绘制在其中。
 
 ```html
 <div id="mountNode"></div>
 ```
 
+#### 小程序
+
+由于小程序的特殊性，我们需要在`Axml`或者`Wxml`中使用 F6 配套的组件
+
+- 支付宝组件
+
+`/pages/index/index.json`
+
+```json
+{
+  "defaultTitle": "f6-demo",
+  "usingComponents": {
+    "f6-canvas": "@antv/f6-alipay/es/f6-component/f6-component"
+  }
+}
+```
+
+`/pages/index/index.axml`
+
+```
+<f6-canvas
+  width="{{width}}"
+  height="{{height}}"
+  forceMini="{{false}}"
+  pixelRatio="{{pixelRatio}}"
+  onInit="onCanvasInit"
+  onTouchEvent="onTouch"
+/>
+```
+
+- 微信组件
+
+`/pages/index/index.json`
+
+```
+{
+  "usingComponents": {
+    "f6-canvas": "@antv/f6-wx/f6-component/f6-component"
+  }
+}
+```
+
+`/pages/index.index.wxml`
+
+```
+
+  <f6-canvas width="{{canvasWidth}}" height="{{canvasHeight}}" pixelRatio="{{pixelRatio}}" onInit="{{onCanvasInit}}" onTouchEvent="{{onTouch}}" ></f6-canvas>
+
+```
+
+具体在微信中使用，请参考[微信中使用 F6](/zh/docs/manual/tutorial/wechat)
+
+#### Native
+
+💗 敬请期待
+
 ### Step 2 数据准备
 
-引入 G6 的数据源为 JSON 格式的对象。该对象中需要有节点（`nodes`）和边（`edges`）字段，分别用数组表示：
+引入 F6 的数据源为 JSON 格式的对象。该对象中需要有节点（`nodes`）和边（`edges`）字段，分别用数组表示：
 
 ```javascript
 const data = {
@@ -103,9 +170,24 @@ const data = {
 
 创建关系图（实例化）时，至少需要为图设置容器、宽和高。
 
+#### 小程序
+
 ```javascript
 const graph = new G6.Graph({
-  container: 'mountNode', // String | HTMLElement，必须，在 Step 1 中创建的容器 id 或容器本身
+  container: null, // 如果为小程序，则传null或者不传
+  renderer: 'mini', // renderer 目前支持`mini`和`mini-native`两个值，可以通过onCanvasInit回调获取
+  width: 800, // Number，必须，图的宽度
+  height: 500, // Number，必须，图的高度
+});
+```
+
+⚠️ 注意：小程序依赖 f6 组件，所以无需创建容器
+
+#### H5
+
+```javascript
+const graph = new G6.Graph({
+  container: 'mountNode', // String | HTMLElement，必须，在 Step 1 中创建的容器 id 或容器本身,如果为小程序，则传null或者不传
   width: 800, // Number，必须，图的宽度
   height: 500, // Number，必须，图的高度
 });
@@ -124,67 +206,7 @@ graph.render(); // 渲染图
 
 ## 完整代码
 
-```html
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Tutorial Demo</title>
-  </head>
-  <body>
-    /* 图的画布容器 */
-    <div id="mountNode"></div>
-
-    /* 引入 G6 */
-    <script src="https://gw.alipayobjects.com/os/antv/pkg/_antv.g6-3.7.1/dist/g6.min.js"></script>
-
-    <script>
-      // 定义数据源
-      const data = {
-        // 点集
-        nodes: [
-          {
-            id: 'node1',
-            x: 100,
-            y: 200,
-          },
-          {
-            id: 'node2',
-            x: 300,
-            y: 200,
-          },
-        ],
-        // 边集
-        edges: [
-          // 表示一条从 node1 节点连接到 node2 节点的边
-          {
-            source: 'node1',
-            target: 'node2',
-          },
-        ],
-      };
-
-      // 创建 G6 图实例
-      const graph = new G6.Graph({
-        container: 'mountNode', // 指定图画布的容器 id，与第 9 行的容器对应
-        // 画布宽高
-        width: 800,
-        height: 500,
-      });
-      // 读取数据
-      graph.data(data);
-      // 渲染图
-      graph.render();
-    </script>
-  </body>
-</html>
-```
-
-## React 中使用 G6
-
-如果你想在 React 中使用 G6 ，可以参考我们提供了的 React 中使用 G6 的 <a href='https://github.com/baizn/g6-in-react' target='_blank'>Demo</a>。
-
-更多关于 React 中如何使用 G6，请参考 [React 中使用 G6 的文档](/zh/docs/manual/advanced/g6InReact)。有任何问题都可以通过页面底部的钉钉交流群和我们沟通，也非常欢迎给我们提 issues 或 PR： <a href='https://github.com/antvis/g6/tree/master' target='_blank'>https://github.com/antvis/g6/tree/master</a>。
+<iframe src="https://herbox-embed.alipay.com/p/f6/simple?editorSlider=expand&previewZoom=100&defaultOpenedFiles=pages/index/index.js" width="100%" height=800/>
 
 ## 更多
 
@@ -197,4 +219,4 @@ graph.render(); // 渲染图
 - 增加动画；
 - 使用辅助组件。
 
-想了解更高阶的功能，请参见 [G6 核心概念](/zh/docs/manual/middle/graph)，[G6 扩展阅读](/zh/docs/manual/advanced/coordinate-system)。
+想了解更高阶的功能，请参见 [F6 核心概念](/zh/docs/manual/middle/graph)，[F6 扩展阅读](/zh/docs/manual/advanced/coordinate-system)。
