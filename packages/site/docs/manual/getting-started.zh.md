@@ -121,7 +121,13 @@ npm install --save @antv/f6-wx
 
 ```
 
-  <f6-canvas width="{{canvasWidth}}" height="{{canvasHeight}}" pixelRatio="{{pixelRatio}}" onInit="{{onCanvasInit}}" onTouchEvent="{{onTouch}}" ></f6-canvas>
+  <f6-canvas
+    width="{{canvasWidth}}"
+    height="{{canvasHeight}}"
+    pixelRatio="{{pixelRatio}}"
+    onInit="{{onCanvasInit}}"
+    onTouchEvent="{{onTouch}}" >
+  </f6-canvas>
 
 ```
 
@@ -173,7 +179,7 @@ const data = {
 #### 小程序
 
 ```javascript
-const graph = new G6.Graph({
+const graph = new F6.Graph({
   container: null, // 如果为小程序，则传null或者不传
   renderer: 'mini', // renderer 目前支持`mini`和`mini-native`两个值，可以通过onCanvasInit回调获取
   width: 800, // Number，必须，图的宽度
@@ -186,7 +192,7 @@ const graph = new G6.Graph({
 #### H5
 
 ```javascript
-const graph = new G6.Graph({
+const graph = new F6.Graph({
   container: 'mountNode', // String | HTMLElement，必须，在 Step 1 中创建的容器 id 或容器本身,如果为小程序，则传null或者不传
   width: 800, // Number，必须，图的宽度
   height: 500, // Number，必须，图的高度
@@ -210,7 +216,7 @@ graph.render(); // 渲染图
 
 ## 更多
 
-本章仅仅介绍了如何安装以及最简单的场景，在 G6 Tutorial 中其他的章节中我们会教会你：
+本章仅仅介绍了如何安装以及最简单的场景，在 F6 Tutorial 中其他的章节中我们会教会你：
 
 - 实例化图时的常见配置；
 - 设置元素（节点/边）属性、样式；
