@@ -14,13 +14,13 @@
     "relational data",
     "site"
   ],
-  "homepage": "https://g6.antv.vision",
+  "homepage": "https://f6.antv.vision",
   "bugs": {
-    "url": "https://github.com/antvis/g6/issues"
+    "url": "https://github.com/antvis/f6/issues"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/antvis/g6"
+    "url": "https://github.com/antvis/f6"
   },
   "license": "MIT",
   "author": "https://github.com/orgs/antvis/people",

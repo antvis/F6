@@ -82,7 +82,7 @@ const IndexPage = () => {
       title: t('Graphin 图可视分析组件'),
       isAppLogo: true,
       description: t(
-        'Graphin 是一款基于 G6 封装的 React 分析组件库，专注在关系可视分析领域，简单高效，开箱即用。',
+        'Graphin 是一款基于 F6 封装的 React 分析组件库，专注在关系可视分析领域，简单高效，开箱即用。',
       ),
       link: `https://graphin.antv.vision/${i18n.language}`,
       image:
@@ -90,10 +90,10 @@ const IndexPage = () => {
     },
     {
       logo: 'https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*ch6rTrCxb6YAAAAAAAAAAABkARQnAQ',
-      title: t('基于 G6 的动态决策树'),
+      title: t('基于 F6 的动态决策树'),
       isAppLogo: true,
       description: t(
-        '基于 G6 实现的动态决策树，辅助用户寻找合适的可视化方式。它展示了 G6 强大的自定义节点和动画的能力。',
+        '基于 F6 实现的动态决策树，辅助用户寻找合适的可视化方式。它展示了 F6 强大的自定义节点和动画的能力。',
       ),
       link: `/${i18n.language}/examples/case/decisionBubbles`,
       image:
@@ -101,7 +101,7 @@ const IndexPage = () => {
     },
     {
       logo: 'https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*95GYRI0zPx8AAAAAAAAAAABkARQnAQ',
-      title: t('基于 G6 的图分析应用'),
+      title: t('基于 F6 的图分析应用'),
       isAppLogo: true,
       description: t(
         '社交网络分析是图可视化中一个重要的应用场景。随着社交网络越来越流行，人与人、人与组织之间的关系变得越来越复杂，使用传统的分析手段，已经很难满足我们的分析需求。在这种情况下，图分析及图可视化显得愈发重要。',
@@ -112,10 +112,10 @@ const IndexPage = () => {
     },
     {
       logo: 'https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*IEQFS5VtXX8AAAAAAAAAAABkARQnAQ',
-      title: t('基于 G6 的关系时序分析应用'),
+      title: t('基于 F6 的关系时序分析应用'),
       isAppLogo: true,
       description: t(
-        '基于 G6 的关系时序分析应用，解决应急过程中流程、影响面、应急预案等一系列应急决策辅助信息和手段，快速止血以减少和避免故障升级。',
+        '基于 F6 的关系时序分析应用，解决应急过程中流程、影响面、应急预案等一系列应急决策辅助信息和手段，快速止血以减少和避免故障升级。',
       ),
       link: `/${i18n.language}/docs/manual/cases/sequenceTime`,
       image:

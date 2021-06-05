@@ -22,13 +22,6 @@ module.exports = {
     },
     navs: [
       {
-        slug: 'docs/design/overview',
-        title: {
-          zh: '设计体系',
-          en: 'Design System',
-        },
-      },
-      {
         slug: 'docs/manual/introduction',
         title: {
           zh: '教程',

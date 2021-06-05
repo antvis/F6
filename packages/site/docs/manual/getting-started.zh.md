@@ -26,21 +26,23 @@ import F6 from '@antv/f6';
 <span style="background-color: rgb(251, 233, 231); color: rgb(139, 53, 56)"><strong>⚠️ 注意:</strong></span>
 
 - F6 同时支持了小程序和 H5，所以在不论是小程序还是 H5，都可以使用 npm 的方式使用
-- 在小程序中配套使用 F6 可以通过 F6 组件快速实现
+- 在小程序中需搭配使用 F6 小程序组件
 
-支付宝小程序组件
+[支付宝小程序组件](https://www.npmjs.com/package/@antv/f6-alipay)
 
 ```bash
 npm install --save @antv/f6-alipay
 ```
 
-微信小程序组件
+[微信小程序组件](https://www.npmjs.com/package/@antv/f6-wx)
 
 ```bash
 npm install --save @antv/f6-wx
 ```
 
 ### 2 在 HTML 中使用  CDN 引入
+
+若在移动端 H5 页面中使用，则可以通过 cdn 引入
 
 ```html
 <script src="https://gw.alipayobjects.com/os/lib/antv/f6/{$version}/dist/f6.min.js"></script>
@@ -182,6 +184,7 @@ const data = {
 const graph = new F6.Graph({
   container: null, // 如果为小程序，则传null或者不传
   renderer: 'mini', // renderer 目前支持`mini`和`mini-native`两个值，可以通过onCanvasInit回调获取
+  context: ctx, // 由于小程序中无法直接获取canvas的context，所以需要从外部传入
   width: 800, // Number，必须，图的宽度
   height: 500, // Number，必须，图的高度
 });
@@ -211,6 +214,8 @@ graph.render(); // 渲染图
 <img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*srtDT5slbN8AAAAAAAAAAABkARQnAQ' width=400 alt='img' />
 
 ## 完整代码
+
+⚠️ 注意：本示例通过支付宝小程序进行演示，如需在微信中使用，参考[微信中使用 F6](/zh/docs/manual/tutorial/wechat)
 
 <iframe src="https://herbox-embed.alipay.com/p/f6/simple?editorSlider=expand&previewZoom=100&defaultOpenedFiles=pages/index/index.js" width="100%" height=800/>
 
