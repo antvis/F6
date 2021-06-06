@@ -89,7 +89,7 @@ npm install --save @antv/f6-wx
 {
   "defaultTitle": "f6-demo",
   "usingComponents": {
-    "f6-canvas": "@antv/f6-alipay/es/f6-component/f6-component"
+    "f6-canvas": "@antv/f6-alipay/es/container/container"
   }
 }
 ```
@@ -114,7 +114,7 @@ npm install --save @antv/f6-wx
 ```
 {
   "usingComponents": {
-    "f6-canvas": "@antv/f6-wx/f6-component/f6-component"
+    "f6-canvas": "@antv/f6-wx/container/container"
   }
 }
 ```

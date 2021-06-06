@@ -1,8 +1,8 @@
 import { G6Event, IG6GraphEvent, EdgeConfig } from '@antv/f6-core';
 import { IGraph } from '../interface/graph';
 
-const DEFAULT_TRIGGER = 'click';
-const ALLOW_EVENTS = ['click', 'drag'];
+const DEFAULT_TRIGGER = 'tap';
+const ALLOW_EVENTS = ['tap', 'drag'];
 const DEFAULT_KEY = undefined;
 const ALLOW_KEYS = ['shift', 'ctrl', 'control', 'alt', 'meta', undefined];
 
@@ -41,11 +41,11 @@ export default {
       };
     } else if (self.trigger === 'click') {
       events = {
-        'node:click': 'onClick', // The event is node:click, the responsing function is onClick
+        'node:tap': 'onClick', // The event is node:click, the responsing function is onClick
         mousemove: 'updateEndPoint', // The event is mousemove, the responsing function is onMousemove
-        'edge:click': 'cancelCreating', // The event is edge:click, the responsing function is onEdgeClick
-        'canvas:click': 'cancelCreating',
-        'combo:click': 'onClick',
+        'edge:tap': 'cancelCreating', // The event is edge:click, the responsing function is onEdgeClick
+        'canvas:tap': 'cancelCreating',
+        'combo:tap': 'onClick',
       };
     }
     if (self.key) {

@@ -13,7 +13,7 @@ order: 2
 
 ### 图的元素
 
-图的元素特指图上的**节点** `Node` 和**边** `Edge` 。G6 内置了一系列 [内置的节点](/zh/docs/manual/middle/elements/nodes/defaultNode) 和 [内置的边](/zh/docs/manual/middle/elements/edges/defaultEdge)，供用户自由选择。G6 不同的内置节点或不同的内置边主要区别在于元素的 [图形 Shape](/zh/docs/manual/middle/elements/shape/shape-keyshape)，例如，节点可以是圆形、矩形、图片等。
+图的元素特指图上的**节点** `Node` 和**边** `Edge` 。F6 内置了一系列 [内置的节点](/zh/docs/manual/middle/elements/nodes/defaultNode) 和 [内置的边](/zh/docs/manual/middle/elements/edges/defaultEdge)，供用户自由选择。F6 不同的内置节点或不同的内置边主要区别在于元素的 [图形 Shape](/zh/docs/manual/middle/elements/shape/shape-keyshape)，例如，节点可以是圆形、矩形、图片等。
 
 ## 元素的属性
 
@@ -22,7 +22,7 @@ order: 2
 - **样式属性 `style`**：对应 Canvas 中的各种样式，在元素[状态 State](/zh/docs/manual/middle/states/state) 发生变化时，可以被改变；
 - **其他属性**：例如图形类型（ `type`）、id（`id` ）一类在元素[状态 State](/zh/docs/manual/middle/states/state) 发生变化时不能被改变的属性。
 
-例如，G6 设定 hover 或 click 节点，造成节点状态的改变，只能自动改变节点的**样式属性**（如 `fill`、`stroke` 等**）**，**其他属性**（如 `type`  等）不能被改变。如果需要改变其他属性，要通过  [graph.updateItem](/zh/docs/api/graphFunc/item#graphupdateitemitem-model-stack) 手动配置。**样式属性**是一个名为  `style`  的对象， `style` 字段与其他属性并行。
+例如，F6 设定 tap 节点，造成节点状态的改变，只能自动改变节点的**样式属性**（如 `fill`、`stroke` 等**）**，**其他属性**（如 `type`  等）不能被改变。如果需要改变其他属性，要通过  [graph.updateItem](/zh/docs/api/graphFunc/item#graphupdateitemitem-model-stack) 手动配置。**样式属性**是一个名为  `style`  的对象， `style` 字段与其他属性并行。
 
 ### 数据结构
 
@@ -64,7 +64,7 @@ order: 2
 
 ## 配置属性
 
-在 G6 中，根据不同的场景需求，有 7 种配置元素属性的方式。这里，我们简单介绍其中的两种：
+在 F6 中，根据不同的场景需求，有 7 种配置元素属性的方式。这里，我们简单介绍其中的两种：
 
 1. 实例化图时配置元素的全局属性；
 2. 在数据中配置。
@@ -85,7 +85,7 @@ order: 2
 <br />通过如下方式在实例化图时  `defaultNode` 和  `defaultEdge` ，可以完成上图效果：
 
 ```javascript
-const graph = new G6.Graph({
+const graph = new F6.Graph({
   // ...                   // 图的其他配置
   // 节点在默认状态下的样式配置（style）和其他配置
   defaultNode: {
@@ -160,7 +160,7 @@ graph.data(remoteData);
 
 > 图 3
 
-可以看到，图中有一些节点被渲染成了矩形，还有一些被渲染成了椭圆形。除了设置 `type` 属性之外，我们还覆盖了上文全局配置的节点的 `size` 属性，在矩形和椭圆的情况下，`size` 是一个数组；而在默认圆形的情况下，G6 将仍然读取全局配置的 `size` 属性为数字 `30`。也就是说，动态配置属性让我们既可以根据数据的不同配置不同的属性值，也可以有能力覆盖全局静态的属性值。
+可以看到，图中有一些节点被渲染成了矩形，还有一些被渲染成了椭圆形。除了设置 `type` 属性之外，我们还覆盖了上文全局配置的节点的 `size` 属性，在矩形和椭圆的情况下，`size` 是一个数组；而在默认圆形的情况下，F6 将仍然读取全局配置的 `size` 属性为数字 `30`。也就是说，动态配置属性让我们既可以根据数据的不同配置不同的属性值，也可以有能力覆盖全局静态的属性值。
 
 进一步地，我们尝试根据数据的比重不同，配置不一样边的粗细：
 
@@ -186,7 +186,7 @@ graph.data(remoteData);
 如图所示，边的粗细已经按照数据的比重成功渲染了出来，但是边原有的样式（透明度、颜色）却丢失了。这是因为我们提到过动态配置属性会覆盖全局配置属性，这里配置了 `style.lineWidth`，导致覆盖了全局的 `style` 对象。解决办法是将被覆盖的边的样式都移到动态配置里面来：
 
 ```javascript
-const graph = new G6.Graph({
+const graph = new F6.Graph({
   // ...
   defaultEdge: {
     // 去掉全局配置的 style
@@ -219,86 +219,4 @@ graph.render();
 
 ## 完整代码
 
-至此，完整代码如下：
-
-```html
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Tutorial Demo</title>
-  </head>
-  <body>
-    <div id="mountNode"></div>
-    <script src="https://gw.alipayobjects.com/os/antv/pkg/_antv.g6-3.7.1/dist/g6.min.js"></script>
-    <script>
-      const graph = new G6.Graph({
-        container: 'mountNode',
-        width: 800,
-        height: 600,
-        fitView: true,
-        fitViewPadding: [20, 40, 50, 20],
-        defaultNode: {
-          size: 30,
-          labelCfg: {
-            style: {
-              fill: '#fff',
-            },
-          },
-        },
-        defaultEdge: {
-          labelCfg: {
-            autoRotate: true,
-          },
-        },
-      });
-      const main = async () => {
-        const response = await fetch(
-          'https://gw.alipayobjects.com/os/basement_prod/6cae02ab-4c29-44b2-b1fd-4005688febcb.json',
-        );
-        const remoteData = await response.json();
-        const nodes = remoteData.nodes;
-        const edges = remoteData.edges;
-        nodes.forEach((node) => {
-          if (!node.style) {
-            node.style = {};
-          }
-          node.style.lineWidth = 1;
-          node.style.stroke = '#666';
-          node.style.fill = 'steelblue';
-          switch (node.class) {
-            case 'c0': {
-              node.type = 'circle';
-              break;
-            }
-            case 'c1': {
-              node.type = 'rect';
-              node.size = [35, 20];
-              break;
-            }
-            case 'c2': {
-              node.type = 'ellipse';
-              node.size = [35, 20];
-              break;
-            }
-          }
-        });
-        edges.forEach((edge) => {
-          if (!edge.style) {
-            edge.style = {};
-          }
-          edge.style.lineWidth = edge.weight;
-          edge.style.opacity = 0.6;
-          edge.style.stroke = 'grey';
-        });
-
-        graph.data(remoteData);
-        graph.render();
-      };
-      main();
-    </script>
-  </body>
-</html>
-```
-
-**⚠️ 注意:** <br /> 若需更换数据，请替换  `'https://gw.alipayobjects.com/os/basement_prod/6cae02ab-4c29-44b2-b1fd-4005688febcb.json'`  为新的数据文件地址。
+<iframe src="https://herbox-embed.alipay.com/p/f6/tutorial-elements?editorSlider=expand&previewZoom=100&defaultOpenedFiles=pages/index/index.js" width="100%" height=800/>

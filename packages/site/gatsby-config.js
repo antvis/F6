@@ -52,22 +52,7 @@ module.exports = {
     ],
     docs: [
       // ===========Design===================
-      {
-        slug: 'design/global',
-        title: {
-          zh: '全局规范',
-          en: 'Global',
-        },
-        order: 3,
-      },
-      {
-        slug: 'design/component',
-        title: {
-          zh: '组件设计',
-          en: 'Component Design',
-        },
-        order: 4,
-      },
+
       {
         slug: 'manual/FAQ',
         title: {
@@ -83,6 +68,31 @@ module.exports = {
           en: 'Tutorial',
         },
         order: 3,
+      },
+      {
+        slug: 'manual/tutorial/mini',
+        title: {
+          zh: '小程序',
+          en: 'Miniapp',
+        },
+        order: 2,
+      },
+      {
+        slug: 'manual/tutorial/h5',
+        title: {
+          zh: '移动端H5',
+          en: 'Mobile H5',
+        },
+        order: 3,
+      },
+
+      {
+        slug: 'manual/tutorial/native',
+        title: {
+          zh: 'Native',
+          en: 'Native',
+        },
+        order: 4,
       },
       // ===========Concepts===================
       {
