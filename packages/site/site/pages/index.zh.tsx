@@ -19,20 +19,17 @@ const IndexPage = () => {
 
   const features = [
     {
-      icon:
-        'https://gw.alipayobjects.com/zos/basement_prod/0e03c123-031b-48ed-9050-4ee18c903e94.svg',
+      icon: 'https://gw.alipayobjects.com/mdn/rms_5c3b4a/afts/img/A*wgmPSIVhEGsAAAAAAAAAAAAAARQnAQ',
       title: t('跨端 · 全面'),
       description: t('F6 是一个专注于关系数据的、完备的移动端图可视化引擎。'),
     },
     {
-      icon:
-        'https://gw.alipayobjects.com/zos/basement_prod/42d17359-8607-4227-af93-7509eabb3163.svg',
+      icon: 'https://gw.alipayobjects.com/mdn/rms_5c3b4a/afts/img/A*7FF1Q7ioaKYAAAAAAAAAAAAAARQnAQ',
       title: t('易用 · 流畅'),
       description: t('针对移动端场景定向优化，不论是小程序还是移动端网页都可以获得极致体验。'),
     },
     {
-      icon:
-        'https://gw.alipayobjects.com/zos/basement_prod/acd8d1f3-d256-42b7-8340-27e5d5fde92c.svg',
+      icon: 'https://gw.alipayobjects.com/mdn/rms_5c3b4a/afts/img/A*rb7FRqSOc7AAAAAAAAAAAAAAARQnAQ',
       title: t('轻量 · 强悍'),
       description: t(
         '体积小巧，但能力突出。精心设计的简单、灵活、高可拓展的接口，满足你的无限创意。',
@@ -77,49 +74,22 @@ const IndexPage = () => {
 
   const cases = [
     {
-      logo:
-        'https://camo.githubusercontent.com/53886f0e306c9f01c96dee2edca3992830b7cbb769118029a7e5d677deb7e67e/68747470733a2f2f67772e616c697061796f626a656374732e636f6d2f7a6f732f616e7466696e63646e2f306234487a4f63454a592f4772617068696e2e737667',
-      title: t('Graphin 图可视分析组件'),
+      logo: 'https://gw.alipayobjects.com/mdn/rms_5c3b4a/afts/img/A*2LU7RJXXarIAAAAAAAAAAAAAARQnAQ',
+      title: t('蚂蚁企业信用'),
       isAppLogo: true,
       description: t(
-        'Graphin 是一款基于 F6 封装的 React 分析组件库，专注在关系可视分析领域，简单高效，开箱即用。',
+        '帮助中小微企业建立及展示可信的信用档案，通过评级等信用服务让商业合作更简单 。',
       ),
-      link: `https://graphin.antv.vision/${i18n.language}`,
       image:
-        'https://gw.alipayobjects.com/mdn/rms_00edcb/afts/img/A*LKq7Q5wPA0AAAAAAAAAAAAAAARQnAQ',
+        'https://gw.alipayobjects.com/mdn/rms_5c3b4a/afts/img/A*6pZZQIgmzcsAAAAAAAAAAAAAARQnAQ',
     },
     {
-      logo: 'https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*ch6rTrCxb6YAAAAAAAAAAABkARQnAQ',
-      title: t('基于 F6 的动态决策树'),
+      logo: 'https://gw.alipayobjects.com/mdn/rms_5c3b4a/afts/img/A*-SOyRJG53z0AAAAAAAAAAAAAARQnAQ',
+      title: t('鹰寻'),
       isAppLogo: true,
-      description: t(
-        '基于 F6 实现的动态决策树，辅助用户寻找合适的可视化方式。它展示了 F6 强大的自定义节点和动画的能力。',
-      ),
-      link: `/${i18n.language}/examples/case/decisionBubbles`,
+      description: t('B2B智能营销解决方案-帮助B类企业打造招投标信息处理最短路径。'),
       image:
-        'https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*10b6R5fkyJ4AAAAAAAAAAABkARQnAQ',
-    },
-    {
-      logo: 'https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*95GYRI0zPx8AAAAAAAAAAABkARQnAQ',
-      title: t('基于 F6 的图分析应用'),
-      isAppLogo: true,
-      description: t(
-        '社交网络分析是图可视化中一个重要的应用场景。随着社交网络越来越流行，人与人、人与组织之间的关系变得越来越复杂，使用传统的分析手段，已经很难满足我们的分析需求。在这种情况下，图分析及图可视化显得愈发重要。',
-      ),
-      link: `/${i18n.language}/docs/manual/cases/relations`,
-      image:
-        'https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*RYFQSZYewokAAAAAAAAAAABkARQnAQ',
-    },
-    {
-      logo: 'https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*IEQFS5VtXX8AAAAAAAAAAABkARQnAQ',
-      title: t('基于 F6 的关系时序分析应用'),
-      isAppLogo: true,
-      description: t(
-        '基于 F6 的关系时序分析应用，解决应急过程中流程、影响面、应急预案等一系列应急决策辅助信息和手段，快速止血以减少和避免故障升级。',
-      ),
-      link: `/${i18n.language}/docs/manual/cases/sequenceTime`,
-      image:
-        'https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*m41kSpg17ZkAAAAAAAAAAABkARQnAQ',
+        'https://gw.alipayobjects.com/mdn/rms_5c3b4a/afts/img/A*w7hpQ6ZoHJgAAAAAAAAAAAAAARQnAQ',
     },
   ];
 

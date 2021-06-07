@@ -17,6 +17,8 @@ module.exports = {
     githubUrl: repository.url,
     showAPIDoc: true,
     isAntVSite: false,
+    showChinaMirror: false, // 是否展示国内镜像链接
+    showLanguageSwitcher: false, // 用于定义是否展示语言切换
     versions: {
       [version]: 'https://f6.antv.vision',
     },
