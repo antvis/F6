@@ -3,7 +3,7 @@ title: Layout
 order: 10
 ---
 
-There are several basic layout algorithms in G6 3.1. For more information, please refer to [Graph Layout API](/en/docs/api/graphLayout/guide) or [TreeGraph Layout API](/en/docs/api/treeGraphLayout/guide).
+There are several basic layout algorithms in F6 3.1. For more information, please refer to [Graph Layout API](/en/docs/api/graphLayout/guide) or [TreeGraph Layout API](/en/docs/api/treeGraphLayout/guide).
 
 ### graph.layout()
 
@@ -12,7 +12,7 @@ Re-layout the graph with current layout configurations in graph.
 **Usage**
 
 ```javascript
-const graph = new G6.Graph({
+const graph = new F6.Graph({
   container: 'mountNode',
   width: 1000,
   height: 600,
@@ -72,7 +72,7 @@ Update the layout configurations.
 **Usage**
 
 ```javascript
-const graph = new G6.Graph({
+const graph = new F6.Graph({
   container: 'mountNode',
   width: 1000,
   height: 600,
@@ -105,7 +105,7 @@ Destroy the layout algorithm. After that, the `changeData` will not place the ne
 **Usage**
 
 ```javascript
-const graph = new G6.Graph({
+const graph = new F6.Graph({
   container: 'mountNode',
   width: 1000,
   height: 600,

@@ -28,7 +28,7 @@ Where, the event object `evt` has the properties:
 - `canvasX`: The x coordinate about parent DOM of the canvas
 - `canvasY`: The y coordinate about parent DOM of the canvas
 
-（The differences between x/y, clientX/clientY, and canvasX/canvasY can be found in [Coordinate Systems in G6](/en/docs/manual/advanced/coordinate-system)）
+（The differences between x/y, clientX/clientY, and canvasX/canvasY can be found in [Coordinate Systems in F6](/en/docs/manual/advanced/coordinate-system)）
 
 - `item`: The item being manipulated, which can be a node, an edge, or a Combo）
 - `target`: The target [Shape](/zh/docs/manual/middle/elements/shape/shape-keyshape) on the `item` being manupulated, or the canvas instance
@@ -142,7 +142,7 @@ Combo inherit all the interaction events of Node.
 
 ## Timing Events
 
-Before and after being called some functions, G6 exports the timing events. These timing events can be listened by the following way:
+Before and after being called some functions, F6 exports the timing events. These timing events can be listened by the following way:
 
 ```
 graph.on(timingEventName, evt => {
@@ -198,16 +198,16 @@ graph.on(timingEventName, evt => {
 
 TimeBar plugin:
 
-| Event Name | Description |
-| --- | --- |
-| valuechange | Emitted when the value range of the timebar is chaged. |
-| timebarstartplay | Emitted when the timeline starts to play. |
-| timebarendplay | Emitted when the timeline ends playing. |
+| Event Name       | Description                                            |
+| ---------------- | ------------------------------------------------------ |
+| valuechange      | Emitted when the value range of the timebar is chaged. |
+| timebarstartplay | Emitted when the timeline starts to play.              |
+| timebarendplay   | Emitted when the timeline ends playing.                |
 
 Tooltip:
 
-| Event Name | Description |
-| --- | --- |
+| Event Name    | Description                          |
+| ------------- | ------------------------------------ |
 | tooltipchange | Emitted when the Tooltip is changed. |
 
 ### Callback Parameters
@@ -320,10 +320,10 @@ No parameters.
 
 #### beforecollapseexpandcombo / aftercollapseexpandcombo
 
-| Name | Type | Description      |
-| ---- | ---- | ---------------- |
+| Name   | Type   | Description                            |
+| ------ | ------ | -------------------------------------- |
 | action | string | The action, `'collapse'` or `'expand'` |
-| combo | Item | The manipulated combo |
+| combo  | Item   | The manipulated combo                  |
 
 #### itemcollapsed
 
@@ -370,8 +370,8 @@ No parameters.
 
 #### valuechange
 
-| Name      | Type     | Description     |
-| --------- | -------- | -------- |
+| Name  | Type     | Description                                                                 |
+| ----- | -------- | --------------------------------------------------------------------------- |
 | value | number[] | The current value range, `value[0]` is the start and `value[1]` is the end. |
 
 #### timelinestart / timelineend
@@ -380,7 +380,7 @@ No parameters.
 
 #### tooltipchange
 
-| Name      | Type     | Description     |
-| --------- | -------- | -------- |
-| item | Item | The item the tooltip related to (a node or an edge). |
-| action | 'show' / 'hide' | The current action. |
+| Name   | Type            | Description                                          |
+| ------ | --------------- | ---------------------------------------------------- |
+| item   | Item            | The item the tooltip related to (a node or an edge). |
+| action | 'show' / 'hide' | The current action.                                  |

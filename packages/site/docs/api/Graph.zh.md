@@ -1,18 +1,18 @@
 ---
-title: 图配置 G6.Graph(cfg)
+title: 图配置 F6.Graph(cfg)
 order: 0
 redirect_from:
   - /en/docs/api
 ---
 
-Graph 是 G6 图表的载体，所有的 G6 节点实例操作以及事件，行为监听都在 Graph 实例上进行。Graph 的初始化通过 new 进行实例化，实例化时需要传入需要的参数。
+Graph 是 F6 图表的载体，所有的 F6 节点实例操作以及事件，行为监听都在 Graph 实例上进行。Graph 的初始化通过 new 进行实例化，实例化时需要传入需要的参数。
 
 ```ts
 // highlight-start
-new G6.Graph(cfg: GraphOptions) => Graph
+new F6.Graph(cfg: GraphOptions) => Graph
 // highlight-end
 
-const graph = new G6.Graph({
+const graph = new F6.Graph({
   container: '',
   width: 500,
   height: 500,
@@ -99,7 +99,7 @@ const graph = new G6.Graph({
 
 各个状态下节点的样式，例如 `hover`、`selected`，3.1 版本新增。
 
-<span style="background-color: rgb(251, 233, 231); color: rgb(139, 53, 56)"><strong>⚠️ 注意:</strong></span> G6 3.1 版本中实例化 Graph 时，新增了 `nodeStateStyles` 及 `edgeStateStyles` 两个配置项，删除了 `nodeStyle` 和 `edgeStyle` ，使用 3.1 以下版本的同学，只需要将 `nodeStyle` 改成 `nodeStateStyles` ，将 `edgeStyle` 改成 `edgeStateStyles` ，配置内容保持不变。
+<span style="background-color: rgb(251, 233, 231); color: rgb(139, 53, 56)"><strong>⚠️ 注意:</strong></span> F6 3.1 版本中实例化 Graph 时，新增了 `nodeStateStyles` 及 `edgeStateStyles` 两个配置项，删除了 `nodeStyle` 和 `edgeStyle` ，使用 3.1 以下版本的同学，只需要将 `nodeStyle` 改成 `nodeStateStyles` ，将 `edgeStyle` 改成 `edgeStateStyles` ，配置内容保持不变。
 
 ### GraphOptions.edgeStateStyles
 
@@ -188,11 +188,11 @@ const graph = new G6.Graph({
 - 若数据中节点有位置信息（`x` 和 `y`），则按照数据的位置信息进行绘制；
 - 若数据中节点没有位置信息，则默认使用 Random Layout 进行布局。
 
-每种布局方法的配置项不尽相同，具体参见 [Graph 内置布局](/zh/docs/api/G6/common/graphLayout)。
+每种布局方法的配置项不尽相同，具体参见 [Graph 内置布局](/zh/docs/api/F6/common/graphLayout)。
 
 #### GraphOptions.layout.pipes
 
-**流水线子图布局** *v4.3.0 新增* 
+**流水线子图布局** _v4.3.0 新增_
 
 在 `GraphOptions.layout` 中可配置 `pipes` 达到同时对不通过子图使用不同布局的目的。
 
@@ -203,14 +203,24 @@ const graph = new G6.Graph({
 `pipes` 的数据类型为：
 
 ```javascript
-type Pipes =
-  {
-    // 该子图所使用的布局类型
-    type: 'random' | 'radial' | 'mds' | 'circular' | 'fruchterman' | 'force' | 'gForce' | 'dagre' | 'concentric' | 'grid' | 'forceAtlas2',
-    // 节点的筛选器，参数为节点数据，返回布尔值代表该节点是否在该子图中
-    nodesFilter: (node: NodeData) => boolean;
-    ... // 布局对应的参数，详见各个布局的参数
-  }[];
+type Pipes = {
+  // 该子图所使用的布局类型
+  type:
+    | 'random'
+    | 'radial'
+    | 'mds'
+    | 'circular'
+    | 'fruchterman'
+    | 'force'
+    | 'gForce'
+    | 'dagre'
+    | 'concentric'
+    | 'grid'
+    | 'forceAtlas2',
+  // 节点的筛选器，参数为节点数据，返回布尔值代表该节点是否在该子图中
+  nodesFilter: (node: NodeData) => boolean, // 布局对应的参数，详见各个布局的参数
+  ...
+}[];
 ```
 
 使用方法如下：

@@ -15,12 +15,12 @@ group.addShape('rect', {
     shadowBlur: 10,
     opacity: 0.8,
   },
-  // must be assigned in G6 3.3 and later versions. it can be any value you want
+  // must be assigned in F6 3.3 and later versions. it can be any value you want
   name: 'rect-shape',
 });
 ```
 
-G6 支持以下图形：
+F6 支持以下图形：
 
 - [circle](#圆图形-circle)：圆；
 - [rect](#矩形图形-rect)：矩形；
@@ -38,7 +38,7 @@ G6 支持以下图形：
 
 <description> _String_ **required** </description>
 
-图形名称标识，G6 3.3 版本以上必须配置。
+图形名称标识，F6 3.3 版本以上必须配置。
 
 ### fill
 
@@ -122,7 +122,7 @@ group.addShape('circle', {
     r: 50,
     fill: 'blue',
   },
-  // must be assigned in G6 3.3 and later versions. it can be any value you want
+  // must be assigned in F6 3.3 and later versions. it can be any value you want
   name: 'circle-shape',
 });
 ```
@@ -156,7 +156,7 @@ group.addShape('ellipse', {
     ry: 50,
     fill: 'blue',
   },
-  // must be assigned in G6 3.3 and later versions. it can be any value you want
+  // must be assigned in F6 3.3 and later versions. it can be any value you want
   name: 'ellipse-shape',
 });
 ```
@@ -194,7 +194,7 @@ group.addShape('image', {
     y: 0,
     img: 'https://g.alicdn.com/cm-design/arms-trace/1.0.155/styles/armsTrace/images/TAIR.png',
   },
-  // must be assigned in G6 3.3 and later versions. it can be any value you want
+  // must be assigned in F6 3.3 and later versions. it can be any value you want
   name: 'image-shape',
 });
 ```
@@ -227,7 +227,7 @@ group.addShape('image', {
 
 <description> _String_ **optional** </description>
 
-图片源，G6 支持多种格式的图片：url，ImageData，Image，canvas。
+图片源，F6 支持多种格式的图片：url，ImageData，Image，canvas。
 
 ## 标记图形 Marker
 
@@ -240,7 +240,7 @@ group.addShape('marker', {
     r: 10,
     symbol: 'triangle-down',
   },
-  // must be assigned in G6 3.3 and later versions. it can be any value you want
+  // must be assigned in F6 3.3 and later versions. it can be any value you want
   name: 'marker-shape',
 });
 
@@ -254,7 +254,7 @@ group.addShape('marker', {
       return [['M', x, y], ['L', x + r, y + r], ['L', x + r * 2, y], ['Z']];
     },
   },
-  // must be assigned in G6 3.3 and later versions. it can be any value you want
+  // must be assigned in F6 3.3 and later versions. it can be any value you want
   name: 'marker-shape',
 });
 ```
@@ -298,7 +298,7 @@ group.addShape('polygon', {
     ],
     fill: 'red',
   },
-  // must be assigned in G6 3.3 and later versions. it can be any value you want
+  // must be assigned in F6 3.3 and later versions. it can be any value you want
   name: 'polygon-shape',
 });
 ```
@@ -321,7 +321,7 @@ group.addShape('rect', {
     stroke: 'black',
     radius: [2, 4],
   },
-  // must be assigned in G6 3.3 and later versions. it can be any value you want
+  // must be assigned in F6 3.3 and later versions. it can be any value you want
   name: 'rect-shape',
 });
 ```
@@ -383,7 +383,7 @@ group.addShape('path', {
     lineWidth: 8,
     lineAppendWidth: 5,
   },
-  // must be assigned in G6 3.3 and later versions. it can be any value you want
+  // must be assigned in F6 3.3 and later versions. it can be any value you want
   name: 'path-shape',
 });
 ```
@@ -455,7 +455,7 @@ group.addShape('text', {
     shadowColor: 'blue',
     shadowBlur: 10,
   },
-  // must be assigned in G6 3.3 and later versions. it can be any value you wantPath
+  // must be assigned in F6 3.3 and later versions. it can be any value you wantPath
   name: 'text-shape',
 });
 ```
@@ -515,7 +515,7 @@ group.addShape('text', {
 <span style="background-color: rgb(251, 233, 231); color: rgb(139, 53, 56)"><strong>⚠️ 注意:</strong></span>
 
 - 只支持原生 HTML DOM，不支持各类 react、vue 组件；
-- 使用 `'dom'` 进行自定义的节点或边，不支持 G6 的交互事件，请使用原生 DOM 的交互事件。
+- 使用 `'dom'` 进行自定义的节点或边，不支持 F6 的交互事件，请使用原生 DOM 的交互事件。
 
 ```javascript
 group.addShape('dom', {
@@ -534,7 +534,7 @@ group.addShape('dom', {
     </div>
       `,
   },
-  // must be assigned in G6 3.3 and later versions. it can be any value you want
+  // must be assigned in F6 3.3 and later versions. it can be any value you want
   name: 'dom-shape',
   draggable: true,
 });

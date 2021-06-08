@@ -5,12 +5,12 @@ order: 0
 
 ## Built-in Layout Overview
 
-G6 provides several built-in layout algorithms as listed below. They can be [configured to `layout` when instantiate the Graph](#configure-to-gaph), or be [instantiated independently](#instantiate-independently). If the built-in layouts cannot meet your requirement, you can also [custom a layout](/en/docs/api/registerLayout).
+F6 provides several built-in layout algorithms as listed below. They can be [configured to `layout` when instantiate the Graph](#configure-to-gaph), or be [instantiated independently](#instantiate-independently). If the built-in layouts cannot meet your requirement, you can also [custom a layout](/en/docs/api/registerLayout).
 
 Notice that the layouts for Graph cannot be used on TreeGraph.
 
 - [Random Layout](./random): Randomizes the node postions;
-- [GForce Layout](./gforce): Classical force-directed layout supports GPU parallel computing, supported by G6 4.0;
+- [GForce Layout](./gforce): Classical force-directed layout supports GPU parallel computing, supported by F6 4.0;
 - [Force Layout](./force): Classical force-directed layout;
 - [Force Atlas 2 Layout](./forceAtlas2): FA2 is a kind of force directed layout, which performs better on the convergence and compactness;
 - [Fruchterman Layout](./fruchterman): A kind of force-directed layout;
@@ -27,14 +27,14 @@ Notice that the layouts for Graph cannot be used on TreeGraph.
 Configure the `layout` when instantiating a Graph:
 
 ```javascript
-const graph = new G6.Graph({
+const graph = new F6.Graph({
   ...                      // Other configurations
   layout: {                // Object, configuration for layout. random by default
     type: 'force',
     preventOverlap: true,
     nodeSize: 30,
     // workerEnabled: true, // Whether enable webworker
-    // gpuEnabled: true // Whether enable GPU version. supported by G6 4.0, and only support gForce and fruchterman layout. If the machine or browser does not support GPU computing, it will be degraded to CPU computing automatically. 
+    // gpuEnabled: true // Whether enable GPU version. supported by F6 4.0, and only support gForce and fruchterman layout. If the machine or browser does not support GPU computing, it will be degraded to CPU computing automatically.
     ...                    // Other layout configurations
   }
 });
@@ -49,8 +49,8 @@ The configurations of each layout algorithms are different. Please refer to corr
 
 The functions in this section should be concerned in these two situation:
 
-- When you want to applay a layout algorithm to your data but not for Graph, you can instantiate the layout independently by calling `const layout = new G6.Layout['layoutName']`.
-- When you want to custom a new type of layout by `G6.registerLayout`, some functions you should override.
+- When you want to applay a layout algorithm to your data but not for Graph, you can instantiate the layout independently by calling `const layout = new F6.Layout['layoutName']`.
+- When you want to custom a new type of layout by `F6.registerLayout`, some functions you should override.
 
 ### Initialize
 

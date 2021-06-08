@@ -3,12 +3,12 @@ title: GForce
 order: 2
 ---
 
-GForce implements the classical force-directed layout algorithm by G6 4.0. It supports assign different masses and center gravities for different nodes freedomly. More importantly, it supports GPU parallel acceleration.
+GForce implements the classical force-directed layout algorithm by F6 4.0. It supports assign different masses and center gravities for different nodes freedomly. More importantly, it supports GPU parallel acceleration.
 
 <img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*lX-qSqDECrIAAAAAAAAAAAAAARQnAQ' width=600 alt='img'/>
 
 ```javascript
-const graph = new G6.Graph({
+const graph = new F6.Graph({
   container: 'mountNode',
   width: 1000,
   height: 600,
@@ -26,7 +26,7 @@ const graph = new G6.Graph({
       console.log('force layout done');
     },
     workerEnabled: true, // Whether to activate web-worker
-    gpuEnabled: true     // Whether to enable the GPU parallel computing, supported by G6 4.0
+    gpuEnabled: true     // Whether to enable the GPU parallel computing, supported by F6 4.0
     ... // more options are shown below
   },
 });
@@ -127,4 +127,4 @@ const graph = new G6.Graph({
 
 ## layoutCfg.gpuEnabled
 
-**Type**: Boolean<br />**Default**: false<br />**Required**: false<br />**Description**: Whether to enable the GPU parallel computing, supported by G6 4.0. If the machine or browser does not support GPU computing, it will be degraded to CPU computing automatically. The performance improvement: <img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*3rScQqqfpAAAAAAAAAAAAAAAARQnAQ' width='80%'/>
+**Type**: Boolean<br />**Default**: false<br />**Required**: false<br />**Description**: Whether to enable the GPU parallel computing, supported by F6 4.0. If the machine or browser does not support GPU computing, it will be degraded to CPU computing automatically. The performance improvement: <img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*3rScQqqfpAAAAAAAAAAAAAAAARQnAQ' width='80%'/>

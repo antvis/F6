@@ -1,11 +1,11 @@
 ---
-title: 自定义布局 G6.registerLayout
+title: 自定义布局 F6.registerLayout
 order: 11
 ---
 
-## G6.registerLayout(layoutName, layout)
+## F6.registerLayout(layoutName, layout)
 
-当内置布局不满足需求时，可以通过 `G6.registerLayout(layoutName, layout)` 方法自定义布局。
+当内置布局不满足需求时，可以通过 `F6.registerLayout(layoutName, layout)` 方法自定义布局。
 
 ### 参数
 
@@ -17,7 +17,7 @@ order: 11
 ### 用法
 
 ```javascript
-G6.registerLayout('layoutName', {
+F6.registerLayout('layoutName', {
   /**
    * 定义自定义行为的默认参数，会与用户传入的参数进行合并
    */
@@ -69,7 +69,7 @@ G6.registerLayout('layoutName', {
 });
 ```
 
-以下方法为自定义布局时可能需要复写的方法。如果非自定义，使用内置布局方法时，以下方法由 G6 控制并调用，用户不需要了解。
+以下方法为自定义布局时可能需要复写的方法。如果非自定义，使用内置布局方法时，以下方法由 F6 控制并调用，用户不需要了解。
 
 ## 初始化
 

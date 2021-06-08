@@ -26,7 +26,7 @@ Add text water marker for the canvas. Note that, images downloaded by `downloadI
 **Usage**
 
 ```javascript
-graph.setTextWaterMarker(['AntV', 'G6']);
+graph.setTextWaterMarker(['AntV', 'F6']);
 ```
 
 ### graph.setImageWaterMarker(imgURL, config)

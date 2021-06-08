@@ -3,7 +3,7 @@ title: Graphics Group
 order: 10
 ---
 
-Graphics Group (hereinafter referred to as Group) in G6 is similar to <a href='https://developer.mozilla.org/zh-CN/docs/Web/SVG/Element/g' target='_blank'> `<g>` tag in SVG </a>: Group a container of a group of graphics. The transformations on a Group such as clipping, rotating, zooming, and translating will be applied to all the children of the Group. The properties like color and position will also be inherited by its children. Besides, Group can be nested for complicated objects. For more information about Group, please refer to [Graphics Group](/en/docs/manual/middle/elements/shape/graphics-group) document.
+Graphics Group (hereinafter referred to as Group) in F6 is similar to <a href='https://developer.mozilla.org/zh-CN/docs/Web/SVG/Element/g' target='_blank'> `<g>` tag in SVG </a>: Group a container of a group of graphics. The transformations on a Group such as clipping, rotating, zooming, and translating will be applied to all the children of the Group. The properties like color and position will also be inherited by its children. Besides, Group can be nested for complicated objects. For more information about Group, please refer to [Graphics Group](/en/docs/manual/middle/elements/shape/graphics-group) document.
 
 ## Get group of item
 
@@ -32,7 +32,7 @@ The `cfg` above is not required, and it contains:
 | Name | Type | Description |
 | --- | --- | --- |
 | id | String | The unique id of this group |
-| name | String | The name of the shape which can be not unique. It is required for each shape in G6 3.3. Besides, `name` can be used for searching this shape, e.g. `const shape = group.find(element => element.get('name') === 'shape-name')`. The usage of find can be found at [find(fn)](#findfn) |
+| name | String | The name of the shape which can be not unique. It is required for each shape in F6 3.3. Besides, `name` can be used for searching this shape, e.g. `const shape = group.find(element => element.get('name') === 'shape-name')`. The usage of find can be found at [find(fn)](#findfn) |
 | visible | Boolean | Whether the group is visible |
 | capture | Boolean | Whether the group is capturable |
 | draggable | Boolean | Whether the group is allowed to response `dragstart`, `drag`, and `dragend` events. E.g. when user add a group into a custom node with `draggable: true`, the group will response the dragging events on the node, and the `'drag-node'` in the `modes` of the graph instance will take effect on the group |
@@ -68,7 +68,7 @@ The `cfg` above contains:
 | Name | Type | Description |
 | --- | --- | --- |
 | attrs | Object | The style configurations for the shape. e.g. `{x: 0, y: 10, fill: '#0f0'}` |
-| name | String | The name of the shape which can be not unique. It is required for each shape in G6 3.3. Besides, `name` can be used for searching this shape, e.g. `const shape = group.find(element => element.get('name') === 'shape-name')`. The usage of find can be found at [find(fn)](#findfn) |
+| name | String | The name of the shape which can be not unique. It is required for each shape in F6 3.3. Besides, `name` can be used for searching this shape, e.g. `const shape = group.find(element => element.get('name') === 'shape-name')`. The usage of find can be found at [find(fn)](#findfn) |
 | visible | Boolean | Whether the shape is visible |
 | capture | Boolean | Whether the shape is capturable by mouse events |
 | draggable | Boolean | Whether the shape is allowed to response `dragstart`, `drag`, and `dragend` events. E.g. when user add a shape into a custom node with `draggable: true`, the shape will response the dragging events on the node, and the `'drag-node'` in the `modes` of the graph instance will take effect |
@@ -88,7 +88,7 @@ group.addShape('rect', {
     shadowBlur: 10,
     opacity: 0.8,
   },
-  // must be assigned in G6 3.3 and later versions. it can be any value you want
+  // must be assigned in F6 3.3 and later versions. it can be any value you want
   name: 'rect-shape',
   zIndex: 1,
 });

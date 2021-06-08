@@ -1,11 +1,11 @@
 ---
-title: G6.registerLayout
+title: F6.registerLayout
 order: 11
 ---
 
-## G6.registerLayout(layoutName, layout)
+## F6.registerLayout(layoutName, layout)
 
-When the built-in Layouts cannot satisfy your requirments, custom a type of Layout by `G6.registerLayout(layoutName, layout)`.
+When the built-in Layouts cannot satisfy your requirments, custom a type of Layout by `F6.registerLayout(layoutName, layout)`.
 
 ### Parameters
 
@@ -17,7 +17,7 @@ When the built-in Layouts cannot satisfy your requirments, custom a type of Layo
 ### Usage
 
 ```javascript
-G6.registerLayout('layoutName', {
+F6.registerLayout('layoutName', {
   /**
    * The default configurations will be mixed by configurations from user
    */

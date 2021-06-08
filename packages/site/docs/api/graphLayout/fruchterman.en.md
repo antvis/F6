@@ -3,12 +3,12 @@ title: Fruchterman
 order: 8
 ---
 
-Fruchterman is a kind of force-directed layout. G6 implements it according to the paper <a href='http://www.mathe2.uni-bayreuth.de/axel/papers/reingold:graph_drawing_by_force_directed_placement.pdf' target='_blank'>Graph Drawing by Force-directed Placement</a>.
+Fruchterman is a kind of force-directed layout. F6 implements it according to the paper <a href='http://www.mathe2.uni-bayreuth.de/axel/papers/reingold:graph_drawing_by_force_directed_placement.pdf' target='_blank'>Graph Drawing by Force-directed Placement</a>.
 
 <img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*jK3ITYqVJnQAAAAAAAAAAABkARQnAQ' width=600 alt='img'/>
 
 ```javascript
-const graph = new G6.Graph({
+const graph = new F6.Graph({
   container: 'mountNode',
   width: 1000,
   height: 600,
@@ -21,7 +21,7 @@ const graph = new G6.Graph({
     clusterGravity: 30,
     maxIteration: 2000,
     workerEnabled: true, // Whether to activate web-worker
-    gpuEnabled: true, // Whether to enable the GPU parallel computing, supported by G6 4.0
+    gpuEnabled: true, // Whether to enable the GPU parallel computing, supported by F6 4.0
   },
 });
 ```
@@ -56,4 +56,4 @@ const graph = new G6.Graph({
 
 ## layoutCfg.gpuEnabled
 
-**Type**: Boolean<br />**Default**: false<br />**Required**: false<br />**Description**: Whether to enable the GPU parallel computing, supported by G6 4.0. If the machine or browser does not support GPU computing, it will be degraded to CPU computing automatically. The performance improvement: <img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*3rScQqqfpAAAAAAAAAAAAAAAARQnAQ' width='80%'/>
+**Type**: Boolean<br />**Default**: false<br />**Required**: false<br />**Description**: Whether to enable the GPU parallel computing, supported by F6 4.0. If the machine or browser does not support GPU computing, it will be degraded to CPU computing automatically. The performance improvement: <img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*3rScQqqfpAAAAAAAAAAAAAAAARQnAQ' width='80%'/>

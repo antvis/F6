@@ -8,7 +8,7 @@ Concentric 布局为同心圆布局，用户可以指定节点某个属性为排
 <img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*QpyPTbBpO2AAAAAAAAAAAABkARQnAQ' width=600 alt='img'/>
 
 ```javascript
-const graph = new G6.Graph({
+const graph = new F6.Graph({
   container: 'mountNode',
   width: 1000,
   height: 600,

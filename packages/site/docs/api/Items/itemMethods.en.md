@@ -3,7 +3,7 @@ title: item.*
 order: 0
 ---
 
-Item is the object of node / edge in G6.
+Item is the object of node / edge in F6.
 
 ## Update
 

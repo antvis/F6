@@ -7,17 +7,17 @@ order: 13
 
 Push operation。
 
-Implemented the undo function, refer to [here](https://github.com/antvis/G6/blob/master/packages/plugin/src/toolBar/index.ts#L208)
+Implemented the undo function, refer to [here](https://github.com/antvis/F6/blob/master/packages/plugin/src/toolBar/index.ts#L208)
 
-Implemented the redo function, refer to[here](https://github.com/antvis/G6/blob/master/packages/plugin/src/toolBar/index.ts#L295)
+Implemented the redo function, refer to[here](https://github.com/antvis/F6/blob/master/packages/plugin/src/toolBar/index.ts#L295)
 
 **参数**
 
-| Name      | Type    | Required | Description                                      |
-| --------- | ------- | -------- | ------------------------------------------------ | --------------------------------------------------- |
-| action    | string  | false    | operation type，the value of 'update' by default |
-| data      | unknown | false    | Stacked data                                     |
-| stackType | 'redo'  / 'undo'   | false                                            | push operation type，the value of 'undo' by default |
+| Name      | Type            | Required | Description                                         |
+| --------- | --------------- | -------- | --------------------------------------------------- |
+| action    | string          | false    | operation type，the value of 'update' by default    |
+| data      | unknown         | false    | Stacked data                                        |
+| stackType | 'redo' / 'undo' | false    | push operation type，the value of 'undo' by default |
 
 ## getUndoStack()
 

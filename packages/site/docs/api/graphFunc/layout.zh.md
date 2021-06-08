@@ -3,7 +3,7 @@ title: 布局
 order: 10
 ---
 
-G6 3.1 内置了丰富的布局。关于如何使用 G6 中内置的布局，请参考  [图布局 API](/zh/docs/api/graphLayout/guide) 或 [树图布局 API](/zh/docs/api/treeGraphLayout/guide)。
+F6 3.1 内置了丰富的布局。关于如何使用 F6 中内置的布局，请参考  [图布局 API](/zh/docs/api/graphLayout/guide) 或 [树图布局 API](/zh/docs/api/treeGraphLayout/guide)。
 
 ### graph.layout()
 
@@ -12,7 +12,7 @@ G6 3.1 内置了丰富的布局。关于如何使用 G6 中内置的布局，请
 **用法**
 
 ```javascript
-const graph = new G6.Graph({
+const graph = new F6.Graph({
   container: 'mountNode',
   width: 1000,
   height: 600,
@@ -72,7 +72,7 @@ graph.on('node:dragend', (e) => {
 **用法**
 
 ```javascript
-const graph = new G6.Graph({
+const graph = new F6.Graph({
   container: 'mountNode',
   width: 1000,
   height: 600,
@@ -105,7 +105,7 @@ graph.updateLayout({
 **用法**
 
 ```javascript
-const graph = new G6.Graph({
+const graph = new F6.Graph({
   container: 'mountNode',
   width: 1000,
   height: 600,

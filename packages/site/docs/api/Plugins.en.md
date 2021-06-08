@@ -3,10 +3,10 @@ title: Plugins
 order: 14
 ---
 
-There are several plugins in G6 which can be used for G6's graph or other applications.
+There are several plugins in F6 which can be used for F6's graph or other applications.
 
-- [Legend](#legend) *supported by v4.3.0 and later versions*
-- [SnapLine](#snapline) *supported by v4.3.0 and later versions*
+- [Legend](#legend) _supported by v4.3.0 and later versions_
+- [SnapLine](#snapline) _supported by v4.3.0 and later versions_
 - [Grid](#grid)
 - [Minimap](#minimap)
 - [Edge Bundling](#edge-bundling)
@@ -23,37 +23,36 @@ Instantiate the plugin and configure the minimap onto the instance of Graph:
 
 ```javascript
 // Instantialize the Grid plugin
-const grid = new G6.Grid();
+const grid = new F6.Grid();
 // Instantialize the Minimap plugin
-const minimap = new G6.Minimap();
-const graph = new G6.Graph({
+const minimap = new F6.Minimap();
+const graph = new F6.Graph({
   //... Other configurations
   plugins: [grid, minimap], // Configure Grid and Minimap to the graph
 });
 ```
 
-
 ## Legend
 
-Legend is a built-in legend plugin for G6. It is useful for npde/edge type demonstration, and the end-users are able to interact with the legend to highlight and filter the items on the graph. *supported after v4.3.0*.
+Legend is a built-in legend plugin for F6. It is useful for npde/edge type demonstration, and the end-users are able to interact with the legend to highlight and filter the items on the graph. _supported after v4.3.0_.
 
-<img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*UmXzQLG65vYAAAAAAAAAAAAAARQnAQ' alt="img" width='500px'>
+<img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*UmXzQLF65vYAAAAAAAAAAAAAARQnAQ' alt="img" width='500px'>
 
 ### Configuration
 
-| Name | Type  | Description                                |
+| Name | Type | Description |
 | --- | --- | --- |
 | data | GraphData | The data for the legend, not related to the data of the graph. The legend for nodes currently supports `'circle'`, `'rect'`, and `'ellipse'`. The legend for edges currently supports `'line'`, `'cubic'`, and `'quadratic'`. `type` for each data means the type of the legend item, and the `order` could be assigned to each node/edge data for ordering in a legend group |
 | position | 'top' / 'top-left' / 'top-right' / 'right' / 'right-top' / 'right-bottom' / 'left' / 'left-top' / 'left-bottom' / 'bottom' / 'bottom-left' / 'bottom-right' | The relative of the position to the canvas. `'top'` by default, which means the legend area is on the top of the canvas |
 | padding | number / number[] | The inner distance between the content of the legend to the border of the legend area. Array with four numbers means the padding to the top, right, bottom, and left responsively |
-| margin | number / number[] | The outer distance between the legend area to the border of the canvas. Array with four numbers means the distance to the top, right, bottom, and left responsively. Only the top distance takes effect when  `position:'top'`, situations for other `position` configurations are similar to it |
+| margin | number / number[] | The outer distance between the legend area to the border of the canvas. Array with four numbers means the distance to the top, right, bottom, and left responsively. Only the top distance takes effect when `position:'top'`, situations for other `position` configurations are similar to it |
 | offsetX | number | The x-axis offset for the legend area, it is useful when you want to adjust the position of the lenged slightly |
 | offsetY | number | The y-axis offset for the legend area, it is useful when you want to adjust the position of the lenged slightly |
 | containerStyle | ShapeStyle | The style for the background rect, the format is similar as [rect shape style](/en/docs/api/shapeProperties#rect) |
 | horiSep | number | The horizontal seperation of the legend items |
 | vertiSep | number | The vertical seperation of the legend items |
 | layout | 'vertical' / 'horizontal' | The layout of the legend items. `'horizontal'` by default |
-| align | 'center' / 'right' / 'left' | The alignment of the legend items.  `'center'` by default |
+| align | 'center' / 'right' / 'left' | The alignment of the legend items. `'center'` by default |
 | title | string | The title string for the legend, the style of the title could be configured by `titleConfig` |
 | titleConfig | object | The style of the legend title, detail configurations are shown in following lines |
 | titleConfig.position | 'center' / 'right' / 'left' | The alignment of the title to the legend content. `'center'` by default |
@@ -64,18 +63,18 @@ Legend is a built-in legend plugin for G6. It is useful for npde/edge type demon
 | filter.enable | boolean | Whether allow filtering the items in the main graph while the end-user interaction with the legend items. `false` by default |
 | filter.multiple | boolean | Whether support active multiple types of legend items, `false` by default, which means only one type of legend item will be activated in the same time. If it is `true`, multiple items could be activated only when the `filter.trigger` is `'click'` |
 | filter.trigger | 'click' / 'mouseenter' | The interaction way to the legend items. `click` by default, which means while the end-user clicking a legend item, the legend item and corresponding filtered items on the main graph will be activated |
-| filter.legendStateStyles | { active?: ShapeStyle, inactive?: ShapeStyle  | The state styles for the legend items while filtering, inluding `filter.legendStateStyles.active` and `filter.legendStateStyles.inactive`. The type of each one is `ShapeStyle`. Similar to the `nodeStateStyles` of Graph |
+| filter.legendStateStyles | { active?: ShapeStyle, inactive?: ShapeStyle | The state styles for the legend items while filtering, inluding `filter.legendStateStyles.active` and `filter.legendStateStyles.inactive`. The type of each one is `ShapeStyle`. Similar to the `nodeStateStyles` of Graph |
 | filter.graphActiveState | string | The activate state name for the items on the main graph. When a lenged item is activated, the corresponding items of the main graph will be set to `filter.graphActiveState`, `'active'` by default. And you should assign the state style for this state name on Graph |
 | filter.graphInactiveState | string | The inactivate state name for the items on the main graph. When a lenged item is inactivated, the corresponding items of the main graph will be set to `filter.graphInactiveState`, `'inactive'` by default. And you should assign the state style for this state name on Graph |
 | filter.filterFunctions | { [key: string]: (d) => boolean; } | Since the data of the legend is not related to the main graph, you should configure filtering functions for each legend item type. The `key` is corresponding to the `type` of the legend item, and the value is a function. For the function, the parameter is the item data of the main graph, and the return value is a boolean which means whether the item of the main graph should be activated |
 
 ## SnapLine
 
-SnapLine is a built-in components in G6. *supported by v4.3.0 and later versions*.
+SnapLine is a built-in components in F6. _supported by v4.3.0 and later versions_.
 
 ### Configuration
 
-| Name | Type   | Required | Description                                |
+| Name          | Type                                          | Required | Description           |
 | ------------- | --------------------------------------------- | -------- | --------------------- |
 | line          | ShapeStyle                                    | false    | the style of SnapLine |
 | itemAlignType | boolean、'horizontal' 、'vertical'、'center'; | false    | the type of SnapLine  |
@@ -125,7 +124,7 @@ The `delegateStyle` has the properties:
 
 ## Image Minimap
 
-The theory of the [Minimap](#minimap) is copy the graphics from the main graph onto the canvas of the minimap, which will lead to double rendering cost. To alleviate this problem, G6 provides another Image Minimap which is drawn by one `<img />` instead of canvas. But you have to provide the `graphImg` which is the url or base64 string of the main graph's screenshot image, and the image is controlled by yourself totally, which means you might need to update the image by calling `minimap.updateGraphImg` manually when the content of the main graph is changed.
+The theory of the [Minimap](#minimap) is copy the graphics from the main graph onto the canvas of the minimap, which will lead to double rendering cost. To alleviate this problem, F6 provides another Image Minimap which is drawn by one `<img />` instead of canvas. But you have to provide the `graphImg` which is the url or base64 string of the main graph's screenshot image, and the image is controlled by yourself totally, which means you might need to update the image by calling `minimap.updateGraphImg` manually when the content of the main graph is changed.
 
 <img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*v1svQLkEPrUAAAAAAAAAAABkARQnAQ' width=300 alt='img'/>
 
@@ -171,11 +170,11 @@ Parameters:
 
 ```
 // Instantiating the Image Minimap
-const imageMinimap = new G6.ImageMinimap({
+const imageMinimap = new F6.ImageMinimap({
   width: 200,
   graphImg: 'https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*eD7nT6tmYgAAAAAAAAAAAABkARQnAQ'
 });
-const graph = new G6.Graph({
+const graph = new F6.Graph({
   //... Other configurations
   plugins: [imageMinimap], // configure the imageMinimap
 });
@@ -220,17 +219,17 @@ Menu is used to configure the right-click menu on the node.
 | Name | Type | Required | Description |
 | --- | --- | --- | --- |
 | className | string | null | the class name of the menu dom |
-| getContent | (evt?: IG6GraphEvent) => HTMLDivElement / string | <img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*OtOkS4g-vrkAAAAAAAAAAABkARQnAQ' width=60 alt='img'/> | the menu content，supports DOM or string |
+| getContent | (evt?: IF6GraphEvent) => HTMLDivElement / string | <img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*OtOkS4g-vrkAAAAAAAAAAABkARQnAQ' width=60 alt='img'/> | the menu content，supports DOM or string |
 | handleMenuClick | (target: HTMLElement, item: Item) => void | undefined | the callback function when click the menu |
 
 ### Usage
 
-Use G6 build-in menu by default.
+Use F6 build-in menu by default.
 
 ```
 // Instantiate Menu plugin
-const menu = new G6.Menu();
-const graph = new G6.Graph({
+const menu = new F6.Menu();
+const graph = new F6.Graph({
   //... other Configuration
   plugins: [menu],
 });
@@ -239,7 +238,7 @@ const graph = new G6.Graph({
 #### DOM Menu
 
 ```
-const menu = new G6.Menu({
+const menu = new F6.Menu({
   getContent(e) {
     const outDiv = document.createElement('div');
     outDiv.style.width = '180px';
@@ -257,7 +256,7 @@ const menu = new G6.Menu({
   },
 });
 
-const graph = new G6.Graph({
+const graph = new F6.Graph({
   //... other Configuration
   plugins: [menu], // the Menu plugin
 });
@@ -266,7 +265,7 @@ const graph = new G6.Graph({
 #### String Menu
 
 ```
-const menu = new G6.Menu({
+const menu = new F6.Menu({
   getContent(evt) {
     return `<ul>
       <li title='1'>menu02</li>
@@ -281,7 +280,7 @@ const menu = new G6.Menu({
   },
 });
 
-const graph = new G6.Graph({
+const graph = new F6.Graph({
   //... other Configuration
   plugins: [menu], // The Menu plugin
 });
@@ -315,9 +314,9 @@ ToolBar has the following operations by default:
 ToolBar provides some default operations above.
 
 ```
-const toolbar = new G6.ToolBar();
+const toolbar = new F6.ToolBar();
 
-const graph = new G6.Graph({
+const graph = new F6.Graph({
   //... Other configurations
   plugins: [toolbar], // Use the ToolBar plugin
 });
@@ -330,7 +329,7 @@ const tc = document.createElement('div');
 tc.id = 'toolbarContainer';
 document.body.appendChild(tc);
 
-const toolbar = new G6.ToolBar({
+const toolbar = new F6.ToolBar({
   container: tc,
   getContent: () => {
     return `
@@ -354,7 +353,7 @@ const toolbar = new G6.ToolBar({
   }
 });
 
-const graph = new G6.Graph({
+const graph = new F6.Graph({
   //... Other configurations
   plugins: [toolbar], // Use the ToolBar plugin
 });
@@ -363,7 +362,7 @@ const graph = new G6.Graph({
 #### Custom ToolBar by DOM
 
 ```
-const toolbar = new G6.ToolBar({
+const toolbar = new F6.ToolBar({
   getContent: () => {
     const outDiv = document.createElement('div');
     outDiv.style.width = '180px';
@@ -381,7 +380,7 @@ const toolbar = new G6.ToolBar({
   }
 });
 
-const graph = new G6.Graph({
+const graph = new F6.Graph({
   //... Other configurations
   plugins: [toolbar], // Use the ToolBar plugin
 });
@@ -389,7 +388,7 @@ const graph = new G6.Graph({
 
 ## TimeBar
 
-There are three types of built-in TimeBar in G6:
+There are three types of built-in TimeBar in F6:
 
 - Time bar with a line chart as background;
 - Simple time bar;
@@ -410,12 +409,12 @@ All the three types of timebar supports play, fast forward, and fast backward.
 
 ### Common Usage
 
-Same to other plugins of G6, the users can initiate the TimeBar and assign it to the graph as:
+Same to other plugins of F6, the users can initiate the TimeBar and assign it to the graph as:
 
 ```javascript
-import G6 from '@antv/g6';
+import F6 from '@antv/g6';
 
-const timebar = new G6.TimeBar({
+const timebar = new F6.TimeBar({
   width: 500,
   height: 150,
   padding: 10,
@@ -425,7 +424,7 @@ const timebar = new G6.TimeBar({
   },
 });
 
-const graph = new G6.Graph({
+const graph = new F6.Graph({
   container: 'container',
   width,
   height,
@@ -444,7 +443,7 @@ const graph = new G6.Graph({
 <br />And assigning the `type` to be `tick` results in a TimeBar with descrete ticks. Note that it is different from the above two types of TimeBar, \*\*The TimeBar with decrete ticks is configured with the `tick` object but not the `trend` object.
 
 ```javascript
-const timebar = new G6.TimeBar({
+const timebar = new F6.TimeBar({
   width,
   height: 150,
   type: 'tick',
@@ -452,14 +451,14 @@ const timebar = new G6.TimeBar({
     data: timeBarData,
     width,
     height: 42,
-    tickLabelFormatter: d => {
+    tickLabelFormatter: (d) => {
       const dateStr = `${d.date}`;
       if ((count - 1) % 10 === 0) {
         return `${dateStr.substr(0, 4)}-${dateStr.substr(4, 2)}-${dateStr.substr(6, 2)}`;
       }
       return false;
     },
-    tooltipFomatter: d => {
+    tooltipFomatter: (d) => {
       const dateStr = `${d}`;
       return `${dateStr.substr(0, 4)}-${dateStr.substr(4, 2)}-${dateStr.substr(6, 2)}`;
     },
@@ -469,16 +468,15 @@ const timebar = new G6.TimeBar({
 
 <img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*n6ECQ7Jn5pQAAAAAAAAAAAAAARQnAQ' width='600' />
 
-
 ### Event Listener
 
 TimeBar Plugin exposes several timing events. They could be listened by `graph.on('eventname', e => {})`.
 
-| Event Name | Description |
-| --- | --- |
-| valuechange | Emitted when the value range of the timebar is chaged. |
-| timebarstartplay | Emitted when the timeline starts to play. |
-| timebarendplay | Emitted when the timeline ends playing. |
+| Event Name       | Description                                            |
+| ---------------- | ------------------------------------------------------ |
+| valuechange      | Emitted when the value range of the timebar is chaged. |
+| timebarstartplay | Emitted when the timeline starts to play.              |
+| timebarendplay   | Emitted when the timeline ends playing.                |
 
 ### Definition of the Configurations
 
@@ -772,7 +770,7 @@ type ControllerCfg = Partial<{
 
 ## ToolTip
 
-ToolTip helps user to explore detail infomations on the node and edge. Do note that, This Tooltip Plugins will replace the tooltip in the built-in behavior after G6 4.0.
+ToolTip helps user to explore detail infomations on the node and edge. Do note that, This Tooltip Plugins will replace the tooltip in the built-in behavior after F6 4.0.
 
 ### Configuration
 
@@ -780,8 +778,8 @@ ToolTip helps user to explore detail infomations on the node and edge. Do note t
 | --- | --- | --- | --- |
 | className | string | null | Tge class name of the tooltip's container |
 | container | HTMLDivElement | null | The container of the Tooltip. The canvas DOM will be used by default |
-| getContent | (evt?: IG6GraphEvent) => HTMLDivElement / string | <img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*aPPuQquN5Q0AAAAAAAAAAABkARQnAQ' width=80 alt='img'/> | The content of the Tooltip |
-| shouldBegin | (evt: G6Event) => boolean | undefined | Whether allow the tooltip show up. You can return true or false according to the content of the `evt.item` (current item of the event) or `evt.target` (current shape of the event) |
+| getContent | (evt?: IF6GraphEvent) => HTMLDivElement / string | <img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*aPPuQquN5Q0AAAAAAAAAAABkARQnAQ' width=80 alt='img'/> | The content of the Tooltip |
+| shouldBegin | (evt: F6Event) => boolean | undefined | Whether allow the tooltip show up. You can return true or false according to the content of the `evt.item` (current item of the event) or `evt.target` (current shape of the event) |
 | offsetX | number | 6 | the offset of tooltip along x axis, the padding of the parent container should be take into consider |
 | offsetY | number | 6 | the offset of tooltip along y axis, the padding of the parent container should be take into consider |
 | itemTypes | string[] | ['node', 'edge', 'combo'] | the item types that allow the tooltip show up. e.g. if you only want the node tooltip, set the `itemTypes` to be ['node'] |
@@ -795,7 +793,7 @@ The content of the Tooltip is the type and id of the item by default. Users are 
 #### Dom Tooltip
 
 ```javascript
-const tooltip = new G6.Tooltip({
+const tooltip = new F6.Tooltip({
   offsetX: 10,
   offsetY: 20,
   getContent(e) {
@@ -805,13 +803,13 @@ const tooltip = new G6.Tooltip({
       <h4>Custom Tooltip</h4>
       <ul>
         <li>Label: ${e.item.getModel().label || e.item.getModel().id}</li>
-      </ul>`
-    return outDiv
+      </ul>`;
+    return outDiv;
   },
-  itemTypes: ['node']
+  itemTypes: ['node'],
 });
 
-const graph = new G6.Graph({
+const graph = new F6.Graph({
   //... Other configurations
   plugins: [tooltip], // Use Tooltip plugin
 });
@@ -820,7 +818,7 @@ const graph = new G6.Graph({
 #### String Tooltip
 
 ```javascript
-const tooltip = new G6.Tooltip({
+const tooltip = new F6.Tooltip({
   getContent(e) {
     return `<div style='width: 180px;'>
       <ul id='menu'>
@@ -834,17 +832,18 @@ const tooltip = new G6.Tooltip({
   },
 });
 
-const graph = new G6.Graph({
+const graph = new F6.Graph({
   //... Other configurations
   plugins: [tooltip], // Use Tooltip plugin
 });
 ```
+
 ### Event Listener
 
 TimeBar Plugin exposes several timing events. They could be listened by `graph.on('eventname', e => {})`.
 
-| Event Name | Description |
-| --- | --- |
+| Event Name    | Description                          |
+| ------------- | ------------------------------------ |
 | tooltipchange | Emitted when the Tooltip is changed. |
 
 ## Fisheye Lens
@@ -875,7 +874,7 @@ Fisheye is designed for focus_context exploration, it keeps the context and the 
 Update partial of the configurations of the FishEye instance, including `trigger`, `d`, `r`, `maxR`, `minR`, `maxD`, `minD`, `scaleRBy`, and `scaleDBy`. E.g.
 
 ```
-const fisheye = new G6.Fisheye({
+const fisheye = new F6.Fisheye({
   trigger: 'mousemove'
 });
 
@@ -891,7 +890,7 @@ fisheye.updateParams({
 ### Usage
 
 ```
-const fisheye = new G6.Fisheye({
+const fisheye = new F6.Fisheye({
   trigger: 'mousemove',
   d: 1.5,
   r: 300,
@@ -899,7 +898,7 @@ const fisheye = new G6.Fisheye({
   showLabel: false
 });
 
-const graph = new G6.Graph({
+const graph = new F6.Graph({
   //... Other graph configurations
   plugins: [fisheye], // configuring fisheye plugin
 });
@@ -930,7 +929,7 @@ Edge Filter Lens is designed for edge filtering, the desired edges will be kept 
 Update partial of the configurations of the filter lens instance, including `trigger`, `type`, `r`, `maxR`, `minR`, `shouldShow`, `showLabel`, and `scaleRBy`. E.g.
 
 ```
-const filterLens = new G6.EdgeFilterLens({
+const filterLens = new F6.EdgeFilterLens({
   trigger: 'drag'
 });
 
@@ -945,7 +944,7 @@ filterLens.updateParams({
 ### Usage
 
 ```
-const filterLens = new G6.EdgeFilterLens({
+const filterLens = new F6.EdgeFilterLens({
   trigger: 'mousemove',
   r: 300,
   shouldShow: d => {
@@ -953,7 +952,7 @@ const filterLens = new G6.EdgeFilterLens({
   }
 });
 
-const graph = new G6.Graph({
+const graph = new F6.Graph({
   //... Other graph configurations
   plugins: [filterLens], // configuring edge filter lens plugin
 });

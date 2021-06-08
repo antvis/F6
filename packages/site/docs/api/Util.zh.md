@@ -3,14 +3,14 @@ title: 工具方法 Util
 order: 15
 ---
 
-G6 提供了一些工具方法，方便用户做数据的预处理、图形计算等。
+F6 提供了一些工具方法，方便用户做数据的预处理、图形计算等。
 
 ## 使用方法
 
-引入 G6 后，可通过 `G6.Util.functionName` 调用到 G6 抛出的工具方法。下面代码演示了使用 `processParallelEdges` 处理两节点之间存在多条边的情况。
+引入 F6 后，可通过 `F6.Util.functionName` 调用到 F6 抛出的工具方法。下面代码演示了使用 `processParallelEdges` 处理两节点之间存在多条边的情况。
 
 ```javascript
-import G6 from '@antv/g6';
+import F6 from '@antv/f6';
 
 const data = {
   nodes: [
@@ -26,7 +26,7 @@ const offsetDiff = 10;
 const multiEdgeType = 'quadratic';
 const singleEdgeType = 'line';
 const loopEdgeType = 'loop';
-G6.Util.processParallelEdges(data.edges, offsetDiff, multiEdgeType, singleEdgeType, loopEdgeType);
+F6.Util.processParallelEdges(data.edges, offsetDiff, multiEdgeType, singleEdgeType, loopEdgeType);
 ```
 
 ## 数据预处理

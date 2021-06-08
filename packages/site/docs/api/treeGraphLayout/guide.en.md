@@ -5,11 +5,11 @@ order: 0
 
 ## Overview
 
-Similar to [Graph Layout](/en/docs/api/graphLayout/guide), G6 provides several built-in TreeGraph layouts, which can be [configured to Graph](#Usage) by `layout`. The differences between TreeGraph and Graph:
+Similar to [Graph Layout](/en/docs/api/graphLayout/guide), F6 provides several built-in TreeGraph layouts, which can be [configured to Graph](#Usage) by `layout`. The differences between TreeGraph and Graph:
 
 - When instantiating a TreeGraph, the `layout` is required, but it is not required for Graph;
 - TreeGaph layouts does not support being instantiated and used independently;
-- You can not custom a new type of TreeGraph Layout by `G6.registerLayout`.
+- You can not custom a new type of TreeGraph Layout by `F6.registerLayout`.
 
 Notice that the layouts for TreeGraph cannot be used on Graph.
 
@@ -23,7 +23,7 @@ There are four built-in layouts for TreeGraph:
 ## Usage
 
 ```javascript
-const graph = new G6.TreeGraph({
+const graph = new F6.TreeGraph({
   // ...                      // Other configurations
   layout: {                // Object，required for TreeGraph
     type: 'dendrogram',

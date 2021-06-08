@@ -3,14 +3,14 @@ title: Util
 order: 15
 ---
 
-G6 provides a set of util functions for data pre-processing and graphics computation.
+F6 provides a set of util functions for data pre-processing and graphics computation.
 
 ## Usage
 
-Import G6, and call a util function by `G6.Util.functionName`. The following demo shows the usage of `processParallelEdges` to process multiple edges between two nodes.
+Import F6, and call a util function by `F6.Util.functionName`. The following demo shows the usage of `processParallelEdges` to process multiple edges between two nodes.
 
 ```javascript
-import G6 from '@antv/g6';
+import F6 from '@antv/f6';
 
 const data = {
   nodes: [
@@ -26,7 +26,7 @@ const offsetDiff = 10;
 const multiEdgeType = 'quadratic';
 const singleEdgeType = 'line';
 const loopEdgeType = 'loop';
-G6.Util.processParallelEdges(data.edges, offsetDiff, multiEdgeType, singleEdgeType, loopEdgeType);
+F6.Util.processParallelEdges(data.edges, offsetDiff, multiEdgeType, singleEdgeType, loopEdgeType);
 ```
 
 ## Data Pre-processing

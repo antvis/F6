@@ -3,7 +3,7 @@ title: Coordinate Transformation
 order: 15
 ---
 
-In this part, we will describe the methods about transformation between point canvas, and client coordinates. The relationships and details could be refered to [Coordinate Systems in G6](/en/docs/manual/advanced/coordinate-system).
+In this part, we will describe the methods about transformation between point canvas, and client coordinates. The relationships and details could be refered to [Coordinate Systems in F6](/en/docs/manual/advanced/coordinate-system).
 
 ### graph.getPointByClient(clientX, clientY)
 
@@ -34,8 +34,8 @@ Transform point coordinates into client/screen coordinates.
 
 **Parameters**
 
-| Name | Type   | Required | Description                |
-| ---- | ------ | -------- | -------------------------- |
+| Name | Type   | Required | Description                              |
+| ---- | ------ | -------- | ---------------------------------------- |
 | x    | Number | true     | x coordinate of point coordinate system. |
 | y    | Number | true     | y coordinate of point coordinate system. |
 
@@ -80,8 +80,8 @@ Transform point coordinates into canvas coordinates.
 
 **Parameters**
 
-| Name | Type   | Required | Description                    |
-| ---- | ------ | -------- | ------------------------------ |
+| Name | Type   | Required | Description                                  |
+| ---- | ------ | -------- | -------------------------------------------- |
 | x    | Number | true     | The x coordinate of point coordinate system. |
 | y    | Number | true     | The y coordinate of point coordinate system. |
 

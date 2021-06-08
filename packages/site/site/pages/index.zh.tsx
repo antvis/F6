@@ -81,7 +81,7 @@ const IndexPage = () => {
         '帮助中小微企业建立及展示可信的信用档案，通过评级等信用服务让商业合作更简单 。',
       ),
       image:
-        'https://gw.alipayobjects.com/mdn/rms_5c3b4a/afts/img/A*6pZZQIgmzcsAAAAAAAAAAAAAARQnAQ',
+        'https://gw.alipayobjects.com/mdn/rms_5c3b4a/afts/img/A*Elw0QZx-wOgAAAAAAAAAAAAAARQnAQ',
     },
     {
       logo: 'https://gw.alipayobjects.com/mdn/rms_5c3b4a/afts/img/A*-SOyRJG53z0AAAAAAAAAAAAAARQnAQ',
@@ -89,7 +89,7 @@ const IndexPage = () => {
       isAppLogo: true,
       description: t('B2B智能营销解决方案-帮助B类企业打造招投标信息处理最短路径。'),
       image:
-        'https://gw.alipayobjects.com/mdn/rms_5c3b4a/afts/img/A*w7hpQ6ZoHJgAAAAAAAAAAAAAARQnAQ',
+        'https://gw.alipayobjects.com/mdn/rms_5c3b4a/afts/img/A*XsxRRZ8oDVsAAAAAAAAAAAAAARQnAQ',
     },
   ];
 

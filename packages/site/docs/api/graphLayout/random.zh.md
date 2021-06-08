@@ -3,12 +3,12 @@ title: Random 随机
 order: 1
 ---
 
-Random 布局是 G6 中的默认布局方法。当实例化图时没有指定布局方法，且数据中也不存在位置信息时，G6 将自动使用 Random 布局。
+Random 布局是 F6 中的默认布局方法。当实例化图时没有指定布局方法，且数据中也不存在位置信息时，F6 将自动使用 Random 布局。
 
 <img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*G5_uRodUTaYAAAAAAAAAAABkARQnAQ' width=430 alt='img'/>
 
 ```javascript
-const graph = new G6.Graph({
+const graph = new F6.Graph({
   container: 'mountNode',
   width: 1000,
   height: 600,

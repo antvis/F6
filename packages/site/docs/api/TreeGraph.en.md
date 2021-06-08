@@ -1,5 +1,5 @@
 ---
-title: G6.TreeGraph(cfg)
+title: F6.TreeGraph(cfg)
 order: 3
 ---
 
@@ -7,10 +7,10 @@ Initialize a tree graph.
 
 ```ts
 // highlight-start
-new G6.TreeGraph(cfg: GraphOptions) => TreeGraph
+new F6.TreeGraph(cfg: GraphOptions) => TreeGraph
 // highlight-end
 
-const treeGraph = new G6.TreeGraph({
+const treeGraph = new F6.TreeGraph({
   container: 'mountNode',
   width: 800,
   height: 600,
@@ -41,9 +41,9 @@ const treeGraph = new G6.TreeGraph({
 });
 ```
 
-If you are going to visualize a tree, TreeGraph of G6 is more appropriate than Graph. The main differences between `G6.TreeGraph` and `G6.Graph` are data structure and built-in layout algorithms:
+If you are going to visualize a tree, TreeGraph of F6 is more appropriate than Graph. The main differences between `F6.TreeGraph` and `F6.Graph` are data structure and built-in layout algorithms:
 
-- Data structure: In G6, the tree data has nested structure. Edges are implicit in it. Each node data has `id` and `children` properties at least:
+- Data structure: In F6, the tree data has nested structure. Edges are implicit in it. Each node data has `id` and `children` properties at least:
 
 ```javascript
 const data = {
@@ -65,4 +65,4 @@ const data = {
   - Tree layout algorithms do not modify the source data. it generates a new data instead. And the source data will be a property of the new data. This mechanism will reduce the complexity of transformation from nested data to nodes and edges in graph.
   - The layout will be re-calculated after adding / deleting / expanding / collapsing nodes on the tree.
 
-TreeGraph is inherited from Graph, please refer to [G6.Graph(GraphOptions)](/zh/docs/api/Graph.zh.md) for its configurations. One difference is the `layout` option. There are four layout algorithms for tree in G6: dendrogram, compactBox, mindmap, and indeted, whose detailed configurations are listed in [TreeGraph Layout](/zh/docs/api/common/treeLayout.zh.md).
+TreeGraph is inherited from Graph, please refer to [F6.Graph(GraphOptions)](/zh/docs/api/Graph.zh.md) for its configurations. One difference is the `layout` option. There are four layout algorithms for tree in F6: dendrogram, compactBox, mindmap, and indeted, whose detailed configurations are listed in [TreeGraph Layout](/zh/docs/api/common/treeLayout.zh.md).

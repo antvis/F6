@@ -8,7 +8,7 @@ Fruchterman 布局是一种力导布局。算法原文： <a href='http://www.ma
 <img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*jK3ITYqVJnQAAAAAAAAAAABkARQnAQ' width=600 alt='img'/>
 
 ```javascript
-const graph = new G6.Graph({
+const graph = new F6.Graph({
   container: 'mountNode',
   width: 1000,
   height: 600,
@@ -21,7 +21,7 @@ const graph = new G6.Graph({
     clusterGravity: 30, // 可选
     maxIteration: 2000, // 可选，迭代次数
     workerEnabled: true, // 可选，开启 web-worker
-    gpuEnabled: true, // 可选，开启 GPU 并行计算，G6 4.0 支持
+    gpuEnabled: true, // 可选，开启 GPU 并行计算，F6 4.0 支持
   },
 });
 ```
@@ -56,4 +56,4 @@ const graph = new G6.Graph({
 
 ## layoutCfg.gpuEnabled
 
-**类型**: Boolean<br />**默认值**: false<br />**是否必须**: false<br />**说明**: 是否启用 GPU 并行计算。若用户的机器或浏览器不支持 GPU 计算，将会自动降级为 CPU 计算。自 G6 4.0 起支持，性能提升概览： <img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*4ogTQKrWhIkAAAAAAAAAAAAAARQnAQ' width='80%' alt=''/>
+**类型**: Boolean<br />**默认值**: false<br />**是否必须**: false<br />**说明**: 是否启用 GPU 并行计算。若用户的机器或浏览器不支持 GPU 计算，将会自动降级为 CPU 计算。自 F6 4.0 起支持，性能提升概览： <img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*4ogTQKrWhIkAAAAAAAAAAAAAARQnAQ' width='80%' alt=''/>

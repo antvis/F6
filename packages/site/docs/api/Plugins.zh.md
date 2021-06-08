@@ -3,10 +3,10 @@ title: 插件 Plugins
 order: 14
 ---
 
-G6 提供了一些可插拔的组件，包括：
+F6 提供了一些可插拔的组件，包括：
 
-- [Legend](#legend) *v4.3.0 起支持*
-- [SnapLine](#snapline) *v4.3.0 起支持*
+- [Legend](#legend) _v4.3.0 起支持_
+- [SnapLine](#snapline) _v4.3.0 起支持_
 - [Grid](#grid)
 - [Minimap](#minimap)
 - [ImageMinimap](#image-minimap)
@@ -20,13 +20,13 @@ G6 提供了一些可插拔的组件，包括：
 
 ## 配置方法
 
-引入 G6 后，首先实例化需要使用的某插件对象。然后，在实例化图时将其配置到 `plugins` 中：
+引入 F6 后，首先实例化需要使用的某插件对象。然后，在实例化图时将其配置到 `plugins` 中：
 
 ```javascript
 // 实例化 Grid 插件
-const grid = new G6.Grid();
-const minimap = new G6.Minimap();
-const graph = new G6.Graph({
+const grid = new F6.Grid();
+const minimap = new F6.Minimap();
+const graph = new F6.Graph({
   //... 其他配置项
   plugins: [grid, minimap], // 配置 Grid 插件和 Minimap 插件
 });
@@ -34,9 +34,9 @@ const graph = new G6.Graph({
 
 ## Legend
 
-Legend 是 G6 内置的图例插件。用于说明图中不同类型的节点和边所代表的含义，并可以通过与图例的交互做简单的高亮和过滤。 *v4.3.0 起支持*。
+Legend 是 F6 内置的图例插件。用于说明图中不同类型的节点和边所代表的含义，并可以通过与图例的交互做简单的高亮和过滤。 _v4.3.0 起支持_。
 
-<img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*UmXzQLG65vYAAAAAAAAAAAAAARQnAQ' alt="img" width='500px'>
+<img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*UmXzQLF65vYAAAAAAAAAAAAAARQnAQ' alt="img" width='500px'>
 
 ### 配置项
 
@@ -63,24 +63,23 @@ Legend 是 G6 内置的图例插件。用于说明图中不同类型的节点和
 | filter.enable | boolean | 是否允许通过图例的交互对主图元素过滤，默认为 `false` |
 | filter.multiple | boolean | 是否支持多种元素过滤，默认为 `false`。当它为 `true` 时，只有 `filter.trigger` 为 `'click'` 时方可多选图例 |
 | filter.trigger | 'click' / 'mouseenter' | 触发主图元素过滤的图例交互方式，默认为 `click` |
-| filter.legendStateStyles | { active?: ShapeStyle, inactive?: ShapeStyle  | 在过滤时，图例本身的状态样式，包括 `filter.legendStateStyles.active` 和 `filter.legendStateStyles.inactive` 两种，每种的类型均为 ShapeStyle。类似图的 `nodeStateStyles` 配置 |
+| filter.legendStateStyles | { active?: ShapeStyle, inactive?: ShapeStyle | 在过滤时，图例本身的状态样式，包括 `filter.legendStateStyles.active` 和 `filter.legendStateStyles.inactive` 两种，每种的类型均为 ShapeStyle。类似图的 `nodeStateStyles` 配置 |
 | filter.graphActiveState | string | 主图元素过滤时，被选中的主图元素的状态名，将寻找主图元素的对应的状态样式进行主图元素的更新。默认值为 `'active'` |
 | filter.graphInactiveState | string | 主图元素过滤时，未被选中的主图元素的状态名，将寻找主图元素的对应的状态样式进行主图元素的更新。默认值为 `'inactive'` |
 | filter.filterFunctions | { [key: string]: (d) => boolean; } | 由于图例的数据与主图解耦，因此需要配置每种图例对应的主图过滤函数，`key` 为图例数据的 `type`，值为函数，函数的参数为主图元素的数据，返回值为布尔型，代表是否被选中 |
 
 ## SnapLine
 
-SnapLine 是 G6 内置的对齐线插件。 *v4.3.0 起支持*。
+SnapLine 是 F6 内置的对齐线插件。 _v4.3.0 起支持_。
 
 实例化时可以通过配置项调整 SnapLine 的样式和功能。
 
 ### 配置项
 
-| 名称 | 类型 | 描述 |
-| --- | --- | --- |
-| line | ShapeStyle | 辅助线的样式 |
+| 名称          | 类型                                          | 描述                      |
+| ------------- | --------------------------------------------- | ------------------------- |
+| line          | ShapeStyle                                    | 辅助线的样式              |
 | itemAlignType | boolean、'horizontal' 、'vertical'、'center'; | 辅助线类型，true 表示全部 |
-
 
 ## Grid
 
@@ -127,7 +126,7 @@ Minimap 是用于快速预览和探索图的工具。
 
 ## Image Minimap
 
-由于 [Minimap](#minimap) 的原理是将主画布内容复制到 minimap 的画布上，在大数据量下可能会造成双倍的绘制效率成本。为缓解该问题，Image Minimap 采用另一种机制，根据提供的图片地址或 base64 字符串 `graphImg` 绘制 `<img />` 代替 minimap 上的 canvas。该方法可以大大减轻两倍 canvas 绘制的压力。但 `graphImg` 完全交由 G6 的用户控制，需要注意主画布更新时需要使用 `updateGraphImg` 方法替换 `graphImg`。
+由于 [Minimap](#minimap) 的原理是将主画布内容复制到 minimap 的画布上，在大数据量下可能会造成双倍的绘制效率成本。为缓解该问题，Image Minimap 采用另一种机制，根据提供的图片地址或 base64 字符串 `graphImg` 绘制 `<img />` 代替 minimap 上的 canvas。该方法可以大大减轻两倍 canvas 绘制的压力。但 `graphImg` 完全交由 F6 的用户控制，需要注意主画布更新时需要使用 `updateGraphImg` 方法替换 `graphImg`。
 
 <img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*v1svQLkEPrUAAAAAAAAAAABkARQnAQ' width=300 alt='img'/>
 
@@ -173,11 +172,11 @@ Minimap 是用于快速预览和探索图的工具。
 
 ```
 // 实例化 Image Minimap 插件
-const imageMinimap = new G6.ImageMinimap({
+const imageMinimap = new F6.ImageMinimap({
   width: 200,
   graphImg: 'https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*eD7nT6tmYgAAAAAAAAAAAABkARQnAQ'
 });
-const graph = new G6.Graph({
+const graph = new F6.Graph({
   //... 其他配置项
   plugins: [imageMinimap], // 配置 imageMinimap 插件
 });
@@ -222,21 +221,21 @@ Menu 用于配置节点上的右键菜单。
 | 名称 | 类型 | 默认值 | 描述 |
 | --- | --- | --- | --- |
 | className | string | null | menu 容器的 class 类名 |
-| getContent | (evt?: IG6GraphEvent) => HTMLDivElement / string | <img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*OtOkS4g-vrkAAAAAAAAAAABkARQnAQ' width=60 alt='img'/> | 菜单项内容，支持 DOM 元素或字符串 |
+| getContent | (evt?: IF6GraphEvent) => HTMLDivElement / string | <img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*OtOkS4g-vrkAAAAAAAAAAABkARQnAQ' width=60 alt='img'/> | 菜单项内容，支持 DOM 元素或字符串 |
 | handleMenuClick | (target: HTMLElement, item: Item) => void | undefined | 点击菜单项的回调函数 |
-| shouldBegin | (evt: G6Event) => boolean | undefined | 是否允许 menu 出现，可以根据 `evt.item`（当前鼠标事件中的元素） 或 `evt.target`（当前鼠标事件中的图形）的内容判断此时是否允许 menu 出现 |
+| shouldBegin | (evt: F6Event) => boolean | undefined | 是否允许 menu 出现，可以根据 `evt.item`（当前鼠标事件中的元素） 或 `evt.target`（当前鼠标事件中的图形）的内容判断此时是否允许 menu 出现 |
 | offsetX | number | 6 | menu 的 x 方向偏移值，需要考虑父级容器的 padding |
 | offsetY | number | 6 | menu 的 y 方向偏移值，需要考虑父级容器的 padding |
 | itemTypes | string[] | ['node', 'edge', 'combo'] | menu 作用在哪些类型的元素上，若只想在节点上显示，可将其设置为 ['node'] |
 
 ### 用法
 
-实例化 Menu 插件时，如果不传参数，则使用 G6 默认提供的值，只能展示默认的菜单项，不能进行任何操作。
+实例化 Menu 插件时，如果不传参数，则使用 F6 默认提供的值，只能展示默认的菜单项，不能进行任何操作。
 
 ```
 // 实例化 Menu 插件
-const menu = new G6.Menu();
-const graph = new G6.Graph({
+const menu = new F6.Menu();
+const graph = new F6.Graph({
   //... 其他配置项
   plugins: [menu], // 配置 Menu 插件
 });
@@ -245,7 +244,7 @@ const graph = new G6.Graph({
 #### DOM Menu
 
 ```
-const menu = new G6.Menu({
+const menu = new F6.Menu({
   offsetX: 6,
   offsetX: 10,
   itemTypes: ['node'],
@@ -266,7 +265,7 @@ const menu = new G6.Menu({
   },
 });
 
-const graph = new G6.Graph({
+const graph = new F6.Graph({
   //... 其他配置项
   plugins: [menu], // 配置 Menu 插件
 });
@@ -275,7 +274,7 @@ const graph = new G6.Graph({
 #### String Menu
 
 ```
-const menu = new G6.Menu({
+const menu = new F6.Menu({
   getContent(evt) {
     return `<ul>
       <li title='1'>测试02</li>
@@ -290,7 +289,7 @@ const menu = new G6.Menu({
   },
 });
 
-const graph = new G6.Graph({
+const graph = new F6.Graph({
   //... 其他配置项
   plugins: [menu], // 配置 Menu 插件
 });
@@ -310,7 +309,7 @@ ToolBar 集成了以下常见的操作：
 ### 配置项
 
 | 名称 | 类型 | 默认值 | 描述 |
-| --- | --- | --- | --- | --- |
+| --- | --- | --- | --- |
 | container | HTMLDivElement | null | ToolBar 容器，如果不设置，则默认使用 canvas 的 DOM 容器 |
 | className | string | null | ToolBar 内容元素的 class 类名 |
 | getContent | (graph?: IGraph) => HTMLDivElement | string | <img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*7QSRRJwAWxQAAAAAAAAAAABkARQnAQ' width=80 alt='img'/> | ToolBar 内容，支持 DOM 元素或字符串 |
@@ -324,9 +323,9 @@ ToolBar 集成了以下常见的操作：
 默认的 ToolBar 提供了撤销、重做、放大等功能。
 
 ```
-const toolbar = new G6.ToolBar();
+const toolbar = new F6.ToolBar();
 
-const graph = new G6.Graph({
+const graph = new F6.Graph({
   //... 其他配置项
   plugins: [toolbar], // 配置 ToolBar 插件
 });
@@ -339,7 +338,7 @@ const tc = document.createElement('div');
 tc.id = 'toolbarContainer';
 document.body.appendChild(tc);
 
-const toolbar = new G6.ToolBar({
+const toolbar = new F6.ToolBar({
   container: tc,
   getContent: () => {
     return `
@@ -363,7 +362,7 @@ const toolbar = new G6.ToolBar({
   }
 });
 
-const graph = new G6.Graph({
+const graph = new F6.Graph({
   //... 其他配置项
   plugins: [toolbar], // 配置 ToolBar 插件
 });
@@ -372,7 +371,7 @@ const graph = new G6.Graph({
 #### 使用 DOM 自定义 ToolBar 功能
 
 ```
-const toolbar = new G6.ToolBar({
+const toolbar = new F6.ToolBar({
   getContent: () => {
     const outDiv = document.createElement('div');
     outDiv.style.width = '180px';
@@ -390,7 +389,7 @@ const toolbar = new G6.ToolBar({
   }
 });
 
-const graph = new G6.Graph({
+const graph = new F6.Graph({
   //... 其他配置项
   plugins: [toolbar], // 配置 ToolBar 插件
 });
@@ -398,7 +397,7 @@ const graph = new G6.Graph({
 
 ## Tooltip
 
-Tooltip 插件主要用于在节点和边上展示一些辅助信息，G6 4.0 以后，Tooltip 插件将会替换 Behavior 中的 tooltip。
+Tooltip 插件主要用于在节点和边上展示一些辅助信息，F6 4.0 以后，Tooltip 插件将会替换 Behavior 中的 tooltip。
 
 ### 配置项
 
@@ -406,8 +405,8 @@ Tooltip 插件主要用于在节点和边上展示一些辅助信息，G6 4.0 �
 | --- | --- | --- | --- |
 | className | string | null | tooltip 容器的 class 类名 |
 | container | HTMLDivElement | null | Tooltip 容器，如果不设置，则默认使用 canvas 的 DOM 容器 |
-| getContent | (evt?: IG6GraphEvent) => HTMLDivElement / string | <img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*aPPuQquN5Q0AAAAAAAAAAABkARQnAQ' width=80 alt='img'/> | tooltip 内容，支持 DOM 元素或字符串 |
-| shouldBegin | (evt: G6Event) => boolean | undefined | 是否允许 tooltip 出现，可以根据 `evt.item`（当前鼠标事件中的元素） 或 `evt.target`（当前鼠标事件中的图形）的内容判断此时是否允许 tooltip 出现 |
+| getContent | (evt?: IF6GraphEvent) => HTMLDivElement / string | <img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*aPPuQquN5Q0AAAAAAAAAAABkARQnAQ' width=80 alt='img'/> | tooltip 内容，支持 DOM 元素或字符串 |
+| shouldBegin | (evt: F6Event) => boolean | undefined | 是否允许 tooltip 出现，可以根据 `evt.item`（当前鼠标事件中的元素） 或 `evt.target`（当前鼠标事件中的图形）的内容判断此时是否允许 tooltip 出现 |
 | offsetX | number | 6 | tooltip 的 x 方向偏移值，需要考虑父级容器的 padding |
 | offsetY | number | 6 | tooltip 的 y 方向偏移值，需要考虑父级容器的 padding |
 | itemTypes | string[] | ['node', 'edge', 'combo'] | tooltip 作用在哪些类型的元素上，若只想在节点上显示，可将其设置为 ['node'] |
@@ -421,7 +420,7 @@ Tooltip 插件主要用于在节点和边上展示一些辅助信息，G6 4.0 �
 #### Dom Tooltip
 
 ```
-const tooltip = new G6.Tooltip({
+const tooltip = new F6.Tooltip({
   offsetX: 10,
   offsetY: 20,
   getContent(e) {
@@ -437,7 +436,7 @@ const tooltip = new G6.Tooltip({
   itemTypes: ['node']
 });
 
-const graph = new G6.Graph({
+const graph = new F6.Graph({
   //... 其他配置项
   plugins: [tooltip], // 配置 Tooltip 插件
 });
@@ -446,7 +445,7 @@ const graph = new G6.Graph({
 #### String Tooltip
 
 ```
-const tooltip = new G6.Tooltip({
+const tooltip = new F6.Tooltip({
   getContent(e) {
     return `<div style='width: 180px;'>
       <ul id='menu'>
@@ -460,7 +459,7 @@ const tooltip = new G6.Tooltip({
   },
 });
 
-const graph = new G6.Graph({
+const graph = new F6.Graph({
   //... 其他配置项
   plugins: [tooltip], // 配置 Tooltip 插件
 });
@@ -470,8 +469,8 @@ const graph = new G6.Graph({
 
 Tooltip 插件暴露除了几个时机事件，方便用户监听内部状态的变化。以下事件可通过 `graph.on('eventname', e => {})` 进行监听。
 
-| 事件名称 | 描述 |
-| --- | --- |
+| 事件名称      | 描述                   |
+| ------------- | ---------------------- |
 | tooltipchange | Tooltip 发生变化时触发 |
 
 ## Fisheye
@@ -481,7 +480,7 @@ Fisheye 鱼眼放大镜是为 focus+context 的探索场景设计的，它能够
 ### 配置项
 
 | 名称 | 类型 | 默认值 | 描述 |
-| --- | --- | --- | --- | --- |
+| --- | --- | --- | --- |
 | trigger | 'mousemove' / 'click' / 'drag' | 'mousemove' | 放大镜的触发事件 |
 | d | Number | 1.5 | 放大系数，数值越大，放大程度越大 |
 | r | Number | 300 | 放大区域的范围半径 |
@@ -502,7 +501,7 @@ Fisheye 鱼眼放大镜是为 focus+context 的探索场景设计的，它能够
 用于更新该 FishEye 的部分配置项，包括 `trigger`，`d`，`r`，`maxR`，`minR`，`maxD`，`minD`，`scaleRBy`，`scaleDBy`。例如：
 
 ```
-const fisheye = new G6.Fisheye({
+const fisheye = new F6.Fisheye({
   trigger: 'mousemove'
 });
 
@@ -518,7 +517,7 @@ fisheye.updateParams({
 ### 用法
 
 ```
-const fisheye = new G6.Fisheye({
+const fisheye = new F6.Fisheye({
   trigger: 'mousemove',
   d: 1.5,
   r: 300,
@@ -526,7 +525,7 @@ const fisheye = new G6.Fisheye({
   showLabel: false
 });
 
-const graph = new G6.Graph({
+const graph = new F6.Graph({
   //... 其他配置项
   plugins: [fisheye], // 配置 fisheye 插件
 });
@@ -557,7 +556,7 @@ EdgeFilterLens 边过滤镜可以将关注的边保留在过滤镜范围内，�
 用于更新该过滤镜的部分配置项，包括 `trigger`，`type`，`r`，`maxR`，`minR`，`scaleRBy`，`showLabel`，`shouldShow`。例如：
 
 ```
-const filterLens = new G6.EdgeFilterLens({
+const filterLens = new F6.EdgeFilterLens({
   trigger: 'drag'
 });
 
@@ -572,7 +571,7 @@ filterLens.updateParams({
 ### 用法
 
 ```
-const filterLens = new G6.EdgeFilterLens({
+const filterLens = new F6.EdgeFilterLens({
   trigger: 'mousemove',
   r: 300,
   shouldShow: d => {
@@ -580,7 +579,7 @@ const filterLens = new G6.EdgeFilterLens({
   }
 });
 
-const graph = new G6.Graph({
+const graph = new F6.Graph({
   //... 其他配置项
   plugins: [filterLens], // 配置 filterLens 插件
 });
@@ -588,7 +587,7 @@ const graph = new G6.Graph({
 
 ## TimeBar
 
-[AntV G6](https://github.com/antvis/G6) 内置了三种形态的 TimeBar 组件：
+[AntV F6](https://github.com/antvis/F6) 内置了三种形态的 TimeBar 组件：
 
 - 带有趋势图的 TimeBar 组件；
 - 简易版的 TimeBar 组件；
@@ -609,16 +608,16 @@ const graph = new G6.Graph({
 
 <img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*17VoSoTm9o8AAAAAAAAAAAAAARQnAQ' width='500' />
 
-<br />虽然 G6 提供了各种不同类型的 TimeBar 组件，但在使用的方式却非常简单，通过配置字段就可以进行区分。<br /> <br />关于 TimeBar 的使用案例，请参考[这里](https://g6.antv.vision/zh/examples/tool/timebar#timebar)。<br />
+<br />虽然 F6 提供了各种不同类型的 TimeBar 组件，但在使用的方式却非常简单，通过配置字段就可以进行区分。<br /> <br />关于 TimeBar 的使用案例，请参考[这里](https://g6.antv.vision/zh/examples/tool/timebar#timebar)。<br />
 
 ### 使用 TimeBar 组件
 
-使用 G6 内置的 TimeBar 组件，和使用其他组件的方式完全相同。
+使用 F6 内置的 TimeBar 组件，和使用其他组件的方式完全相同。
 
 ```javascript
-import G6 from '@antv/g6';
+import F6 from '@antv/g6';
 
-const timebar = new G6.TimeBar({
+const timebar = new F6.TimeBar({
   width: 500,
   height: 150,
   padding: 10,
@@ -628,7 +627,7 @@ const timebar = new G6.TimeBar({
   },
 });
 
-const graph = new G6.Graph({
+const graph = new F6.Graph({
   container: 'container',
   width,
   height,
@@ -647,7 +646,7 @@ const graph = new G6.Graph({
 <br />当设置 type 为 tick 时，表示我们要使用刻度 TimeBar 组件，但此时要注意的是，**刻度时间轴的配置项是通过 tick 对象配置而不是 trend 对象**，这也是刻度时间轴和趋势即简易时间轴不同的地方。
 
 ```javascript
-const timebar = new G6.TimeBar({
+const timebar = new F6.TimeBar({
   width,
   height: 150,
   type: 'tick',
@@ -676,11 +675,11 @@ const timebar = new G6.TimeBar({
 
 TimeBar 插件暴露除了几个时机事件，方便用户监听内部状态的变化。以下事件可通过 `graph.on('eventname', e => {})` 进行监听。
 
-| 事件名称 | 描述 |
-| --- | --- |
-| valuechange | 时间轴的时间范围发生变化时触发 |
-| timebarstartplay | 时间轴开始播放时触发 |
-| timebarendplay | 时间轴播放结束时触发 |
+| 事件名称         | 描述                           |
+| ---------------- | ------------------------------ |
+| valuechange      | 时间轴的时间范围发生变化时触发 |
+| timebarstartplay | 时间轴开始播放时触发           |
+| timebarendplay   | 时间轴播放结束时触发           |
 
 ### 参数定义
 
@@ -863,7 +862,6 @@ export interface TimeBarSliceOption {
 | data                   | any[]             | []     | 必选，刻度时间轴的刻度数据     |
 | tickLabelFormatter     | Function          | null   | 刻度的格式化回调函数           |
 | tooltipFomatter        | Function          | null   | tooltip 上内容格式化的回调函数 |
-
 
 #### TickCfg 接口定义
 

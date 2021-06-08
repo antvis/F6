@@ -3,19 +3,19 @@ title: Behavior and RegisterBehavior
 order: 13
 ---
 
-Behavior is the compound interactions in G6. In general, a Behavior includes one or more event listeners and a set of item operations.
+Behavior is the compound interactions in F6. In general, a Behavior includes one or more event listeners and a set of item operations.
 
 By default, Behavior has three callbacks: `shouldBegin`, `shouldUpdate`, and `shouldEnd`, representing the beginning of the behavior, whether to update the items, the ending of the behavior respectively. If they return `false`, the default behavior will be prevented.
 
-This document is going to introduce how to customize a behavior. The infomation about the built-in behaviors can be found in the [Built-in Behaviors](/en/docs/manual/middle/states/defaultBehavior). When the [built-in Behaviors](/en/docs/manual/middle/states/defaultBehavior) cannot satisfy your requirments, custom a type of Behavior by `G6.registerBehavior(behaviorName, behavior)`. See [Behavior API](/en/docs/api/Behavior) for detail.
+This document is going to introduce how to customize a behavior. The infomation about the built-in behaviors can be found in the [Built-in Behaviors](/en/docs/manual/middle/states/defaultBehavior). When the [built-in Behaviors](/en/docs/manual/middle/states/defaultBehavior) cannot satisfy your requirments, custom a type of Behavior by `F6.registerBehavior(behaviorName, behavior)`. See [Behavior API](/en/docs/api/Behavior) for detail.
 
 ```ts
 // highlight-start
-G6.registerBehavior(behaviorName: string, behavior: BehaviorOption)
+F6.registerBehavior(behaviorName: string, behavior: BehaviorOption)
 // highlight-end
 
 // Custom a type of Behavior
-G6.registerBehavior('behaviorName', {
+F6.registerBehavior('behaviorName', {
   // Bind the event and its callback
   getEvents() {
     return {
@@ -71,7 +71,7 @@ The usage of `getEvents()` can be refered to [Event](/en/docs/api/Event)。
 **Usage**
 
 ```javascript
-G6.registerBehavior('behaviorName', {
+F6.registerBehavior('behaviorName', {
   getEvents() {
     return {
       'node:click': 'onNodeClick',
@@ -116,7 +116,7 @@ G6.registerBehavior('behaviorName', {
 **Usage**
 
 ```javascript
-G6.registerBehavior('behaviorName', {
+F6.registerBehavior('behaviorName', {
   getEvents() {
     return {
       'node:click': 'onNodeClick',
@@ -145,7 +145,7 @@ Default configurations while customing a Behavior. The configurations will be mi
 **Usage**
 
 ```javascript
-G6.registerBehavior('behaviorName', {
+F6.registerBehavior('behaviorName', {
   getDefaultCfg() {
     return {
       trigger: 'click' // mouseneter or click
@@ -161,7 +161,7 @@ Whether to prevent the behavior. Return `true` by default, which means do not pr
 **Usage**
 
 ```javascript
-G6.registerBehavior('behaviorName', {
+F6.registerBehavior('behaviorName', {
   shouldBegin() {
     // Customize it according to your scenario
     return true;
@@ -176,7 +176,7 @@ Whether to update the data and the view. Returns `true` by default, which means 
 **Usage**
 
 ```javascript
-const graph = new G6.Graph({
+const graph = new F6.Graph({
   container: 'mountNode',
   width: 500,
   height: 500,

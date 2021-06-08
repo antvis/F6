@@ -15,12 +15,12 @@ group.addShape('rect', {
     shadowBlur: 10,
     opacity: 0.8,
   },
-  // must be assigned in G6 3.3 and later versions. it can be any value you want
+  // must be assigned in F6 3.3 and later versions. it can be any value you want
   name: 'rect-shape',
 });
 ```
 
-G6 has these shapes:
+F6 has these shapes:
 
 - [circle](#circle);
 - [rect](#rect);
@@ -38,7 +38,7 @@ G6 has these shapes:
 
 <description> _String_ **required** </description>
 
-Must be assigned in G6 3.3 and later versions. It can be any value you want
+Must be assigned in F6 3.3 and later versions. It can be any value you want
 
 ### fill
 
@@ -122,7 +122,7 @@ group.addShape('circle', {
     r: 50,
     fill: 'blue',
   },
-  // must be assigned in G6 3.3 and later versions. it can be any value you want
+  // must be assigned in F6 3.3 and later versions. it can be any value you want
   name: 'circle-shape',
 });
 ```
@@ -156,7 +156,7 @@ group.addShape('ellipse', {
     ry: 50,
     fill: 'blue',
   },
-  // must be assigned in G6 3.3 and later versions. it can be any value you want
+  // must be assigned in F6 3.3 and later versions. it can be any value you want
   name: 'ellipse-shape',
 });
 ```
@@ -194,7 +194,7 @@ group.addShape('image', {
     y: 0,
     img: 'https://g.alicdn.com/cm-design/arms-trace/1.0.155/styles/armsTrace/images/TAIR.png',
   },
-  // must be assigned in G6 3.3 and later versions. it can be any value you want
+  // must be assigned in F6 3.3 and later versions. it can be any value you want
   name: 'image-shape',
 });
 ```
@@ -227,7 +227,7 @@ The height of the image.
 
 <description> _String_ **optional** </description>
 
-The source of the image.G6 supports multiple image formats: <br />- url<br />- ImageData<br />- Image<br />- canvas<br />.
+The source of the image.F6 supports multiple image formats: <br />- url<br />- ImageData<br />- Image<br />- canvas<br />.
 
 ## Marker
 
@@ -240,7 +240,7 @@ group.addShape('marker', {
     r: 10,
     symbol: 'triangle-down',
   },
-  // must be assigned in G6 3.3 and later versions. it can be any value you want
+  // must be assigned in F6 3.3 and later versions. it can be any value you want
   name: 'marker-shape',
 });
 
@@ -254,7 +254,7 @@ group.addShape('marker', {
       return [['M', x, y], ['L', x + r, y + r], ['L', x + r * 2, y], ['Z']];
     },
   },
-  // must be assigned in G6 3.3 and later versions. it can be any value you want
+  // must be assigned in F6 3.3 and later versions. it can be any value you want
   name: 'marker-shape',
 });
 ```
@@ -296,7 +296,7 @@ group.addShape('polygon', {
     ],
     fill: 'red',
   },
-  // must be assigned in G6 3.3 and later versions. it can be any value you want
+  // must be assigned in F6 3.3 and later versions. it can be any value you want
   name: 'polygon-shape',
 });
 ```
@@ -319,7 +319,7 @@ group.addShape('rect', {
     stroke: 'black',
     radius: [2, 4],
   },
-  // must be assigned in G6 3.3 and later versions. it can be any value you want
+  // must be assigned in F6 3.3 and later versions. it can be any value you want
   name: 'rect-shape',
 });
 ```
@@ -381,7 +381,7 @@ group.addShape('path', {
     lineWidth: 8,
     lineAppendWidth: 5,
   },
-  // must be assigned in G6 3.3 and later versions. it can be any value you want
+  // must be assigned in F6 3.3 and later versions. it can be any value you want
   name: 'path-shape',
 });
 ```
@@ -453,7 +453,7 @@ group.addShape('text', {
     shadowColor: 'blue',
     shadowBlur: 10,
   },
-  // must be assigned in G6 3.3 and later versions. it can be any value you want
+  // must be assigned in F6 3.3 and later versions. it can be any value you want
   name: 'text-shape',
 });
 ```
@@ -529,14 +529,14 @@ group.addShape('dom', {
     </div>
       `,
   },
-  // must be assigned in G6 3.3 and later versions. it can be any value you want
+  // must be assigned in F6 3.3 and later versions. it can be any value you want
   name: 'dom-shape',
   draggable: true,
 });
 ```
 
 - Only support native HTML DOM, but not react or other components;
-- If you custom a Node type or an Edge type with dom shape, please use the original DOM events instead of events of G6.
+- If you custom a Node type or an Edge type with dom shape, please use the original DOM events instead of events of F6.
 
 ### html
 

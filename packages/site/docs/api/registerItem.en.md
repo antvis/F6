@@ -1,13 +1,13 @@
 ---
-title: G6.registerNode/Edge/Combo
+title: F6.registerNode/Edge/Combo
 order: 7
 ---
 
-This document shows the functions that should be implemented or rewrited when custom nodes by `G6.registerNode` or custom edges by `G6.registerEdge`.
+This document shows the functions that should be implemented or rewrited when custom nodes by `F6.registerNode` or custom edges by `F6.registerEdge`.
 
-## G6.registerNode(nodeName, options, extendedNodeName)
+## F6.registerNode(nodeName, options, extendedNodeName)
 
-When the built-in nodes cannot satisfy your requirments, custom a type of node by `G6.registerNode(nodeName, options, extendedNodeName)`.
+When the built-in nodes cannot satisfy your requirments, custom a type of node by `F6.registerNode(nodeName, options, extendedNodeName)`.
 
 ### Parameters
 
@@ -20,7 +20,7 @@ When the built-in nodes cannot satisfy your requirments, custom a type of node b
 ### Usage
 
 ```javascript
-G6.registerNode(
+F6.registerNode(
   'nodeName',
   {
     /**
@@ -68,9 +68,9 @@ G6.registerNode(
 );
 ```
 
-## G6.registerEdge(edgeName, options, extendedEdgeName)
+## F6.registerEdge(edgeName, options, extendedEdgeName)
 
-When the built-in edges cannot satisfy your requirments, custom a type of edge by `G6.registerEdge(edgeName, options, extendedEdgeName)`.
+When the built-in edges cannot satisfy your requirments, custom a type of edge by `F6.registerEdge(edgeName, options, extendedEdgeName)`.
 
 ### Parameters
 
@@ -83,7 +83,7 @@ When the built-in edges cannot satisfy your requirments, custom a type of edge b
 ### Usage
 
 ```javascript
-G6.registerEdge(
+F6.registerEdge(
   'edgeName',
   {
     /**
@@ -125,9 +125,9 @@ G6.registerEdge(
 );
 ```
 
-## G6.registerCombo(comboName, options, extendedComboName)
+## F6.registerCombo(comboName, options, extendedComboName)
 
-When the built-in combos cannot satisfy your requirments, custom a type of combo by `G6.registerCombo(comboName, options, extendedComboName)`.
+When the built-in combos cannot satisfy your requirments, custom a type of combo by `F6.registerCombo(comboName, options, extendedComboName)`.
 
 ### Parameters
 
@@ -140,7 +140,7 @@ When the built-in combos cannot satisfy your requirments, custom a type of combo
 ### Usage
 
 ```javascript
-G6.registerCombo(
+F6.registerCombo(
   'comboName',
   {
     /**
@@ -193,8 +193,8 @@ G6.registerCombo(
 The following code is an example of customizing a type of edge:
 
 ```javascript
-import G6 from '@antv/g6';
-G6.registerEdge(
+import F6 from '@antv/f6';
+F6.registerEdge(
   'edgeName',
   {
     labelPosition: 'center',
@@ -256,7 +256,7 @@ Draw the node or edge, including the label on the it. Return `keyShape` of it.
 
 This function will be called after the node or edge being drawed. It is appropriate for extending graphics or animations for built-in node or edge.
 
-This [demo](/en/examples/scatter/edge) shows how to add animations in afterDraw. The API about shape's animate can be refered to the [Animate API of G](https://g.antv.vision/en/docs/api/general/element/#%E5%8A%A8%E7%94%BB%E6%96%B9%E6%B3%95) which is the rendering engine of G6.
+This [demo](/en/examples/scatter/edge) shows how to add animations in afterDraw. The API about shape's animate can be refered to the [Animate API of G](https://g.antv.vision/en/docs/api/general/element/#%E5%8A%A8%E7%94%BB%E6%96%B9%E6%B3%95) which is the rendering engine of F6.
 
 ## Update Functions
 
@@ -269,13 +269,13 @@ Update the node or edge, including the label on it.
 | Name | Type    | Required | Description                              |
 | ---- | ------- | -------- | ---------------------------------------- |
 | cfg  | Object  | true     | The configurations for the node or edge. |
-| item | G6.Item | true     | The item instance of the node or edge.   |
+| item | F6.Item | true     | The item instance of the node or edge.   |
 
 ### afterUpdate(cfg, item)
 
 This function will be called after the node or edge being updated.
 
-This [demo](/en/examples/scatter/edge) shows how to add animations. The API about shape's animate can be refered to the [Animate API of G](https://g.antv.vision/en/docs/api/general/element/#%E5%8A%A8%E7%94%BB%E6%96%B9%E6%B3%95) which is the rendering engine of G6.
+This [demo](/en/examples/scatter/edge) shows how to add animations. The API about shape's animate can be refered to the [Animate API of G](https://g.antv.vision/en/docs/api/general/element/#%E5%8A%A8%E7%94%BB%E6%96%B9%E6%B3%95) which is the rendering engine of F6.
 
 ### shouldUpdate(type)
 
@@ -302,4 +302,4 @@ After [`graph.setItemState(item, state, value)`](/en/docs/api/graphFunc/state#gr
 | ----- | ------- | -------- | --------------------------------- |
 | name  | String  | true     | The name of the state.            |
 | value | Boolean | true     | The value of the state.           |
-| item  | G6.Item | true     | The instance of the node or edge. |
+| item  | F6.Item | true     | The instance of the node or edge. |

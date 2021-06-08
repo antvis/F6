@@ -3,12 +3,12 @@ title: Random
 order: 1
 ---
 
-Random is the default layout in G6. It will take effect when `layout` is not assigned to the Graph instance and there is no position information in node data.
+Random is the default layout in F6. It will take effect when `layout` is not assigned to the Graph instance and there is no position information in node data.
 
 <img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*G5_uRodUTaYAAAAAAAAAAABkARQnAQ' width=430 alt='img'/>
 
 ```javascript
-const graph = new G6.Graph({
+const graph = new F6.Graph({
   container: 'mountNode',
   width: 1000,
   height: 600,

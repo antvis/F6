@@ -28,7 +28,7 @@ graph.on(eventName, evt => {
 - `canvasX`: 画布父容器视口上的 x 坐标
 - `canvasY`: 画布父容器视口上的 y 坐标
 
-（x/y，clientX/clientY，canvasX/canvasY 三套坐标系详解见 [G6 坐标系深度解析](/zh/docs/manual/advanced/coordinate-system)）
+（x/y，clientX/clientY，canvasX/canvasY 三套坐标系详解见 [F6 坐标系深度解析](/zh/docs/manual/advanced/coordinate-system)）
 
 - `item`: 事件的触发元素（节点/边/ Combo）
 - `target`: 事件的触发图形 [Shape](/zh/docs/manual/middle/elements/shape/shape-keyshape) 或画布对象
@@ -198,16 +198,16 @@ graph.on(timingEventName, evt => {
 
 TimeBar 插件：
 
-| 事件名称 | 描述 |
-| --- | --- |
-| valuechange | 时间轴的时间范围发生变化时触发 |
-| timebarstartplay | 时间轴开始播放时触发 |
-| timebarendplay | 时间轴播放结束时触发 |
+| 事件名称         | 描述                           |
+| ---------------- | ------------------------------ |
+| valuechange      | 时间轴的时间范围发生变化时触发 |
+| timebarstartplay | 时间轴开始播放时触发           |
+| timebarendplay   | 时间轴播放结束时触发           |
 
 Tooltip 插件：
 
-| 事件名称 | 描述 |
-| --- | --- |
+| 事件名称      | 描述                   |
+| ------------- | ---------------------- |
 | tooltipchange | Tooltip 发生变化时触发 |
 
 ### 回调参数
@@ -313,10 +313,10 @@ Tooltip 插件：
 
 #### beforecollapseexpandcombo / aftercollapseexpandcombo
 
-| 名称 | 类型 | 描述               |
-| ---- | ---- | ---------------- |
+| 名称   | 类型   | 描述                                    |
+| ------ | ------ | --------------------------------------- |
 | action | string | 具体的操作， `'collapse'` 或 `'expand'` |
-| combo | Item | 被操作的 combo item |
+| combo  | Item   | 被操作的 combo item                     |
 
 #### itemcollapsed
 
@@ -361,11 +361,10 @@ Tooltip 插件：
 | redoStack | Object[] | 重做堆栈 |
 | undoStack | Object[] | 撤销堆栈 |
 
-
 #### valuechange
 
-| 名称      | 类型     | 描述     |
-| --------- | -------- | -------- |
+| 名称  | 类型     | 描述                                                         |
+| ----- | -------- | ------------------------------------------------------------ |
 | value | number[] | 时间轴当前时间范围，`value[0]` 为起始值，`value[1]` 为结束值 |
 
 #### timelinestart / timelineend
@@ -374,7 +373,7 @@ Tooltip 插件：
 
 #### tooltipchange
 
-| 名称      | 类型     | 描述     |
-| --------- | -------- | -------- |
-| item | Item | tooltip 所关联的元素（节点/边） |
+| 名称   | 类型            | 描述                             |
+| ------ | --------------- | -------------------------------- |
+| item   | Item            | tooltip 所关联的元素（节点/边）  |
 | action | 'show' / 'hide' | tooltip 当前的变化时显示还是隐藏 |

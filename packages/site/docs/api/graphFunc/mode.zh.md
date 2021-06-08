@@ -16,7 +16,7 @@ order: 8
 **用法**
 
 ```javascript
-const graph = new G6.Graph({
+const graph = new F6.Graph({
     container: div,
     width: 500,
     height: 500,

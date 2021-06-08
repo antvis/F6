@@ -1,18 +1,18 @@
 ---
-title: G6.Graph(cfg)
+title: F6.Graph(cfg)
 order: 0
 redirect_from:
   - /en/docs/api
 ---
 
-Graph is the carrier of G6. All the operations about events, behaviors, items are mounted on the instance of Graph.
+Graph is the carrier of F6. All the operations about events, behaviors, items are mounted on the instance of Graph.
 
 ```ts
 // highlight-start
 new Graph(cfg: GraphOptions) => Graph
 // highlight-end
 
-const graph = new G6.Graph({
+const graph = new F6.Graph({
   container: '',
   width: 500,
   height: 500,
@@ -97,7 +97,7 @@ The default modes of this graph. Please refer to [Default Behavior](/en/docs/man
 
 <description> _Object_ **optional** _default:_ `{}`</description>
 
-The node styles on different states, e.g. hover, selected. It is a new feature of G6 3.1.
+The node styles on different states, e.g. hover, selected. It is a new feature of F6 3.1.
 
 <span style="background-color: rgb(251, 233, 231); color: rgb(139, 53, 56)"><strong>⚠️ Note:</strong></span> If you are using version 3.1 or below, just change `nodeStyle` to `nodeStateStyles` and `edgeStyle` to `edgeStateStyles` and keep the configuration unchanged.
 
@@ -105,13 +105,13 @@ The node styles on different states, e.g. hover, selected. It is a new feature o
 
 <description> _Object_ **optional** _default:_ `{}`</description>
 
-The edge styles on different states, e.g. hover, selected. It is a new feature of G6 3.1.
+The edge styles on different states, e.g. hover, selected. It is a new feature of F6 3.1.
 
 ### GraphOptions.comboStateStyles
 
 <description> _Object_ **optional** _default:_ `{}`</description>
 
-The combo styles on different states, e.g. hover, selected. It is a new feature of G6 3.5.
+The combo styles on different states, e.g. hover, selected. It is a new feature of F6 3.5.
 
 ### GraphOptions.defaultNode
 
@@ -129,7 +129,7 @@ Default edge configurations in global, including type, size, color and so on. It
 
 <description> _Object_ **optional** _default:_ `{}`</description>
 
-Default combo configurations in global, including type, size, color and so on. Its priority is lower than the configurations in data. It is a new feature of G6 3.5.
+Default combo configurations in global, including type, size, color and so on. Its priority is lower than the configurations in data. It is a new feature of F6 3.5.
 
 ### GraphOptions.plugins
 
@@ -192,7 +192,7 @@ For more configurations for different layout methods, please refer to [Layout A
 
 #### GraphOptions.layout.pipes
 
-**Sublayout Pipeline** *Supports by v4.3.0 and latter versions* 
+**Sublayout Pipeline** _Supports by v4.3.0 and latter versions_
 
 Sublayout pipeline supports several sublayouts on different subgraphs by configuring `GraphOptions.layout`.
 
@@ -203,21 +203,31 @@ You can configure `layout.pipes` array when initializing the graph instance. Eac
 The format of the `layout.pipes`:
 
 ```javascript
-type Pipes =
-  {
-    // the name of the layout method for this subgraph
-    type: 'random' | 'radial' | 'mds' | 'circular' | 'fruchterman' | 'force' | 'gForce' | 'dagre' | 'concentric' | 'grid' | 'forceAtlas2',
-    // node filtering function, the parameter is the node data, and it returns a boolean to indicate if the node belongs to this subgraph
-    nodesFilter: (node: NodeData) => boolean;
-    ... // the configurations for this layout method, refer to the docs for different layout method pls
-  }[];
+type Pipes = {
+  // the name of the layout method for this subgraph
+  type:
+    | 'random'
+    | 'radial'
+    | 'mds'
+    | 'circular'
+    | 'fruchterman'
+    | 'force'
+    | 'gForce'
+    | 'dagre'
+    | 'concentric'
+    | 'grid'
+    | 'forceAtlas2',
+  // node filtering function, the parameter is the node data, and it returns a boolean to indicate if the node belongs to this subgraph
+  nodesFilter: (node: NodeData) => boolean, // the configurations for this layout method, refer to the docs for different layout method pls
+  ...
+}[];
 ```
 
 Usage demo:
 
 ```javascript
 // configure the layout.pipes when initializing the graph instance
-const graph = new G6.Graph({
+const graph = new F6.Graph({
   // ...       // other graph configurations
   layout: {
     pipes: [
@@ -233,8 +243,8 @@ const graph = new G6.Graph({
         nodesFilter: (node) => node.subGraphId === '2',
         // other configurations for this layout method
         begin: [100, 0],
-      }
-    ]
+      },
+    ],
   },
 });
 ```

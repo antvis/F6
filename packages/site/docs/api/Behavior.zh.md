@@ -3,7 +3,7 @@ title: 复合交互及其自定义 Behavior
 order: 13
 ---
 
-Behavior 指 G6 中的复合交互，一般 Behavior 包含一个或多个事件的监听与处理以及一系列对图中元素的操作。
+Behavior 指 F6 中的复合交互，一般 Behavior 包含一个或多个事件的监听与处理以及一系列对图中元素的操作。
 
 Behavior 默认包含 `shouldBegin`，`shouldUpdate`，`shouldEnd` 三个回调，代表是否开始行为，是否更新元素，是否进行结束行为，当返回值为 `false` 时阻止默认行为。
 
@@ -11,11 +11,11 @@ Behavior 默认包含 `shouldBegin`，`shouldUpdate`，`shouldEnd` 三个回调�
 
 ```ts
 // highlight-start
-G6.registerBehavior(behaviorName: string, behavior: BehaviorOption)
+F6.registerBehavior(behaviorName: string, behavior: BehaviorOption)
 // highlight-end
 
 // Custom a type of Behavior
-G6.registerBehavior('behaviorName', {
+F6.registerBehavior('behaviorName', {
   // Bind the event and its callback
   getEvents() {
     return {
@@ -71,7 +71,7 @@ G6.registerBehavior('behaviorName', {
 **用法**
 
 ```javascript
-G6.registerBehavior('behaviorName', {
+F6.registerBehavior('behaviorName', {
   getEvents() {
     return {
       'node:click': 'onNodeClick',
@@ -116,7 +116,7 @@ G6.registerBehavior('behaviorName', {
 **用法**
 
 ```javascript
-G6.registerBehavior('behaviorName', {
+F6.registerBehavior('behaviorName', {
   getEvents() {
     return {
       'node:click': 'onNodeClick',
@@ -145,7 +145,7 @@ G6.registerBehavior('behaviorName', {
 **用法**
 
 ```javascript
-G6.registerBehavior('behaviorName', {
+F6.registerBehavior('behaviorName', {
   getDefaultCfg() {
     return {
       trigger: 'click' // mouseneter or click
@@ -161,7 +161,7 @@ G6.registerBehavior('behaviorName', {
 **用法**
 
 ```javascript
-G6.registerBehavior('behaviorName', {
+F6.registerBehavior('behaviorName', {
   shouldBegin() {
     // 这里可以根据业务自定义
     return true
@@ -176,7 +176,7 @@ G6.registerBehavior('behaviorName', {
 **用法**
 
 ```javascript
-const graph = new G6.Graph({
+const graph = new F6.Graph({
   container: 'mountNode',
   width: 500,
   height: 500,

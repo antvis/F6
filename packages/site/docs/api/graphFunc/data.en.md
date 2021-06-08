@@ -143,7 +143,7 @@ Destroy the layout algorithm. After that, the `changeData` will not place the ne
 **Usage**
 
 ```javascript
-const graph = new G6.Graph({
+const graph = new F6.Graph({
   container: 'mountNode',
   width: 1000,
   height: 600,

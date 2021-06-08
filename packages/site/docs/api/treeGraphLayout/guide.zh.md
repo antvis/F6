@@ -5,7 +5,7 @@ order: 0
 
 ## 树图布局总览
 
-与 [Graph 的布局](/zh/docs/api/graphLayout/guide) 类似，G6 为树图 TreeGraph 提供了一些内置布局算法。可以在[实例化图时配置](#使用方法)。与 [Graph 的布局](/zh/docs/api/graphLayout/guide) 不同的是：
+与 [Graph 的布局](/zh/docs/api/graphLayout/guide) 类似，F6 为树图 TreeGraph 提供了一些内置布局算法。可以在[实例化图时配置](#使用方法)。与 [Graph 的布局](/zh/docs/api/graphLayout/guide) 不同的是：
 
 - 实例化树图时必须通过配置 `layout` 配置布局，而 Graph 不配置 `layout` 时将会使用数据中的位置信息或随机布局；
 - 树图布局不支持独立使用；
@@ -13,7 +13,7 @@ order: 0
 
 注意，Graph 布局与 TreeGaph 布局相互不通用。
 
-G6 的内置树图布局有：
+F6 的内置树图布局有：
 
 - [CompactBox 紧凑树布局](./compactBox)
 - [Dendrogram 生态树布局](./dendrogram)
@@ -23,7 +23,7 @@ G6 的内置树图布局有：
 ## 使用方法
 
 ```javascript
-const graph = new G6.TreeGraph({
+const graph = new F6.TreeGraph({
   // ...                      // 其他配置项
   layout: {                // Object，对于 TreeGraph 为必须字段
     type: 'dendrogram',

@@ -24,7 +24,7 @@ Here is the description for the objects `item` and `target` of the `handler`'s p
 **Usage**
 
 ```javascript
-const graph = new G6.Graph({
+const graph = new F6.Graph({
   // ...
 });
 
@@ -57,7 +57,7 @@ The objects `item` and `target` of the `handler`'s parameter `evt` are the same 
 **Usage**
 
 ```javascript
-const graph = new G6.Graph({
+const graph = new F6.Graph({
   // ...
 });
 
@@ -87,7 +87,7 @@ Unbind all the listeners for the graph.
 **Usage**
 
 ```javascript
-const graph = new G6.Graph({
+const graph = new F6.Graph({
   // ...
 });
 
@@ -115,7 +115,7 @@ Unbind all the event listeners of the graph. There is no parameter for this func
 **Usage**
 
 ```javascript
-const graph = new G6.Graph({
+const graph = new F6.Graph({
   // ...
 });
 

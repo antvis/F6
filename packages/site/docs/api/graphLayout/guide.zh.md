@@ -5,12 +5,12 @@ order: 0
 
 ## 内置布局导览
 
-G6 提供了以下内置布局算法。可以在[实例化图时配置](#实例化图时使用布局)，或[独立使用](#单独使用布局)。当内置布局算法不满足需求时，还可以[自定义布局](/zh/docs/api/registerLayout)。
+F6 提供了以下内置布局算法。可以在[实例化图时配置](#实例化图时使用布局)，或[独立使用](#单独使用布局)。当内置布局算法不满足需求时，还可以[自定义布局](/zh/docs/api/registerLayout)。
 
 注意，Graph 布局与 TreeGaph 布局相互不通用。
 
 - [Random Layout](./random)：随机布局；
-- **[GForce Layout](./gforce)：G6 4.0 支持的经典力导向布局，支持 GPU 并行计算：**
+- **[GForce Layout](./gforce)：F6 4.0 支持的经典力导向布局，支持 GPU 并行计算：**
 
   > 力导向布局：一个布局网络中，粒子与粒子之间具有引力和斥力，从初始的随机无序的布局不断演变，逐渐趋于平衡稳定的布局方式称之为力导向布局。适用于描述事物间关系，比如人物关系、计算机网络关系等。
 
@@ -27,17 +27,17 @@ G6 提供了以下内置布局算法。可以在[实例化图时配置](#实例�
 
 ## 实例化图时使用布局
 
-在 G6 中使用布局，在实例化图时配置 `layout` 属性。例如：
+在 F6 中使用布局，在实例化图时配置 `layout` 属性。例如：
 
 ```javascript
-const graph = new G6.Graph({
+const graph = new F6.Graph({
   // ...                      // 其他配置项
   layout: {                // Object，可选，布局的方法及其配置项，默认为 random 布局。
     type: 'force',
     preventOverlap: true,
     nodeSize: 30,
     // workerEnabled: true, // 是否启用 webworker
-    // gpuEnabled: true // 是否使用 gpu 版本的布局算法，G6 4.0 支持，目前仅支持 gForce 及 fruchterman。若用户的机器或浏览器不支持 GPU 计算，将会自动降级为 CPU 计算
+    // gpuEnabled: true // 是否使用 gpu 版本的布局算法，F6 4.0 支持，目前仅支持 gForce 及 fruchterman。若用户的机器或浏览器不支持 GPU 计算，将会自动降级为 CPU 计算
     ...                    // 其他配置
   }
 });
@@ -50,7 +50,7 @@ const graph = new G6.Graph({
 
 ## 单独使用布局
 
-以下方法为通过 `const layout = new G6.Layout['layoutName']` 单独使用布局时，或自定义布局时可能需要复写的方法。如果上述两种情况，仅在实例化图时通过配置 `layout` 使用内置布局方法时，以下方法由 G6 控制并调用，用户不需要了解。
+以下方法为通过 `const layout = new F6.Layout['layoutName']` 单独使用布局时，或自定义布局时可能需要复写的方法。如果上述两种情况，仅在实例化图时通过配置 `layout` 使用内置布局方法时，以下方法由 F6 控制并调用，用户不需要了解。
 
 ### 初始化
 

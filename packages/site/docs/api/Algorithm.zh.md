@@ -7,11 +7,11 @@ order: 15
 
 如果你对数据结构及算法感兴趣，可以通过 [javascript-algorithms](https://github.com/trekhleb/javascript-algorithms) 来进一步学习。
 
-G6 从 V3.5 版本开始加入了图算法，在以后版本更新中，我们会不断丰富内置的算法。
+F6 从 V3.5 版本开始加入了图算法，在以后版本更新中，我们会不断丰富内置的算法。
 
 ### GADDI 图模式匹配
 
-<span style="background-color: rgb(251, 233, 231); color: rgb(139, 53, 56)"><strong>「v4.2.2」新特性</strong></span> 
+<span style="background-color: rgb(251, 233, 231); color: rgb(139, 53, 56)"><strong>「v4.2.2」新特性</strong></span>
 
 [GADDI 图模式匹配]()算法是一种支持结构和语义的图模式匹配算法，给定一个模式，可通过在算法在原数据上查找结果和语义相同、相似的结构。[DEMO](/zh/examples/algorithm/algoDemos#gaddi)。
 
@@ -19,25 +19,24 @@ G6 从 V3.5 版本开始加入了图算法，在以后版本更新中，我们�
 
 **参数**
 
-| 名称        | 类型                | 是否必选 | 描述                |
-| ----------- | ------------------- | -------- | ------------------- |
-| graphData   | GraphData           | true     | 原图数据       |
-| pattern | GraphData              | true     | 需要查找的模式图数据 |
-| k   | number | false    | 匹配算法的参数，设置为 `undefined` 则自动设置      |
-| length   | number | false    | 匹配算法的参数，设置为 `undefined` 则自动设置      |
-| nodeLabelProp   | number | false    | 节点聚类信息的属性名，默认为 `'cluster'` |
-| edgeLabelProp   | number | false    | 边聚类信息的属性名，默认为 `'cluster'` |
-
+| 名称          | 类型      | 是否必选 | 描述                                          |
+| ------------- | --------- | -------- | --------------------------------------------- |
+| graphData     | GraphData | true     | 原图数据                                      |
+| pattern       | GraphData | true     | 需要查找的模式图数据                          |
+| k             | number    | false    | 匹配算法的参数，设置为 `undefined` 则自动设置 |
+| length        | number    | false    | 匹配算法的参数，设置为 `undefined` 则自动设置 |
+| nodeLabelProp | number    | false    | 节点聚类信息的属性名，默认为 `'cluster'`      |
+| edgeLabelProp | number    | false    | 边聚类信息的属性名，默认为 `'cluster'`        |
 
 **用法**
 
 ```javascript
-import G6, { Algorithm } from '@antv/g6'
-const graph = new G6.Graph({
+import F6, { Algorithm } from '@antv/g6';
+const graph = new F6.Graph({
   container: 'container',
   width: 500,
-  height: 500
-})
+  height: 500,
+});
 
 const graphData = {
   nodes: [
@@ -52,11 +51,11 @@ const graphData = {
     { source: 'B', target: 'C', cluster: 'ec2' },
     { source: 'A', target: 'D', cluster: 'ec1' },
     { source: 'A', target: 'E', cluster: 'ec2' },
-  ]
-}
+  ],
+};
 
-graph.data(data)
-graph.render()
+graph.data(data);
+graph.render();
 
 const { GADDI } = Algorithm;
 const patternData = {
@@ -68,22 +67,30 @@ const patternData = {
   edges: [
     { source: 'pn1', target: 'pn2', cluster: 'ec1' },
     { source: 'pn1', target: 'pn3', cluster: 'ec2' },
-  ]
-}
-const resultMatches = GADDI(graphData, patternData, true, undefined, undefined, 'cluster', 'cluster');
+  ],
+};
+const resultMatches = GADDI(
+  graphData,
+  patternData,
+  true,
+  undefined,
+  undefined,
+  'cluster',
+  'cluster',
+);
 
 console.log(resultMatches);
-  // output:
-  // [{
-  //   nodes: [
-  //     { id: 'A', cluster: 'nc1' },
-  //     { id: 'B', cluster: 'nc1' },
-  //     { id: 'E', cluster: 'nc3' },],
-  //   edges: [
-  //     { source: 'A', target: 'B', cluster: 'ec1' },
-  //     { source: 'A', target: 'E', cluster: 'ec2' }
-  //   ]
-  // }]
+// output:
+// [{
+//   nodes: [
+//     { id: 'A', cluster: 'nc1' },
+//     { id: 'B', cluster: 'nc1' },
+//     { id: 'E', cluster: 'nc3' },],
+//   edges: [
+//     { source: 'A', target: 'B', cluster: 'ec1' },
+//     { source: 'A', target: 'E', cluster: 'ec2' }
+//   ]
+// }]
 ```
 
 ### depthFirstSearch
@@ -96,17 +103,17 @@ console.log(resultMatches);
 
 **参数**
 
-| 名称        | 类型                | 是否必选 | 描述                |
-| ----------- | ------------------- | -------- | ------------------- |
-| graphData    | GraphData         | true     | 图数据，满足 G6 [数据格式](/zh/docs/manual/getting-started#step-2-数据准备)。注意，4.1 以前的版本该参数请传入图实例 |
-| startNodeId | string              | true     | 开始访问的节点的 ID |
-| callbacks   | IAlgorithmCallbacks | false    | 遍历的回调函数      |
+| 名称 | 类型 | 是否必选 | 描述 |
+| --- | --- | --- | --- |
+| graphData | GraphData | true | 图数据，满足 F6 [数据格式](/zh/docs/manual/getting-started#step-2-数据准备)。注意，4.1 以前的版本该参数请传入图实例 |
+| startNodeId | string | true | 开始访问的节点的 ID |
+| callbacks | IAlgorithmCallbacks | false | 遍历的回调函数 |
 
 **用法**
 
 ```
-import G6, { Algorithm } from '@antv/g6'
-const graph = new G6.Graph({
+import F6, { Algorithm } from '@antv/g6'
+const graph = new F6.Graph({
   container: 'container',
   width: 500,
   height: 500
@@ -196,17 +203,17 @@ depthFirstSearch(data, 'A', {
 
 **参数**
 
-| 名称              | 类型                | 是否必选 | 描述                |
-| ----------------- | ------------------- | -------- | ------------------- |
-| graphData    | GraphData         | true     | 图数据，满足 G6 [数据格式](/zh/docs/manual/getting-started#step-2-数据准备)。注意，4.1 以前的版本该参数请传入图实例 |
-| startNodeId       | string              | true     | 开始访问的节点的 ID |
-| originalCallbacks | IAlgorithmCallbacks | false    | 遍历的回调函数      |
+| 名称 | 类型 | 是否必选 | 描述 |
+| --- | --- | --- | --- |
+| graphData | GraphData | true | 图数据，满足 F6 [数据格式](/zh/docs/manual/getting-started#step-2-数据准备)。注意，4.1 以前的版本该参数请传入图实例 |
+| startNodeId | string | true | 开始访问的节点的 ID |
+| originalCallbacks | IAlgorithmCallbacks | false | 遍历的回调函数 |
 
 **用法**
 
 ```
-import G6, { Algorithm } from '@antv/g6'
-const graph = new G6.Graph({
+import F6, { Algorithm } from '@antv/g6'
+const graph = new F6.Graph({
   container: 'container',
   width: 500,
   height: 500
@@ -288,7 +295,7 @@ breadthFirstSearch(data, 'A', {
 
 ### labelPropagation
 
-_G6 4.0 起支持_ 标签传播算法，自动为数据聚类。优势：速度较 LOUVAIN 快。
+_F6 4.0 起支持_ 标签传播算法，自动为数据聚类。优势：速度较 LOUVAIN 快。
 
 参考资料：https://en.wikipedia.org/wiki/Label_propagation_algorithm
 
@@ -339,8 +346,8 @@ interface ClusterData {
 **用法**
 
 ```javascript
-import G6, { Algorithm } from '@antv/g6';
-const graph = new G6.Graph({
+import F6, { Algorithm } from '@antv/g6';
+const graph = new F6.Graph({
   container: 'container',
   width: 500,
   height: 500,
@@ -377,7 +384,7 @@ let result = labelPropagation(data);
 
 ### louvain
 
-_G6 4.0 起支持_ LOUVAIN 自动聚类算法。优势：根据节点间的紧密程度计算，较之于 Label Propagation 更准确。
+_F6 4.0 起支持_ LOUVAIN 自动聚类算法。优势：根据节点间的紧密程度计算，较之于 Label Propagation 更准确。
 
 参考资料：https://en.wikipedia.org/wiki/Louvain_method
 
@@ -429,8 +436,8 @@ interface ClusterData {
 **用法**
 
 ```javascript
-import G6, { Algorithm } from '@antv/g6';
-const graph = new G6.Graph({
+import F6, { Algorithm } from '@antv/g6';
+const graph = new F6.Graph({
   container: 'container',
   width: 500,
   height: 500,
@@ -477,9 +484,9 @@ let result = louvain(data);
 
 **参数**
 
-| 名称  | 类型   | 是否必选 | 描述          |
-| ----- | ------ | -------- | ------------- |
-| graphData    | GraphData         | true     | 图数据，满足 G6 [数据格式](/zh/docs/manual/getting-started#step-2-数据准备)。注意，4.1 以前的版本该参数请传入图实例|
+| 名称 | 类型 | 是否必选 | 描述 |
+| --- | --- | --- | --- |
+| graphData | GraphData | true | 图数据，满足 F6 [数据格式](/zh/docs/manual/getting-started#step-2-数据准备)。注意，4.1 以前的版本该参数请传入图实例 |
 
 **返回值**
 
@@ -488,8 +495,8 @@ let result = louvain(data);
 **用法**
 
 ```javascript
-import G6, { Algorithm } from '@antv/g6';
-const graph = new G6.Graph({
+import F6, { Algorithm } from '@antv/g6';
+const graph = new F6.Graph({
   container: 'container',
   width: 500,
   height: 500,
@@ -556,7 +563,7 @@ result = detectDirectedCycle(data);
 
 | 名称 | 类型 | 是否必选 | 描述 |
 | --- | --- | --- | --- |
-| graphData    | GraphData         | true     | 图数据，满足 G6 [数据格式](/zh/docs/manual/getting-started#step-2-数据准备)。注意，4.1 以前的版本该参数请传入图实例 |
+| graphData | GraphData | true | 图数据，满足 F6 [数据格式](/zh/docs/manual/getting-started#step-2-数据准备)。注意，4.1 以前的版本该参数请传入图实例 |
 | directed | boolean | false | 是否考虑边的方向性，若不指定，则取图的 `directed` 属性 ｜ |
 | nodeIds | string[] | false | 需包含或排除的节点 ID 的数组，若不指定，则返回图中所有的圈 ｜ |
 | include | boolean | false | 若为 `true`, 则返回包含参数 `nodeIds` 中指定的节点的圈，否则，返回所有不包含 `nodeIds` 中指定的节点的圈。默认为 `true` ｜ |
@@ -589,9 +596,9 @@ const allCycleExcludeB = detectAllCycles(data, false, ['B'], false);
 
 | 名称 | 类型 | 是否必选 | 描述 |
 | --- | --- | --- | --- |
-| graphData    | GraphData         | true     | 图数据，满足 G6 [数据格式](/zh/docs/manual/getting-started#step-2-数据准备)。注意，4.1 以前的版本该参数请传入图实例 |
-| start | INode / string | true | G6 Node 实例或 ID，路径起始点 ｜ |
-| end | INode / string | true | G6 Node 实例或 ID，路径终点 ｜ |
+| graphData | GraphData | true | 图数据，满足 F6 [数据格式](/zh/docs/manual/getting-started#step-2-数据准备)。注意，4.1 以前的版本该参数请传入图实例 |
+| start | INode / string | true | F6 Node 实例或 ID，路径起始点 ｜ |
+| end | INode / string | true | F6 Node 实例或 ID，路径终点 ｜ |
 | directed | boolean | false | 是否考虑边的方向性，若不指定，则取图的 `directed` 属性 ｜ |
 | weightPropertyName | string | false | 边的权重属性字段名，若不指定，则认为所有边权重相同 ｜ |
 
@@ -683,7 +690,7 @@ const data = {
   ],
 };
 
-const graph = new G6.Graph({
+const graph = new F6.Graph({
   container: 'container',
   width: 500,
   height: 500,
@@ -704,12 +711,12 @@ console.log(length, path);
 
 **参数**
 
-| 名称     | 类型           | 是否必选 | 描述                                                      |
-| -------- | -------------- | -------- | --------------------------------------------------------- |
-| graphData    | GraphData         | true     | 图数据，满足 G6 [数据格式](/zh/docs/manual/getting-started#step-2-数据准备)。注意，4.1 以前的版本该参数请传入图实例  |
-| start    | INode / string | true     | G6 Node 实例或 ID，路径起始点 ｜                          |
-| end      | INode / string | true     | G6 Node 实例或 ID，路径终点 ｜                            |
-| directed | boolean        | false    | 是否考虑边的方向性，若不指定，则取图的 `directed` 属性 ｜ |
+| 名称 | 类型 | 是否必选 | 描述 |
+| --- | --- | --- | --- |
+| graphData | GraphData | true | 图数据，满足 F6 [数据格式](/zh/docs/manual/getting-started#step-2-数据准备)。注意，4.1 以前的版本该参数请传入图实例 |
+| start | INode / string | true | F6 Node 实例或 ID，路径起始点 ｜ |
+| end | INode / string | true | F6 Node 实例或 ID，路径终点 ｜ |
+| directed | boolean | false | 是否考虑边的方向性，若不指定，则取图的 `directed` 属性 ｜ |
 
 **返回值**
 
@@ -790,7 +797,7 @@ const data = {
   ],
 };
 
-const graph = new G6.Graph({
+const graph = new F6.Graph({
   container: 'container',
   width: 500,
   height: 500,
@@ -814,10 +821,10 @@ console.log(allPath);
 
   **参数**
 
-| 名称     | 类型    | 是否必选 | 描述                                                      |
-| -------- | ------- | -------- | --------------------------------------------------------- |
-| graphData    | GraphData         | true     | 图数据，满足 G6 [数据格式](/zh/docs/manual/getting-started#step-2-数据准备)。注意，4.1 以前的版本该参数请传入图实例 |
-| directed | boolean | false    | 是否考虑边的方向性，若不指定，则取图的 `directed` 属性 ｜ |
+| 名称 | 类型 | 是否必选 | 描述 |
+| --- | --- | --- | --- |
+| graphData | GraphData | true | 图数据，满足 F6 [数据格式](/zh/docs/manual/getting-started#step-2-数据准备)。注意，4.1 以前的版本该参数请传入图实例 |
+| directed | boolean | false | 是否考虑边的方向性，若不指定，则取图的 `directed` 属性 ｜ |
 
 **返回值**
 
@@ -893,7 +900,7 @@ const data = {
     },
   ],
 };
-const graph = new G6.Graph({
+const graph = new F6.Graph({
   container: 'container',
   width: 500,
   height: 400,
@@ -928,7 +935,7 @@ PageRank 可以用来度量网络中节点的重要性，最初用于标识网�
 
 | 名称 | 类型 | 是否必选 | 描述 |
 | --- | --- | --- | --- |
-| graphData    | GraphData         | true     | 图数据，满足 G6 [数据格式](/zh/docs/manual/getting-started#step-2-数据准备)。注意，4.1 以前的版本该参数请传入图实例 |
+| graphData | GraphData | true | 图数据，满足 F6 [数据格式](/zh/docs/manual/getting-started#step-2-数据准备)。注意，4.1 以前的版本该参数请传入图实例 |
 | epsilon | number | false | 判断 PageRank 得分是否稳定的精度值，默认 0.000001 ｜ |
 | linkProb | number | false | 阻尼系数（dumping factor），指任意时刻，用户访问到某节点后继续访问该节点指向的节点的概率，默认 0.85。 ｜ |
 

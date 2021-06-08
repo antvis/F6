@@ -7,12 +7,11 @@ Graph algorithms provide one of the most effective methods for analyzing relatio
 
 If you are interested in data structures and algorithms, you can learn from [javascript-algorithms](https://github.com/trekhleb/javascript-algorithms).
 
-G6 has added graph algorithms since V3.5. In future versions, we will continue to enrich the built-in algorithms.
-
+F6 has added graph algorithms since V3.5. In future versions, we will continue to enrich the built-in algorithms.
 
 ### GADDI Graph Pattern Macthing
 
-<span style="background-color: rgb(251, 233, 231); color: rgb(139, 53, 56)"><strong>New Feature in「v4.2.2」</strong></span> 
+<span style="background-color: rgb(251, 233, 231); color: rgb(139, 53, 56)"><strong>New Feature in「v4.2.2」</strong></span>
 
 [GADDI Graph Pattern Macthing]() supports structure and semantic matching. Give a graph data and a pattern data with specific semantic clustering infomation, it returns the same and similar sub structures on the origin graph data. [DEMO](/en/examples/algorithm/algoDemos#gaddi)。
 
@@ -20,25 +19,24 @@ G6 has added graph algorithms since V3.5. In future versions, we will continue t
 
 **Parameters**
 
-| Name        | Type                | Required | Description                      |
-| ----------- | ------------------- | -------- | ------------------- |
-| graphData   | GraphData           | true     | The origin graph data       |
-| pattern | GraphData              | true     | The pattern graph data to be matched |
-| k   | number | false    | The parameter for GADDI, it will be calculated automatically when it is `undefined`    |
-| length   | number | false    | The parameter for GADDI, it will be calculated automatically when it is `undefined` |
-| nodeLabelProp   | number | false    | The name of the cluster property in the nodes data |
-| edgeLabelProp   | number | false    | The name of the cluster property in the edges data |
-
+| Name | Type | Required | Description |
+| --- | --- | --- | --- |
+| graphData | GraphData | true | The origin graph data |
+| pattern | GraphData | true | The pattern graph data to be matched |
+| k | number | false | The parameter for GADDI, it will be calculated automatically when it is `undefined` |
+| length | number | false | The parameter for GADDI, it will be calculated automatically when it is `undefined` |
+| nodeLabelProp | number | false | The name of the cluster property in the nodes data |
+| edgeLabelProp | number | false | The name of the cluster property in the edges data |
 
 **Usage**
 
 ```javascript
-import G6, { Algorithm } from '@antv/g6'
-const graph = new G6.Graph({
+import F6, { Algorithm } from '@antv/g6';
+const graph = new F6.Graph({
   container: 'container',
   width: 500,
-  height: 500
-})
+  height: 500,
+});
 
 const graphData = {
   nodes: [
@@ -53,11 +51,11 @@ const graphData = {
     { source: 'B', target: 'C', cluster: 'ec2' },
     { source: 'A', target: 'D', cluster: 'ec1' },
     { source: 'A', target: 'E', cluster: 'ec2' },
-  ]
-}
+  ],
+};
 
-graph.data(data)
-graph.render()
+graph.data(data);
+graph.render();
 
 const { GADDI } = Algorithm;
 const patternData = {
@@ -69,22 +67,30 @@ const patternData = {
   edges: [
     { source: 'pn1', target: 'pn2', cluster: 'ec1' },
     { source: 'pn1', target: 'pn3', cluster: 'ec2' },
-  ]
-}
-const resultMatches = GADDI(graphData, patternData, true, undefined, undefined, 'cluster', 'cluster');
+  ],
+};
+const resultMatches = GADDI(
+  graphData,
+  patternData,
+  true,
+  undefined,
+  undefined,
+  'cluster',
+  'cluster',
+);
 
 console.log(resultMatches);
-  // output:
-  // [{
-  //   nodes: [
-  //     { id: 'A', cluster: 'nc1' },
-  //     { id: 'B', cluster: 'nc1' },
-  //     { id: 'E', cluster: 'nc3' },],
-  //   edges: [
-  //     { source: 'A', target: 'B', cluster: 'ec1' },
-  //     { source: 'A', target: 'E', cluster: 'ec2' }
-  //   ]
-  // }]
+// output:
+// [{
+//   nodes: [
+//     { id: 'A', cluster: 'nc1' },
+//     { id: 'B', cluster: 'nc1' },
+//     { id: 'E', cluster: 'nc3' },],
+//   edges: [
+//     { source: 'A', target: 'B', cluster: 'ec1' },
+//     { source: 'A', target: 'E', cluster: 'ec2' }
+//   ]
+// }]
 ```
 
 ### depthFirstSearch
@@ -97,17 +103,17 @@ console.log(resultMatches);
 
 **Parameters**
 
-| Name        | Type                | Required | Description                      |
-| ----------- | ------------------- | -------- | -------------------------------- |
-| graphData    | GraphData         | true     | Graph data in G6 [data format](/en/docs/manual/tutorial/elements#data-structure). Note that it should be assigned with graph instance to this parameter instead before v4.1.0 |
-| startNodeId | string              | true     | The ID of the node to be started |
-| callbacks   | IAlgorithmCallbacks | false    | The callback function            |
+| Name | Type | Required | Description |
+| --- | --- | --- | --- |
+| graphData | GraphData | true | Graph data in F6 [data format](/en/docs/manual/tutorial/elements#data-structure). Note that it should be assigned with graph instance to this parameter instead before v4.1.0 |
+| startNodeId | string | true | The ID of the node to be started |
+| callbacks | IAlgorithmCallbacks | false | The callback function |
 
 **Usage**
 
 ```javascript
-import G6, { Algorithm } from '@antv/g6';
-const graph = new G6.Graph({
+import F6, { Algorithm } from '@antv/g6';
+const graph = new F6.Graph({
   container: 'container',
   width: 500,
   height: 500,
@@ -157,17 +163,17 @@ depthFirstSearch(data, 'A', {
 
 **Parameters**
 
-| Name              | Type                | Required | Description                 |
-| ----------------- | ------------------- | -------- | --------------------------- |
-| graphData    | GraphData         | true     | Graph data in G6 [data format](/en/docs/manual/tutorial/elements#data-structure). Note that it should be assigned with graph instance to this parameter instead before v4.1.0 |
-| startNodeId       | string              | true     | The ID of the starting node |
-| originalCallbacks | IAlgorithmCallbacks | false    | The callback function       |
+| Name | Type | Required | Description |
+| --- | --- | --- | --- |
+| graphData | GraphData | true | Graph data in F6 [data format](/en/docs/manual/tutorial/elements#data-structure). Note that it should be assigned with graph instance to this parameter instead before v4.1.0 |
+| startNodeId | string | true | The ID of the starting node |
+| originalCallbacks | IAlgorithmCallbacks | false | The callback function |
 
 **Usage**
 
 ```javascript
-import G6, { Algorithm } from '@antv/g6';
-const graph = new G6.Graph({
+import F6, { Algorithm } from '@antv/g6';
+const graph = new F6.Graph({
   container: 'container',
   width: 500,
   height: 500,
@@ -209,7 +215,7 @@ breadthFirstSearch(data, 'A', {
 
 ### labelPropagation
 
-_Supported after G6 4.0_ Label Propagation compute the clusters for graph data automatically. Compare to LOUVAIN, Label Propagation has lower time complexity.
+_Supported after F6 4.0_ Label Propagation compute the clusters for graph data automatically. Compare to LOUVAIN, Label Propagation has lower time complexity.
 
 References: https://en.wikipedia.org/wiki/Label_propagation_algorithm
 
@@ -260,8 +266,8 @@ Example of the return value:
 **Usage**
 
 ```javascript
-import G6, { Algorithm } from '@antv/g6';
-const graph = new G6.Graph({
+import F6, { Algorithm } from '@antv/g6';
+const graph = new F6.Graph({
   container: 'container',
   width: 500,
   height: 500,
@@ -298,7 +304,7 @@ let result = labelPropagation(data);
 
 ### louvain
 
-_Supported after G6 4.0_ LOUVAIN auto clustering algorithm cluster the nodes according to the edge density between nodes. Compare to Label Propagation, LOUVAIN is more accurate.
+_Supported after F6 4.0_ LOUVAIN auto clustering algorithm cluster the nodes according to the edge density between nodes. Compare to Label Propagation, LOUVAIN is more accurate.
 
 References: https://en.wikipedia.org/wiki/Louvain_method
 
@@ -350,8 +356,8 @@ Example of the return value:
 **Usage**
 
 ```javascript
-import G6, { Algorithm } from '@antv/g6';
-const graph = new G6.Graph({
+import F6, { Algorithm } from '@antv/g6';
+const graph = new F6.Graph({
   container: 'container',
   width: 500,
   height: 500,
@@ -398,9 +404,9 @@ References:
 
 **Parameters**
 
-| Name  | Type   | Required | Description       |
-| ----- | ------ | -------- | ----------------- |
-| graphData    | GraphData         | true     | Graph data in G6 [data format](/en/docs/manual/tutorial/elements#data-structure). Note that it should be assigned with graph instance to this parameter instead before v4.1.0 |
+| Name | Type | Required | Description |
+| --- | --- | --- | --- |
+| graphData | GraphData | true | Graph data in F6 [data format](/en/docs/manual/tutorial/elements#data-structure). Note that it should be assigned with graph instance to this parameter instead before v4.1.0 |
 
 **Return**
 
@@ -409,8 +415,8 @@ Returns the detected cycle. Returns `null` if there is no cycle.
 **Usage**
 
 ```javascript
-import G6, { Algorithm } from '@antv/g6';
-const graph = new G6.Graph({
+import F6, { Algorithm } from '@antv/g6';
+const graph = new F6.Graph({
   container: 'container',
   width: 500,
   height: 500,
@@ -477,7 +483,7 @@ References:
 
 | Name | Type | Required | Description |
 | --- | --- | --- | --- |
-| graphData    | GraphData         | true     | Graph data in G6 [data format](/en/docs/manual/tutorial/elements#data-structure). Note that it should be assigned with graph instance to this parameter instead before v4.1.0 |
+| graphData | GraphData | true | Graph data in F6 [data format](/en/docs/manual/tutorial/elements#data-structure). Note that it should be assigned with graph instance to this parameter instead before v4.1.0 |
 | directed | boolean | false | Whether the graph is directed, use the value of `graph.get('directed')` by default. ｜ |
 | nodeIds | string[] | false | The nodes that should be included in or excluded from the cycles. If not configured, return all of the cycles.｜ |
 | include | boolean | false | If it is `true`, the returned cycles shuld include one of the nodes in `nodeIds`, otherwise the cycles should not have any nodes in `nodeIds`. `true` by default.｜ |
@@ -509,9 +515,9 @@ Compute the shortest path between two nodes in the graph.
 
 | Name | Type | Required | Description |
 | --- | --- | --- | --- |
-| graphData    | GraphData         | true     | Graph data in G6 [data format](/en/docs/manual/tutorial/elements#data-structure). Note that it should be assigned with graph instance to this parameter instead before v4.1.0 |
-| start | INode / string | true | G6 Node Instance or node ID, indicating the start of the path ｜ |
-| end | INode / string | true | G6 Node Instance or node ID, indicating the end of the path ｜ |
+| graphData | GraphData | true | Graph data in F6 [data format](/en/docs/manual/tutorial/elements#data-structure). Note that it should be assigned with graph instance to this parameter instead before v4.1.0 |
+| start | INode / string | true | F6 Node Instance or node ID, indicating the start of the path ｜ |
+| end | INode / string | true | F6 Node Instance or node ID, indicating the end of the path ｜ |
 | directed | boolean | false | Whether the graph is directed, use the value of `graph.get('directed')` by default. ｜ |
 | weightPropertyName | string | false | Configure the edge property as the edge weight. If not configured, every edge has weight 1.｜ |
 
@@ -601,7 +607,7 @@ const data = {
   ],
 };
 
-const graph = new G6.Graph({
+const graph = new F6.Graph({
   container: 'container',
   width: 500,
   height: 500,
@@ -624,9 +630,9 @@ Find all paths between two nodes in the graph.
 
 | Name | Type | Required | Description |
 | --- | --- | --- | --- |
-| graphData    | GraphData         | true     | Graph data in G6 [data format](/en/docs/manual/tutorial/elements#data-structure). . Note that it should be assigned with graph instance to this parameter instead before v4.1.0 |
-| start | INode / string | true | G6 Node Instance or node ID, indicating the start of the path ｜ |
-| end | INode / string | true | G6 Node Instance or node ID, indicating the end of the path ｜ |
+| graphData | GraphData | true | Graph data in F6 [data format](/en/docs/manual/tutorial/elements#data-structure). . Note that it should be assigned with graph instance to this parameter instead before v4.1.0 |
+| start | INode / string | true | F6 Node Instance or node ID, indicating the start of the path ｜ |
+| end | INode / string | true | F6 Node Instance or node ID, indicating the end of the path ｜ |
 | directed | boolean | false | Whether the graph is directed, use the value of `graph.get('directed')` by default. ｜ |
 
 **Return**
@@ -708,7 +714,7 @@ const data = {
   ],
 };
 
-const graph = new G6.Graph({
+const graph = new F6.Graph({
   container: 'container',
   width: 500,
   height: 500,
@@ -736,7 +742,7 @@ Reference:
 
 | Name | Type | Required | Description |
 | --- | --- | --- | --- |
-| graphData    | GraphData         | true     | Graph data in G6 [data format](/en/docs/manual/tutorial/elements#data-structure). . Note that it should be assigned with graph instance to this parameter instead before v4.1.0 |
+| graphData | GraphData | true | Graph data in F6 [data format](/en/docs/manual/tutorial/elements#data-structure). . Note that it should be assigned with graph instance to this parameter instead before v4.1.0 |
 | directed | boolean | false | Whether the graph is directed, use the value of `graph.get('directed')` by default. ｜ |
 
 **Return**
@@ -813,7 +819,7 @@ const data = {
     },
   ],
 };
-const graph = new G6.Graph({
+const graph = new F6.Graph({
   container: 'container',
   width: 500,
   height: 400,
@@ -848,7 +854,7 @@ Reference:
 
 | Name | Type | Required | Description |
 | --- | --- | --- | --- |
-| graphData    | GraphData         | true     | Graph data in G6 [data format](/en/docs/manual/tutorial/elements#data-structure). Note that it should be assigned with graph instance to this parameter instead before v4.1.0 |
+| graphData | GraphData | true | Graph data in F6 [data format](/en/docs/manual/tutorial/elements#data-structure). Note that it should be assigned with graph instance to this parameter instead before v4.1.0 |
 | epsilon | number | false | The precision level used to identify whether the calculation is converged. ｜ |
 | linkProb | number | false | The the probability that the outgoing links will be visited next, 0.85 by default.｜ |
 

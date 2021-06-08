@@ -3,12 +3,12 @@ title: GForce
 order: 2
 ---
 
-GForce 实现了经典的力导向算法，G6 4.0 支持。能够更加自由地支持设置节点质量、群组中心力等。更重要的是，它支持 GPU 并行计算。
+GForce 实现了经典的力导向算法，F6 4.0 支持。能够更加自由地支持设置节点质量、群组中心力等。更重要的是，它支持 GPU 并行计算。
 
 <img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*lX-qSqDECrIAAAAAAAAAAAAAARQnAQ' width=600 alt='img'/>
 
 ```javascript
-const graph = new G6.Graph({
+const graph = new F6.Graph({
   container: 'mountNode',
   width: 1000,
   height: 600,
@@ -26,7 +26,7 @@ const graph = new G6.Graph({
       console.log('force layout done');
     },
     workerEnabled: true,      // 可选，开启 web-worker
-    gpuEnabled: true          // 可选，开启 GPU 并行计算，G6 4.0 支持
+    gpuEnabled: true          // 可选，开启 GPU 并行计算，F6 4.0 支持
     ... // 更多参数见下方
   }
 });
@@ -127,4 +127,4 @@ const graph = new G6.Graph({
 
 ## layoutCfg.gpuEnabled
 
-**类型**: Boolean<br />**默认值**: false<br />**是否必须**: false<br />**说明**: 是否启用 GPU 并行计算。若用户的机器或浏览器不支持 GPU 计算，将会自动降级为 CPU 计算。自 G6 4.0 起支持，性能提升概览： <img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*4ogTQKrWhIkAAAAAAAAAAAAAARQnAQ' width='80%' alt=''/>
+**类型**: Boolean<br />**默认值**: false<br />**是否必须**: false<br />**说明**: 是否启用 GPU 并行计算。若用户的机器或浏览器不支持 GPU 计算，将会自动降级为 CPU 计算。自 F6 4.0 起支持，性能提升概览： <img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*4ogTQKrWhIkAAAAAAAAAAAAAARQnAQ' width='80%' alt=''/>

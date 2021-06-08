@@ -3,10 +3,9 @@ title: 坐标转换
 order: 15
 ---
 
-这部分主要是说明渲染坐标、Canvas 坐标和页面坐标之前的相互转换。三种坐标系的关系参见文档：[G6 坐标系深度解析](/zh/docs/manual/advanced/coordinate-system)。
+这部分主要是说明渲染坐标、Canvas 坐标和页面坐标之前的相互转换。三种坐标系的关系参见文档：[F6 坐标系深度解析](/zh/docs/manual/advanced/coordinate-system)。
 
 <img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*Dzz_R5yJEooAAAAAAAAAAABkARQnAQ' alt='img' width='1000'/>
-
 
 ### graph.getPointByClient(clientX, clientY)
 
@@ -37,9 +36,9 @@ console.log('渲染坐标 x/y 分别为:', point.x, point.y);
 
 **参数**
 
-| 名称 | 类型   | 是否必选 | 描述         |
-| ---- | ------ | -------- | ------------ |
-| x    | Number | true     | 渲染坐标系下的 x 坐标  |
+| 名称 | 类型   | 是否必选 | 描述                  |
+| ---- | ------ | -------- | --------------------- |
+| x    | Number | true     | 渲染坐标系下的 x 坐标 |
 | y    | Number | true     | 渲染坐标系下的 y 坐标 |
 
 **返回值**
@@ -83,9 +82,9 @@ console.log('渲染坐标 x/y 分别为:', point.x, point.y);
 
 **参数**
 
-| 名称 | 类型   | 是否必选 | 描述         |
-| ---- | ------ | -------- | ------------ |
-| x    | Number | true     | 渲染坐标系下的 x 坐标  |
+| 名称 | 类型   | 是否必选 | 描述                  |
+| ---- | ------ | -------- | --------------------- |
+| x    | Number | true     | 渲染坐标系下的 x 坐标 |
 | y    | Number | true     | 渲染坐标系下的 y 坐标 |
 
 **返回值**

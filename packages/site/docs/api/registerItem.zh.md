@@ -1,17 +1,17 @@
 ---
-title: 自定义元素 G6.registerX
+title: 自定义元素 F6.registerX
 order: 7
 ---
 
 本文介绍的相关方法是在自定义节点（registerNode）或自定义边（registerEdge）的过程中需要部分实现或复写的方法。
 
-**友情提示：**以下属性和 API 方法，全部用于自定义节点和边时候使用，即作为 `G6.registerNode` / `G6.registerEdge` 的第二个参数中的方法。
+**友情提示：**以下属性和 API 方法，全部用于自定义节点和边时候使用，即作为 `F6.registerNode` / `F6.registerEdge` 的第二个参数中的方法。
 
-本文介绍 G6 的自定义机制，包括自定义节点、自定义边、自定义 combo、自定义交互行为、自定义布局的相关方法。它们都被挂载在 G6 全局上，通过 `G6.registerXXX` 进行调用。
+本文介绍 F6 的自定义机制，包括自定义节点、自定义边、自定义 combo、自定义交互行为、自定义布局的相关方法。它们都被挂载在 F6 全局上，通过 `F6.registerXXX` 进行调用。
 
-## G6.registerNode(nodeName, options, extendedNodeName)
+## F6.registerNode(nodeName, options, extendedNodeName)
 
-当内置节点不满足需求时，可以通过 `G6.registerNode(nodeName, options, extendedNodeName)` 方法自定义节点。
+当内置节点不满足需求时，可以通过 `F6.registerNode(nodeName, options, extendedNodeName)` 方法自定义节点。
 
 ### 参数
 
@@ -24,7 +24,7 @@ order: 7
 ### 用法
 
 ```javascript
-G6.registerNode(
+F6.registerNode(
   'nodeName',
   {
     /**
@@ -73,7 +73,7 @@ G6.registerNode(
 );
 ```
 
-## G6.registerEdge(edgeName, options, extendedEdgeName)
+## F6.registerEdge(edgeName, options, extendedEdgeName)
 
 当内置的边不能满足需求时，可以通过 `registerEdge(edgeName, options, extendedEdgeName)` 方法注册自定义的边。
 
@@ -88,7 +88,7 @@ G6.registerNode(
 ### 用法
 
 ```javascript
-G6.registerEdge(
+F6.registerEdge(
   'edgeName',
   {
     /**
@@ -131,9 +131,9 @@ G6.registerEdge(
 );
 ```
 
-## G6.registerCombo(comboName, options, extendedComboName)
+## F6.registerCombo(comboName, options, extendedComboName)
 
-当内置 Combo 不满足需求时，可以通过 `G6.registerCombo(comboName, options, extendedComboName)` 方法自定义 Combo。
+当内置 Combo 不满足需求时，可以通过 `F6.registerCombo(comboName, options, extendedComboName)` 方法自定义 Combo。
 
 ### 参数
 
@@ -146,7 +146,7 @@ G6.registerEdge(
 ### 用法
 
 ```javascript
-G6.registerCombo(
+F6.registerCombo(
   'comboName',
   {
     /**
@@ -200,8 +200,8 @@ G6.registerCombo(
 下面以注册边为例：
 
 ```javascript
-import G6 from '@antv/g6';
-G6.registerEdge(
+import F6 from '@antv/f6';
+F6.registerEdge(
   'edgeName',
   {
     labelPosition: 'center',
@@ -261,7 +261,7 @@ G6.registerEdge(
 
 ### afterDraw(cfg, group)
 
-绘制完成以后的操作，用户可继承现有的节点或边，在 `afterDraw()` 方法中扩展图形或添加动画。可参考在 afterDraw 中添加动画的 [demo](/zh/examples/scatter/edge)。图形动画 API 详见 G6 的渲染引擎 [G 的动画相关 API](https://g.antv.vision/zh/docs/api/general/element/#%E5%8A%A8%E7%94%BB%E6%96%B9%E6%B3%95)。
+绘制完成以后的操作，用户可继承现有的节点或边，在 `afterDraw()` 方法中扩展图形或添加动画。可参考在 afterDraw 中添加动画的 [demo](/zh/examples/scatter/edge)。图形动画 API 详见 F6 的渲染引擎 [G 的动画相关 API](https://g.antv.vision/zh/docs/api/general/element/#%E5%8A%A8%E7%94%BB%E6%96%B9%E6%B3%95)。
 
 ## 更新函数
 
@@ -274,11 +274,11 @@ G6.registerEdge(
 | 名称 | 类型    | 是否必选 | 描述             |
 | ---- | ------- | -------- | ---------------- |
 | cfg  | Object  | true     | 节点或边的配置项 |
-| item | G6.Item | true     | 节点或边的实例   |
+| item | F6.Item | true     | 节点或边的实例   |
 
 ### afterUpdate(cfg, item)
 
-更新完以后的操作，如扩展图形或添加动画。可参考添加动画的 [demo](/zh/examples/scatter/edge)。图形动画 API 详见 G6 的渲染引擎 [G 的动画相关 API](https://g.antv.vision/zh/docs/api/general/element/#%E5%8A%A8%E7%94%BB%E6%96%B9%E6%B3%95)。
+更新完以后的操作，如扩展图形或添加动画。可参考添加动画的 [demo](/zh/examples/scatter/edge)。图形动画 API 详见 F6 的渲染引擎 [G 的动画相关 API](https://g.antv.vision/zh/docs/api/general/element/#%E5%8A%A8%E7%94%BB%E6%96%B9%E6%B3%95)。
 
 ### shouldUpdate(type)
 
@@ -305,4 +305,4 @@ G6.registerEdge(
 | ----- | ------- | -------- | ------------------------------------------ |
 | name  | String  | true     | 状态名称                                   |
 | value | Boolean | true     | 状态是否可用，为 `true` 时可用，否则不可用 |
-| item  | G6.Item | true     | 节点或边的实例                             |
+| item  | F6.Item | true     | 节点或边的实例                             |
