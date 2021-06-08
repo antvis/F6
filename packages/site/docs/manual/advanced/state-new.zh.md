@@ -1,5 +1,5 @@
 ---
-title: G6 状态管理的最佳实践
+title: F6 状态管理的最佳实践
 order: 5
 ---
 
@@ -23,7 +23,7 @@ order: 5
 
 ### 方案
 
-为了解决以上问题，我们将 G6 的状态管理分为以下几层：
+为了解决以上问题，我们将 F6 的状态管理分为以下几层：
 
 - 定义状态：统一的定义方式；
 - 设置状态：`setItemState` 方法；
@@ -34,10 +34,10 @@ order: 5
 
 #### 全局状态
 
-G6 中定义全局状态是在实例化 Graph 时通过 `nodeStateStyles` 和 `edgeStateStyles` 来定义。
+F6 中定义全局状态是在实例化 Graph 时通过 `nodeStateStyles` 和 `edgeStateStyles` 来定义。
 
 ```javascript
-const graph = new G6.Graph({
+const graph = new F6.Graph({
   container,
   width,
   height,
@@ -57,7 +57,7 @@ const graph = new G6.Graph({
 
 #### 节点/边状态
 
-除过全局状态外，G6 也支持针对不同节点定义不同的状态，使用 `graph.node(fn)` / `graph.edge(fn)` 或在数据中设置 `stateStyles` 即可。
+除过全局状态外，F6 也支持针对不同节点定义不同的状态，使用 `graph.node(fn)` / `graph.edge(fn)` 或在数据中设置 `stateStyles` 即可。
 
 ```javascript
 graph.node((node) => {
@@ -79,12 +79,12 @@ const data = {
 
 #### 子元素状态
 
-在 G6 中，通常一个节点都是由多部分组成的，但 G6 3.3 之前的版本支持设置 keyShape 的状态，如果要设置其他部分元素的状态，就需要在自定义元素时复写 `setState` 方法，写过的同学都会知道有多么痛苦。G6 3.4 版本中，我们支持了定义子元素的状态，从此再也不用去复写 `setState` 方法了。
+在 F6 中，通常一个节点都是由多部分组成的，但 F6 3.3 之前的版本支持设置 keyShape 的状态，如果要设置其他部分元素的状态，就需要在自定义元素时复写 `setState` 方法，写过的同学都会知道有多么痛苦。F6 3.4 版本中，我们支持了定义子元素的状态，从此再也不用去复写 `setState` 方法了。
 
 子元素状态也支持两种设置方式，为了演示方便，在这里我们只演示在在全局状态中定义子元素状态。
 
 ```javascript
-const graph = new G6.Graph({
+const graph = new F6.Graph({
   container,
   width,
   height,
@@ -112,11 +112,11 @@ const graph = new G6.Graph({
 graph.setItemState(item, 'selected', true);
 ```
 
-另外，G6 也支持在使用 `updateItem` 更新节点或边的时候定义状态。
+另外，F6 也支持在使用 `updateItem` 更新节点或边的时候定义状态。
 
 ### 设置状态
 
-G6 中状态支持多值和二值两种情况。
+F6 中状态支持多值和二值两种情况。
 
 > 二值：值只能为 `true` / `false`，无其他选择，即要么有这个状态，要么没有；多值：如节点代表人，有“健康”、“疑似”、“确诊”、“死亡”四种状态。
 
@@ -124,10 +124,10 @@ G6 中状态支持多值和二值两种情况。
 
 二值状态一般常用于交互过程中，如 hover、selected 等状态，当节点被选中时，节点应用 selected 状态的样式，取消选中时，去掉 selected 状态的样式。
 
-在 G6 中，使用 `graph.setItemState(item, 'selected', true)` 来设置二值状态。
+在 F6 中，使用 `graph.setItemState(item, 'selected', true)` 来设置二值状态。
 
 ```javascript
-const graph = new G6.Graph({
+const graph = new F6.Graph({
   //...
   nodeStateStyles: {
     selected: {
@@ -184,7 +184,7 @@ graph.setItemState(item, 'active', true);
 
 ### 修改状态样式配置
 
-G6 3.3 及 以下的版本中，不支持修改状态样式的配置。`updateItem` 方法只能更新 keyShape 的默认样式。从 G6 3.4 版本开始，`updateItem` 支持更新 item 中所有子图形的默认样式和状态样式。
+F6 3.3 及 以下的版本中，不支持修改状态样式的配置。`updateItem` 方法只能更新 keyShape 的默认样式。从 F6 3.4 版本开始，`updateItem` 支持更新 item 中所有子图形的默认样式和状态样式。
 
 #### 更新默认样式
 
@@ -235,7 +235,7 @@ graph.setItemState(item, 'hover', true);
 
 ### 取消状态
 
-在 G6 中，我们建议使用 `graph.clearItemStates`  来取消 `graph.setItemState` 设置的状态，`graph.clearItemStates` 支持一次取消单个或多个状态。
+在 F6 中，我们建议使用 `graph.clearItemStates`  来取消 `graph.setItemState` 设置的状态，`graph.clearItemStates` 支持一次取消单个或多个状态。
 
 ```javascript
 graph.setItemState(item, 'bodyState', 'healthy');
@@ -250,11 +250,11 @@ graph.clearItemStates(item, ['selected']);
 graph.clearItemStates(item, ['bodyState:healthy', 'selected', 'active']);
 ```
 
-以上就是 G6 中状态的定义、设置和取消的全过程，很清晰明了，但总感觉缺少了点什么，没错，想必聪明的你已经发现了，缺少了更新子元素及和 `updateItem` 配合使用的方案。不要着急，接着放下看。
+以上就是 F6 中状态的定义、设置和取消的全过程，很清晰明了，但总感觉缺少了点什么，没错，想必聪明的你已经发现了，缺少了更新子元素及和 `updateItem` 配合使用的方案。不要着急，接着放下看。
 
 ### 状态优先级
 
-G6 中提供了 `hasState` 方法用于判断元素是否有某种状态。但具体哪个状态的优先级高，哪个状态值应该覆盖其他的类似问题我们就没有再做任何限制，完全由业务用户控制，实现这种控制也非常简单，如一般情况下，鼠标 hover 到某个节点后，该节点会高亮，但希望当该节点处于 active 状态时，鼠标 hover 上去后也不要覆盖 active 的状态，即 active 优先级高于 hover。
+F6 中提供了 `hasState` 方法用于判断元素是否有某种状态。但具体哪个状态的优先级高，哪个状态值应该覆盖其他的类似问题我们就没有再做任何限制，完全由业务用户控制，实现这种控制也非常简单，如一般情况下，鼠标 hover 到某个节点后，该节点会高亮，但希望当该节点处于 active 状态时，鼠标 hover 上去后也不要覆盖 active 的状态，即 active 优先级高于 hover。
 
 ```javascript
 // 设置节点处于 active 状态

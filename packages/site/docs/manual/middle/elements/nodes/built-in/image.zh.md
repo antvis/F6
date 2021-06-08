@@ -5,7 +5,7 @@ order: 7
 
 ## Image
 
-G6 内置了 image 节点，其默认样式如下。标签文本位于图片下方。<br /><img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*aHqIQIXL0RMAAAAAAAAAAABkARQnAQ' width=150 alt='img'/>
+F6 内置了 image 节点，其默认样式如下。标签文本位于图片下方。<br /><img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*aHqIQIXL0RMAAAAAAAAAAABkARQnAQ' width=150 alt='img'/>
 
 ## 使用方法
 
@@ -20,8 +20,8 @@ G6 内置了 image 节点，其默认样式如下。标签文本位于图片下�
 用户在实例化 Graph 时候可以通过 `defaultNode` 指定 `type` 为 `'image'`，即可使用 `image` 节点。
 
 ```javascript
-const graph = new G6.Graph({
-  container: 'mountNode',
+const graph = new F6.Graph({
+  ...
   width: 800,
   height: 600,
   defaultNode: {
@@ -127,8 +127,8 @@ const data = {
     },
   ],
 };
-const graph = new G6.Graph({
-  container: 'mountNode',
+const graph = new F6.Graph({
+  ...
   width: 800,
   height: 600,
   defaultNode: {

@@ -3,9 +3,9 @@ title: 图形或图形分组的变换
 order: 3
 ---
 
-### G6 3.2
+### F6 3.2
 
-G6 3.2 及以下版本中，实现变换可通过以下方式。
+F6 3.2 及以下版本中，实现变换可通过以下方式。
 
 #### transform(ts)
 
@@ -24,7 +24,7 @@ const rect = group.addShape('rect', {
     stroke: '#5B8FF9',
     lineWidth: 3,
   },
-  // must be assigned in G6 3.3 and later versions. it can be any value you want
+  // must be assigned in F6 3.3 and later versions. it can be any value you want
   name: 'rect-shape',
 });
 ```
@@ -67,9 +67,9 @@ rect.transform([
 
 获取应用到实例上的所有变换的矩阵。
 
-### G6 3.3
+### F6 3.3
 
-在 G6 3.3 及以上版本中，废弃了 Group / Canvas 上只适用于三阶矩阵的变换函数：
+在 F6 3.3 及以上版本中，废弃了 Group / Canvas 上只适用于三阶矩阵的变换函数：
 
 - 🗑 平移函数 translate；
 - 🗑 移动函数 move；
@@ -77,7 +77,7 @@ rect.transform([
 - 🗑 旋转函数 rotate；
 - 🗑 以 (0, 0) 点为中心的旋转函数 rotateAtStart。
 
-在 G6 3.3 版本中要应用矩阵变换的效果，需要手动设置矩阵的值：
+在 F6 3.3 版本中要应用矩阵变换的效果，需要手动设置矩阵的值：
 
 - 获取当前矩阵：getMatrix()；
 - 设置矩阵：setMatrix(matrix) 或 attr('matrix', matrix)；
@@ -101,7 +101,7 @@ transform(m, [
 
 ```javascript
 import { transform, mat3 } from '@antv/matrix-util';
-G6.registerNode('example', {
+F6.registerNode('example', {
   drawShape: (cfg, group) => {
     const rect = group.addShape('rect', {
       attrs: {
@@ -113,7 +113,7 @@ G6.registerNode('example', {
         stroke: '#5B8FF9',
         lineWidth: 3,
       },
-      // must be assigned in G6 3.3 and later versions. it can be any value you want
+      // must be assigned in F6 3.3 and later versions. it can be any value you want
       name: 'rect-shape',
       draggable: true,
     });

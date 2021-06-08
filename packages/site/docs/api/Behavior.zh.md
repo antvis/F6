@@ -177,7 +177,7 @@ F6.registerBehavior('behaviorName', {
 
 ```javascript
 const graph = new F6.Graph({
-  container: 'mountNode',
+  ...
   width: 500,
   height: 500,
   modes: {

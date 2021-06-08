@@ -3,9 +3,9 @@ title: 节点与边的层级
 order: 4
 ---
 
-节点与边在视觉上的层级涉及到了它们相对应的 [图形分组 Group](/zh/docs/manual/middle/elements/shape/graphics-group)。本文提到的所有分组 Group 都为 G6 的图形分组 Group，而非 G6 的  [节点分组 Combo](/zh/docs/manual/middle/discard/nodeGroup)，其区别在 [图形分组 Group](/zh/docs/manual/middle/elements/shape/graphics-group)  中说明。
+节点与边在视觉上的层级涉及到了它们相对应的 [图形分组 Group](/zh/docs/manual/middle/elements/shape/graphics-group)。本文提到的所有分组 Group 都为 F6 的图形分组 Group，而非 F6 的  [节点分组 Combo](/zh/docs/manual/middle/discard/nodeGroup)，其区别在 [图形分组 Group](/zh/docs/manual/middle/elements/shape/graphics-group)  中说明。
 
-在 [图形分组 Group](/zh/docs/manual/middle/elements/shape/graphics-group) 中我们提到：在 G6 中，Graph 的一个实例中的所有节点属于同一个变量名为 `nodeGroup` 的 group，所有的边属于同一个变量名为 `edgeGroup` 的 group。节点 group 在视觉上的层级（zIndex）高于边 group，即所有节点会绘制在所有边的上层。
+在 [图形分组 Group](/zh/docs/manual/middle/elements/shape/graphics-group) 中我们提到：在 F6 中，Graph 的一个实例中的所有节点属于同一个变量名为 `nodeGroup` 的 group，所有的边属于同一个变量名为 `edgeGroup` 的 group。节点 group 在视觉上的层级（zIndex）高于边 group，即所有节点会绘制在所有边的上层。
 
 但有时，我们需要让边在视觉上在节点上层。例如，高亮节点及其相关边和邻居、高亮一条边等。可以通过配合图实例的配置项  `groupByTypes` 以及节点和边的 `toFront()` 与 `toBack()` 函数实现。为实现如下效果：鼠标进入节点时，提升相关边以及邻居节点的层级；离开节点时恢复；鼠标进入边时，提升边及其两端点的层级；离开边时恢复。<a href='https://codepen.io/Yanyan-Wang/pen/GRRNzGN' target='_blank'>Demo 完整代码</a>。<br /><img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*uWGAR5-w-TcAAAAAAAAAAABkARQnAQ' width=150 alt='img'/>
 
@@ -17,7 +17,7 @@ order: 4
 
 ## 前提代码
 
-下面代码完成了引入 G6、数据设置、实例化图、渲染图的命令等。后文将修改下面这份代码中以达到上图高亮效果。
+下面代码完成了引入 F6、数据设置、实例化图、渲染图的命令等。后文将修改下面这份代码中以达到上图高亮效果。
 
 ```javascript
 // 数据源
@@ -69,8 +69,8 @@ const data = {
 };
 
 // 实例化图
-const graph = new G6.Graph({
-  container: 'mountNode',
+const graph = new F6.Graph({
+  ...
   width: 800,
   height: 600,
   // 为方便演示，加粗边
@@ -102,7 +102,7 @@ graph.render();
 更改 前提代码 中实例化图部分代码，添加 `groupByTypes` 配置项，并设置为 `false`：
 
 ```javascript
-const graph = new G6.Graph({
+const graph = new F6.Graph({
   // ...  // 其他配置
   groupByTypes: false,
 });

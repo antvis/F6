@@ -5,13 +5,13 @@ order: 1
 
 ## 简介
 
-图布局是指图中节点的排布方式，根据图的数据结构不同，布局可以分为两类：一般图布局、树图布局。G6 为这两类图都内置了一些常用的图布局算法。使用内置的图布局可以完成[布局的参数、方法、数据的切换](/zh/docs/manual/middle/layout/layout-mechanism)等。G6 还提供了一般图布局的 [Web-Worker 机制](/zh/docs/manual/middle/layout/webworker)，在大规模图布局中使用该机制可以使布局计算不阻塞页面。
+图布局是指图中节点的排布方式，根据图的数据结构不同，布局可以分为两类：一般图布局、树图布局。F6 为这两类图都内置了一些常用的图布局算法。使用内置的图布局可以完成[布局的参数、方法、数据的切换](/zh/docs/manual/middle/layout/layout-mechanism)等。F6 还提供了一般图布局的 [Web-Worker 机制](/zh/docs/manual/middle/layout/webworker)，在大规模图布局中使用该机制可以使布局计算不阻塞页面。
 
 除了内置布局方法外，一般图布局还支持 [自定义布局](/zh/docs/manual/middle/layout/custom-layout) 机制。
 
-事实上，G6 的布局是自由的，内置布局算法仅仅是操作了数据中节点的 `x` 和 `y` 值。因此，除了使用内置布局以及自定义的一般图布局外，用户还可以使用外部图布局算法，计算节点位置后赋值到数据中节点的 `x` 和 `y` 字段上，G6 便可以根据该位置信息进行绘制。
+事实上，F6 的布局是自由的，内置布局算法仅仅是操作了数据中节点的 `x` 和 `y` 值。因此，除了使用内置布局以及自定义的一般图布局外，用户还可以使用外部图布局算法，计算节点位置后赋值到数据中节点的 `x` 和 `y` 字段上，F6 便可以根据该位置信息进行绘制。
 
-由于树图特殊性，G6 扩展出了  TreeGraph ，详细文档请见：[TreeGraph](/zh/docs/api/treeGraphLayout/guide) API。树布局是一种能很好展示有一定层次结构数据的布局方式。推荐使用 G6.TreeGraph 实现。本文将逐一介绍内置的树图布局算法，及其使用方式。
+由于树图特殊性，F6 扩展出了  TreeGraph ，详细文档请见：[TreeGraph](/zh/docs/api/treeGraphLayout/guide) API。树布局是一种能很好展示有一定层次结构数据的布局方式。推荐使用 F6.TreeGraph 实现。本文将逐一介绍内置的树图布局算法，及其使用方式。
 
 ## 树图 TreeGraph 布局方法总览
 
@@ -25,8 +25,8 @@ order: 1
 与一般图 Graph 配置方法相似，通过实例化图时配置 `layout` 属性设置树的布局，还可以通过 `modes` 属性为树配置 [展开/收缩行为](/zh/docs/manual/middle/states/defaultBehavior/#collapse-expand)。以下代码声明了一个实例，定义了布局为从左到右结构的基础树图，并且定义了展开收缩行为。
 
 ```javascript
-const graph = new G6.TreeGraph({
-  container: 'mountNode',
+const graph = new F6.TreeGraph({
+  ...
   modes: {
     default: [
       {

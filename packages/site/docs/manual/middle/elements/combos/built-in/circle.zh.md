@@ -3,7 +3,7 @@ title: Circle
 order: 1
 ---
 
-G6 内置了圆  Circle Combo，其默认样式如下。标签文本位于圆形上方。 <a href='/zh/examples/item/defaultCombos#circle' target='_blank'>Demo</a> <br /> <img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*ijeuQoiH0JUAAAAAAAAAAABkARQnAQ' width=150 alt='img'/>
+F6 内置了圆  Circle Combo，其默认样式如下。标签文本位于圆形上方。 <a href='/zh/examples/item/defaultCombos#circle' target='_blank'>Demo</a> <br /> <img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*ijeuQoiH0JUAAAAAAAAAAABkARQnAQ' width=150 alt='img'/>
 
 ## 使用方法
 
@@ -20,8 +20,8 @@ G6 内置了圆  Circle Combo，其默认样式如下。标签文本位于圆�
 用户在实例化 Graph 时候可以通过 `defaultCombo` 指定 `type` 为 `'circle'`，即可使用 `circle` Combo。
 
 ```javascript
-const graph = new G6.Graph({
-  container: 'mountNode',
+const graph = new F6.Graph({
+  ...
   width: 800,
   height: 600,
   // 必须将 groupByTypes 设置为 false，带有 combo 的图中元素的视觉层级才能合理
@@ -84,8 +84,8 @@ const data = {
     },
   ],
 };
-const graph = new G6.Graph({
-  container: 'mountNode',
+const graph = new F6.Graph({
+  ...
   width: 800,
   height: 600,
   // 必须将 groupByTypes 设置为 false，带有 combo 的图中元素的视觉层级才能合理
@@ -111,7 +111,7 @@ Object 类型。通过 `labelCfg` 配置标签文本。支持 [Combo 通用标�
 const data = {
   // ... data 内容
 };
-const graph = new G6.Graph({
+const graph = new F6.Graph({
   // ... 图的其他属性
   // 必须将 groupByTypes 设置为 false，带有 combo 的图中元素的视觉层级才能合理
   groupByTypes: false,

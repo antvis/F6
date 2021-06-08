@@ -9,7 +9,7 @@ Force 布局经典的力导向布局方法，与 d3 的力导向布局方法相�
 
 ```javascript
 const graph = new F6.Graph({
-  container: 'mountNode',
+  ...
   width: 1000,
   height: 600,
   layout: {

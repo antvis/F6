@@ -5,7 +5,7 @@ order: 8
 
 ## 问题
 
-有如下的一份数据，如何使用 <a href='https://github.com/antvis/g6' target=''>G6</a> 让两个节点之间显示多条边？
+有如下的一份数据，如何使用 <a href='https://github.com/antvis/g6' target=''>F6</a> 让两个节点之间显示多条边？
 
 ```javascript
 const data = {
@@ -39,7 +39,7 @@ const data = {
 由于默认的边形状是直线，使用直线绘制同样两个端点之间的多条边时，会出现重叠的情况。因此我们使用以下代码将边绘制为二阶贝塞尔曲线 `'quadratic'`。
 
 ```javascript
-const graph = new G6.Graph({
+const graph = new F6.Graph({
   container: GRAPH_CONTAINER,
   width: 500,
   height: 500,
@@ -113,7 +113,7 @@ const data = {
 
 ## 解决方案
 
-这个时候，需要借助 G6 的 [自定义边](/zh/docs/manual/middle/elements/edges/custom-edge) 功能。
+这个时候，需要借助 F6 的 [自定义边](/zh/docs/manual/middle/elements/edges/custom-edge) 功能。
 
 有了这个黑科技，什么样的需求，那还不是分分钟的事。
 

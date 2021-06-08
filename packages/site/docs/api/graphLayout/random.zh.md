@@ -9,7 +9,7 @@ Random 布局是 F6 中的默认布局方法。当实例化图时没有指定布
 
 ```javascript
 const graph = new F6.Graph({
-  container: 'mountNode',
+  ...
   width: 1000,
   height: 600,
   layout: {

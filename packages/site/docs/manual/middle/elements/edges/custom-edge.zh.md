@@ -3,9 +3,9 @@ title: 自定义边
 order: 3
 ---
 
-G6 除了提供丰富的 [内置边](/zh/docs/manual/middle/elements/edges/defaultEdge)  外，还提供了自定义边的机制，方便用户开发更加定制化的边，包括含有复杂图形的边、复杂交互的边、带有动画的边等。
+F6 除了提供丰富的 [内置边](/zh/docs/manual/middle/elements/edges/defaultEdge)  外，还提供了自定义边的机制，方便用户开发更加定制化的边，包括含有复杂图形的边、复杂交互的边、带有动画的边等。
 
-用户可以通过 `G6.registerEdge(typeName: string, edgeDefinition: object, extendedTypeName?: string)` 注册一个新的边类型，其中：
+用户可以通过 `F6.registerEdge(typeName: string, edgeDefinition: object, extendedTypeName?: string)` 注册一个新的边类型，其中：
 
 - `typeName`：该新边类型名称；
 - `extendedTypeName`：被继承的边类型，可以是内置边类型名，也可以是其他自定义边的类型名。`extendedTypeName` 未指定时代表不继承其他类型的边；
@@ -31,7 +31,7 @@ G6 除了提供丰富的 [内置边](/zh/docs/manual/middle/elements/edges/defau
 ### 自定义边
 
 ```javascript
-G6.registerEdge('hvh', {
+F6.registerEdge('hvh', {
   draw(cfg, group) {
     const startPoint = cfg.startPoint;
     const endPoint = cfg.endPoint;
@@ -45,7 +45,7 @@ G6.registerEdge('hvh', {
           ['L', endPoint.x, endPoint.y],
         ],
       },
-      // must be assigned in G6 3.3 and later versions. it can be any value you want
+      // must be assigned in F6 3.3 and later versions. it can be any value you want
       name: 'path-shape',
     });
     return shape;
@@ -115,7 +115,7 @@ const data = {
 <img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*-l9lQ7Ck1QcAAAAAAAAAAABkARQnAQ' alt='img' width='250'/>
 
 ```javascript
-G6.registerEdge(
+F6.registerEdge(
   'line-growth',
   {
     afterDraw(cfg, group) {
@@ -149,7 +149,7 @@ G6.registerEdge(
 <img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*aOlcQbx2ux4AAAAAAAAAAAAAARQnAQ' alt='img' width='250'/>
 
 ```javascript
-G6.registerEdge(
+F6.registerEdge(
   'mid-point-edge',
   {
     afterDraw(cfg, group) {
@@ -194,7 +194,7 @@ G6.registerEdge(
 
 ```javascript
 // 基于 line 扩展出新的边
-G6.registerEdge(
+F6.registerEdge(
   'custom-edge',
   {
     // 响应状态变化
@@ -241,19 +241,19 @@ graph.on('edge:mouseleave', (ev) => {
 
 ## 5. 自定义箭头
 
-G6（v3.5.8 及后续版本）为内置边、自定义边提供了[默认箭头和内置箭头](/zh/docs/manual/middle/elements/edges/arrow)。很多时候，G6 提供的箭头并不能满足业务上的需求，这个时候，就需要我们自定义箭头。<br />
+F6（v3.5.8 及后续版本）为内置边、自定义边提供了[默认箭头和内置箭头](/zh/docs/manual/middle/elements/edges/arrow)。很多时候，F6 提供的箭头并不能满足业务上的需求，这个时候，就需要我们自定义箭头。<br />
 
 <img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*f1G9RJ5dE2oAAAAAAAAAAABkARQnAQ' alt='img' width='250'/>
 
-> （左）G6 内置箭头。（右）自定义边带有自定义箭头。
+> （左）F6 内置箭头。（右）自定义边带有自定义箭头。
 
-<span style="background-color: rgb(251, 233, 231); color: rgb(139, 53, 56)"><strong>⚠️ 注意:</strong></span> G6 3.4.1 后的自定义箭头坐标系有所变化。如下图所示，左图为 G6 3.4.1 之前版本的演示，右图为 G6 3.4.1 及之后版本的演示。箭头由指向 x 轴负方向更正为指向 x 轴正方向。同时，偏移量 `d` 的方向也发生响应变化。不变的是，自定义箭头本身坐标系的原点都与相应边 / path 的端点重合，且自定义箭头的斜率与相应边 / path 端点处的微分斜率相同。
+<span style="background-color: rgb(251, 233, 231); color: rgb(139, 53, 56)"><strong>⚠️ 注意:</strong></span> F6 3.4.1 后的自定义箭头坐标系有所变化。如下图所示，左图为 F6 3.4.1 之前版本的演示，右图为 F6 3.4.1 及之后版本的演示。箭头由指向 x 轴负方向更正为指向 x 轴正方向。同时，偏移量 `d` 的方向也发生响应变化。不变的是，自定义箭头本身坐标系的原点都与相应边 / path 的端点重合，且自定义箭头的斜率与相应边 / path 端点处的微分斜率相同。
 
 <img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*gN_NSqjLRo0AAAAAAAAAAABkARQnAQ' width=565 alt='img'/>
 
 > （左）v3.4.1 之前的自定义箭头坐标系演示。（右）v3.4.1 及之后版本的自定义箭头坐标系演示。
 
-G6 中有三种途径在边上配置自定义箭头：
+F6 中有三种途径在边上配置自定义箭头：
 
 - 配置自定义箭头到边的全局配置中；
 - 在数据中为单条边配置；
@@ -318,7 +318,7 @@ const data = {
 
 ```javascript
 // 使用方法二：自定义边，并带有自定义箭头
-G6.registerEdge('line-arrow', {
+F6.registerEdge('line-arrow', {
   draw(cfg, group) {
     const { startPoint, endPoint } = cfg;
     const keyShape = group.addShape('path', {
@@ -352,7 +352,7 @@ G6.registerEdge('line-arrow', {
           // ...
         },
       },
-      // must be assigned in G6 3.3 and later versions. it can be any value you want
+      // must be assigned in F6 3.3 and later versions. it can be any value you want
       name: 'path-shape',
     });
     return keyShape;

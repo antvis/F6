@@ -9,7 +9,7 @@ GForce 实现了经典的力导向算法，F6 4.0 支持。能够更加自由地
 
 ```javascript
 const graph = new F6.Graph({
-  container: 'mountNode',
+  ...
   width: 1000,
   height: 600,
   layout: {

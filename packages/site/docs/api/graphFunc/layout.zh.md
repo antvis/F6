@@ -13,7 +13,7 @@ F6 3.1 内置了丰富的布局。关于如何使用 F6 中内置的布局，请
 
 ```javascript
 const graph = new F6.Graph({
-  container: 'mountNode',
+  ...
   width: 1000,
   height: 600,
   layout: {
@@ -73,7 +73,7 @@ graph.on('node:dragend', (e) => {
 
 ```javascript
 const graph = new F6.Graph({
-  container: 'mountNode',
+  ...
   width: 1000,
   height: 600,
   modes: {
@@ -106,7 +106,7 @@ graph.updateLayout({
 
 ```javascript
 const graph = new F6.Graph({
-  container: 'mountNode',
+  ...
   width: 1000,
   height: 600,
   modes: {

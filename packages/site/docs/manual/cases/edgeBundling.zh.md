@@ -55,15 +55,15 @@ order: 2
 }
 ```
 
-如果使用 G6 简单地将节点和边渲染出来，将会得到如下结果： <br /> <img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*zYUrQqDGslMAAAAAAAAAAABkARQnAQ'  width=850 alt='img'/>
+如果使用 F6 简单地将节点和边渲染出来，将会得到如下结果： <br /> <img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*zYUrQqDGslMAAAAAAAAAAABkARQnAQ'  width=850 alt='img'/>
 
-> 图 5. G6 渲染原始数据结果
+> 图 5. F6 渲染原始数据结果
 
 我们发现简单地将该数据渲染后的结果航线纵横交错，穿梭在密集的城市当中，视觉上十分混乱，即难以看清细节，也不能发现航线的总体趋势。
 
 ## 期待效果
 
-我们希望可以通过边绑定的方法降低图 5 的视觉混乱，从而清晰图的整体走势、结构，突出航线频繁的城市，它们可能是重要的交通枢纽，并展示更多的统计信息，以便观察者进行分析。借助 G6，我们可以实现如下效果。通过边绑定，边的交错混乱情况被降低，颜色映射航班的飞行方向（出发（橙红色）与降落（青色））。节点大小表示到达与离开该城市的航班总数量，每个节点使用了饼图展示达到（橙红色）和离开（青色）航班的比例。并增加 hover 的交互，使用 tooltip 展示每个城市的经纬度。 <br /> <img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*BC4AQbOd6HIAAAAAAAAAAABkARQnAQ' width=850 alt='img'/>
+我们希望可以通过边绑定的方法降低图 5 的视觉混乱，从而清晰图的整体走势、结构，突出航线频繁的城市，它们可能是重要的交通枢纽，并展示更多的统计信息，以便观察者进行分析。借助 F6，我们可以实现如下效果。通过边绑定，边的交错混乱情况被降低，颜色映射航班的飞行方向（出发（橙红色）与降落（青色））。节点大小表示到达与离开该城市的航班总数量，每个节点使用了饼图展示达到（橙红色）和离开（青色）航班的比例。并增加 hover 的交互，使用 tooltip 展示每个城市的经纬度。 <br /> <img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*BC4AQbOd6HIAAAAAAAAAAABkARQnAQ' width=850 alt='img'/>
 
 > 期待效果图及 tooltip 效果。
 
@@ -132,7 +132,7 @@ function scaleNodeProp(nodes, propName, refPropName, dataRange, outRange) {
 
 ### 实例化边绑定插件
 
-G6 中提供的边绑定插件是基于 FEDB（<a href='http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.212.7989&rep=rep1&type=pdf' target='_blank'>Force-Directed Edge Bundling for Graph Visualization</a>）一文的实现。可以通过调节参数调整边绑定的效果。
+F6 中提供的边绑定插件是基于 FEDB（<a href='http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.212.7989&rep=rep1&type=pdf' target='_blank'>Force-Directed Edge Bundling for Graph Visualization</a>）一文的实现。可以通过调节参数调整边绑定的效果。
 
 ```javascript
 const edgeBundling = new Bundling({
@@ -143,14 +143,14 @@ const edgeBundling = new Bundling({
 
 ### 自定义饼图节点
 
-在第一步中，我们已经为节点大小 size 映射了每个节点的总度数。为了更详细展示每个城市飞出和飞入航班的比例，我们希望在每个节点上显示一个类似于饼图的效果。例如<img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*stNMRLlBLMUAAAAAAAAAAABkARQnAQ' width=60 alt='img'/> ，桔红色扇形代表飞入该城市的航班比例，青色代表飞出该城市的航班比例。G6 内置的 circle 、rect 等节点形状不能满足这一需求，但 G6 提供了节点的扩展机制，通过下面的代码片段，可以在 G6 中注册一个自定义的节点：
+在第一步中，我们已经为节点大小 size 映射了每个节点的总度数。为了更详细展示每个城市飞出和飞入航班的比例，我们希望在每个节点上显示一个类似于饼图的效果。例如<img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*stNMRLlBLMUAAAAAAAAAAABkARQnAQ' width=60 alt='img'/> ，桔红色扇形代表飞入该城市的航班比例，青色代表飞出该城市的航班比例。F6 内置的 circle 、rect 等节点形状不能满足这一需求，但 F6 提供了节点的扩展机制，通过下面的代码片段，可以在 F6 中注册一个自定义的节点：
 
 ```javascript
 const lightBlue = 'rgb(119, 243, 252)';
 const lightOrange = 'rgb(230, 100, 64)';
 
 // 注册自定义名为 pie-node 的节点类型
-G6.registerNode(
+F6.registerNode(
   'pie-node',
   {
     drawShape: (cfg, group) => {
@@ -177,7 +177,7 @@ G6.registerNode(
           lineWidth: 0,
           fill: lightOrange,
         },
-        // must be assigned in G6 3.3 and later versions. it can be any value you want
+        // must be assigned in F6 3.3 and later versions. it can be any value you want
         name: 'in-fan-shape',
       });
       // 定义代表出度的扇形形状
@@ -192,7 +192,7 @@ G6.registerNode(
           lineWidth: 0,
           fill: lightBlue,
         },
-        // must be assigned in G6 3.3 and later versions. it can be any value you want
+        // must be assigned in F6 3.3 and later versions. it can be any value you want
         name: 'out-fan-shape',
       });
       // 返回 keyshape
@@ -203,7 +203,7 @@ G6.registerNode(
 );
 ```
 
-这样，我们就在 G6 中注册了一个名为  pie-node 的节点类型。
+这样，我们就在 F6 中注册了一个名为  pie-node 的节点类型。
 
 ### 实例化图
 
@@ -214,8 +214,8 @@ const edgeBundling = new Bundling({
   bundleThreshold: 0.6, // 绑定的容忍度。数值越低，被绑定在一起的边相似度越高，即被绑在一起的边更少。
   K: 100, // 绑定的强度
 });
-const graph = new G6.Graph({
-  container: 'mountNode',
+const graph = new F6.Graph({
+  ...
   width: 1000,
   height: 800,
   plugins: [edgeBundling], // 加入插件

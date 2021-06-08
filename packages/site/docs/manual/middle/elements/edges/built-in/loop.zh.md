@@ -3,7 +3,7 @@ title: Loop
 order: 7
 ---
 
-G6 内置了折线 loop  边，其默认样式如下。<br /> <img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*sPBIR40KLOkAAAAAAAAAAABkARQnAQ' width=100 alt='img'/>
+F6 内置了折线 loop  边，其默认样式如下。<br /> <img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*sPBIR40KLOkAAAAAAAAAAABkARQnAQ' width=100 alt='img'/>
 
 <span style="background-color: rgb(251, 233, 231); color: rgb(139, 53, 56)"><strong>⚠️ 注意:</strong></span><br /> loop 边适用于自环边，即起始点与结束点为相同节点的边，在不同端点的边上适用 loop 边将会出现异常效果。 <br /> <img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*JgYrTabHWskAAAAAAAAAAABkARQnAQ' width='75' height='176' alt='img'/>
 
@@ -20,8 +20,8 @@ G6 内置了折线 loop  边，其默认样式如下。<br /> <img src='https:/
 用户在实例化 Graph 时候可以通过 `defaultEdge` 指定 `type` 为 `'loop'`，即可使用 `loop`  边。需要注意的是，如果图上存在非自环边，loop 将会表现异常。因此不建议在存在非自环边的图上使用此全局配置方法。
 
 ```javascript
-const graph = new G6.Graph({
-  container: 'mountNode',
+const graph = new F6.Graph({
+  ...
   width: 800,
   height: 600,
   defaultEdge: {
@@ -92,8 +92,8 @@ const data = {
     },
   ],
 };
-const graph = new G6.Graph({
-  container: 'mountNode',
+const graph = new F6.Graph({
+  ...
   width: 800,
   height: 600,
   defaultEdge: {
@@ -117,7 +117,7 @@ Object 类型。支持 [边通用标签配置](/zh/docs/manual/middle/elements/e
 const data = {
   // ... data 内容
 };
-const graph = new G6.Graph({
+const graph = new F6.Graph({
   // ... 图的其他配置
   defaultEdge: {
     // ... 其他配置
@@ -144,7 +144,7 @@ Object 类型。通过 `loopCfg`  配置自环的方位、高度、顺逆时针
 const data = {
   // ... data 内容
 };
-const graph = new G6.Graph({
+const graph = new F6.Graph({
   // ... 图的其他配置
   defaultEdge: {
     // ... 其他配置

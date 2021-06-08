@@ -3,7 +3,7 @@ title: 设置纹理
 order: 5
 ---
 
-G6 支持用特定的纹理填充图形。G6 支持的纹理内容可以直接是**图片**或者 **Data URL**。
+F6 支持用特定的纹理填充图形。F6 支持的纹理内容可以直接是**图片**或者 **Data URL**。
 
 <img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*cPgYSJ2ZfwYAAAAAAAAAAABkARQnAQ' width='750' alt='img'/>
 

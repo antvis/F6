@@ -3,7 +3,7 @@ title: 布局的切换机制
 order: 2
 ---
 
-G6 提供了两种关于布局的切换机制：
+F6 提供了两种关于布局的切换机制：
 
 - `updateLayout(params)`：布局方法或参数的切换；
 - `changeData()`：数据的切换。
@@ -89,8 +89,8 @@ changeData(data);
         ],
       };
 
-      const graph = new G6.Graph({
-        container: 'mountNode', // String | HTMLElement，必须，容器 id 或容器本身
+      const graph = new F6.Graph({
+        ... // String | HTMLElement，必须，容器 id 或容器本身
         width: 300, // Number，必须，图的宽度
         height: 300, // Number，必须，图的高度
         animate: true, // Boolean，可选，切换布局时是否使用动画过度

@@ -19,7 +19,7 @@ order: 10
 
 PS: 本案文件目录为 '/static/icons'。
 
-## 引入 G6
+## 引入 F6
 
 多种引入方式，请移步[快速上手](/zh/docs/manual/getting-started)。 <br />PS: 本案例简单粗暴，通过 CDN 的方式引入。
 
@@ -40,7 +40,7 @@ PS: 本案文件目录为 '/static/icons'。
 ## 使用字体
 
 ```javascript
-G6.registerNode('iconfont', {
+F6.registerNode('iconfont', {
   draw(cfg, group) {
     const { backgroundConfig: backgroundStyle, style, labelCfg: labelStyle } = cfg;
 
@@ -52,7 +52,7 @@ G6.registerNode('iconfont', {
           r: cfg.size,
           ...backgroundStyle,
         },
-        // must be assigned in G6 3.3 and later versions. it can be any value you want
+        // must be assigned in F6 3.3 and later versions. it can be any value you want
         name: 'circle-shape',
       });
     }
@@ -68,7 +68,7 @@ G6.registerNode('iconfont', {
         fontSize: cfg.size,
         ...style,
       },
-      // must be assigned in G6 3.3 and later versions. it can be any value you want
+      // must be assigned in F6 3.3 and later versions. it can be any value you want
       name: 'text-shape1',
     });
     const labelY = backgroundStyle ? cfg.size * 2 : cfg.size;
@@ -81,7 +81,7 @@ G6.registerNode('iconfont', {
         text: cfg.label,
         ...labelStyle.style,
       },
-      // must be assigned in G6 3.3 and later versions. it can be any value you want
+      // must be assigned in F6 3.3 and later versions. it can be any value you want
       name: 'text-shape1',
     });
     return keyShape;
@@ -89,8 +89,8 @@ G6.registerNode('iconfont', {
 });
 
 const COLOR = '#40a9ff';
-const graph = new G6.TreeGraph({
-  container: 'mountNode',
+const graph = new F6.TreeGraph({
+  ...
   width: 800,
   height: 600,
   modes: {

@@ -3,7 +3,7 @@ title: Rect
 order: 2
 ---
 
-G6 内置了 rect 节点，其默认样式如下。标签文本位于矩形中央。<br /><img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*k2nBTozK6XsAAAAAAAAAAABkARQnAQ' width=100 alt='img'/>
+F6 内置了 rect 节点，其默认样式如下。标签文本位于矩形中央。<br /><img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*k2nBTozK6XsAAAAAAAAAAABkARQnAQ' width=100 alt='img'/>
 
 ## 使用方法
 
@@ -18,8 +18,8 @@ G6 内置了 rect 节点，其默认样式如下。标签文本位于矩形中�
 用户在实例化 Graph 时候可以通过 `defaultNode` 指定 `type` 为 `'rect'`，即可使用 `rect` 节点。
 
 ```javascript
-const graph = new G6.Graph({
-  container: 'mountNode',
+const graph = new F6.Graph({
+  ...
   width: 800,
   height: 600,
   defaultNode: {
@@ -87,8 +87,8 @@ const data = {
   ],
 };
 
-const graph = new G6.Graph({
-  container: 'mountNode',
+const graph = new F6.Graph({
+  ...
   width: 500,
   height: 300,
   defaultNode: {
@@ -113,7 +113,7 @@ Object 类型。通过 `labelCfg` 配置标签文本。支持 [节点通用标�
 const data = {
   // ... data 内容
 };
-const graph = new G6.Graph({
+const graph = new F6.Graph({
   // ... 图的其他配置
   defaultNode: {
     // ... 其他配置
@@ -152,7 +152,7 @@ Object 类型。通过配置 `linkPoints` ，可以指定矩形周围「上、�
 const data = {
   // ... data 内容
 };
-const graph = new G6.Graph({
+const graph = new F6.Graph({
   // ... 图的其他配置
   defaultNode: {
     // 其他配置

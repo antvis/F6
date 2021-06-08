@@ -3,11 +3,11 @@ title: 缩放画布时 tooltip 和 ContextMenu 自动缩放
 order: 1
 ---
 
-当缩放画布的时候，有时候我们希望 Tooltip、ContextMenu 等组件也自动跟随画布缩放，在实际业务需求中，也遇到了这样的诉求：[https://github.com/antvis/G6/issues/2111](https://github.com/antvis/G6/issues/2111)。<br />
+当缩放画布的时候，有时候我们希望 Tooltip、ContextMenu 等组件也自动跟随画布缩放，在实际业务需求中，也遇到了这样的诉求：[https://github.com/antvis/F6/issues/2111](https://github.com/antvis/F6/issues/2111)。<br />
 
 ### Tooltip 自动缩放
 
-G6 里面缩放画布是通过 zoom-canvas Behavior 实现的，缩放过程中会触发 wheelzoom 事件，因此，我们只需要监听该事件，就可以让 Tooltip 自动缩放。
+F6 里面缩放画布是通过 zoom-canvas Behavior 实现的，缩放过程中会触发 wheelzoom 事件，因此，我们只需要监听该事件，就可以让 Tooltip 自动缩放。
 
 ```javascript
 graph.on('wheelzoom', (e) => {

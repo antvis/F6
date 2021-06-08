@@ -5,17 +5,17 @@ order: 0
 
 > V3.5 后支持的全新节点分组 Combo 机制。[原节点分组](/zh/docs/manual/middle/discard/nodeGroup)即将废除。
 
-对于熟悉图可视化类库的用户来说，节点分组是非常实用的一个功能。此前，G6 已经存在一个节点分组 Node Group 功能，但它的机制无法支持一些较复杂的功能，例如：带有节点分组的图布局、自定义 Combo、嵌套节点分组的均匀 padding、节点与分组的边、分组与分组的边、空的节点分组等。V3.5 推出了全新的节点分组 Combo 机制，能够支持所有常用功能，参考 <a href='/zh/examples/item/defaultCombos' target='_blank'>Demo</a>。 <br /><img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*AngFRpOo4SAAAAAAAAAAAABkARQnAQ' width=600 alt='img'/>
+对于熟悉图可视化类库的用户来说，节点分组是非常实用的一个功能。此前，F6 已经存在一个节点分组 Node Group 功能，但它的机制无法支持一些较复杂的功能，例如：带有节点分组的图布局、自定义 Combo、嵌套节点分组的均匀 padding、节点与分组的边、分组与分组的边、空的节点分组等。V3.5 推出了全新的节点分组 Combo 机制，能够支持所有常用功能，参考 <a href='/zh/examples/item/defaultCombos' target='_blank'>Demo</a>。 <br /><img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*AngFRpOo4SAAAAAAAAAAAABkARQnAQ' width=600 alt='img'/>
 
-G6 的内置 Combo 包括 circle 和 rect 两种类型，分别如下图所示。<br /> <img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*UwaHSKkwoVUAAAAAAAAAAABkARQnAQ' width='250' alt='img'/>
+F6 的内置 Combo 包括 circle 和 rect 两种类型，分别如下图所示。<br /> <img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*UwaHSKkwoVUAAAAAAAAAAABkARQnAQ' width='250' alt='img'/>
 
-本文将概述 G6 中的 Combo 的数据结构、各个内置 Combo 类型、内置 Combo 的通用属性、配置方法。各类型 Combo 详细配置项及配置方法见本目录下相应文档。
+本文将概述 F6 中的 Combo 的数据结构、各个内置 Combo 类型、内置 Combo 的通用属性、配置方法。各类型 Combo 详细配置项及配置方法见本目录下相应文档。
 
 <span style="background-color: rgb(251, 233, 231); color: rgb(139, 53, 56)"><strong>⚠️ 注意:</strong></span> 使用 Combo 时，必须在示例化图时配置 `groupByTypes` 设置为 `false`，图中元素的视觉层级才能合理。
 
 ## 数据结构
 
-为保持 G6 源数据数据结构的稳定性，我们在原来的数据结构上做了如下修改：
+为保持 F6 源数据数据结构的稳定性，我们在原来的数据结构上做了如下修改：
 
 1. 新增 `combos` 数组，用于定义图上所有的 Combo 及其配置。`combos` 数组中的一个数据项有如下属性：
 
@@ -126,8 +126,8 @@ Object 类型。通过 `style` 配置来修改 Combo 的填充色、边框颜色
 下面代码演示在实例化图时全局配置方法中配置 `style`：
 
 ```javascript
-const graph = new G6.Graph({
-  container: 'mountNode',
+const graph = new F6.Graph({
+  ...
   width: 800,
   height: 600,
   // 必须将 groupByTypes 设置为 false，带有 combo 的图中元素的视觉层级才能合理
@@ -170,8 +170,8 @@ const graph = new G6.Graph({
 下面代码演示在实例化图时全局配置方法中配置  `label` 和  `labelCfg`。
 
 ```javascript
-const graph = new G6.Graph({
-  container: 'mountNode',
+const graph = new F6.Graph({
+  ...
   width: 800,
   height: 600,
   // 必须将 groupByTypes 设置为 false，带有 combo 的图中元素的视觉层级才能合理
@@ -204,8 +204,8 @@ const graph = new G6.Graph({
 用户在实例化 Graph 时候可以通过 `defaultCombo` 配置 Combo ，这里的配置是全局的配置，将会在所有 Combo 上生效。
 
 ```javascript
-const graph = new G6.Graph({
-  container: 'mountNode',
+const graph = new F6.Graph({
+  ...
   width: 800,
   height: 600,
   // 必须将 groupByTypes 设置为 false，带有 combo 的图中元素的视觉层级才能合理
@@ -282,7 +282,7 @@ graph.render();
 
 只是简单地将 Combo 渲染出来，并没有多大的实用价值，只有支持一系列的交互操作后，才能最大程度地体现 Combo 的价值。
 
-在 G6 中，我们内置了 `drag-combo`、`collapse-expand-combo`、`drag-node` 三个 [Behavior](/zh/docs/manual/middle/states/defaultBehavior)。
+在 F6 中，我们内置了 `drag-combo`、`collapse-expand-combo`、`drag-node` 三个 [Behavior](/zh/docs/manual/middle/states/defaultBehavior)。
 
 #### drag-combo
 
@@ -307,8 +307,8 @@ graph.render();
 通过下面代码在实例化图时将三个 behavior 配置到图上即可使用上述交互：
 
 ```javascript
-const graph = new G6.Graph({
-  container: 'mountNode',
+const graph = new F6.Graph({
+  ...
   width: 800,
   height: 600,
   // 必须将 groupByTypes 设置为 false，带有 combo 的图中元素的视觉层级才能合理
@@ -348,8 +348,8 @@ const data = {
   ],
 };
 
-const graph = new G6.Graph({
-  container: 'mountNode',
+const graph = new F6.Graph({
+  ...
   width: 1500,
   height: 300,
   // 必须将 groupByTypes 设置为 false，带有 combo 的图中元素的视觉层级才能合理

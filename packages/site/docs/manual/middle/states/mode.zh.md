@@ -7,7 +7,7 @@ order: 3
 
 用户在交互一张图时，可能由于意图不同而存在不同的交互模式，例如在编辑模式下点击节点需要弹出窗口让用户编辑，在查看模式下点击节点需要选中节点。
 
-为了解决上述问题，G6 提供了交互模式 Mode，它是图上交互行为 [Behavior](/zh/docs/manual/middle/states/defaultBehavior) 的管理机制。一个图上可以有存在多种交互模式，每个交互模式包含多种交互行为 [Behavior](/zh/docs/manual/middle/states/defaultBehavior)。
+为了解决上述问题，F6 提供了交互模式 Mode，它是图上交互行为 [Behavior](/zh/docs/manual/middle/states/defaultBehavior) 的管理机制。一个图上可以有存在多种交互模式，每个交互模式包含多种交互行为 [Behavior](/zh/docs/manual/middle/states/defaultBehavior)。
 
 例如，存在 default 和 edit 两种 mode（交互模式）:
 
@@ -21,8 +21,8 @@ order: 3
 在实例化图时配置 `modes` 属性：
 
 ```javascript
-const graph = new G6.Graph({
-  container: 'mountNode',
+const graph = new F6.Graph({
+  ...
   width: 500,
   height: 500,
   modes: {
@@ -45,7 +45,7 @@ graph.setMode('edit');
 
 此时 graph 便支持了点击选中节点，`default` 模式下的拖拽画布 `'drag-canvas'`、放缩画布行为 `'zoom-canvas'` 失效。
 
-在调用了 `setMode` 方法后，G6 内部进行了以下操作：
+在调用了 `setMode` 方法后，F6 内部进行了以下操作：
 
 - 解绑目前图模式的所有事件监听；
 - 生成新的 Behavior ，进行事件初始化；

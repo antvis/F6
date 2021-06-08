@@ -5,11 +5,11 @@ order: 1
 
 ## 什么是 Behavior
 
-Behavior 是 G6 提供的定义图上交互事件的机制。它与[交互模式 Mode](/zh/docs/manual/middle/states/mode) 搭配使用，如何将下文所述各种 Behavior 配置到图上，见 [交互模式](/zh/docs/manual/middle/states/mode)。
+Behavior 是 F6 提供的定义图上交互事件的机制。它与[交互模式 Mode](/zh/docs/manual/middle/states/mode) 搭配使用，如何将下文所述各种 Behavior 配置到图上，见 [交互模式](/zh/docs/manual/middle/states/mode)。
 
 ## 内置 Behavior
 
-理论上， G6 上的所有基础图形、Item（节点/边）都能通过事件来进行操作。考虑到通用性，G6 目前共提供了以下 14 个内置的 Behavior。此外，用户可以注册 [自定义 Behavior](/zh/docs/manual/middle/states/custom-behavior)。
+理论上， F6 上的所有基础图形、Item（节点/边）都能通过事件来进行操作。考虑到通用性，F6 目前共提供了以下 14 个内置的 Behavior。此外，用户可以注册 [自定义 Behavior](/zh/docs/manual/middle/states/custom-behavior)。
 
 ### drag-combo
 
@@ -28,7 +28,7 @@ V3.5 以上版本支持。
 **使用默认配置**
 
 ```javascript
-const graph = new G6.Graph({
+const graph = new F6.Graph({
   modes: {
     default: ['drag-combo'],
   },
@@ -38,7 +38,7 @@ const graph = new G6.Graph({
 用户可根据实际需求，为 `activeState` 或 `selectedState` 配置样式：
 
 ```javascript
-const graph = new G6.Graph({
+const graph = new F6.Graph({
   modes: {
     default: [
       {
@@ -75,7 +75,7 @@ V3.5 以上版本支持。
 **使用默认配置**
 
 ```javascript
-const graph = new G6.Graph({
+const graph = new F6.Graph({
   modes: {
     default: ['collapse-expand-combo'],
   },
@@ -85,7 +85,7 @@ const graph = new G6.Graph({
 用户可以配置成单击展示或收起：
 
 ```javascript
-const graph = new G6.Graph({
+const graph = new F6.Graph({
   modes: {
     default: [
       {
@@ -120,7 +120,7 @@ const graph = new G6.Graph({
 **使用默认配置**
 
 ```javascript
-const graph = new G6.Graph({
+const graph = new F6.Graph({
   modes: {
     default: ['drag-canvas'],
   },
@@ -132,7 +132,7 @@ const graph = new G6.Graph({
 **使用自定义参数**
 
 ```javascript
-const graph = new G6.Graph({
+const graph = new F6.Graph({
   modes: {
     default: [
       {
@@ -166,7 +166,7 @@ const graph = new G6.Graph({
 **使用默认配置**
 
 ```javascript
-const graph = new G6.Graph({
+const graph = new F6.Graph({
   modes: {
     default: ['scroll-canvas'],
   },
@@ -178,7 +178,7 @@ const graph = new G6.Graph({
 **使用自定义参数**
 
 ```javascript
-const graph = new G6.Graph({
+const graph = new F6.Graph({
   modes: {
     default: [
       {
@@ -236,7 +236,7 @@ const graph = new G6.Graph({
 **使用默认配置**
 
 ```javascript
-const graph = new G6.Graph({
+const graph = new F6.Graph({
   modes: {
     default: ['drag-node'],
   },
@@ -248,7 +248,7 @@ const graph = new G6.Graph({
 **启用** `delegate`
 
 ```javascript
-const graph = new G6.Graph({
+const graph = new F6.Graph({
   modes: {
     default: [
       {
@@ -284,7 +284,7 @@ const graph = new G6.Graph({
 **使用默认配置**
 
 ```javascript
-const graph = new G6.Graph({
+const graph = new F6.Graph({
   modes: {
     default: ['click-select'],
   },
@@ -306,7 +306,7 @@ graph.on('nodeselectchange', (e) => {
 **使用自定义参数**
 
 ```javascript
-const graph = new G6.Graph({
+const graph = new F6.Graph({
   modes: {
     default: [
       {
@@ -357,8 +357,8 @@ graph.on('nodeselectchange', (e) => {
   - `tooltipchange`：当 tooltip 发生变化时被触发。使用 `graph.on('tooltipchange', e => {...})` 监听。
 
 ```javascript
-const graph = new G6.Graph({
-  container: 'mountNode',
+const graph = new F6.Graph({
+  ...
   width: 500,
   height: 500,
   modes: {
@@ -375,7 +375,7 @@ const graph = new G6.Graph({
 });
 ```
 
-**提示：由于 G6 没有内置任何 tooltip 的样式，用户需要自己定义样式，例如：**
+**提示：由于 F6 没有内置任何 tooltip 的样式，用户需要自己定义样式，例如：**
 
 ```css
 .g6-tooltip {
@@ -419,7 +419,7 @@ const graph = new G6.Graph({
 <br />**使用默认配置**<br />
 
 ```javascript
-const graph = new G6.Graph({
+const graph = new F6.Graph({
   modes: {
     default: ['activate-relations'],
   },
@@ -438,7 +438,7 @@ graph.on('afteractivaterelations', (e) => {
 **使用自定义参数**
 
 ```javascript
-const graph = new G6.Graph({
+const graph = new F6.Graph({
   modes: {
     default: [
       {
@@ -485,7 +485,7 @@ graph.on('afteractivaterelations', (e) => {
 **使用默认配置**
 
 ```javascript
-const graph = new G6.Graph({
+const graph = new F6.Graph({
   modes: {
     default: ['brush-select'],
   },
@@ -505,7 +505,7 @@ graph.on('nodeselectchange', (e) => {
 **使用自定义参数**
 
 ```javascript
-const graph = new G6.Graph({
+const graph = new F6.Graph({
   modes: {
     default: [
       {
@@ -537,7 +537,7 @@ graph.on('nodeselectchange', (e) => {
 **冲突的配置：**
 
 ```javascript
-const graph = new G6.Graph({
+const graph = new F6.Graph({
   modes: {
     default: [
       'drag-canvas',
@@ -555,7 +555,7 @@ const graph = new G6.Graph({
 可以看到，在拖动过程中也出现了框选的情况，这种情况很显然不是我们期望的效果，除过使用 `brush-select` 的 `trigger` 参数避免这种冲突外，我们还可以通过下面的方式来实现：
 
 ```javascript
-const graph = new G6.Graph({
+const graph = new F6.Graph({
   modes: {
     default: ['drag-canvas'],
     brush: [
@@ -610,7 +610,7 @@ const graph = new G6.Graph({
 **用法**
 
 ```javascript
-const graph = new G6.TreeGraph({
+const graph = new F6.TreeGraph({
   modes: {
     default: [
       {
@@ -657,7 +657,7 @@ graph.on('itemcollapsed', (e) => {
 **使用默认配置**
 
 ```javascript
-const graph = new G6.Graph({
+const graph = new F6.Graph({
   modes: {
     default: ['create-edge'],
   },
@@ -670,7 +670,7 @@ graph.on('aftercreateedge', (e) => {
 **使用自定义参数**
 
 ```javascript
-const graph = new G6.Graph({
+const graph = new F6.Graph({
   modes: {
     default: [
       // 只有当 'shift' 键被按下，才能够通过从一个节点拖拽到另一个节点来创建一条边
@@ -706,7 +706,7 @@ const graph = new G6.Graph({
 **使用默认配置**
 
 ```javascript
-const graph = new G6.Graph({
+const graph = new F6.Graph({
   modes: {
     default: ['shortcuts-call'],
   },
@@ -716,7 +716,7 @@ const graph = new G6.Graph({
 **使用自定义参数**
 
 ```javascript
-const graph = new G6.Graph({
+const graph = new F6.Graph({
   modes: {
     default: [
       // 当按住 'alt' 键，并按下 'm' 键，将调用 graph.moveTo(10, 10)

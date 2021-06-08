@@ -3,7 +3,7 @@ title: Arc
 order: 6
 ---
 
-G6 内置了圆弧  arc  边，其默认样式如下。<br /><img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*9JBjS6bdrHMAAAAAAAAAAABkARQnAQ' width=150 alt='img'/>
+F6 内置了圆弧  arc  边，其默认样式如下。<br /><img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*9JBjS6bdrHMAAAAAAAAAAABkARQnAQ' width=150 alt='img'/>
 
 ## 使用方法
 
@@ -18,8 +18,8 @@ G6 内置了圆弧  arc  边，其默认样式如下。<br /><img src='https:/
 用户在实例化 Graph 时候可以通过 `defaultEdge` 指定 `type` 为 `'arc'`，即可使用 arc  边。
 
 ```javascript
-const graph = new G6.Graph({
-  container: 'mountNode',
+const graph = new F6.Graph({
+  ...
   width: 800,
   height: 600,
   defaultEdge: {
@@ -111,8 +111,8 @@ const data = {
     },
   ],
 };
-const graph = new G6.Graph({
-  container: 'mountNode',
+const graph = new F6.Graph({
+  ...
   width: 800,
   height: 600,
   linkCenter: true,
@@ -135,7 +135,7 @@ Object 类型。配置项与 [边通用样式属性](/zh/docs/manual/middle/elem
 const data = {
   // ... data 内容
 };
-const graph = new G6.Graph({
+const graph = new F6.Graph({
   // ... 图的其他配置
   defaultEdge: {
     // ... 其他配置
@@ -156,7 +156,7 @@ Object 类型。支持 [边通用标签配置](/zh/docs/manual/middle/elements/e
 const data = {
   // ... data 内容
 };
-const graph = new G6.Graph({
+const graph = new F6.Graph({
   // ... 图的其他配置
   defaultEdge: {
     // ... 其他配置

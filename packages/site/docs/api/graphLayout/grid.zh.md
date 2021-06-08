@@ -9,7 +9,7 @@ Grid 布局是将所有节点通过某种指定属性排序后，整齐地放置
 
 ```javascript
 const graph = new F6.Graph({
-  container: 'mountNode',
+  ...
   width: 1000,
   height: 600,
   layout: {

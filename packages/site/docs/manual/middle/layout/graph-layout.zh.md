@@ -5,18 +5,18 @@ order: 0
 
 ## 简介
 
-图布局是指图中节点的排布方式，根据图的数据结构不同，布局可以分为两类：一般图布局、树图布局。G6 为这两类图都内置了一些常用的图布局算法。使用内置的图布局可以完成[布局的参数、方法、数据的切换](/zh/docs/manual/middle/layout/layout-mechanism)等。G6 还提供了一般图布局的 [Web-Worker 机制](/zh/docs/manual/middle/layout/webworker)，在大规模图布局中使用该机制可以使布局计算不阻塞页面。
+图布局是指图中节点的排布方式，根据图的数据结构不同，布局可以分为两类：一般图布局、树图布局。F6 为这两类图都内置了一些常用的图布局算法。使用内置的图布局可以完成[布局的参数、方法、数据的切换](/zh/docs/manual/middle/layout/layout-mechanism)等。F6 还提供了一般图布局的 [Web-Worker 机制](/zh/docs/manual/middle/layout/webworker)，在大规模图布局中使用该机制可以使布局计算不阻塞页面。
 
 除了内置布局方法外，一般图布局还支持 [自定义布局](/zh/docs/manual/middle/layout/custom-layout) 机制。
 
-事实上，G6 的布局是自由的，内置布局算法仅仅是操作了数据中节点的 `x` 和 `y` 值。因此，除了使用内置布局以及自定义的一般图布局外，用户还可以使用外部图布局算法，计算节点位置后赋值到数据中节点的 `x` 和 `y` 字段上，G6 便可以根据该位置信息进行绘制。
+事实上，F6 的布局是自由的，内置布局算法仅仅是操作了数据中节点的 `x` 和 `y` 值。因此，除了使用内置布局以及自定义的一般图布局外，用户还可以使用外部图布局算法，计算节点位置后赋值到数据中节点的 `x` 和 `y` 字段上，F6 便可以根据该位置信息进行绘制。
 
 本文将逐一介绍内置的布局算法，及其使用方式。
 
 ## 一般图 Graph 布局方法总览
 
 - [Random Layout](#random)：随机布局；
-- [Force Layout](#gforce)：G6 4.0 支持的经典力导向布局，支持 GPU 并行计算；
+- [Force Layout](#gforce)：F6 4.0 支持的经典力导向布局，支持 GPU 并行计算；
 - [Force Layout](#force)：引用 d3 的经典力导向布局；
 - [Fruchterman Layout](#fruchterman)：Fruchterman 布局，一种力导布局；
 - [Circular Layout](#circular)：环形布局；
@@ -32,7 +32,7 @@ order: 0
 用户可以通过在实例化图时使用图的配置项 `layout` 指定布局方法。下面代码在实例化图时设置了布局方法为 `type: 'force'`，即经典力导向图布局。并设置了参数 `preventOverlap: true`  和 `nodeSize: 30`，表示希望节点不重叠。节点大小 `nodeSize` 用于算法中判断节点是否重叠，更多配置项见各布局的配置项。
 
 ```javascript
-const graph = new G6.Graph({
+const graph = new F6.Graph({
   // ...                      // 其他配置项
   layout: {
     // Object，可选，布局的方法及其配置项，默认为 random 布局。
@@ -40,7 +40,7 @@ const graph = new G6.Graph({
     preventOverlap: true,
     nodeSize: 30,
     // workerEnabled: true, // 是否启用 webworker
-    // gpuEnabled: true // 是否使用 gpu 版本的布局算法，G6 4.0 支持，目前仅支持 gForce 及 fruchterman
+    // gpuEnabled: true // 是否使用 gpu 版本的布局算法，F6 4.0 支持，目前仅支持 gForce 及 fruchterman
     // ...                    // 其他配置
   },
 });
@@ -74,7 +74,7 @@ const graph = new G6.Graph({
 
 <img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*lX-qSqDECrIAAAAAAAAAAAAAARQnAQ' width=500 alt='img'/>
 
-<br /> **描述**：G6 4.0 支持的经典力导向布局。能够更加自由地支持设置节点质量、群组中心力等。更重要的是，它支持 GPU 并行计算。 <br /> **API**：[Force API](/zh/docs/api/graphLayout/gforce) <br /> **参数**：
+<br /> **描述**：F6 4.0 支持的经典力导向布局。能够更加自由地支持设置节点质量、群组中心力等。更重要的是，它支持 GPU 并行计算。 <br /> **API**：[Force API](/zh/docs/api/graphLayout/gforce) <br /> **参数**：
 
 | 参数名 | 类型 | 示例 | 默认值 | 说明 |
 | --- | --- | --- | --- | --- |
@@ -96,7 +96,7 @@ const graph = new G6.Graph({
 | onTick | Function |  | {} | 每一次迭代的回调函数 |
 | onLayoutEnd | Function |  | {} | 布局完成后的回调函数 |
 | workerEnabled | Boolean | true / false | false | 是否启用 web-worker 以防布局计算时间过长阻塞页面交互 |
-| gpuEnabled | Boolean | true / false | false | 是否启用 GPU 并行计算，G6 4.0 支持。若用户的机器或浏览器不支持 GPU 计算，将会自动降级为 CPU 计算 |
+| gpuEnabled | Boolean | true / false | false | 是否启用 GPU 并行计算，F6 4.0 支持。若用户的机器或浏览器不支持 GPU 计算，将会自动降级为 CPU 计算 |
 
 ### Force
 
@@ -143,7 +143,7 @@ const graph = new G6.Graph({
 | clustering | Boolean | false | false | 是否按照聚类布局 |
 | clusterGravity | Number | 30 | 10 | 聚类内部的重力大小，影响聚类的紧凑程度 |
 | workerEnabled | Boolean | true / false | false | 是否启用 web-worker 以防布局计算时间过长阻塞页面交互 |
-| gouEnabled | Boolean | true / false | false | 是否启用 GPU 并行计算，G6 4.0 支持 |
+| gouEnabled | Boolean | true / false | false | 是否启用 GPU 并行计算，F6 4.0 支持 |
 
 ### Circular
 

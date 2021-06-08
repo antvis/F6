@@ -1,5 +1,5 @@
 ---
-title: 基于 G6 的图分析应用
+title: 基于 F6 的图分析应用
 order: 1
 ---
 
@@ -9,7 +9,7 @@ order: 1
 
 ## 功能概述
 
-基于 G6 实现一个图分析应用，模拟了一个关系分析场景，使用模拟数据，来展示在图分析应用中我们可以做的一些事情：
+基于 F6 实现一个图分析应用，模拟了一个关系分析场景，使用模拟数据，来展示在图分析应用中我们可以做的一些事情：
 
 - 关系扩散；
 - 关系预判；
@@ -98,8 +98,8 @@ A 和 B 之间可能会存在多个同事关系，如 A 和 B 在 company1 公�
 
 ## 总结
 
-本应用以模拟的社交网络数据为例，演示了使用 <a href='https://github.com/antvis/g6' target='_blank'>G6</a> 构建的一个图分析的应用。在实际的场景中，不局限于社交网络数据，任何重关系类的数据，都可使用图分析的技术进行分析，如风控、反洗钱、信用卡诈骗等金融领域；商品、商家及卖家等电商领域。<a href='https://github.com/antvis/g6' target='_blank'>G6</a> 是一款开源的图可视化引擎，专注于关系数据的展示与分析，非常适合用于构建重型的图分析应用。
+本应用以模拟的社交网络数据为例，演示了使用 <a href='https://github.com/antvis/g6' target='_blank'>F6</a> 构建的一个图分析的应用。在实际的场景中，不局限于社交网络数据，任何重关系类的数据，都可使用图分析的技术进行分析，如风控、反洗钱、信用卡诈骗等金融领域；商品、商家及卖家等电商领域。<a href='https://github.com/antvis/g6' target='_blank'>F6</a> 是一款开源的图可视化引擎，专注于关系数据的展示与分析，非常适合用于构建重型的图分析应用。
 
 ## 应用地址
 
-<br />G6 官网：<a href='https://g6.antv.vision/' target='_blank'>https://g6.antv.vision/</a> <br />G6 GitHub：<a href='https://github.com/antvis/g6' target='_blank'>https://github.com/antvis/g6</a>
+<br />F6 官网：<a href='https://g6.antv.vision/' target='_blank'>https://g6.antv.vision/</a> <br />F6 GitHub：<a href='https://github.com/antvis/g6' target='_blank'>https://github.com/antvis/g6</a>

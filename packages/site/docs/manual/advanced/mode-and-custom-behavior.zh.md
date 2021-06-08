@@ -3,7 +3,7 @@ title: 使用多种交互模式
 order: 7
 ---
 
-本章以添加节点及在两个节点之间连线为例进行介绍 G6 中的交互。在阅读本章之前，需要先熟悉以下内容：
+本章以添加节点及在两个节点之间连线为例进行介绍 F6 中的交互。在阅读本章之前，需要先熟悉以下内容：
 
 - [自定义交互行为 Behavior](/zh/docs/manual/middle/states/custom-behavior)；
 - [交互模式 Mode](/zh/docs/manual/middle/states/mode)。
@@ -78,12 +78,12 @@ order: 7
 
 ## 配置交互模式
 
-下面代码实例化了图，并配置了交互模式的集合 `modes`，其中包括 `default` 默认交互模式、`addNode` 增加节点交互模式、`addEdge` 增加边交互模式。每种交互模式中都包含了各自的交互行为，其中  `'drag-node'`（拖拽节点） 和  `'click-select'`（点击选中） 是 G6 内置的交互行为，`'click-add-node'`（点击空白画布添加节点） 和  `'click-add-edge'`（点击两个节点添加边） 需要我们在后面进行自定义。
+下面代码实例化了图，并配置了交互模式的集合 `modes`，其中包括 `default` 默认交互模式、`addNode` 增加节点交互模式、`addEdge` 增加边交互模式。每种交互模式中都包含了各自的交互行为，其中  `'drag-node'`（拖拽节点） 和  `'click-select'`（点击选中） 是 F6 内置的交互行为，`'click-add-node'`（点击空白画布添加节点） 和  `'click-add-edge'`（点击两个节点添加边） 需要我们在后面进行自定义。
 
 ```javascript
 // const data = ...
-const graph = new G6.Graph({
-  container: 'mountNode',
+const graph = new F6.Graph({
+  ...
   width: 500,
   height: 500,
   // 交互模式集合
@@ -118,14 +118,14 @@ document.getElementById('selector').addEventListener('change', e => {
 
 #### 添加节点
 
-在上面的例子中，当选中添加节点按钮时，会切换到 `addNode` 的 Mode 上。`addNode` Mode 包含了 `'click-add-node'`, `'click-select'` 两个 Behavior。`'click-add-node'` 实现了在点击空白画布时，在点击位置添加节点。这是通过使用 `G6.registerBehavior` 自定义一个名为 `'click-add-node'`（名字可以自由设定） 的 Behavior 实现的。
+在上面的例子中，当选中添加节点按钮时，会切换到 `addNode` 的 Mode 上。`addNode` Mode 包含了 `'click-add-node'`, `'click-select'` 两个 Behavior。`'click-add-node'` 实现了在点击空白画布时，在点击位置添加节点。这是通过使用 `F6.registerBehavior` 自定义一个名为 `'click-add-node'`（名字可以自由设定） 的 Behavior 实现的。
 
 ```javascript
 // 添加的节点数量，用于生成唯一 id
 let addedNodeCount = 0;
 
 // 封装点击添加节点的交互
-G6.registerBehavior('click-add-node', {
+F6.registerBehavior('click-add-node', {
   // 设定该自定义行为需要监听的事件及其响应函数
   getEvents() {
     // 监听的事件为 canvas:click，响应函数是 onClick
@@ -153,7 +153,7 @@ G6.registerBehavior('click-add-node', {
 
 ```javascript
 // 封装点击添加边的交互
-G6.registerBehavior('click-add-edge', {
+F6.registerBehavior('click-add-edge', {
   // 设定该自定义行为需要监听的事件及其响应函数
   getEvents() {
     return {

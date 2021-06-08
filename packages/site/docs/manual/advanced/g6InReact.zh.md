@@ -1,13 +1,13 @@
 ---
-title: React 中使用 G6
+title: React 中使用 F6
 order: 11
 ---
 
 ### 概述
 
-G6 是一个纯 JS 库，不与任何框架耦合，也就是可以在任何前端框架中使用，如 React、Vue、Angular 等。由于我们内部绝大多数都是基于 React 技术栈的，所以我们也仅提供一个 G6 在 React 中使用的 Demo。
+F6 是一个纯 JS 库，不与任何框架耦合，也就是可以在任何前端框架中使用，如 React、Vue、Angular 等。由于我们内部绝大多数都是基于 React 技术栈的，所以我们也仅提供一个 F6 在 React 中使用的 Demo。
 
-在 React 中使用 G6，和在 HTML 中使用基本相同，唯一比较关键的区分就是在实例化 Graph 时，要**保证 DOM 容器渲染完成，并能获取到 DOM 元素**。
+在 React 中使用 F6，和在 HTML 中使用基本相同，唯一比较关键的区分就是在实例化 Graph 时，要**保证 DOM 容器渲染完成，并能获取到 DOM 元素**。
 
 在 Demo 中，我们以一个简单的流程图为例，实现如下的效果。
 
@@ -30,7 +30,7 @@ Demo 包括以下功能点：
 import React, { useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
 import { data } from './data';
-import G6 from '@antv/g6';
+import F6 from '@antv/g6';
 
 export default function () {
   const ref = React.useRef(null);
@@ -38,7 +38,7 @@ export default function () {
 
   useEffect(() => {
     if (!graph) {
-      graph = new G6.Graph({
+      graph = new F6.Graph({
         container: ReactDOM.findDOMNode(ref.current),
         width: 1200,
         height: 800,
@@ -75,9 +75,9 @@ export default function () {
 }
 ```
 
-### G6 中渲染 React 组件
+### F6 中渲染 React 组件
 
-节点和边的 tooltip、节点上的右键菜单，G6 中内置的很难满足样式上的需求，这个时候我们就可以通过渲染自定义的 React 组件来实现。Tooltip 和 ContextMenu 都是普通的 React 组件，样式完全由用户控制。交互过程中，在 G6 中需要做的事情就是确定何时渲染组件，以及渲染到何处。在 G6 中获取到是否渲染组件的标识值和渲染位置后，这些值就可以使用 React state 进行管理，后续的所有工作就全部由 React 负责了。
+节点和边的 tooltip、节点上的右键菜单，F6 中内置的很难满足样式上的需求，这个时候我们就可以通过渲染自定义的 React 组件来实现。Tooltip 和 ContextMenu 都是普通的 React 组件，样式完全由用户控制。交互过程中，在 F6 中需要做的事情就是确定何时渲染组件，以及渲染到何处。在 F6 中获取到是否渲染组件的标识值和渲染位置后，这些值就可以使用 React state 进行管理，后续的所有工作就全部由 React 负责了。
 
 ```javascript
 // 边 tooltip 坐标
@@ -107,4 +107,4 @@ return <div ref={ref}>{showNodeTooltip && <NodeTooltips x={nodeTooltipX} y={node
 
 完整的 Demo 源码请戳 「<a href='https://github.com/baizn/g6-in-react' target='_blank'>这里</a>」。
 
-关于 G6 如何在 Vue 及 Angular 中使用，还望社区中有相关实践的同学能提供一些，供其他同学学习和参考，非常感谢！
+关于 F6 如何在 Vue 及 Angular 中使用，还望社区中有相关实践的同学能提供一些，供其他同学学习和参考，非常感谢！

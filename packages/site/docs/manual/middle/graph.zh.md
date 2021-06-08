@@ -25,7 +25,7 @@ order: 1
 
 ```javascript
 const graph = new F6.Graph({
-  container: 'mountNode', // 指定图画布的容器 id，与第 9 行的容器对应
+  ... // 指定图画布的容器 id，与第 9 行的容器对应
   // 画布宽高
   width: 800,
   height: 500,

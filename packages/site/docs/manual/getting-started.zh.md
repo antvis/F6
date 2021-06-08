@@ -196,7 +196,7 @@ const graph = new F6.Graph({
 
 ```javascript
 const graph = new F6.Graph({
-  container: 'mountNode', // String | HTMLElement，必须，在 Step 1 中创建的容器 id 或容器本身,如果为小程序，则传null或者不传
+  container: "container" // String | HTMLElement，必须，在 Step 1 中创建的容器 id 或容器本身,如果为小程序，则传null或者不传
   width: 800, // Number，必须，图的宽度
   height: 500, // Number，必须，图的高度
 });

@@ -3,15 +3,15 @@ title: 更新文本样式
 order: 2
 ---
 
-在 G6 中，可以通过以下三种方式更新文本样式。
+在 F6 中，可以通过以下三种方式更新文本样式。
 
 #### 实例化 Graph
 
 实例化 Graph 时，可以通过在 `defaultNode` 或 `defaultEdge` 中指定 `labelCfg` 属性修改文本的样式。这种方式指定了全局的文本样式。
 
 ```javascript
-const graph = new G6.Graph({
-  container: 'mountNode',
+const graph = new F6.Graph({
+  ...
   width: 1000,
   height: 800,
   defaultNode: {

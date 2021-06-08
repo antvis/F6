@@ -11,7 +11,7 @@ new F6.TreeGraph(cfg: GraphOptions) => TreeGraph
 // highlight-end
 
 const treeGraph = new F6.TreeGraph({
-  container: 'mountNode',
+  ...
   width: 800,
   height: 600,
   modes: {

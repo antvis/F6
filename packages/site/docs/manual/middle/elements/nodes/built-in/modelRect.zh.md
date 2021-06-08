@@ -3,7 +3,7 @@ title: ModelRect
 order: 8
 ---
 
-G6 内置了方形卡片 modelRect  节点，其默认样式如下。标签文本位于卡片下方。 <br />
+F6 内置了方形卡片 modelRect  节点，其默认样式如下。标签文本位于卡片下方。 <br />
 
 <img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*XZiKQbvTSS0AAAAAAAAAAABkARQnAQ' width='223' height='102' alt='img' />
 
@@ -24,8 +24,8 @@ G6 内置了方形卡片 modelRect  节点，其默认样式如下。标签文�
 用户在实例化 Graph 时候可以通过 `defaultNode` 指定 `type` 为 `'modelRect'`，即可使用 `modelRect` 节点。
 
 ```javascript
-const graph = new G6.Graph({
-  container: 'mountNode',
+const graph = new F6.Graph({
+  ...
   width: 800,
   height: 600,
   defaultNode: {
@@ -116,8 +116,8 @@ const data = {
     },
   ],
 };
-const graph = new G6.Graph({
-  container: 'mountNode',
+const graph = new F6.Graph({
+  ...
   width: 800,
   height: 600,
   defaultNode: {
@@ -142,7 +142,7 @@ Object 类型。通过 `labelCfg` 配置标签文本。支持 [节点通用标�
 const data = {
   // ... data 内容
 };
-const graph = new G6.Graph({
+const graph = new F6.Graph({
   // ... 图的其他属性
   defaultNode: {
     // ... 节点其他属性
@@ -173,7 +173,7 @@ Object 类型。通过 `descriptionCfg` 配置标签文本。支持 [节点通�
 const data = {
   // ... data 内容
 };
-const graph = new G6.Graph({
+const graph = new F6.Graph({
   // ... 图的其他属性
   defaultNode: {
     // ... 节点其他属性
@@ -210,7 +210,7 @@ Object 类型。通过配置 `linkPoints` ，可以指定 modelRect 周围「上
 const data = {
   // ... data 内容
 };
-const graph = new G6.Graph({
+const graph = new F6.Graph({
   // ... 图的其他属性
   defaultNode: {
     // ... 节点其他属性
@@ -244,7 +244,7 @@ const graph = new G6.Graph({
 const data = {
   // ... data 内容
 };
-const graph = new G6.Graph({
+const graph = new F6.Graph({
   // ... 图的其他属性
   defaultNode: {
     // ... 节点其他属性
@@ -277,7 +277,7 @@ const graph = new G6.Graph({
 const data = {
   // ... data 内容
 };
-const graph = new G6.Graph({
+const graph = new F6.Graph({
   // ... 图的其他属性
   defaultNode: {
     // ... 节点其他属性

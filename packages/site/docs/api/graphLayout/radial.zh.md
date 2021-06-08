@@ -9,7 +9,7 @@ Radial 布局是将图布局成辐射状的布局方法。以一个 focusNode �
 
 ```javascript
 const graph = new F6.Graph({
-  container: 'mountNode',
+  ...
   width: 1000,
   height: 600,
   layout: {

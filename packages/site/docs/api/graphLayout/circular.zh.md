@@ -12,7 +12,7 @@ Circular 布局将所有节点布局在一个圆环上，可以选择节点在�
 
 ```javascript
 const graph = new F6.Graph({
-  container: 'mountNode',
+  ...
   width: 1000,
   height: 600,
   layout: {

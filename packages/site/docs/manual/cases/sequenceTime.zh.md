@@ -1,5 +1,5 @@
 ---
-title: 基于 G6 的关系时序分析应用
+title: 基于 F6 的关系时序分析应用
 order: 0
 ---
 
@@ -57,7 +57,7 @@ order: 0
 
 ### 节点信息扩展
 
-从体验上考虑，当我们处理应急工作时最想做到的是用户能够不依赖其他应用，直接在我们的图上能够找到问题最根本的原因。但是受限于目前图可视化的局限，目前所有的信息都收敛到一个“node”的色块上，能够映射上去的信息非常有限。所以，一个自然的思路是对节点表达能力进行扩展。<br />得益于 G6 的渲染能力，我们可以比较容易的在节点上扩展出我们想要的表达方式。通过下面的示例，可以看到 G6 的节点扩展能力是非常强悍的。
+从体验上考虑，当我们处理应急工作时最想做到的是用户能够不依赖其他应用，直接在我们的图上能够找到问题最根本的原因。但是受限于目前图可视化的局限，目前所有的信息都收敛到一个“node”的色块上，能够映射上去的信息非常有限。所以，一个自然的思路是对节点表达能力进行扩展。<br />得益于 F6 的渲染能力，我们可以比较容易的在节点上扩展出我们想要的表达方式。通过下面的示例，可以看到 F6 的节点扩展能力是非常强悍的。
 
 <img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*vV8UR50p1ZIAAAAAAAAAAABkARQnAQ' width=850 height=400 alt='img'/>
 
@@ -65,7 +65,7 @@ order: 0
 
 <img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*v3MhT61nn1YAAAAAAAAAAABkARQnAQ' width=850 height=300 alt='img'/>
 
-接下来，我们将使用 G6 实现下面的功能：
+接下来，我们将使用 F6 实现下面的功能：
 
 <video src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/file/A*A2k9QKpYSswAAAAAAAAAAABkARQnAQ' controls width=350 height=350></video>
 
@@ -85,4 +85,4 @@ order: 0
 
 ## 应用地址
 
-源码：<a href='https://github.com/scaletimes/g6-flow-demo.git' target='_blank'>https://github.com/scaletimes/g6-flow-demo</a> <br />G6 官网：<a href='https://g6.antv.vision/' target='_blank'>https://g6.antv.vision/</a> <br />G6 GitHub：<a href='https://github.com/antvis/g6' target='_blank'>https://github.com/antvis/g6</a>
+源码：<a href='https://github.com/scaletimes/g6-flow-demo.git' target='_blank'>https://github.com/scaletimes/g6-flow-demo</a> <br />F6 官网：<a href='https://g6.antv.vision/' target='_blank'>https://g6.antv.vision/</a> <br />F6 GitHub：<a href='https://github.com/antvis/g6' target='_blank'>https://github.com/antvis/g6</a>

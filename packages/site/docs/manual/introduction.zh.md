@@ -13,7 +13,7 @@ redirect_from:
 
 ## 什么是 F6
 
-<a href='https://github.com/antvis/f6' target='_blank'>F6</a> 是一个移动端图可视化引擎。它提供了图的绘制、布局、分析、交互、动画等图可视化的基础能力。旨在让关系变得透明，简单。让用户获得关系数据的 Insight。通过 `F6` 用户可以在小程序和移动端中绘制关系图谱，更便捷的构建自己的图可视化应用。F6 延续了 G6 的 API 设计，用户只需简单改动，便可快速迁移 G6 图谱到移动端。
+<a href='https://github.com/antvis/f6' target='_blank'>F6</a> 是一个移动端图可视化引擎。它提供了图的绘制、布局、分析、交互、动画等图可视化的基础能力。旨在让关系变得透明，简单。让用户获得关系数据的 Insight。通过 `F6` 用户可以在小程序和移动端中绘制关系图谱，更便捷的构建自己的图可视化应用。F6 延续了 F6 的 API 设计，用户只需简单改动，便可快速迁移 F6 图谱到移动端。
 
 <img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*zTjwQaXokeQAAAAAAAAAAABkARQnAQ' width=550 alt='img'/>
 
@@ -54,7 +54,7 @@ F6 作为一款专业的图可视化引擎，具有以下特性：
 - [F6 核心概念](/zh/docs/manual/middle/graph)
 - [F6 扩展阅读](/zh/docs/manual/advanced/coordinate-system)
 - [API](/zh/docs/api/Graph)
-- [G6 Blog](https://www.yuque.com/antv/g6-blog)
+- [F6 Blog](https://www.yuque.com/antv/g6-blog)
 
 ## 快速上手
 

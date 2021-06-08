@@ -3,7 +3,7 @@ title: 自定义布局 Layout
 order: 6
 ---
 
-G6 提供了一般图和树图的一些常用布局，使用方式参见：中级教程  [一般图布局 Layout](/zh/docs/manual/middle/layout/graph-layout)，[树图布局 Layout](/zh/docs/manual/middle/layout/tree-graph-layout)，[图布局 API](/zh/docs/api/graphLayout/guide) 或 [树图布局 API](/zh/docs/api/treeGraphLayout/guide)。当这些内置布局无法满足需求时，G6 还提供了一般图的自定义布局的机制，方便用户进行更定制化的扩展。
+F6 提供了一般图和树图的一些常用布局，使用方式参见：中级教程  [一般图布局 Layout](/zh/docs/manual/middle/layout/graph-layout)，[树图布局 Layout](/zh/docs/manual/middle/layout/tree-graph-layout)，[图布局 API](/zh/docs/api/graphLayout/guide) 或 [树图布局 API](/zh/docs/api/treeGraphLayout/guide)。当这些内置布局无法满足需求时，F6 还提供了一般图的自定义布局的机制，方便用户进行更定制化的扩展。
 
 <span style="background-color: rgb(251, 233, 231); color: rgb(139, 53, 56)"> &nbsp;&nbsp;<strong>⚠️ 注意:</strong></span> 树图暂时不支持自定义布局。
 
@@ -11,7 +11,7 @@ G6 提供了一般图和树图的一些常用布局，使用方式参见：中�
 
 ## 自定义布局 API
 
-G6 中自定义布局的 API 如下：
+F6 中自定义布局的 API 如下：
 
 ```javascript
 /**
@@ -108,7 +108,7 @@ const data = {
 下面代码展示了自定义名为  `'bigraph-layout'` 的二分图布局，完整代码参见：<a href='/zh/examples/net/layoutMechanism#customBigraph' target='_blank'>自定义布局-二分图</a>。使用该布局的方式与使用内置布局方式相同，都是在实例化图时将其配置到 `layout` 配置项中，详见：[一般图布局](/zh/docs/manual/middle/layout/graph-layout)。
 
 ```javascript
-G6.registerLayout('bigraph-layout', {
+F6.registerLayout('bigraph-layout', {
   // 默认参数
   getDefaultCfg: function getDefaultCfg() {
     return {

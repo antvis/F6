@@ -9,7 +9,7 @@ Concentric 布局为同心圆布局，用户可以指定节点某个属性为排
 
 ```javascript
 const graph = new F6.Graph({
-  container: 'mountNode',
+  ...
   width: 1000,
   height: 600,
   layout: {

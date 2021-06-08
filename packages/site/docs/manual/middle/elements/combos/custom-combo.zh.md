@@ -3,7 +3,7 @@ title: 自定义 Combo
 order: 2
 ---
 
-G6 提供了一系列[内置 Combo](/zh/docs/manual/middle/elements/combos/defaultCombo)，包括 [circle](/zh/docs/manual/middle/elements/combos/built-in/circle)、[rect](/zh/docs/manual/middle/elements/combos/built-in/rect)。若内置 Combo 无法满足需求，用户还可以通过 `G6.registerCombo ('comboName', options, expendedComboName)` 进行**自定义扩展内置的 Combo**，方便用户开发更加定制化的 Combo，包括含有复杂图形的 Combo、复杂交互的 Combo、带有动画的 Combo 等。
+F6 提供了一系列[内置 Combo](/zh/docs/manual/middle/elements/combos/defaultCombo)，包括 [circle](/zh/docs/manual/middle/elements/combos/built-in/circle)、[rect](/zh/docs/manual/middle/elements/combos/built-in/rect)。若内置 Combo 无法满足需求，用户还可以通过 `F6.registerCombo ('comboName', options, expendedComboName)` 进行**自定义扩展内置的 Combo**，方便用户开发更加定制化的 Combo，包括含有复杂图形的 Combo、复杂交互的 Combo、带有动画的 Combo 等。
 
 在本章中，我们通过两个案例，讲解通过自定义扩展现有 Combo。
 
@@ -17,7 +17,7 @@ G6 提供了一系列[内置 Combo](/zh/docs/manual/middle/elements/combos/defau
 在自定义扩展内置 'circle' 或 'rect' Combo 时，API 中可以复写的方法如下：
 
 ```javascript
-G6.registerCombo(
+F6.registerCombo(
   'comboName',
   {
     /**
@@ -93,7 +93,7 @@ G6.registerCombo(
 根据上述 [内置 Rect Combo 位置逻辑详解](./custom-combo#内置-rect-combo-位置逻辑详解)，在扩展 rect 类型 Combo 时需要注意复写方法中 `x`、`y`、`width`、`height` 的设置
 
 ```javascript
-G6.registerCombo(
+F6.registerCombo(
   'cRect',
   {
     drawShape: function drawShape(cfg, group) {
@@ -147,7 +147,7 @@ G6.registerCombo(
 );
 ```
 
-值得注意的是，G6 3.3 需要用户为自定义节点中的图形设置 `name` 和 `draggable`。其中，`name` 可以是不唯一的任意值。`draggable` 为 `true` 是表示允许该图形响应鼠标的拖拽事件，只有 `draggable: true` 时，图上的交互行为 `'drag-combo'` 才能在该图形上生效。若上面代码仅在 keyShape 上设置了 `draggable: true`，而右侧圆图形上没有设置，则鼠标拖拽只能在 keyShape 上响应。
+值得注意的是，F6 3.3 需要用户为自定义节点中的图形设置 `name` 和 `draggable`。其中，`name` 可以是不唯一的任意值。`draggable` 为 `true` 是表示允许该图形响应鼠标的拖拽事件，只有 `draggable: true` 时，图上的交互行为 `'drag-combo'` 才能在该图形上生效。若上面代码仅在 keyShape 上设置了 `draggable: true`，而右侧圆图形上没有设置，则鼠标拖拽只能在 keyShape 上响应。
 
 ### 使用自定义 Combo
 
@@ -165,8 +165,8 @@ const data = {
     { id: 'combo3', label: 'Combo 3' },
   ],
 };
-const graph = new G6.Graph({
-  container: 'mountNode',
+const graph = new F6.Graph({
+  ...
   width: 800,
   height: 800,
   // 全局 Combo 配置
@@ -229,7 +229,7 @@ const expandIcon = (x, y, r) => {
   ];
 };
 
-G6.registerCombo(
+F6.registerCombo(
   'cCircle',
   {
     drawShape: function draw(cfg, group) {
@@ -286,7 +286,7 @@ G6.registerCombo(
 );
 ```
 
-值得注意的是，G6 3.3 需要用户为自定义节点中的图形设置 `name` 和 `draggable`。其中，`name` 可以是不唯一的任意值。`draggable` 为 `true` 是表示允许该图形响应鼠标的拖拽事件，只有 `draggable: true` 时，图上的交互行为 `'drag-combo'` 才能在该图形上生效。若上面代码仅在 keyShape 上设置了 `draggable: true`，而右侧圆图形上没有设置，则鼠标拖拽只能在 keyShape 上响应。
+值得注意的是，F6 3.3 需要用户为自定义节点中的图形设置 `name` 和 `draggable`。其中，`name` 可以是不唯一的任意值。`draggable` 为 `true` 是表示允许该图形响应鼠标的拖拽事件，只有 `draggable: true` 时，图上的交互行为 `'drag-combo'` 才能在该图形上生效。若上面代码仅在 keyShape 上设置了 `draggable: true`，而右侧圆图形上没有设置，则鼠标拖拽只能在 keyShape 上响应。
 
 ### 使用自定义 Combo
 
@@ -304,8 +304,8 @@ const data = {
     { id: 'combo3', label: 'Combo 3' },
   ],
 };
-const graph = new G6.Graph({
-  container: 'mountNode',
+const graph = new F6.Graph({
+  ...
   width: 800,
   height: 800,
   // 全局 Combo 配置

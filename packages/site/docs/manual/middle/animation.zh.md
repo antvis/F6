@@ -3,7 +3,7 @@ title: 基础动画
 order: 5
 ---
 
-G6 中的动画分为两个层次：
+F6 中的动画分为两个层次：
 
 - 全局动画：全局性的动画，图整体变化时的动画过渡；
 - 元素（边和节点）动画：节点或边上的独立动画。
@@ -12,7 +12,7 @@ G6 中的动画分为两个层次：
 
 ## 全局动画
 
-G6 的全局动画指通过图实例进行某些全局操作时，产生的动画效果。例如：
+F6 的全局动画指通过图实例进行某些全局操作时，产生的动画效果。例如：
 
 - `graph.updateLayout(cfg)` 布局的变化
 - `graph.changeData()` 数据的变化
@@ -20,7 +20,7 @@ G6 的全局动画指通过图实例进行某些全局操作时，产生的动�
 通过实例化图时配置 `animate: true`，可以达到每次进行上述操作时，动画效果变化的目的。配合 `animateCfg` 配置动画参数，`animateCfg` 具体配置参见 [animateCfg](#animateCfg)<br />
 
 ```javascript
-const graph = new G6.Graph({
+const graph = new F6.Graph({
   // ...                   // 图的其他配置项
   animate: true, // Boolean，切换布局时是否使用动画过度，默认为 false
   animateCfg: {
@@ -32,7 +32,7 @@ const graph = new G6.Graph({
 
 ## 元素动画
 
-由于 G6 的内置节点和边是没有动画的，需要实现节点和边上的动画需要通过[自定义节点](/zh/docs/manual/middle/elements/nodes/custom-node)、[自定义边](/zh/docs/manual/middle/elements/edges/custom-edge)时复写  `afterDraw`  实现。
+由于 F6 的内置节点和边是没有动画的，需要实现节点和边上的动画需要通过[自定义节点](/zh/docs/manual/middle/elements/nodes/custom-node)、[自定义边](/zh/docs/manual/middle/elements/edges/custom-edge)时复写  `afterDraw`  实现。
 
 ### 节点动画
 
@@ -59,7 +59,7 @@ const graph = new G6.Graph({
 
 ```javascript
 // 放大、变小动画
-G6.registerNode(
+F6.registerNode(
   'circle-animate',
   {
     afterDraw(cfg, group) {
@@ -100,7 +100,7 @@ G6.registerNode(
 <img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*FxDJQ5eY-5oAAAAAAAAAAABkARQnAQ' alt='download' width='150'/>
 
 ```javascript
-G6.registerNode(
+F6.registerNode(
   'background-animate',
   {
     afterDraw(cfg, group) {
@@ -118,7 +118,7 @@ G6.registerNode(
           fill: cfg.color,
           opacity: 0.6,
         },
-        // must be assigned in G6 3.3 and later versions. it can be any value you want
+        // must be assigned in F6 3.3 and later versions. it can be any value you want
         name: 'circle-shape1',
       });
       // 第二个背景圆
@@ -131,7 +131,7 @@ G6.registerNode(
           fill: 'blue', // 为了显示清晰，随意设置了颜色
           opacity: 0.6,
         },
-        // must be assigned in G6 3.3 and later versions. it can be any value you want
+        // must be assigned in F6 3.3 and later versions. it can be any value you want
         name: 'circle-shape2',
       });
       // 第三个背景圆
@@ -144,7 +144,7 @@ G6.registerNode(
           fill: 'green',
           opacity: 0.6,
         },
-        // must be assigned in G6 3.3 and later versions. it can be any value you want
+        // must be assigned in F6 3.3 and later versions. it can be any value you want
         name: 'circle-shape3',
       });
       group.sort(); // 排序，根据 zIndex 排序
@@ -203,7 +203,7 @@ G6.registerNode(
 <img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*uFQsQqxIa_QAAAAAAAAAAABkARQnAQ' alt='download' width='150'/>
 
 ```javascript
-G6.registerNode(
+F6.registerNode(
   'inner-animate',
   {
     afterDraw(cfg, group) {
@@ -219,7 +219,7 @@ G6.registerNode(
           height: height,
           img: cfg.img,
         },
-        // must be assigned in G6 3.3 and later versions. it can be any value you want
+        // must be assigned in F6 3.3 and later versions. it can be any value you want
         name: 'image-shape',
       });
       // 该图片 shape 的动画
@@ -269,7 +269,7 @@ G6.registerNode(
 <img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*OAGPRZbYpw4AAAAAAAAAAABkARQnAQ' alt='download' width='150'/>
 
 ```javascript
-G6.registerEdge(
+F6.registerEdge(
   'circle-running',
   {
     afterDraw(cfg, group) {
@@ -286,7 +286,7 @@ G6.registerEdge(
           fill: 'red',
           r: 3,
         },
-        // must be assigned in G6 3.3 and later versions. it can be any value you want
+        // must be assigned in F6 3.3 and later versions. it can be any value you want
         name: 'circle-shape',
       });
 
@@ -322,7 +322,7 @@ G6.registerEdge(
 ```javascript
 // lineDash 的差值，可以在后面提供 util 方法自动计算
 const lineDash = [4, 2, 1, 2];
-G6.registerEdge(
+F6.registerEdge(
   'line-dash',
   {
     afterDraw(cfg, group) {
@@ -361,7 +361,7 @@ G6.registerEdge(
 <img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*-l9lQ7Ck1QcAAAAAAAAAAABkARQnAQ' alt='download' width='150'/>
 
 ```javascript
-G6.registerEdge(
+F6.registerEdge(
   'line-growth',
   {
     afterDraw(cfg, group) {
@@ -400,12 +400,12 @@ G6.registerEdge(
 
 ```javascript
 // const data = ...
-// const graph = new G6.Graph({...});
+// const graph = new F6.Graph({...});
 
 const lineDash = [4, 2, 1, 2];
 
 // 注册名为 'can-running' 的边
-G6.registerEdge(
+F6.registerEdge(
   'can-running',
   {
     // 复写setState方法
@@ -487,6 +487,6 @@ graph.on('node:mouseleave', (ev) => {
 
 ### easing 函数
 
-easing 函数是指动画的函数。例如线性插值、先快后慢等。<br />G6 支持所有 d3.js 中的动画函数。因此，上面代码中 `animateCfg` 配置中的 String 类型的 `easing` 可以取值有：<br />`'easeLinear'` ，<br />`'easePolyIn'` ，`'easePolyOut'` ， `'easePolyInOut'` ，<br />`'easeQuad'` ，`'easeQuadIn'` ，`'easeQuadOut'` ， `'easeQuadInOut'` 。
+easing 函数是指动画的函数。例如线性插值、先快后慢等。<br />F6 支持所有 d3.js 中的动画函数。因此，上面代码中 `animateCfg` 配置中的 String 类型的 `easing` 可以取值有：<br />`'easeLinear'` ，<br />`'easePolyIn'` ，`'easePolyOut'` ， `'easePolyInOut'` ，<br />`'easeQuad'` ，`'easeQuadIn'` ，`'easeQuadOut'` ， `'easeQuadInOut'` 。
 
 更多取值及所有取值含义参见：<a href='https://github.com/d3/d3/blob/master/API.md#easings-d3-ease' target='_blank'>d3 Easings</a>。

@@ -3,7 +3,7 @@ title: 自定义节点
 order: 2
 ---
 
-G6 提供了一系列[内置节点](/zh/docs/manual/middle/elements/nodes/defaultNode)，包括 [circle](/zh/docs/manual/middle/elements/nodes/built-in/circle)、[rect](/zh/docs/manual/middle/elements/nodes/built-in/rect)、[diamond](/zh/docs/manual/middle/elements/nodes/built-in/diamond)、[triangle](/zh/docs/manual/middle/elements/nodes/built-in/triangle)、[star](/zh/docs/manual/middle/elements/nodes/built-in/star)、[image](/zh/docs/manual/middle/elements/nodes/built-in/image)、[modelRect](/zh/docs/manual/middle/elements/nodes/built-in/modelRect)。若内置节点无法满足需求，用户还可以通过 `G6.registerNode(typeName: string, nodeDefinition: object, extendedTypeName?: string)` 进行自定义节点，方便用户开发更加定制化的节点，包括含有复杂图形的节点、复杂交互的节点、带有动画的节点等。其参数：
+F6 提供了一系列[内置节点](/zh/docs/manual/middle/elements/nodes/defaultNode)，包括 [circle](/zh/docs/manual/middle/elements/nodes/built-in/circle)、[rect](/zh/docs/manual/middle/elements/nodes/built-in/rect)、[diamond](/zh/docs/manual/middle/elements/nodes/built-in/diamond)、[triangle](/zh/docs/manual/middle/elements/nodes/built-in/triangle)、[star](/zh/docs/manual/middle/elements/nodes/built-in/star)、[image](/zh/docs/manual/middle/elements/nodes/built-in/image)、[modelRect](/zh/docs/manual/middle/elements/nodes/built-in/modelRect)。若内置节点无法满足需求，用户还可以通过 `F6.registerNode(typeName: string, nodeDefinition: object, extendedTypeName?: string)` 进行自定义节点，方便用户开发更加定制化的节点，包括含有复杂图形的节点、复杂交互的节点、带有动画的节点等。其参数：
 
 - `typeName`：该新节点类型名称；
 - `extendedTypeName`：被继承的节点类型，可以是内置节点类型名，也可以是其他自定义节点的类型名。`extendedTypeName` 未指定时代表不继承其他类型的节点；
@@ -21,10 +21,10 @@ G6 提供了一系列[内置节点](/zh/docs/manual/middle/elements/nodes/defaul
 - 控制节点的生命周期；
 - 解析用户输入的数据，在图形上展示。
 
-G6 中自定义节点的 API 如下：
+F6 中自定义节点的 API 如下：
 
 ```javascript
-G6.registerNode(
+F6.registerNode(
   'nodeName',
   {
     options: {
@@ -100,14 +100,14 @@ G6.registerNode(
 
 我们自己来实现一个菱形的节点，如下图所示。
 
-> G6 有内置的菱形节点 diamond。为了演示，这里实现了一个自定义的菱形，相当于复写了内置的 diamond。
+> F6 有内置的菱形节点 diamond。为了演示，这里实现了一个自定义的菱形，相当于复写了内置的 diamond。
 
 <img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*LqFCRaKyr0gAAAAAAAAAAABkARQnAQ' alt='img' width='80'/>
 
 <span style="background-color: rgb(251, 233, 231); color: rgb(139, 53, 56)"> &nbsp;&nbsp;<strong>⚠️ 注意:</strong></span> 从下面代码可以看出，自定义节点中所有通过 `addShape` 增加的图形的坐标都是**相对于节点自身的子坐标系**，即 `(0, 0)` 是该节点的中心。如 `'text'` 图形的 `x` 和 `y` 均为 0，代表该图形相对于该节点居中；`'path'` 图形 `path` 属性中的坐标也是以 `(0, 0)` 为原点计算的。换句话说，在**自定义节点时不需要感知相对于画布的节点坐标**，节点坐标由该节点所在 group 的矩阵控制。
 
 ```javascript
-G6.registerNode('diamond', {
+F6.registerNode('diamond', {
   draw(cfg, group) {
     // 如果 cfg 中定义了 style 需要同这里的属性进行融合
     const keyShape = group.addShape('path', {
@@ -115,7 +115,7 @@ G6.registerNode('diamond', {
         path: this.getPath(cfg), // 根据配置获取路径
         stroke: cfg.color, // 颜色应用到描边上，如果应用到填充，则使用 fill: cfg.color
       },
-      // must be assigned in G6 3.3 and later versions. it can be any value you want
+      // must be assigned in F6 3.3 and later versions. it can be any value you want
       name: 'path-shape',
       // 设置 draggable 以允许响应鼠标的图拽事件
       draggable: true,
@@ -135,7 +135,7 @@ G6.registerNode('diamond', {
           text: cfg.label,
           fill: '#666',
         },
-        // must be assigned in G6 3.3 and later versions. it can be any value you want
+        // must be assigned in F6 3.3 and later versions. it can be any value you want
         name: 'text-shape',
         // 设置 draggable 以允许响应鼠标的图拽事件
         draggable: true,
@@ -163,7 +163,7 @@ G6.registerNode('diamond', {
 });
 ```
 
-上面的代码自定义了一个菱形节点。值得注意的是，G6 3.3 需要用户为自定义节点中的图形设置 `name` 和 `draggable`。其中，`name` 可以是不唯一的任意值。`draggable` 为 `true` 是表示允许该图形响应鼠标的拖拽事件，只有 `draggable: true` 时，图上的交互行为 `'drag-node'` 才能在该图形上生效。若上面代码仅在 keyShape 上设置了 `draggable: true`，而 label 图形上没有设置，则鼠标拖拽只能在 keyShape 上响应。
+上面的代码自定义了一个菱形节点。值得注意的是，F6 3.3 需要用户为自定义节点中的图形设置 `name` 和 `draggable`。其中，`name` 可以是不唯一的任意值。`draggable` 为 `true` 是表示允许该图形响应鼠标的拖拽事件，只有 `draggable: true` 时，图上的交互行为 `'drag-node'` 才能在该图形上生效。若上面代码仅在 keyShape 上设置了 `draggable: true`，而 label 图形上没有设置，则鼠标拖拽只能在 keyShape 上响应。
 
 现在，我们使用下面的数据输入就会绘制出 diamond 这个节点。
 
@@ -176,8 +176,8 @@ const data = {
     { id: 'node4', x: 350, y: 100, label: '菱形', type: 'diamond' }, // 附加文本
   ],
 };
-const graph = new G6.Graph({
-  container: 'mountNode',
+const graph = new F6.Graph({
+  ...
   width: 500,
   height: 500,
 });
@@ -201,7 +201,7 @@ graph.render();
 下面代码仅更新了 diamond 的关键图形的路径和颜色。
 
 ```javascript
-G6.registerNode('diamond', {
+F6.registerNode('diamond', {
   draw(cfg, group) {
     // ... // 见前面代码
   },
@@ -226,12 +226,12 @@ G6.registerNode('diamond', {
 
 ### 扩展 Shape
 
-G6 中已经[内置了一些节点](/zh/docs/manual/middle/elements/nodes/defaultNode)，如果用户仅仅想对现有节点进行调整，复用原有的代码，则可以基于现有的节点进行扩展。同样实现 diamond ，可以基于  circle、ellipse、rect 等内置节点的进行扩展。single-node 是这些内置节点类型的基类，也可以基于它进行扩展。（single-edge 是所有内置边类型的基类。）
+F6 中已经[内置了一些节点](/zh/docs/manual/middle/elements/nodes/defaultNode)，如果用户仅仅想对现有节点进行调整，复用原有的代码，则可以基于现有的节点进行扩展。同样实现 diamond ，可以基于  circle、ellipse、rect 等内置节点的进行扩展。single-node 是这些内置节点类型的基类，也可以基于它进行扩展。（single-edge 是所有内置边类型的基类。）
 
 下面以基于 single-node 为例进行扩展。`update`，`setState` 方法在  single-node 中都有实现，这里仅需要复写 `draw` 方法即可。返回的对象中包含自定义图形的路径和其他样式。
 
 ```javascript
-G6.registerNode(
+F6.registerNode(
   'diamond',
   {
     draw(cfg, group) {
@@ -249,7 +249,7 @@ G6.registerNode(
         ['L', -width / 2, 0], // 左侧顶点
         ['Z'], // 封闭
       ];
-      const style = G6.Util.mix(
+      const style = F6.Util.mix(
         {},
         {
           path: path,
@@ -285,7 +285,7 @@ G6.registerNode(
 
 ```javascript
 // 自定义一个名为 inner-animate 的节点
-G6.registerNode('inner-animate', {
+F6.registerNode('inner-animate', {
   afterDraw(cfg, group) {
     const size = cfg.size;
     const width = size[0] - 14;
@@ -299,7 +299,7 @@ G6.registerNode('inner-animate', {
         height: height,
         img: cfg.img
       },
-      // must be assigned in G6 3.3 and later versions. it can be any value you want
+      // must be assigned in F6 3.3 and later versions. it can be any value you want
       name: 'image-shape'
     });
     // 执行旋转动画
@@ -370,7 +370,7 @@ const data = {
 ### 自定义时指定锚点
 
 ```javascript
-G6.registerNode(
+F6.registerNode(
   'diamond',
   {
     //... // 其他方法
@@ -394,14 +394,14 @@ G6.registerNode(
 
 我们推荐用户使用第二种方式来实现节点的状态调整，可以通过以下方式来实现：
 
-- 在 G6 中自定义节点/边时在 `setState` 方法中进行节点状态变化的响应；
+- 在 F6 中自定义节点/边时在 `setState` 方法中进行节点状态变化的响应；
 - 通过 `graph.setItemState()` 方法来设置状态。
 
 基于 rect 扩展出一个 custom 图形，默认填充色为白色，当鼠标点击时变成红色，实现这一效果的示例代码如下：
 
 ```javascript
 // 基于 rect 扩展出新的图形
-G6.registerNode(
+F6.registerNode(
   'custom',
   {
     // 响应状态变化
@@ -427,10 +427,10 @@ graph.on('node:click', (ev) => {
 });
 ```
 
-G6 并未限定节点的状态，只要你在 `setState` 方法中进行处理你可以实现任何交互，如实现鼠标放到节点上后节点逐渐变大的效果。<br /> <img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*JhhTSJ8PMbYAAAAAAAAAAABkARQnAQ' alt='img' width='350'/>
+F6 并未限定节点的状态，只要你在 `setState` 方法中进行处理你可以实现任何交互，如实现鼠标放到节点上后节点逐渐变大的效果。<br /> <img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*JhhTSJ8PMbYAAAAAAAAAAABkARQnAQ' alt='img' width='350'/>
 
 ```javascript
-G6.registerNode(
+F6.registerNode(
   'custom',
   {
     // 响应状态变化
@@ -480,7 +480,7 @@ graph.on('node:mouseleave', (ev) => {
 <img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*VgQlQK1MdbIAAAAAAAAAAABkARQnAQ' alt='img' width='120'/>
 
 ```javascript
-G6.registerNode(
+F6.registerNode(
   'dom-node',
   {
     draw: (cfg: ModelConfig, group: Group) => {
@@ -508,7 +508,7 @@ G6.registerNode(
 );
 ```
 
-上面的代码自定义了一个名为 `'dom-node'` 的带有 DOM 的节点。值得注意的是，G6 3.3 需要用户为自定义节点中的图形设置 `name` 和 `draggable`。其中，`name` 可以是不唯一的任意值。`draggable` 为 `true` 是表示允许该图形响应鼠标的拖拽事件，只有 `draggable: true` 时，图上的交互行为 `'drag-node'` 才能在该图形上生效。
+上面的代码自定义了一个名为 `'dom-node'` 的带有 DOM 的节点。值得注意的是，F6 3.3 需要用户为自定义节点中的图形设置 `name` 和 `draggable`。其中，`name` 可以是不唯一的任意值。`draggable` 为 `true` 是表示允许该图形响应鼠标的拖拽事件，只有 `draggable: true` 时，图上的交互行为 `'drag-node'` 才能在该图形上生效。
 
 现在，我们使用下面的数据输入就会绘制出带有 `'dom-node'` 节点的图。
 
@@ -522,8 +522,8 @@ const data = {
   ],
   edges: [(source: 'node1'), (target: 'node2')],
 };
-const graph = new G6.Graph({
-  container: 'mountNode',
+const graph = new F6.Graph({
+  ...
   width: 500,
   height: 500,
   defaultNode: {
@@ -535,10 +535,10 @@ graph.data(data);
 graph.render();
 ```
 
-<span style="background-color: rgb(251, 233, 231); color: rgb(139, 53, 56)"><strong>⚠️ 注意:</strong></span> G6 的节点/边事件不支持 DOM 类型的图形。如果需要为 DOM 节点绑定事件，请使用原生 DOM 事件。例如：
+<span style="background-color: rgb(251, 233, 231); color: rgb(139, 53, 56)"><strong>⚠️ 注意:</strong></span> F6 的节点/边事件不支持 DOM 类型的图形。如果需要为 DOM 节点绑定事件，请使用原生 DOM 事件。例如：
 
 ```javascript
-G6.registerNode(
+F6.registerNode(
   'dom-node',
   {
     draw: (cfg: ModelConfig, group: Group) => {

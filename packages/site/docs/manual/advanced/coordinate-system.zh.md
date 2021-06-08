@@ -1,9 +1,9 @@
 ---
-title: G6 坐标系深度解析
+title: F6 坐标系深度解析
 order: 0
 ---
 
-在 G6 中，实例化图时指定 `container` 字段指定了画布 `<Canvas></Canvas>` 标签的父容器。而 DOM 的坐标与真正绘制图形时的坐标并不是同一套坐标系，这可能会使得如下场景中用户指定坐标时产生困惑：
+在 F6 中，实例化图时指定 `container` 字段指定了画布 `<Canvas></Canvas>` 标签的父容器。而 DOM 的坐标与真正绘制图形时的坐标并不是同一套坐标系，这可能会使得如下场景中用户指定坐标时产生困惑：
 
 - 在画布上放置一个 `position: absolute` 的 DOM 元素，如 tooltip、 menu 等时：
   - 在鼠标点击画布上的位置放置；
@@ -11,7 +11,7 @@ order: 0
 
 ## 三个坐标系
 
-首先，我们要知道 G6 中有三个坐标系：clientX/clientY、canvasX/canvasY、pointX/pointY。
+首先，我们要知道 F6 中有三个坐标系：clientX/clientY、canvasX/canvasY、pointX/pointY。
 
 ### clientX/clientY
 
@@ -25,7 +25,7 @@ order: 0
 Container DOM 的自身坐标系。假设示例化图时设定 `width` 与 `height` 分别是 550 与 500:
 
 ```
-const Graph = new G6.Graph({
+const Graph = new F6.Graph({
   container: 'container',
   width: 550,
   height: 500
@@ -104,7 +104,7 @@ canvasX/canvasY 和 clientX/clientY 坐标系不随图的变换而变化。换�
 
 ## 使用 API 进行转换
 
-了解了三种坐标系的含义后，我们有时需要通过相互转换使用。首先，在 G6 的事件中，event 会包含当前鼠标操作位置的三种坐标值，它们的变量名与上述三种坐标系对应关系如下：
+了解了三种坐标系的含义后，我们有时需要通过相互转换使用。首先，在 F6 的事件中，event 会包含当前鼠标操作位置的三种坐标值，它们的变量名与上述三种坐标系对应关系如下：
 
 - event.x, event.y => pointX/pointY；
 - event.canvasX, event.canvasY => canvasX/canvasY；
@@ -128,7 +128,7 @@ canvasX/canvasY 和 clientX/clientY 坐标系不随图的变换而变化。换�
 
 将 clientX/clientY 坐标系的坐标值转换为 pointX/pointY 的坐标值。
 
-可以发现 G6 的上述四个 API 都是围绕 point，通过上面四个 API 可以进行组合从而使得 clientX/clientY 与 canvasX/canvasY 进行转换：
+可以发现 F6 的上述四个 API 都是围绕 point，通过上面四个 API 可以进行组合从而使得 clientX/clientY 与 canvasX/canvasY 进行转换：
 
 - clientX/clientY 转 canvasX/canvasY：
 

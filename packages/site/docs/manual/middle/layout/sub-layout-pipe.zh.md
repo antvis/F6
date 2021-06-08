@@ -31,7 +31,7 @@ type Pipes =
 
 ```javascript
 // 在实例化图时配置 layout.pipes
-const graph = new G6.Graph({
+const graph = new F6.Graph({
   // ...                      // 其他配置项
   layout: {
     pipes: [

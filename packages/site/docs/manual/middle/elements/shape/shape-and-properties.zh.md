@@ -3,7 +3,7 @@ title: 图形 Shape 及其属性
 order: 1
 ---
 
-G6 中的元素（节点/边）是**由一个或多个**[**图形 Shape**](/zh/docs/manual/middle/elements/shape/shape-keyshape) **组成**，主要通过自定义节点或自定义边时在 `draw` 方法中使用 `group.addShape` 添加，G6 中支持以下的图形 Shape：
+F6 中的元素（节点/边）是**由一个或多个**[**图形 Shape**](/zh/docs/manual/middle/elements/shape/shape-keyshape) **组成**，主要通过自定义节点或自定义边时在 `draw` 方法中使用 `group.addShape` 添加，F6 中支持以下的图形 Shape：
 
 - [circle](#圆图形-circle)：圆；
 - [rect](#矩形图形-rect)：矩形；
@@ -44,7 +44,7 @@ group.addShape('rect', {
     shadowBlur: 10,
     opacity: 0.8,
   },
-  // must be assigned in G6 3.3 and later versions. it can be any value you want
+  // must be assigned in F6 3.3 and later versions. it can be any value you want
   name: 'rect-shape',
 });
 ```
@@ -98,7 +98,7 @@ group.addShape('circle', {
     r: 50,
     fill: 'blue',
   },
-  // must be assigned in G6 3.3 and later versions. it can be any value you want
+  // must be assigned in F6 3.3 and later versions. it can be any value you want
   name: 'circle-shape',
 });
 ```
@@ -127,7 +127,7 @@ group.addShape('rect', {
     stroke: 'black',
     radius: [2, 4],
   },
-  // must be assigned in G6 3.3 and later versions. it can be any value you want
+  // must be assigned in F6 3.3 and later versions. it can be any value you want
   name: 'rect-shape',
 });
 ```
@@ -154,7 +154,7 @@ group.addShape('ellipse', {
     ry: 50,
     fill: 'blue',
   },
-  // must be assigned in G6 3.3 and later versions. it can be any value you want
+  // must be assigned in F6 3.3 and later versions. it can be any value you want
   name: 'ellipse-shape',
 });
 ```
@@ -180,7 +180,7 @@ group.addShape('polygon', {
     ],
     fill: 'red',
   },
-  // must be assigned in G6 3.3 and later versions. it can be any value you want
+  // must be assigned in F6 3.3 and later versions. it can be any value you want
   name: 'polygon-shape',
 });
 ```
@@ -195,7 +195,7 @@ group.addShape('polygon', {
 | y      | 图片左上角的 y 坐标 |                                                      |
 | width  | 图片宽度            |                                                      |
 | height | 图片高度            |                                                      |
-| img    | 图片源              | G6 支持多种格式的图片：url、ImageData、Image、canvas |
+| img    | 图片源              | F6 支持多种格式的图片：url、ImageData、Image、canvas |
 
 ### 用法
 
@@ -206,7 +206,7 @@ group.addShape('image', {
     y: 0,
     img: 'https://g.alicdn.com/cm-design/arms-trace/1.0.155/styles/armsTrace/images/TAIR.png',
   },
-  // must be assigned in G6 3.3 and later versions. it can be any value you want
+  // must be assigned in F6 3.3 and later versions. it can be any value you want
   name: 'image-shape',
 });
 ```
@@ -234,7 +234,7 @@ group.addShape('marker', {
       return [['M', x, y], ['L', x + r, y + r], ['L', x + r * 2, y], ['Z']];
     },
   },
-  // must be assigned in G6 3.3 and later versions. it can be any value you want
+  // must be assigned in F6 3.3 and later versions. it can be any value you want
   name: 'marker-shape',
 });
 ```
@@ -282,7 +282,7 @@ group.addShape('path', {
     lineWidth: 8,
     lineAppendWidth: 5,
   },
-  // must be assigned in G6 3.3 and later versions. it can be any value you want
+  // must be assigned in F6 3.3 and later versions. it can be any value you want
   name: 'path-shape',
 });
 ```
@@ -322,7 +322,7 @@ group.addShape('text', {
     textBaseline: 'middle',
     fill: '#0000D9',
   },
-  // must be assigned in G6 3.3 and later versions. it can be any value you want
+  // must be assigned in F6 3.3 and later versions. it can be any value you want
   name: 'text-shape',
 });
 ```
@@ -334,7 +334,7 @@ group.addShape('text', {
 <span style="background-color: rgb(251, 233, 231); color: rgb(139, 53, 56)"><strong>⚠️ 注意:</strong></span>
 
 - 只支持原生 HTML DOM，不支持各类 react、vue 组件；
-- 使用 dom 进行自定义的节点或边，不支持 G6 的交互事件，请使用原生 DOM 的交互事件。
+- 使用 dom 进行自定义的节点或边，不支持 F6 的交互事件，请使用原生 DOM 的交互事件。
 
 ### 特殊属性
 
@@ -361,7 +361,7 @@ group.addShape('dom', {
     </div>
       `,
   },
-  // must be assigned in G6 3.3 and later versions. it can be any value you want
+  // must be assigned in F6 3.3 and later versions. it can be any value you want
   name: 'dom-shape',
   draggable: true,
 });

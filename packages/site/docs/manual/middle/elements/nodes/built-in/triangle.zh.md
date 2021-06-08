@@ -5,7 +5,7 @@ order: 5
 
 ## Triangle
 
-G6 内置了三角形  Triangle 节点，其默认样式如下。标签文本位于三角形下方。<br /><img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*FY1XQZHEc6YAAAAAAAAAAABkARQnAQ' width=100 alt='img'/>
+F6 内置了三角形  Triangle 节点，其默认样式如下。标签文本位于三角形下方。<br /><img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*FY1XQZHEc6YAAAAAAAAAAABkARQnAQ' width=100 alt='img'/>
 
 ## 使用方法
 
@@ -20,8 +20,8 @@ G6 内置了三角形  Triangle 节点，其默认样式如下。标签文本�
 用户在实例化 Graph 时候可以通过 `defaultNode` 指定 `type` 为 `'triangle'`，即可使用 `triangle` 节点。
 
 ```javascript
-const graph = new G6.Graph({
-  container: 'mountNode',
+const graph = new F6.Graph({
+  ...
   width: 800,
   height: 600,
   defaultNode: {
@@ -70,8 +70,8 @@ triangle 节点支持 [节点通用配置](/zh/docs/manual/middle/elements/nodes
 String 类型。可取值有：` '``up' `、`'down'`、`'left'`、`'right'`。默认为  ` '``up' `。通过设置 `direction`，可以修改三角形的方向。下面代码演示在实例化图时全局配置方法中配置 `direction`。
 
 ```javascript
-const graph = new G6.Graph({
-  container: 'mountNode',
+const graph = new F6.Graph({
+  ...
   width: 800,
   height: 600,
   defaultNode: {
@@ -103,8 +103,8 @@ const data = {
     },
   ],
 };
-const graph = new G6.Graph({
-  container: 'mountNode',
+const graph = new F6.Graph({
+  ...
   width: 800,
   height: 600,
   defaultNode: {
@@ -130,7 +130,7 @@ Object 类型。通过 `labelCfg` 配置标签文本。支持 [节点通用标�
 const data = {
   // ... data 内容
 };
-const graph = new G6.Graph({
+const graph = new F6.Graph({
   // ... 图的其他属性
   defaultNode: {
     // ... 节点其他属性
@@ -166,7 +166,7 @@ const graph = new G6.Graph({
 const data = {
   // ... data 内容
 };
-const graph = new G6.Graph({
+const graph = new F6.Graph({
   // ... 图的其他属性
   defaultNode: {
     // ... 其他属性
@@ -202,7 +202,7 @@ Object 类型。通过配置 `icon`，可以在圆上显示小图标。
 const data = {
   // ... data 内容
 };
-const graph = new G6.Graph({
+const graph = new F6.Graph({
   // ... 图的其他属性
   defaultNode: {
     // ... 其他属性

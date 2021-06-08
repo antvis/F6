@@ -9,7 +9,7 @@ Fruchterman 布局是一种力导布局。算法原文： <a href='http://www.ma
 
 ```javascript
 const graph = new F6.Graph({
-  container: 'mountNode',
+  ...
   width: 1000,
   height: 600,
   layout: {

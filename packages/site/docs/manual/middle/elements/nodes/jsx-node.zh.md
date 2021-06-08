@@ -1,9 +1,9 @@
 ---
-title: 使用类 JSX 语法定义 G6 节点
+title: 使用类 JSX 语法定义 F6 节点
 order: 4
 ---
 
-在 G6 3.7.0 及以后的版本中，用户以使用类似 JSX 的语法来定义节点。只需要在使用 G6.registerNode 自定义节点时，将第二个参数设置为字符串或一个返回值为 `string` 的 `function`。
+在 F6 3.7.0 及以后的版本中，用户以使用类似 JSX 的语法来定义节点。只需要在使用 F6.registerNode 自定义节点时，将第二个参数设置为字符串或一个返回值为 `string` 的 `function`。
 
 #### 基础语法
 
@@ -28,7 +28,7 @@ order: 4
 
 #### 支持的标签
 
-使用类 JSX 语法来定义 G6 节点时，支持使用以下的标签：
+使用类 JSX 语法来定义 F6 节点时，支持使用以下的标签：
 
 - `<group />`
 - `<rect />`
@@ -50,7 +50,7 @@ order: 4
 我们先来看一下，使用类 JSX 语法来定义一个简单的矩形。
 
 ```javascript
-G6.registerNode(
+F6.registerNode(
   'rect-xml',
   (cfg) => `
   <rect style={{
@@ -125,7 +125,7 @@ const textXML = (cfg) => `
 </group>
 `;
 
-G6.registerNode('test', {
+F6.registerNode('test', {
   jsx: textXML,
 });
 ```

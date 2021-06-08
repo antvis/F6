@@ -5,19 +5,19 @@ order: 4
 
 ## 什么是 state
 
-G6 中的 **state**，指的是节点或边的状态，包括**交互状态**和**业务状态**两种。
+F6 中的 **state**，指的是节点或边的状态，包括**交互状态**和**业务状态**两种。
 
-在 G6 中，配置交互状态和业务状态的方式是相同的。对于部分只使用 G6 来完成某个需求的开发，而不想深入理解 G6 的用户，其实不用区分交互状态和业务状态的区别，使用相同的方式定义状态，完全没有理解成本。
+在 F6 中，配置交互状态和业务状态的方式是相同的。对于部分只使用 F6 来完成某个需求的开发，而不想深入理解 F6 的用户，其实不用区分交互状态和业务状态的区别，使用相同的方式定义状态，完全没有理解成本。
 
 ### 交互状态
 
 交互状态是与具体的交互动作密切相关的，如用户使用鼠标选中某个节点则该节点被选中，hover 到某条边则该边被高亮等。
 
-G6 中默认处理的是交互状态。
+F6 中默认处理的是交互状态。
 
 ### 业务状态
 
-指根据用户业务需求自定义的状态。业务状态是与交互动作无关的，与具体业务逻辑强相关的，也可理解为是强数据驱动的。如某个任务的执行状态、某条申请的审批状态等，不同的数据值代表不同的业务状态。业务状态与用户交互动作无关，但在 G6 中的处理方式同交互状态一致。
+指根据用户业务需求自定义的状态。业务状态是与交互动作无关的，与具体业务逻辑强相关的，也可理解为是强数据驱动的。如某个任务的执行状态、某条申请的审批状态等，不同的数据值代表不同的业务状态。业务状态与用户交互动作无关，但在 F6 中的处理方式同交互状态一致。
 
 ## 何时使用 state
 
@@ -34,7 +34,7 @@ G6 中默认处理的是交互状态。
 
 ### 状态的类型
 
-状态可以是二值的，也可以是多值的（G6 3.4 后支持）。
+状态可以是二值的，也可以是多值的（F6 3.4 后支持）。
 
 #### 二值状态
 
@@ -54,7 +54,7 @@ graph.setItemState(item, 'stateName', true);
 
 #### 多值状态
 
-多值状态在 G6 3.4 后支持。通过 `graph.setItemState(item, stateName, stateValue)` 设置状态的值。
+多值状态在 F6 3.4 后支持。通过 `graph.setItemState(item, stateName, stateValue)` 设置状态的值。
 
 | 参数名     | 类型   | 描述                        |
 | ---------- | ------ | --------------------------- |
@@ -93,7 +93,7 @@ graph.on('node:mouseleave', (evt) => {
 在自定义 Behavior 中使定义的交互状态 selected 生效。
 
 ```javascript
-G6.registerBehavior('nodeClick', {
+F6.registerBehavior('nodeClick', {
   getEvents() {
     return {
       'node:click': 'onClick',
@@ -115,7 +115,7 @@ G6.registerBehavior('nodeClick', {
 
 上小节使用 `graph.setItemState` 使某些状态在图元素（节点/边）上被激活/灭活，仅仅是为该元素做了某些状态的标识。为了将这些状态反应到终端用户所见的视觉空间中，我们需要为不同的状态设置不同的图元素样式，以响应该图元素状态的变化。
 
-在 G6 中，有两种方式配置不同状态的样式：
+在 F6 中，有两种方式配置不同状态的样式：
 
 - 在实例化 Graph 时，通过 `nodeStateStyles` 和 `edgeStateStyles` 对象定义；
 - 在节点/边数据中，在 `stateStyles` 对象中定义状态；
@@ -141,7 +141,7 @@ G6.registerBehavior('nodeClick', {
   running: {
     stroke: 'steelblue',
   },
-  // 多值状态与子图形样式的设置在 G6 3.4 后支持
+  // 多值状态与子图形样式的设置在 F6 3.4 后支持
   // 多值状态 bodyState 为 health 时的样式
   'bodyState:health': {
     // keyShape 该状态值下的样式
@@ -175,8 +175,8 @@ G6.registerBehavior('nodeClick', {
 使用这种方式可以为图上的所有节点/边配置全局统一的 state 样式。
 
 ```javascript
-const graph = new G6.Graph({
-  container: 'mountNode',
+const graph = new F6.Graph({
+  ...
   width: 800,
   height: 600,
   defaultNode: {
@@ -256,7 +256,7 @@ const data = {
 使用这种方式可以为自定义的节点/边类型配置 state 样式。
 
 ```javascript
-G6.registerNode('customShape', {
+F6.registerNode('customShape', {
   // 自定义节点时的配置
   options: {
     size: 60,
@@ -321,7 +321,7 @@ graph.clearItemStates(item, ['bodyState:health', 'selected', 'active']);
 
 ## 状态优先级
 
-有时候，各个状态的样式之间可能有冲突，需要控制哪一状态的样式优先显示。G6 不提供显式设置状态优先级的方法，所有状态遵循：后设置的状态（通过 `graph.setItemState`）优先级高于前者。用户可以通过 `hasState` 方法判断元素的某种状态是否是激活态，从而判断是否应该激活另一个状态。这一逻辑完全由业务用户控制，实现这种控制也非常简单。例如，一般情况下，鼠标 hover 到某个节点后，该节点会高亮，但希望当该节点处于 active 状态时，鼠标 hover 上去后也不要覆盖 active 的状态，即 active 优先级高于 hover。
+有时候，各个状态的样式之间可能有冲突，需要控制哪一状态的样式优先显示。F6 不提供显式设置状态优先级的方法，所有状态遵循：后设置的状态（通过 `graph.setItemState`）优先级高于前者。用户可以通过 `hasState` 方法判断元素的某种状态是否是激活态，从而判断是否应该激活另一个状态。这一逻辑完全由业务用户控制，实现这种控制也非常简单。例如，一般情况下，鼠标 hover 到某个节点后，该节点会高亮，但希望当该节点处于 active 状态时，鼠标 hover 上去后也不要覆盖 active 的状态，即 active 优先级高于 hover。
 
 ```javascript
 // 设置节点处于 active 状态
@@ -336,4 +336,4 @@ if (!hasActived) {
 
 ## 小结
 
-G6 底层提供了状态管理的能力，通过使用 state，简化了状态管理，降低了用户的认知成本。更多关于 G6 中状态的内容请参考  <a href='https://www.yuque.com/antv/g6/xiux28' target='_blank'>G6 状态量思考</a>。
+F6 底层提供了状态管理的能力，通过使用 state，简化了状态管理，降低了用户的认知成本。更多关于 F6 中状态的内容请参考  <a href='https://www.yuque.com/antv/g6/xiux28' target='_blank'>F6 状态量思考</a>。
