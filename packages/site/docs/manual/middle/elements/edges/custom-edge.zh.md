@@ -179,10 +179,10 @@ F6.registerEdge(
 
 ## 4. 边的交互样式
 
-以点击选中、鼠标 hover 到边为示例，实现如下需求：
+以点击选中边为示例，实现如下需求：
 
 - 点击边时边变粗，再点击变成细；
-- 鼠标移动上去变成红色，离开变成 `'#333'` 。
+- 单击变成红色，双击变成 `'#333'` 。
 
 效果如下图所示。<br />
 
@@ -221,17 +221,17 @@ F6.registerEdge(
 );
 
 // 点击时选中，再点击时取消
-graph.on('edge:click', (ev) => {
+graph.on('edge:tap', (ev) => {
   const edge = ev.item;
   graph.setItemState(edge, 'selected', !edge.hasState('selected')); // 切换选中
 });
 
-graph.on('edge:mouseenter', (ev) => {
+graph.on('edge:tap', (ev) => {
   const edge = ev.item;
   graph.setItemState(edge, 'active', true);
 });
 
-graph.on('edge:mouseleave', (ev) => {
+graph.on('edge:dbltap', (ev) => {
   const edge = ev.item;
   graph.setItemState(edge, 'active', false);
 });

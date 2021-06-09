@@ -5,8 +5,8 @@ order: 0
 
 F6 中支持插件提供了一些可插拔的组件，包括：
 
-- [Legend](#legend) *v4.3.0 起支持*
-- [SnapLine](#snapline) *v4.3.0 起支持*
+- [Legend](#legend) _v4.3.0 起支持_
+- [SnapLine](#snapline) _v4.3.0 起支持_
 - [Grid](#grid)
 - [Minimap](#minimap)
 - [ImageMinimap](#image-minimap)
@@ -34,7 +34,7 @@ const graph = new F6.Graph({
 
 ## Legend
 
-Legend 是 F6 内置的图例插件。用于说明图中不同类型的节点和边所代表的含义，并可以通过与图例的交互做简单的高亮和过滤。 *v4.3.0 起支持*。
+Legend 是 F6 内置的图例插件。用于说明图中不同类型的节点和边所代表的含义，并可以通过与图例的交互做简单的高亮和过滤。 _v4.3.0 起支持_。
 
 <img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*UmXzQLF65vYAAAAAAAAAAAAAARQnAQ' alt="img" width='500px'>
 
@@ -63,22 +63,22 @@ Legend 是 F6 内置的图例插件。用于说明图中不同类型的节点和
 | filter.enable | boolean | 是否允许通过图例的交互对主图元素过滤，默认为 `false` |
 | filter.multiple | boolean | 是否支持多种元素过滤，默认为 `false`，只有 `filter.trigger` 为 `'click'` 时方可多选图例 |
 | filter.trigger | 'click' / 'mouseenter' | 触发主图元素过滤的图例交互方式，默认为 `click` |
-| filter.legendStateStyles | { active?: ShapeStyle, inactive?: ShapeStyle  | 在过滤时，图例本身的状态样式，包括 `filter.legendStateStyles.active` 和 `filter.legendStateStyles.inactive` 两种，每种的类型均为 ShapeStyle。类似图的 `nodeStateStyles` 配置 |
+| filter.legendStateStyles | { active?: ShapeStyle, inactive?: ShapeStyle | 在过滤时，图例本身的状态样式，包括 `filter.legendStateStyles.active` 和 `filter.legendStateStyles.inactive` 两种，每种的类型均为 ShapeStyle。类似图的 `nodeStateStyles` 配置 |
 | filter.graphActiveState | string | 主图元素过滤时，被选中的主图元素的状态名，将寻找主图元素的对应的状态样式进行主图元素的更新。默认值为 `'active'` |
 | filter.graphInactiveState | string | 主图元素过滤时，未被选中的主图元素的状态名，将寻找主图元素的对应的状态样式进行主图元素的更新。默认值为 `'inactive'` |
 | filter.filterFunctions | { [key: string]: (d) => boolean; } | 由于图例的数据与主图解耦，因此需要配置每种图例对应的主图过滤函数，`key` 为图例数据的 `type`，值为函数，函数的参数为主图元素的数据，返回值为布尔型，代表是否被选中 |
 
 ## SnapLine
 
-SnapLine 是 F6 内置的对齐线插件。 *v4.3.0 起支持*。
+SnapLine 是 F6 内置的对齐线插件。 _v4.3.0 起支持_。
 
 实例化时可以通过配置项调整 SnapLine 的样式和功能。
 
 ### 配置项
 
-| 名称 | 类型 | 描述 |
-| --- | --- | --- |
-| line | ShapeStyle | 辅助线的样式 |
+| 名称          | 类型                                          | 描述                      |
+| ------------- | --------------------------------------------- | ------------------------- |
+| line          | ShapeStyle                                    | 辅助线的样式              |
 | itemAlignType | boolean、'horizontal' 、'vertical'、'center'; | 辅助线类型，true 表示全部 |
 
 ## Grid
@@ -223,7 +223,7 @@ Menu 用于配置节点上的右键菜单。
 | className | string | null | menu 容器的 class 类名 |
 | getContent | (evt?: IF6GraphEvent, graph?: IGraph) => HTMLDivElement / string | <img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*OtOkS4g-vrkAAAAAAAAAAABkARQnAQ' width=60 alt='img'/> | 菜单项内容，支持 DOM 元素或字符串 |
 | handleMenuClick | (target: HTMLElement, item: Item, graph?: IGraph) => void | undefined | 点击菜单项的回调函数 |
-| shouldBegin | (evt: F6Event) => boolean | undefined | 是否允许 menu 出现，可以根据 `evt.item`（当前鼠标事件中的元素） 或 `evt.target`（当前鼠标事件中的图形）的内容判断此时是否允许 menu 出现 |
+| shouldBegin | (evt: F6Event) => boolean | undefined | 是否允许 menu 出现，可以根据 `evt.item`（当前事件中的元素） 或 `evt.target`（当前鼠标事件中的图形）的内容判断此时是否允许 menu 出现 |
 | offsetX | number | 6 | menu 的 x 方向偏移值，需要考虑父级容器的 padding |
 | offsetY | number | 6 | menu 的 y 方向偏移值，需要考虑父级容器的 padding |
 | itemTypes | string[] | ['node', 'edge', 'combo'] | menu 作用在哪些类型的元素上，若只想在节点上显示，可将其设置为 ['node'] |
@@ -309,7 +309,7 @@ ToolBar 集成了以下常见的操作：
 ### 配置项
 
 | 名称 | 类型 | 默认值 | 描述 |
-| --- | --- | --- | --- | --- |
+| --- | --- | --- | --- |
 | container | HTMLDivElement | null | ToolBar 容器，如果不设置，则默认使用 canvas 的 DOM 容器 |
 | className | string | null | ToolBar 内容元素的 class 类名 |
 | getContent | (graph?: IGraph) => HTMLDivElement | string | <img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*7QSRRJwAWxQAAAAAAAAAAABkARQnAQ' width=80 alt='img'/> | ToolBar 内容，支持 DOM 元素或字符串 |
@@ -406,7 +406,7 @@ ToolTip 插件主要用于在节点和边上展示一些辅助信息，F6 4.0 �
 | className | string | null | tooltip 容器的 class 类名 |
 | container | HTMLDivElement | null | Tooltip 容器，如果不设置，则默认使用 canvas 的 DOM 容器 |
 | getContent | (evt?: IF6GraphEvent) => HTMLDivElement / string | <img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*aPPuQquN5Q0AAAAAAAAAAABkARQnAQ' width=80 alt='img'/> | tooltip 内容，支持 DOM 元素或字符串 |
-| shouldBegin | (evt: F6Event) => boolean | undefined | 是否允许 tooltip 出现，可以根据 `evt.item`（当前鼠标事件中的元素） 或 `evt.target`（当前鼠标事件中的图形）的内容判断此时是否允许 tooltip 出现 |
+| shouldBegin | (evt: F6Event) => boolean | undefined | 是否允许 tooltip 出现，可以根据 `evt.item`（当前事件中的元素） 或 `evt.target`（当前鼠标事件中的图形）的内容判断此时是否允许 tooltip 出现 |
 | offsetX | number | 6 | tooltip 的 x 方向偏移值，需要考虑父级容器的 padding |
 | offsetY | number | 6 | tooltip 的 y 方向偏移值，需要考虑父级容器的 padding |
 | itemTypes | string[] | ['node', 'edge', 'combo'] | tooltip 作用在哪些类型的元素上，若只想在节点上显示，可将其设置为 ['node'] |
@@ -470,7 +470,7 @@ Fisheye 鱼眼放大镜是为 focus+context 的探索场景设计的，它能够
 ### 配置项
 
 | 名称 | 类型 | 默认值 | 描述 |
-| --- | --- | --- | --- | --- |
+| --- | --- | --- | --- |
 | trigger | 'mousemove' / 'click' / 'drag' | 'mousemove' | 放大镜的触发事件 |
 | d | Number | 1.5 | 放大系数，数值越大，放大程度越大 |
 | r | Number | 300 | 放大区域的范围半径 |

@@ -14,7 +14,7 @@ F6 提供了一系列[内置节点](/zh/docs/manual/middle/elements/nodes/defaul
 - Q：节点/边更新时，没有按照在 `nodeDefinition` 中自定义实现的 `draw` 或 `drawShape` 逻辑更新。例如，有些图形没有被更新，增加了没有在 `draw` 或 `drawShape` 方法中定义的图形等。
 - A：由于继承了 `extendedTypeName`，且在 `nodeDefinition` 中没有复写 `update` 方法，导致节点/边更新时执行了 `extendedTypeName` 中的 `update` 方法，从而与自定义的 `draw` 或 `drawShape` 有出入。可以通过复写 `update` 方法为 `undefined` 解决。当 `update` 方法为 `undefined` 时，节点/边的更新将会执行 `draw` 或 `drawShape` 进行重绘。
 
-在本章中我们会通过五个案例，从简单到复杂讲解节点的自定义。这五个案例是： <br /> <strong>1. 从无到有的定义节点：</strong>绘制图形；优化性能。 <br /> <strong>2. 扩展现有的节点：</strong>附加图形；增加动画。 <br /> <strong>3. 调整节点的锚点；</strong> <br /> <strong>4. 调整节点的鼠标选中/悬浮样式：</strong>样式变化响应；动画响应； <br /> <strong>5. 使用 DOM 自定义节点。</strong>
+在本章中我们会通过五个案例，从简单到复杂讲解节点的自定义。这五个案例是： <br /> <strong>1. 从无到有的定义节点：</strong>绘制图形；优化性能。 <br /> <strong>2. 扩展现有的节点：</strong>附加图形；增加动画。 <br /> <strong>3. 调整节点的锚点；</strong> <br /> <strong>4. 调整节点的选中样式：</strong>样式变化响应；动画响应； <br /> <strong>5. 使用 DOM 自定义节点。</strong>
 
 通过 [图形 Shape](/zh/docs/manual/middle/elements/shape/shape-keyshape) 章节的学习，我们应该已经知道了自定义节点时需要满足以下两点：
 
@@ -117,7 +117,7 @@ F6.registerNode('diamond', {
       },
       // must be assigned in F6 3.3 and later versions. it can be any value you want
       name: 'path-shape',
-      // 设置 draggable 以允许响应鼠标的图拽事件
+      // 设置 draggable 以允许响应图拽事件
       draggable: true,
     });
     if (cfg.label) {
@@ -137,7 +137,7 @@ F6.registerNode('diamond', {
         },
         // must be assigned in F6 3.3 and later versions. it can be any value you want
         name: 'text-shape',
-        // 设置 draggable 以允许响应鼠标的图拽事件
+        // 设置 draggable 以允许响应图拽事件
         draggable: true,
       });
     }
@@ -163,7 +163,7 @@ F6.registerNode('diamond', {
 });
 ```
 
-上面的代码自定义了一个菱形节点。值得注意的是，F6 3.3 需要用户为自定义节点中的图形设置 `name` 和 `draggable`。其中，`name` 可以是不唯一的任意值。`draggable` 为 `true` 是表示允许该图形响应鼠标的拖拽事件，只有 `draggable: true` 时，图上的交互行为 `'drag-node'` 才能在该图形上生效。若上面代码仅在 keyShape 上设置了 `draggable: true`，而 label 图形上没有设置，则鼠标拖拽只能在 keyShape 上响应。
+上面的代码自定义了一个菱形节点。值得注意的是，F6 3.3 需要用户为自定义节点中的图形设置 `name` 和 `draggable`。其中，`name` 可以是不唯一的任意值。`draggable` 为 `true` 是表示允许该图形响应拖拽事件，只有 `draggable: true` 时，图上的交互行为 `'drag-node'` 才能在该图形上生效。若上面代码仅在 keyShape 上设置了 `draggable: true`，而 label 图形上没有设置，则鼠标拖拽只能在 keyShape 上响应。
 
 现在，我们使用下面的数据输入就会绘制出 diamond 这个节点。
 
@@ -387,7 +387,7 @@ F6.registerNode(
 
 ## 4. 调整状态样式
 
-常见的交互都需要节点和边通过样式变化做出反馈，例如鼠标移动到节点上、点击选中节点/边、通过交互激活边上的交互等，都需要改变节点和边的样式，有两种方式来实现这种效果：
+常见的交互都需要节点和边通过样式变化做出反馈，例如点击选中节点/边、通过交互激活边上的交互等，都需要改变节点和边的样式，有两种方式来实现这种效果：
 
 1. 在数据上添加标志字段，在自定义 shape 过程中根据约定进行渲染；
 2. 将交互状态同原始数据和绘制节点的逻辑分开，仅更新节点。
@@ -397,7 +397,7 @@ F6.registerNode(
 - 在 F6 中自定义节点/边时在 `setState` 方法中进行节点状态变化的响应；
 - 通过 `graph.setItemState()` 方法来设置状态。
 
-基于 rect 扩展出一个 custom 图形，默认填充色为白色，当鼠标点击时变成红色，实现这一效果的示例代码如下：
+基于 rect 扩展出一个 custom 图形，默认填充色为白色，当点击时变成红色，实现这一效果的示例代码如下：
 
 ```javascript
 // 基于 rect 扩展出新的图形
@@ -421,13 +421,13 @@ F6.registerNode(
 );
 
 // 点击时选中，再点击时取消
-graph.on('node:click', (ev) => {
+graph.on('node:tap', (ev) => {
   const node = ev.item;
   graph.setItemState(node, 'selected', !node.hasState('selected')); // 切换选中
 });
 ```
 
-F6 并未限定节点的状态，只要你在 `setState` 方法中进行处理你可以实现任何交互，如实现鼠标放到节点上后节点逐渐变大的效果。<br /> <img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*JhhTSJ8PMbYAAAAAAAAAAABkARQnAQ' alt='img' width='350'/>
+F6 并未限定节点的状态，只要你在 `setState` 方法中进行处理你可以实现任何交互，如实现放到节点上后节点逐渐变大的效果。<br /> <img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*JhhTSJ8PMbYAAAAAAAAAAABkARQnAQ' alt='img' width='350'/>
 
 ```javascript
 F6.registerNode(
@@ -458,13 +458,12 @@ F6.registerNode(
   'circle',
 );
 
-// 鼠标移动到上面 running，移出结束
-graph.on('node:mouseenter', (ev) => {
+graph.on('node:tap', (ev) => {
   const node = ev.item;
   graph.setItemState(node, 'running', true);
 });
 
-graph.on('node:mouseleave', (ev) => {
+graph.on('node:dbltap', (ev) => {
   const node = ev.item;
   graph.setItemState(node, 'running', false);
 });
@@ -472,8 +471,7 @@ graph.on('node:mouseleave', (ev) => {
 
 ## 5. 使用 DOM 自定义节点
 
-> SVG 与 DOM 图形在 V3.3.x 中不支持。
-> 仅在 Graph 的 `renderer` 为 `'svg'` 时可以使用 DOM 自定义节点。
+> SVG 与 DOM 图形在 V3.3.x 中不支持。仅在 Graph 的 `renderer` 为 `'svg'` 时可以使用 DOM 自定义节点。
 
 这里，我们演示使用 DOM 自定义一个名为 `'dom-node'` 的节点。在 `draw` 方法中使用 `group.addShape` 增加一个 `'dom'` 类型的图形，并设置其 `html` 为 DOM 的 `html` 值。
 
@@ -508,7 +506,7 @@ F6.registerNode(
 );
 ```
 
-上面的代码自定义了一个名为 `'dom-node'` 的带有 DOM 的节点。值得注意的是，F6 3.3 需要用户为自定义节点中的图形设置 `name` 和 `draggable`。其中，`name` 可以是不唯一的任意值。`draggable` 为 `true` 是表示允许该图形响应鼠标的拖拽事件，只有 `draggable: true` 时，图上的交互行为 `'drag-node'` 才能在该图形上生效。
+上面的代码自定义了一个名为 `'dom-node'` 的带有 DOM 的节点。值得注意的是，F6 3.3 需要用户为自定义节点中的图形设置 `name` 和 `draggable`。其中，`name` 可以是不唯一的任意值。`draggable` 为 `true` 是表示允许该图形响应拖拽事件，只有 `draggable: true` 时，图上的交互行为 `'drag-node'` 才能在该图形上生效。
 
 现在，我们使用下面的数据输入就会绘制出带有 `'dom-node'` 节点的图。
 

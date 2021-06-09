@@ -7,13 +7,13 @@ order: 4
 
 在 [图形分组 Group](/zh/docs/manual/middle/elements/shape/graphics-group) 中我们提到：在 F6 中，Graph 的一个实例中的所有节点属于同一个变量名为 `nodeGroup` 的 group，所有的边属于同一个变量名为 `edgeGroup` 的 group。节点 group 在视觉上的层级（zIndex）高于边 group，即所有节点会绘制在所有边的上层。
 
-但有时，我们需要让边在视觉上在节点上层。例如，高亮节点及其相关边和邻居、高亮一条边等。可以通过配合图实例的配置项  `groupByTypes` 以及节点和边的 `toFront()` 与 `toBack()` 函数实现。为实现如下效果：鼠标进入节点时，提升相关边以及邻居节点的层级；离开节点时恢复；鼠标进入边时，提升边及其两端点的层级；离开边时恢复。<a href='https://codepen.io/Yanyan-Wang/pen/GRRNzGN' target='_blank'>Demo 完整代码</a>。<br /><img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*uWGAR5-w-TcAAAAAAAAAAABkARQnAQ' width=150 alt='img'/>
+但有时，我们需要让边在视觉上在节点上层。例如，高亮节点及其相关边和邻居、高亮一条边等。可以通过配合图实例的配置项  `groupByTypes` 以及节点和边的 `toFront()` 与 `toBack()` 函数实现。为实现如下效果：进入节点时，提升相关边以及邻居节点的层级；离开节点时恢复；点击边时，提升边及其两端点的层级；双击边时恢复。<a href='https://codepen.io/Yanyan-Wang/pen/GRRNzGN' target='_blank'>Demo 完整代码</a>。<br /><img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*uWGAR5-w-TcAAAAAAAAAAABkARQnAQ' width=150 alt='img'/>
 
 要实现上图效果，需要以下步骤：
 
 - Step 1：实例化图时配置 `groupByTypes` 为 `false`；
 - Step 2：将节点放置在边上层；
-- Step 3：监听鼠标事件并改变目标元素层级。
+- Step 3：监听事件并改变目标元素层级。
 
 ## 前提代码
 
@@ -145,32 +145,18 @@ graph.paint();
 
 <br />这样，所有节点被绘制在边上层：<br /><img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*8TnuS7pkUfwAAAAAAAAAAABkARQnAQ' width=150 alt='img'/>
 
-## Step 3 监听鼠标事件并改变目标元素层级
+## Step 3 监听事件并改变目标元素层级
 
-在效果图中，鼠标进入节点时，相关边和节点的层级被提升到最上层，鼠标离开节点使恢复。边同理。这一步将实现这一交互效果。
+在效果图中，点击节点，相关边和节点的层级被提升到最上层，双击节点恢复。边同理。这一步将实现这一交互效果。
 
 ### 函数描述
 
-使用下面四个函数监听鼠标的进入、离开元素的事件：
-
 ```javascript
-// 鼠标进入节点事件
-graph.on('node:mouseenter', (ev) => {
+graph.on('node:tap', (ev) => {
   // ...
 });
 
-// 鼠标离开节点事件
-graph.on('node:mouseleave', (ev) => {
-  // ...
-});
-
-// 鼠标进入边事件
-graph.on('edge:mouseenter', (ev) => {
-  // ...
-});
-
-// 鼠标离开边事件
-graph.on('edge:mouseleave', (ev) => {
+graph.on('node:dbltap', (ev) => {
   // ...
 });
 ```
@@ -178,9 +164,7 @@ graph.on('edge:mouseleave', (ev) => {
 ### 使用方法
 
 ```javascript
-// 鼠标进入节点事件
-graph.on('edge:mouseenter', (ev) => {
-  // 获得鼠标当前目标边
+graph.on('edge:tap', (ev) => {
   const edge = ev.item;
   // 该边的起始点
   const source = edge.getSource();
@@ -194,33 +178,7 @@ graph.on('edge:mouseenter', (ev) => {
   graph.paint();
 });
 
-graph.on('edge:mouseleave', (ev) => {
-  // 获得图上所有边实例
-  const edges = graph.getEdges();
-  // 遍历边，将所有边的层级放置在后方，以恢复原样
-  edges.forEach((edge) => {
-    edge.toBack();
-  });
-  // 注意：必须调用以根据新的层级顺序重绘
-  graph.paint();
-});
-
-graph.on('node:mouseenter', (ev) => {
-  // 获得鼠标当前目标节点
-  const node = ev.item;
-  // 获取该节点的所有相关边
-  const edges = node.getEdges();
-  // 遍历相关边，将所有相关边提前，再将相关边的两个端点提前，以保证相关边的端点在边的上方常规效果
-  edges.forEach((edge) => {
-    edge.toFront();
-    edge.getSource().toFront();
-    edge.getTarget().toFront();
-  });
-  // 注意：必须调用以根据新的层级顺序重绘
-  graph.paint();
-});
-
-graph.on('node:mouseleave', (ev) => {
+graph.on('edge:dbltap', (ev) => {
   // 获得图上所有边实例
   const edges = graph.getEdges();
   // 遍历边，将所有边的层级放置在后方，以恢复原样

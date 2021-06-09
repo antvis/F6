@@ -25,7 +25,7 @@ order: 9
 
 ```javascript
 // 为图上的所有节点绑定点击监听
-graph.on('node:click', (evt) => {
+graph.on('node:tap', (evt) => {
   const item = evt.item; // 被操作的节点 item
   const target = evt.target; // 被操作的具体图形
   // ...
@@ -60,10 +60,10 @@ const fn = (evt) => {
   // ...
 };
 // 为图上的所有节点绑定点击监听
-graph.on('node:click', fn);
+graph.on('node:tap', fn);
 
 // 解除上面的点击监听事件，注意 fn 必须是同一个对象
-graph.off('node:click', fn);
+graph.off('node:tap', fn);
 ```
 
 ### graph.off(eventName)
@@ -89,11 +89,11 @@ const fn2 = (evt) => {
   // ...
 };
 // 为图上的所有节点绑定点击监听
-graph.on('node:click', fn1);
-graph.on('node:click', fn2);
+graph.on('node:tap', fn1);
+graph.on('node:tap', fn2);
 
 // 解除上面的所有节点点击监听事件
-graph.off('node:click');
+graph.off('node:tap');
 ```
 
 ### graph.off()
@@ -111,7 +111,7 @@ const fn2 = (evt) => {
   // ...
 };
 // 为图上的所有节点绑定点击监听
-graph.on('node:mouseenter', fn1);
+graph.on('node:tap', fn1);
 graph.on('afteranimate', fn2);
 
 // 解除图上所有监听事件

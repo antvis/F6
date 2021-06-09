@@ -7,7 +7,7 @@ order: 5
 
 ### 背景
 
-元素（节点/边）的状态（state）用于反馈用户交互、数据变化。通过状态，可以将「交互/数据变化」与视图中「元素的样式变化」快速关联。最常见的例子：鼠标进入节点，该节点为 hover 状态，并被高亮；离开节点，该节点为非 hover 状态，并复原样式。
+元素（节点/边）的状态（state）用于反馈用户交互、数据变化。通过状态，可以将「交互/数据变化」与视图中「元素的样式变化」快速关联。
 
 乍看之下，状态似乎很简单，但从目前业务痛点与经验来看，“状态”有许多隐藏的需求和复杂性。简单的实现方式，会造成易用性低下的问题。
 
@@ -254,17 +254,16 @@ graph.clearItemStates(item, ['bodyState:healthy', 'selected', 'active']);
 
 ### 状态优先级
 
-F6 中提供了 `hasState` 方法用于判断元素是否有某种状态。但具体哪个状态的优先级高，哪个状态值应该覆盖其他的类似问题我们就没有再做任何限制，完全由业务用户控制，实现这种控制也非常简单，如一般情况下，鼠标 hover 到某个节点后，该节点会高亮，但希望当该节点处于 active 状态时，鼠标 hover 上去后也不要覆盖 active 的状态，即 active 优先级高于 hover。
+F6 中提供了 `hasState` 方法用于判断元素是否有某种状态。但具体哪个状态的优先级高，哪个状态值应该覆盖其他的类似问题我们就没有再做任何限制，完全由业务用户控制，实现这种控制也非常简单。
 
 ```javascript
 // 设置节点处于 active 状态
 graph.setItemState(item, 'active', true);
 
-// 鼠标 hover
 const hasActived = item.hasState('active');
 
-// 当节点没有 active 时才设置 hover 状态
+// 当节点没有 active 时才设置 tap 状态
 if (!hasActived) {
-  graph.setItemState(item, 'hover', true);
+  graph.setItemState(item, 'tap', true);
 }
 ```

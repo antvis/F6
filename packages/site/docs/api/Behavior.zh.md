@@ -19,17 +19,17 @@ F6.registerBehavior('behaviorName', {
   // Bind the event and its callback
   getEvents() {
     return {
-      'node:click': 'onClick',
+      'node:tap': 'onTap',
       mousemove: 'onMousemove',
-      'edge:click': 'onEdgeClick',
+      'edge:tap': 'onEdgeTap',
     };
   },
   /**
-   * Handle the callback for node:click
+   * Handle the callback for node:tap
    * @override
    * @param  {Object} evt The handler
    */
-  onClick(evt) {
+  onTap(evt) {
     const node = evt.item;
     const graph = this.graph;
     const point = { x: evt.x, y: evt.y };
@@ -45,11 +45,11 @@ F6.registerBehavior('behaviorName', {
     // TODO
   },
   /**
-   * Handle the callback for :click
+   * Handle the callback for :tap
    * @override
    * @param  {Object} evt The handler
    */
-  onEdgeClick(evt) {
+  onEdgeTap(evt) {
     // TODO
   },
 });
@@ -74,17 +74,17 @@ F6.registerBehavior('behaviorName', {
 F6.registerBehavior('behaviorName', {
   getEvents() {
     return {
-      'node:click': 'onNodeClick',
-      'edge:click': 'onEdgeClick',
+      'node:tap': 'onNodeTap',
+      'edge:tap': 'onEdgeTap',
       'mousemove': 'onMouseMove'
     }
   }
 }
 ```
 
-### BehaviorOption.onNodeClick(evt)
+### BehaviorOption.onNodeTap(evt)
 
-`onNodeClick`、`onEdgeClick` 和 `onMouseMove` 都属于自定义方法，用于处理 `node:click`、`edge:click`、`mousemove` 事件。
+`onNodeTap`、`onEdgeTap` 和 `onMouseMove` 都属于自定义方法，用于处理 `node:tap`、`edge:tap`、`mousemove` 事件。
 
 **参数**
 
@@ -119,15 +119,15 @@ F6.registerBehavior('behaviorName', {
 F6.registerBehavior('behaviorName', {
   getEvents() {
     return {
-      'node:click': 'onNodeClick',
-      'edge:click': 'onEdgeClick',
+      'node:tap': 'onNodeTap',
+      'edge:tap': 'onEdgeTap',
       mousemove: 'onMouseMove',
     };
   },
-  onNodeClick(evt) {
+  onNodeTap(evt) {
     // TODO
   },
-  onEdgeClick(evt) {
+  onEdgeTap(evt) {
     // TODO
   },
   onMouseMove(evt) {

@@ -3,8 +3,7 @@ title: 节点总览
 order: 0
 ---
 
-F6 的内置节点包括 circle，rect，ellipse，diamond，triangle，star，image，modelRect，donut（v4.2.5 起支持）。这些内置节点的默认样式分别如下图所示。<br /> <img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*FY3RTbDCz_8AAAAAAAAAAABkARQnAQ' width='750' height='100' alt='img'/>
-<img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*NRJ7RpkMPNsAAAAAAAAAAAAAARQnAQ' width='50' alt='img'/>
+F6 的内置节点包括 circle，rect，ellipse，diamond，triangle，star，image，modelRect，donut（v4.2.5 起支持）。这些内置节点的默认样式分别如下图所示。<br /> <img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*FY3RTbDCz_8AAAAAAAAAAABkARQnAQ' width='750' height='100' alt='img'/> <img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*NRJ7RpkMPNsAAAAAAAAAAAAAARQnAQ' width='50' alt='img'/>
 
 本文将概述 F6 中的各个内置节点类型、内置节点的通用属性、配置方法。各类型节点详细配置项及配置方法见本目录下相应文档。
 
@@ -44,19 +43,18 @@ F6 的内置节点包括 circle，rect，ellipse，diamond，triangle，star，i
 
 Object 类型。通过 `style` 配置来修改节点的填充色、边框颜色、阴影等属性。下表是 `style` 对象中常用的配置项：
 
-| 名称 | 是否必须 | 类型 | 备注 |
-| --- | --- | --- | --- |
-| fill | false | String | 节点填充色 |
-| stroke | false | String | 节点的描边颜色 |
-| lineWidth | false | Number | 描边宽度 |
-| lineDash | false | Number[] | 描边虚线，数组代表实、虚长度 |
-| shadowColor | false | String | 阴影颜色 |
-| shadowBlur | false | Number | 阴影范围 |
-| shadowOffsetX | false | Number | 阴影 x 方向偏移量 |
-| shadowOffsetY | false | Number | 阴影 y 方向偏移量 |
-| opacity | false | Number | 设置绘图的当前 alpha 或透明值 |
-| fillOpacity | false | Number | 设置填充的 alpha 或透明值 |
-| cursor | false | String | 鼠标在该节点上时的鼠标样式，[CSS 的 cursor](https://developer.mozilla.org/en-US/docs/Web/CSS/cursor) 选项都支持 |
+| 名称          | 是否必须 | 类型     | 备注                          |
+| ------------- | -------- | -------- | ----------------------------- |
+| fill          | false    | String   | 节点填充色                    |
+| stroke        | false    | String   | 节点的描边颜色                |
+| lineWidth     | false    | Number   | 描边宽度                      |
+| lineDash      | false    | Number[] | 描边虚线，数组代表实、虚长度  |
+| shadowColor   | false    | String   | 阴影颜色                      |
+| shadowBlur    | false    | Number   | 阴影范围                      |
+| shadowOffsetX | false    | Number   | 阴影 x 方向偏移量             |
+| shadowOffsetY | false    | Number   | 阴影 y 方向偏移量             |
+| opacity       | false    | Number   | 设置绘图的当前 alpha 或透明值 |
+| fillOpacity   | false    | Number   | 设置填充的 alpha 或透明值     |
 
 下面代码演示在实例化图时全局配置方法中配置 `style`：
 

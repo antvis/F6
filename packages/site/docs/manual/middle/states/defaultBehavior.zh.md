@@ -146,10 +146,9 @@ const graph = new F6.Graph({
 
 此时只能在 x 方向上面拖动，y 方向上不允许拖动。<br /><img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*54yxRrW1A7sAAAAAAAAAAABkARQnAQ' width=400 alt='img'/>
 
-
 ### scroll-canvas
 
-- 含义：滚轮滚动画布，*v4.2.6 起支持*；
+- 含义：滚轮滚动画布，_v4.2.6 起支持_；
 - 配置项：
 
   - `type: 'scroll-canvas'`；
@@ -191,7 +190,6 @@ const graph = new F6.Graph({
 ```
 
 此时只能在 x 方向上面滚动，y 方向上不允许滚动。<br /><img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*54yxRrW1A7sAAAAAAAAAAABkARQnAQ' width=400 alt='img'/>
-
 
 ### zoom-canvas
 
@@ -350,7 +348,7 @@ graph.on('nodeselectchange', (e) => {
 - 配置项：
   - `type: 'tooltip'`；
   - `formatText(model)`：格式化函数，可以返回文本或者 HTML；
-  - `offset`：tooltip 距离鼠标的偏移量；
+  - `offset`：tooltip 距离的偏移量；
   - `shouldBegin(e)`：是否允许 toolip 出现；
   - `shouldUpdate(e)`：是否允许 toolip 内容更新。
 - 相关时机事件：

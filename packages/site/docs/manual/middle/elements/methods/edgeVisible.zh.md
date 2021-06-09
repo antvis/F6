@@ -31,11 +31,11 @@ comboItem.hide();
 
 <img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*N96mRKpyYZIAAAAAAAAAAABkARQnAQ' width=150 alt='img'/>
 
-该示例摘取了元素显示/隐藏的相关操作部分，通过鼠标监听对节点、边、画布的点击事件，显示和隐藏元素：
+该示例摘取了元素显示/隐藏的相关操作部分，通过监听对节点、边、画布的点击事件，显示和隐藏元素：
 
 ```javascript
-// 鼠标点击节点，隐藏该节点
-graph.on('node:click', (ev) => {
+// 点击节点，隐藏该节点
+graph.on('node:tap', (ev) => {
   const node = ev.item;
   console.log('before hide(), the nodevisible = ', node.get('visible'));
   node.hide();
@@ -43,8 +43,8 @@ graph.on('node:click', (ev) => {
   console.log('after hide(), the node visible = ', node.get('visible'));
 });
 
-// 鼠标点击边，隐藏该边
-graph.on('edge:click', (ev) => {
+// 点击边，隐藏该边
+graph.on('edge:tap', (ev) => {
   const edge = ev.item;
   console.log('before hide(), the edge visible = ', edge.get('visible'));
   edge.hide();
@@ -52,8 +52,8 @@ graph.on('edge:click', (ev) => {
   console.log('after hide(), the edge visible = ', edge.get('visible'));
 });
 
-// 鼠标点击画布，显示所有节点和边
-graph.on('canvas:click', (ev) => {
+// 点击画布，显示所有节点和边
+graph.on('canvas:tap', (ev) => {
   const nodes = graph.getNodes();
   const edges = graph.getEdges();
   nodes.forEach((node) => {

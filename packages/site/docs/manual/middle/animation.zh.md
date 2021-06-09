@@ -447,8 +447,8 @@ F6.registerEdge(
   'cubic-horizontal',
 ); // 该自定义边继承了内置横向三阶贝塞尔曲线边 cubic-horizontal
 
-// 监听节点的 mouseenter 事件
-graph.on('node:mouseenter', (ev) => {
+// 监听节点的 tap 事件
+graph.on('node:tap', (ev) => {
   // 获得当前鼠标操作的目标节点
   const node = ev.item;
   // 获得目标节点的所有相关边
@@ -457,8 +457,8 @@ graph.on('node:mouseenter', (ev) => {
   edges.forEach((edge) => graph.setItemState(edge, 'running', true));
 });
 
-// 监听节点的 mouseleave 事件
-graph.on('node:mouseleave', (ev) => {
+// 监听节点的 dbltap 事件
+graph.on('node:dbltap', (ev) => {
   // 获得当前鼠标操作的目标节点
   const node = ev.item;
   // 获得目标节点的所有相关边

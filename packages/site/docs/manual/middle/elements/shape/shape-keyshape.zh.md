@@ -29,8 +29,6 @@ F6 使用不同的 shape 组合，设计了多种内置的节点/边/ Combo 。F
 
 该示例使用了内置 rect 节点，节点的 keyShape 是中间的 rect，其他 Shape 包括上下左右四个 circle 以及一个 text。代码设置了节点的样式 `style`，仅在 rect 上生效，其他 Shape 都以默认样式渲染。该节点上的其他图形需要使用其他配置项进行配置。例如，上下左右四个 circle 的样式需要在 `linkPoints` 中配置，文本样式需要在 `labelCfg` 中配置。
 
-代码中还监听了鼠标的进入节点和离开节点事件，触发了 hover 状态后 `nodeStateStyles` 里 hover 的样式仅在 keyShape 上生效。若需要节点中其他图形响应状态发生样式变化，参考 [配置状态样式](/zh/docs/manual/middle/states/state#配置-state-样式)。
-
 <img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*wWckTbi910IAAAAAAAAAAABkARQnAQ' alt='keyshape-demo' with='50'/>
 
 ```javascript
@@ -65,7 +63,7 @@ const graph = new F6.Graph({
   height: 300,
   nodeStateStyles: {
     // 各状态下的样式，平铺的配置项仅在 keyShape 上生效。需要在其他 shape 样式上响应状态变化则写法不同，参见上文提到的 配置状态样式 链接
-    hover: {
+    tap: {
       fillOpacity: 0.1,
       lineWidth: 10,
     },
@@ -73,17 +71,15 @@ const graph = new F6.Graph({
 });
 graph.data(data);
 graph.render();
-// 监听鼠标进入节点事件
-graph.on('node:mouseenter', (evt) => {
+graph.on('node:tap', (evt) => {
   const node = evt.item;
-  // 激活该节点的 hover 状态
-  graph.setItemState(node, 'hover', true);
+  // 激活该节点的 tap状态
+  graph.setItemState(node, 'tap', true);
 });
-// 监听鼠标离开节点事件
-graph.on('node:mouseleave', (evt) => {
+graph.on('node:dbltap', (evt) => {
   const node = evt.item;
   // 关闭该节点的 hover 状态
-  graph.setItemState(node, 'hover', false);
+  graph.setItemState(node, 'tap', false);
 });
 ```
 

@@ -18,19 +18,18 @@ F6 中的元素（节点/边）是**由一个或多个**[**图形 Shape**](/zh/d
 
 ## 各图形 Shape 的通用属性
 
-| 属性名 | 含义 | 备注 |
-| --- | --- | --- |
-| fill | 设置用于填充绘画的颜色、渐变或模式 | 对应 Canvas 属性 `fillStyle` |
-| stroke | 设置用于笔触的颜色、渐变或模式 | 对应 Canvas 属性 `strokeStyle` |
-| lineWidth | 描边宽度 |  |
-| lineDash | 描边虚线 | Number[] 类型代表实、虚长度 |
-| shadowColor | 设置用于阴影的颜色 |  |
-| shadowBlur | 设置用于阴影的模糊级别 | 数值越大，越模糊 |
-| shadowOffsetX | 设置阴影距形状的水平距离 |  |
-| shadowOffsetY | 设置阴影距形状的垂直距离 |  |
-| opacity | 设置绘图的当前 alpha 或透明值 | 对应 Canvas 属性 `globalAlpha` |
-| fillOpacity | 设置填充的 alpha 或透明值 |  |
-| cursor | 鼠标在该节点上时的鼠标样式，[CSS 的 cursor](https://developer.mozilla.org/en-US/docs/Web/CSS/cursor) 选项都支持 |  |
+| 属性名        | 含义                               | 备注                           |
+| ------------- | ---------------------------------- | ------------------------------ |
+| fill          | 设置用于填充绘画的颜色、渐变或模式 | 对应 Canvas 属性 `fillStyle`   |
+| stroke        | 设置用于笔触的颜色、渐变或模式     | 对应 Canvas 属性 `strokeStyle` |
+| lineWidth     | 描边宽度                           |                                |
+| lineDash      | 描边虚线                           | Number[] 类型代表实、虚长度    |
+| shadowColor   | 设置用于阴影的颜色                 |                                |
+| shadowBlur    | 设置用于阴影的模糊级别             | 数值越大，越模糊               |
+| shadowOffsetX | 设置阴影距形状的水平距离           |                                |
+| shadowOffsetY | 设置阴影距形状的垂直距离           |                                |
+| opacity       | 设置绘图的当前 alpha 或透明值      | 对应 Canvas 属性 `globalAlpha` |
+| fillOpacity   | 设置填充的 alpha 或透明值          |                                |
 
 ### 用法
 

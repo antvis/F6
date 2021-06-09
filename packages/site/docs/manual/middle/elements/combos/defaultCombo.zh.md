@@ -110,18 +110,17 @@ F6 的内置 Combo 包括 circle 和 rect 两种类型，分别如下图所示�
 
 Object 类型。通过 `style` 配置来修改 Combo 的填充色、边框颜色、阴影等属性。下表是 `style` 对象中常用的配置项：
 
-| 名称 | 是否必须 | 类型 | 备注 |
-| --- | --- | --- | --- |
-| fill | false | String | Combo 填充色 |
-| stroke | false | String | Combo 的描边颜色 |
-| lineWidth | false | Number | 描边宽度 |
-| shadowColor | false | String | 阴影颜色 |
-| shadowBlur | false | Number | 阴影范围 |
-| shadowOffsetX | false | Number | 阴影 x 方向偏移量 |
-| shadowOffsetY | false | Number | 阴影 y 方向偏移量 |
-| opacity | false | Number | 设置绘图的当前 alpha 或透明值 |
-| fillOpacity | false | Number | 设置填充的 alpha 或透明值 |
-| cursor | false | String | 鼠标在该 Combo 上时的鼠标样式，[CSS 的 cursor](https://developer.mozilla.org/en-US/docs/Web/CSS/cursor) 选项都支持 |
+| 名称          | 是否必须 | 类型   | 备注                          |
+| ------------- | -------- | ------ | ----------------------------- |
+| fill          | false    | String | Combo 填充色                  |
+| stroke        | false    | String | Combo 的描边颜色              |
+| lineWidth     | false    | Number | 描边宽度                      |
+| shadowColor   | false    | String | 阴影颜色                      |
+| shadowBlur    | false    | Number | 阴影范围                      |
+| shadowOffsetX | false    | Number | 阴影 x 方向偏移量             |
+| shadowOffsetY | false    | Number | 阴影 y 方向偏移量             |
+| opacity       | false    | Number | 设置绘图的当前 alpha 或透明值 |
+| fillOpacity   | false    | Number | 设置填充的 alpha 或透明值     |
 
 下面代码演示在实例化图时全局配置方法中配置 `style`：
 

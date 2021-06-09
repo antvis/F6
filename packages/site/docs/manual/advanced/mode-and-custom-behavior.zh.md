@@ -12,14 +12,14 @@ order: 7
 
 <br />上图是本文要实现的最终效果。完整 demo 代码参见：<a href='https://codepen.io/Yanyan-Wang/pen/qBBNaye' target='_blank'>动态添加元素</a>。<br />左上方的下拉菜单中有三个选项，用于切换交互模式 mode：
 
-- 选择 “Default” 按钮时，切换到 default 交互模式：拖拽节点时节点跟随鼠标移动；点击节点时选中该节点；
+- 选择 “Default” 按钮时，切换到 default 交互模式：拖拽节点时节点跟随触点移动；点击节点时选中该节点；
 - 选择 “Add Node” 按钮时，切换到  addNode 交互模式：点击空白区域在点击处增加一个节点；点击节点时选中该节点；
 - 选择 “Add Edge” 按钮时，切换到 addEdge 交互模式：依次点击两个节点将会在这两个节点之间添加一条边。
 
-**使用多个 mode 的原因**<br />  相同的鼠标操作，在不同场景下有不同的含义。例如：
+**使用多个 mode 的原因**<br />  相同的操作，在不同场景下有不同的含义。例如：
 
 - 点击空白画布取消目前图上所有节点的选中状态、点击空白画布在响应位置添加节点，这两种需求都对应了用户点击画布空白处的操作；
-- 点击选中、点击两个节点添加边都涉及到了鼠标在节点上的点击操作。
+- 点击选中、点击两个节点添加边都涉及到了在节点上的点击操作。
 
 为了区分这些操作的含义，我们使用交互模式 mode 划分不同的场景。<br />
 
@@ -128,13 +128,13 @@ let addedNodeCount = 0;
 F6.registerBehavior('click-add-node', {
   // 设定该自定义行为需要监听的事件及其响应函数
   getEvents() {
-    // 监听的事件为 canvas:click，响应函数是 onClick
+    // 监听的事件为 canvas:tap，响应函数是 onTap
     return {
-      'canvas:click': 'onClick',
+      'canvas:tap': 'onTap',
     };
   },
   // 点击事件
-  onClick(ev) {
+  onTap(ev) {
     const graph = this.graph;
     // 在图上新增一个节点
     const node = this.graph.addItem('node', {
@@ -157,16 +157,16 @@ F6.registerBehavior('click-add-edge', {
   // 设定该自定义行为需要监听的事件及其响应函数
   getEvents() {
     return {
-      'node:click': 'onClick', // 监听事件 node:click，响应函数是 onClick
+      'node:tap': 'onTap', // 监听事件 node:tap，响应函数是 onTap
       mousemove: 'onMousemove', // 监听事件 mousemove，响应函数是 onMousemove
-      'edge:click': 'onEdgeClick', // 监听事件 edge:click，响应函数是 onEdgeClick
+      'edge:tap': 'onEdgeTap', // 监听事件 edge:tap，响应函数是 onEdgeTap
     };
   },
-  // getEvents 中定义的 'node:click' 的响应函数
-  onClick(ev) {
+  // getEvents 中定义的 'node:tap' 的响应函数
+  onTap(ev) {
     const node = ev.item;
     const graph = this.graph;
-    // 鼠标当前点击的节点的位置
+    // 当前点击的节点的位置
     const point = { x: ev.x, y: ev.y };
     const model = node.getModel();
     if (this.addingEdge && this.edge) {
@@ -177,7 +177,7 @@ F6.registerBehavior('click-add-edge', {
       this.edge = null;
       this.addingEdge = false;
     } else {
-      // 在图上新增一条边，结束点是鼠标当前点击的节点的位置
+      // 在图上新增一条边，结束点是当前点击的节点的位置
       this.edge = graph.addItem('edge', {
         source: model.id,
         target: point,
@@ -187,17 +187,16 @@ F6.registerBehavior('click-add-edge', {
   },
   // getEvents 中定义的 mousemove 的响应函数
   onMousemove(ev) {
-    // 鼠标的当前位置
     const point = { x: ev.x, y: ev.y };
     if (this.addingEdge && this.edge) {
-      // 更新边的结束点位置为当前鼠标位置
+      // 更新边的结束点位置为当前触点位置
       this.graph.updateItem(this.edge, {
         target: point,
       });
     }
   },
-  // getEvents 中定义的 'edge:click' 的响应函数
-  onEdgeClick(ev) {
+  // getEvents 中定义的 'edge:tap' 的响应函数
+  onEdgeTap(ev) {
     const currentEdge = ev.item;
     // 拖拽过程中，点击会点击到新增的边上
     if (this.addingEdge && this.edge == currentEdge) {

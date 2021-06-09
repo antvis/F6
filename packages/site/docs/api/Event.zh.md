@@ -34,7 +34,7 @@ graph.on(eventName, evt => {
 - `target`: 事件的触发图形 [Shape](/zh/docs/manual/middle/elements/shape/shape-keyshape) 或画布对象
 - `bubbles`: 是否允许冒泡
 - `defaultPrevented`: 是否阻止了原生事件
-- `originalEvent`: 原始浏览器事件对象，其中的 `button` 可以用于区分 `click` 事件的左/中/右键
+- `originalEvent`: 原始浏览器事件对象
 - `timeStamp`: 触发事件的时间
 - `propagationStopped`: 是否阻止传播（向上冒泡）
 - `propagationPath`: 触发事件的路径
@@ -45,72 +45,45 @@ graph.on(eventName, evt => {
 
 | 事件名称 | 描述 |
 | --- | --- |
-| click | 单击鼠标**左键**或者按下回车键时触发 |
-| dblclick | 双击鼠标**左键**时触发，同时会触发两次 click |
-| mouseenter | 鼠标移入元素范围内触发，**该事件不冒泡**，即鼠标移到其后代元素上时不会触发 |
-| mousemove | 鼠标在元素内部移到时不断触发，不能通过键盘触发 |
-| mouseout | 鼠标移出目标元素后触发 |
-| mouseover | 鼠标移入目标元素上方，鼠标移到其后代元素上时会触发 |
-| mouseleave | 鼠标移出元素范围时触发，**该事件不冒泡**，即鼠标移到其后代元素时不会触发 |
-| mousedown | 鼠标按钮被按下（左键或者右键）时触发，不能通过键盘触发 |
-| mouseup | 鼠标按钮被释放弹起时触发，不能通过键盘触发 |
-| contextmenu | 用户右击鼠标时触发并打开上下文菜单，见 [Demo](/zh/examples/tool/contextMenu) |
+| tap | 点击设备屏幕 |
+| dbltap | 快速点击两次设备屏幕 |
 | dragstart | 当拖拽元素开始被拖拽的时候触发的事件，此事件作用在被拖曳元素上 |
 | drag | 当拖拽元素在拖动过程中时触发的事件，此事件作用于被拖拽元素上 |
 | dragend | 当拖拽完成后触发的事件，此事件作用在被拖曳元素上 |
 | dragenter | 当拖曳元素进入目标元素的时候触发的事件，此事件作用在目标元素上 |
 | dragleave | 当拖曳元素离开目标元素的时候触发的事件，此事件作用在目标元素上 |
-| drop | 被拖拽的元素在目标元素上同时鼠标放开触发的事件，此事件作用在目标元素上 |
-| keydown | 按下键盘键触发该事件 |
-| keyup | 释放键盘键触发该事件 |
-| wheel | 鼠标滚轮滚动时触发该事件 |
-| touchstart | 当手指触摸屏幕时候触发，即使已经有一个手指放在屏幕上也会触发 |
-| touchmove | 当手指在屏幕上滑动的时候连续地触发。在这个事件发生期间，调用 `preventDefault()` 事件可以阻止滚动。 |
-| touchend | 当手指从屏幕上离开的时候触发 |
+| drop | 被拖拽的元素在目标元素上同时放开触发的事件，此事件作用在目标元素上 |
+| panstart | 当手指触摸屏幕时候触发，即使已经有一个手指放在屏幕上也会触发 |
+| panmove | 当手指在屏幕上滑动的时候连续地触发。在这个事件发生期间，调用 `preventDefault()` 事件可以阻止滚动。 |
+| panend | 当手指从屏幕上离开的时候触发 |
 
 ### Node 交互事件
 
-| 事件名称 | 描述 |
-| --- | --- |
-| node:click | 鼠标**左键**单击节点时触发 |
-| node:dblclick | 鼠标双击**左键**节点时触发，同时会触发两次 node:click |
-| node:mouseenter | 鼠标移入节点时触发 |
-| node:mousemove | 鼠标在节点内部移到时不断触发，不能通过键盘触发 |
-| node:mouseout | 鼠标移出节点后触发 |
-| node:mouseover | 鼠标移入节点上方时触发 |
-| node:mouseleave | 鼠标移出节点时触发 |
-| node:mousedown | 鼠标按钮在节点上按下（左键或者右键）时触发，不能通过键盘触发 |
-| node:mouseup | 节点上按下的鼠标按钮被释放弹起时触发，不能通过键盘触发 |
-| node:dragstart | 当节点开始被拖拽的时候触发的事件，此事件作用在被拖曳节点上 |
-| node:drag | 当节点在拖动过程中时触发的事件，此事件作用于被拖拽节点上 |
-| node:dragend | 当拖拽完成后触发的事件，此事件作用在被拖曳节点上 |
-| node:dragenter | 当拖曳节点进入目标元素的时候触发的事件，此事件作用在目标元素上 |
-| node:dragleave | 当拖曳节点离开目标元素的时候触发的事件，此事件作用在目标元素上 |
-| node:dragover | 当拖曳节点在另一目标元素上移动时触发此事件，此事件作用在目标元素上 |
-| node:drop | 被拖拽的节点在目标元素上同时鼠标放开触发的事件，此事件作用在目标元素上 |
-| node:touchstart | 在触控屏上，当节点开始被触碰的时候触发的事件 |
-| node:touchmove | 在触控屏上，当节点开始被触碰过程中触发的事件 |
-| node:touchend | 在触控屏上，当节点开始被触碰结束的时候触发的事件 |
-| node:contextmenu | 用户在节点上右击鼠标时触发并打开右键菜单，见 [Demo](/zh/examples/tool/contextMenu) |
+| 事件名称       | 描述                                                               |
+| -------------- | ------------------------------------------------------------------ |
+| node:tap       | 点击设备屏幕触发                                                   |
+| node:dbltap    | 快速双击屏幕触发                                                   |
+| node:dragstart | 当节点开始被拖拽的时候触发的事件，此事件作用在被拖曳节点上         |
+| node:drag      | 当节点在拖动过程中时触发的事件，此事件作用于被拖拽节点上           |
+| node:dragend   | 当拖拽完成后触发的事件，此事件作用在被拖曳节点上                   |
+| node:dragenter | 当拖曳节点进入目标元素的时候触发的事件，此事件作用在目标元素上     |
+| node:dragleave | 当拖曳节点离开目标元素的时候触发的事件，此事件作用在目标元素上     |
+| node:dragover  | 当拖曳节点在另一目标元素上移动时触发此事件，此事件作用在目标元素上 |
+| node:drop      | 被拖拽的节点在目标元素上同时放开触发的事件，此事件作用在目标元素上 |
+| node:panstart  | 在触控屏上，当节点开始被触碰的时候触发的事件                       |
+| node:panmove   | 在触控屏上，当节点开始被触碰过程中触发的事件                       |
+| node:panend    | 在触控屏上，当节点开始被触碰结束的时候触发的事件                   |
 
 ### Edge 交互事件
 
-| 事件名称 | 描述 |
-| --- | --- |
-| edge:click | 鼠标**左键**单击边时触发 |
-| edge:dblclick | 鼠标双击**左键**边时触发，同时会触发两次 edge:click |
-| edge:mouseenter | 鼠标移入边时触发 |
-| edge:mousemove | 鼠标在边上移到时不断触发，不能通过键盘触发 |
-| edge:mouseout | 鼠标移出边后触发 |
-| edge:mouseover | 鼠标移入边上方时触发 |
-| edge:mouseleave | 鼠标移出边时触发 |
-| edge:mousedown | 鼠标按钮在边上按下（左键或者右键）时触发，不能通过键盘触发 |
-| edge:mouseup | 边上按下的鼠标按钮被释放弹起时触发，不能通过键盘触发 |
-| edge:dragenter | 当拖曳元素进入目标边元素的时候触发的事件，此事件作用在目标边元素上 |
-| edge:dragleave | 当拖曳元素离开目标边元素的时候触发的事件，此事件作用在目标边元素上 |
-| edge:dragover | 当拖曳元素在另一目标边上移动时触发此事件，此事件作用在目标边元素上 |
-| edge:drop | 被拖拽的元素在目标边元素上同时鼠标放开触发的事件，此事件作用在目标边元素上 |
-| edge:contextmenu | 用户在边上右击鼠标时触发并打开右键菜单，见 [Demo](/zh/examples/tool/contextMenu) |
+| 事件名称       | 描述                                                                   |
+| -------------- | ---------------------------------------------------------------------- |
+| edge:tap       | 点击设备屏幕触发                                                       |
+| edge:dbltap    | 快速双击屏幕触发                                                       |
+| edge:dragenter | 当拖曳元素进入目标边元素的时候触发的事件，此事件作用在目标边元素上     |
+| edge:dragleave | 当拖曳元素离开目标边元素的时候触发的事件，此事件作用在目标边元素上     |
+| edge:dragover  | 当拖曳元素在另一目标边上移动时触发此事件，此事件作用在目标边元素上     |
+| edge:drop      | 被拖拽的元素在目标边元素上同时放开触发的事件，此事件作用在目标边元素上 |
 
 ### Combo 交互事件
 
@@ -118,27 +91,19 @@ Combo 继承所有 Node 事件。
 
 ### Canvas 交互事件
 
-| 事件名称 | 描述 |
-| --- | --- |
-| canvas:click | 鼠标**左键**单击画布时触发 |
-| canvas:dblclick | 鼠标双击**左键**画布时触发 |
-| canvas:mouseenter | 鼠标移入画布时触发 |
-| canvas:mousemove | 鼠标在画布内部移到时不断触发，不能通过键盘触发 |
-| canvas:mouseout | 鼠标移出画布后触发 |
-| canvas:mouseover | 鼠标移入画布上方时触发 |
-| canvas:mouseleave | 鼠标移出画布时触发 |
-| canvas:mousedown | 鼠标按钮在画布上按下（左键或者右键）时触发，不能通过键盘触发 |
-| canvas:mouseup | 画布上按下的鼠标按钮被释放弹起时触发，不能通过键盘触发 |
-| canvas:contextmenu | 用户在画布上右击鼠标时触发并打开右键菜单，见 [Demo](/zh/examples/tool/contextMenu) |
-| canvas:dragstart | 当画布开始被拖拽的时候触发的事件，此事件作用在被拖曳画布上 |
-| canvas:drag | 当画布在拖动过程中时触发的事件，此事件作用于被拖拽画布上 |
-| canvas:dragend | 当拖拽完成后触发的事件，此事件作用在被拖曳画布上 |
-| canvas:dragenter | 当拖曳画布进入目标元素的时候触发的事件，此事件作用在目标画布上 |
-| canvas:dragleave | 当拖曳画布离开目标元素的时候触发的事件，此事件作用在目标画布上 |
-| canvas:drop | 被拖拽的元素在空白画布上同时鼠标放开触发的事件，此事件作用在目标画布上 |
-| canvas:touchstart | 在触控屏上，当画布开始被触碰的时候触发的事件 |
-| canvas:touchmove | 在触控屏上，当画布开始被触碰过程中触发的事件 |
-| canvas:touchend | 在触控屏上，当画布开始被触碰结束的时候触发的事件 |
+| 事件名称         | 描述                                                               |
+| ---------------- | ------------------------------------------------------------------ |
+| canvas:tap       | 点击画布时触发                                                     |
+| canvas:dbltap    | 双击画布时触发                                                     |
+| canvas:dragstart | 当画布开始被拖拽的时候触发的事件，此事件作用在被拖曳画布上         |
+| canvas:drag      | 当画布在拖动过程中时触发的事件，此事件作用于被拖拽画布上           |
+| canvas:dragend   | 当拖拽完成后触发的事件，此事件作用在被拖曳画布上                   |
+| canvas:dragenter | 当拖曳画布进入目标元素的时候触发的事件，此事件作用在目标画布上     |
+| canvas:dragleave | 当拖曳画布离开目标元素的时候触发的事件，此事件作用在目标画布上     |
+| canvas:drop      | 被拖拽的元素在空白画布上同时放开触发的事件，此事件作用在目标画布上 |
+| canvas:panstart  | 在触控屏上，当画布开始被触碰的时候触发的事件                       |
+| canvas:panmove   | 在触控屏上，当画布开始被触碰过程中触发的事件                       |
+| canvas:panend    | 在触控屏上，当画布开始被触碰结束的时候触发的事件                   |
 
 ## 时机事件
 

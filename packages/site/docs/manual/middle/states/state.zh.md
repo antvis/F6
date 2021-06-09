@@ -11,7 +11,7 @@ F6 中的 **state**，指的是节点或边的状态，包括**交互状态**和
 
 ### 交互状态
 
-交互状态是与具体的交互动作密切相关的，如用户使用鼠标选中某个节点则该节点被选中，hover 到某条边则该边被高亮等。
+交互状态是与具体的交互动作密切相关的，如用户使用选中某个节点则该节点被选中，hover 到某条边则该边被高亮等。
 
 F6 中默认处理的是交互状态。
 
@@ -77,14 +77,14 @@ graph.setItemState(item, 'stateName', 'stateValue');
 在回调函数中使定义的交互状态 hover 生效。
 
 ```javascript
-graph.on('node:mouseenter', (evt) => {
+graph.on('node:tap', (evt) => {
   const { item } = evt;
-  graph.setItemState(item, 'hover', true);
+  graph.setItemState(item, 'tap', true);
 });
 
-graph.on('node:mouseleave', (evt) => {
+graph.on('node:dbltap', (evt) => {
   const { item } = evt;
-  graph.setItemState(item, 'hover', false);
+  graph.setItemState(item, 'tap', false);
 });
 ```
 
@@ -96,10 +96,10 @@ graph.on('node:mouseleave', (evt) => {
 F6.registerBehavior('nodeClick', {
   getEvents() {
     return {
-      'node:click': 'onClick',
+      'node:tap': 'onTap',
     };
   },
-  onClick(e) {
+  onTap(e) {
     e.preventDefault();
     if (!this.shouldUpdate.call(this, e)) {
       return;
@@ -321,7 +321,7 @@ graph.clearItemStates(item, ['bodyState:health', 'selected', 'active']);
 
 ## 状态优先级
 
-有时候，各个状态的样式之间可能有冲突，需要控制哪一状态的样式优先显示。F6 不提供显式设置状态优先级的方法，所有状态遵循：后设置的状态（通过 `graph.setItemState`）优先级高于前者。用户可以通过 `hasState` 方法判断元素的某种状态是否是激活态，从而判断是否应该激活另一个状态。这一逻辑完全由业务用户控制，实现这种控制也非常简单。例如，一般情况下，鼠标 hover 到某个节点后，该节点会高亮，但希望当该节点处于 active 状态时，鼠标 hover 上去后也不要覆盖 active 的状态，即 active 优先级高于 hover。
+有时候，各个状态的样式之间可能有冲突，需要控制哪一状态的样式优先显示。F6 不提供显式设置状态优先级的方法，所有状态遵循：后设置的状态（通过 `graph.setItemState`）优先级高于前者。用户可以通过 `hasState` 方法判断元素的某种状态是否是激活态，从而判断是否应该激活另一个状态。这一逻辑完全由业务用户控制，实现这种控制也非常简单。
 
 ```javascript
 // 设置节点处于 active 状态

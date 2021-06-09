@@ -27,8 +27,8 @@ F6.registerBehavior('drag-canvas-exclude-lockedNode', {
     return {
       'canvas:mousedown': 'onMouseDown',
       'canvas:mousemove': 'onMouseMove',
-      'canvas:mouseup': 'onMouseUp',
-      'canvas:click': 'onMouseUp',
+      'canvas:mouseup': 'onTap',
+      'canvas:tap': 'onTap',
       'canvas:mouseleave': 'onOutOfRange',
       keyup: 'onKeyUp',
       keydown: 'onKeyDown',
@@ -95,7 +95,7 @@ F6.registerBehavior('drag-canvas-exclude-lockedNode', {
       this.updateViewport(e);
     }
   },
-  onMouseUp(e) {
+  onTap(e) {
     if (this.keydown) {
       return;
     }
@@ -125,14 +125,13 @@ F6.registerBehavior('drag-canvas-exclude-lockedNode', {
       }
     }
   },
-  // 若在拖拽时，鼠标移出画布区域，此时放开鼠标无法终止 drag 行为。在画布外监听 mouseup 事件，放开则终止
   onOutOfRange(e) {
     if (this.dragging) {
       const self = this;
       const canvasElement = self.graph.get('canvas').get('el');
       const fn = (ev) => {
         if (ev.target !== canvasElement) {
-          self.onMouseUp(e);
+          self.onTap(e);
         }
       };
       this.fn = fn;
