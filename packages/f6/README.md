@@ -1,4 +1,4 @@
-### F6 Mobile
+### F6
 
 ## Usage
 
