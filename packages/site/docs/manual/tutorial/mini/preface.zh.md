@@ -26,7 +26,7 @@ order: 0
 - 图的交互 Behavior
 - 插件 & 工具
 - \*动画（选读）
-- \*微信中使用 F6（选读）
+- \*[微信中使用 F6（选读）](/zh/docs/manual/tutorial/mini/wechat)
 
 `提示` <br />该入门教程是为希望“边学边做”的读者设计的。如果您更希望从底层概念开始学习 F6，您可以参见：[核心概念](/zh/docs/manual/middle/graph)。
 

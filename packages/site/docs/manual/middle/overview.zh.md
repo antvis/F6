@@ -3,7 +3,7 @@ title: F6 核心概念总览
 order: 0
 ---
 
-F6 与 F6 保持了相同的设计，整体架构可以参考下图
+F6 与 [G6](https://g6.antv.vision/zh/docs/manual/middle/overview) 保持了相同的设计，整体架构可以参考下图
 
 <img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*I0RoTKgsvSEAAAAAAAAAAAAAARQnAQ' width='750' alt='F6 Main concepts overview'/>
 

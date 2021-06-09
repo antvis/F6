@@ -215,7 +215,7 @@ graph.render(); // 渲染图
 
 ## 完整代码
 
-⚠️ 注意：本示例通过支付宝小程序进行演示，如需在微信中使用，参考[微信中使用 F6](/zh/docs/manual/tutorial/wechat)
+⚠️ 注意：本示例通过支付宝小程序进行演示，如需在微信中使用，参考[微信中使用 F6](/zh/docs/manual/tutorial/mini/wechat)
 
 <iframe src="https://herbox-embed.alipay.com/p/f6/simple?editorSlider=expand&previewZoom=100&defaultOpenedFiles=pages/index/index.js" width="100%" height=800/>
 
