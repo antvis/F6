@@ -13,6 +13,12 @@ order: 7
 
 ![](https://gw.alipayobjects.com/mdn/rms_5c3b4a/afts/img/A*9YXpSqJ9jAkAAAAAAAAAAAAAARQnAQ)
 
+### 初始化
+
+```
+npm init
+```
+
 ### 安装依赖
 
 首先安装 F6 和 F6 微信小程序组件，使用小程序组件可以省去很多功夫
