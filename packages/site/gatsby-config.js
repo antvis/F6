@@ -256,13 +256,28 @@ module.exports = {
         },
         order: 6,
       },
-
       {
         slug: 'examples/case',
         icon: 'gallery',
         title: {
           zh: '场景案例',
           en: 'Case',
+        },
+      },
+      {
+        slug: 'examples/case/customTree',
+        icon: 'gallery',
+        title: {
+          zh: '自定义树',
+          en: 'customTree',
+        },
+      },
+      {
+        slug: 'examples/case/newsDemo',
+        icon: 'gallery',
+        title: {
+          zh: '新闻图可视化',
+          en: 'newsDemo',
         },
       },
       {
