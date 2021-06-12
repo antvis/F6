@@ -38,7 +38,7 @@ module.exports = {
         },
       },
       {
-        slug: 'examples',
+        slug: 'docs/examples/gallery',
         title: {
           zh: '图表示例',
           en: 'Examples',
@@ -256,10 +256,9 @@ module.exports = {
         },
         order: 6,
       },
-    ],
-    examples: [
+
       {
-        slug: 'case',
+        slug: 'examples/case',
         icon: 'gallery',
         title: {
           zh: '场景案例',
@@ -267,7 +266,7 @@ module.exports = {
         },
       },
       {
-        slug: 'gallery',
+        slug: 'examples/gallery',
         icon: 'gallery',
         title: {
           zh: '所有图表',
@@ -275,7 +274,7 @@ module.exports = {
         },
       },
       {
-        slug: 'tree',
+        slug: 'examples/tree',
         icon: 'tree', // 图标名可以去 https://antv.alipay.com/zh-cn/g2/3.x/demo/index.html 打开控制台查看图标类名
         title: {
           zh: '树图',
@@ -283,7 +282,7 @@ module.exports = {
         },
       },
       {
-        slug: 'net',
+        slug: 'examples/net',
         icon: 'net',
         title: {
           zh: '一般图',
@@ -291,7 +290,7 @@ module.exports = {
         },
       },
       {
-        slug: 'graphql',
+        slug: 'examples/graphql',
         icon: 'graphql',
         title: {
           zh: '其他表达形式',
@@ -299,7 +298,7 @@ module.exports = {
         },
       },
       {
-        slug: 'item',
+        slug: 'examples/item',
         icon: 'shape',
         title: {
           zh: '元素',
@@ -307,7 +306,7 @@ module.exports = {
         },
       },
       {
-        slug: 'interaction',
+        slug: 'examples/interaction',
         icon: 'interaction',
         title: {
           zh: '交互',
@@ -315,7 +314,7 @@ module.exports = {
         },
       },
       {
-        slug: 'scatter',
+        slug: 'examples/scatter',
         icon: 'scatter',
         title: {
           zh: '动画',
@@ -323,7 +322,7 @@ module.exports = {
         },
       },
       {
-        slug: 'tool',
+        slug: 'examples/tool',
         icon: 'tool',
         title: {
           zh: '组件',
@@ -331,7 +330,7 @@ module.exports = {
         },
       },
       {
-        slug: 'algorithm',
+        slug: 'examples/algorithm',
         icon: 'gallery',
         title: {
           zh: '算法',
@@ -339,7 +338,7 @@ module.exports = {
         },
       },
       {
-        slug: 'performance',
+        slug: 'examples/performance',
         icon: 'net',
         title: {
           zh: '性能测试',

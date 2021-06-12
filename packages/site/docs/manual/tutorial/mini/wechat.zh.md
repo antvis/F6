@@ -19,6 +19,8 @@ order: 7
 npm init
 ```
 
+⚠️：如果对微信小程序下 npm 包使用不了解，可以点击[这里](https://developers.weixin.qq.com/miniprogram/dev/devtools/npm.html)
+
 ### 安装依赖
 
 首先安装 F6 和 F6 微信小程序组件，使用小程序组件可以省去很多功夫
