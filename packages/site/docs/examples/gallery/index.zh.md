@@ -13,27 +13,11 @@ order: -1
 
 <img width=280 height=130 src="https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*2J5YTbvU5FoAAAAAAAAAAAAAARQnAQ">
 
-## [大规模图下钻式探索](/zh/docs/examples/case/largeGraph)
-
-<img width=280 height=130 src="https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*a6N9Q6q44Q0AAAAAAAAAAAAAARQnAQ">
-
 ## 新闻图可视化
-
-### [圣诞推文可视化](/zh/docs/examples/case/newsDemo#christmasBubbles)
-
-<img width=280 height=130 src="https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*yRU1QZbcQN4AAAAAAAAAAABkARQnAQ">
-
-### [澳大利亚大火](/zh/docs/examples/case/newsDemo#australiaFire)
-
-<img width=280 height=130 src="https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*WLzKQpZl5QEAAAAAAAAAAABkARQnAQ">
 
 ### 地铁线路图
 
 <img width=280 height=130 src="https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*1MS4TbqujQAAAAAAAAAAAABkARQnAQ">
-
-### 美国迁徙图边绑定
-
-<img width=280 height=130 src="https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*z9iXQq_kcrYAAAAAAAAAAABkARQnAQ">
 
 ## 经典案例
 
@@ -313,40 +297,6 @@ order: -1
 
 <img width=280 height=130 src="https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*GK34T7F1_CYAAAAAAAAAAABkARQnAQ">
 
-## GPU 图布局
-
-### GPU Fruchterman 小数据
-
-<img width=280 height=130 src="https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*1KY7SLEXxqMAAAAAAAAAAABkARQnAQ">
-
-### GPU Fruchterman 复杂数据
-
-<img width=280 height=130 src="https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*0sl9RZ7Cp28AAAAAAAAAAABkARQnAQ">
-
-### GPU Fruchterman 复杂数据 + WebWorker
-
-<img width=280 height=130 src="https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*0sl9RZ7Cp28AAAAAAAAAAABkARQnAQ">
-
-### GPU Fruchterman 聚类布局
-
-<img width=280 height=130 src="https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*WO1OTbNE_ugAAAAAAAAAAABkARQnAQ">
-
-### GPU Fruchterman 布局参数动态变化
-
-<img width=280 height=130 src="https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*W9MoQoKaQbYAAAAAAAAAAABkARQnAQ">
-
-### GPU gForce 小数据
-
-<img width=280 height=130 src="https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*W9MoQoKaQbYAAAAAAAAAAABkARQnAQ">
-
-### GPU gForce 复杂数据
-
-<img width=280 height=130 src="https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*2lg0SYvEiusAAAAAAAAAAAAAARQnAQ">
-
-### CPU gForce 小数据
-
-<img width=280 height=130 src="https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*lX-qSqDECrIAAAAAAAAAAAAAARQnAQ">
-
 ## 布局机制
 
 ### 布局切换
@@ -372,12 +322,6 @@ order: -1
 ### 布局时机监听
 
 <img width=280 height=130 src="https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*tdRuSbgJAZ8AAAAAAAAAAABkARQnAQ">
-
-## AI 智能布局推荐
-
-### 自动布局推荐
-
-<img width=280 height=130 src="https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*eZRNQ4tpkecAAAAAAAAAAAAAARQnAQ">
 
 ## 内置节点
 
@@ -807,96 +751,11 @@ order: -1
 ### 局部图形响应提示框 behavior-自定义节点
 
 <img width=280 height=130 src="https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*bIHUToKq6OYAAAAAAAAAAABkARQnAQ">
-
-## 上下文菜单
-
-### 上下文菜单
-
-<img width=280 height=130 src="https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*YtBHR5akE2gAAAAAAAAAAABkARQnAQ">
-
-## Minimap
-
-### 小地图
-
-<img width=280 height=130 src="https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*r3dAQo-R3BoAAAAAAAAAAABkARQnAQ">
-
-### 使用图片的小地图
-
-<img width=280 height=130 src="https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*r3dAQo-R3BoAAAAAAAAAAABkARQnAQ">
-
 ## 边绑定
 
 ### 边绑定
 
 <img width=280 height=130 src="https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*7g4iRqVfkHQAAAAAAAAAAABkARQnAQ">
-
-## 工具栏
-
-### 工具栏
-
-<img width=280 height=130 src="https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*MhpmS68lZW0AAAAAAAAAAABkARQnAQ">
-
-### 自定义工具栏
-
-<img width=280 height=130 src="https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*ljOiTJAuQnIAAAAAAAAAAABkARQnAQ">
-
-## 时间轴
-
-### 趋势时间轴
-
-<img width=280 height=130 src="https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*lfvIQJYbs7oAAAAAAAAAAAAAARQnAQ">
-
-### 简易时间轴
-
-<img width=280 height=130 src="https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*g2zhQqP6ruYAAAAAAAAAAAAAARQnAQ">
-
-### 刻度时间轴
-
-<img width=280 height=130 src="https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*n6ECQ7Jn5pQAAAAAAAAAAAAAARQnAQ">
-
-## 鱼眼放大镜
-
-### 鱼眼放大镜
-
-<img width=280 height=130 src="https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*kHtkQ5N4TNEAAAAAAAAAAABkARQnAQ">
-
-### 鱼眼放大镜样式
-
-<img width=280 height=130 src="https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*kHtkQ5N4TNEAAAAAAAAAAABkARQnAQ">
-
-## 边过滤镜
-
-### 边过滤镜
-
-<img width=280 height=130 src="https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*elTYSJwOR7MAAAAAAAAAAAAAARQnAQ">
-
-### 更多配置
-
-<img width=280 height=130 src="https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*ZkZ4Q6JeIaQAAAAAAAAAAAAAARQnAQ">
-
-## 对齐线
-
-### 对齐线
-
-<img width=280 height=130 src="https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*fRMFSZCjuoMAAAAAAAAAAAAAARQnAQ">
-
-### 自定义对齐线样式
-
-<img width=280 height=130 src="https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*G-vPSa3I1lkAAAAAAAAAAAAAARQnAQ">
-
-## 图例 Legend
-
-### 图例-点击筛选
-
-<img width=280 height=130 src="https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*0RYmToKWsOQAAAAAAAAAAAAAARQnAQ">
-
-### 图例-Hover 筛选
-
-<img width=280 height=130 src="https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*ftAtR6k9RWIAAAAAAAAAAAAAARQnAQ">
-
-### 图例-点击筛选 2
-
-<img width=280 height=130 src="https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*nCTfRq6522kAAAAAAAAAAAAAARQnAQ">
 
 ## 算法示例
 

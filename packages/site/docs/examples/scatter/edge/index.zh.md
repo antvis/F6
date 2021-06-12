@@ -13,4 +13,14 @@ order: 1
 - 虚线运动的效果；
 - 线从无到有的效果。
 
-G6 中更多关于动画的内容，请参考[动画文档](/zh/docs/manual/middle/animation)。
+F6 中更多关于动画的内容，请参考[动画文档](/zh/docs/manual/middle/animation)。
+
+## 圆点沿边运动
+
+<iframe src="https://herbox-embed.alipay.com/p/f6/demo_animation_pointinline?editorSlider=expand&previewZoom=100" width="100%" height=800/>
+
+## 虚线运动
+
+<iframe src="https://herbox-embed.alipay.com/p/f6/demo_animation_edge_edge?editorSlider=expand&previewZoom=100" width="100%" height=800/>
+## 无到有的边
+<iframe src="https://herbox-embed.alipay.com/p/f6/demo_animation_edge_linegrowth?editorSlider=expand&previewZoom=100" width="100%" height=800/>

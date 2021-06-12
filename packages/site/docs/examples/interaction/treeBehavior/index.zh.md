@@ -17,3 +17,11 @@ order: 1
 ## 合并同类兄弟节点
 
 展示合并同类兄弟节点的交互。
+
+## 使用 changeData
+
+<iframe src="https://herbox-embed.alipay.com/p/f6/demo_interactive_changedata?editorSlider=expand&previewZoom=100" width="100%" height=800/>
+
+## 使用 addChild
+
+<iframe src="https://herbox-embed.alipay.com/p/f6/demo_interactive_addchild?editorSlider=expand&previewZoom=100" width="100%" height=800/>

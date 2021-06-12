@@ -8,3 +8,11 @@ order: 1
 ## 使用指南
 
 生态树适用于展示树结构数据，配合 TreeGraph 使用。如下面代码所示，可在实例化 TreeGraph 时使用该布局。
+
+## 生态树
+
+<iframe src="https://herbox-embed.alipay.com/p/f6/demo_treegraph_basicdendrogram?editorSlider=expand&previewZoom=100" width="100%" height=800/>
+
+## 至上而下的生态树
+
+<iframe src="https://herbox-embed.alipay.com/p/f6/demo_treegraph_tbdendrogram?editorSlider=expand&previewZoom=100" width="100%" height=800/>

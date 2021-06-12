@@ -22,3 +22,19 @@ order: 2
 - **getVGap**: Number | Function 类型，每个节点的垂直间隙。
 
 - **getSide**: Function 类型，节点排布在根节点的左侧/右侧。若设置了该值，则所有节点会在根节点同一侧，即 direction = 'H' 不再起效。若该参数为回调函数，则可以指定每一个节点在根节点的左/右侧。如代码演示 2、3、4。
+
+## 脑图树-子节点自动两侧分布
+
+<iframe src="https://herbox-embed.alipay.com/p/f6/demo_treegraph_mindmap?editorSlider=expand&previewZoom=100" width="100%" height=800/>
+
+## 脑图树-子节点右侧分布
+
+<iframe src="https://herbox-embed.alipay.com/p/f6/demo_treegraph_rightmindmap?editorSlider=expand&previewZoom=100" width="100%" height=800/>
+
+## 脑图树-子节点左侧分布
+
+<iframe src="https://herbox-embed.alipay.com/p/f6/demo_treegraph_leftmindmap?editorSlider=expand&previewZoom=100" width="100%" height=800/>
+
+## 脑图树-自定义子节点分布
+
+<iframe src="https://herbox-embed.alipay.com/p/f6/demo_treegraph_customsidemindmap?editorSlider=expand&previewZoom=100" width="100%" height=800/>

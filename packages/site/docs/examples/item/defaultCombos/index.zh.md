@@ -8,3 +8,11 @@ order: 2
 ## 何时使用
 
 用户可根据具体的业务场景，选择合适的内置 Combo。更多内容请参考 [内置 Combo](/zh/docs/manual/middle/elements/combos/built-in/circle)。
+
+## 圆形
+
+<iframe src="https://herbox-embed.alipay.com/p/f6/demo_interactive_combo_circle?editorSlider=expand&previewZoom=100" width="100%" height=800/>
+
+## 矩形
+
+<iframe src="https://herbox-embed.alipay.com/p/f6/demo_interactive_combo_rect?editorSlider=expand&previewZoom=100" width="100%" height=800/>

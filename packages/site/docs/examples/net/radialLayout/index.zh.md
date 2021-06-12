@@ -7,7 +7,7 @@ Radial 辐射布局根据参数中指定的 focusNode 为中心点，根据其�
 
 ## 使用指南
 
-G6 内置的 Radial 布局可在实例化 Graph 时使用该布局。除此之外，还可以如[子图布局](/zh/docs/manual/middle/layout/sub-layout)所示单独使用布局。该布局可以通过配置调整辐射半径、节点不重叠、不严格的辐射布局等。
+F6 内置的 Radial 布局可在实例化 Graph 时使用该布局。除此之外，还可以如[子图布局](/zh/docs/manual/middle/layout/sub-layout)所示单独使用布局。该布局可以通过配置调整辐射半径、节点不重叠、不严格的辐射布局等。
 
 - 代码演示 1 ：基本的 Radial 布局。
 - 代码演示 2 ：根据不同的节点大小计算节点不重叠。
@@ -15,3 +15,7 @@ G6 内置的 Radial 布局可在实例化 Graph 时使用该布局。除此之�
 - 代码演示 4 ：利用子图布局机制可以实现点击节点进行扩展的功能，请尝试点击 2 号节点。
 - 代码演示 5 ：Radial 布局参数动态变化。
 - 代码演示 6 ：同层节点按照指定字段聚类。
+
+## 基本 Radial 辐射布局
+
+<iframe src="https://herbox-embed.alipay.com/p/f6/demo_generalgraph_basicradial?editorSlider=expand&previewZoom=100" width="100%" height=800/>

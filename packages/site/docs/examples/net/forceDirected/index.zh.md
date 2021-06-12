@@ -7,7 +7,7 @@ order: 0
 
 ## 使用指南
 
-G6 内置的经典力导向算法引用了 d3.js 的力导向算法。如下面代码所示，可在实例化 Graph 时使用该布局。除此之外，还可以如[子图布局](/zh/docs/manual/middle/layout/sub-layout)所示单独使用布局。
+F6 内置的经典力导向算法引用了 d3.js 的力导向算法。如下面代码所示，可在实例化 Graph 时使用该布局。除此之外，还可以如[子图布局](/zh/docs/manual/middle/layout/sub-layout)所示单独使用布局。
 
 - 代码演示 1 ：基础的经典力导向布局及节点的拖拽。
 - 代码演示 2 ：节点不重叠。
@@ -16,3 +16,7 @@ G6 内置的经典力导向算法引用了 d3.js 的力导向算法。如下面�
 - 代码演示 5 ：支持布局参数的动态切换。
 - 代码演示 6 ：使用力导向算法实现气泡效果及交互。
 - 代码演示 7 ：约束在一定范围内进行力导向布局。
+
+## 基本力导向布局及节点拖拽
+
+<iframe src="https://herbox-embed.alipay.com/p/f6/demo_generalgraph_basicforcedirected?editorSlider=expand&previewZoom=100" width="100%" height=800/>

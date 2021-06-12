@@ -12,7 +12,7 @@ order: 8
 设置边的背景：
 
 ```
-const graph = new G6.Graph({
+const graph = new F6.Graph({
   // ...
   defaultNode: {
     position: 'left',
@@ -32,7 +32,7 @@ const graph = new G6.Graph({
 设置节点 label 的背景：
 
 ```
-const graph = new G6.Graph({
+const graph = new F6.Graph({
   // ...
   defaultEdge: {
     autoRotate: true,
@@ -47,3 +47,11 @@ const graph = new G6.Graph({
   }
 })
 ```
+
+## 设置节点文本背景
+
+<iframe src="https://herbox-embed.alipay.com/p/f6/demo_elements_nodebg?editorSlider=expand&previewZoom=100" width="100%" height=800/>
+
+## 设置边上文本背景
+
+<iframe src="https://herbox-embed.alipay.com/p/f6/demo_elements_edgebg?editorSlider=expand&previewZoom=100" width="100%" height=800/>

@@ -10,3 +10,11 @@ order: 4
 辐射树是通过生态树、紧凑树布局的变形。适用于展示树结构数据，配合 TreeGraph 使用。如下面代码所示，可在实例化 TreeGraph 时使用该布局。
 
 使用方式与对应的生态树、紧凑树相同，配置 `radial` 为 `true` 时，将会以辐射形式展示树。在使用辐射树时建议将布局的 `direction` 配置为 `LR` 或 `RL`。
+
+## 生态辐射树
+
+<iframe src="https://herbox-embed.alipay.com/p/f6/demo_treegraph_radialdendrogram?editorSlider=expand&previewZoom=100" width="100%" height=800/>
+
+## 紧凑辐射树
+
+<iframe src="https://herbox-embed.alipay.com/p/f6/demo_treegraph_radialcompactbox?editorSlider=expand&previewZoom=100" width="100%" height=800/>

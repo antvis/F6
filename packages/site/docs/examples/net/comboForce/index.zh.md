@@ -8,3 +8,7 @@ order: 10
 ## 使用指南
 
 在有 Combo 的图上，推荐使用 `'comboForce'` 布局。其他内置布局将不会考虑 Combo 信息对布局的影响。
+
+## 基本 Combo 力导向布局
+
+<iframe src="https://herbox-embed.alipay.com/p/f6/demo_generalgraph_basiccomboforce?editorSlider=expand&previewZoom=100" width="100%" height=800/>

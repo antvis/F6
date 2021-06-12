@@ -258,7 +258,6 @@ module.exports = {
       },
       {
         slug: 'examples/case',
-        icon: 'gallery',
         title: {
           zh: '场景案例',
           en: 'Case',
@@ -266,7 +265,6 @@ module.exports = {
       },
       {
         slug: 'examples/case/customTree',
-        icon: 'gallery',
         title: {
           zh: '自定义树',
           en: 'customTree',
@@ -274,10 +272,16 @@ module.exports = {
       },
       {
         slug: 'examples/case/newsDemo',
-        icon: 'gallery',
         title: {
           zh: '新闻图可视化',
           en: 'newsDemo',
+        },
+      },
+      {
+        slug: 'examples/case/simpleCase',
+        title: {
+          zh: '经典案例',
+          en: 'simpleCase',
         },
       },
       {

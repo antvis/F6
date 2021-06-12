@@ -11,3 +11,11 @@ order: 6
 
 - 第一个示例：带有动画地移动图；
 - 第二个示例：不带动画移动图。
+
+## 点击节点带有动画地移动到画布中心
+
+<iframe src="https://herbox-embed.alipay.com/p/f6/demo_interactive_moveanimate?editorSlider=expand&previewZoom=100" width="100%" height=800/>
+
+## 点击节点移动到画布中心
+
+<iframe src="https://herbox-embed.alipay.com/p/f6/demo_interactive_move?editorSlider=expand&previewZoom=100" width="100%" height=800/>

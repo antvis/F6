@@ -8,3 +8,7 @@ order: 13
 ## 使用指南
 
 配置内置交互 'drag-canvas' 和 'zoom-canvas' 的布尔型配置项 `enableOptimize`。详见 [drag-canvas](/zh/docs/manual/middle/states/defaultBehavior#drag-canvas) 和 [zoom-canvas](/zh/docs/manual/middle/states/defaultBehavior#zoom-canvas)。
+
+## 拖拽画布时隐藏节点 keyShape 外所有图形
+
+<iframe src="https://herbox-embed.alipay.com/p/f6/demo_interactive_hideitem?editorSlider=expand&previewZoom=100" width="100%" height=800/>

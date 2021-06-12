@@ -12,3 +12,15 @@ redirect_from:
 紧凑树适用于展示树结构数据，配合 TreeGraph 使用。如下面代码所示，可在实例化 TreeGraph 时使用该布局。
 
 其配置项中 Function 类型的配置项可以为不同的元素配置不同的值。具体描述请查看相关教程。
+
+## 紧凑树
+
+<iframe src="https://herbox-embed.alipay.com/p/f6/demo_treegraph_compactbox?editorSlider=expand&previewZoom=100" width="100%" height=800/>
+
+## 至上而下的紧凑树
+
+<iframe src="https://herbox-embed.alipay.com/p/f6/demo_treegraph_tbcompactbox?editorSlider=expand&previewZoom=100" width="100%" height=800/>
+
+## 节点左对齐的紧凑树
+
+<iframe src="https://herbox-embed.alipay.com/p/f6/demo_treegraph_compactboxleftalign?editorSlider=expand&previewZoom=100" width="100%" height=800/>

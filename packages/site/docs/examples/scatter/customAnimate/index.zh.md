@@ -9,4 +9,6 @@ order: 5
 
 当需要对已有的节点，做统一的自定义动画效果时，可以使用这种方式来实现。
 
-G6 中更多关于动画的内容，请参考[动画文档](/zh/docs/manual/middle/animation)。
+F6 中更多关于动画的内容，请参考[动画文档](/zh/docs/manual/middle/animation)。
+
+<iframe src="https://herbox-embed.alipay.com/p/f6/demo_animation_customanimate_position?editorSlider=expand&previewZoom=100" width="100%" height=800/>
