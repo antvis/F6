@@ -38,7 +38,7 @@ module.exports = {
         },
       },
       {
-        slug: 'docs/examples/gallery',
+        slug: 'docs/examples/tree/compactBox',
         title: {
           zh: '图表示例',
           en: 'Examples',
@@ -284,14 +284,15 @@ module.exports = {
           en: 'simpleCase',
         },
       },
-      {
-        slug: 'examples/gallery',
-        icon: 'gallery',
-        title: {
-          zh: '所有图表',
-          en: 'All Demos',
-        },
-      },
+      // 暂时隐藏起来
+      //{
+      //  slug: 'examples/gallery',
+      //  icon: 'gallery',
+      //  title: {
+      //    zh: '所有图表',
+      //    en: 'All Demos',
+      //  },
+      //},
       {
         slug: 'examples/tree',
         icon: 'tree', // 图标名可以去 https://antv.alipay.com/zh-cn/g2/3.x/demo/index.html 打开控制台查看图标类名
