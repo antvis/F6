@@ -52,9 +52,13 @@ export const BasicDemo = () => {
         modes: {
           default: [
             'zoom-canvas',
-            'drag-node',
+            //'drag-node',
             'click-select',
             'activate-relations',
+            {
+              type: 'drag-canvas',
+              allowDragOnItem: false,
+            },
             {
               type: 'brush-select',
               trigger: 'ctrl',
