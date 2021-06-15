@@ -22,10 +22,9 @@ export default {
   },
   getEvents(): { [key in G6Event]?: string } {
     return {
-      'canvas:dragstart': 'onDragStart',
-      'canvas:drag': 'onDragMove',
-      'canvas:dragend': 'onDragEnd',
-      'canvas:tap': 'onDragEnd',
+      dragstart: 'onDragStart',
+      drag: 'onDragMove',
+      dragend: 'onDragEnd',
     };
   },
   updateViewport(e: IG6GraphEvent) {
