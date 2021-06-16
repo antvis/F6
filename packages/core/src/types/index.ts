@@ -18,7 +18,6 @@ export interface IG6GraphEvent extends GraphEvent {
   clientY: number;
   x: number;
   y: number;
-  wheelDelta: number;
   detail: number;
   key?: string;
   target: IShapeBase & ICanvas;
@@ -578,14 +577,7 @@ export enum G6Event {
   // common events
   CLICK = 'click',
   DBLCLICK = 'dblclick',
-  MOUSEDOWN = 'mousedown',
-  MOUDEUP = 'mouseup',
-  CONTEXTMENU = 'contextmenu',
-  MOUSEENTER = 'mouseenter',
-  MOUSEOUT = 'mouseout',
-  MOUSEOVER = 'mouseover',
-  MOUSEMOVE = 'mousemove',
-  MOUSELEAVE = 'mouseleave',
+  DBLTAP = 'dbltap',
   DRAGSTART = 'dragstart',
   DRAGEND = 'dragend',
   DRAG = 'drag',
@@ -594,11 +586,6 @@ export enum G6Event {
   DRAGOVER = 'dragover',
   DRAGOUT = 'dragout',
   DDROP = 'drop',
-  KEYUP = 'keyup',
-  KEYDOWN = 'keydown',
-  WHEEL = 'wheel',
-  FOCUS = 'focus',
-  BLUR = 'blur',
 
   // touch events
   TOUCHSTART = 'touchstart',
@@ -618,16 +605,8 @@ export enum G6Event {
   EDGE_TOUCHEND = 'edge:touchend',
 
   // node events
-  NODE_CONTEXTMENU = 'node:contextmenu',
   NODE_CLICK = 'node:click',
   NODE_DBLCLICK = 'node:dblclick',
-  NODE_MOUSEDOWN = 'node:mousedown',
-  NODE_MOUSEUP = 'node:mouseup',
-  NODE_MOUSEENTER = 'node:mouseenter',
-  NODE_MOUSELEAVE = 'node:mouseleave',
-  NODE_MOUSEMOVE = 'node:mousemove',
-  NODE_MOUSEOUT = 'node:mouseout',
-  NODE_MOUSEOVER = 'node:mouseover',
   NODE_DROP = 'node:drop',
   NODE_DRAGOVER = 'node:dragover',
   NODE_DRAGENTER = 'node:dragenter',
@@ -636,21 +615,14 @@ export enum G6Event {
   NODE_DRAG = 'node:drag',
   NODE_DRAGEND = 'node:dragend',
   NODE_TAP = 'node:tap',
+  NODE_DBLTAP = 'node:dbltap',
   NODE_PANSTART = 'node:panstart',
   NODE_PANMOVE = 'node:panmove',
   NODE_PANEND = 'node:panend',
 
   // combo, extends from nodes
-  COMBO_CONTEXTMENU = 'combo:contextmenu',
   COMBO_CLICK = 'combo:click',
   COMBO_DBLCLICK = 'combo:dblclick',
-  COMBO_MOUSEDOWN = 'combo:mousedown',
-  COMBO_MOUSEUP = 'combo:mouseup',
-  COMBO_MOUSEENTER = 'combo:mouseenter',
-  COMBO_MOUSELEAVE = 'combo:mouseleave',
-  COMBO_MOUSEMOVE = 'combo:mousemove',
-  COMBO_MOUSEOUT = 'combo:mouseout',
-  COMBO_MOUSEOVER = 'combo:mouseover',
   COMBO_DROP = 'combo:drop',
   COMBO_DRAGOVER = 'combo:dragover',
   COMBO_DRAGENTER = 'combo:dragenter',
@@ -659,37 +631,25 @@ export enum G6Event {
   COMBO_DRAG = 'combo:drag',
   COMBO_DRAGEND = 'combo:dragend',
   COMBO_TAP = 'combo:tap',
+  COMBO_DBLTAP = 'combo:dbltap',
   COMBO_PANSTART = 'combo:panstart',
   COMBO_PANMOVE = 'combo:panmove',
   COMBO_PANEND = 'combo:panend',
 
   // edge events
-  EDGE_CONTEXTMENU = 'edge:contextmenu',
   EDGE_CLICK = 'edge:click',
   EDGE_DBLCLICK = 'edge:dblclick',
-  EDGE_MOUSEDOWN = 'edge:mousedown',
-  EDGE_MOUSEUP = 'edge:mouseup',
-  EDGE_MOUSEENTER = 'edge:mouseenter',
-  EDGE_MOUSELEAVE = 'edge:mouseleave',
-  EDGE_MOUSEMOVE = 'edge:mousemove',
-  EDGE_MOUSEOUT = 'edge:mouseout',
-  EDGE_MOUSEOVER = 'edge:mouseover',
   EDGE_DROP = 'edge:drop',
   EDGE_DRAGOVER = 'edge:dragover',
   EDGE_DRAGENTER = 'edge:dragenter',
   EDGE_DRAGLEAVE = 'edge:dragleave',
+  EDGE_DRAGLEAVE = 'edge:dragleave',
+  EDGE_TAP = 'edge:tap',
+  EDGE_DBLTAP = 'edge:dbltap',
 
   // canvas events
-  CANVAS_CONTEXTMENU = 'canvas:contextmenu',
   CANVAS_CLICK = 'canvas:click',
   CANVAS_DBLCLICK = 'canvas:dblclick',
-  CANVAS_MOUSEDOWN = 'canvas:mousedown',
-  CANVAS_MOUSEUP = 'canvas:mouseup',
-  CANVAS_MOUSEENTER = 'canvas:mouseenter',
-  CANVAS_MOUSELEAVE = 'canvas:mouseleave',
-  CANVAS_MOUSEMOVE = 'canvas:mousemove',
-  CANVAS_MOUSEOUT = 'canvas:mouseout',
-  CANVAS_MOUSEOVER = 'canvas:mouseover',
   CANVAS_DROP = 'canvas:drop',
   CANVAS_DRAGENTER = 'canvas:dragenter',
   CANVAS_DRAGLEAVE = 'canvas:dragleave',
@@ -697,6 +657,7 @@ export enum G6Event {
   CANVAS_DRAG = 'canvas:drag',
   CANVAS_DRAGEND = 'canvas:dragend',
   CANVAS_TAP = 'canvas:tap',
+  CANVAS_DBLTAP = 'canvas:dbltap',
   CANVAS_PANSTART = 'canvas:panstart',
   CANVAS_PANMOVE = 'canvas:panmove',
   CANVAS_PANEND = 'canvas:panend',
@@ -746,6 +707,7 @@ export enum G6Event {
 
   // Mobile event support
   TAP = 'tap',
+  DBLTAP = 'dbltap',
   PINCHSTART = 'pinchstart',
   PINCHMOVE = 'pinchmove',
   PANSTART = 'panstart',

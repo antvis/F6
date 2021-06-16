@@ -22,7 +22,7 @@ export const dataValidation = (data?: GraphData | TreeGraphData): boolean => {
   if (!nodes && !edges) {
     let validated = true;
     // 不存在 nodes 和 edges，则说明是 TreeGraphData，按 TreeGraphData 规则验证
-    traverseTree(data as TreeGraphData, param => {
+    traverseTree(data as TreeGraphData, (param) => {
       if (!isString(param.id)) {
         validated = false;
         return false;
@@ -32,7 +32,7 @@ export const dataValidation = (data?: GraphData | TreeGraphData): boolean => {
     return validated;
   }
 
-  const nonNode = ((nodes as NodeConfig[]) || []).find(node => !isString(node.id));
+  const nonNode = ((nodes as NodeConfig[]) || []).find((node) => !isString(node.id));
   if (nonNode) {
     console.warn(
       `G6 Warning Tips: missing 'id' property, or %c${nonNode.id}%c is not a string.`,
@@ -43,11 +43,11 @@ export const dataValidation = (data?: GraphData | TreeGraphData): boolean => {
   }
 
   // 3. 边的 source 和 target 必须存在于节点 或 Combo中
-  const nodeIds = ((nodes as NodeConfig[]) || []).map(node => node.id);
-  const comboIds = (combos as ComboConfig[]).map(combo => combo.id);
+  const nodeIds = ((nodes as NodeConfig[]) || []).map((node) => node.id);
+  const comboIds = (combos as ComboConfig[]).map((combo) => combo.id);
   const ids = [...nodeIds, ...comboIds];
   const nonEdges = ((edges as EdgeConfig[]) || []).find(
-    edge => !ids.includes(edge.source) || !ids.includes(edge.target),
+    (edge) => !ids.includes(edge.source) || !ids.includes(edge.target),
   );
   if (nonEdges) {
     console.warn(
