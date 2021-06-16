@@ -173,7 +173,8 @@ export default class ViewController {
     }
 
     if (item) {
-      let x = 0, y = 0;
+      let x = 0,
+        y = 0;
       if (item.getType && item.getType() === 'edge') {
         const sourceMatrix: IGroup = (item as IEdge).getSource().get('group').getMatrix();
         const targetMatrix: IGroup = (item as IEdge).getTarget().get('group').getMatrix();
@@ -192,11 +193,7 @@ export default class ViewController {
         y = matrix[7];
       }
       // 用实际位置而不是model中的x,y,防止由于拖拽等的交互导致model的x,y并不是当前的x,y
-      this.focusPoint(
-        { x, y },
-        animate,
-        animateCfg,
-      );
+      this.focusPoint({ x, y }, animate, animateCfg);
     }
   }
 

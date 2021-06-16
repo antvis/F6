@@ -321,7 +321,7 @@ export interface IAbstractGraph extends EventEmitter {
   getNodeDegree: (
     node: string | INode,
     type?: 'in' | 'out' | 'total' | 'all' | undefined,
-    refresh?: boolean
+    refresh?: boolean,
   ) => Number | Object;
   /**
    * 获取指定 combo 中所有的节点
