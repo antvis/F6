@@ -577,6 +577,7 @@ export enum G6Event {
   // common events
   CLICK = 'click',
   DBLCLICK = 'dblclick',
+  TAP = 'tap',
   DBLTAP = 'dbltap',
   DRAGSTART = 'dragstart',
   DRAGEND = 'dragend',
@@ -586,6 +587,11 @@ export enum G6Event {
   DRAGOVER = 'dragover',
   DRAGOUT = 'dragout',
   DDROP = 'drop',
+  PINCHSTART = 'pinchstart',
+  PINCHMOVE = 'pinchmove',
+  PANSTART = 'panstart',
+  PANMOVE = 'panmove',
+  PANEND = 'panend',
 
   // touch events
   TOUCHSTART = 'touchstart',
@@ -642,7 +648,6 @@ export enum G6Event {
   EDGE_DROP = 'edge:drop',
   EDGE_DRAGOVER = 'edge:dragover',
   EDGE_DRAGENTER = 'edge:dragenter',
-  EDGE_DRAGLEAVE = 'edge:dragleave',
   EDGE_DRAGLEAVE = 'edge:dragleave',
   EDGE_TAP = 'edge:tap',
   EDGE_DBLTAP = 'edge:dbltap',
@@ -704,15 +709,6 @@ export enum G6Event {
   VIEWPORTCHANGE = 'viewportchange',
   DRAGNODEEND = 'dragnodeend',
   STACKCHANGE = 'stackchange',
-
-  // Mobile event support
-  TAP = 'tap',
-  DBLTAP = 'dbltap',
-  PINCHSTART = 'pinchstart',
-  PINCHMOVE = 'pinchmove',
-  PANSTART = 'panstart',
-  PANMOVE = 'panmove',
-  PANEND = 'panend',
 }
 
 export type DefaultBehaviorType = IG6GraphEvent | string | number | object;
