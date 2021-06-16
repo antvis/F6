@@ -1,26 +1,65 @@
 import React, { useEffect } from 'react';
-import G6 from '../../src';
-import GridLayout from '../extends/layout/gridLayout';
+import G6 from '../index';
+import GridLayout from '../extends/layout/mdsLayout';
 import './basic.css';
+import TreeGraph from '../extends/graph/treeGraph';
 
-G6.registerLayout('grid', GridLayout);
+console.log(G6);
+G6.registerLayout('mindmap', GridLayout);
+(G6 as any).registerGraph('TreeGraph', TreeGraph);
 
 const data = {
-  nodes: [],
-  edges: [],
+  id: 'Modeling Methods',
+  children: [
+    {
+      id: 'Classification',
+      children: [
+        { id: 'Logistic regression' },
+        { id: 'Linear discriminant analysis' },
+        { id: 'Rules' },
+        { id: 'Decision trees' },
+        { id: 'Naive Bayes' },
+        { id: 'K nearest neighbor' },
+        { id: 'Probabilistic neural network' },
+        { id: 'Support vector machine' },
+      ],
+    },
+    {
+      id: 'Consensus',
+      children: [
+        {
+          id: 'Models diversity',
+          children: [
+            { id: 'Different initializations' },
+            { id: 'Different parameter choices' },
+            { id: 'Different architectures' },
+            { id: 'Different modeling methods' },
+            { id: 'Different training sets' },
+            { id: 'Different feature sets' },
+          ],
+        },
+        {
+          id: 'Methods',
+          children: [{ id: 'Classifier selection' }, { id: 'Classifier fusion' }],
+        },
+        {
+          id: 'Common',
+          children: [{ id: 'Bagging' }, { id: 'Boosting' }, { id: 'AdaBoost' }],
+        },
+      ],
+    },
+    {
+      id: 'Regression',
+      children: [
+        { id: 'Multiple linear regression' },
+        { id: 'Partial least squares' },
+        { id: 'Multi-layer feedforward neural network' },
+        { id: 'General regression neural network' },
+        { id: 'Support vector regression' },
+      ],
+    },
+  ],
 };
-
-for (let i = 0; i < 10; i++) {
-  data.nodes.push({
-    id: `node${i}`,
-    label: `Circle${i}`,
-  });
-
-  data.edges.push({
-    source: `node${i}`,
-    target: `node${i + 1}`,
-  });
-}
 
 export interface BasicProps {}
 
@@ -33,91 +72,103 @@ export const BasicDemo = () => {
 
   useEffect(() => {
     if (!graph) {
-      graph = new G6.Graph({
+      graph = new (G6 as any).TreeGraph({
         container: ref.current,
-        width: 500,
-        height: 500,
-        layout: {
-          type: 'grid',
-          begin: [0, 0], // ???
-          preventOverlap: true, // ??????? nodeSize
-          preventOverlapPdding: 20, // ??
-          nodeSize: 30, // ??
-          condense: false, // ??
-          rows: 5, // ??
-          cols: 5, // ??
-          sortBy: 'degree', // ??
-        },
-
+        width,
+        height,
+        pixelRatio: 2,
         modes: {
           default: [
-            'zoom-canvas',
-            //'drag-node',
-            'click-select',
-            'activate-relations',
             {
-              type: 'drag-canvas',
-              allowDragOnItem: false,
-            },
-            {
-              type: 'brush-select',
-              trigger: 'ctrl',
-              includeEdges: false,
-              // 是否允许对该 behavior 发生。若返回 false，被操作的 item 不会被选中，不触发 'nodeselectchange' 时机事件
-              shouldUpdate: (e) => {
-                // 当点击的节点/边/ combo 的 id 为 'id2' 时，该 item 不会被选中
-                if (e.item.getModel().id === 'id2') return false;
+              type: 'collapse-expand',
+              onChange: function onChange(item, collapsed) {
+                console.log(item);
+                const data = item.get('model').data;
+                data.collapsed = collapsed;
                 return true;
               },
             },
-            {
-              type: 'create-edge',
-              trigger: 'drag',
-              key: 'shift',
-              edgeConfig: {
-                type: 'cubic',
-                style: {
-                  stroke: '#f00',
-                  lineWidth: 2,
-                  // ... // 其它边样式配置
-                },
-                // ... // 其它边配置
-              },
-            },
+            'drag-canvas',
+            'zoom-canvas',
           ],
         },
         defaultNode: {
-          shape: 'simple-circle',
-          size: [100],
-          color: '#5B8FF9',
+          size: [200, 50],
+
+          shape: 'rect',
+
           style: {
-            fill: '#9EC9FF',
-            lineWidth: 3,
-          },
-          labelCfg: {
-            style: {
-              fill: '#fff',
-              fontSize: 20,
-            },
+            fill: '#C6E5FF',
+            stroke: '#5B8FF9',
           },
         },
         defaultEdge: {
+          shape: 'cubic-horizontal',
           style: {
-            stroke: '#e2e2e2',
+            stroke: '#A3B1BF',
           },
         },
-        nodeStateStyles: {
-          // 节点在 selected 状态下的样式，对应内置的 click-select 行为
-          selected: {
-            stroke: '#666',
-            lineWidth: 2,
-            fill: 'steelblue',
+        layout: {
+          type: 'mindmap',
+          direction: 'H',
+          getHeight: () => {
+            return 40;
+          },
+          getWidth: () => {
+            return 160;
+          },
+          getVGap: () => {
+            return 10;
+          },
+          getHGap: () => {
+            return 100;
           },
         },
       });
+
+      let centerX = 0;
+      // ????
+      graph.node(function (node) {
+        // depth ??????
+        if (node.depth == 0) {
+          console.log(node);
+          return {
+            size: [100, 60],
+            style: {
+              fill: 'red',
+              // stroke:''
+            },
+            label: node.id,
+          };
+        }
+
+        if (node.depth == 1) {
+          console.log(node);
+          return {
+            size: [100, 60],
+            style: {
+              fill: 'blue',
+            },
+            label: node.id,
+          };
+        }
+        return {
+          label: node.id, // ??????
+          labelCfg: {
+            offset: 5,
+          },
+        };
+      });
+      graph.data(data);
+      graph.render();
+      graph.fitView();
+      graph.on('itemcollapsed', (e) => {
+        // 当前被操作的节点 item
+        console.log(e.item);
+        // 当前操作是收起（`true`）还是展开（`false`）
+        console.log(e.collapsed);
+      });
     }
-    graph.data(data);
-    graph.render();
   }, []);
 
   return <div ref={ref}></div>;
