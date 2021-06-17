@@ -161,7 +161,11 @@ DEBUG_MODE=1 npm test -- --watch ./tests/unit/algorithm/find-path-spec
 
 Welcome to join the **F6 Communication Group** (DingTalk groups). We also welcome the github issues.
 
-<img src='https://gw.alipayobjects.com/mdn/rms_5c3b4a/afts/img/A*J5qVTo11-1MAAAAAAAAAAAAAARQnAQ' width=550 alt='' />
+<img src='https://gw.alipayobjects.com/mdn/rms_5c3b4a/afts/img/A*wEQkTKK9GgMAAAAAAAAAAAAAARQnAQ' width=550 alt='' />
+
+Wechat group is here:
+
+<img src='https://gw.alipayobjects.com/mdn/rms_5c3b4a/afts/img/A*jhY3RoI5IrgAAAAAAAAAAAAAARQnAQ' width=550 alt='' />
 
 ## How to Contribute
 

@@ -163,6 +163,10 @@ DEBUG_MODE=1 npm test -- --watch ./tests/unit/algorithm/find-path-spec
 
 <img src='https://gw.alipayobjects.com/mdn/rms_5c3b4a/afts/img/A*J5qVTo11-1MAAAAAAAAAAAAAARQnAQ' width=550 alt='' />
 
+微信群在这里添加:
+
+<img src='https://gw.alipayobjects.com/mdn/rms_5c3b4a/afts/img/A*jhY3RoI5IrgAAAAAAAAAAAAAARQnAQ' width=550 alt='' />
+
 ## 如何贡献
 
 请让我们知道您要解决或贡献什么，所以在贡献之前请先提交 [issues](https://github.com/antvis/f6/issues) 描述 bug 或建议。
