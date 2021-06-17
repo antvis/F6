@@ -546,7 +546,7 @@ export default abstract class AbstractGraph extends EventEmitter implements IAbs
    * @return {object} 元素实例
    */
   public findAllByState<T extends Item>(type: ITEM_TYPE, state: string): T[] {
-    return this.findAll(type, item => item.hasState(state));
+    return this.findAll(type, (item) => item.hasState(state));
   }
 
   /**
@@ -996,7 +996,7 @@ export default abstract class AbstractGraph extends EventEmitter implements IAbs
       let foundParent = false;
       comboTrees.forEach((ctree: ComboTree) => {
         if (foundParent) return; // terminate the forEach after the tree containing the item is done
-        traverseTreeUp<ComboTree>(ctree, child => {
+        traverseTreeUp<ComboTree>(ctree, (child) => {
           // find the parent
           if (model.parentId === child.id) {
             foundParent = true;
@@ -1044,7 +1044,7 @@ export default abstract class AbstractGraph extends EventEmitter implements IAbs
         foundNode = false;
       (comboTrees || []).forEach((ctree: ComboTree) => {
         if (foundNode || foundParent) return; // terminate the forEach
-        traverseTreeUp<ComboTree>(ctree, child => {
+        traverseTreeUp<ComboTree>(ctree, (child) => {
           if (child.id === model.id) {
             // if the item exists in the tree already, terminate
             foundNode = true;
@@ -1153,12 +1153,12 @@ export default abstract class AbstractGraph extends EventEmitter implements IAbs
     if (currentItem.getType) type = currentItem.getType();
     const states = [...currentItem.getStates()];
     if (type === 'combo') {
-      each(states, state => this.setItemState(currentItem, state, false));
+      each(states, (state) => this.setItemState(currentItem, state, false));
     }
     itemController.updateItem(currentItem, cfg);
 
     if (type === 'combo') {
-      each(states, state => this.setItemState(currentItem, state, true));
+      each(states, (state) => this.setItemState(currentItem, state, true));
     }
 
     if (stack && this.get('enabledStack')) {
@@ -1331,14 +1331,14 @@ export default abstract class AbstractGraph extends EventEmitter implements IAbs
           const nodesArr = this.getNodes();
 
           // 遍历节点实例，将所有节点提前。
-          nodesArr.forEach(node => {
+          nodesArr.forEach((node) => {
             node.toFront();
           });
         } else {
           const edgesArr = this.getEdges();
 
           // 遍历节点实例，将所有节点提前。
-          edgesArr.forEach(edge => {
+          edgesArr.forEach((edge) => {
             edge.toBack();
           });
         }
@@ -1369,7 +1369,7 @@ export default abstract class AbstractGraph extends EventEmitter implements IAbs
     let item: INode;
     const itemMap: NodeMap = this.get('itemMap');
 
-    each(models, model => {
+    each(models, (model) => {
       item = itemMap[model.id];
       if (item) {
         if (self.get('animate') && type === NODE) {
@@ -1412,8 +1412,8 @@ export default abstract class AbstractGraph extends EventEmitter implements IAbs
     this.removeHulls();
 
     // 更改数据源后，取消所有状态
-    this.getNodes().map(node => self.clearItemStates(node));
-    this.getEdges().map(edge => self.clearItemStates(edge));
+    this.getNodes().map((node) => self.clearItemStates(node));
+    this.getEdges().map((edge) => self.clearItemStates(edge));
 
     const canvas: ICanvas = this.get('canvas');
     const localRefresh: boolean = canvas.get('localRefresh');
@@ -1538,7 +1538,7 @@ export default abstract class AbstractGraph extends EventEmitter implements IAbs
     }
 
     // step2: 更新 children，根据类型添加 comboId 或 parentId
-    const trees: ComboTree[] = children.map(elementId => {
+    const trees: ComboTree[] = children.map((elementId) => {
       const item = this.findById(elementId);
       const model = item.getModel();
 
@@ -1568,8 +1568,8 @@ export default abstract class AbstractGraph extends EventEmitter implements IAbs
 
     // step4: 更新 comboTrees 结构
     const comboTrees = this.get('comboTrees');
-    (comboTrees || []).forEach(ctree => {
-      traverseTreeUp<ComboTree>(ctree, child => {
+    (comboTrees || []).forEach((ctree) => {
+      traverseTreeUp<ComboTree>(ctree, (child) => {
         if (child.id === comboId) {
           child.itemType = 'combo';
           child.children = trees as ComboTree[];
@@ -1609,15 +1609,15 @@ export default abstract class AbstractGraph extends EventEmitter implements IAbs
     const comboItems = this.get('combos');
     const parentItem = this.findById(parentId as string) as ICombo;
 
-    comboTrees.forEach(ctree => {
+    comboTrees.forEach((ctree) => {
       if (treeToBeUncombo) return; // terminate the forEach
-      traverseTreeUp<ComboTree>(ctree, subtree => {
+      traverseTreeUp<ComboTree>(ctree, (subtree) => {
         // find the combo to be uncomboed, delete the combo from map and cache
         if (subtree.id === comboId) {
           treeToBeUncombo = subtree;
           // delete the related edges
           const edges = comboItem.getEdges();
-          edges.forEach(edge => {
+          edges.forEach((edge) => {
             this.removeItem(edge, false);
           });
           const index = comboItems.indexOf(combo);
@@ -1636,7 +1636,7 @@ export default abstract class AbstractGraph extends EventEmitter implements IAbs
           }
 
           // append the combo's children to the combo's brothers array
-          treeToBeUncombo.children.forEach(child => {
+          treeToBeUncombo.children.forEach((child) => {
             const item = this.findById(child.id) as ICombo | INode;
             const childModel = item.getModel();
             if (item.getType && item.getType() === 'combo') {
@@ -1662,7 +1662,7 @@ export default abstract class AbstractGraph extends EventEmitter implements IAbs
       const index = comboTrees.indexOf(treeToBeUncombo);
       comboTrees.splice(index, 1);
       // modify the parentId of the children
-      treeToBeUncombo.children.forEach(child => {
+      treeToBeUncombo.children.forEach((child) => {
         child.parentId = undefined;
         const childModel = this.findById(child.id).getModel();
         delete childModel.parentId; // update the parentId of the model
@@ -1682,7 +1682,7 @@ export default abstract class AbstractGraph extends EventEmitter implements IAbs
 
     const itemMap = self.get('itemMap');
     (comboTrees || []).forEach((ctree: ComboTree) => {
-      traverseTreeUp<ComboTree>(ctree, child => {
+      traverseTreeUp<ComboTree>(ctree, (child) => {
         if (!child) {
           return true;
         }
@@ -1690,13 +1690,13 @@ export default abstract class AbstractGraph extends EventEmitter implements IAbs
         if (childItem && childItem.getType && childItem.getType() === 'combo') {
           // 更新具体的 Combo 之前先清除所有的已有状态，以免将 state 中的样式更新为 Combo 的样式
           const states = [...childItem.getStates()];
-          each(states, state => this.setItemState(childItem, state, false));
+          each(states, (state) => this.setItemState(childItem, state, false));
 
           // 更新具体的 Combo
           itemController.updateCombo(childItem, child.children);
 
           // 更新 Combo 后，还原已有的状态
-          each(states, state => this.setItemState(childItem, state, true));
+          each(states, (state) => this.setItemState(childItem, state, true));
         }
         return true;
       });
@@ -1727,7 +1727,7 @@ export default abstract class AbstractGraph extends EventEmitter implements IAbs
 
     const itemMap = self.get('itemMap');
     (comboTrees || []).forEach((ctree: ComboTree) => {
-      traverseTreeUp<ComboTree>(ctree, child => {
+      traverseTreeUp<ComboTree>(ctree, (child) => {
         if (!child) {
           return true;
         }
@@ -1741,7 +1741,7 @@ export default abstract class AbstractGraph extends EventEmitter implements IAbs
           // 更新具体的 Combo 之前先清除所有的已有状态，以免将 state 中的样式更新为 Combo 的样式
           const states = [...childItem.getStates()];
           // || !item.getStateStyle(stateName)
-          each(states, state => {
+          each(states, (state) => {
             if (childItem.getStateStyle(state)) {
               this.setItemState(childItem, state, false);
             }
@@ -1751,7 +1751,7 @@ export default abstract class AbstractGraph extends EventEmitter implements IAbs
           itemController.updateCombo(childItem, child.children);
 
           // 更新 Combo 后，还原已有的状态
-          each(states, state => {
+          each(states, (state) => {
             if (childItem.getStateStyle(state)) {
               this.setItemState(childItem, state, true);
             }
@@ -1794,9 +1794,9 @@ export default abstract class AbstractGraph extends EventEmitter implements IAbs
       const comboTrees = this.get('comboTrees');
       let valid = true;
       let itemSubTree;
-      (comboTrees || []).forEach(ctree => {
+      (comboTrees || []).forEach((ctree) => {
         if (itemSubTree) return;
-        traverseTree(ctree, subTree => {
+        traverseTree(ctree, (subTree) => {
           if (itemSubTree) return;
           // 找到从 item 开始的子树
           if (subTree.id === uItem.getID()) {
@@ -1806,7 +1806,7 @@ export default abstract class AbstractGraph extends EventEmitter implements IAbs
         });
       });
       // 在以 item 为根的子树中寻找与 parentId 相同的后继元素
-      traverseTree(itemSubTree, subTree => {
+      traverseTree(itemSubTree, (subTree) => {
         if (subTree.id === parentId) {
           valid = false;
           return false;
@@ -2013,7 +2013,7 @@ export default abstract class AbstractGraph extends EventEmitter implements IAbs
 
     const nodes = self.getNodes();
 
-    const toNodes = nodes.map(node => {
+    const toNodes = nodes.map((node) => {
       const model = node.getModel();
       return {
         id: model.id,
@@ -2030,7 +2030,7 @@ export default abstract class AbstractGraph extends EventEmitter implements IAbs
 
     canvas.animate(
       (ratio: number) => {
-        each(toNodes, data => {
+        each(toNodes, (data) => {
           const node: Item = self.findById(data.id);
 
           if (!node || node.destroyed) {
@@ -2277,9 +2277,9 @@ export default abstract class AbstractGraph extends EventEmitter implements IAbs
     let ccombos = [];
     const comboTrees = this.get('comboTrees');
     let found = false;
-    (comboTrees || []).forEach(ctree => {
+    (comboTrees || []).forEach((ctree) => {
       if (found) return; // if the combo is found, terminate the forEach
-      traverseTree(ctree, subTree => {
+      traverseTree(ctree, (subTree) => {
         // if the combo is found and it is traversing the other branches, terminate
         if (found && subTree.depth <= comboModel.depth) return false;
         // if the combo is found
@@ -2298,7 +2298,7 @@ export default abstract class AbstractGraph extends EventEmitter implements IAbs
 
     const edgeWeightMap = {};
     const addedVEdges = [];
-    edges.forEach(edge => {
+    edges.forEach((edge) => {
       if (edge.isVisible() && !edge.getModel().isVEdge) return;
       let source = edge.getSource();
       let target = edge.getTarget();
@@ -2382,7 +2382,7 @@ export default abstract class AbstractGraph extends EventEmitter implements IAbs
 
     // update the width of the virtual edges, which is the sum of merged actual edges
     // be attention that the actual edges with same endpoints but different directions will be represented by two different virtual edges
-    addedVEdges.forEach(vedge => {
+    addedVEdges.forEach((vedge) => {
       const vedgeModel = vedge.getModel();
       this.updateItem(
         vedge,
@@ -2423,9 +2423,9 @@ export default abstract class AbstractGraph extends EventEmitter implements IAbs
     let ccombos = [];
     const comboTrees = this.get('comboTrees');
     let found = false;
-    (comboTrees || []).forEach(ctree => {
+    (comboTrees || []).forEach((ctree) => {
       if (found) return; // if the combo is found, terminate
-      traverseTree(ctree, subTree => {
+      traverseTree(ctree, (subTree) => {
         // if the combo is found and it is traversing the other branches, terminate
         if (found && subTree.depth <= comboModel.depth) return false;
         if (comboModel.id === subTree.id) found = true;
@@ -2442,7 +2442,7 @@ export default abstract class AbstractGraph extends EventEmitter implements IAbs
 
     const edgeWeightMap = {};
     const addedVEdges = {};
-    edges.forEach(edge => {
+    edges.forEach((edge) => {
       if (edge.isVisible() && !edge.getModel().isVEdge) return;
       let source = edge.getSource();
       let target = edge.getTarget();
@@ -2642,8 +2642,8 @@ export default abstract class AbstractGraph extends EventEmitter implements IAbs
     const depthMap = [];
     const dataDepthMap = {};
     const comboTrees = this.get('comboTrees');
-    (comboTrees || []).forEach(cTree => {
-      traverseTree(cTree, child => {
+    (comboTrees || []).forEach((cTree) => {
+      traverseTree(cTree, (child) => {
         if (depthMap[child.depth]) depthMap[child.depth].push(child.id);
         else depthMap[child.depth] = [child.id];
         dataDepthMap[child.id] = child.depth;
@@ -2651,7 +2651,7 @@ export default abstract class AbstractGraph extends EventEmitter implements IAbs
       });
     });
     const edges = this.getEdges().concat(this.get('vedges'));
-    (edges || []).forEach(edgeItem => {
+    (edges || []).forEach((edgeItem) => {
       const edge = edgeItem.getModel();
       const sourceDepth: number = dataDepthMap[edge.source as string] || 0;
       const targetDepth: number = dataDepthMap[edge.target as string] || 0;
@@ -2659,7 +2659,7 @@ export default abstract class AbstractGraph extends EventEmitter implements IAbs
       if (depthMap[depth]) depthMap[depth].push(edge.id);
       else depthMap[depth] = [edge.id];
     });
-    depthMap.forEach(array => {
+    depthMap.forEach((array) => {
       if (!array || !array.length) return;
       for (let i = array.length - 1; i >= 0; i--) {
         const item = this.findById(array[i]);
@@ -2937,7 +2937,7 @@ export default abstract class AbstractGraph extends EventEmitter implements IAbs
   public removeHulls() {
     const hulls = this.getHulls();
     if (!hulls || !Object.keys(hulls).length) return;
-    Object.keys(hulls).forEach(key => {
+    Object.keys(hulls).forEach((key) => {
       const hull = hulls[key];
       hull.destroy();
     });
