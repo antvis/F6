@@ -33,8 +33,6 @@ export class G6GraphEvent extends GraphEvent implements IG6GraphEvent {
 
   public clientY: number;
 
-  public wheelDelta: number;
-
   public detail: number;
 
   public target!: IShapeBase & ICanvas;
@@ -46,7 +44,6 @@ export class G6GraphEvent extends GraphEvent implements IG6GraphEvent {
     this.item = event.item;
     this.canvasX = event.canvasX;
     this.canvasY = event.canvasY;
-    this.wheelDelta = event.wheelDelta;
     this.detail = event.detail;
   }
 }

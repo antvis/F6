@@ -1,7 +1,7 @@
 import { G6Event, IG6GraphEvent } from '@antv/f6-core';
 
-const DEFAULT_TRIGGER = 'click';
-const ALLOW_EVENTS = ['click', 'dblclick'];
+const DEFAULT_TRIGGER = 'tap';
+const ALLOW_EVENTS = ['tap', 'dbltap'];
 export default {
   getDefaultCfg(): object {
     return {
@@ -23,12 +23,12 @@ export default {
       console.warn("Behavior collapse-expand 的 trigger 参数不合法，请输入 'click' 或 'dblclick'");
     }
     return {
-      [`node:${trigger}`]: 'onNodeClick',
+      [`node:${trigger}`]: 'onNodeTap',
       // 支持移动端事件
-      touchstart: 'onNodeClick',
+      touchstart: 'onNodeTap',
     };
   },
-  onNodeClick(e: IG6GraphEvent) {
+  onNodeTap(e: IG6GraphEvent) {
     const { item } = e;
 
     // 如果节点进行过更新，model 会进行 merge，直接改 model 就不能改布局，所以需要去改源数据
@@ -56,10 +56,7 @@ export default {
       this.onChange(item, collapsed);
     } catch (err) {
       // eslint-disable-next-line no-console
-      console.warn(
-        'G6 自 3.0.4 版本支持直接从 item.getModel() 获取源数据(临时通知，将在3.2.0版本中清除)',
-        err,
-      );
+      console.warn(err);
     }
     this.graph.layout();
   },

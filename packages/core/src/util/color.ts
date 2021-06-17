@@ -1,4 +1,3 @@
-
 export const defaultSubjectColors = [
   '#5F95FF', // blue
   '#61DDAA',
