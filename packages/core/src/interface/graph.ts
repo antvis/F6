@@ -610,4 +610,9 @@ export interface IAbstractGraph extends EventEmitter {
    * 销毁画布
    */
   destroy: () => void;
+
+  /**
+   * 每一帧回调
+   */
+  onTick: (timestamp: number) => void;
 }
