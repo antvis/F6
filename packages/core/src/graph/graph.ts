@@ -2943,4 +2943,6 @@ export default abstract class AbstractGraph extends EventEmitter implements IAbs
     });
     this.set('hullMap', {});
   }
+
+  public onTick(timestamp: number): void {}
 }
