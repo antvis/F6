@@ -1,5 +1,6 @@
 import EventEmitter from '@antv/event-emitter';
 import { ICanvas, IGroup, Point } from '@antv/g-base';
+import { requestAnimationFrame } from '@antv/g-mobile/lib/util/time';
 import { ext } from '@antv/matrix-util';
 import { clone, deepMix, each, isPlainObject, isString } from '@antv/util';
 import {
@@ -122,6 +123,8 @@ export default abstract class AbstractGraph extends EventEmitter implements IAbs
 
     /** 初始化插件 */
     this.initPlugins();
+
+    requestAnimationFrame(this.onTick.bind(this));
   }
 
   protected abstract initLayoutController(): void;
@@ -2944,5 +2947,10 @@ export default abstract class AbstractGraph extends EventEmitter implements IAbs
     this.set('hullMap', {});
   }
 
-  public onTick(timestamp: number): void {}
+  public onTick(timestamp: number): void {
+    const layoutController = this.get('layoutController');
+    layoutController.onTick(timestamp);
+
+    requestAnimationFrame(this.onTick.bind(this));
+  }
 }
