@@ -225,5 +225,5 @@ Page({
 如有问题，可以加钉钉群咨询，我们会快速相应您的问题 ![]()
 
 <p>
-    <img src='https://gw.alipayobjects.com/mdn/rms_5c3b4a/afts/img/A*x5xjQJSbjpAAAAAAAAAAAAAAARQnAQ' style='width:250px;display:inline-block;vertical-align:top;' alt='' />
+    <img src='https://gw.alipayobjects.com/mdn/rms_5c3b4a/afts/img/A*wEQkTKK9GgMAAAAAAAAAAAAAARQnAQ' style='width:250px;display:inline-block;vertical-align:top;' alt='' />
 </p>
