@@ -1,6 +1,6 @@
 import EventEmitter from '@antv/event-emitter';
 import { ICanvas, IGroup, Point } from '@antv/g-base';
-import { requestAnimationFrame } from '@antv/g-mobile/lib/util/time';
+import { requestAnimationFrame } from '@antv/g-mobile/esm/util/time';
 import { ext } from '@antv/matrix-util';
 import { clone, deepMix, each, isPlainObject, isString } from '@antv/util';
 import {
