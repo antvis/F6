@@ -1,9 +1,8 @@
 import React, { useEffect } from 'react';
-import G6 from '../index';
-import GridLayout from '../extends/layout/fruchtermanLayout';
-import './basic.css';
+import F6 from '../../src';
+import GridLayout from '../../src/extends/layout/fruchtermanLayout';
 
-G6.registerLayout('fruchterman', GridLayout);
+F6.registerLayout('fruchterman', GridLayout);
 
 const data = {
   nodes: [
@@ -422,9 +421,7 @@ const data = {
   ],
 };
 
-export interface BasicProps {}
-
-export const BasicDemo = () => {
+export const FruchtermanDemo = () => {
   const ref = React.useRef(null);
   const height = window.innerHeight - 32; // demos padding
   const width = window.innerWidth - 32;
@@ -433,7 +430,7 @@ export const BasicDemo = () => {
 
   useEffect(() => {
     if (!graph) {
-      graph = new G6.Graph({
+      graph = new F6.Graph({
         container: ref.current,
         width,
         height,
