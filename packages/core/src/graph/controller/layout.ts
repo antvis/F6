@@ -348,4 +348,10 @@ export default abstract class LayoutController {
 
     this.destroyed = true;
   }
+
+  public onTick(timestamp: number) {
+    this.layoutMethods?.forEach((layoutMethod) => {
+      layoutMethod?.onTick(timestamp);
+    });
+  }
 }
