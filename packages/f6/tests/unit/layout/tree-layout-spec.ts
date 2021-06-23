@@ -1,6 +1,7 @@
 import F6 from '../../../src';
-import radialLayout from '../../../src/extends/layout/radialLayout';
-F6.registerLayout('radial', radialLayout);
+import TreeGraph from '../../../src/extends/graph/treeGraph';
+
+F6.registerLayout('dendrogram', radialLayout);
 
 const div = document.createElement('div');
 div.id = 'graph-spec';
@@ -29,7 +30,7 @@ const data = {
 
 describe('random', () => {
   it('new graph without layout, random by default', () => {
-    const layout = new F6.TreeLayout({
+    const layout = new F6.TreeGraph({
       type: 'dendrogram',
       radial: true,
     });

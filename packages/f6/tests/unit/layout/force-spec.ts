@@ -1,6 +1,9 @@
 import F6 from '../../../src';
 import dataset from './data';
 import * as d3Force from 'd3-force';
+import forceLayoutReg from '../../../src/extends/layout/forceLayout';
+
+F6.registerLayout('force', forceLayoutReg);
 
 const data = dataset.data;
 

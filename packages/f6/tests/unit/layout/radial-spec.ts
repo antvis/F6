@@ -1,5 +1,8 @@
 import F6 from '../../../src';
+import radialLayout from '../../../src/extends/layout/radialLayout';
 import { numberEqual } from './util';
+
+F6.registerLayout('radial', radialLayout);
 
 const div = document.createElement('div');
 div.id = 'graph-spec';
@@ -583,7 +586,7 @@ describe('radial layout', () => {
 
   it('instantiate layout', () => {
     const unitRadius = 50;
-    const radialLayout = new F6.Layout['radial']({
+    const radial = new radialLayout({
       unitRadius,
       preventOverlap: true,
       maxPreventOverlapIteration: null,
@@ -593,8 +596,8 @@ describe('radial layout', () => {
     data.nodes.forEach((node, i) => {
       node['sortProperty'] = '' + (i % 3);
     });
-    radialLayout.init(data);
-    radialLayout.execute();
+    radial.init(data);
+    radial.execute();
     const focusNode = data.nodes[0];
 
     const graph = new F6.Graph({
@@ -628,11 +631,11 @@ describe('radial layout', () => {
     graph.destroy();
   });
   it('instantiate layout with center on the left', () => {
-    const radialLayout = new F6.Layout['radial']({
+    const radial = new radialLayout({
       center: [0, 250],
     });
-    radialLayout.init(data);
-    radialLayout.execute();
+    radial.init(data);
+    radial.execute();
 
     const graph = new F6.Graph({
       width: 500,
@@ -647,12 +650,12 @@ describe('radial layout', () => {
   });
 
   it('instantiate layout with center on the top', () => {
-    const radialLayout = new F6.Layout['radial']({
+    const radial = new radialLayout({
       center: [250, 0],
       preventOverlap: true,
     });
-    radialLayout.init(data);
-    radialLayout.execute();
+    radial.init(data);
+    radial.execute();
 
     const graph = new F6.Graph({
       width: 500,

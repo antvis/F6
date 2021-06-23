@@ -1,6 +1,8 @@
 import F6 from '../../../src';
 import dataset from './data';
 import { mathEqual } from './util';
+import circularLayout from '../../../src/extends/layout/circularLayout';
+F6.registerLayout('circular', circularLayout);
 
 const data = dataset.data;
 

@@ -1,7 +1,9 @@
 import F6 from '../../../src';
+import circularLayout from '../../../src/extends/layout/circularLayout';
 import dataset from './data';
 import { mathEqual } from './util';
 
+F6.registerLayout('circular', circularLayout);
 const data = dataset.data;
 
 const div = document.createElement('div');
@@ -281,11 +283,11 @@ describe('circular layout', () => {
   });
 
   it('circular layout', () => {
-    const circularLayout = new F6.Layout['circular']({
+    const circular = new circularLayout({
       center: [250, 250],
     });
-    circularLayout.init(data);
-    circularLayout.execute();
+    circular.init(data);
+    circular.execute();
 
     const graph = new F6.Graph({
       width: 500,

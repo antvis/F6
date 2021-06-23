@@ -1,7 +1,9 @@
 import F6 from '../../../src';
+import comboForceLayout from '../../../src/extends/layout/comboForceLayout';
 import dataset from './data';
 import * as d3Force from 'd3-force';
 import { isFunction } from 'util';
+F6.registerLayout('comboForce', comboForceLayout);
 
 const data = dataset.comboData;
 
