@@ -1,4 +1,6 @@
 import F6 from '../../../src';
+
+import { randomLayout } from '@antv/layout/lib/layout/random';
 import { NodeConfig, EdgeConfig } from '@antv/g6-core';
 
 const div = document.createElement('div');
@@ -51,17 +53,17 @@ describe('random', () => {
     graph.destroy();
   });
   it('instantialize a random layout', () => {
-    const randomLayout = new F6.Layout['random']({
+    const random = new randomLayout({
       width: null,
       height: null,
     });
-    randomLayout.init(data);
-    randomLayout.execute();
+    random.init(data);
+    random.execute();
     expect(data.nodes[0].x).not.toEqual(undefined);
     expect(data.nodes[0].y).not.toEqual(undefined);
     expect(data.nodes[1].x).not.toEqual(undefined);
     expect(data.nodes[1].y).not.toEqual(undefined);
-    expect(randomLayout.width).not.toEqual(null);
-    expect(randomLayout.height).not.toEqual(null);
+    expect(random.width).not.toEqual(null);
+    expect(random.height).not.toEqual(null);
   });
 });

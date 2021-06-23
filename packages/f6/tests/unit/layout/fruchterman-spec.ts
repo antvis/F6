@@ -1,5 +1,8 @@
 import F6 from '../../../src';
+import fruchtermanLayout from '../../../src/extends/layout/fruchtermanLayout';
 import dataset from './data';
+
+F6.registerLayout('fruchterman', fruchtermanLayout);
 
 const data = dataset.data;
 
@@ -66,9 +69,9 @@ describe('fruchterman', () => {
       width: 500,
       height: 500,
     });
-    const Layout = new F6.Layout['fruchterman']();
-    Layout.init({});
-    Layout.execute();
+    const layout = new fruchtermanLayout();
+    layout.init({});
+    layout.execute();
     graph.render();
     graph.destroy();
   });
@@ -193,11 +196,11 @@ describe('fruchterman', () => {
   });
 
   it('instantiate layout', () => {
-    const fruchtermanLayout = new F6.Layout['fruchterman']({
+    const fruchterman = new fruchtermanLayout({
       center: [250, 250],
     });
-    fruchtermanLayout.init(data);
-    fruchtermanLayout.execute();
+    fruchterman.init(data);
+    fruchterman.execute();
 
     const graph = new F6.Graph({
       width: 500,

@@ -1,4 +1,7 @@
 import F6 from '../../../src';
+import gridLayout from '../../../src/extends/layout/gridLayout';
+
+F6.registerLayout('grid', gridLayout);
 const data = {
   nodes: [
     { id: '0', name: '0' },
@@ -292,11 +295,11 @@ describe('grid layout', () => {
         { source: '6', target: '7' },
       ],
     };
-    const gridLayout = new F6.Layout['grid']({
+    const gridLayoutInstance = new gridLayout({
       preventOverlap: true,
     });
-    gridLayout.init(dataWithoutPos);
-    gridLayout.execute();
+    gridLayoutInstance.init(dataWithoutPos);
+    gridLayoutInstance.execute();
     expect(dataWithoutPos.nodes[0].x).not.toEqual(undefined);
     expect(dataWithoutPos.nodes[0].y).not.toEqual(undefined);
   });

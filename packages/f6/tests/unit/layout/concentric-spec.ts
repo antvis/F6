@@ -1,7 +1,10 @@
 import F6 from '../../../src';
+import concentricLayout from '../../../src/extends/layout/concentricLayout';
 import dataset from './data';
 import { mathEqual } from './util';
 import { isString } from 'util';
+
+F6.registerLayout('concentric', concentricLayout);
 
 const data = dataset.data;
 
@@ -188,11 +191,11 @@ describe('concentric layout', () => {
   });
 
   it('instantiate layout', () => {
-    const concentricLayout = new F6.Layout['concentric']({
+    const concentric = new concentricLayout({
       center: [250, 250],
     });
-    concentricLayout.init(data);
-    concentricLayout.execute();
+    concentric.init(data);
+    concentric.execute();
 
     const graph = new F6.Graph({
       width: 500,

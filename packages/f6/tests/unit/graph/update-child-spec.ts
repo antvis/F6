@@ -1,8 +1,7 @@
+import F6 from '../../../src';
 import TreeGraph from '../../../src/extends/graph/treeGraph';
 import radialLayout from '../../../src/extends/layout/radialLayout';
 F6.registerLayout('radial', radialLayout);
-
-import F6 from '../../../src';
 
 const div = document.createElement('div');
 div.id = 'tree-spec';

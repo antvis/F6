@@ -1,56 +1,70 @@
-
 import F6 from '../../src';
-import Algorithm from '@antv/algorithm'
+import TreeGraph from '../../src/extends/graph/treeGraph';
+import Algorithm from '@antv/algorithm';
 import { isNumber } from '@antv/util';
+
+F6.registerGraph('TreeGraph', TreeGraph);
 
 const div = document.createElement('div');
 div.id = 'container';
 document.body.appendChild(div);
 
-F6.registerNode('tree-node', {
-  draw(cfg, group) {
-    const { style = { fill: '#fff', stroke: '#ccc' } } = cfg;
-    const r = isNumber(cfg.size) ? cfg.size / 2 : 5;
-    group.addShape('circle', {
-      attrs: {
-        x: 0,
-        y: 0,
-        r,
-        ...style
-      },
-      name: 'circle-shape',
-      draggable: true
-    });
-    if (cfg.label) {
-      this.drawLabel(cfg, group);
-    }
+F6.registerNode(
+  'tree-node',
+  {
+    draw(cfg, group) {
+      const { style = { fill: '#fff', stroke: '#ccc' } } = cfg;
+      const r = isNumber(cfg.size) ? cfg.size / 2 : 5;
+      group.addShape('circle', {
+        attrs: {
+          x: 0,
+          y: 0,
+          r,
+          ...style,
+        },
+        name: 'circle-shape',
+        draggable: true,
+      });
+      if (cfg.label) {
+        this.drawLabel(cfg, group);
+      }
 
-    const bbox = group.getBBox();
+      const bbox = group.getBBox();
 
-    const keyShape = group.addShape('rect', {
-      attrs: {
-        x: bbox.minX - 4,
-        y: bbox.minY - 2,
-        width: bbox.width + 8,
-        height: bbox.height + 2,
-        fill: '#fff',
-        lineWidth: 0
-      },
-      draggable: true,
-      name: 'tree-node-keyShape'
-    })
-    keyShape.toBack();
-    return keyShape;
+      const keyShape = group.addShape('rect', {
+        attrs: {
+          x: bbox.minX - 4,
+          y: bbox.minY - 2,
+          width: bbox.width + 8,
+          height: bbox.height + 2,
+          fill: '#fff',
+          lineWidth: 0,
+        },
+        draggable: true,
+        name: 'tree-node-keyShape',
+      });
+      keyShape.toBack();
+      return keyShape;
+    },
+    getAnchorPoints(cfg) {
+      return (
+        cfg.anchorPoints || [
+          [0, 0.5],
+          [1, 0.5],
+          [0.25, 0],
+          [0.75, 0],
+          [0.2, 1],
+          [0.8, 1],
+        ]
+      );
+    },
+    update: undefined,
   },
-  getAnchorPoints(cfg) {
-    return cfg.anchorPoints || [[0, 0.5], [1, 0.5], [0.25, 0], [0.75, 0], [0.2, 1], [0.8, 1]];
-  },
-  update: undefined
-}, 'circle');
+  'circle',
+);
 
 describe('org', () => {
   it('org', () => {
-
     const tips = document.createElement('div');
     tips.innerHTML = `Tips:
     <br/>&nbsp; - 'control'+'f'：图内容适应画布大小。
@@ -158,7 +172,7 @@ describe('org', () => {
         index: 4,
         comboId: 'wenya-group',
       },
-    ]
+    ];
 
     const guangzhiGroupNode = [
       // ---- 广知 group -----
@@ -198,8 +212,8 @@ describe('org', () => {
         label: '子蒙',
         index: 4,
         comboId: 'guangzhi-group',
-      }
-    ]
+      },
+    ];
 
     const xuanyuGroupNode = [
       // ---- 轩与 group -----
@@ -240,7 +254,7 @@ describe('org', () => {
         index: 2,
         comboId: 'xuanyu-group',
       },
-    ]
+    ];
 
     const yungangGroupNode = [
       // ---- 云冈 group -----
@@ -292,8 +306,8 @@ describe('org', () => {
         label: '宸缘',
         index: 4,
         comboId: 'yungang-group',
-      }
-    ]
+      },
+    ];
 
     const qingshengGroupNode = [
       // ---- 轻声 group -----
@@ -394,7 +408,7 @@ describe('org', () => {
         index: 1,
         comboId: 'qingsheng-group',
       },
-    ]
+    ];
 
     const suboGroupNode = [
       // ---- 苏泊 group -----
@@ -446,8 +460,8 @@ describe('org', () => {
         label: '卿珂',
         index: 1,
         comboId: 'subo-group',
-      }
-    ]
+      },
+    ];
 
     const bojunGroupNode = [
       // ---- 伯骏 group -----
@@ -499,8 +513,8 @@ describe('org', () => {
         label: '妙子',
         index: 2,
         comboId: 'bojun-group',
-      }
-    ]
+      },
+    ];
 
     const data = {
       nodes: [
@@ -524,7 +538,7 @@ describe('org', () => {
           style: {
             fill: '#C4E3B2',
             stroke: '#C4E3B2',
-            opacity: 0.3
+            opacity: 0.3,
           },
         },
         {
@@ -533,7 +547,7 @@ describe('org', () => {
           style: {
             stroke: '#99C0ED',
             fill: '#99C0ED',
-            opacity: 0.3
+            opacity: 0.3,
           },
         },
         {
@@ -542,7 +556,7 @@ describe('org', () => {
           style: {
             stroke: '#99C0ED',
             fill: '#99C0ED',
-            opacity: 0.3
+            opacity: 0.3,
           },
         },
         {
@@ -551,7 +565,7 @@ describe('org', () => {
           style: {
             stroke: '#99C0ED',
             fill: '#99C0ED',
-            opacity: 0.3
+            opacity: 0.3,
           },
         },
         {
@@ -560,7 +574,7 @@ describe('org', () => {
           style: {
             stroke: '#99C0ED',
             fill: '#99C0ED',
-            opacity: 0.3
+            opacity: 0.3,
           },
         },
         {
@@ -569,7 +583,7 @@ describe('org', () => {
           style: {
             stroke: '#99C0ED',
             fill: '#99C0ED',
-            opacity: 0.3
+            opacity: 0.3,
           },
         },
         {
@@ -578,20 +592,20 @@ describe('org', () => {
           style: {
             stroke: '#99C0ED',
             fill: '#99C0ED',
-            opacity: 0.3
+            opacity: 0.3,
           },
         },
 
-          // {
-          //   id: 'other-group',
-          //   label: '其他组',
-          //   style: {
-          //     stroke: '#aaa',
-          //     fill: '#aaa',
-          //     opacity: 0.3
-          //   },
-          // },
-      ]
+        // {
+        //   id: 'other-group',
+        //   label: '其他组',
+        //   style: {
+        //     stroke: '#aaa',
+        //     fill: '#aaa',
+        //     opacity: 0.3
+        //   },
+        // },
+      ],
     };
 
     const otherGroupNodes = [
@@ -995,7 +1009,6 @@ describe('org', () => {
         target: 'qingbi',
       },
 
-
       // TL bojun -> members
       {
         source: 'bojun',
@@ -1163,7 +1176,6 @@ describe('org', () => {
         source: 'wenya',
         target: 'yeting',
       },
-      
 
       // TL yungang -> members
       {
@@ -1194,7 +1206,7 @@ describe('org', () => {
         source: 'yungang',
         target: 'feimao',
       },
-      
+
       // TL guangzhi -> members
       {
         source: 'guangzhi',
@@ -1246,7 +1258,7 @@ describe('org', () => {
         source: 'yushu',
         target: 'yungang',
       },
-    ]
+    ];
 
     data.edges = organizationEdges;
 
@@ -1254,34 +1266,34 @@ describe('org', () => {
     data.combos.forEach((cluster, i) => {
       clusterMap[cluster.id] = cluster;
       clusterMap[cluster.id].idx = i;
-    })
+    });
 
     const nodeMap = {};
-    const clusterPos = {}
+    const clusterPos = {};
     let newPosIdx = 0;
-    data.nodes.forEach(node => {
-      node.cluster = node.comboId || `random|||${Math.random()}`
+    data.nodes.forEach((node) => {
+      node.cluster = node.comboId || `random|||${Math.random()}`;
       nodeMap[node.id] = node;
       node.indegree = 0;
       node.outdegree = 0;
       node.neighbors = [];
       if (!clusterPos[node.cluster]) {
         clusterPos[node.cluster] = {
-          x: (newPosIdx % 5 + 1) * 100,
-          y: (Math.round(newPosIdx / 5) + 1) * 100
-        }
+          x: ((newPosIdx % 5) + 1) * 100,
+          y: (Math.round(newPosIdx / 5) + 1) * 100,
+        };
         newPosIdx += 1;
       }
-    })
-    data.edges.forEach(edge => {
-      nodeMap[edge.source].outdegree ++;
-      nodeMap[edge.target].indegree ++;
-      nodeMap[edge.source].neighbors.push(edge.target)
-      nodeMap[edge.target].neighbors.push(edge.source)
+    });
+    data.edges.forEach((edge) => {
+      nodeMap[edge.source].outdegree++;
+      nodeMap[edge.target].indegree++;
+      nodeMap[edge.source].neighbors.push(edge.target);
+      nodeMap[edge.target].neighbors.push(edge.source);
       edge.style = {
-        opacity: 0
-      }
-    })
+        opacity: 0,
+      };
+    });
     const subjectColors = [
       '#ed9b65',
       '#83c4f7',
@@ -1289,8 +1301,8 @@ describe('org', () => {
       '#f7cc60',
       '#e36e71',
       '#83c84a',
-      '#d8824f'
-    ]
+      '#d8824f',
+    ];
     // const subjectColors = [
     //   '#F08BB4',
     //   '#5B63FF',
@@ -1319,23 +1331,22 @@ describe('org', () => {
       theme,
       disableColor,
     );
-    data.nodes.forEach(node => {
-      node.size = (node.indegree + node.outdegree) + 5;
+    data.nodes.forEach((node) => {
+      node.size = node.indegree + node.outdegree + 5;
       if (node.isLeave) {
         // node.style = {
         //   fill: '#ccc',
         //   stroke:'#ccc',
         // }
         node.subjectColor = '#ccc';
-      }
-      else if (node.cluster.split('|||')[0] === 'random') {
+      } else if (node.cluster.split('|||')[0] === 'random') {
         // node.style = {
         //   fill: '#999',
         //   stroke: '#999',
         // }
         node.subjectColor = '#999';
       } else {
-        const colorSet = colorSets[clusterMap[node.cluster].idx % subjectColors.length]
+        const colorSet = colorSets[clusterMap[node.cluster].idx % subjectColors.length];
         // node.style = {
         //   fill: colorSet.mainFill,
         //   stroke: colorSet.mainStroke,
@@ -1346,53 +1357,54 @@ describe('org', () => {
       // if (node.isTL) {
       //   node.style.fill = node.subjectColor//.style.stroke
       // }
-    })
+    });
 
     const { minimumSpanningTree } = Algorithm;
 
-    const treeEdges = minimumSpanningTree(data)
+    const treeEdges = minimumSpanningTree(data);
     let tree;
     const establishedNode = {};
-    data.nodes.forEach(node => {
+    data.nodes.forEach((node) => {
       if (node.indegree === 0) {
-        tree = {...node};
+        tree = { ...node };
         establishedNode[node.id] = tree;
       }
-    })
-    treeEdges.forEach(edge => {
+    });
+    treeEdges.forEach((edge) => {
       let node;
-      if (!establishedNode[edge.source]) node = {...nodeMap[edge.source]};
-      else node = establishedNode[edge.source]
+      if (!establishedNode[edge.source]) node = { ...nodeMap[edge.source] };
+      else node = establishedNode[edge.source];
 
       let targetNode;
       if (!establishedNode[edge.target]) {
-        targetNode = {...nodeMap[edge.target]}
-      } else targetNode = establishedNode[edge.target]
-      
+        targetNode = { ...nodeMap[edge.target] };
+      } else targetNode = establishedNode[edge.target];
+
       if (!node.children) node.children = [targetNode];
       else node.children.push(targetNode);
-      
+
       establishedNode[edge.source] = node;
       establishedNode[edge.target] = targetNode;
       // if (!tree) tree = node
-    })
+    });
 
     const sortTreeChildren = (tree) => {
       if (tree.children) {
         tree.children.sort((a, b) => {
-          return (a.index - b.index)
+          return a.index - b.index;
         });
 
-        tree.children.forEach(child => {
+        tree.children.forEach((child) => {
           sortTreeChildren(child);
-        })
+        });
       }
       return;
-    }
+    };
 
     sortTreeChildren(tree);
 
-    const width = 1200, height = 800;
+    const width = 1200,
+      height = 800;
     const graph = new F6.TreeGraph({
       container: 'container',
       width,
@@ -1407,18 +1419,18 @@ describe('org', () => {
           {
             type: 'lasso-select',
             trigger: 'drag',
-            selectedState: 'select'
+            selectedState: 'select',
           },
           'scroll-canvas',
           {
             type: 'activate-relations',
             inactiveState: 'dark',
-            activeState: 'light'
+            activeState: 'light',
           },
           {
             type: 'shortcuts-call',
             combinedKey: 'f',
-            functionName: 'fitView'
+            functionName: 'fitView',
           },
         ],
       },
@@ -1455,51 +1467,51 @@ describe('org', () => {
           style: {
             stroke: '#fff',
             lineWidth: 3,
-            fontFamily: 'Arial'
-          }
-        }
+            fontFamily: 'Arial',
+          },
+        },
         // anchorPoints: [[0.5, 0], [0.5, 1]]
       },
       defaultEdge: {
         type: 'cubic-horizontal',
         style: {
           stroke: '#D8D8D8',
-          opacity: 0.4
+          opacity: 0.4,
         },
         labelCfg: {
           style: {
-            fontFamily: 'Arial'
-          }
-        }
+            fontFamily: 'Arial',
+          },
+        },
       },
       nodeStateStyles: {
         light: {
           'text-shape': {
-            fontSize: 12
-          }
+            fontSize: 12,
+          },
         },
         dark: {
           opacity: 0.3,
           'circle-shape': {
-            opacity: 0.3
+            opacity: 0.3,
           },
           'text-shape': {
-            opacity: 0.3
-          }
+            opacity: 0.3,
+          },
         },
         select: {
-          shadowBlur: 10
-        }
+          shadowBlur: 10,
+        },
       },
       edgeStateStyles: {
         dark: {
           opacity: 0.1,
-        }
-      }
+        },
+      },
     });
 
     let centerX = 0;
-    graph.node(node => {
+    graph.node((node) => {
       if (node.id === 'yushu') {
         centerX = node.x;
         return {
@@ -1519,9 +1531,9 @@ describe('org', () => {
               lineWidth: 3,
               fontFamily: 'Arial',
               fill: '#509FEE',
-            }
+            },
           },
-        }
+        };
       }
       let position = 'left';
       if (node.x > centerX && node.isOtherGroup) position = 'right';
@@ -1529,12 +1541,11 @@ describe('org', () => {
       else if (node.x > centerX) position = 'left';
       else if (node.x <= centerX) position = 'right';
 
-
       return {
         style: {
           stroke: node.isLeave ? '#eee' : '#d8d8d8',
           fill: node.isTL ? node.subjectColor : node.isLeave ? '#eee' : '#fff',
-          lineWidth: node.isTL ?  0 : 2,
+          lineWidth: node.isTL ? 0 : 2,
           shadowColor: node.subjectColor,
         },
         labelCfg: {
@@ -1544,25 +1555,30 @@ describe('org', () => {
             fill: node.isLeave ? '#ccc' : node.subjectColor || '#999',
             lineWidth: 3,
             fontFamily: 'Arial',
-            fontSize: node.isTL ? 12 : 10
-          }
+            fontSize: node.isTL ? 12 : 10,
+          },
         },
       };
     });
-    
-    graph.on('afterlayout', e => {
+
+    graph.on('afterlayout', (e) => {
       const otherGroupNodeMap = {};
-      otherGroupNodes.forEach(oNode => {
+      otherGroupNodes.forEach((oNode) => {
         oNode.isOtherGroup = true;
         otherGroupNodeMap[oNode.id] = oNode;
-      })
-      broEdges.forEach(bEdge => {
+      });
+      broEdges.forEach((bEdge) => {
         bEdge.isBroEdge = true;
         let sourceNode = graph.findDataById(bEdge.source);
         const targetNode = graph.findDataById(bEdge.target);
-        if (!sourceNode && graph.findById(bEdge.source)) sourceNode = graph.findById(bEdge.source).getModel();
-        
-        const newNodeX = targetNode.isTL ? targetNode.x : targetNode.x < centerX ? targetNode.x - 120 : targetNode.x + 120;
+        if (!sourceNode && graph.findById(bEdge.source))
+          sourceNode = graph.findById(bEdge.source).getModel();
+
+        const newNodeX = targetNode.isTL
+          ? targetNode.x
+          : targetNode.x < centerX
+          ? targetNode.x - 120
+          : targetNode.x + 120;
         let newNodeY = targetNode.isTL ? targetNode.y - 50 : targetNode.y;
         const sourceNodeData = otherGroupNodeMap[bEdge.source];
         if (!sourceNode) {
@@ -1572,52 +1588,56 @@ describe('org', () => {
           sourceNodeData.style = {
             stroke: '#ccc',
             fill: '#ccc',
-            shadowColor: '#ccc'
-          }
-          graph.addItem('node', sourceNodeData)
-          sourceNode = sourceNodeData
+            shadowColor: '#ccc',
+          };
+          graph.addItem('node', sourceNodeData);
+          sourceNode = sourceNodeData;
         } else if (sourceNodeData) {
           newNodeY = (sourceNode.y + newNodeY) / 2;
-          otherGroupNodes.forEach(oNode => {
+          otherGroupNodes.forEach((oNode) => {
             if (oNode.x === sourceNode.x && Math.abs(newNodeY - oNode.y) < 10) newNodeY += 20;
-          })
+          });
 
           graph.updateItem(sourceNode.id, {
-            y: newNodeY
-          })
+            y: newNodeY,
+          });
           // 如果是重复的 isOtherGroup sourceNode，更新相关的边
           const relatedEdges = graph.findById(bEdge.source).getEdges();
-          relatedEdges && relatedEdges.forEach(rEdge => {
-            const reModel = rEdge.getModel();
-            const sn = graph.findById(reModel.source).getModel();
-            const tn = graph.findById(reModel.target).getModel();
+          relatedEdges &&
+            relatedEdges.forEach((rEdge) => {
+              const reModel = rEdge.getModel();
+              const sn = graph.findById(reModel.source).getModel();
+              const tn = graph.findById(reModel.target).getModel();
 
-            let a = 0;
-            const xDiff = sn.x - tn.x;
-            const yDiff = sn.y - tn.y;
-            if (Math.abs(xDiff) < Math.abs(yDiff)) a = yDiff < 0 ? 90 : 270;
-            else a = xDiff < 0 ? 0 : 180;
+              let a = 0;
+              const xDiff = sn.x - tn.x;
+              const yDiff = sn.y - tn.y;
+              if (Math.abs(xDiff) < Math.abs(yDiff)) a = yDiff < 0 ? 90 : 270;
+              else a = xDiff < 0 ? 0 : 180;
 
-            let sourceAnchor = undefined, targetAnchor = undefined;
-            if (!sn.isTL && !tn.isTL) {
-              if (sn.isOtherGroup) sourceAnchor = tn.x < centerX ? 1 : 0;
-              else sourceAnchor = tn.x < centerX ? 0 : 1;
-              targetAnchor = tn.x < centerX ? 0 : 1;
-            }
-            // else if (tn.isTL) {
-            //   sourceAnchor = tn.x < centerX ? 5 : 4;
-            //   if (tn.y > sn.y) targetAnchor = tn.x < centerX ? 2 : 3;
-            //   else targetAnchor = tn.x < centerX ? 4 : 5;
-            // }
-            
-            graph.updateItem(rEdge, {
-              style: {
-                stroke: `l(${a}) 0:${sn.subjectColor || '#d8d8d8'} 1:${tn.subjectColor || '#d8d8d8'}`,
-              },
-              sourceAnchor,
-              targetAnchor
-            })
-          })
+              let sourceAnchor = undefined,
+                targetAnchor = undefined;
+              if (!sn.isTL && !tn.isTL) {
+                if (sn.isOtherGroup) sourceAnchor = tn.x < centerX ? 1 : 0;
+                else sourceAnchor = tn.x < centerX ? 0 : 1;
+                targetAnchor = tn.x < centerX ? 0 : 1;
+              }
+              // else if (tn.isTL) {
+              //   sourceAnchor = tn.x < centerX ? 5 : 4;
+              //   if (tn.y > sn.y) targetAnchor = tn.x < centerX ? 2 : 3;
+              //   else targetAnchor = tn.x < centerX ? 4 : 5;
+              // }
+
+              graph.updateItem(rEdge, {
+                style: {
+                  stroke: `l(${a}) 0:${sn.subjectColor || '#d8d8d8'} 1:${
+                    tn.subjectColor || '#d8d8d8'
+                  }`,
+                },
+                sourceAnchor,
+                targetAnchor,
+              });
+            });
         }
 
         const sourceColor = sourceNode.subjectColor || '#d8d8d8';
@@ -1637,15 +1657,14 @@ describe('org', () => {
             fill: targetColor,
             lineWidth: 0.1,
           },
-        }
+        };
 
         if (sourceNode.x === targetNode.x && !targetNode.isTL) {
           bEdge.type = 'quadratic';
-          const yDiff = (sourceNode.y - targetNode.y);
+          const yDiff = sourceNode.y - targetNode.y;
           const sign = (yDiff < 0 ? -1 : 1) * (sourceNode.x > centerX ? -1 : 1);
-          bEdge.curveOffset = -3.5 * sign * Math.sqrt(Math.abs(yDiff))
-        }
-        else if (sourceNode.x === targetNode.x && targetNode.isTL) {
+          bEdge.curveOffset = -3.5 * sign * Math.sqrt(Math.abs(yDiff));
+        } else if (sourceNode.x === targetNode.x && targetNode.isTL) {
           bEdge.type = 'line';
         }
 
@@ -1662,77 +1681,78 @@ describe('org', () => {
         //   if (targetNode.y > sourceNode.y) bEdge.targetAnchor = targetNode.x < centerX ? 2 : 3;
         //   else bEdge.targetAnchor = targetNode.x < centerX ? 4 : 5;
         // }
-        
+
         graph.addItem('edge', bEdge);
       });
 
-      graph.getEdges().forEach(edge => {
+      graph.getEdges().forEach((edge) => {
         const model = edge.getModel();
         if (model.isBroEdge) return;
         const color = edge.getTarget().getModel().subjectColor;
         graph.updateItem(edge, {
           style: {
-            stroke: color
+            stroke: color,
           },
-        })
-      })
-    })
+        });
+      });
+    });
 
     const moveTree = (tree, dx, dy) => {
       if (!tree) return;
       tree.x += dx;
       tree.y += dy;
       if (tree.children) {
-        tree.children.forEach(subTree => {
+        tree.children.forEach((subTree) => {
           moveTree(subTree, dx, dy);
-        })
+        });
       }
-    }
-    
-    let previousX, previousY
-    graph.on('node:dragstart', e => {
+    };
+
+    let previousX, previousY;
+    graph.on('node:dragstart', (e) => {
       previousX = e.x;
       previousY = e.y;
     });
-    graph.on('node:drag', e => {
+    graph.on('node:drag', (e) => {
       const selectedNodes = graph.findAllByState('node', 'select');
       const dx = e.x - previousX;
       const dy = e.y - previousY;
       if (selectedNodes && selectedNodes.length) {
-        selectedNodes.forEach(sNode => {
+        selectedNodes.forEach((sNode) => {
           sNode.getModel().x += dx;
           sNode.getModel().y += dy;
-        })
+        });
       } else {
         moveTree(e.item.getModel(), dx, dy);
       }
-      graph.refreshPositions()
+      graph.refreshPositions();
       previousX = e.x;
       previousY = e.y;
     });
     graph.data(tree);
     graph.render();
 
-    let enableBroView = true, enableOrgView = true;
-    broCheckBox.addEventListener('click', e => {
+    let enableBroView = true,
+      enableOrgView = true;
+    broCheckBox.addEventListener('click', (e) => {
       enableBroView = !enableBroView;
-      graph.getEdges().forEach(edge => {
+      graph.getEdges().forEach((edge) => {
         const model = edge.getModel();
         if (!model.isBroEdge) return;
         if (enableBroView) edge.show();
         else edge.hide();
       });
-      graph.getNodes().forEach(node => {
+      graph.getNodes().forEach((node) => {
         const model = node.getModel();
         if (!model.isOtherGroup) return;
         if (enableBroView) node.show();
         else node.hide();
-      })
+      });
     });
 
-    orgCheckBox.addEventListener('click', e => {
+    orgCheckBox.addEventListener('click', (e) => {
       enableOrgView = !enableOrgView;
-      graph.getEdges().forEach(edge => {
+      graph.getEdges().forEach((edge) => {
         const model = edge.getModel();
         if (model.isBroEdge) return;
         if (enableOrgView) edge.show();
@@ -1743,18 +1763,18 @@ describe('org', () => {
     // 按键缩放
     document.onkeydown = function (event) {
       var e = event || window.event || arguments.callee.caller.arguments[0];
-      if (e && (e.key === '+' || e.key === '=')) { 
-        graph.zoom(1.1, {x: width / 2, y : height / 2});
+      if (e && (e.key === '+' || e.key === '=')) {
+        graph.zoom(1.1, { x: width / 2, y: height / 2 });
       }
-      if (e && (e.key === '-' || e.key === '_')) { 
-        graph.zoom(0.9, {x: width / 2, y : height / 2});
+      if (e && (e.key === '-' || e.key === '_')) {
+        graph.zoom(0.9, { x: width / 2, y: height / 2 });
       }
     };
 
     // legend
     const rootGroup = graph.getGroup();
     const legendBegin = graph.getPointByCanvas(16, graph.getHeight() - 200);
-    
+
     const legendNodeR = 3;
     const legendLabelMargin = 16;
     const legendItemHeight = 24;
@@ -1766,18 +1786,18 @@ describe('org', () => {
         y: legendBegin.y,
         fill: '#509FEE',
         lineWidth: 2,
-        r: legendNodeR
-      }
-    })
+        r: legendNodeR,
+      },
+    });
     rootGroup.addShape('text', {
       attrs: {
         x: legendBegin.x + 8 + legendLabelMargin,
         y: legendBegin.y,
         text: 'TL 节点',
         fill: '#509FEE',
-        textBaseline: 'middle'
-      }
-    })
+        textBaseline: 'middle',
+      },
+    });
     // 空心节点
     rootGroup.addShape('circle', {
       attrs: {
@@ -1786,18 +1806,18 @@ describe('org', () => {
         stroke: '#999',
         fill: '#fff',
         lineWidth: 2,
-        r: legendNodeR
-      }
-    })
+        r: legendNodeR,
+      },
+    });
     rootGroup.addShape('text', {
       attrs: {
         x: legendBegin.x + 8 + legendLabelMargin,
         y: legendBegin.y + legendItemHeight,
         text: '成员节点',
         fill: '#509FEE',
-        textBaseline: 'middle'
-      }
-    })
+        textBaseline: 'middle',
+      },
+    });
     // 灰色空心
     rootGroup.addShape('circle', {
       attrs: {
@@ -1806,18 +1826,18 @@ describe('org', () => {
         stroke: '#999',
         fill: '#fff',
         lineWidth: 2,
-        r: legendNodeR
-      }
-    })
+        r: legendNodeR,
+      },
+    });
     rootGroup.addShape('text', {
       attrs: {
         x: legendBegin.x + 8 + legendLabelMargin,
         y: legendBegin.y + 2 * legendItemHeight,
         text: '非本团队成员',
         fill: '#999',
-        textBaseline: 'middle'
-      }
-    })
+        textBaseline: 'middle',
+      },
+    });
     // 灰色实心
     rootGroup.addShape('circle', {
       attrs: {
@@ -1826,19 +1846,19 @@ describe('org', () => {
         stroke: '#ccc',
         fill: '#ccc',
         lineWidth: 2,
-        r: legendNodeR
-      }
-    })
+        r: legendNodeR,
+      },
+    });
     rootGroup.addShape('text', {
       attrs: {
         x: legendBegin.x + 8 + legendLabelMargin,
         y: legendBegin.y + 3 * legendItemHeight,
         text: '已离职',
         fill: '#ccc',
-        textBaseline: 'middle'
-      }
-    })
-    
+        textBaseline: 'middle',
+      },
+    });
+
     // 实线边
     rootGroup.addShape('line', {
       attrs: {
@@ -1848,17 +1868,17 @@ describe('org', () => {
         y2: legendBegin.y + 4 * legendItemHeight,
         stroke: '#509FEE',
         lineWidth: 2,
-      }
-    })
+      },
+    });
     rootGroup.addShape('text', {
       attrs: {
         x: legendBegin.x + 16 + legendLabelMargin,
         y: legendBegin.y + 4 * legendItemHeight,
         text: '组织架构边',
         fill: '#509FEE',
-        textBaseline: 'middle'
-      }
-    })
+        textBaseline: 'middle',
+      },
+    });
 
     // 虚线边
     rootGroup.addShape('line', {
@@ -1873,19 +1893,18 @@ describe('org', () => {
         endArrow: {
           path: F6.Arrow.triangle(4, 6, 0),
           lineWidth: 0.1,
-          fill: '#509FEE'
-        }
-      }
-    })
+          fill: '#509FEE',
+        },
+      },
+    });
     rootGroup.addShape('text', {
       attrs: {
         x: legendBegin.x + 16 + legendLabelMargin,
         y: legendBegin.y + 5 * legendItemHeight,
         text: '师兄 -> 师弟',
         fill: '#509FEE',
-        textBaseline: 'middle'
-      }
-    })
-
-  })
-})
+        textBaseline: 'middle',
+      },
+    });
+  });
+});

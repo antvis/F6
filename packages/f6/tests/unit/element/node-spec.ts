@@ -76,11 +76,11 @@ describe('shape node test', () => {
       });
       translate(group, { x: 100, y: 100 });
       const shape = factory.draw(
-        'rect',
+        'simple-rect',
         {
           size: [40, 20],
           color: 'yellow',
-          label: 'rect',
+          label: 'simple-rect',
           labelCfg: {
             style: {
               fill: 'white',
@@ -145,7 +145,7 @@ describe('shape node test', () => {
         group,
       });
       factory.baseUpdate(
-        'rect',
+        'simple-rect',
         {
           size: [100, 50],
           style: {
@@ -673,10 +673,12 @@ describe('shape node test', () => {
           },
         ],
       };
+
       graph.data(data);
       graph.render();
 
       const node = graph.getNodes()[0];
+
       const group = node.get('group');
       // rect + label + linkPoints * 2
       expect(group.getCount()).toEqual(4);

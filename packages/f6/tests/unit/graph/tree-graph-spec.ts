@@ -1,3 +1,4 @@
+import F6 from '../../../src';
 import TreeGraph from '../../../src/extends/graph/treeGraph';
 import { timerOut } from '../util/timeOut';
 
