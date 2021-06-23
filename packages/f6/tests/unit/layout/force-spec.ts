@@ -396,7 +396,7 @@ describe('force layout', () => {
       const node0 = data.nodes[0];
       expect(node0.x).not.toEqual(NaN);
       expect(node0.y).not.toEqual(NaN);
-      forceLayout.forceSimulation.stop();
+      forceLayout.layoutInstance.forceSimulation.stop();
       graph.destroy();
       done();
     }, 300);
@@ -418,7 +418,7 @@ describe('update and simulation', () => {
 
     let forceLayout;
     Promise.resolve().then(() => {
-      forceLayout = graph.get('layoutController').layoutMethods[0];
+      forceLayout = graph.get('layoutController').layoutMethods[0].layoutInstance;
       expect(forceLayout.linkDistance).toEqual(50); // default value
       expect(forceLayout.preventOverlap).toEqual(false);
     });

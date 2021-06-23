@@ -1,6 +1,6 @@
 import F6 from '../../../src';
+import randomLayout from '../../../src/extends/layout/randomLayout';
 
-import { randomLayout } from '@antv/layout/lib/layout/random';
 import { NodeConfig, EdgeConfig } from '@antv/g6-core';
 
 const div = document.createElement('div');

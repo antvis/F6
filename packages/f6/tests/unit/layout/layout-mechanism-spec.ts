@@ -2,7 +2,6 @@ import F6 from '../../../src';
 import dataset from './data';
 import { mathEqual } from './util';
 import circularLayout from '../../../src/extends/layout/circularLayout';
-F6.registerLayout('circular', circularLayout);
 
 const data = dataset.data;
 
@@ -12,7 +11,8 @@ document.body.appendChild(div);
 
 describe('layout mechanism', () => {
   it('use layout indenpently', () => {
-    const circular = new F6.Layout['circular']();
+    F6.registerLayout('circular', circularLayout);
+    const circular = new F6.Layouts['circular']();
     circular.init(data);
     circular.execute();
 
@@ -79,7 +79,7 @@ describe('layout mechanism', () => {
         });
       },
     });
-    const custom2 = new F6.Layout['custom2']();
+    const custom2 = new F6.Layouts['custom2']();
     custom2.layout(data);
     expect((data.nodes[0] as any).x).toBe(10);
     expect((data.nodes[0] as any).y).toBe(5);

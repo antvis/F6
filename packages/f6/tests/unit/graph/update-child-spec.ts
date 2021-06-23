@@ -1,14 +1,13 @@
 import F6 from '../../../src';
 import TreeGraph from '../../../src/extends/graph/treeGraph';
-import radialLayout from '../../../src/extends/layout/radialLayout';
-F6.registerLayout('radial', radialLayout);
+F6.registerGraph('TreeGraph', TreeGraph);
 
 const div = document.createElement('div');
 div.id = 'tree-spec';
 document.body.appendChild(div);
 
 describe('tree graph without updateChild', () => {
-  let graph = new TreeGraph({
+  let graph = new F6.TreeGraph({
     container: div,
     width: 500,
     height: 500,
