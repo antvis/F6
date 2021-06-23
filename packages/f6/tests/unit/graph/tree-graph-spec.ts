@@ -2,12 +2,13 @@ import F6 from '../../../src';
 import TreeGraph from '../../../src/extends/graph/treeGraph';
 import { timerOut } from '../util/timeOut';
 
+F6.registerGraph('TreeGraph', TreeGraph);
 const div = document.createElement('div');
 div.id = 'tree-spec';
 document.body.appendChild(div);
 
 describe('tree graph without animate', () => {
-  let graph = new TreeGraph({
+  let graph = new F6.TreeGraph({
     container: div,
     width: 500,
     height: 500,
@@ -190,7 +191,7 @@ describe('tree graph without animate', () => {
   });
 
   it('collapse & expand with layout with parameter trigger=dblclick', () => {
-    graph = new TreeGraph({
+    graph = new F6.TreeGraph({
       container: div,
       width: 500,
       height: 500,
@@ -261,7 +262,7 @@ describe('tree graph without animate', () => {
 });
 
 describe('update child', () => {
-  const graph = new TreeGraph({
+  const graph = new F6.TreeGraph({
     container: div,
     width: 500,
     height: 500,
@@ -360,7 +361,7 @@ describe('update child', () => {
 });
 
 describe('updateLayout, layout', () => {
-  const graph = new TreeGraph({
+  const graph = new F6.TreeGraph({
     container: div,
     width: 500,
     height: 500,
@@ -448,7 +449,7 @@ describe('updateLayout, layout', () => {
 });
 
 describe('tree graph with animate', () => {
-  const graph3 = new TreeGraph({
+  const graph3 = new F6.TreeGraph({
     container: div,
     width: 500,
     height: 500,

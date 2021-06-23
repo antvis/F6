@@ -232,7 +232,7 @@ describe('undefined configurations and update layout', () => {
 
     let forceLayout;
     Promise.resolve().then(() => {
-      forceLayout = graph.get('layoutController').layoutMethods[0];
+      forceLayout = graph.get('layoutController').layoutMethods[0].layoutInstance;
       expect(isFunction(forceLayout.linkDistance)).toEqual(true);
       expect(forceLayout.linkDistance()).toEqual(10);
       expect(forceLayout.preventOverlap).toEqual(false);

@@ -83,6 +83,10 @@ export default class Graph extends AbstractGraph implements IGraph {
       this.set('container', container);
     }
 
+    if (!container) {
+      throw new Error('invalid container');
+    }
+
     const width: number = this.get('width');
     const height: number = this.get('height');
     const renderer: string = this.get('renderer');

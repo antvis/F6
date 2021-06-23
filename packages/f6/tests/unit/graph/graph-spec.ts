@@ -83,7 +83,7 @@ describe('graph', () => {
     expect(inst.get('group')).not.toBe(undefined);
 
     expect(inst.get('group').get('className')).toEqual('root-container');
-    expect(inst.get('group').get('id').endsWith('-root')).toBe(true);
+    expect(inst.get('group').get('id').endsWith('root')).toBe(true);
 
     const children = inst.get('group').get('children');
     expect(children.length).toBe(4);
