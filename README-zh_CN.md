@@ -165,7 +165,7 @@ DEBUG_MODE=1 npm test -- --watch ./tests/unit/algorithm/find-path-spec
 
 微信群在这里添加:
 
-<img src='https://gw.alipayobjects.com/mdn/rms_5c3b4a/afts/img/A*jhY3RoI5IrgAAAAAAAAAAAAAARQnAQ' width=550 alt='' />
+<img src='https://gw.alipayobjects.com/mdn/rms_5c3b4a/afts/img/A*q-FdR6w6kK8AAAAAAAAAAAAAARQnAQ' width=550 alt='' />
 
 ## 如何贡献
 
