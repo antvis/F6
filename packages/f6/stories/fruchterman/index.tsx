@@ -421,7 +421,7 @@ const data = {
   ],
 };
 
-export const FruchtermanDemo = () => {
+export default () => {
   const ref = React.useRef(null);
   const height = window.innerHeight - 32; // demos padding
   const width = window.innerWidth - 32;
