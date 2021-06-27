@@ -456,6 +456,7 @@ export function createNodeFromXML(gen: string | ((node: any) => string)) {
   const compileXML = (cfg) => {
     const rawStr = typeof gen === 'function' ? gen(cfg) : gen;
     const target = xmlDataRenderer(rawStr)(cfg);
+    // TODO 这里需要一个patch #16
     const xmlParser = document.createElement('div');
     xmlParser.innerHTML = target;
     const xml = xmlParser.children[0] as HTMLElement;

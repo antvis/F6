@@ -83,13 +83,14 @@ export default class Graph extends AbstractGraph implements IGraph {
       this.set('container', container);
     }
 
-    if (!container) {
+    const renderer: string = this.get('renderer');
+
+    if (!container && !renderer.startsWith('mini')) {
       throw new Error('invalid container');
     }
 
     const width: number = this.get('width');
     const height: number = this.get('height');
-    const renderer: string = this.get('renderer');
     const context: string = this.get('context');
     const fitView: boolean = this.get('fitView');
     // native canvas 会传递 requestAnimationFrame, clearAnimationFrame 等函数进来
