@@ -592,6 +592,8 @@ export enum G6Event {
   PANSTART = 'panstart',
   PANMOVE = 'panmove',
   PANEND = 'panend',
+  PRESS = 'press',
+  ACTION_END = 'actionend',
 
   // touch events
   TOUCHSTART = 'touchstart',
@@ -625,6 +627,7 @@ export enum G6Event {
   NODE_PANSTART = 'node:panstart',
   NODE_PANMOVE = 'node:panmove',
   NODE_PANEND = 'node:panend',
+  NODE_PRESS = 'node:press',
 
   // combo, extends from nodes
   COMBO_CLICK = 'combo:click',
@@ -641,6 +644,7 @@ export enum G6Event {
   COMBO_PANSTART = 'combo:panstart',
   COMBO_PANMOVE = 'combo:panmove',
   COMBO_PANEND = 'combo:panend',
+  COMBO_PRESS = 'combo:press',
 
   // edge events
   EDGE_CLICK = 'edge:click',
@@ -651,6 +655,7 @@ export enum G6Event {
   EDGE_DRAGLEAVE = 'edge:dragleave',
   EDGE_TAP = 'edge:tap',
   EDGE_DBLTAP = 'edge:dbltap',
+  EDGE_PRESS = 'edge:press',
 
   // canvas events
   CANVAS_CLICK = 'canvas:click',
@@ -666,6 +671,7 @@ export enum G6Event {
   CANVAS_PANSTART = 'canvas:panstart',
   CANVAS_PANMOVE = 'canvas:panmove',
   CANVAS_PANEND = 'canvas:panend',
+  CANVAS_PRESS = 'canvas:press',
 
   // timing events
   BEFORERENDER = 'beforerender',
