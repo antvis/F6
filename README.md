@@ -165,7 +165,7 @@ Welcome to join the **F6 Communication Group** (DingTalk groups). We also welcom
 
 Wechat group is here:
 
-<img src='https://gw.alipayobjects.com/mdn/rms_5c3b4a/afts/img/A*69XoRY2qjD0AAAAAAAAAAAAAARQnAQ' width=550 alt='' />
+<img src='https://gw.alipayobjects.com/mdn/rms_5c3b4a/afts/img/A*tGl7TJZL__kAAAAAAAAAAAAAARQnAQ' width=550 alt='' />
 
 ## How to Contribute
 
