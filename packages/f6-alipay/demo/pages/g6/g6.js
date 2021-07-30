@@ -1,7 +1,79 @@
-import G6 from '@antv/g6-mobile';
-import forceLayout from '@antv/g6-mobile/dist/extends/layout/forceLayout';
+import G6 from '@antv/f6';
+import { createUI }  from '@antv/f6-ui'
+import forceLayout from '../../../../f6/dist/extends/layout/forceLayout';
 
 G6.registerLayout('force', forceLayout);
+
+
+function test(group) {
+  const html = `
+    <div id="lll">
+      <div class="test">
+        <shape type="rect" r="10" path="M10 80 C 40 10, 65 10, 95 80 S 150 150, 180 80" >ttt</shape>
+      </div>
+      <div class="real">       
+       <image src="https://gw.alipayobjects.com/mdn/rms_6ae20b/afts/img/A*N4ZMS7gHsUIAAAAAAAAAAABkARQnAQ"></image>
+      </div>
+      <div class="real">testtesetsets</div>
+      <div class="test">testtesetsets</div>
+      <div class="real">testtesetsets</div>
+    </div>
+  `;
+  const css = `
+    #lll {
+      width: 600;
+      height: 200;
+      display: flex;
+      flexDirection: row;
+      flex-wrap: nowrap;
+      justify-content: flex-start;
+      align-items: center;
+
+      background: blue;
+      color: black;
+      border: 20 solid rgba(0,0,0,0.5);
+      border-radius: 10;
+
+      font-size: 24;
+    }
+    div {
+      background: red;
+    }
+    .test {
+      background: yellow;
+      padding-left: 0;
+    }
+
+    #lll div{
+      margin-left: 10;
+      text-align: left;
+      width: 100;
+      height: 100;
+    }
+    
+    #lll div.real{
+      text-align: left;
+    }
+    shape {
+      background: #ff00ff;
+      top: 0;
+      left: 0;
+      width: 50;
+      height: 50;
+      text-align: center;
+    }
+    image {
+      width: 50;
+      height: 50;
+    }
+  `;
+  // 样式解析计算，简写样式展开。
+  console.log(createUI)
+  const ui  = createUI (html, css, group);
+  console.log('query', ui.query('#lll div.real'))
+  
+  console.log(ui)
+}
 
 function refreshDragedNodePosition(e) {
   const model = e.item.get('model');
@@ -137,6 +209,7 @@ Page({
       e.item.get('model').fx = null;
       e.item.get('model').fy = null;
     });
+    test(this.graph.get('uiGroup'))
   },
   onTouch(e) {
     this.graph.emitEvent(e);

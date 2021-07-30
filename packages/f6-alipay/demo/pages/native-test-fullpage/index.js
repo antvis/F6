@@ -1,4 +1,4 @@
-import G6 from '@antv/g6-mobile';
+import G6 from '../../../../f6';
 
 const data = {
   nodes: [

@@ -680,11 +680,18 @@ export default class Graph extends AbstractGraph implements IGraph {
 
       this.set({ nodeGroup, edgeGroup, comboGroup });
     }
+
+    const uiGroup: IGroup = canvas.addGroup({
+      id: 'uiGroup',
+      className: Global.uiContainerClassName,
+    });
+
     const delegateGroup: IGroup = group.addGroup({
       id: 'delegate',
       className: Global.delegateContainerClassName,
     });
     this.set({ delegateGroup });
     this.set('group', group);
+    this.set('uiGroup', uiGroup);
   }
 }
