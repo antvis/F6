@@ -458,78 +458,132 @@ export default class Graph extends AbstractGraph implements IGraph {
     }
   }
 
+  private isMiniNative() {
+      return this.get('renderer') === 'mini-native';
+  }
+
+  private isMini() {
+      return this.get('renderer').startsWith('mini');
+  }
+
+  private isBrowser() {
+      return this.get('renderer') === 'canvas';
+  }
+
+
+  //TODO 字符串'g6-graph-watermarker' 修改成'g6-graph-watermarker'会影响一些demo，已经全局改过来了
+
   /**
    * 设置图片水印
    * @param {string} imgURL 图片水印的url地址
    * @param {WaterMarkerConfig} config 文本水印的配置项
+   * @param {any} waterCanvas 小程序canvas
    */
-  public setImageWaterMarker(imgURL: string = Global.waterMarkerImage, config?: WaterMarkerConfig) {
-    let container: string | HTMLElement | null = this.get('container');
-    if (isString(container)) {
-      container = document.getElementById(container);
-    }
+  public setImageWaterMarker(imgURL: string, config: WaterMarkerConfig, waterCanvas: any) {
 
-    if (!container.style.position) {
-      container.style.position = 'relative';
-    }
+      //水印的设置合并
+      const waterMarkerConfig = deepMix({}, Global.imageWaterMarkerConfig, config)
+      const {width, height, compatible, image} = waterMarkerConfig
+      const { rotate, x, y } = image
+      
 
-    let canvas = this.get('graphWaterMarker');
+      if(this.isMini() || this.isMiniNative()) {
+          const waterGroup = this.get('waterGroup')
 
-    const waterMarkerConfig: WaterMarkerConfig = deepMix({}, Global.imageWaterMarkerConfig, config);
-    const { width, height, compatible, image } = waterMarkerConfig;
+          //获取画布元素的实例
+          const waterCanvasContext = waterCanvas.getContext('2d')
+          //旋转20度
+          waterCanvasContext.rotate((-rotate * Math.PI) / 180)
 
-    if (!canvas) {
-      const canvasCfg: any = {
-        container,
-        width,
-        height,
-        capture: false,
-      };
-      const pixelRatio = this.get('pixelRatio');
-      if (pixelRatio) {
-        canvasCfg.pixelRatio = pixelRatio;
+          //第一种情况：mini，1.0 小程序canvas下只能用string绘制
+          if(this.isMini() && !this.isMiniNative()) {
+              waterCanvasContext.drawImage(imgURL, x, y, image.width, image.height);
+              //恢复旋转角度
+              waterCanvasContext.rotate((rotate * Math.PI) / 180)
+              const generate_img_url = waterCanvasContext.toDataURL()
+              waterGroup.addShape('image', {
+                  attrs: {
+                      img: generate_img_url
+                  }
+              })
+          }
+
+          if(!this.isMini() && this.isMiniNative()) {
+              const img = waterCanvas.createImage()
+              img.crossOrigin = 'ananymous'
+              img.src = imgURL
+              img.onload = () => {
+                  waterCanvasContext.drawImage(img, x, y, image.width, image.height) 
+                  waterCanvasContext.rotate((rotate * Math.PI) / 180)
+                  //生成base64URL
+                  const generate_img_url = waterCanvasContext.toDataURL()
+                  waterGroup.addShape('image', {
+                      attrs: {
+                          img: generate_img_url
+                      }
+                  })
+              }
+
+          }
+      } 
+
+      if(this.isBrowser()) {
+          //如果是h5的情况
+          let container: string | HTMLElement | null = this.get('container');
+          if (isString(container)) {
+              container = document.getElementById(container);
+          }
+
+          if(!container.style.position) {
+              container.style.position = 'relative'
+          }
+          const canvasCfg: any = {
+              container,
+              width,
+              height,
+              capture:false,
+          }
+          const pixelRatio = this.get('pixelRatio')
+          if(pixelRatio) {
+              canvasCfg.pixelRatio = pixelRatio
+          }
+          //创建canvas
+          let canvas = new GMobileCanvas(canvasCfg)
+
+          canvas.get('el').style.display = 'none'
+          const ctx = canvas.get('context')
+          // 旋转20度
+          ctx.rotate((-rotate * Math.PI) / 180);
+          const img = new Image()
+          img.crossOrigin = 'ananymous'
+          img.src = imgURL
+          img.onload = () => {
+              ctx.drawImage(img, x, y, image.width, image.height)
+              //恢复旋转角度
+              ctx.rotate( (rotate * Math.PI) / 180 )
+
+              // 默认按照现代浏览器处理
+              if (!compatible) {
+                  let box = document.querySelector('.g6-graph-watermarker') as HTMLElement;
+                  if (!box) {
+                      box = document.createElement('div');
+                  }
+                  box.className = 'g6-graph-watermarker';
+                  box.style.cssText = `background-image: url(${canvas
+                      .get('el')
+                      .toDataURL(
+                        'image/png',
+                      )});background-repeat:repeat;position:absolute;top:0;bottom:0;left:0;right:0;pointer-events:none;z-index:-1;`;
+                  //创建一个盒子box，放水印照片，然后添加到container下面
+                  (container as HTMLElement).appendChild(box);
+              } else {
+                  // 当需要兼容不支持 pointer-events属性的浏览器时，将 compatible 设置为 true
+                  (container as HTMLElement).style.cssText = `background-image: url(${canvas
+                      .get('el')
+                      .toDataURL('image/png')});background-repeat:repeat;`;
+              }
+          }
       }
-      canvas = new GMobileCanvas(canvasCfg);
-      this.set('graphWaterMarker', canvas);
-    }
-    canvas.get('el').style.display = 'none';
-    const ctx = canvas.get('context');
-
-    const { rotate, x, y } = image;
-    // 旋转20度
-    ctx.rotate((-rotate * Math.PI) / 180);
-
-    const img = new Image();
-    img.crossOrigin = 'anonymous';
-    img.src = imgURL;
-    img.onload = () => {
-      ctx.drawImage(img, x, y, image.width, image.height);
-      // 恢复旋转角度
-      ctx.rotate((rotate * Math.PI) / 180);
-
-      // 默认按照现代浏览器处理
-      if (!compatible) {
-        let box = document.querySelector('.g6-graph-watermarker') as HTMLElement;
-        if (!box) {
-          box = document.createElement('div');
-          box.className = 'g6-graph-watermarker';
-        }
-        box.className = 'g6-graph-watermarker';
-        if (!canvas.destroyed) {
-          box.style.cssText = `background-image: url(${canvas
-            .get('el')
-            .toDataURL(
-              'image/png',
-            )});background-repeat:repeat;position:absolute;top:0;bottom:0;left:0;right:0;pointer-events:none;z-index:-1;`;
-          (container as HTMLElement).appendChild(box);
-        }
-      } else {
-        // 当需要兼容不支持 pointer-events属性的浏览器时，将 compatible 设置为 true
-        (container as HTMLElement).style.cssText = `background-image: url(${canvas
-          .get('el')
-          .toDataURL('image/png')});background-repeat:repeat;`;
-      }
-    };
   }
 
   /**
@@ -659,6 +713,11 @@ export default class Graph extends AbstractGraph implements IGraph {
       className: Global.rootContainerClassName,
     });
 
+    const waterGroup: IGroup = canvas.addGroup({
+      id:'water',
+      className: Global.waterContainerClassName
+    })
+
     if (this.get('groupByTypes')) {
       const edgeGroup: IGroup = group.addGroup({
         id: 'edge',
@@ -693,5 +752,6 @@ export default class Graph extends AbstractGraph implements IGraph {
     this.set({ delegateGroup });
     this.set('group', group);
     this.set('uiGroup', uiGroup);
+    this.set('waterGroup', waterGroup)
   }
 }

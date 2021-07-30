@@ -10,6 +10,7 @@ export default {
   version: '0.0.11',
   rootContainerClassName: 'root-container',
   uiContainerClassName: 'ui-container',
+  waterContainerClassName: 'water-container',
   nodeContainerClassName: 'node-container',
   edgeContainerClassName: 'edge-container',
   comboContainerClassName: 'combo-container',

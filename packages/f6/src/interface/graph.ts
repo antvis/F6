@@ -58,7 +58,7 @@ export interface IGraph extends IAbstractGraph {
    * @param {string} imgURL 图片水印的url地址
    * @param {WaterMarkerConfig} config 文本水印的配置项
    */
-  setImageWaterMarker: (imgURL: string, config: WaterMarkerConfig) => void;
+  setImageWaterMarker: (imgURL: string, config: WaterMarkerConfig, waterCanvas: any) => void;
 
   /**
    * 设置文本水印
