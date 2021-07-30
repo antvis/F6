@@ -1,7 +1,7 @@
 {
   "pages": [
-    "pages/native-canvas/index",
     "pages/g6/g6",
+    "pages/native-canvas/index",
     "pages/native-test/native-test",
     "pages/native-test-fullpage/index",
     "pages/image/image"
