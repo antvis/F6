@@ -1,0 +1,90 @@
+{
+  "name": "@antv/f6-plugin",
+  "version": "1.0.0",
+  "description": "F6 plugin",
+  "keywords": [
+    "antv",
+    "f6",
+    "graph",
+    "graph analysis",
+    "graph editor",
+    "graph visualization",
+    "relational data"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/antvis/F6.git"
+  },
+  "license": "MIT",
+  "author": "https://github.com/orgs/antvis/people",
+  "files": ["package.json", "es", "lib", "dist", "LICENSE", "README.md"],
+  "main": "lib/index.js",
+  "module": "es/index.js",
+  "types": "lib/index.d.ts",
+  "bugs": {
+    "url": "https://github.com/antvis/F6/issues"
+  },
+  "homepage": "https://github.com/antvis/F6#readme",
+  "scripts": {
+    "start": "father build --watch",
+    "analysis": "npm run clean && father build && ANALYZE=1 npm run build:umd",
+    "build": "npm run clean && father build && npm run build:umd",
+    "build:umd": "webpack --config webpack.config.js --mode production",
+    "ci": "npm run build && npm run coverage",
+    "clean": "rimraf es esm lib dist",
+    "coverage": "jest --coverage",
+    "demos": "start-storybook -p 8080 -c .storybook",
+    "doc": "rimraf apis && typedoc",
+    "lint": "eslint --ext .js,.jsx,.ts,.tsx --format=pretty \"./\"",
+    "lint:src": "eslint --ext .ts --format=pretty \"./src\"",
+    "prettier": "prettier -c --write \"**/*\"",
+    "test": "jest",
+    "test-live": "DEBUG_MODE=1 jest --watch ./tests/unit/layout/combo-force-spec.ts",
+    "lint-staged:js": "eslint --ext .js,.jsx,.ts,.tsx",
+    "watch": "father build -w"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "dependencies": {
+    "@antv/g-mobile": "^0.0.9"
+  },
+  "devDependencies": {
+    "@antv/chart-node-g6": "^0.0.3",
+    "@babel/core": "^7.7.7",
+    "@babel/plugin-proposal-class-properties": "^7.1.0",
+    "@babel/preset-react": "^7.7.4",
+    "@storybook/addon-actions": "^6.2.9",
+    "@storybook/addon-essentials": "^6.2.9",
+    "@storybook/addon-links": "^6.2.9",
+    "@storybook/react": "^6.2.9",
+    "@turf/turf": "^5.1.6",
+    "@types/jest": "^25.2.1",
+    "@types/node": "13.11.1",
+    "@typescript-eslint/eslint-plugin": "^3.9.0",
+    "@umijs/fabric": "^2.0.0",
+    "awesome-typescript-loader": "^5.2.1",
+    "babel-loader": "^8.0.6",
+    "eslint": "^7.7.0",
+    "event-simulate": "~1.0.0",
+    "father": "^2.29.1",
+    "husky": "^4.2.5",
+    "jest-electron": "^0.1.7",
+    "jest-extended": "^0.11.2",
+    "jquery": "~3.5.1",
+    "lint-staged": "^10.2.11",
+    "pre-commit": "^1.2.2",
+    "prettier": "^2.0.5",
+    "regenerator-runtime": "^0.13.7",
+    "rimraf": "^3.0.0",
+    "ts-jest": "^24.1.0",
+    "ts-loader": "^7.0.3",
+    "typescript": "^3.5.3",
+    "webpack": "^4.41.4",
+    "webpack-bundle-analyzer": "^4.4.0",
+    "webpack-cli": "^3.3.10",
+    "webpack-visualizer-plugin": "^0.1.11"
+  }
+}
