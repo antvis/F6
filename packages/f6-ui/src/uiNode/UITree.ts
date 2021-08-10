@@ -3,11 +3,11 @@ import { computeLayout } from '../utils';
 import { throttle } from '@antv/util';
 
 export default class UITree extends UIBaseNode {
-  static layoutInterval = 10;
+  static layoutInterval = 3;
   layout() {
     const layout = throttle(
       () => {
-        console.log('in');
+        console.log('layout');
         this.clearLayout();
         computeLayout(this.root?.styleNode);
         this.render();
@@ -29,9 +29,6 @@ export default class UITree extends UIBaseNode {
   }
   clearLayout() {
     this.root?.clearLayout();
-  }
-  attr() {
-    console.warn('UI 根节点无法设置属性');
   }
   get root() {
     return this.children[0];

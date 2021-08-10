@@ -1,5 +1,5 @@
 export function typeParser(value) {
-  if (/^\d+$/.test(value)) {
+  if (/^[-\+\.\d]+$/.test(value)) {
     return Number(value);
   }
 
@@ -233,36 +233,46 @@ export function isSelectorMatchDom(dom, selector) {
   return true;
 }
 
-export enum layoutAttrs {
-  'position',
-  'display',
-  'width',
-  'height',
-  'minWidth',
-  'minHeight',
-  'top',
-  'left',
-  'right',
-  'bottom',
-  'flex',
-  'margin',
-  'marginLeft',
-  'marginRight',
-  'marginTop',
-  'marginBottom',
-  'padding',
-  'paddingLeft',
-  'paddingRight',
-  'paddingTop',
-  'paddingBottom',
-  'borderWidth',
-  'borderLeftWidth',
-  'borderRightWidth',
-  'borderTopWidth',
-  'borderBottomWidth',
-  'flexDirection',
-  'justifyContent',
-  'alignItems',
-  'alignSelf',
-  'flexWrap',
-}
+export const reflowAttrs = {
+  position: 1,
+  display: 1,
+  width: 1,
+  height: 1,
+  minWidth: 1,
+  minHeight: 1,
+  top: 1,
+  left: 1,
+  right: 1,
+  bottom: 1,
+  flex: 1,
+  margin: 1,
+  marginLeft: 1,
+  marginRight: 1,
+  marginTop: 1,
+  marginBottom: 1,
+  padding: 1,
+  paddingLeft: 1,
+  paddingRight: 1,
+  paddingTop: 1,
+  paddingBottom: 1,
+  borderWidth: 1,
+  borderLeftWidth: 1,
+  borderRightWidth: 1,
+  borderTopWidth: 1,
+  borderBottomWidth: 1,
+  flexDirection: 1,
+  justifyContent: 1,
+  alignItems: 1,
+  alignSelf: 1,
+  flexWrap: 1,
+};
+
+export const layoutAttrs = {
+  left: 1,
+  top: 1,
+  right: 1,
+  bottom: 1,
+  width: 1,
+  height: 1,
+  direction: 1,
+};
