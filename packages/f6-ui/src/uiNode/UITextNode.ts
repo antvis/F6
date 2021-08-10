@@ -19,10 +19,15 @@ export default class UITextNode extends UINode {
       textBaseline: 'top',
     };
 
-    const shape = parentGNode.addShape('text', {
-      type: 'text',
-      attrs,
-    });
+    let shape = this.gNode;
+
+    if (!shape) {
+      shape = parentGNode.addShape('text', {
+        type: 'text',
+        attrs,
+      });
+    }
+    shape.resetMatrix();
 
     switch (style.textAlign) {
       case 'center':
@@ -34,13 +39,12 @@ export default class UITextNode extends UINode {
       default:
         break;
     }
-    this.gNode = shape;
-
-    this.gNode.attr(
+    shape.attr(
       'text',
-      this.getMultiLineText(this.styleNode.dom.text, attrs, this.styleNode.layout.width),
+      this.getMultiLineText(String(this.styleNode.dom.text), attrs, this.styleNode.layout.width),
     );
-    return shape;
+    typeof style.zIndex === 'number' && shape.setZIndex(style.zIndex);
+    this.gNode = shape;
   }
   getMultiLineText(text, attrs, width) {
     const ctx = this.parent.gNode.get('canvas')?.get('context');

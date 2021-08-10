@@ -26,7 +26,7 @@ function createSegmentNode(htmlString, cssString) {
     const [node, parent] = stack.pop();
     for (let child of node.originChildren) {
       const uiNode = createUINode(child.dom.tagName, child);
-      parent.appendChild(uiNode);
+      parent.appendChild(uiNode, false);
       stack.push([child, uiNode]);
     }
   }

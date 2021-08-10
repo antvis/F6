@@ -16,8 +16,13 @@ export default class UIShapeNode extends UINode {
       height: layout.height - (style.borderWidth || 0),
     };
 
-    const shape = parentGNode.addShape(dom.attrs.type, { attrs });
+    let shape = this.gNode;
+    if (!shape) {
+      shape = parentGNode.addShape(dom.attrs.type, { attrs });
+    }
+    shape.resetMatrix();
+    typeof style.zIndex === 'number' && shape.setZIndex(style.zIndex);
     shape.translate(styleNode.layout.left, styleNode.layout.top);
-    return shape;
+    this.gNode = shape;
   }
 }
