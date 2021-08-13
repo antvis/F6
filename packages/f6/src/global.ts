@@ -9,6 +9,7 @@ const colorSet = getColorsWithSubjectColor(subjectColor, backColor);
 export default {
   version: '0.0.11',
   rootContainerClassName: 'root-container',
+  uiContainerClassName: 'ui-container',
   nodeContainerClassName: 'node-container',
   edgeContainerClassName: 'edge-container',
   comboContainerClassName: 'combo-container',
