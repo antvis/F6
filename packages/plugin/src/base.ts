@@ -4,6 +4,9 @@ import { IG6GraphEvent, IAbstractGraph as IGraph } from '@antv/f6-core';
 export interface IPluginBaseConfig {
   container?: HTMLDivElement | string | null;
   className?: string;
+}
+
+export interface IPluginBaseConfig {
   graph?: IGraph;
   [key: string]: any;
 }
