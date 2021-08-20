@@ -1,9 +1,11 @@
 <view
-  style="width: {{width}}px; height: {{height}}px; {{style}}"
+  id="f6-alipay-container"
+  style="width: {{width}}px; height: {{height}}px; {{style}} {{waterStyle}}"
   catchTouchStart="ontouch"
   catchTouchCancel="ontouch"
   catchTouchMove="ontouch"
   catchTouchEnd="ontouch"
+  waterMarker="https://gw.alipayobjects.com/zos/bmw-prod/8088a9d7-e5b0-42f2-b6b2-27c823043993.svg"
 >
   <canvas
     a:if="{{supportNative && !forceMini}}"

@@ -1,6 +1,6 @@
 {
   "defaultTitle": "g6-native-canvas",
   "usingComponents": {
-   "native-canvas": "../../../es/container/container"
+    "native-canvas": "../../../es/container/container"
   }
 }

@@ -10,6 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "@antv/g6-mobile": "^0.0.1-beta.14",
-    "tslib": "^2.3.0"
+    "tslib": "^2.3.0",
+    "@antv/f6": "^0.0.13"
   }
 }

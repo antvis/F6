@@ -211,9 +211,7 @@ export default {
     },
   },
   imageWaterMarkerConfig: {
-    width: 150,
-    height: 130,
-    compatible: false,
+    // compatible: false,
     image: {
       x: 0,
       y: 0,
