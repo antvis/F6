@@ -18,7 +18,6 @@ export const registerGraph = (graphName: string, GraphFunction: any, G6: Object)
   G6[graphName] = GraphFunction(G6);
   return G6;
 };
-
 export default class Graph extends AbstractGraph implements IGraph {
   // private cfg: GraphOptions & { [key: string]: any };
 
@@ -479,110 +478,156 @@ export default class Graph extends AbstractGraph implements IGraph {
    * @param {WaterMarkerConfig} config 文本水印的配置项
    * @param {any} waterCanvas 小程序canvas
    */
-  public setImageWaterMarker(imgURL: string, config: WaterMarkerConfig, waterCanvas: any) {
-
+  public setImageWaterMarker(imgURL: string, config: WaterMarkerConfig, waterCanvas:any) {
+      console.log('进入水印设置1')
       //水印的设置合并
       const waterMarkerConfig = deepMix({}, Global.imageWaterMarkerConfig, config)
-      const {width, height, compatible, image} = waterMarkerConfig
-      const { rotate, x, y } = image
-      
+      const { width, height, image} = waterMarkerConfig
+      const { rotate, x, y, width: imgWidth, height: imgHeight} = image
+      if(this.isMini()) {
+        console.log('简单进入')
+      }
+      //mini
+      if(this.isMini() && !this.isMiniNative()) {
+        //设置属性为背景图
+        console.log('进入到isMini')
+      }
+      //mini-native
+      if(this.isMiniNative()){
+        console.log('进入isMiniNative')
 
-      if(this.isMini() || this.isMiniNative()) {
-          const waterGroup = this.get('waterGroup')
+        //设定水印canvas的宽高
+        waterCanvas.width = width ? width : this.get("width")
+        waterCanvas.height = height ? height : this.get("height") 
+        //获取context
+        const waterCanvasContext = waterCanvas.getContext('2d')
 
-          //获取画布元素的实例
-          const waterCanvasContext = waterCanvas.getContext('2d')
-          //旋转20度
-          waterCanvasContext.rotate((-rotate * Math.PI) / 180)
+        console.log('ready for image')
+        const { createImage } = this.get('extra')
 
-          //第一种情况：mini，1.0 小程序canvas下只能用string绘制
-          if(this.isMini() && !this.isMiniNative()) {
-              waterCanvasContext.drawImage(imgURL, x, y, image.width, image.height);
-              //恢复旋转角度
-              waterCanvasContext.rotate((rotate * Math.PI) / 180)
-              const generate_img_url = waterCanvasContext.toDataURL()
-              waterGroup.addShape('image', {
-                  attrs: {
-                      img: generate_img_url
-                  }
-              })
-          }
+        const img = createImage()
+        img.crossOrigin = 'anonymous'
+        img.src = imgURL
+        img.onload = () => {
+            console.log('进入onload')
+            //计算缩放比例
+            const scaleX = imgWidth / img.width
+            const scaleY = imgHeight / img.height
 
-          if(!this.isMini() && this.isMiniNative()) {
-              const img = waterCanvas.createImage()
-              img.crossOrigin = 'ananymous'
-              img.src = imgURL
-              img.onload = () => {
-                  waterCanvasContext.drawImage(img, x, y, image.width, image.height) 
-                  waterCanvasContext.rotate((rotate * Math.PI) / 180)
-                  //生成base64URL
-                  const generate_img_url = waterCanvasContext.toDataURL()
-                  waterGroup.addShape('image', {
-                      attrs: {
-                          img: generate_img_url
-                      }
-                  })
-              }
+            //旋转
+            waterCanvasContext.rotate(-(rotate * Math.PI) / 180)
 
-          }
-      } 
-
+            //循环重复绘制
+            const pattern = waterCanvasContext.createPattern(img, "repeat")
+            waterCanvasContext.fillStyle = pattern
+            waterCanvasContext.scale(scaleX, scaleY)
+            //调整位置
+            waterCanvasContext.fillRect(-this.get("width") * 2, -this.get("height"), this.get("width") * 10, this.get("height") * 10)
+            //生成base64URL
+            // const generate_img_url = waterCanvasContext.toDataURL() //TODO 显示not a function ,看一下这个方法是不是绑定在context上面的，还是说是绑定到context上面的
+            // console.log('图片url', generate_img_url)
+            this.get('waterGroup').addShape('image', {
+                attrs: {
+                    img: waterCanvas
+                }
+            })
+        }
+      }
+      //render
       if(this.isBrowser()) {
-          //如果是h5的情况
-          let container: string | HTMLElement | null = this.get('container');
-          if (isString(container)) {
-              container = document.getElementById(container);
-          }
+          console.log('进入h5水印流程')
+          const waterCanvas = document.createElement('canvas')
+          
+          //获取整个画布的宽高，以确定水印层的宽高
+          waterCanvas.width = width ? width : this.get("width")
+          waterCanvas.height = height ? height : this.get("height")
 
-          if(!container.style.position) {
-              container.style.position = 'relative'
-          }
-          const canvasCfg: any = {
-              container,
-              width,
-              height,
-              capture:false,
-          }
-          const pixelRatio = this.get('pixelRatio')
-          if(pixelRatio) {
-              canvasCfg.pixelRatio = pixelRatio
-          }
-          //创建canvas
-          let canvas = new GMobileCanvas(canvasCfg)
-
-          canvas.get('el').style.display = 'none'
-          const ctx = canvas.get('context')
-          // 旋转20度
-          ctx.rotate((-rotate * Math.PI) / 180);
+          const context = waterCanvas.getContext('2d')
           const img = new Image()
-          img.crossOrigin = 'ananymous'
+          img.crossOrigin = 'anonymous'
           img.src = imgURL
           img.onload = () => {
-              ctx.drawImage(img, x, y, image.width, image.height)
-              //恢复旋转角度
-              ctx.rotate( (rotate * Math.PI) / 180 )
+            //计算图片宽高的缩放比例
+            const scaleX = imgWidth /img.width
+            const scaleY = imgHeight /img.height
 
-              // 默认按照现代浏览器处理
-              if (!compatible) {
-                  let box = document.querySelector('.g6-graph-watermarker') as HTMLElement;
-                  if (!box) {
-                      box = document.createElement('div');
-                  }
-                  box.className = 'g6-graph-watermarker';
-                  box.style.cssText = `background-image: url(${canvas
-                      .get('el')
-                      .toDataURL(
-                        'image/png',
-                      )});background-repeat:repeat;position:absolute;top:0;bottom:0;left:0;right:0;pointer-events:none;z-index:-1;`;
-                  //创建一个盒子box，放水印照片，然后添加到container下面
-                  (container as HTMLElement).appendChild(box);
-              } else {
-                  // 当需要兼容不支持 pointer-events属性的浏览器时，将 compatible 设置为 true
-                  (container as HTMLElement).style.cssText = `background-image: url(${canvas
-                      .get('el')
-                      .toDataURL('image/png')});background-repeat:repeat;`;
+            //旋转
+            context.rotate(-(rotate * Math.PI) / 180 )
+            //循环重复绘制
+            const pattern = context.createPattern(img, "repeat")
+            context.fillStyle = pattern
+            context.scale(scaleX, scaleY)
+            //调整位置
+            context.fillRect(-this.get("width") * 2, -this.get("height"), this.get('width') * 10, this.get("height") * 10)
+
+            const water_img_url = waterCanvas.toDataURL()
+            this.get('waterGroup').addShape('image', {
+              attrs: {
+                img: water_img_url
               }
+            })
           }
+
+
+
+
+
+          //TODO 思路和mini-native差不多
+          //如果是h5的情况
+          // let container: string | HTMLElement | null = this.get('container');
+          // if (isString(container)) {
+          //     container = document.getElementById(container);
+          // }
+
+          // if(!container.style.position) {
+          //     container.style.position = 'relative'
+          // }
+          // const canvasCfg: any = {
+          //     container,
+          //     width,
+          //     height,
+          //     capture:false,
+          // }
+          // const pixelRatio = this.get('pixelRatio')
+          // if(pixelRatio) {
+          //     canvasCfg.pixelRatio = pixelRatio
+          // }
+          // //创建canvas
+          // let canvas = new GMobileCanvas(canvasCfg)
+
+          // canvas.get('el').style.display = 'none'
+          // const ctx = canvas.get('context')
+          // // 旋转20度
+          // ctx.rotate((-rotate * Math.PI) / 180);
+          // const img = new Image()
+          // img.crossOrigin = 'ananymous'
+          // img.src = imgURL
+          // img.onload = () => {
+          //     ctx.drawImage(img, x, y, image.width, image.height)
+          //     //恢复旋转角度
+          //     ctx.rotate( (rotate * Math.PI) / 180 )
+
+          //     // 默认按照现代浏览器处理
+          //     if (!compatible) {
+          //         let box = document.querySelector('.g6-graph-watermarker') as HTMLElement;
+          //         if (!box) {
+          //             box = document.createElement('div');
+          //         }
+          //         box.className = 'g6-graph-watermarker';
+          //         box.style.cssText = `background-image: url(${canvas
+          //             .get('el')
+          //             .toDataURL(
+          //               'image/png',
+          //             )});background-repeat:repeat;position:absolute;top:0;bottom:0;left:0;right:0;pointer-events:none;z-index:-1;`;
+          //         //创建一个盒子box，放水印照片，然后添加到container下面
+          //         (container as HTMLElement).appendChild(box);
+          //     } else {
+          //         // 当需要兼容不支持 pointer-events属性的浏览器时，将 compatible 设置为 true
+          //         (container as HTMLElement).style.cssText = `background-image: url(${canvas
+          //             .get('el')
+          //             .toDataURL('image/png')});background-repeat:repeat;`;
+          //     }
+          // }
       }
   }
 
@@ -668,6 +713,7 @@ export default class Graph extends AbstractGraph implements IGraph {
    * 销毁画布
    */
   public destroy() {
+    console.trace('destroyed!')
     each(this.get('plugins'), (plugin) => {
       plugin.destroyPlugin();
     });

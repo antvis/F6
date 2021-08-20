@@ -1,6 +1,7 @@
 Component({
   data: {
     supportNative: !!my._createCanvas,
+    waterStyle: ''
   },
   props: {
     style: '',
@@ -11,8 +12,10 @@ Component({
     onTouchEvent: () => {},
     onInit: () => {},
     onError: () => {},
+    waterMarker: 'https://gw.alipayobjects.com/zos/bmw-prod/8088a9d7-e5b0-42f2-b6b2-27c823043993.svg',
   },
   didMount() {
+    console.log('didMount打印',this.props)
     if (!this.data.supportNative || this.props.forceMini) {
       this.onCanvasReady();
     }
@@ -53,6 +56,14 @@ Component({
             this.props.onInit(this.ctx, ret[0], null, 'mini');
           }
         });
+      //设置mini水印
+      console.log("watermarker 0820", this.props.waterMarker)
+      if(this.props.waterMarker) {
+        this.setData({
+          waterStyle: `background: url("${this.props.waterMarker}") repeat; background-size: 156px 34px;` //这里面的url需不需要双引号？
+        })
+        console.log('water', this.data.waterStyle)
+      }
     },
     ontouch(e) {
       const { target } = e;
