@@ -7,6 +7,7 @@
       pixelRatio="{{pixelRatio}}" 
       onInit="onCanvasInit" 
       onTouchEvent="onTouch"
+      waterMarker="https://gw.alipayobjects.com/zos/bmw-prod/8088a9d7-e5b0-42f2-b6b2-27c823043993.svg"
      />
   </view>
 </view>
