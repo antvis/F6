@@ -12,7 +12,7 @@ Component({
     onTouchEvent: () => {},
     onInit: () => {},
     onError: () => {},
-    waterMarker: 'https://gw.alipayobjects.com/zos/bmw-prod/8088a9d7-e5b0-42f2-b6b2-27c823043993.svg',
+    waterMarker: null,
   },
   didMount() {
     console.log('didMount打印',this.props)
@@ -56,9 +56,7 @@ Component({
             this.props.onInit(this.ctx, ret[0], null, 'mini');
           }
         });
-      //设置mini水印
-      console.log("watermarker 0820", this.props.waterMarker)
-      if(this.props.waterMarker) {
+      if(this.props.waterMarker && this.props.forceMini) {
         this.setData({
           waterStyle: `background: url("${this.props.waterMarker}") repeat; background-size: 156px 34px;` //这里面的url需不需要双引号？
         })
