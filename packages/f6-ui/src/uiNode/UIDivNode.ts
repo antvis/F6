@@ -2,22 +2,22 @@ import { ShapeCfg } from '@antv/g-base';
 import UINode from './base';
 export default class UIDivNode extends UINode {
   backgroudNode = null;
-  makeGNode(parentGNode) {
-    const styleNode = this.styleNode;
-    let gNode = this.gNode;
-    if (gNode) {
-      gNode.resetMatrix();
-      this.backgroudNode.remove();
-    } else {
-      gNode = this.gNode = parentGNode.addGroup({
-        id: this.styleNode.dom.attrs.id,
+
+  draw(parentGNode) {
+    if (!this.gNode) {
+      this.gNode = parentGNode.addGroup({
+        id: this.attributes?.id,
         className: this.styleNode.dom.attrs.class,
-        zIndex: styleNode.style.zIndex || 0,
       });
     }
+    const gNode = this.gNode;
+
+    const styleNode = this.styleNode;
+    gNode.resetMatrix();
+    this.backgroudNode?.remove();
     const backgroudNode = (this.backgroudNode = gNode.addGroup());
 
-    gNode.translate(styleNode.layout.left, styleNode.layout.top);
+    gNode.translate(this.left, this.top);
 
     const style = styleNode.style;
 
@@ -32,8 +32,8 @@ export default class UIDivNode extends UINode {
         fill: style.backgroundColor || '#fff',
         fillOpacity: style.backgroundOpacity,
         opacity: style.opacity,
-        width: styleNode.layout.width,
-        height: styleNode.layout.height,
+        width: this.width,
+        height: this.height,
         radius: [
           style.borderTopLeftRadius || 0,
           style.borderTopRightRadius || 0,
@@ -53,8 +53,8 @@ export default class UIDivNode extends UINode {
           x: 0, // line绘制的时候是沿着两边扩
           y: 0,
           img: style.url,
-          width: styleNode.layout.width,
-          height: styleNode.layout.height,
+          width: this.width,
+          height: this.height,
         },
       });
     }
@@ -66,13 +66,16 @@ export default class UIDivNode extends UINode {
         y: (style.borderWidth || 0) / 2,
         lineWidth: style.borderWidth,
         stroke: style.borderColor,
-        width: styleNode.layout.width - (style.borderWidth || 0),
-        height: styleNode.layout.height - (style.borderWidth || 0),
+        width: this.width - (style.borderWidth || 0),
+        height: this.height - (style.borderWidth || 0),
         radius: [
-          style.borderTopLeftRadius || 0,
-          style.borderTopRightRadius || 0,
-          style.borderBottomLeftRadius || 0,
-          style.borderBottomLeftRadius || 0,
+          (style.borderTopLeftRadius || 0) * ((this.width - (style.borderWidth || 0)) / this.width),
+          (style.borderTopRightRadius || 0) *
+            ((this.width - (style.borderWidth || 0)) / this.width),
+          (style.borderBottomLeftRadius || 0) *
+            ((this.width - (style.borderWidth || 0)) / this.width),
+          (style.borderBottomLeftRadius || 0) *
+            ((this.width - (style.borderWidth || 0)) / this.width),
         ],
       },
     };
@@ -86,8 +89,8 @@ export default class UIDivNode extends UINode {
       gNode.setClip({
         type: 'rect',
         attrs: {
-          width: styleNode.layout.width,
-          height: styleNode.layout.height,
+          width: this.width,
+          height: this.height,
           radius: [
             style.borderTopLeftRadius || 0,
             style.borderTopRightRadius || 0,
