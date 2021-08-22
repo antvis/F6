@@ -154,7 +154,7 @@ function createTickProgressBarNode(context) {
 `;
   const node = createSegmentNode(html, css);
 
-  node.onMount = function () {
+  node.didMount = function () {
     context.start = start * width;
     context.end = end * width;
     select(context.start, context.end, context);

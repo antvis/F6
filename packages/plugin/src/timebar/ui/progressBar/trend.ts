@@ -73,7 +73,7 @@ function createProgressBar(
   });
 
   // 节点挂载之后初始化
-  slideContainer.onMount = () => {
+  slideContainer.didMount = () => {
     logic.goLeftPercent(start);
     logic.goRightPercent(end);
   };

@@ -60,7 +60,7 @@ export const TICK_LABEL_STYLE = {
   fill: '#607889',
   opacity: 0.35,
   fontSize: 12,
-  width: 40,
+  width: 50,
 };
 
 export const TICK_LINE_STYLE = {

@@ -1,5 +1,4 @@
 import { createSegmentNode } from '@antv/f6-ui';
-import { deepMix } from '@antv/util';
 import { SliderTick } from '../../type/slider';
 import { TimeBarData } from '../../type/timeBar';
 import { TICK_LABEL_STYLE, TICK_LINE_STYLE } from '../../utils/const';
