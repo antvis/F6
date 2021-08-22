@@ -5,18 +5,21 @@ import { createUINode } from './uiNode';
 import { registerUINode } from './uiNode';
 import { registerAttr } from './parser/attrParser';
 import UIBaseNode from './uiNode/base';
-import UITree from './uiNode/UITree';
 
 function createUI(htmlString, cssString, group) {
-  const tree = new UITree();
-  tree.makeGNode(group);
-  const root = createSegmentNode(htmlString, cssString);
-  tree.appendChild(root);
+  const tree = create(htmlString, cssString, true);
+  tree.manualMount(group);
   return tree;
 }
 
-function createSegmentNode(htmlString, cssString) {
-  const dom = htmlParse(htmlString, false);
+function createSegmentNode(htmlString, cssString, group?) {
+  const tree = create(htmlString, cssString, false);
+  if (group) tree.manualMount(group);
+  return tree;
+}
+
+function create(htmlString, cssString, isNeedRoot = false) {
+  const dom = htmlParse(htmlString, isNeedRoot);
   const cssTree = cssParse(cssString);
   const styleTree = styleParse(dom, cssTree);
   const tree = createUINode(styleTree.dom.tagName, styleTree);
@@ -26,7 +29,10 @@ function createSegmentNode(htmlString, cssString) {
     const [node, parent] = stack.pop();
     for (let child of node.originChildren) {
       const uiNode = createUINode(child.dom.tagName, child);
-      parent.appendChild(uiNode, false);
+
+      parent.children.push(uiNode);
+      uiNode.setParent(parent);
+
       stack.push([child, uiNode]);
     }
   }
