@@ -49,7 +49,9 @@
     }
   },
   "dependencies": {
-    "@antv/g-mobile": "^0.0.9"
+    "@antv/f6-core": "*",
+    "@antv/g-mobile": "^0.0.9",
+    "@antv/util": "~2.0.5"
   },
   "devDependencies": {
     "@antv/chart-node-g6": "^0.0.3",
