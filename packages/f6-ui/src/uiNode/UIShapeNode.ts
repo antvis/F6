@@ -1,28 +1,35 @@
 import UINode from './base';
 
 export default class UIShapeNode extends UINode {
-  makeGNode(parentGNode) {
+  getAttrs() {
     const styleNode = this.styleNode;
     const style = styleNode.style;
     const layout = styleNode.layout;
     const dom = styleNode.dom;
-
-    const attrs = {
+    return {
       ...dom.attrs,
       fill: style.backgroundColor,
       lineWidth: style.borderWidth,
+      fillOpacity: style.backgroundOpacity,
       stroke: style.borderColor,
       width: layout.width - (style.borderWidth || 0),
       height: layout.height - (style.borderWidth || 0),
     };
+  }
 
+  draw(parentGNode) {
+    const styleNode = this.styleNode;
+    const attrs = this.getAttrs();
+    const dom = styleNode.dom;
+    if (!this.gNode) this.gNode = parentGNode.addShape(dom.attrs.type, { attrs });
+    this.update();
+  }
+  update() {
+    const attrs = this.getAttrs();
     let shape = this.gNode;
-    if (!shape) {
-      shape = parentGNode.addShape(dom.attrs.type, { attrs });
-    }
+    shape.attr(attrs);
     shape.resetMatrix();
-    typeof style.zIndex === 'number' && shape.setZIndex(style.zIndex);
-    shape.translate(styleNode.layout.left, styleNode.layout.top);
-    this.gNode = shape;
+    shape.translate(this.left, this.top);
+    typeof this.style?.zIndex === 'number' && shape.setZIndex(this.style.zIndex);
   }
 }
