@@ -1,7 +1,7 @@
 import UINode from './base';
 
 export default class UIImageNode extends UINode {
-  makeGNode(parentGNode) {
+  draw(parentGNode) {
     const attrs = {
       x: this.styleNode.layout.left,
       y: this.styleNode.layout.top,
@@ -10,16 +10,21 @@ export default class UIImageNode extends UINode {
       height: this.styleNode.layout.height || 0,
     };
 
-    let shape = this.gNode;
-    if (!shape) {
-      shape = parentGNode.addShape('image', {
+    if (!this.gNode) {
+      this.gNode = parentGNode.addShape('image', {
         type: 'image',
         attrs,
       });
     }
+
+    const shape = this.gNode;
+
     shape.resetMatrix();
+
+    shape.attr(attrs);
     // zIndex
     typeof this.styleNode.style.zIndex === 'number' && shape.setZIndex(this.styleNode.style.zIndex);
+
     switch (this.styleNode.style.textAlign) {
       case 'center':
         shape.translate(this.styleNode.layout.width / 2);
@@ -30,6 +35,5 @@ export default class UIImageNode extends UINode {
       default:
         break;
     }
-    this.gNode = shape;
   }
 }
