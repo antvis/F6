@@ -1,7 +1,7 @@
 import { createSimpleTimeBarUI, createTickUI, createTrendUI } from './ui';
 import PluginBase, { IPluginBaseConfig } from '../base';
 import { throttle } from '@antv/util';
-import { IAbstractGraph, TimeBarType } from '@antv/f6';
+import { IAbstractGraph, TimeBarType } from '@antv/f6-core';
 import { subscribe, unsubscribeAll } from './dispatcher';
 import { SLIDER_END, SLIDER_START } from './utils/const';
 import { SliderOption, SliderTick, TrendConfig } from './type/slider';

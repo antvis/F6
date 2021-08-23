@@ -1,7 +1,6 @@
   import React, { useEffect } from 'react';
   import F6 from '../../src';
   import {TimeBar} from '@antv/f6-plugin';
-import { red } from '@ant-design/colors';
 
   export default () => {
     const ref = React.useRef(null);
