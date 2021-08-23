@@ -1,5 +1,5 @@
 import { createSegmentNode } from '@antv/f6-ui';
-import { ShapeStyle } from '@antv/f6';
+import { ShapeStyle } from '@antv/f6-core';
 import { dispatch } from '../../dispatcher';
 import { SLIDER_PAUSE, SLIDER_PLAY } from '../../utils/const';
 

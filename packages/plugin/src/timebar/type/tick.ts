@@ -1,4 +1,4 @@
-import { ShapeStyle } from '@antv/f6';
+import { ShapeStyle } from '@antv/f6-core';
 import { TimeBarData } from './timeBar';
 
 export interface TimeBarTickOption {
