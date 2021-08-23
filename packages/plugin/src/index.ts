@@ -1,4 +1,5 @@
 import TimeBar from './timeBar';
 import SnapLine from './snapLine';
+import Tooltip from './tooltip';
 
-export { TimeBar, SnapLine };
+export { TimeBar, SnapLine, Tooltip };

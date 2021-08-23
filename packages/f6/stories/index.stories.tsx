@@ -8,6 +8,7 @@ import DagreConfigurationTranslateDemo from './generalGraph/dagreConfigurationTr
 import MindMapDemo from './sceneCase/mindMap';
 import UITest from './uiTest';
 import SnapLineDemo from './snapLine';
+import PluginTooltipDemo from './pluginTooltip';
 
 export default {
   title: 'Example',
@@ -22,3 +23,6 @@ export const fruchterman = (args) => <FruchtermanDemo {...args} />;
 
 export const uiTest = (args) => <UITest {...args} />;
 export const SnapLine = (args) => <SnapLineDemo {...args} />;
+
+export const PluginTooltip = (args) => <PluginTooltipDemo {...args} />;
+
