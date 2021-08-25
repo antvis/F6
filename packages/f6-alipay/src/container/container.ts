@@ -15,7 +15,6 @@ Component({
     waterMarker: null,
   },
   didMount() {
-    console.log('didMount打印',this.props)
     if (!this.data.supportNative || this.props.forceMini) {
       this.onCanvasReady();
     }
@@ -60,7 +59,6 @@ Component({
         this.setData({
           waterStyle: `background: url("${this.props.waterMarker}") repeat; background-size: 156px 34px;` //这里面的url需不需要双引号？
         })
-        console.log('water', this.data.waterStyle)
       }
     },
     ontouch(e) {

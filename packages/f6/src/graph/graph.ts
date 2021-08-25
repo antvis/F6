@@ -476,37 +476,28 @@ export default class Graph extends AbstractGraph implements IGraph {
    * @param {any} waterCanvas 小程序canvas
    */
   public setImageWaterMarker(imgURL: string, config: WaterMarkerConfig, waterCanvas:any) {
-      console.log('进入水印设置')
       //水印的设置合并
       const waterMarkerConfig = deepMix({}, Global.imageWaterMarkerConfig, config)
       const { width, height, image} = waterMarkerConfig
       const { rotate, x, y, width: imgWidth, height: imgHeight} = image
-      if(this.isMini()) {
-        console.log('简单进入')
-      }
       //mini
       if(this.isMini() && !this.isMiniNative()) {
         //设置属性为背景图
-        console.log('进入到isMini')
       }
       //mini-native
       if(this.isMiniNative()){
-        console.log('进入isMiniNative')
-
         //设定水印canvas的宽高
         waterCanvas.width = width ? width : this.get("width")
         waterCanvas.height = height ? height : this.get("height") 
         //获取context
         const waterCanvasContext = waterCanvas.getContext('2d')
 
-        console.log('ready for image')
         const { createImage } = this.get('extra')
 
         const img = createImage()
         img.crossOrigin = 'anonymous'
         img.src = imgURL
         img.onload = () => {
-            console.log('进入onload')
             //计算缩放比例
             const scaleX = imgWidth / img.width
             const scaleY = imgHeight / img.height
@@ -520,9 +511,6 @@ export default class Graph extends AbstractGraph implements IGraph {
             waterCanvasContext.scale(scaleX, scaleY)
             //调整位置
             waterCanvasContext.fillRect(-this.get("width") * 2, -this.get("height"), this.get("width") * 10, this.get("height") * 10)
-            //生成base64URL
-            // const generate_img_url = waterCanvasContext.toDataURL() //TODO 显示not a function ,看一下这个方法是不是绑定在context上面的，还是说是绑定到context上面的
-            // console.log('图片url', generate_img_url)
             this.get('waterGroup').addShape('image', {
                 attrs: {
                     img: waterCanvas
@@ -532,7 +520,6 @@ export default class Graph extends AbstractGraph implements IGraph {
       }
       //render
       if(this.isBrowser()) {
-          console.log('进入h5水印流程')
           const waterCanvas = document.createElement('canvas')
           
           //获取整个画布的宽高，以确定水印层的宽高
@@ -543,7 +530,6 @@ export default class Graph extends AbstractGraph implements IGraph {
           img.crossOrigin = 'anonymous'
           img.src = imgURL
           img.onload = () => {
-            console.log('进入onload')
             //计算图片宽高的缩放比例
             const scaleX = imgWidth /img.width
             const scaleY = imgHeight /img.height
@@ -649,7 +635,6 @@ export default class Graph extends AbstractGraph implements IGraph {
    * 销毁画布
    */
   public destroy() {
-    console.trace('destroyed!')
     each(this.get('plugins'), (plugin) => {
       plugin.destroyPlugin();
     });

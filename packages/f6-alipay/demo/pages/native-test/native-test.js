@@ -65,7 +65,6 @@ Page({
       },
     }
     const waterURL = 'https://gw.alipayobjects.com/zos/bmw-prod/8088a9d7-e5b0-42f2-b6b2-27c823043993.svg'
-    console.log('ready for water')
     this.graph.render();
     const waterCanvas = my.createOffscreenCanvas()
     this.graph.setImageWaterMarker(waterURL, waterConfig, waterCanvas)
