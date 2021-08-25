@@ -70,7 +70,8 @@
     "@antv/path-util": "^2.0.3",
     "@antv/scale": "^0.3.1",
     "@antv/util": "~2.0.5",
-    "color": "^3.1.3"
+    "color": "^3.1.3",
+    "css-layout": "^1.1.1"
   },
   "devDependencies": {
     "@antv/f6-plugin": "1.0.0",
