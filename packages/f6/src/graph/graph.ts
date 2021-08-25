@@ -468,10 +468,7 @@ export default class Graph extends AbstractGraph implements IGraph {
   private isBrowser() {
       return this.get('renderer') === 'canvas';
   }
-
-
-  //TODO 字符串'g6-graph-watermarker' 修改成'g6-graph-watermarker'会影响一些demo，已经全局改过来了
-
+  
   /**
    * 设置图片水印
    * @param {string} imgURL 图片水印的url地址
@@ -479,7 +476,7 @@ export default class Graph extends AbstractGraph implements IGraph {
    * @param {any} waterCanvas 小程序canvas
    */
   public setImageWaterMarker(imgURL: string, config: WaterMarkerConfig, waterCanvas:any) {
-      console.log('进入水印设置1')
+      console.log('进入水印设置')
       //水印的设置合并
       const waterMarkerConfig = deepMix({}, Global.imageWaterMarkerConfig, config)
       const { width, height, image} = waterMarkerConfig
@@ -541,12 +538,12 @@ export default class Graph extends AbstractGraph implements IGraph {
           //获取整个画布的宽高，以确定水印层的宽高
           waterCanvas.width = width ? width : this.get("width")
           waterCanvas.height = height ? height : this.get("height")
-
           const context = waterCanvas.getContext('2d')
           const img = new Image()
           img.crossOrigin = 'anonymous'
           img.src = imgURL
           img.onload = () => {
+            console.log('进入onload')
             //计算图片宽高的缩放比例
             const scaleX = imgWidth /img.width
             const scaleY = imgHeight /img.height
@@ -567,67 +564,6 @@ export default class Graph extends AbstractGraph implements IGraph {
               }
             })
           }
-
-
-
-
-
-          //TODO 思路和mini-native差不多
-          //如果是h5的情况
-          // let container: string | HTMLElement | null = this.get('container');
-          // if (isString(container)) {
-          //     container = document.getElementById(container);
-          // }
-
-          // if(!container.style.position) {
-          //     container.style.position = 'relative'
-          // }
-          // const canvasCfg: any = {
-          //     container,
-          //     width,
-          //     height,
-          //     capture:false,
-          // }
-          // const pixelRatio = this.get('pixelRatio')
-          // if(pixelRatio) {
-          //     canvasCfg.pixelRatio = pixelRatio
-          // }
-          // //创建canvas
-          // let canvas = new GMobileCanvas(canvasCfg)
-
-          // canvas.get('el').style.display = 'none'
-          // const ctx = canvas.get('context')
-          // // 旋转20度
-          // ctx.rotate((-rotate * Math.PI) / 180);
-          // const img = new Image()
-          // img.crossOrigin = 'ananymous'
-          // img.src = imgURL
-          // img.onload = () => {
-          //     ctx.drawImage(img, x, y, image.width, image.height)
-          //     //恢复旋转角度
-          //     ctx.rotate( (rotate * Math.PI) / 180 )
-
-          //     // 默认按照现代浏览器处理
-          //     if (!compatible) {
-          //         let box = document.querySelector('.g6-graph-watermarker') as HTMLElement;
-          //         if (!box) {
-          //             box = document.createElement('div');
-          //         }
-          //         box.className = 'g6-graph-watermarker';
-          //         box.style.cssText = `background-image: url(${canvas
-          //             .get('el')
-          //             .toDataURL(
-          //               'image/png',
-          //             )});background-repeat:repeat;position:absolute;top:0;bottom:0;left:0;right:0;pointer-events:none;z-index:-1;`;
-          //         //创建一个盒子box，放水印照片，然后添加到container下面
-          //         (container as HTMLElement).appendChild(box);
-          //     } else {
-          //         // 当需要兼容不支持 pointer-events属性的浏览器时，将 compatible 设置为 true
-          //         (container as HTMLElement).style.cssText = `background-image: url(${canvas
-          //             .get('el')
-          //             .toDataURL('image/png')});background-repeat:repeat;`;
-          //     }
-          // }
       }
   }
 
