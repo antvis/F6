@@ -113,6 +113,7 @@ export default class TapRecognizer extends Recognizer {
 
   reset() {
     clearTimeout(this._timer);
+    this._timer = null;
   }
 
   emit() {
