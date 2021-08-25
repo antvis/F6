@@ -1,4 +1,4 @@
-import { createUI }  from '@antv/f6-ui'
+import { createUI }  from '@antv/f6-ui/dist/f6GUI'
 import F6 from '../../../../f6';
 import forceLayout from '../../../../f6/dist/extends/layout/forceLayout';
 
