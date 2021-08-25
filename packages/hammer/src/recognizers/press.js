@@ -60,6 +60,7 @@ export default class PressRecognizer extends Recognizer {
 
   reset() {
     clearTimeout(this._timer);
+    this._timer = null;
   }
 
   emit(input) {
