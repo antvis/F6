@@ -1,8 +1,8 @@
 {
-  "name": "g6-hammerjs",
-  "title": "Hammer.JS for G6",
+  "name": "@antv/f6-hammerjs",
+  "title": "Hammer.JS for F6",
   "description": "A javascript library for multi-touch gestures",
-  "version": "0.0.11",
+  "version": "0.0.1",
   "main": "lib/index.js",
   "unpkg": "dist/hammer.min.js",
   "license": "MIT",
