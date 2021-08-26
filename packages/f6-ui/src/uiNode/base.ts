@@ -82,13 +82,13 @@ export default abstract class UIBaseNode {
 
   remove() {
     const parent = this.parent;
+    this.gNode?.remove();
     if (parent) {
-      this.unmount();
-      this.gNode.remove();
       parent.children.splice(1, parent.children.indexOf(this));
       parent.styleNode?.children.splice(1, parent.children.indexOf(this.styleNode));
-      parent.reflow();
+      if (this.isMounted) parent.reflow();
     }
+    if (this.isMounted) this.unmount();
   }
 
   query(selector) {
@@ -257,7 +257,7 @@ export default abstract class UIBaseNode {
     if (this.styleNode && this.styleNode.style) {
       this._prevStyle = { ...this.styleNode.dom.style };
       this.styleNode.style[key] = value;
-      if (!this.parent?.isMounted) return;
+      if (this.parent && !this.parent.isMounted) return;
       if (reflowAttrs[key]) {
         this.reflow();
       } else {

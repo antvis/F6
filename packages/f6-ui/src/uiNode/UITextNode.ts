@@ -28,6 +28,7 @@ export default class UITextNode extends UINode {
       this.gNode = parentGNode.addShape('text', {
         type: 'text',
         attrs,
+        capture: false,
       });
     }
     this.update();
