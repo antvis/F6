@@ -163,10 +163,6 @@ Welcome to join the **F6 Communication Group** (DingTalk groups). We also welcom
 
 <img src='https://gw.alipayobjects.com/mdn/rms_5c3b4a/afts/img/A*wEQkTKK9GgMAAAAAAAAAAAAAARQnAQ' width=550 alt='' />
 
-Wechat group is here:
-
-<img src='https://gw.alipayobjects.com/mdn/rms_5c3b4a/afts/img/A*tGl7TJZL__kAAAAAAAAAAAAAARQnAQ' width=550 alt='' />
-
 ## How to Contribute
 
 Please let us know what you are you going to help. Do check out [issues](https://github.com/antvis/f6/issues) for bug reports or suggestions first.
