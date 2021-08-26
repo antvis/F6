@@ -1,5 +1,4 @@
-import { modifyCSS, createDom } from '@antv/dom-util';
-import { isArray, isString } from '@antv/util';
+import { isArray } from '@antv/util';
 import { IG6GraphEvent, Item, IAbstractGraph as IGraph } from '@antv/f6-core';
 import Base, { IPluginBaseConfig } from '../base';
 import { createUI } from '../../../f6-ui/lib';
@@ -55,18 +54,17 @@ export default class Tooltip extends Base {
       };
     }
     return {
-      'node:mouseenter': 'onMouseEnter',
-      'node:mouseleave': 'onMouseLeave',
-      'node:mousemove': 'onMouseMove',
-      'edge:mouseenter': 'onMouseEnter',
-      'edge:mouseleave': 'onMouseLeave',
-      'edge:mousemove': 'onMouseMove',
-      'combo:mouseenter': 'onMouseEnter',
-      'combo:mouseleave': 'onMouseLeave',
-      'combo:mousemove': 'onMouseMove',
+      'node:press': 'onClick',
+      'edge:press': 'onClick',
+      'combo:press': 'onClick',
+      'canvas:press': 'onMouseLeave',
+      'node:tap': 'onMouseLeave',
+      'edge:tap': 'onMouseLeave',
+      'combo:tap': 'onMouseLeave',
+      'canvas:tap': 'onMouseLeave',
       afterremoveitem: 'onMouseLeave',
       contextmenu: 'onMouseLeave',
-      'node:drag': 'onMouseLeave',
+      drag: 'onMouseLeave',
     };
   }
 

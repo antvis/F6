@@ -257,7 +257,7 @@ export default abstract class UIBaseNode {
     if (this.styleNode && this.styleNode.style) {
       this._prevStyle = { ...this.styleNode.dom.style };
       this.styleNode.style[key] = value;
-      if (this.parent && this.parent.isMounted) return;
+      if (this.parent && !this.parent.isMounted) return;
       if (reflowAttrs[key]) {
         this.reflow();
       } else {

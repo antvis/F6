@@ -45,6 +45,7 @@ export default class UIDivNode extends UINode {
         shadowOffsetX: style.shadowOffsetX || 0,
         shadowOffsetY: style.shadowOffsetY || 0,
       },
+      capture: style.pointerEvents === 'none' ? false : true,
     });
 
     if (style.backgroundImage) {
@@ -56,6 +57,7 @@ export default class UIDivNode extends UINode {
           width: this.width,
           height: this.height,
         },
+        capture: false,
       });
     }
 
@@ -78,6 +80,7 @@ export default class UIDivNode extends UINode {
             ((this.width - (style.borderWidth || 0)) / this.width),
         ],
       },
+      capture: false,
     };
     if (style.borderStyle === 'dashed') {
       border.attrs.lineDash = style.lineDash || [2, 2];
