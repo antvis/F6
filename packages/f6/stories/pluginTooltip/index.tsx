@@ -4,7 +4,7 @@ import data from './data';
 import {Tooltip} from '@antv/f6-plugin'
 
 const tooltip = new Tooltip({
-  trigger:'click',
+  trigger:'press',
   offsetX: 0,
   offsetY: 0,
   // the types of items that allow the tooltip show up
