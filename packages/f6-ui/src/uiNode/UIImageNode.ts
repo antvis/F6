@@ -10,16 +10,20 @@ export default class UIImageNode extends UINode {
       height: this.styleNode.layout.height || 0,
     };
 
+    const isCapture = this.styleNode.style.pointerEvents === 'none' ? false : true;
     if (!this.gNode) {
       this.gNode = parentGNode.addShape('image', {
         type: 'image',
         attrs,
+        capture: isCapture,
       });
     }
 
     const shape = this.gNode;
 
     shape.resetMatrix();
+
+    shape.set('capture', isCapture);
 
     shape.attr(attrs);
     // zIndex
