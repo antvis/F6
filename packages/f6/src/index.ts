@@ -11,7 +11,6 @@ import { ICanvas, IGroup, IShape } from '@antv/g-base';
 import * as Algorithm from '@antv/algorithm';
 import Graph, { registerGraph as oRegisterGraph } from './graph/graph';
 import { Layout, Layouts, registerLayout, unRegisterLayout } from './layout';
-import { SnapLine } from '@antv/f6-plugin';
 import Global from './global';
 import Util from './util';
 import './element';
@@ -34,7 +33,6 @@ const F6 = {
   Arrow,
   Marker,
   Shape,
-  SnapLine,
 };
 
 function registerExtenderWrapper<T1, T2>(
@@ -64,7 +62,6 @@ export {
   Arrow,
   Marker,
   Shape,
-  SnapLine,
   // 对外暴露 G-Base 的几个类型定义
   ICanvas,
   IGroup,
