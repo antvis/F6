@@ -1,0 +1,6 @@
+{
+  "defaultTitle": "指定排序方式的网格布局",
+  "usingComponents": {
+    "f6-canvas": "@antv/f6-alipay/es/container/container"
+  }
+}

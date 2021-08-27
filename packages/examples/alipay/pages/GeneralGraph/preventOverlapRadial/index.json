@@ -1,0 +1,6 @@
+{
+  "defaultTitle": "防止节点重叠的严格辐射布局",
+  "usingComponents": {
+    "f6-canvas": "@antv/f6-alipay/es/container/container"
+  }
+}

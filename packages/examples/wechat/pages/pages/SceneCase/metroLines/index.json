@@ -1,0 +1,6 @@
+{
+  "defaultTitle": "地铁路线图",
+  "usingComponents": {
+    "f6-canvas": "../../../../components/wx"
+  }
+}

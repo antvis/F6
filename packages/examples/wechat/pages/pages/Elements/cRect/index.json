@@ -1,0 +1,6 @@
+{
+  "defaultTitle": "带有Marker的矩形",
+  "usingComponents": {
+    "f6-canvas": "../../../../components/wx"
+  }
+}

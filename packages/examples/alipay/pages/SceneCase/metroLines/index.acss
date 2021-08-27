@@ -1,0 +1,15 @@
+page {
+  background-color: #101424;
+  border: 1px solid rgba(0,0,0,0);
+  box-sizing: border-box;
+}
+
+.page-section-demo {
+  padding: 32rpx;
+}
+
+.canvas {
+  margin-top: 200rpx;
+  background: url("https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*G23iRqkiibIAAAAAAAAAAABkARQnAQ");
+  background-size: 100% 100%;
+}

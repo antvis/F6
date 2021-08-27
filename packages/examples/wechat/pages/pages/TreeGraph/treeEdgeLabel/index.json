@@ -1,0 +1,6 @@
+{
+  "defaultTitle": "树边上的标签",
+  "usingComponents": {
+    "f6-canvas": "../../../../components/wx"
+  }
+}

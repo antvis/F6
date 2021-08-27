@@ -1,0 +1,6 @@
+{
+  "defaultTitle": "内置的高亮节点",
+  "usingComponents": {
+    "f6-canvas": "@antv/f6-alipay/es/container/container"
+  }
+}

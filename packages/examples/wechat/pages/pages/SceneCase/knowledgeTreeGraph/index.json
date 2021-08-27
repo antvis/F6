@@ -1,0 +1,6 @@
+{
+  "defaultTitle": "知识图谱树",
+  "usingComponents": {
+    "f6-canvas": "../../../../components/wx"
+  }
+}

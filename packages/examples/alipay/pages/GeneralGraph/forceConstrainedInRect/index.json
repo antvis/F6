@@ -1,0 +1,6 @@
+{
+  "defaultTitle": "约束在范围内布局",
+  "usingComponents": {
+    "f6-canvas": "@antv/f6-alipay/es/container/container"
+  }
+}

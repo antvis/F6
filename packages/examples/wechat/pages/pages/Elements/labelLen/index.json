@@ -1,0 +1,6 @@
+{
+  "defaultTitle": "文本超长",
+  "usingComponents": {
+    "f6-canvas": "../../../../components/wx"
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "defaultTitle": "使用换行符处理",
+  "usingComponents": {
+    "f6-canvas": "../../../../components/wx"
+  }
+}

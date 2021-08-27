@@ -1,0 +1,9 @@
+<view>{{discription}}</view>
+<f6-canvas
+  width="{{width}}"
+  height="{{height}}"
+  forceMini="{{forceMini}}"
+  pixelRatio="{{pixelRatio}}"
+  bind:onTouchEvent="handleTouch"
+  bind:onInit="handleInit"
+></f6-canvas>

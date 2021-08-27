@@ -1,0 +1,6 @@
+{
+  "defaultTitle": "复杂树样式",
+  "usingComponents": {
+    "f6-canvas": "@antv/f6-alipay/es/container/container"
+  }
+}

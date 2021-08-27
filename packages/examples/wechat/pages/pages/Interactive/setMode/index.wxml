@@ -1,0 +1,15 @@
+<!-- 按钮 -->
+<view bindtap='tapButton'> 
+  <button class="choice-button" data-mode="default">默认模式</button>
+  <button class="choice-button" data-mode="addNode">添加节点模式</button>
+  <button class="choice-button" data-mode="addEdge">添加边模式</button>
+</view>
+
+<f6-canvas
+  width="{{width}}"
+  height="{{height}}"
+  forceMini="{{forceMini}}"
+  pixelRatio="{{pixelRatio}}"
+  bind:onTouchEvent="handleTouch"
+  bind:onInit="handleInit"
+></f6-canvas>

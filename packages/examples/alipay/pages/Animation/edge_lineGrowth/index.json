@@ -1,0 +1,6 @@
+{
+  "defaultTitle": "无到有的边",
+  "usingComponents": {
+    "f6-canvas": "@antv/f6-alipay/es/container/container"
+  }
+}

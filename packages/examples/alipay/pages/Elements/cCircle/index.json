@@ -1,0 +1,6 @@
+{
+  "defaultTitle": "带有Marker的圆",
+  "usingComponents": {
+    "f6-canvas": "@antv/f6-alipay/es/container/container"
+  }
+}

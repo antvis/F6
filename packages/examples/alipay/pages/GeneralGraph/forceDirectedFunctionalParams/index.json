@@ -1,0 +1,6 @@
+{
+  "defaultTitle": "定制不同节点的参数",
+  "usingComponents": {
+    "f6-canvas": "@antv/f6-alipay/es/container/container"
+  }
+}

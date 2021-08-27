@@ -1,0 +1,6 @@
+{
+  "defaultTitle": "按节点度数排序",
+  "usingComponents": {
+    "f6-canvas": "@antv/f6-alipay/es/container/container"
+  }
+}

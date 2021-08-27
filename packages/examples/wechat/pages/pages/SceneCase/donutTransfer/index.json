@@ -1,0 +1,6 @@
+{
+  "defaultTitle": "甜甜圈转账图",
+  "usingComponents": {
+    "f6-canvas": "../../../../components/wx"
+  }
+}

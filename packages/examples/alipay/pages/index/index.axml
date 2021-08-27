@@ -1,0 +1,97 @@
+<view>
+  <view class="banner">
+    <view class="logo" style="opacity: {{titleOpacity}}"><image src="../../common/images/antvf6.png" mode="aspectFit" /></view>
+    <view class="title" style="opacity: {{titleOpacity}}">F6官方示例</view>
+    <view class="sub-title"style="opacity: {{titleOpacity}}">移动端可视化解决方案F6 demos</view>
+    <view class="fake-searchbar" onTap="onSearchBarTap">
+      <icon type="search" size="14" color="#1D1D1D" />
+      <text class="fake-placeholder">搜索你感兴趣的图可视化方案</text>
+    </view>
+  </view>
+
+  <!-- 热搜词 -->
+  <block-list listData="{{hot}}" className="hot" />
+  <view class="tabs {{shadow ? 'shadow' : ''}}" style="top: {{top}}px">
+    <view class="tabs-bar">
+      <block a:for="{{tabs}}">
+        <view class="tabs-bar-tab" data-index="{{index}}" onTap="onTabBarTap">
+          <view class="tabs-bar-tab-title {{activeTab === index ? 'active' : ''}}">{{item}}</view>
+        </view>
+      </block>
+    </view>
+  </view>
+
+  <!-- 展示列表 -->
+  <view class="list-wrap">
+    <view class="list-container" style="{{ transform: 'translate3d(' +(-activeTab * 100) + 'vw, 0, 0)' }}">
+      
+      
+      <!-- 基础能力 -->
+      <view class="list" style="{{ height: activeTab === 0 ? 'auto' : 0 }}">
+        <block a:for="{{basicComponentList}}" a:for-item="list">
+          <list className="list-item">
+            <view slot="header" class="list-header">{{list.type}}</view>
+            <collapse
+              className="demo-collapse"
+              collapseKey="collapse"
+              activeKey="{{[]}}"
+              onChange="onChange"
+            >
+              <block a:for="{{list.list}}">
+                <view class="thumb-wrapper">
+                  <image src="{{item.thumb}}" class="thumb"  mode="aspectFit" />
+                </view>
+                <collapse-item header="{{item.name}}" itemKey="item-{{item.nameEn}}" collapseKey="collapse">
+                  <block a:for="{{item.detailList}}">
+                    <list-item arrow="{{true}}" multipleLine="{{false}}" key="items-{{item.name}}" last="{{true}}" onClick="openPage" data-url="{{item.path}}">
+                      <view style="display: flex; align-items: center">
+                        <image src="{{nut}}" class="thumb"  mode="aspectFit" />
+                        <text class="component-name">{{item.name}}</text>
+                      </view>
+                    </list-item>
+                  </block>
+                </collapse-item>
+              </block>
+            </collapse>
+          </list>
+        </block>
+      </view>
+
+
+
+      <!-- 拓展能力 -->
+      <view class="list" style="{{ height: activeTab === 1 ? 'auto' : 0 }}">
+        <block a:for="{{extComponentList}}" a:for-item="list">
+          <list className="list-item">
+            <view slot="header" class="list-header">{{list.type}}</view>
+            <collapse
+              className="demo-collapse"
+              collapseKey="collapse"
+              activeKey="{{[]}}"
+              onChange="onChange"
+            >
+              <block a:for="{{list.list}}">
+                <view class="thumb-wrapper">
+                  <image src="{{item.thumb}}" class="thumb" mode="aspectFit" />
+                </view>
+                <collapse-item header="{{item.name}}" itemKey="item-{{item.nameEn}}" collapseKey="collapse">
+                <block a:for="{{item.detailList}}">
+                  <list-item arrow="{{true}}" multipleLine="{{false}}" key="items-{{item.name}}" last="{{true}}" onClick="openPage" data-url="{{item.path}}">
+                    <view style="display: flex; align-items: center">
+                      <image src="{{nut}}" class="thumb"  mode="aspectFit" />
+                      <text class="component-name">{{item.name}}</text>
+                    </view>
+                  </list-item>
+                </block>
+                </collapse-item>
+              </block>
+            </collapse>
+          </list>
+        </block>
+      </view>
+    </view>
+  </view>
+</view>
+
+<!-- 下面这个可以删除，是开发者按钮 -->
+<image mode="scaleToFill" src="/image/logo_devCenter.png" class="logo_devCenter" onTap="goDevCenter"/>

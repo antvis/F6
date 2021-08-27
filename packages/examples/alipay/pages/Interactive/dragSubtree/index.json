@@ -1,0 +1,6 @@
+{
+  "defaultTitle": "拖拽子树改变结构",
+  "usingComponents": {
+    "f6-canvas": "@antv/f6-alipay/es/container/container"
+  }
+}

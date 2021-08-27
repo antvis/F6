@@ -1,0 +1,6 @@
+{
+  "defaultTitle": "同层节点按照指定字段聚类",
+  "usingComponents": {
+    "f6-canvas": "@antv/f6-alipay/es/container/container"
+  }
+}

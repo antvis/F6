@@ -1,0 +1,6 @@
+{
+  "defaultTitle": "三次贝塞尔曲线-垂直",
+  "usingComponents": {
+    "f6-canvas": "@antv/f6-alipay/es/container/container"
+  }
+}

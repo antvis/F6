@@ -1,0 +1,6 @@
+{
+  "defaultTitle": "响应节点中部分区域",
+  "usingComponents": {
+    "f6-canvas": "@antv/f6-alipay/es/container/container"
+  }
+}
