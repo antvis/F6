@@ -1,0 +1,6 @@
+{
+  "defaultTitle": "甜甜圈",
+  "usingComponents": {
+    "f6-canvas": "../../../../components/wx"
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "defaultTitle": "合并同类兄弟节点",
+  "usingComponents": {
+    "f6-canvas": "@antv/f6-alipay/es/container/container"
+  }
+}

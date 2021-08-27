@@ -1,0 +1,6 @@
+{
+  "defaultTitle": "模态菱形",
+  "usingComponents": {
+    "f6-canvas": "../../../../components/wx"
+  }
+}

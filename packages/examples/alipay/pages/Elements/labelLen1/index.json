@@ -1,0 +1,6 @@
+{
+  "defaultTitle": "使用换行符处理",
+  "usingComponents": {
+    "f6-canvas": "@antv/f6-alipay/es/container/container"
+  }
+}

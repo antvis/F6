@@ -1,0 +1,6 @@
+{
+  "defaultTitle": "折线2",
+  "usingComponents": {
+    "f6-canvas": "../../../../components/wx"
+  }
+}

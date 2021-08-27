@@ -1,0 +1,6 @@
+{
+  "defaultTitle": "添加额外图形",
+  "usingComponents": {
+    "f6-canvas": "../../../../components/wx"
+  }
+}

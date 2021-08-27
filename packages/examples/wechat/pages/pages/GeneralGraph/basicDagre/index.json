@@ -1,0 +1,6 @@
+{
+  "defaultTitle": "流程图",
+  "usingComponents": {
+    "f6-canvas": "../../../../components/wx"
+  }
+}

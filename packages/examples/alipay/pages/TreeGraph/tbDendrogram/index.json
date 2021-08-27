@@ -1,0 +1,7 @@
+{
+    "defaultTitle": "至上而下的生态树", 
+    "usingComponents": {
+      "f6-canvas": "@antv/f6-alipay/es/container/container"
+    }
+}
+  

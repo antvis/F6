@@ -1,0 +1,15 @@
+page {
+  background-color: #f7f7f7;
+  border: 1px solid rgba(0,0,0,0);
+  box-sizing: border-box;
+}
+
+.page-section-demo {
+  padding: 32rpx;
+}
+
+.choice-button {
+  color: #06ae56;
+  margin-bottom: 5px;
+  background-color: #f2f2f2;
+}

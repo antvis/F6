@@ -1,0 +1,6 @@
+{
+  "defaultTitle": "基本降维布局图",
+  "usingComponents": {
+    "f6-canvas": "@antv/f6-alipay/es/container/container"
+  }
+}

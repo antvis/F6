@@ -1,0 +1,9 @@
+<text>Click the bottom marker to collapse/expand the combo.</text>
+<f6-canvas
+  width="{{width}}"
+  height="{{height}}"
+  forceMini="{{forceMini}}"
+  pixelRatio="{{pixelRatio}}"
+  onTouchEvent="handleTouch"
+  onInit="handleInit"
+></f6-canvas>

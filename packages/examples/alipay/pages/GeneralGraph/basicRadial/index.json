@@ -1,0 +1,6 @@
+{
+  "defaultTitle": "基本辐射布局",
+  "usingComponents": {
+    "f6-canvas": "@antv/f6-alipay/es/container/container"
+  }
+}

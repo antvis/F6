@@ -1,0 +1,11 @@
+<button
+  onTap="handleClickButton"
+>{{description}}</button>
+<f6-canvas
+  width="{{width}}"
+  height="{{height}}"
+  forceMini="{{forceMini}}"
+  pixelRatio="{{pixelRatio}}"
+  onTouchEvent="handleTouch"
+  onInit="handleInit"
+></f6-canvas>

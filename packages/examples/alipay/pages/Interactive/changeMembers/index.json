@@ -1,0 +1,6 @@
+{
+  "defaultTitle": "修改包裹内部成员",
+  "usingComponents": {
+    "f6-canvas": "@antv/f6-alipay/es/container/container"
+  }
+}

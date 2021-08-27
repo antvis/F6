@@ -1,0 +1,6 @@
+{
+  "defaultTitle": "子节点右侧分布",
+  "usingComponents": {
+    "f6-canvas": "@antv/f6-alipay/es/container/container"
+  }
+}

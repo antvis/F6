@@ -1,0 +1,6 @@
+{
+  "defaultTitle": "使用addChild",
+  "usingComponents": {
+    "f6-canvas": "../../../../components/wx"
+  }
+}

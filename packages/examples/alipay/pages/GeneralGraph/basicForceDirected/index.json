@@ -1,0 +1,6 @@
+{
+  "defaultTitle": "基本力导向布局及节点拖拽",
+  "usingComponents": {
+    "f6-canvas": "@antv/f6-alipay/es/container/container"
+  }
+}

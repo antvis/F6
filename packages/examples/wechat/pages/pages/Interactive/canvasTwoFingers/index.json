@@ -1,0 +1,6 @@
+{
+  "defaultTitle": "两指平移画布",
+  "usingComponents": {
+    "f6-canvas": "../../../../components/wx"
+  }
+}

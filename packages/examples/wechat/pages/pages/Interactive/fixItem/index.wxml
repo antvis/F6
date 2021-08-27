@@ -1,0 +1,13 @@
+<view bindtap='tapButton'> 
+  <button class="choice-button" data-mode="all">固定所有</button>
+  <button class="choice-button" data-mode="font">固定字体</button>
+  <button class="choice-button" data-mode="lineWidth">固定线宽</button>
+</view>
+<f6-canvas
+  width="{{width}}"
+  height="{{height}}"
+  forceMini="{{forceMini}}"
+  pixelRatio="{{pixelRatio}}"
+  bind:onTouchEvent="handleTouch"
+  bind:onInit="handleInit"
+></f6-canvas>

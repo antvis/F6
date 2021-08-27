@@ -1,0 +1,6 @@
+{
+  "defaultTitle": "自定义二分图布局",
+  "usingComponents": {
+    "f6-canvas": "../../../../components/wx"
+  }
+}

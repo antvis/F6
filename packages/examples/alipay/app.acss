@@ -1,0 +1,15 @@
+.container {
+  min-height: 100%;
+}
+
+.content {
+  width: 100%;
+}
+
+.tiny-button {
+  font-size: 28rpx;
+  padding: 0 0.7em;
+  line-height: 60rpx;
+  text-align: center;
+  border-radius: 4rpx;
+}

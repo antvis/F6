@@ -1,0 +1,6 @@
+{
+  "defaultTitle": "添加额外图形",
+  "usingComponents": {
+    "f6-canvas": "@antv/f6-alipay/es/container/container"
+  }
+}
