@@ -9,6 +9,7 @@
     "analysis": "cd ./packages/f6 && npm run analysis",
     "build:demos": "cd ./packages/f6 && npm run demos",
     "build:f6": "cd ./packages/f6 && npm run build",
+    "build:plugin": "cd ./packages/plugin && npm run build",
     "build:all": "npm run build:f6",
     "lint:f6": "cd ./packages/f6 && npm run lint",
     "build": "lerna run build --include-dependencies --stream",
