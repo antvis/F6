@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react';
+import { SnapLine } from '@antv/f6-plugin'
 import F6 from '../../src';
 import data from './data';
 
-const snapLine = new F6.SnapLine();
+const snapLine = new SnapLine();
 
 export default () => {
   const ref = React.useRef(null);
