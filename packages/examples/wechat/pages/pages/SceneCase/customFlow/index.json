@@ -1,6 +1,0 @@
-{
-  "defaultTitle": "自定义流向图",
-  "usingComponents": {
-    "f6-canvas": "../../../../components/wx"
-  }
-}

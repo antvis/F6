@@ -1,6 +1,0 @@
-{
-  "defaultTitle": "基本弧线图",
-  "usingComponents": {
-    "f6-canvas": "../../../../components/wx"
-  }
-}

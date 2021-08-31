@@ -1,6 +1,0 @@
-{
-  "defaultTitle": "力导向布局聚类",
-  "usingComponents": {
-    "f6-canvas": "../../../../components/wx"
-  }
-}

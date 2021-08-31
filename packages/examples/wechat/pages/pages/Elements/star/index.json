@@ -1,6 +1,0 @@
-{
-  "defaultTitle": "五角星",
-  "usingComponents": {
-    "f6-canvas": "../../../../components/wx"
-  }
-}

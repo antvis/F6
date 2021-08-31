@@ -1,6 +1,0 @@
-{
-  "defaultTitle": "基本辐射布局",
-  "usingComponents": {
-    "f6-canvas": "../../../../components/wx"
-  }
-}

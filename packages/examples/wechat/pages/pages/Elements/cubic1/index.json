@@ -1,6 +1,0 @@
-{
-  "defaultTitle": "三次贝塞尔曲线-垂直",
-  "usingComponents": {
-    "f6-canvas": "../../../../components/wx"
-  }
-}

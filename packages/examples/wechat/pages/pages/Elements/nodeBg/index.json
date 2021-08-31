@@ -1,6 +1,0 @@
-{
-  "defaultTitle": "节点文本背景",
-  "usingComponents": {
-    "f6-canvas": "../../../../components/wx"
-  }
-}

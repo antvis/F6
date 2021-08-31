@@ -1,6 +1,0 @@
-{
-  "defaultTitle": "顶部对齐",
-  "usingComponents": {
-    "f6-canvas": "../../../../components/wx"
-  }
-}

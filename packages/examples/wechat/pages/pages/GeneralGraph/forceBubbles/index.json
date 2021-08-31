@@ -1,6 +1,0 @@
-{
-  "defaultTitle": "力导向气泡图",
-  "usingComponents": {
-    "f6-canvas": "../../../../components/wx"
-  }
-}

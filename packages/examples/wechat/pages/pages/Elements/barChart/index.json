@@ -1,6 +1,0 @@
-{
-  "defaultTitle": "南丁格尔图节点",
-  "usingComponents": {
-    "f6-canvas": "../../../../components/wx"
-  }
-}

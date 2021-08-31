@@ -1,6 +1,0 @@
-{
-  "defaultTitle": "自环边",
-  "usingComponents": {
-    "f6-canvas": "../../../../components/wx"
-  }
-}

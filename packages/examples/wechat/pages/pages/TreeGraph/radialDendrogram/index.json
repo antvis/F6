@@ -1,6 +1,0 @@
-{
-  "defaultTitle": "生态辐射树",
-  "usingComponents": {
-    "f6-canvas": "../../../../components/wx"
-  }
-}

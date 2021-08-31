@@ -1,6 +1,0 @@
-{
-  "defaultTitle": "基本Fruchterman",
-  "usingComponents": {
-    "f6-canvas": "../../../../components/wx"
-  }
-}

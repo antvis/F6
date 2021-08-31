@@ -1,6 +1,0 @@
-{
-  "defaultTitle": "紧凑辐射树",
-  "usingComponents": {
-    "f6-canvas": "../../../../components/wx"
-  }
-}

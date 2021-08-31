@@ -1,6 +1,0 @@
-{
-  "defaultTitle": "布局切换",
-  "usingComponents": {
-    "f6-canvas": "../../../../components/wx"
-  }
-}

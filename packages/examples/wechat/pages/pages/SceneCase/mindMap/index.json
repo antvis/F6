@@ -1,6 +1,0 @@
-{
-  "defaultTitle": "思维导图",
-  "usingComponents": {
-    "f6-canvas": "../../../../components/wx"
-  }
-}

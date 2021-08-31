@@ -1,6 +1,0 @@
-{
-  "defaultTitle": "内置的高亮节点",
-  "usingComponents": {
-    "f6-canvas": "../../../../components/wx"
-  }
-}

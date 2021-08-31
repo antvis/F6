@@ -1,6 +1,0 @@
-{
-  "defaultTitle": "Fruchterman聚类",
-  "usingComponents": {
-    "f6-canvas": "../../../../components/wx"
-  }
-}

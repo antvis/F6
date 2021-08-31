@@ -1,6 +1,0 @@
-{
-  "defaultTitle": "布局时机监听",
-  "usingComponents": {
-    "f6-canvas": "../../../../components/wx"
-  }
-}

@@ -1,0 +1,142 @@
+import F6 from '@antv/f6-wx';
+import { wrapContext } from '../../../utils/context';
+import { data, legendData } from './data';
+/**
+ * donutTransfer
+ */
+
+Page({
+  canvas: null,
+  ctx: null,
+  renderer: '', // mini、mini-native等，F6需要，标记环境
+  isCanvasInit: false, // canvas是否准备好了
+  graph: null,
+
+  data: {
+    width: 375,
+    height: 600,
+    pixelRatio: 1,
+    forceMini: false,
+  },
+
+  onLoad() {
+    // 同步获取window的宽高
+    const { windowWidth, windowHeight, pixelRatio } = wx.getSystemInfoSync();
+
+    this.setData({
+      width: windowWidth,
+      height: windowHeight,
+      // pixelRatio,
+    });
+  },
+
+  /**
+   * 初始化cnavas回调，缓存获得的context
+   * @param {*} ctx 绘图context
+   * @param {*} rect 宽高信息
+   * @param {*} canvas canvas对象，在render为mini时为null
+   * @param {*} renderer 使用canvas 1.0还是canvas 2.0，mini | mini-native
+   */
+  handleInit(event) {
+    const {ctx, rect, canvas, renderer} = event.detail
+    this.isCanvasInit = true;
+    this.ctx = wrapContext(ctx);
+    this.renderer = renderer;
+    this.canvas = canvas;
+    this.updateChart();
+  },
+
+  /**
+   * canvas派发的事件，转派给graph实例
+   */
+  handleTouch(e) {
+    this.graph && this.graph.emitEvent(e.detail);
+  },
+
+  updateChart() {
+    const { width, height, pixelRatio } = this.data;
+    const legend = new F6.Legend({
+      data: legendData,
+      align: 'center',
+      layout: 'horizontal', // vertical
+      position: 'bottom-left',
+      vertiSep: 12,
+      horiSep: 24,
+      offsetY: -24,
+      padding: [4, 16, 8, 16],
+      containerStyle: {
+        fill: '#ccc',
+        lineWidth: 1,
+      },
+      title: ' ',
+      titleConfig: {
+        offsetY: -8,
+      },
+    });
+
+    // 创建F6实例
+    this.graph = new F6.Graph({
+      context: this.ctx,
+      renderer: this.renderer,
+      width,
+      height,
+      pixelRatio,
+      fitView: true,
+      fitCenter: true,
+      plugins: [legend], // 这里的plugin不知道能不能用
+      modes: {
+        default: ['drag-canvas', 'drag-node'],
+      },
+      layout: {
+        type: 'radial',
+        focusNode: 'li',
+        linkDistance: 200,
+        unitRadius: 200,
+      },
+      defaultEdge: {
+        style: {
+          endArrow: true,
+        },
+        labelCfg: {
+          autoRotate: true,
+          style: {
+            stroke: '#fff',
+            lineWidth: 5,
+          },
+        },
+      },
+      defaultNode: {
+        type: 'donut',
+        style: {
+          lineWidth: 0,
+        },
+        labelCfg: {
+          position: 'bottom',
+        },
+      },
+    });
+
+    this.graph.data(data);
+    this.graph.render();
+    // this.graph.fitView();
+    this.graph.on('node:mouseenter', (evt) => {
+      const { item } = evt;
+      this.graph.setItemState(item, 'active', true);
+    });
+
+    this.graph.on('node:mouseleave', (evt) => {
+      const { item } = evt;
+      this.graph.setItemState(item, 'active', false);
+    });
+
+    this.graph.on('node:tap', (evt) => {
+      const { item } = evt;
+      this.graph.setItemState(item, 'selected', true);
+    });
+    this.graph.on('canvas:tap', () => {
+      this.graph.getNodes().forEach((node) => {
+        this.graph.clearItemStates(node);
+      });
+    });
+  },
+});
