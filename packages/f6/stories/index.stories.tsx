@@ -10,6 +10,7 @@ import UITest from './uiTest';
 import SnapLineDemo from './snapLine';
 import PluginTooltipDemo from './pluginTooltip';
 import PluginLegendDemo from './pluginLegend';
+import PluginZoomSliderDemo from './pluginZoomSlider';
 
 export default {
   title: 'Example',
@@ -27,4 +28,5 @@ export const SnapLine = (args) => <SnapLineDemo {...args} />;
 
 export const PluginTooltip = (args) => <PluginTooltipDemo {...args} />;
 export const PluginLegend = (args) => <PluginLegendDemo {...args} />;
+export const PluginZoomSlider = (args) => <PluginZoomSliderDemo {...args} />;
 
