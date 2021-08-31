@@ -1,0 +1,35 @@
+<view class="index">
+  <image class="background" src="../../images/component_bg.png"></image>
+  <view class="index-hd">
+    <image class="index-logo" src="../../images/antvf6.png"></image>
+    <view class="index-desc">F6 官方示例 </view>
+    <view class="index-sub-desc">移动端可视化解决方案F6 demos </view>
+  </view>
+  <view class="index-bd">
+    <block wx:for-items="{{all_list}}" wx:for-item="component"> 
+      <view class="list-title">{{component.type}}</view>
+      <view class="kind-list">
+      <block wx:for-items="{{component.list}}" wx:key="{{item.id}}">
+        <view class="kind-list-item">
+          <view id="{{item.id}}" class="kind-list-item-hd {{item.open ? 'kind-list-item-hd-show' : ''}}" bindtap="kindToggle">
+            <view class="kind-list-text">{{item.name}}</view>
+            <view class="kind-list-en-text">{{item.nameEn}}</view>
+            <image wx:if="{{theme === 'dark'}}" class="kind-list-img" src="resources/kind/{{item.id}}_dark.png"></image>
+            <image wx:else class="kind-list-img" src="{{item.thumb}}"></image>
+          </view>
+          <view class="kind-list-item-bd {{item.open ? 'kind-list-item-bd-show' : ''}}">
+            <view class="navigator-box {{item.open ? 'navigator-box-show' : ''}}">
+              <block wx:for-items="{{item.pages}}" wx:for-item="page" wx:key="*item">
+                <navigator url="{{page.path}}" class="navigator" bindtap="testClick" data-path="{{page.path}}">
+                  <view class="navigator-text">{{page.name}}</view>
+                  <view class="navigator-arrow"></view>
+                </navigator>
+              </block>
+            </view>
+          </view>
+        </view>
+      </block>
+      </view>
+    </block>
+  </view>
+</view>

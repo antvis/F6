@@ -1,6 +1,0 @@
-{
-  "defaultTitle": "点线图节点",
-  "usingComponents": {
-    "f6-canvas": "../../../../components/wx"
-  }
-}

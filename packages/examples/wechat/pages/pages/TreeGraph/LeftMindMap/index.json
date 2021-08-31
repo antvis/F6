@@ -1,6 +1,0 @@
-{
-  "defaultTitle": "子节点左侧分布",
-  "usingComponents": {
-    "f6-canvas": "../../../../components/wx"
-  }
-}

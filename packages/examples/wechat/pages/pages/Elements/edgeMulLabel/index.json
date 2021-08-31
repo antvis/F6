@@ -1,6 +1,0 @@
-{
-  "defaultTitle": "多标签边",
-  "usingComponents": {
-    "f6-canvas": "../../../../components/wx"
-  }
-}

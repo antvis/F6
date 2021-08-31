@@ -1,6 +1,0 @@
-{
-  "defaultTitle": "节点移动动画",
-  "usingComponents": {
-    "f6-canvas": "../../../../components/wx"
-  }
-}

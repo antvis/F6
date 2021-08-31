@@ -1,6 +1,0 @@
-{
-  "defaultTitle": "自定义折线",
-  "usingComponents": {
-    "f6-canvas": "../../../../components/wx"
-  }
-}

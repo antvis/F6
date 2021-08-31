@@ -1,6 +1,0 @@
-{
-  "defaultTitle": "卡片2",
-  "usingComponents": {
-    "f6-canvas": "../../../../components/wx"
-  }
-}

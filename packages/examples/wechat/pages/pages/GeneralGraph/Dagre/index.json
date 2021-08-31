@@ -1,6 +1,0 @@
-{
-  "defaultTitle": "自左向右的流程图",
-  "usingComponents": {
-    "f6-canvas": "../../../../components/wx"
-  }
-}

@@ -1,6 +1,0 @@
-{
-  "defaultTitle": "基本降维布局图",
-  "usingComponents": {
-    "f6-canvas": "../../../../components/wx"
-  }
-}

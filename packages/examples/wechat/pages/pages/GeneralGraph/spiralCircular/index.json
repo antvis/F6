@@ -1,6 +1,0 @@
-{
-  "defaultTitle": "螺旋线布局",
-  "usingComponents": {
-    "f6-canvas": "../../../../components/wx"
-  }
-}

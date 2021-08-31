@@ -1,6 +1,0 @@
-{
-  "defaultTitle": "自定义箭头",
-  "usingComponents": {
-    "f6-canvas": "../../../../components/wx"
-  }
-}

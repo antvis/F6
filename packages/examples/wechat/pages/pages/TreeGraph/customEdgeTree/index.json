@@ -1,6 +1,0 @@
-{
-  "defaultTitle": "自定义树中的边",
-  "usingComponents": {
-    "f6-canvas": "../../../../components/wx"
-  }
-}

@@ -1,6 +1,0 @@
-{
-  "defaultTitle": "圆点沿边运动",
-  "usingComponents": {
-    "f6-canvas": "../../../../components/wx"
-  }
-}

@@ -1,6 +1,0 @@
-{
-  "defaultTitle": "自定义动画",
-  "usingComponents": {
-    "f6-canvas": "../../../../components/wx"
-  }
-}

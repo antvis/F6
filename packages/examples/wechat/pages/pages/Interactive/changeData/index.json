@@ -1,6 +1,0 @@
-{
-  "defaultTitle": "使用changeData",
-  "usingComponents": {
-    "f6-canvas": "../../../../components/wx"
-  }
-}
