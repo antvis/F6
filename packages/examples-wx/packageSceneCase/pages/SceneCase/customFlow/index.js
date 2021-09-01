@@ -139,7 +139,7 @@ Page({
         }
 
         const endArrow = cfg.style && cfg.style.endArrow ? cfg.style.endArrow : false;
-        endArrow.fill = stroke;
+        if (endArrow) endArrow.fill = stroke;
         const line = group.addShape('path', {
           attrs: {
             path,
