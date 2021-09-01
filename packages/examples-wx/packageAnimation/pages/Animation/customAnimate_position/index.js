@@ -1,5 +1,5 @@
 import F6 from '@antv/f6-wx';
-/pages/
+
 
 /**
  * customAnimate#position

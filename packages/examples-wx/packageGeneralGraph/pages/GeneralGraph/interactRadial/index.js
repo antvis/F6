@@ -1,5 +1,5 @@
 import F6 from '@antv/f6-wx';
-/pages/
+
 import { data, data2_m } from './data';
 import radial from '@antv/f6-wx/extends/layout/radialLayout';
 /**

@@ -1,5 +1,5 @@
 import F6 from '@antv/f6-wx';
-/pages/
+
 import TreeGraph from '@antv/f6-wx/extends/graph/treeGraph';
 import data from './data';
 

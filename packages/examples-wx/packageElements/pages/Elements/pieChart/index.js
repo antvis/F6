@@ -1,5 +1,5 @@
 import F6 from '@antv/f6-wx';
-/pages/
+
 import data from './data';
 /**
  * pieChart：使用G自定义的饼图节点

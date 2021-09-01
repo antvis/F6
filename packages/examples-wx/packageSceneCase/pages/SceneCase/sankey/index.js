@@ -1,5 +1,5 @@
 import F6 from '@antv/f6-wx';
-/pages/
+
 import result from './data';
 import dagreLayout from '@antv/f6-wx/extends/layout/dagreLayout';
 

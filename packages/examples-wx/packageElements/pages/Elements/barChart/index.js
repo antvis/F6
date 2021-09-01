@@ -1,5 +1,5 @@
 import F6 from '@antv/f6-wx';
-/pages/
+
 import data from './data';
 /**
  * barChart：使用G自定义的南丁格尔图节点
