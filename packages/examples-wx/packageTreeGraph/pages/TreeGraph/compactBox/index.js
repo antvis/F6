@@ -1,7 +1,7 @@
-// /pages/TreeGraph/fileSystem/index.js
+// TreeGraph/fileSystem/index.js
 import F6 from '@antv/f6-wx';
 import TreeGraph from '@antv/f6-wx/extends/graph/treeGraph';
-/pages/
+
 import data from './data.js';
 Page({
   canvas: null,

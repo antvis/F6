@@ -1,5 +1,5 @@
 import F6 from '@antv/f6-wx';
-/pages/
+
 import data from './data';
 import forceAtlas2 from '@antv/f6-wx/extends/layout/forceAtlas2Layout';
 
