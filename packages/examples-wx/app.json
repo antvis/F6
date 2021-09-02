@@ -8,6 +8,7 @@
         "pages/Animation/customAnimate_position/index",
         "pages/Animation/edge_edge/index",
         "pages/Animation/edge_lineGrowth/index",
+        "pages/Animation/node_node/index",
         "pages/Animation/pointInLine/index",
         "pages/Animation/stateChange_hover/index"
       ]

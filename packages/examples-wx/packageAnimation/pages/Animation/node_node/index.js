@@ -124,32 +124,32 @@ F6.registerNode(
       const { size } = cfg;
       const width = size[0] - 12;
       const height = size[1] - 12;
-      const image = group.addShape('image', {
-        attrs: {
-          x: -width / 2,
-          y: -height / 2,
-          width,
-          height,
-          img: cfg.img,
-        },
-        name: 'image-shape',
-      });
-      image.animate(
-        (ratio) => {
-          const toMatrix = Util.transform(
-            [1, 0, 0, 0, 1, 0, 0, 0, 1],
-            [['r', ratio * Math.PI * 2]],
-          );
-          return {
-            matrix: toMatrix,
-          };
-        },
-        {
-          repeat: true,
-          duration: 3000,
-          easing: 'easeCubic',
-        },
-      );
+      // const image = group.addShape('image', {
+      //   attrs: {
+      //     x: -width / 2,
+      //     y: -height / 2,
+      //     width,
+      //     height,
+      //     img: cfg.img,
+      //   },
+      //   name: 'image-shape',
+      // });
+      // image.animate(
+      //   (ratio) => {
+      //     const toMatrix = Util.transform(
+      //       [1, 0, 0, 0, 1, 0, 0, 0, 1],
+      //       [['r', ratio * Math.PI * 2]],
+      //     );
+      //     return {
+      //       matrix: toMatrix,
+      //     };
+      //   },
+      //   {
+      //     repeat: true,
+      //     duration: 3000,
+      //     easing: 'easeCubic',
+      //   },
+      // );
     },
   },
   'rect',
