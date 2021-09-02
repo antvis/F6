@@ -93,17 +93,17 @@ Page({
           });
 
           // left icon
-          group.addShape('image', {
-            attrs: {
-              x: 4,
-              y: 2,
-              height: 16,
-              width: 16,
-              cursor: 'pointer',
-              img: ICON_MAP[cfg.nodeType || 'app'],
-            },
-            name: 'node-icon',
-          });
+          // group.addShape('image', {
+          //   attrs: {
+          //     x: 4,
+          //     y: 2,
+          //     height: 16,
+          //     width: 16,
+          //     cursor: 'pointer',
+          //     img: ICON_MAP[cfg.nodeType || 'app'],
+          //   },
+          //   name: 'node-icon',
+          // });
 
           // title text
           group.addShape('text', {

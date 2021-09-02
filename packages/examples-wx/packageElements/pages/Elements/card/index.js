@@ -376,18 +376,18 @@ Page({
             name: 'ip-cp-bg',
           });
           /* copyIpIcon */
-          group.addShape('image', {
-            attrs: {
-              x: 200,
-              y: 13,
-              height: 12,
-              width: 10,
-              img: 'https://os.alipayobjects.com/rmsportal/DFhnQEhHyPjSGYW.png',
-              cursor: 'pointer',
-              opacity: 0,
-            },
-            name: 'ip-cp-icon',
-          });
+          // group.addShape('image', {
+          //   attrs: {
+          //     x: 200,
+          //     y: 13,
+          //     height: 12,
+          //     width: 10,
+          //     img: 'https://os.alipayobjects.com/rmsportal/DFhnQEhHyPjSGYW.png',
+          //     cursor: 'pointer',
+          //     opacity: 0,
+          //   },
+          //   name: 'ip-cp-icon',
+          // });
           /* a transparent rect on the icon area for click listener */
           group.addShape('rect', {
             attrs: {
