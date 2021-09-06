@@ -1,4 +1,4 @@
-import G6 from '../../../../f6';
+import F6 from '../../../../f6';
 
 const data = {
   nodes: [
@@ -32,7 +32,7 @@ Page({
   },
   onCanvasInit(ctx, rect, canvas) {
     console.log(ctx, rect, canvas);
-    this.graph = new G6.Graph({
+    this.graph = new F6.Graph({
       context: ctx,
       renderer: 'mini-native',
       width: this.data.width,

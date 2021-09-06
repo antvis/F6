@@ -18,7 +18,6 @@ export const registerGraph = (graphName: string, GraphFunction: any, G6: Object)
   G6[graphName] = GraphFunction(G6);
   return G6;
 };
-
 export default class Graph extends AbstractGraph implements IGraph {
   // private cfg: GraphOptions & { [key: string]: any };
 
@@ -458,78 +457,100 @@ export default class Graph extends AbstractGraph implements IGraph {
     }
   }
 
+  private isMiniNative() {
+      return this.get('renderer') === 'mini-native';
+  }
+
+  private isMini() {
+      return this.get('renderer').startsWith('mini');
+  }
+
+  private isBrowser() {
+      return this.get('renderer') === 'canvas';
+  }
+  
   /**
    * 设置图片水印
    * @param {string} imgURL 图片水印的url地址
    * @param {WaterMarkerConfig} config 文本水印的配置项
+   * @param {any} waterCanvas 小程序canvas
    */
-  public setImageWaterMarker(imgURL: string = Global.waterMarkerImage, config?: WaterMarkerConfig) {
-    let container: string | HTMLElement | null = this.get('container');
-    if (isString(container)) {
-      container = document.getElementById(container);
-    }
-
-    if (!container.style.position) {
-      container.style.position = 'relative';
-    }
-
-    let canvas = this.get('graphWaterMarker');
-
-    const waterMarkerConfig: WaterMarkerConfig = deepMix({}, Global.imageWaterMarkerConfig, config);
-    const { width, height, compatible, image } = waterMarkerConfig;
-
-    if (!canvas) {
-      const canvasCfg: any = {
-        container,
-        width,
-        height,
-        capture: false,
-      };
-      const pixelRatio = this.get('pixelRatio');
-      if (pixelRatio) {
-        canvasCfg.pixelRatio = pixelRatio;
+  public setImageWaterMarker(imgURL: string, config: WaterMarkerConfig, waterCanvas:any) {
+      //水印的设置合并
+      const waterMarkerConfig = deepMix({}, Global.imageWaterMarkerConfig, config)
+      const { width, height, image} = waterMarkerConfig
+      const { rotate, x, y, width: imgWidth, height: imgHeight} = image
+      //mini
+      if(this.isMini() && !this.isMiniNative()) {
+        //设置属性为背景图
       }
-      canvas = new GMobileCanvas(canvasCfg);
-      this.set('graphWaterMarker', canvas);
-    }
-    canvas.get('el').style.display = 'none';
-    const ctx = canvas.get('context');
+      //mini-native
+      if(this.isMiniNative()){
+        //设定水印canvas的宽高
+        waterCanvas.width = width ? width : this.get("width")
+        waterCanvas.height = height ? height : this.get("height") 
+        //获取context
+        const waterCanvasContext = waterCanvas.getContext('2d')
 
-    const { rotate, x, y } = image;
-    // 旋转20度
-    ctx.rotate((-rotate * Math.PI) / 180);
+        const { createImage } = this.get('extra')
 
-    const img = new Image();
-    img.crossOrigin = 'anonymous';
-    img.src = imgURL;
-    img.onload = () => {
-      ctx.drawImage(img, x, y, image.width, image.height);
-      // 恢复旋转角度
-      ctx.rotate((rotate * Math.PI) / 180);
+        const img = createImage()
+        img.crossOrigin = 'anonymous'
+        img.src = imgURL
+        img.onload = () => {
+            //计算缩放比例
+            const scaleX = imgWidth / img.width
+            const scaleY = imgHeight / img.height
 
-      // 默认按照现代浏览器处理
-      if (!compatible) {
-        let box = document.querySelector('.g6-graph-watermarker') as HTMLElement;
-        if (!box) {
-          box = document.createElement('div');
-          box.className = 'g6-graph-watermarker';
+            //旋转
+            waterCanvasContext.rotate(-(rotate * Math.PI) / 180)
+
+            //循环重复绘制
+            const pattern = waterCanvasContext.createPattern(img, "repeat")
+            waterCanvasContext.fillStyle = pattern
+            waterCanvasContext.scale(scaleX, scaleY)
+            //调整位置
+            waterCanvasContext.fillRect(-this.get("width") * 2, -this.get("height"), this.get("width") * 10, this.get("height") * 10)
+            this.get('waterGroup').addShape('image', {
+                attrs: {
+                    img: waterCanvas
+                }
+            })
         }
-        box.className = 'g6-graph-watermarker';
-        if (!canvas.destroyed) {
-          box.style.cssText = `background-image: url(${canvas
-            .get('el')
-            .toDataURL(
-              'image/png',
-            )});background-repeat:repeat;position:absolute;top:0;bottom:0;left:0;right:0;pointer-events:none;z-index:-1;`;
-          (container as HTMLElement).appendChild(box);
-        }
-      } else {
-        // 当需要兼容不支持 pointer-events属性的浏览器时，将 compatible 设置为 true
-        (container as HTMLElement).style.cssText = `background-image: url(${canvas
-          .get('el')
-          .toDataURL('image/png')});background-repeat:repeat;`;
       }
-    };
+      //render
+      if(this.isBrowser()) {
+          const waterCanvas = document.createElement('canvas')
+          
+          //获取整个画布的宽高，以确定水印层的宽高
+          waterCanvas.width = width ? width : this.get("width")
+          waterCanvas.height = height ? height : this.get("height")
+          const context = waterCanvas.getContext('2d')
+          const img = new Image()
+          img.crossOrigin = 'anonymous'
+          img.src = imgURL
+          img.onload = () => {
+            //计算图片宽高的缩放比例
+            const scaleX = imgWidth /img.width
+            const scaleY = imgHeight /img.height
+
+            //旋转
+            context.rotate(-(rotate * Math.PI) / 180 )
+            //循环重复绘制
+            const pattern = context.createPattern(img, "repeat")
+            context.fillStyle = pattern
+            context.scale(scaleX, scaleY)
+            //调整位置
+            context.fillRect(-this.get("width") * 2, -this.get("height"), this.get('width') * 10, this.get("height") * 10)
+
+            const water_img_url = waterCanvas.toDataURL()
+            this.get('waterGroup').addShape('image', {
+              attrs: {
+                img: water_img_url
+              }
+            })
+          }
+      }
   }
 
   /**
@@ -659,6 +680,11 @@ export default class Graph extends AbstractGraph implements IGraph {
       className: Global.rootContainerClassName,
     });
 
+    const waterGroup: IGroup = canvas.addGroup({
+      id:'water',
+      className: Global.waterContainerClassName
+    })
+
     if (this.get('groupByTypes')) {
       const edgeGroup: IGroup = group.addGroup({
         id: 'edge',
@@ -693,5 +719,6 @@ export default class Graph extends AbstractGraph implements IGraph {
     this.set({ delegateGroup });
     this.set('group', group);
     this.set('uiGroup', uiGroup);
+    this.set('waterGroup', waterGroup)
   }
 }
