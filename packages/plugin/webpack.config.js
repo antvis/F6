@@ -3,7 +3,7 @@ const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPl
 const Visualizer = require('webpack-visualizer-plugin');
 
 let entry = {
-  f6GUI: './src/index.ts',
+  f6Plugin: './src/index.ts',
 };
 
 module.exports = {
@@ -11,6 +11,12 @@ module.exports = {
   resolve: {
     // Add `.ts` as a resolvable extension.
     extensions: ['.ts', '.js'],
+  },
+  output: {
+    library: 'f6ui',
+    libraryTarget: 'umd',
+    libraryExport: 'default',
+    globalObject: 'this',
   },
   module: {
     rules: [

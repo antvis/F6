@@ -1,8 +1,7 @@
 import { IAbstractGraph as IGraph, GraphData, ShapeStyle } from '@antv/f6-core';
 import Base from '../base';
 import { isArray, isNumber, uniqueId } from '@antv/util';
-import { Util } from '@antv/f6-core';
-import { createUI } from '../../../f6-ui/lib';
+import { createUI } from '@antv/f6-ui';
 import { createItem } from './item';
 
 const ALLOW_EVENTS = ['click', 'mouseenter'];
