@@ -1,6 +1,6 @@
   import React, { useEffect } from 'react';
   import F6 from '../../src';
-  import {TimeBar} from '@antv/f6-plugin';
+  import { TimeBar }  from '@antv/f6-plugin';
 
   export default () => {
     const ref = React.useRef(null);

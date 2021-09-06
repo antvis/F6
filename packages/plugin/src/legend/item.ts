@@ -87,7 +87,7 @@ export function createItem(data, style, itemConfig) {
       font-weight: ${labelStyle.fontWeight}
     }
     text {
-      opacity: ${labelStyle.opacity}
+      opacity: ${labelStyle.opacity};
       white-space: nowrap;
     }
 `;
