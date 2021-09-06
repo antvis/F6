@@ -10,6 +10,7 @@ export default {
   version: '0.0.11',
   rootContainerClassName: 'root-container',
   uiContainerClassName: 'ui-container',
+  waterContainerClassName: 'water-container',
   nodeContainerClassName: 'node-container',
   edgeContainerClassName: 'edge-container',
   comboContainerClassName: 'combo-container',
@@ -210,9 +211,7 @@ export default {
     },
   },
   imageWaterMarkerConfig: {
-    width: 150,
-    height: 130,
-    compatible: false,
+    // compatible: false,
     image: {
       x: 0,
       y: 0,

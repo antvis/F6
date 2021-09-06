@@ -1,6 +1,7 @@
 Component({
   data: {
     supportNative: !!my._createCanvas,
+    waterStyle: ''
   },
   props: {
     style: '',
@@ -11,6 +12,7 @@ Component({
     onTouchEvent: () => {},
     onInit: () => {},
     onError: () => {},
+    waterMarker: null,
   },
   didMount() {
     if (!this.data.supportNative || this.props.forceMini) {
@@ -53,6 +55,11 @@ Component({
             this.props.onInit(this.ctx, ret[0], null, 'mini');
           }
         });
+      if(this.props.waterMarker && this.props.forceMini) {
+        this.setData({
+          waterStyle: `background: url("${this.props.waterMarker}") repeat; background-size: 156px 34px;` //这里面的url需不需要双引号？
+        })
+      }
     },
     ontouch(e) {
       const { target } = e;
