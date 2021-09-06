@@ -20,6 +20,8 @@
   "files": ["package.json", "es", "lib", "dist", "LICENSE", "README.md"],
   "main": "lib/index.js",
   "module": "es/index.js",
+  "browser": "dist/f6UI.js",
+  "miniprogram": "dist",
   "types": "lib/index.d.ts",
   "bugs": {
     "url": "https://github.com/antvis/F6/issues"

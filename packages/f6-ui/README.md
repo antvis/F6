@@ -1,479 +1,140 @@
-### F6
+### F6-UI
 
-## Usage
+基于 G 的简易 UI 系统，可以结合 F6 快速实现 UI 布局。适合小范围的在 canvas 上的布局。
 
-#### Graph with F6
+- 支持 html+css
+- 支持 flex 布局
+- 支持事件
+- 支持重排
+- 支持重绘
 
-```ts
-import F6 from '@antv/f6';
+### 标签支持
 
-Page({
-  data: {
-    canvasWidth: 400,
-    canvasHeight: 610,
-  },
+| Tag                      | 描述         |
+| ------------------------ | ------------ |
+| root                     | 根节点       |
+| div                      | 容器节点     |
+| image                    | 图片节点     |
+| text（文本自动隐式创建） | 文本节点     |
+| shape                    | G 中的 shape |
 
-  onLoad() {
-    this.ctx = my.createCanvasContext('canvas');
-    this.drawF6();
-  },
+### css 支持
 
-  drawF6() {
-    const { canvasWidth, canvasHeight } = this.data;
-    const data = {
-      nodes: [
-        {
-          id: 'node1',
-          label: 'Circle1',
-          x: 50,
-          y: 50,
-        },
-        {
-          id: 'node2',
-          label: 'Circle2',
-          x: 100,
-          y: 100,
-        },
-      ],
-      edges: [
-        {
-          source: 'node1',
-          target: 'node2',
-        },
-      ],
-    };
+| 属性 | 值/示例 |
+| --- | --- |
+| width/height/min/max-width/heihgt | number |
+| top,left,right,bottom | number |
+| pading, padding-left/top/right/bottom | number |
+| margin, margin-left/top/right/bottom | number |
+| overflow | hidden |
+| display | 'flex' , 'none' |
+| position | 'absolute' |
+| flex-direction | 'column', 'row' |
+| flex-wrap | 'wrap', 'nowrap' |
+| justify-content | 'flex-start', 'center', 'flex-end', 'space-between', 'space-around' |
+| align-items/ align-self | 'flex-start', 'center', 'flex-end', 'stretch' |
+| align-content | 'flex-start', 'center', 'flex-end', 'stretch' |
+| border | <borderWidth> <borderStyle> <borderColor> |
+| border-width | number |
+| border-style | 'solid', 'dashed' |
+| border-radius | number |
+| color | 颜色名称 / #xxx / rgb() / rgba() |
+| font-family |  |
+| backgroud-color | 颜色名称 / #xxx / rgb() / rgba() |
+| pointer-events | none |
 
-    const graph = new F6.Graph({
-      container: null,
-      context: this.ctx,
-      renderer: 'mini',
-      width: canvasWidth,
-      height: canvasHeight,
-      defaultNode: {
-        shape: 'circle',
-        size: [30],
-        color: '#5B8FF9',
-        style: {
-          fill: '#9EC9FF',
-          lineWidth: 3,
-        },
-        labelCfg: {
-          style: {
-            fill: '#fff',
-            fontSize: 20,
-          },
-        },
-      },
-      defaultEdge: {
-        style: {
-          stroke: '#e2e2e2',
-        },
-      },
-    });
+- 目前文本和 shape 标记不能计算出宽高，不参与布局，文本需要使用 div 将文本包起来，定义该 div 的宽高。shape 可以直接在 css 中定义 shape 的宽高
 
-    graph.data(data);
-    graph.render();
-  },
-});
-```
+### example
 
-#### TreeGraph with f6 extends package
+相对比较复杂的案例可以参考 F6-plugin package 下的 timebar 控件。下面是一个简单的示例：
 
 ```ts
 import F6 from '@antv/f6';
-import TreeGraph from '@antv/f6/dist/extends/graph/treeGraph';
+import { createUI } from '../../../f6-ui';
 
-F6.registerGraph('TreeGraph', TreeGraph);
+function runTestUI(group) {
+  const html = `
+    <root id="lll">
+      <div class="test">
+        <shape type="polygon" points = "[
+          [0, 0],
+          [0, 80],
+          [80, 80],
+          [80, 0]
+        ]" />
+        <shape class="circle" type="circle" r="30" />
+        666
+      </div>
+      <div class="real">       
+       <image src="https://gw.alipayobjects.com/mdn/rms_6ae20b/afts/img/A*N4ZMS7gHsUIAAAAAAAAAAABkARQnAQ"></image>
+      </div>
+      <div class="test">test</div>
+      <div class="real">test</div>
+    </root>
+  `;
+  const css = `
+    #lll {
+      /** 盒模型 **/
+      width: 500;
+      height: 400;
+      padding: 0 0;
+      margin: 100 100;
+      border: 10 solid rgba(0,0,0,1);
 
-Page({
-  data: {
-    canvasWidth: 400,
-    canvasHeight: 610,
-  },
+      /** flex **/
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      justify-content: center;
+      align-items: center;
 
-  onLoad() {
-    this.ctx = my.createCanvasContext('canvas');
-    this.drawF6();
-  },
+      /** 基础绘制 **/
+      background: blue;
+      border-radius: 5;
 
-  drawF6() {
-    const { canvasWidth, canvasHeight } = this.data;
+      /** 继承 **/
+      color: red;
+      font-size: 24;
+      text-align: center;
+    }
 
-    const data = {
-      id: 'Modeling Methods',
-      children: [
-        {
-          id: 'Classification',
-          children: [
-            { id: 'Logistic regression' },
-            { id: 'Linear discriminant analysis' },
-            { id: 'Rules' },
-          ],
-        },
-        {
-          id: 'Consensus',
-          children: [
-            {
-              id: 'Models diversity',
-            },
-            {
-              id: 'Methods',
-            },
-            {
-              id: 'Common',
-            },
-          ],
-        },
-      ],
-    };
+    /** 优先级 **/
+    #lll div.real{
+      background: yellow;
+    }
+    
+    /** 选择器组合 **/
+    #lll div{
+      background: red;
+      margin-left: 10;
+      width: 100;
+      height: 100;
+    }
+    
+    shape {
+      position: absolute;
+      background: #ff00ff;
+      top: 10;
+      left: 10;
+      width: 80;
+      height: 80;
+    }
 
-    const graph = new F6.TreeGraph({
-      container: null,
-      context: this.ctx,
-      renderer: 'mini',
-      width: canvasWidth,
-      height: canvasHeight,
-      defaultNode: {
-        shape: 'circle',
-        size: [20],
-        color: '#5B8FF9',
-        style: {
-          fill: '#9EC9FF',
-          lineWidth: 3,
-        },
-        labelCfg: {
-          style: {
-            fill: '#fff',
-            fontSize: 10,
-          },
-        },
-      },
-      defaultEdge: {
-        style: {
-          stroke: '#e2e2e2',
-        },
-      },
-      layout: {
-        type: 'dendrogram',
-        direction: 'TB', // H / V / LR / RL / TB / BT
-        // fixedRoot: true,
-      },
-    });
-
-    graph.data(data);
-    graph.render();
-  },
-});
-```
-
-#### Layout with F6 extends package
-
-```ts
-import F6 from '@antv/f6';
-import CircularLayout from '@antv/f6/dist/extends/layout/circularLayout';
-
-F6.registerLayout('circle', CircularLayout);
-
-Page({
-  data: {
-    canvasWidth: 400,
-    canvasHeight: 610,
-  },
-
-  onLoad() {
-    this.ctx = my.createCanvasContext('canvas');
-    this.drawF6();
-  },
-
-  drawF6() {
-    const { canvasWidth, canvasHeight } = this.data;
-    const data = {
-      nodes: [
-        {
-          id: '0',
-          label: '0',
-        },
-        {
-          id: '1',
-          label: '1',
-        },
-        {
-          id: '2',
-          label: '2',
-        },
-        {
-          id: '3',
-          label: '3',
-        },
-        {
-          id: '4',
-          label: '4',
-        },
-        {
-          id: '5',
-          label: '5',
-        },
-        {
-          id: '6',
-          label: '6',
-        },
-      ],
-      edges: [
-        {
-          source: '0',
-          target: '1',
-        },
-        {
-          source: '0',
-          target: '2',
-        },
-        {
-          source: '0',
-          target: '3',
-        },
-        {
-          source: '0',
-          target: '4',
-        },
-        {
-          source: '0',
-          target: '5',
-        },
-        {
-          source: '2',
-          target: '3',
-        },
-        {
-          source: '4',
-          target: '5',
-        },
-        {
-          source: '4',
-          target: '6',
-        },
-        {
-          source: '5',
-          target: '6',
-        },
-      ],
-    };
-
-    // console.log('hello', F6.Layout)
-    const graph = new F6.Graph({
-      container: null,
-      context: this.ctx,
-      renderer: 'mini',
-      fitView: true,
-      width: canvasWidth,
-      height: canvasHeight,
-      defaultNode: {
-        shape: 'circle',
-        size: [20],
-        color: '#5B8FF9',
-        style: {
-          fill: '#9EC9FF',
-          lineWidth: 3,
-        },
-        labelCfg: {
-          style: {
-            fill: '#fff',
-            fontSize: 10,
-          },
-        },
-      },
-      layout: {
-        type: 'circular',
-        // begin: [20, 20],
-        // width: 800,
-        // height: 1200,
-      },
-    });
-
-    // graph.on('beforelayout', evt => {
-    //   console.log('beforelayout------haha',  evt)
-    // })
-    // graph.on('afterlayout', evt => {
-    //   console.log('afterlayout------haha',  evt)
-    // })
-    // graph.on('beginlayout', evt => {
-    //   console.log('beginlayout------haha',  evt)
-    // })
-    graph.data(data);
-    graph.render();
-  },
-});
-```
-
-```html
-<view class="page-map-relation">
-  <canvas id="canvas" class="canvas" onTouchStart="log" onTouchMove="log" onTouchEnd="log" />
-</view>
-```
-
-```css
-.page-map-relation {
-  width: 100vw;
-  height: 100vh;
-
-  .canvas {
-    width: 100vw;
-    height: 100vh;
-  }
-}
-```
-
-#### Layout with F6 extends package
-
-```ts
-import F6 from '@antv/f6';
-import CircularLayout from '@antv/f6-mobile/dist/extends/layout/circularLayout';
-
-F6.registerLayout('circle', CircularLayout);
-
-Page({
-  data: {
-    canvasWidth: 400,
-    canvasHeight: 610,
-  },
-
-  onLoad() {
-    this.ctx = my.createCanvasContext('canvas');
-    this.drawF6();
-  },
-
-  drawF6() {
-    const { canvasWidth, canvasHeight } = this.data;
-    const data = {
-      nodes: [
-        {
-          id: '0',
-          label: '0',
-        },
-        {
-          id: '1',
-          label: '1',
-        },
-        {
-          id: '2',
-          label: '2',
-        },
-        {
-          id: '3',
-          label: '3',
-        },
-        {
-          id: '4',
-          label: '4',
-        },
-        {
-          id: '5',
-          label: '5',
-        },
-        {
-          id: '6',
-          label: '6',
-        },
-      ],
-      edges: [
-        {
-          source: '0',
-          target: '1',
-        },
-        {
-          source: '0',
-          target: '2',
-        },
-        {
-          source: '0',
-          target: '3',
-        },
-        {
-          source: '0',
-          target: '4',
-        },
-        {
-          source: '0',
-          target: '5',
-        },
-        {
-          source: '2',
-          target: '3',
-        },
-        {
-          source: '4',
-          target: '5',
-        },
-        {
-          source: '4',
-          target: '6',
-        },
-        {
-          source: '5',
-          target: '6',
-        },
-      ],
-    };
-
-    // console.log('hello', F6.Layout)
-    const graph = new F6.Graph({
-      container: null,
-      context: this.ctx,
-      renderer: 'mini',
-      fitView: true,
-      width: canvasWidth,
-      height: canvasHeight,
-      defaultNode: {
-        shape: 'circle',
-        size: [20],
-        color: '#5B8FF9',
-        style: {
-          fill: '#9EC9FF',
-          lineWidth: 3,
-        },
-        labelCfg: {
-          style: {
-            fill: '#fff',
-            fontSize: 10,
-          },
-        },
-      },
-      layout: {
-        type: 'circular',
-        // begin: [20, 20],
-        // width: 800,
-        // height: 1200,
-      },
-    });
-
-    // graph.on('beforelayout', evt => {
-    //   console.log('beforelayout------haha',  evt)
-    // })
-    // graph.on('afterlayout', evt => {
-    //   console.log('afterlayout------haha',  evt)
-    // })
-    // graph.on('beginlayout', evt => {
-    //   console.log('beginlayout------haha',  evt)
-    // })
-    graph.data(data);
-    graph.render();
-  },
-});
-```
-
-```html
-<view class="page-map-relation">
-  <canvas id="canvas" class="canvas" onTouchStart="log" onTouchMove="log" onTouchEnd="log" />
-</view>
-```
-
-```css
-.page-map-relation {
-  width: 100vw;
-  height: 100vh;
-
-  .canvas {
-    width: 100vw;
-    height: 100vh;
-  }
+    .test {
+      padding-top: 35;
+      color: white;
+    }
+    shape.circle {
+      top: 50;
+      left: 50;
+      background: black;
+    }
+    image {
+      width: 50;
+      height: 50;
+    }
+  `;
+  createUI(html, css, group);
 }
 ```

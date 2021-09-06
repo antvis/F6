@@ -1,13 +1,20 @@
 const webpack = require('webpack');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const Visualizer = require('webpack-visualizer-plugin');
+const resolve = require('path').resolve;
 
 let entry = {
-  f6GUI: './src/index.ts',
+  f6UI: './src/index.ts',
 };
 
 module.exports = {
   entry,
+  output: {
+    library: 'f6ui',
+    libraryTarget: 'umd',
+    libraryExport: 'default',
+    globalObject: 'this',
+  },
   resolve: {
     // Add `.ts` as a resolvable extension.
     extensions: ['.ts', '.js'],
