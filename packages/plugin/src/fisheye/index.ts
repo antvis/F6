@@ -269,10 +269,8 @@ export default class Fisheye extends Base {
       (self.get('trigger') === 'mousemove' || self.get('trigger') === 'tap')
     ) {
       mCenter = self.get('cacheCenter');
-      console.log('before mcneter: ', JSON.stringify(mCenter));
       // todo: pc端不需要,why
       mCenter = graph.getPointByClient(mCenter.x, mCenter.y);
-      console.log('after mcneter: ', JSON.stringify(mCenter));
     }
     const delegateCenterDiff = self.get('delegateCenterDiff');
     if (delegateCenterDiff) {
@@ -435,7 +433,6 @@ export default class Fisheye extends Base {
           lensDelegate.on('dragstart', (e) => {
             self.set('dragging', true);
             self.set('cacheCenter', { x: e.x, y: e.y });
-            console.log('set:: ', e, e.x, JSON.stringify({ x: e.x, y: e.y }));
             self.set('dragPrePos', { x: e.x, y: e.y });
           });
           lensDelegate.on('drag', (evt) => {
@@ -457,8 +454,6 @@ export default class Fisheye extends Base {
           lensDelegate.on('dragstart', (evt) => {
             self.set('dragging', true);
             self.set('cacheCenter', { x: evt.x, y: evt.y });
-            console.log('set:: ', JSON.stringify({ x: evt.x, y: evt.y }));
-
             self.set('dragPrePos', { x: evt.x, y: evt.y });
           });
           lensDelegate.on('drag', (evt) => {
