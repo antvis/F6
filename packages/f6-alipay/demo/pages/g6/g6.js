@@ -1,8 +1,8 @@
-import G6 from '@antv/f6';
-import { createUI }  from '@antv/f6-ui'
+import { createUI }  from '@antv/f6-ui/dist/f6GUI'
+import F6 from '../../../../f6';
 import forceLayout from '../../../../f6/dist/extends/layout/forceLayout';
 
-G6.registerLayout('force', forceLayout);
+F6.registerLayout('force', forceLayout);
 
 
 function test(group) {
@@ -136,7 +136,7 @@ Page({
   },
   onCanvasInit(ctx, rect, canvas, renderer) {
     console.log(ctx, rect, canvas);
-    this.graph = new G6.Graph({
+    this.graph = new F6.Graph({
       context: ctx,
       renderer,
       width: this.data.width,

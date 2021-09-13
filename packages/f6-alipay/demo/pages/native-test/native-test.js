@@ -1,4 +1,4 @@
-import G6 from '../../../../f6';
+import F6 from '../../../../f6';
 
 const data = {
   nodes: [
@@ -30,7 +30,7 @@ Page({
   },
   onCanvasInit(ctx, rect, canvas, renderer) {
     console.log(ctx, rect, canvas);
-    this.graph = new G6.Graph({
+    this.graph = new F6.Graph({
       context: ctx,
       renderer,
       width: this.data.width,
@@ -41,6 +41,9 @@ Page({
       modes: {
         default: ['drag-canvas', 'drag-node', 'zoom-canvas'],
       },
+      extra: {
+        createImage: canvas && canvas.createImage
+      }
     });
     const { nodes } = data;
     this.graph.data({
@@ -50,9 +53,25 @@ Page({
         return Object.assign({}, edge);
       }),
     });
+
+    //水印的设置
+    const waterConfig = {
+      image: {
+        x: -15,
+        y: 35,
+        width: 156 / 2,
+        height: 34 / 2,
+        rotate: 30,
+      },
+    }
+    const waterURL = 'https://gw.alipayobjects.com/zos/bmw-prod/8088a9d7-e5b0-42f2-b6b2-27c823043993.svg'
     this.graph.render();
+    const waterCanvas = my.createOffscreenCanvas()
+    this.graph.setImageWaterMarker(waterURL, waterConfig, waterCanvas)
+
   },
   onTouch(e) {
     this.graph.emitEvent(e);
   },
 });
+
