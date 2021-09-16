@@ -1,3 +1,5 @@
+![uniapp中使用](https://gw.alipayobjects.com/mdn/rms_5c3b4a/afts/img/A*RaRtT6YnGPMAAAAAAAAAAAAAARQnAQ)
+
 # 背景
 
 越来越多的跨平台应用开发会使用中间框架，uni-app 就是其中使用比较多的一款，有很多用户会来咨询如何在 uni-app 中使用，所以这里仅仅是一个示例，用来演示 uni-app 中使用 F6。
