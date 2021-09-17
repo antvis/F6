@@ -92,16 +92,14 @@ export default class Graph extends AbstractGraph implements IGraph {
     const height: number = this.get('height');
     const context: string = this.get('context');
     const fitView: boolean = this.get('fitView');
-    // native canvas 会传递 requestAnimationFrame, clearAnimationFrame 等函数进来
-    const extra: any = this.get('extra');
+
     const canvasCfg: any = {
-      container,
+      container, // native canvas 会传递 requestAnimationFrame, clearAnimationFrame 等函数进来
       context,
       width,
       height,
       renderer,
       fitView,
-      extra, // 小程序下专用，用于打一些小patch
     };
 
     const pixelRatio = this.get('pixelRatio');
