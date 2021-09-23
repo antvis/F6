@@ -846,6 +846,59 @@ export const newsMapVisualize = [
   },
 ];
 
+export const plugins = [
+  {
+    name: '提示框',
+    nameEn: 'Tooltip',
+    detailList: [
+      {
+        name: 'Tooltip',
+        path: '../Plugins/DecisionTree/index',
+      },
+    ],
+  },
+  {
+    name: '图例',
+    nameEn: 'Legend',
+    detailList: [
+      {
+        name: 'Legend',
+        path: '../Plugins/DonutTransfer/index',
+      },
+    ],
+  },
+  {
+    name: '边过滤',
+    nameEn: 'EdgeFilter',
+    detailList: [
+      {
+        name: 'EdgeFilter',
+        path: '../Plugins/EdgeFilter/index',
+      },
+    ],
+  },
+  {
+    name: '鱼眼',
+    nameEn: 'Fisheye',
+    detailList: [
+      {
+        name: 'Fisheye',
+        path: '../Plugins/Fisheye/index',
+      },
+    ],
+  },
+  {
+    name: '时间轴',
+    nameEn: 'Timebar',
+    detailList: [
+      {
+        name: 'Timebar',
+        path: '../Plugins/Timebar/index',
+      },
+    ],
+  },
+];
+
 // 控制搜索框下面的热搜词
 export const hot = [
   { name: '知识图谱树', url: '../SceneCase/knowledgeTreeGraph/index' },
