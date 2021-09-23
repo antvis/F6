@@ -1,0 +1,11 @@
+{
+  "enableAppxNg": true,
+  "uniBuild": true,
+  "axmlStrictCheck": true,
+  "component2": true,
+  "enableNodeModuleBabelTransform": true,
+  "exclude": [
+    "dist/**/*"
+  ],
+  "enableHMR": true
+}
