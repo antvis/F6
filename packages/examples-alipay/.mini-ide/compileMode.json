@@ -1,0 +1,8 @@
+{
+  "modes": [
+    {
+      "title": "test",
+      "page": "pages/Plugins/Timebar/index"
+    }
+  ]
+}

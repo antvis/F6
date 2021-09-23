@@ -7,6 +7,7 @@ import {
   customizeTree,
   classicCace,
   newsMapVisualize,
+  plugins,
   hot,
   tabs,
 } from '../../common/utils/data';
@@ -48,6 +49,10 @@ const extComponentList = [
   {
     type: '新闻图可视化',
     list: newsMapVisualize,
+  },
+  {
+    type: '分析组件',
+    list: plugins,
   },
 ];
 
