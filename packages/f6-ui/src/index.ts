@@ -38,5 +38,6 @@ function create(htmlString, cssString, isNeedRoot = false) {
   }
   return tree;
 }
-
+const f6ui = { UIBaseNode, createUI, registerUINode, registerAttr, createSegmentNode };
+export default f6ui;
 export { UIBaseNode, createUI, registerUINode, registerAttr, createSegmentNode };
