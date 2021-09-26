@@ -32,6 +32,7 @@ Page({
     const zoomSlider = new ZoomSlider();
     const { width, height, pixelRatio } = this.data;
     console.log('------->',ctx, rect, canvas, renderer)
+    debugger
     this.graph = new F6.Graph({
       context: ctx,
       width, 
