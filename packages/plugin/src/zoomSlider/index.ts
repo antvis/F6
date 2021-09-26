@@ -1,15 +1,14 @@
 import { IAbstractGraph as IGraph } from '@antv/f6-core';
 import Base, { IPluginBaseConfig } from '../base';
-import { createUI } from '../../../f6-ui/lib';
-
+import { createUI } from '@antv/f6-ui';
 
 interface ZoomSliderConfig extends IPluginBaseConfig {
-  minZoom: number,
-  maxZoom: number,
+  minZoom: number;
+  maxZoom: number;
   // 滑块（竿）占屏幕宽度的比例
-  sliderWidthPercent: number,
+  sliderWidthPercent: number;
   // 滑块拖拽的时间戳
-  dragTimestamp: number,
+  dragTimestamp: number;
 }
 
 /**
@@ -46,12 +45,12 @@ export default class ZoomSlider extends Base {
         const maxZoom = this.get('maxZoom');
         const sliderWidthPercent = this.get('sliderWidthPercent');
         const containerWidth = Math.floor(graphWidth * sliderWidthPercent);
-        const resultX = containerWidth * ((1- minZoom) / (maxZoom - minZoom));
+        const resultX = containerWidth * ((1 - minZoom) / (maxZoom - minZoom));
         return `
           .f6-zoom-slider {
             width: ${containerWidth};
             height: 30;
-            margin-left: ${Math.floor(graphWidth * (1 - sliderWidthPercent) / 2 )};
+            margin-left: ${Math.floor((graphWidth * (1 - sliderWidthPercent)) / 2)};
             padding: 13 0;
             top: ${graphHeight - 40};
             position: relative;
@@ -116,7 +115,7 @@ export default class ZoomSlider extends Base {
 
   public init() {
     setTimeout(() => {
-      this.initSlider()
+      this.initSlider();
     });
   }
 
@@ -124,6 +123,7 @@ export default class ZoomSlider extends Base {
    * 初始化滑块视图
    */
   initSlider() {
+    console.log('initSlider', this);
     const graph: IGraph = this.get('graph');
     const uiGroup = graph.get('uiGroup');
     const html = this.get('getContent')();
@@ -139,7 +139,7 @@ export default class ZoomSlider extends Base {
     handleUI.on('panmove', (e) => {
       const distance = e.clientX - startX;
       startX = e.clientX;
-      this.set('dragTimestamp', +new Date())
+      this.set('dragTimestamp', +new Date());
       this.updateHandlePosition(distance);
     });
 
@@ -161,7 +161,8 @@ export default class ZoomSlider extends Base {
     const sliderWidthPercent = this.get('sliderWidthPercent');
     const trackUI = zoomSliderUI.query('.track');
     const containerWidth = Math.floor(graphWidth * sliderWidthPercent);
-    const distance = containerWidth * ((scale - minZoom) / (maxZoom - minZoom)) - trackUI.getStyle('width');
+    const distance =
+      containerWidth * ((scale - minZoom) / (maxZoom - minZoom)) - trackUI.getStyle('width');
     this.updateHandlePosition(distance);
     // 显示滑块工具
     clearInterval(this.get('clearHandle'));
