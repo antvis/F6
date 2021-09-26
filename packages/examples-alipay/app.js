@@ -1,5 +1,3 @@
-import { App } from '@alipay/minifish';
-
 App({
   globalData: {},
   async onLaunch() {
@@ -14,7 +12,7 @@ App({
         requestData: [{}],
         headers: {},
       },
-      function(result) {
+      function (result) {
         console.log(result);
       },
     );
