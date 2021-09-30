@@ -131,7 +131,8 @@
     "pages/Plugins/DonutTransfer/index",
     "pages/Plugins/EdgeFilter/index",
     "pages/Plugins/Fisheye/index",
-    "pages/Plugins/Timebar/index"
+    "pages/Plugins/Timebar/index",
+    "pages/Plugins/ZoomSlider/ZoomSlider"
   ],
   "window": {
     "defaultTitle": "F6移动端demo",

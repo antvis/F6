@@ -31,7 +31,7 @@
     "start": "father build --watch",
     "analysis": "npm run clean && father build && ANALYZE=1 npm run build:umd",
     "build": "npm run clean && father build && npm run build:umd",
-    "build:umd": "webpack --config webpack.config.js --mode production",
+    "build:umd": "webpack --config webpack.config.js --mode development",
     "ci": "npm run build && npm run coverage",
     "clean": "rimraf es esm lib dist",
     "coverage": "jest --coverage",
