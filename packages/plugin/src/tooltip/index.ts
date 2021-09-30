@@ -1,7 +1,7 @@
 import { isArray } from '@antv/util';
 import { IG6GraphEvent, Item, IAbstractGraph as IGraph } from '@antv/f6-core';
 import Base, { IPluginBaseConfig } from '../base';
-import { createUI } from '../../../f6-ui/lib';
+import { createUI } from '@antv/f6-ui';
 import getHtml from './html';
 import { appendCss } from './css';
 
