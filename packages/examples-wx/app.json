@@ -163,6 +163,11 @@
         "pages/TreeGraph/hIntended/index",
         "pages/TreeGraph/RightMindMap/index"
       ]
+    },
+    {
+      "root": "packagePlugin",
+      "name": "packagePlugin",
+      "pages": ["pages/Plugin/edgeFilter/index"]
     }
   ],
   "window": {
