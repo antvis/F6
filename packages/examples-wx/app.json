@@ -167,7 +167,14 @@
     {
       "root": "packagePlugin",
       "name": "packagePlugin",
-      "pages": ["pages/Plugin/edgeFilter/index"]
+      "pages": [
+        "pages/Plugin/edgeFilter/index",
+        "pages/Plugin/fishEye/index",
+        "pages/Plugin/legend/index",
+        "pages/Plugin/timeBar/index",
+        "pages/Plugin/toolTip/index",
+        "pages/Plugin/zoomSlider/index"
+      ]
     }
   ],
   "window": {

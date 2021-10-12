@@ -61,7 +61,7 @@ Page({
     const legend = new Legend({
       width: 300,
       height: 80,
-      offsetY: -2,
+      offsetY: 0,
       offsetX: 0,
       data: legendData,
       align: 'center',

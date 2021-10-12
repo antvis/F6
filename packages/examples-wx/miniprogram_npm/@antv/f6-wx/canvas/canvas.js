@@ -71,11 +71,11 @@ Component({
       var i = 0;
 
       for (i = 0; i < e.touches.length; i++) {
-        modifyEvent(e.touches[i], this.data.pixelRatio);
+        modifyEvent(e.touches[i], 1);
       }
 
       for (i = 0; i < e.changedTouches.length; i++) {
-        modifyEvent(e.changedTouches[i], this.data.pixelRatio);
+        modifyEvent(e.changedTouches[i], 1);
       }
 
       this.triggerEvent('onTouchEvent', e);

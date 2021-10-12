@@ -1,6 +1,6 @@
 import F6 from '@antv/f6-wx';
 import data from './data';
-import { EdgeFilterLens } from '@antv/f6-plugin';
+import { EdgeFilterLens } from '@antv/f6-plugin/f6Plugin';
 
 /**
  * basicArcDiagram
@@ -21,7 +21,7 @@ Page({
 
   onLoad() {
     // 同步获取window的宽高
-    const { windowWidth, windowHeight, pixelRatio, titleBarHeight, statusBarHeight } =
+    const { windowWidth, windowHeight, pixelRatio } =
       wx.getSystemInfoSync();
 
     this.setData({
@@ -38,7 +38,8 @@ Page({
    * @param {*} canvas canvas对象，在render为mini时为null
    * @param {*} renderer 使用canvas 1.0还是canvas 2.0，mini | mini-native
    */
-  handleInit(ctx, rect, canvas, renderer) {
+  handleInit(event) {
+    const {ctx, rect, canvas, renderer} = event.detail
     this.isCanvasInit = true;
     this.ctx = ctx;
     this.renderer = renderer;
@@ -50,12 +51,11 @@ Page({
    * canvas派发的事件，转派给graph实例
    */
   handleTouch(e) {
-    this.graph && this.graph.emitEvent(e);
+    this.graph && this.graph.emitEvent(e.detail);
   },
 
   updateChart() {
     const { width, height, pixelRatio } = this.data;
-
     data.edges.forEach((edge) => {
       edge.color = '#aaa';
       edge.size = 2;
@@ -75,11 +75,10 @@ Page({
     this.graph = new F6.Graph({
       context: this.ctx,
       renderer: this.renderer,
-      container: this.canvas,
       pixelRatio,
-      fitView: true,
       width,
       height,
+      fitView: true,
       modes: {
         default: ['drag-canvas', 'zoom-canvas', 'drag-node'],
       },
@@ -105,7 +104,6 @@ Page({
 
     this.graph.data(data);
     this.graph.render();
-    // this.graph.fitView();
     this.graph.getEdges().forEach((edge) => {
       edge
         .getContainer()

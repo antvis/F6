@@ -389,26 +389,13 @@ Page({
       // 自定义 tooltip 内容
       getContent: (e) => {
         // outDiv.style.padding = '0px 0px 20px 0px';
-        const nodeName = e.item.getModel().name;
-        let formatedNodeName = '<div>';
-        for (let i = 0; i < nodeName.length; i++) {
-          formatedNodeName = `${formatedNodeName}${nodeName[i]}`;
-          if (i !== 0 && i % 20 === 0) formatedNodeName = `${formatedNodeName}</div> <div>`;
-        }
-        formatedNodeName+='</div>'
-        return `<div id='tootip-content'>${formatedNodeName}</div>`;
-      },
-      getCss:() =>{
-        return `
-        #tootip-content{
-          width: 150;
-          padding: 10;
-        }
-         #tootip-content div{
-           height: 20;
-         }
+         return `
+          <div >Custom Content</div>
+          <div>Type: ${e.item.getType()}</div>
+          <div>Label: ${e.item.getModel().label || e.item.getModel().id}</div>
         `
       },
+     
       shouldBegin: (e) => {
         if (e.target.get('name') === 'name-shape') return true;
         return true;

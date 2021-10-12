@@ -132,7 +132,7 @@
     "pages/Plugins/EdgeFilter/index",
     "pages/Plugins/Fisheye/index",
     "pages/Plugins/Timebar/index",
-    "pages/Plugins/ZoomSlider/ZoomSlider"
+    "pages/Plugins/ZoomSlider/index"
   ],
   "window": {
     "defaultTitle": "F6移动端demo",

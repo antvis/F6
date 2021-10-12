@@ -3,6 +3,6 @@
   height="{{height}}"
   forceMini="{{forceMini}}"
   pixelRatio="{{pixelRatio}}"
-  onTouchEvent="handleTouch"
-  onInit="handleInit"
+  bind:onTouchEvent="handleTouch"
+  bind:onInit="handleInit"
 ></f6-canvas>

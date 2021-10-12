@@ -1,7 +1,7 @@
 Component({
   data: {
     supportNative: !!my._createCanvas,
-    waterStyle: ''
+    waterStyle: '',
   },
   props: {
     style: '',
@@ -44,21 +44,19 @@ Component({
               id: 'canvas',
               success: (canvas) => {
                 this.ctx = canvas.getContext('2d');
-                this.ctx.scale(this.props.pixelRatio, this.props.pixelRatio);
                 this.props.onInit(this.ctx, ret[0], canvas, 'mini-native');
               },
             });
           } else {
             console.log('web support');
             this.ctx = my.createCanvasContext('canvas');
-            this.ctx.scale(this.props.pixelRatio, this.props.pixelRatio);
             this.props.onInit(this.ctx, ret[0], null, 'mini');
           }
         });
-      if(this.props.waterMarker && this.props.forceMini) {
+      if (this.props.waterMarker && this.props.forceMini) {
         this.setData({
-          waterStyle: `background: url("${this.props.waterMarker}") repeat; background-size: 156px 34px;` //这里面的url需不需要双引号？
-        })
+          waterStyle: `background: url("${this.props.waterMarker}") repeat; background-size: 156px 34px;`, //这里面的url需不需要双引号？
+        });
       }
     },
     ontouch(e) {

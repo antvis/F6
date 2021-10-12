@@ -27,14 +27,14 @@ export default class ZoomSlider extends Base {
       dragTimestamp: +new Date(),
       getContent: () => {
         return `
-          <div class="f6-zoom-slider">
+          <root class="f6-zoom-slider">
             <div class="rail"></div>
             <div class="track"></div>
             <div class="handle">
               <div class="text">1 times</div>
               <div class="circle"></div>
             </div>
-          </div>
+          </root>
         `;
       },
       getCss: () => {
