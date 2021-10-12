@@ -1,0 +1,36 @@
+{
+  "setting": {},
+  "condition": {
+    "plugin": {
+      "list": []
+    },
+    "game": {
+      "list": []
+    },
+    "gamePlugin": {
+      "list": []
+    },
+    "miniprogram": {
+      "list": [
+        {
+          "name": "packagePlugin/pages/Plugin/edgeFilter/index",
+          "pathName": "packagePlugin/pages/Plugin/edgeFilter/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "packagePlugin/pages/Plugin/fishEye/index",
+          "pathName": "packagePlugin/pages/Plugin/fishEye/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "packagePlugin/pages/Plugin/timeBar/index",
+          "pathName": "packagePlugin/pages/Plugin/timeBar/index",
+          "query": "",
+          "scene": null
+        }
+      ]
+    }
+  }
+}

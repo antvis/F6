@@ -42,11 +42,11 @@ Component({
         console.log('ret', ret);
         const { node: canvas } = ret[0];
 
-        canvas.width = this.data.width * this.data.pixelRatio;
-        canvas.height = this.data.height * this.data.pixelRatio;
+        // canvas.width = this.data.width * this.data.pixelRatio;
+        // canvas.height = this.data.height * this.data.pixelRatio;
         this.rect = {
-          width: this.data.width * this.data.pixelRatio,
-          height: this.data.height * this.data.pixelRatio,
+          width: this.data.width ,
+          height: this.data.height ,
           left: canvas._left,
           top: canvas._top,
         };
@@ -62,10 +62,10 @@ Component({
     ontouch(e) {
       let i = 0;
       for (i = 0; i < e.touches.length; i++) {
-        modifyEvent(e.touches[i], this.data.pixelRatio);
+        modifyEvent(e.touches[i], 1);
       }
       for (i = 0; i < e.changedTouches.length; i++) {
-        modifyEvent(e.changedTouches[i], this.data.pixelRatio);
+        modifyEvent(e.changedTouches[i], 1);
       }
       this.data.onTouchEvent(e);
     },
@@ -73,6 +73,7 @@ Component({
 });
 
 function modifyEvent(touchEvent, pixelRatio) {
+  console.log(touchEvent.x, touchEvent.y, pixelRatio)
   touchEvent.clientX = touchEvent.x * pixelRatio;
   touchEvent.clientY = touchEvent.y * pixelRatio;
   touchEvent.pageX = touchEvent.x * pixelRatio;

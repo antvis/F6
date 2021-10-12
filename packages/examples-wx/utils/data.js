@@ -923,7 +923,7 @@ export const plugins = [
     detailList: [
       {
         name: 'Tooltip',
-        path: '/packagePlugin/pages/Plugin/tooltip/index',
+        path: '/packagePlugin/pages/Plugin/toolTip/index',
       },
     ],
   },
@@ -953,7 +953,7 @@ export const plugins = [
     detailList: [
       {
         name: 'Fisheye',
-        path: '/packagePlugin/pages/Plugin/fisheye/index',
+        path: '/packagePlugin/pages/Plugin/fishEye/index',
       },
     ],
   },
@@ -963,7 +963,7 @@ export const plugins = [
     detailList: [
       {
         name: 'Timebar',
-        path: '/packagePlugin/pages/Plugin/timebar/index',
+        path: '/packagePlugin/pages/Plugin/timeBar/index',
       },
     ],
   },
