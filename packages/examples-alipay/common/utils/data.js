@@ -897,6 +897,16 @@ export const plugins = [
       },
     ],
   },
+  {
+    name: '缩放轴',
+    nameEn: 'ZoomSlider',
+    detailList: [
+      {
+        name: 'ZoomSlider',
+        path: '../Plugins/ZoomSlider/index',
+      },
+    ],
+  },
 ];
 
 // 控制搜索框下面的热搜词

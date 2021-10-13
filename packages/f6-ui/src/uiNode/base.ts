@@ -1,6 +1,5 @@
 import { isSelectorMatchDom, reflowAttrs } from '../utils/index';
 import { computeLayout } from '../utils/ui';
-import isEqual from '@antv/util/lib/is-equal';
 export default abstract class UIBaseNode {
   styleNode = null;
   gNode = null;
@@ -226,11 +225,7 @@ export default abstract class UIBaseNode {
   didUpdate() {}
 
   shouldUpdate(prevAttr, prevStyle, prevLayout) {
-    return (
-      !isEqual(prevStyle, this.style) ||
-      !isEqual(prevAttr, this.attributes) ||
-      !isEqual(prevLayout, this._layout)
-    );
+    return true;
   }
 
   draw(parentGNode?) {}
