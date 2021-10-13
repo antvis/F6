@@ -1,9 +1,8 @@
-import F6 from '@antv/f6';
-import { wrapContext } from '../../../common/utils/context';
+import F6 from '@antv/f6-wx';
 import { data, legendData } from './data';
-import { Legend } from '@antv/f6-plugin'
+import { Legend } from '@antv/f6-plugin/f6Plugin';
 
-import radialLayout from '@antv/f6/dist/extends/layout/radialLayout'
+import radialLayout from '@antv/f6-wx/extends/layout/radialLayout'
 
 F6.registerLayout('radial', radialLayout);
 /**
@@ -26,7 +25,7 @@ Page({
 
   onLoad() {
     // 同步获取window的宽高
-    const { windowWidth, windowHeight, pixelRatio } = my.getSystemInfoSync();
+    const { windowWidth, windowHeight, pixelRatio } = wx.getSystemInfoSync();
     this.setData({
       width: windowWidth,
       height: windowHeight,
@@ -41,9 +40,10 @@ Page({
    * @param {*} canvas canvas对象，在render为mini时为null
    * @param {*} renderer 使用canvas 1.0还是canvas 2.0，mini | mini-native
    */
-  handleInit(ctx, rect, canvas, renderer) {
+  handleInit(event) {
+    const {ctx, rect, canvas, renderer} = event.detail
     this.isCanvasInit = true;
-    this.ctx = wrapContext(ctx);
+    this.ctx = ctx;
     this.renderer = renderer;
     this.canvas = canvas;
     this.updateChart();
@@ -53,7 +53,7 @@ Page({
    * canvas派发的事件，转派给graph实例
    */
   handleTouch(e) {
-    this.graph && this.graph.emitEvent(e);
+    this.graph && this.graph.emitEvent(e.detail);
   },
 
   updateChart() {

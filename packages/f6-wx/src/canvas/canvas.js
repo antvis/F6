@@ -71,11 +71,11 @@ Component({
       var i = 0;
 
       for (i = 0; i < e.touches.length; i++) {
-        modifyEvent(e.touches[i], this.data.pixelRatio);
+        modifyEvent(e.touches[i]);
       }
 
       for (i = 0; i < e.changedTouches.length; i++) {
-        modifyEvent(e.changedTouches[i], this.data.pixelRatio);
+        modifyEvent(e.changedTouches[i]);
       }
 
       this.triggerEvent('onTouchEvent', e);
@@ -85,9 +85,9 @@ Component({
   },
 });
 
-function modifyEvent(touchEvent, pixelRatio) {
-  touchEvent.clientX = touchEvent.x * pixelRatio;
-  touchEvent.clientY = touchEvent.y * pixelRatio;
-  touchEvent.pageX = touchEvent.x * pixelRatio;
-  touchEvent.pageY = touchEvent.y * pixelRatio;
+function modifyEvent(touchEvent) {
+  touchEvent.clientX = touchEvent.x;
+  touchEvent.clientY = touchEvent.y;
+  touchEvent.pageX = touchEvent.x;
+  touchEvent.pageY = touchEvent.y;
 }

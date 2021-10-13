@@ -1,51 +1,72 @@
 export const list = [
-    {
-      id: 'view',
-      name: '视图容器',
-      open: false,
-      pages: ['view', 'scroll-view', 'swiper', 'movable-view', 'cover-view']
-    }, {
-      id: 'content',
-      name: '基础内容',
-      open: false,
-      pages: ['text', 'icon', 'progress', 'rich-text']
-    }, {
-      id: 'form',
-      name: '表单组件',
-      open: false,
-      pages: ['button', 'checkbox', 'form', 'input', 'label', 'picker', 'picker-view', 'radio', 'slider', 'switch', 'textarea', 'editor']
-    }, {
-      id: 'nav',
-      name: '导航',
-      open: false,
-      pages: ['navigator']
-    }, {
-      id: 'media',
-      name: '媒体组件',
-      open: false,
-      pages: ['image', 'video', 'camera', 'live-pusher', 'live-player']
-    }, {
-      id: 'map',
-      name: '地图',
-      open: false,
-      pages: ['map']
-    }, {
-      id: 'canvas',
-      name: '画布',
-      open: false,
-      pages: ['canvas', 'canvas-2d', 'webgl']
-    }, {
-      id: 'open',
-      name: '开放能力',
-      open: false,
-      pages: ['ad', 'open-data', 'web-view']
-    }, {
-      id: 'obstacle-free',
-      name: '无障碍访问',
-      open: false,
-      pages: ['aria-component']
-    }
-  ]
+  {
+    id: 'view',
+    name: '视图容器',
+    open: false,
+    pages: ['view', 'scroll-view', 'swiper', 'movable-view', 'cover-view'],
+  },
+  {
+    id: 'content',
+    name: '基础内容',
+    open: false,
+    pages: ['text', 'icon', 'progress', 'rich-text'],
+  },
+  {
+    id: 'form',
+    name: '表单组件',
+    open: false,
+    pages: [
+      'button',
+      'checkbox',
+      'form',
+      'input',
+      'label',
+      'picker',
+      'picker-view',
+      'radio',
+      'slider',
+      'switch',
+      'textarea',
+      'editor',
+    ],
+  },
+  {
+    id: 'nav',
+    name: '导航',
+    open: false,
+    pages: ['navigator'],
+  },
+  {
+    id: 'media',
+    name: '媒体组件',
+    open: false,
+    pages: ['image', 'video', 'camera', 'live-pusher', 'live-player'],
+  },
+  {
+    id: 'map',
+    name: '地图',
+    open: false,
+    pages: ['map'],
+  },
+  {
+    id: 'canvas',
+    name: '画布',
+    open: false,
+    pages: ['canvas', 'canvas-2d', 'webgl'],
+  },
+  {
+    id: 'open',
+    name: '开放能力',
+    open: false,
+    pages: ['ad', 'open-data', 'web-view'],
+  },
+  {
+    id: 'obstacle-free',
+    name: '无障碍访问',
+    open: false,
+    pages: ['aria-component'],
+  },
+];
 
 // 下面是第一个tab中的内容
 export const treeGraphContainer = [
@@ -890,6 +911,69 @@ export const newsMapVisualize = [
       {
         name: '地铁路线图',
         path: '/packageSceneCase/pages/SceneCase/metroLines/index',
+      },
+    ],
+  },
+];
+
+export const plugins = [
+  {
+    name: '提示框',
+    nameEn: 'Tooltip',
+    detailList: [
+      {
+        name: 'Tooltip',
+        path: '/packagePlugin/pages/Plugin/toolTip/index',
+      },
+    ],
+  },
+  {
+    name: '图例',
+    nameEn: 'Legend',
+    detailList: [
+      {
+        name: 'Legend',
+        path: '/packagePlugin/pages/Plugin/legend/index',
+      },
+    ],
+  },
+  {
+    name: '边过滤',
+    nameEn: 'EdgeFilter',
+    detailList: [
+      {
+        name: 'EdgeFilter',
+        path: '/packagePlugin/pages/Plugin/edgeFilter/index',
+      },
+    ],
+  },
+  {
+    name: '鱼眼',
+    nameEn: 'Fisheye',
+    detailList: [
+      {
+        name: 'Fisheye',
+        path: '/packagePlugin/pages/Plugin/fishEye/index',
+      },
+    ],
+  },
+  {
+    name: '时间轴',
+    nameEn: 'Timebar',
+    detailList: [
+      {
+        name: 'Timebar',
+        path: '/packagePlugin/pages/Plugin/timeBar/index',
+      },
+    ],
+  },
+  {
+    name: '缩放轴',
+    nameEn: 'ZoomSlider',
+    detailList: [
+      {
+        name: 'ZoomSlider',
+        path: '/packagePlugin/pages/Plugin/zoomSlider/index',
       },
     ],
   },

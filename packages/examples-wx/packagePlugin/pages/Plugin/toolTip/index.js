@@ -1,14 +1,13 @@
-import F6 from '@antv/f6';
-import TreeGraph from '@antv/f6/dist/extends/graph/treeGraph';
-import { wrapContext } from '../../../common/utils/context';
+import F6 from '@antv/f6-wx';
+import TreeGraph from '@antv/f6-wx/extends/graph/treeGraph';
 import mockData from './data';
-import { Tooltip } from '@antv/f6-plugin'
+import { Tooltip } from '@antv/f6-plugin/f6Plugin';
 
 /**
  * decisionTree
  */
 
- const colors = {
+const colors = {
   B: '#5B8FF9',
   R: '#F46649',
   Y: '#EEBC20',
@@ -35,7 +34,7 @@ Page({
     F6.registerGraph('TreeGraph', TreeGraph);
 
     // 同步获取window的宽高
-    const { windowWidth, windowHeight, pixelRatio } = my.getSystemInfoSync();
+    const { windowWidth, windowHeight, pixelRatio } = wx.getSystemInfoSync();
 
     this.setData({
       width: windowWidth,
@@ -51,9 +50,10 @@ Page({
    * @param {*} canvas canvas对象，在render为mini时为null
    * @param {*} renderer 使用canvas 1.0还是canvas 2.0，mini | mini-native
    */
-  handleInit(ctx, rect, canvas, renderer) {
+  handleInit(event) {
+    const { ctx, rect, canvas, renderer } = event.detail;
     this.isCanvasInit = true;
-    this.ctx = wrapContext(ctx);
+    this.ctx = ctx;
     this.renderer = renderer;
     this.canvas = canvas;
     this.updateChart();
@@ -63,7 +63,7 @@ Page({
    * canvas派发的事件，转派给graph实例
    */
   handleTouch(e) {
-    this.graph && this.graph.emitEvent(e);
+    this.graph && this.graph.emitEvent(e.detail);
   },
 
   updateChart() {
@@ -342,9 +342,12 @@ Page({
             let { controlPoints } = cfg; // 指定controlPoints
             if (!controlPoints || !controlPoints.length) {
               const { startPoint, endPoint, sourceNode, targetNode } = cfg;
-              const { x: startX, y: startY, coefficientX, coefficientY } = sourceNode
-                ? sourceNode.getModel()
-                : startPoint;
+              const {
+                x: startX,
+                y: startY,
+                coefficientX,
+                coefficientY,
+              } = sourceNode ? sourceNode.getModel() : startPoint;
               const { x: endX, y: endY } = targetNode ? targetNode.getModel() : endPoint;
               let curveStart = (endX - startX) * coefficientX;
               let curveEnd = (endY - startY) * coefficientY;
@@ -379,7 +382,7 @@ Page({
 
     const { onInit, config } = props;
     const tooltip = new Tooltip({
-      trigger:'press',
+      trigger: 'press',
       // TODO: _f2.default.Tooltip is not a constructor
       // offsetX and offsetY include the padding of the parent container
       // the types of items that allow the tooltip show up
@@ -389,13 +392,23 @@ Page({
       // 自定义 tooltip 内容
       getContent: (e) => {
         // outDiv.style.padding = '0px 0px 20px 0px';
-         return `
-          <div >Custom Content</div>
-          <div>Type: ${e.item.getType()}</div>
-          <div>Label: ${e.item.getModel().label || e.item.getModel().id}</div>
-        `
+        return `
+        <div>Custom Content</div>
+        <div>Type: ${e.item.getType()}</div>
+        <div>Label: ${e.item.getModel().label || e.item.getModel().id}</div>
+      `;
       },
-     
+      getCss: () => {
+        return `
+        #tootip-content{
+          width: 150;
+          padding: 10;
+        }
+         #tootip-content div{
+           height: 20;
+         }
+        `;
+      },
       shouldBegin: (e) => {
         if (e.target.get('name') === 'name-shape') return true;
         return true;
@@ -410,17 +423,16 @@ Page({
       linkCenter: true,
       pixelRatio,
       fitView: true,
-      
+
       ...defaultConfig,
       ...config,
       plugins: [tooltip],
       extra: {
         createImage: this.canvas && this.canvas.createImage,
         requestAnimationFrame: this.canvas.requestAnimationFrame,
-        cancelAnimationFrame: this.canvas.cancelAnimationFrame
-      }
+        cancelAnimationFrame: this.canvas.cancelAnimationFrame,
+      },
     });
-    console.log( this.canvas.requestAnimationFrame , this.canvas.cancelAnimationFrame)
 
     this.graph.data(mockData);
     this.graph.render();
