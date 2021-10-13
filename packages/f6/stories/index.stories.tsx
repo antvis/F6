@@ -13,6 +13,7 @@ import PluginLegendDemo from './pluginLegend';
 import PluginZoomSliderDemo from './pluginZoomSlider';
 import PluginEdgeFilterDemo from './pluginEdgeFilter';
 import PluginFisheyeDemo from './pluginFisheye';
+import PluginMniMapDemo from './pluginMiniMap';
 
 
 export default {
@@ -35,5 +36,8 @@ export const PluginZoomSlider = (args) => <PluginZoomSliderDemo {...args} />;
 export const PluginEdgeFilter = (args) => <PluginEdgeFilterDemo {...args} />;
 
 export const PluginFisheye = (args) => <PluginFisheyeDemo {...args} />;
+
+// mini map
+export const PluginMniMap = (args) => <PluginMniMapDemo { ...args }/>
 
 
