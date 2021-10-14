@@ -30,6 +30,13 @@ Component({
       value: 1,
     },
   },
+  observers: {
+    pixelRatio: function (pixelRatio) {
+      this.setData({
+        finalPixelRatio: pixelRatio >= 1 ? Math.ceil(pixelRatio) : 1,
+      });
+    },
+  },
   ready() {
     const query = wx.createSelectorQuery().in(this);
     query
@@ -41,12 +48,12 @@ Component({
       .exec((ret) => {
         console.log('ret', ret);
         const { node: canvas } = ret[0];
-
-        canvas.width = this.data.width * this.data.pixelRatio;
-        canvas.height = this.data.height * this.data.pixelRatio;
+        const finalPixelRatio = this.data.finalPixelRatio;
+        canvas.width = this.data.width * finalPixelRatio;
+        canvas.height = this.data.height * finalPixelRatio;
         this.rect = {
-          width: this.data.width * this.data.pixelRatio,
-          height: this.data.height * this.data.pixelRatio,
+          width: this.data.width * finalPixelRatio,
+          height: this.data.height * finalPixelRatio,
           left: canvas._left,
           top: canvas._top,
         };
@@ -62,19 +69,19 @@ Component({
     ontouch(e) {
       let i = 0;
       for (i = 0; i < e.touches.length; i++) {
-        modifyEvent(e.touches[i], this.data.pixelRatio);
+        modifyEvent(e.touches[i]);
       }
       for (i = 0; i < e.changedTouches.length; i++) {
-        modifyEvent(e.changedTouches[i], this.data.pixelRatio);
+        modifyEvent(e.changedTouches[i]);
       }
       this.data.onTouchEvent(e);
     },
   },
 });
 
-function modifyEvent(touchEvent, pixelRatio) {
-  touchEvent.clientX = touchEvent.x * pixelRatio;
-  touchEvent.clientY = touchEvent.y * pixelRatio;
-  touchEvent.pageX = touchEvent.x * pixelRatio;
-  touchEvent.pageY = touchEvent.y * pixelRatio;
+function modifyEvent(touchEvent) {
+  touchEvent.clientX = touchEvent.x;
+  touchEvent.clientY = touchEvent.y;
+  touchEvent.pageX = touchEvent.x;
+  touchEvent.pageY = touchEvent.y;
 }

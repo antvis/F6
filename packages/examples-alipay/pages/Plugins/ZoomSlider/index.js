@@ -15,7 +15,7 @@ Page({
     const { windowWidth, windowHeight, pixelRatio } = my.getSystemInfoSync();
     this.setData({
       width: windowWidth,
-      height: 500,
+      height: windowHeight,
       pixelRatio,
     });
   },
