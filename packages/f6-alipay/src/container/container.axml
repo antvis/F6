@@ -10,8 +10,8 @@
     a:if="{{supportNative && !forceMini}}"
     id="canvas"
     type="webgl"
-    width="{{width * pixelRatio}}"
-    height="{{height * pixelRatio}}"
+    width="{{width * finalPixelRatio}}"
+    height="{{height * finalPixelRatio}}"
     style="width: {{width}}px; height: {{height}}px;"
     disable-scroll="{{true}}"
     onReady="onCanvasReady"
@@ -19,8 +19,8 @@
   <canvas
     a:else
     id="canvas"
-    width="{{width * pixelRatio}}"
-    height="{{height * pixelRatio}}"
+    width="{{width * finalPixelRatio}}"
+    height="{{height * finalPixelRatio}}"
     style="width: {{width}}px; height: {{height}}px;"
     disable-scroll="{{true}}"
   ></canvas>

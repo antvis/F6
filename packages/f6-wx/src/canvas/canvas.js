@@ -1,5 +1,7 @@
 Component({
-  data: {},
+  data: {
+    finalPixelRatio: 1,
+  },
   properties: {
     style: {
       type: String,
@@ -30,6 +32,13 @@ Component({
       value: 1,
     },
   },
+  observers: {
+    pixelRatio: function (pixelRatio) {
+      this.setData({
+        finalPixelRatio: pixelRatio >= 1 ? Math.ceil(pixelRatio) : 1,
+      });
+    },
+  },
   ready: function ready() {
     var _this = this;
 
@@ -43,11 +52,12 @@ Component({
       .exec(function (ret) {
         console.log('ret', ret);
         var canvas = ret[0].node;
-        canvas.width = _this.data.width * _this.data.pixelRatio;
-        canvas.height = _this.data.height * _this.data.pixelRatio;
+        const finalPixelRatio = this.data.finalPixelRatio;
+        canvas.width = _this.data.width * finalPixelRatio;
+        canvas.height = _this.data.height * finalPixelRatio;
         _this.rect = {
-          width: _this.data.width * _this.data.pixelRatio,
-          height: _this.data.height * _this.data.pixelRatio,
+          width: _this.data.width * finalPixelRatio,
+          height: _this.data.height * finalPixelRatio,
           left: canvas._left,
           top: canvas._top,
         };

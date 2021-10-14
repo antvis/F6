@@ -1,8 +1,8 @@
 <canvas
   id="g6-canvas"
   type="2d"
-  width="{{width * pixelRatio}}"
-  height="{{(height) * pixelRatio}}"
+  width="{{width * finalPixelRatio}}"
+  height="{{(height) * finalPixelRatio}}"
   style="width: {{width}}px; height: {{height}}px; {{style}}"
   disable-scroll="{{true}}"
   bindtouchstart="ontouch"

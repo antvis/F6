@@ -2,6 +2,7 @@ Component({
   data: {
     supportNative: !!my._createCanvas,
     waterStyle: '',
+    finalPixelRatio: 1,
   },
   props: {
     style: '',
@@ -15,6 +16,12 @@ Component({
     waterMarker: null,
   },
   didMount() {
+    // pixel 向上取整，保持和g同样的规则
+    const pixelRatio = this.props.pixelRatio;
+    const finalPixelRatio = pixelRatio >= 1 ? Math.ceil(pixelRatio) : 1;
+    this.setData({
+      finalPixelRatio,
+    });
     if (!this.data.supportNative || this.props.forceMini) {
       this.onCanvasReady();
     }
