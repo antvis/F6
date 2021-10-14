@@ -1,5 +1,7 @@
 Component({
-  data: {},
+  data: {
+    finalPixelRatio: 1,
+  },
   properties: {
     style: {
       type: String,
@@ -30,6 +32,13 @@ Component({
       value: 1,
     },
   },
+  observers: {
+    pixelRatio: function (pixelRatio) {
+      this.setData({
+        finalPixelRatio: pixelRatio >= 1 ? Math.ceil(pixelRatio) : 1,
+      });
+    },
+  },
   ready: function ready() {
     var _this = this;
 
@@ -43,11 +52,12 @@ Component({
       .exec(function (ret) {
         console.log('ret', ret);
         var canvas = ret[0].node;
-        canvas.width = _this.data.width * _this.data.pixelRatio;
-        canvas.height = _this.data.height * _this.data.pixelRatio;
+        const finalPixelRatio = _this.data.finalPixelRatio;
+        canvas.width = _this.data.width * finalPixelRatio;
+        canvas.height = _this.data.height * finalPixelRatio;
         _this.rect = {
-          width: _this.data.width * _this.data.pixelRatio,
-          height: _this.data.height * _this.data.pixelRatio,
+          width: _this.data.width * finalPixelRatio,
+          height: _this.data.height * finalPixelRatio,
           left: canvas._left,
           top: canvas._top,
         };
@@ -71,11 +81,11 @@ Component({
       var i = 0;
 
       for (i = 0; i < e.touches.length; i++) {
-        modifyEvent(e.touches[i], 1);
+        modifyEvent(e.touches[i]);
       }
 
       for (i = 0; i < e.changedTouches.length; i++) {
-        modifyEvent(e.changedTouches[i], 1);
+        modifyEvent(e.changedTouches[i]);
       }
 
       this.triggerEvent('onTouchEvent', e);
@@ -85,9 +95,9 @@ Component({
   },
 });
 
-function modifyEvent(touchEvent, pixelRatio) {
-  touchEvent.clientX = touchEvent.x * pixelRatio;
-  touchEvent.clientY = touchEvent.y * pixelRatio;
-  touchEvent.pageX = touchEvent.x * pixelRatio;
-  touchEvent.pageY = touchEvent.y * pixelRatio;
+function modifyEvent(touchEvent) {
+  touchEvent.clientX = touchEvent.x;
+  touchEvent.clientY = touchEvent.y;
+  touchEvent.pageX = touchEvent.x;
+  touchEvent.pageY = touchEvent.y;
 }
