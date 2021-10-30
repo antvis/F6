@@ -134,7 +134,7 @@ Page({
     this.graph.fitView();
 
     // 节点上的点击事件
-    this.graph.on('node:tap', function(event) {
+    this.graph.on('node:tap', (event) => {
       const { item } = event;
       this.graph.setItemState(item, 'selected', true);
     });

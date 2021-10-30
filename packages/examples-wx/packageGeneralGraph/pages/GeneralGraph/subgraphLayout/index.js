@@ -1,7 +1,8 @@
 import F6 from '@antv/f6-wx';
 
 import data from './data';
-import fruchtermanLayout from '@antv/f6-wx/extends/layout/fruchtermanLayout';
+import Force from '@antv/f6-wx/extends/layout/forceLayout';
+
 /**
  * subgraphLayout
  */
@@ -21,8 +22,6 @@ Page({
   },
 
   onLoad() {
-    // 注册布局
-    F6.registerLayout('fruchterman', fruchtermanLayout);
     // 同步获取window的宽高
     const { windowWidth, windowHeight, pixelRatio } = wx.getSystemInfoSync();
 
@@ -103,7 +102,7 @@ Page({
     this.graph.render();
     this.graph.fitView();
 
-    setTimeout(function() {
+    setTimeout(() =>{
       // const { nodes } = data;
       const { edges } = data;
       const newNodes = [];
@@ -129,21 +128,21 @@ Page({
       });
 
       // TODO:1、这里不知道怎么改，2、force的开头F要大写
-      // const subForceLayout = new F6.Layout.force({
-      //   center: [nodes[0].x, nodes[0].y],
-      //   linkDistance: 70,
-      //   preventOverlap: true,
-      //   nodeSize: 20,
-      //   tick: function tick() {
-      //     // the tick function to show the animation of layout process
-      //     this.graph.refreshPositions();
-      //   },
-      // });
-      // subForceLayout.init({
-      //   nodes: newNodes,
-      //   edges: newEdges,
-      // });
-      // subForceLayout.execute();
+      const subForceLayout = new Force({
+        center: [nodes[0].x, nodes[0].y],
+        linkDistance: 70,
+        preventOverlap: true,
+        nodeSize: 20,
+        tick: () => {
+          // the tick function to show the animation of layout process
+          this.graph.refreshPositions();
+        },
+      });
+      subForceLayout.init({
+        nodes: newNodes,
+        edges: newEdges,
+      });
+      subForceLayout.execute();
     }, 1000);
   },
 });
