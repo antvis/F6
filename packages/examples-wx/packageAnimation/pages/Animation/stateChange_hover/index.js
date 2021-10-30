@@ -195,16 +195,15 @@ Page({
     this.graph.render();
     this.graph.fitView();
 
+    let toggle = true;
     // set hover state
-    this.graph.on('node:mouseenter', (ev) => {
+    this.graph.on('node:tap', (ev) => {
       const node = ev.item;
       const edges_ = node.getEdges();
-      edges_.forEach((edge) => this.graph.setItemState(edge, 'running', true));
-    });
-    this.graph.on('node:mouseleave', (ev) => {
-      const node = ev.item;
-      const edges_ = node.getEdges();
-      edges_.forEach((edge) => this.graph.setItemState(edge, 'running', false));
+      edges_.forEach((edge) => {
+        this.graph.setItemState(edge, 'running', toggle)
+      });
+      toggle = !toggle
     });
   },
 });
