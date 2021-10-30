@@ -51,7 +51,7 @@ Page({
    * @param {*} renderer 使用canvas 1.0还是canvas 2.0，mini | mini-native
    */
   handleInit(event) {
-    const {ctx, rect, canvas, renderer} = event.detail
+    const { ctx, rect, canvas, renderer } = event.detail;
     this.isCanvasInit = true;
     this.ctx = ctx;
     this.renderer = renderer;
@@ -342,9 +342,12 @@ Page({
             let { controlPoints } = cfg; // 指定controlPoints
             if (!controlPoints || !controlPoints.length) {
               const { startPoint, endPoint, sourceNode, targetNode } = cfg;
-              const { x: startX, y: startY, coefficientX, coefficientY } = sourceNode
-                ? sourceNode.getModel()
-                : startPoint;
+              const {
+                x: startX,
+                y: startY,
+                coefficientX,
+                coefficientY,
+              } = sourceNode ? sourceNode.getModel() : startPoint;
               const { x: endX, y: endY } = targetNode ? targetNode.getModel() : endPoint;
               let curveStart = (endX - startX) * coefficientX;
               let curveEnd = (endY - startY) * coefficientY;
@@ -408,6 +411,7 @@ Page({
     });
     // 创建F6实例
     this.graph = new F6.TreeGraph({
+      container: this.canvas,
       context: this.ctx,
       renderer: this.renderer,
       width,

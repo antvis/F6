@@ -86,7 +86,6 @@ Page({
 
   updateChart() {
     const { width, height, pixelRatio, currentMode } = this.data;
-    console.log(currentMode, '111');
     // 创建F6实例
     this.graph = new F6.Graph({
       context: this.ctx,
