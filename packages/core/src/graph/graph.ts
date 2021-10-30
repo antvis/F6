@@ -1298,6 +1298,8 @@ export default abstract class AbstractGraph extends EventEmitter implements IAbs
     const layoutController = self.get('layoutController');
     if (layoutController) {
       layoutController.layout(success);
+      // 布局后立即初始化边的数据
+      this.refreshPositions();
       if (this.destroyed) return;
     } else {
       if (self.get('fitView')) {
