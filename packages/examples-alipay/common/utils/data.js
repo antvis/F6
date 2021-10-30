@@ -816,10 +816,10 @@ export const classicCace = [
         name: '自定义流向图',
         path: '../SceneCase/customFlow/index',
       },
-      {
-        name: '桑基图',
-        path: '../SceneCase/sankey/index',
-      },
+      // {
+      //   name: '桑基图',
+      //   path: '../SceneCase/sankey/index',
+      // },
       // {
       //   name: '思维导图',
       //   path: '../SceneCase/mindMap/index',
