@@ -31,7 +31,7 @@ Page({
     this.setData({
       width: windowWidth,
       height: windowHeight,
-      // pixelRatio,
+      pixelRatio,
     });
   },
 
