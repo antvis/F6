@@ -59,51 +59,51 @@ Page({
 
     // 新建F6.legend实例
     // TODO:Ledgend is not a constructor
-    const legend = new F6.Legend({
-      data: legendData,
-      align: 'center',
-      layout: 'horizontal', // vertical
-      position: 'bottom-left',
-      vertiSep: 12,
-      horiSep: 24,
-      offsetY: -24,
-      padding: [4, 16, 8, 16],
-      containerStyle: {
-        fill: '#ccc',
-        lineWidth: 1,
-      },
-      title: 'Legend',
-      titleConfig: {
-        position: 'left',
-        offsetX: 0,
-        offsetY: 12,
-      },
-      filter: {
-        enable: true,
-        multiple: true,
-        trigger: 'click',
-        graphActiveState: 'activeByLegend',
-        graphInactiveState: 'inactiveByLegend',
-        filterFunctions: {
-          a: (d) => {
-            if (d.cluster === 'a') return true;
-            return false;
-          },
-          b: (d) => {
-            if (d.cluster === 'b') return true;
-            return false;
-          },
-          c: (d) => {
-            if (d.cluster === 'c') return true;
-            return false;
-          },
-          d: (d) => {
-            if (d.cluster === 'd') return true;
-            return false;
-          },
-        },
-      },
-    });
+    // const legend = new F6.Legend({
+    //   data: legendData,
+    //   align: 'center',
+    //   layout: 'horizontal', // vertical
+    //   position: 'bottom-left',
+    //   vertiSep: 12,
+    //   horiSep: 24,
+    //   offsetY: -24,
+    //   padding: [4, 16, 8, 16],
+    //   containerStyle: {
+    //     fill: '#ccc',
+    //     lineWidth: 1,
+    //   },
+    //   title: 'Legend',
+    //   titleConfig: {
+    //     position: 'left',
+    //     offsetX: 0,
+    //     offsetY: 12,
+    //   },
+    //   filter: {
+    //     enable: true,
+    //     multiple: true,
+    //     trigger: 'click',
+    //     graphActiveState: 'activeByLegend',
+    //     graphInactiveState: 'inactiveByLegend',
+    //     filterFunctions: {
+    //       a: (d) => {
+    //         if (d.cluster === 'a') return true;
+    //         return false;
+    //       },
+    //       b: (d) => {
+    //         if (d.cluster === 'b') return true;
+    //         return false;
+    //       },
+    //       c: (d) => {
+    //         if (d.cluster === 'c') return true;
+    //         return false;
+    //       },
+    //       d: (d) => {
+    //         if (d.cluster === 'd') return true;
+    //         return false;
+    //       },
+    //     },
+    //   },
+    // });
 
     // 创建F6实例
     this.graph = new F6.Graph({
@@ -117,7 +117,7 @@ Page({
       modes: {
         default: ['drag-canvas', 'drag-node'],
       },
-      plugins: [legend],
+      // plugins: [legend],
       animate: true,
       nodeStateStyles: {
         activeByLegend: {
