@@ -74,7 +74,7 @@
     "css-layout": "^1.1.1"
   },
   "devDependencies": {
-    "@antv/f6-plugin": "1.0.1",
+    "@antv/f6-plugin": "^1.0.1",
     "@antv/chart-node-g6": "^0.0.3",
     "@babel/core": "^7.7.7",
     "@babel/plugin-proposal-class-properties": "^7.1.0",
