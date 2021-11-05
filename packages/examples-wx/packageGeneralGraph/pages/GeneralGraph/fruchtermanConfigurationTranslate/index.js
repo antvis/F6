@@ -1,6 +1,6 @@
 import F6 from '@antv/f6-wx';
 
-import data from './data';
+import getData from './data';
 import fruchtermanLayout from '@antv/f6-wx/extends/layout/fruchtermanLayout';
 /**
  * fruchterman 布局参数动态变化
@@ -43,7 +43,7 @@ Page({
    * @param {*} renderer 使用canvas 1.0还是canvas 2.0，mini | mini-native
    */
   handleInit(event) {
-    const {ctx, rect, canvas, renderer} = event.detail
+    const { ctx, rect, canvas, renderer } = event.detail;
     this.isCanvasInit = true;
     this.ctx = ctx;
     this.renderer = renderer;
@@ -60,6 +60,7 @@ Page({
 
   updateChart() {
     const { width, height, pixelRatio } = this.data;
+    const data = getData();
 
     // 创建F6实例
     this.graph = new F6.Graph({
@@ -99,7 +100,7 @@ Page({
     layoutConfigTranslation();
 
     function layoutConfigTranslation() {
-      setTimeout(function() {
+      setTimeout(function () {
         me.setData({
           description: 'Fructherman layout, gravity = 5',
         });
@@ -108,7 +109,7 @@ Page({
         });
       }, 1000);
 
-      setTimeout(function() {
+      setTimeout(function () {
         me.setData({
           description: 'Fructherman layout, gravity = 10, layout by cluster',
         });
@@ -118,7 +119,7 @@ Page({
         });
       }, 2500);
 
-      setTimeout(function() {
+      setTimeout(function () {
         me.setData({
           description: 'Fructherman layout, gravity = 20, layout by cluster',
         });
@@ -127,7 +128,7 @@ Page({
         });
       }, 4000);
 
-      setTimeout(function() {
+      setTimeout(function () {
         me.setData({
           description: 'Fructherman layout, gravity = 50, layout by cluster',
         });
@@ -136,7 +137,7 @@ Page({
         });
       }, 5500);
 
-      setTimeout(function() {
+      setTimeout(function () {
         me.setData({
           description: 'Fructherman layout, gravity = 80, layout by cluster',
         });
@@ -145,5 +146,9 @@ Page({
         });
       }, 7000);
     }
+  },
+
+  onUnload() {
+    this.graph && this.graph.destroy();
   },
 });

@@ -1,6 +1,6 @@
 import F6 from '@antv/f6';
 import { wrapContext } from '../../../common/utils/context';
-import data from './data';
+import getData from './data';
 import force from '@antv/f6/dist/extends/layout/forceLayout';
 
 /**
@@ -73,11 +73,12 @@ Page({
         size: 15,
       },
     });
+    const data = getData();
 
     // 注册数据
     this.graph.data({
       nodes: data.nodes,
-      edges: data.edges.map(function(edge, i) {
+      edges: data.edges.map(function (edge, i) {
         edge.id = `edge${i}`;
         return Object.assign({}, edge);
       }),
@@ -91,16 +92,16 @@ Page({
     }
 
     // 监听事件
-    this.graph.on('node:dragstart', function(e) {
+    this.graph.on('node:dragstart', function (e) {
       this.graph.layout();
       refreshDragedNodePosition(e);
     });
-    this.graph.on('node:drag', function(e) {
+    this.graph.on('node:drag', function (e) {
       const forceLayout = this.graph.get('layoutController').layoutMethods[0];
       forceLayout.execute();
       refreshDragedNodePosition(e);
     });
-    this.graph.on('node:dragend', function(e) {
+    this.graph.on('node:dragend', function (e) {
       e.item.get('model').fx = null;
       e.item.get('model').fy = null;
     });
@@ -108,4 +109,8 @@ Page({
     this.graph.render();
     this.graph.fitView();
   },
+
+  onUnload() {
+    this.graph && this.graph.destroy()
+  }
 });

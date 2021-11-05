@@ -1,4 +1,4 @@
-export default {
+export default () => ({
   nodes: [
     {
       id: '4',
@@ -2182,7 +2182,6 @@ export default {
     },
   ],
   edges: [
-    
     {
       eid: 'e9639',
       source: '710',
@@ -6417,4 +6416,4 @@ export default {
       embodiedWater: '',
     },
   ],
-};
+});

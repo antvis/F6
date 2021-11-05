@@ -1,6 +1,6 @@
 import F6 from '@antv/f6-wx';
 
-import data from './data';
+import getData from './data';
 import force from '@antv/f6-wx/extends/layout/forceLayout';
 
 /**
@@ -41,7 +41,7 @@ Page({
    * @param {*} renderer 使用canvas 1.0还是canvas 2.0，mini | mini-native
    */
   handleInit(event) {
-    const {ctx, rect, canvas, renderer} = event.detail
+    const { ctx, rect, canvas, renderer } = event.detail;
     this.isCanvasInit = true;
     this.ctx = ctx;
     this.renderer = renderer;
@@ -58,6 +58,8 @@ Page({
 
   updateChart() {
     const { width, height, pixelRatio } = this.data;
+    const data = getData();
+
     // 创建F6实例
     this.graph = new F6.Graph({
       context: this.ctx,
@@ -95,5 +97,9 @@ Page({
     this.graph.data(data);
     this.graph.render();
     this.graph.fitView();
+  },
+
+  onUnload() {
+    this.graph && this.graph.destroy();
   },
 });
