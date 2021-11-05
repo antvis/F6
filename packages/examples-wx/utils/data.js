@@ -275,10 +275,6 @@ export const generalGraphContainer = [
         name: '参数动态变化',
         path: '/packageGeneralGraph/pages/GeneralGraph/fruchtermanConfigurationTranslate/index',
       },
-      {
-        name: '使用Web-worker',
-        path: '/packageGeneralGraph/pages/GeneralGraph/fruchtermanWebWorker/index',
-      },
     ],
   },
   {
