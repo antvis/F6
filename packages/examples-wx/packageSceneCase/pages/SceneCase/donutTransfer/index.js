@@ -26,7 +26,7 @@ Page({
     this.setData({
       width: windowWidth,
       height: windowHeight,
-      // pixelRatio,
+      pixelRatio,
     });
   },
 
@@ -55,24 +55,24 @@ Page({
 
   updateChart() {
     const { width, height, pixelRatio } = this.data;
-    const legend = new F6.Legend({
-      data: legendData,
-      align: 'center',
-      layout: 'horizontal', // vertical
-      position: 'bottom-left',
-      vertiSep: 12,
-      horiSep: 24,
-      offsetY: -24,
-      padding: [4, 16, 8, 16],
-      containerStyle: {
-        fill: '#ccc',
-        lineWidth: 1,
-      },
-      title: ' ',
-      titleConfig: {
-        offsetY: -8,
-      },
-    });
+    // const legend = new F6.Legend({
+    //   data: legendData,
+    //   align: 'center',
+    //   layout: 'horizontal', // vertical
+    //   position: 'bottom-left',
+    //   vertiSep: 12,
+    //   horiSep: 24,
+    //   offsetY: -24,
+    //   padding: [4, 16, 8, 16],
+    //   containerStyle: {
+    //     fill: '#ccc',
+    //     lineWidth: 1,
+    //   },
+    //   title: ' ',
+    //   titleConfig: {
+    //     offsetY: -8,
+    //   },
+    // });
 
     // 创建F6实例
     this.graph = new F6.Graph({
@@ -83,7 +83,7 @@ Page({
       pixelRatio,
       fitView: true,
       fitCenter: true,
-      plugins: [legend], // 这里的plugin不知道能不能用
+      // plugins: [legend], // 这里的plugin不知道能不能用
       modes: {
         default: ['drag-canvas', 'drag-node'],
       },

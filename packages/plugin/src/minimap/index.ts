@@ -3,7 +3,7 @@ import { Canvas as GSVGCanvas } from '@antv/g-svg';
 import { Event as GraphEvent, Point } from '@antv/g-base';
 import { isString, isNil, each, debounce } from '@antv/util';
 import { createDom, modifyCSS } from '@antv/dom-util';
-import { Matrix, ShapeStyle, IAbstractGraph as IGraph } from '@antv/g6-core';
+import { Matrix, ShapeStyle, IAbstractGraph as IGraph } from '@antv/f6-core';
 import { ext } from '@antv/matrix-util';
 import Base, { IPluginBaseConfig } from '../base';
 
@@ -314,10 +314,11 @@ export default class MiniMap extends Base {
     });
     const combos = graph!.getCombos();
     if (combos && combos.length) {
-      const comboGroup = group.find(e => e.get('name') === 'comboGroup') ||
+      const comboGroup =
+        group.find((e) => e.get('name') === 'comboGroup') ||
         group.addGroup({
-        name: 'comboGroup'
-      });
+          name: 'comboGroup',
+        });
       setTimeout(() => {
         if (this.destroyed) return;
         each(combos, (combo) => {
@@ -326,7 +327,7 @@ export default class MiniMap extends Base {
         comboGroup?.sort();
         comboGroup?.toBack();
         this.updateCanvas();
-      }, 250)
+      }, 250);
     }
     this.clearDestroyedShapes();
   }
@@ -364,7 +365,7 @@ export default class MiniMap extends Base {
     else mappedItem.show();
     mappedItem.exist = true;
     const zIndex = item.getModel().depth;
-    if (!isNaN(zIndex)) mappedItem.set('zIndex', zIndex)
+    if (!isNaN(zIndex)) mappedItem.set('zIndex', zIndex);
     itemMap[item.get('id')] = mappedItem;
     this.set('itemMap', itemMap);
   }
@@ -401,7 +402,7 @@ export default class MiniMap extends Base {
     else mappedItem.show();
     mappedItem.exist = true;
     const zIndex = item.getModel().depth;
-    if (!isNaN(zIndex)) mappedItem.set('zIndex', zIndex)
+    if (!isNaN(zIndex)) mappedItem.set('zIndex', zIndex);
     itemMap[item.get('id')] = mappedItem;
     this.set('itemMap', itemMap);
   }
@@ -424,10 +425,11 @@ export default class MiniMap extends Base {
     });
     const combos = graph!.getCombos();
     if (combos && combos.length) {
-      const comboGroup = group.find(e => e.get('name') === 'comboGroup') ||
+      const comboGroup =
+        group.find((e) => e.get('name') === 'comboGroup') ||
         group.addGroup({
-        name: 'comboGroup'
-      });
+          name: 'comboGroup',
+        });
       setTimeout(() => {
         if (this.destroyed) return;
         each(combos, (combo) => {
@@ -436,7 +438,7 @@ export default class MiniMap extends Base {
         comboGroup?.sort();
         comboGroup?.toBack();
         this.updateCanvas();
-      }, 250)
+      }, 250);
     }
     this.clearDestroyedShapes();
   }
@@ -571,12 +573,12 @@ export default class MiniMap extends Base {
       '<div class="g6-minimap-container" style="position: relative;"></div>',
     );
     container.appendChild(containerDOM);
-    containerDOM.addEventListener('dragenter', e => {
+    containerDOM.addEventListener('dragenter', (e) => {
       e.preventDefault();
-    })
-    containerDOM.addEventListener('dragover', e => {
+    });
+    containerDOM.addEventListener('dragover', (e) => {
       e.preventDefault();
-    })
+    });
 
     let canvas;
     const renderer = graph.get('renderer');

@@ -1,6 +1,6 @@
 import F6 from '@antv/f6';
 import { wrapContext } from '../../../common/utils/context';
-import data from './data';
+import getData from './data';
 import force from '@antv/f6/dist/extends/layout/forceLayout';
 
 /**
@@ -57,6 +57,7 @@ Page({
 
   updateChart() {
     const { width, height, pixelRatio } = this.data;
+    const data = getData();
 
     function refreshDragedNodePosition(e) {
       const model = e.item.get('model');
@@ -104,25 +105,29 @@ Page({
     const { nodes } = data;
     this.graph.data({
       nodes,
-      edges: data.edges.map(function(edge, i) {
+      edges: data.edges.map(function (edge, i) {
         edge.id = `edge${i}`;
         return Object.assign({}, edge);
       }),
     });
 
-    this.graph.on('node:dragstart', function(e) {
+    this.graph.on('node:dragstart', function (e) {
       this.graph.layout();
       refreshDragedNodePosition(e);
     });
-    this.graph.on('node:drag', function(e) {
+    this.graph.on('node:drag', function (e) {
       refreshDragedNodePosition(e);
     });
-    this.graph.on('node:dragend', function(e) {
+    this.graph.on('node:dragend', function (e) {
       e.item.get('model').fx = null;
       e.item.get('model').fy = null;
     });
 
     this.graph.render();
     this.graph.fitView();
+  },
+
+  onUnload() {
+    this.graph && this.graph.destroy();
   },
 });

@@ -1,6 +1,6 @@
 import F6 from '@antv/f6';
 import { wrapContext } from '../../../common/utils/context';
-import data from './data';
+import getData from './data';
 import fruchtermanLayout from '@antv/f6/dist/extends/layout/fruchtermanLayout';
 /**
  * fruchterman 布局参数动态变化
@@ -59,7 +59,7 @@ Page({
 
   updateChart() {
     const { width, height, pixelRatio } = this.data;
-
+    const data = getData();
     // 创建F6实例
     this.graph = new F6.Graph({
       context: this.ctx,
@@ -98,7 +98,7 @@ Page({
     layoutConfigTranslation();
 
     function layoutConfigTranslation() {
-      setTimeout(function() {
+      setTimeout(function () {
         me.setData({
           description: 'Fructherman layout, gravity = 5',
         });
@@ -107,7 +107,7 @@ Page({
         });
       }, 1000);
 
-      setTimeout(function() {
+      setTimeout(function () {
         me.setData({
           description: 'Fructherman layout, gravity = 10, layout by cluster',
         });
@@ -117,7 +117,7 @@ Page({
         });
       }, 2500);
 
-      setTimeout(function() {
+      setTimeout(function () {
         me.setData({
           description: 'Fructherman layout, gravity = 20, layout by cluster',
         });
@@ -126,7 +126,7 @@ Page({
         });
       }, 4000);
 
-      setTimeout(function() {
+      setTimeout(function () {
         me.setData({
           description: 'Fructherman layout, gravity = 50, layout by cluster',
         });
@@ -135,7 +135,7 @@ Page({
         });
       }, 5500);
 
-      setTimeout(function() {
+      setTimeout(function () {
         me.setData({
           description: 'Fructherman layout, gravity = 80, layout by cluster',
         });
@@ -144,5 +144,9 @@ Page({
         });
       }, 7000);
     }
+  },
+
+  onUnload() {
+    this.graph && this.graph.destroy();
   },
 });

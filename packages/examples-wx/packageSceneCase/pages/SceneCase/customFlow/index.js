@@ -139,7 +139,7 @@ Page({
         }
 
         const endArrow = cfg.style && cfg.style.endArrow ? cfg.style.endArrow : false;
-        endArrow.fill = stroke;
+        endArrow && (endArrow.fill = stroke);
         const line = group.addShape('path', {
           attrs: {
             path,
@@ -201,7 +201,7 @@ Page({
     this.setData({
       width: windowWidth,
       height: windowHeight,
-      // pixelRatio,
+      pixelRatio,
     });
   },
 

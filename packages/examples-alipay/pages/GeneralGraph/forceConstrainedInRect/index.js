@@ -1,6 +1,6 @@
 import F6 from '@antv/f6';
 import { wrapContext } from '../../../common/utils/context';
-import data from './data';
+import getData from './data';
 import force from '@antv/f6/dist/extends/layout/forceLayout';
 
 /**
@@ -57,6 +57,7 @@ Page({
 
   updateChart() {
     const { width, height, pixelRatio } = this.data;
+    const data = getData();
     const { nodes } = data;
 
     // 包裹范围的参数
@@ -111,12 +112,16 @@ Page({
 
     this.graph.data({
       nodes: data.nodes,
-      edges: data.edges.map(function(edge, i) {
+      edges: data.edges.map(function (edge, i) {
         edge.id = `edge${i}`;
         return Object.assign({}, edge);
       }),
     });
     this.graph.render();
     this.graph.fitView();
+  },
+
+  onUnload() {
+    this.graph && this.graph.destroy();
   },
 });

@@ -30,7 +30,7 @@ Page({
     this.setData({
       width: windowWidth,
       height: windowHeight,
-      // pixelRatio,
+      pixelRatio,
     });
   },
 
@@ -59,30 +59,30 @@ Page({
 
   updateChart() {
     const { width, height, pixelRatio } = this.data;
-    const tooltip = new F6.Tooltip({
-      offsetX: 10,
-      offsetY: 10,
-      fixToNode: [1, 0.5],
-      // the types of items that allow the tooltip show up
-      // 允许出现 tooltip 的 item 类型
-      itemTypes: ['node', 'edge'],
-      // custom the tooltip's content
-      // 自定义 tooltip 内容
-      getContent: (e) => {
-        const outDiv = document.createElement('div');
-        outDiv.style.width = 'fit-content';
-        outDiv.style.height = 'fit-content';
-        const model = e.item.getModel();
-        if (e.item.getType() === 'node') {
-          outDiv.innerHTML = `${model.name}`;
-        } else {
-          const source = e.item.getSource();
-          const target = e.item.getTarget();
-          outDiv.innerHTML = `来源：${source.getModel().name}<br/>去向：${target.getModel().name}`;
-        }
-        return outDiv;
-      },
-    });
+    // const tooltip = new F6.Tooltip({
+    //   offsetX: 10,
+    //   offsetY: 10,
+    //   fixToNode: [1, 0.5],
+    //   // the types of items that allow the tooltip show up
+    //   // 允许出现 tooltip 的 item 类型
+    //   itemTypes: ['node', 'edge'],
+    //   // custom the tooltip's content
+    //   // 自定义 tooltip 内容
+    //   getContent: (e) => {
+    //     const outDiv = document.createElement('div');
+    //     outDiv.style.width = 'fit-content';
+    //     outDiv.style.height = 'fit-content';
+    //     const model = e.item.getModel();
+    //     if (e.item.getType() === 'node') {
+    //       outDiv.innerHTML = `${model.name}`;
+    //     } else {
+    //       const source = e.item.getSource();
+    //       const target = e.item.getTarget();
+    //       outDiv.innerHTML = `来源：${source.getModel().name}<br/>去向：${target.getModel().name}`;
+    //     }
+    //     return outDiv;
+    //   },
+    // });
 
     // 创建F6实例
     this.graph = new F6.Graph({
@@ -93,7 +93,7 @@ Page({
       pixelRatio,
       fitView: true,
       fitViewPadding: 50,
-      plugins: [tooltip],
+      // plugins: [tooltip],
       layout: {
         type: 'force',
         edgeStrength: 0.7,

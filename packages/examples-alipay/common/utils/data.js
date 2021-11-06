@@ -204,11 +204,7 @@ export const generalGraphContainer = [
       {
         name: '参数动态变化',
         path: '../GeneralGraph/fruchtermanConfigurationTranslate/index',
-      },
-      {
-        name: '使用Web-worker',
-        path: '../GeneralGraph/fruchtermanWebWorker/index',
-      },
+      }
     ],
   },
   {
@@ -816,10 +812,10 @@ export const classicCace = [
         name: '自定义流向图',
         path: '../SceneCase/customFlow/index',
       },
-      {
-        name: '桑基图',
-        path: '../SceneCase/sankey/index',
-      },
+      // {
+      //   name: '桑基图',
+      //   path: '../SceneCase/sankey/index',
+      // },
       // {
       //   name: '思维导图',
       //   path: '../SceneCase/mindMap/index',

@@ -1,7 +1,8 @@
 import F6 from '@antv/f6';
 import { wrapContext } from '../../../common/utils/context';
 import data from './data';
-import fruchtermanLayout from '@antv/f6/dist/extends/layout/fruchtermanLayout';
+import Force from '@antv/f6/dist/extends/layout/forceLayout';
+
 /**
  * subgraphLayout
  */
@@ -60,7 +61,7 @@ Page({
 
     const { nodes } = data;
 
-    nodes.forEach(function(node, i) {
+    nodes.forEach(function (node, i) {
       if (i <= 16 && i !== 12) {
         if (!node.style) {
           node.style = {
@@ -102,7 +103,7 @@ Page({
     this.graph.render();
     this.graph.fitView();
 
-    setTimeout(function() {
+    setTimeout(() => {
       // const { nodes } = data;
       const { edges } = data;
       const newNodes = [];
@@ -112,14 +113,14 @@ Page({
       nodes[0].fx = nodes[0].x;
       nodes[0].fy = nodes[0].y;
       // add the nodes which should be re-layout
-      nodes.forEach(function(node, i) {
+      nodes.forEach(function (node, i) {
         if (i <= 16 && i !== 12) {
           newNodes.push(node);
           newNodeMap.set(node.id, i);
         }
       });
       // add related edges
-      edges.forEach(function(edge) {
+      edges.forEach(function (edge) {
         const sourceId = edge.source;
         const targetId = edge.target;
         if (newNodeMap.get(sourceId) !== undefined && newNodeMap.get(targetId) !== undefined) {
@@ -127,22 +128,21 @@ Page({
         }
       });
 
-      // TODO:1、这里不知道怎么改，2、force的开头F要大写
-      // const subForceLayout = new F6.Layout.force({
-      //   center: [nodes[0].x, nodes[0].y],
-      //   linkDistance: 70,
-      //   preventOverlap: true,
-      //   nodeSize: 20,
-      //   tick: function tick() {
-      //     // the tick function to show the animation of layout process
-      //     this.graph.refreshPositions();
-      //   },
-      // });
-      // subForceLayout.init({
-      //   nodes: newNodes,
-      //   edges: newEdges,
-      // });
-      // subForceLayout.execute();
+      const subForceLayout = new Force({
+        center: [nodes[0].x, nodes[0].y],
+        linkDistance: 70,
+        preventOverlap: true,
+        nodeSize: 20,
+        tick: () => {
+          // the tick function to show the animation of layout process
+          this.graph.refreshPositions();
+        },
+      });
+      subForceLayout.init({
+        nodes: newNodes,
+        edges: newEdges,
+      });
+      subForceLayout.execute();
     }, 1000);
   },
 });
