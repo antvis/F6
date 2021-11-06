@@ -977,4 +977,14 @@ export const plugins = [
       },
     ],
   },
+  {
+    name: '边绑定',
+    nameEn: 'Bundling',
+    detailList: [
+      {
+        name: 'Bundling',
+        path: '/packagePlugin/pages/Plugin/bundling/index',
+      },
+    ],
+  },
 ];
