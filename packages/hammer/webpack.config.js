@@ -23,15 +23,12 @@ module.exports = {
         use: {
           loader: 'babel-loader',
           options: {
-            babelrc: true,
+            presets: ['@babel/preset-env'],
           },
         },
       },
     ],
   },
-  plugins: [
-    new webpack.NoEmitOnErrorsPlugin(),
-    new webpack.optimize.AggressiveMergingPlugin(),
-  ],
+  plugins: [new webpack.NoEmitOnErrorsPlugin(), new webpack.optimize.AggressiveMergingPlugin()],
   devtool: 'source-map',
 };
