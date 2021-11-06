@@ -173,7 +173,10 @@
         "pages/Plugin/legend/index",
         "pages/Plugin/timeBar/index",
         "pages/Plugin/toolTip/index",
-        "pages/Plugin/zoomSlider/index"
+        "pages/Plugin/zoomSlider/index",
+        "pages/Plugin/bundling/index",
+        "pages/Plugin/menu/index",
+        "pages/Plugin/snapLine/index"
       ]
     }
   ],

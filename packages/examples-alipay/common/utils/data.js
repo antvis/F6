@@ -853,7 +853,7 @@ export const plugins = [
     detailList: [
       {
         name: 'Tooltip',
-        path: '../Plugins/DecisionTree/index',
+        path: '../Plugins/ToolTip/index',
       },
     ],
   },
@@ -904,6 +904,36 @@ export const plugins = [
       {
         name: 'ZoomSlider',
         path: '../Plugins/ZoomSlider/index',
+      },
+    ],
+  },
+  {
+    name: '边绑定',
+    nameEn: 'Bundling',
+    detailList: [
+      {
+        name: 'Bundling',
+        path: '../Plugins/Bundling/index',
+      },
+    ],
+  },
+  {
+    name: '上下文菜单',
+    nameEn: 'Menu',
+    detailList: [
+      {
+        name: 'Menu',
+        path: '../Plugins/Menu/index',
+      },
+    ],
+  },
+  {
+    name: '对齐线',
+    nameEn: 'SnapLine',
+    detailList: [
+      {
+        name: 'SnapLine',
+        path: '../Plugins/SnapLine/index',
       },
     ],
   },

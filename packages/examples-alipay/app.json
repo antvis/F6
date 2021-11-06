@@ -127,12 +127,15 @@
     "pages/SceneCase/metroLines/index",
     "pages/SceneCase/customFlow/index",
     "pages/SceneCase/sankey/index",
-    "pages/Plugins/DecisionTree/index",
+    "pages/Plugins/ToolTip/index",
     "pages/Plugins/DonutTransfer/index",
     "pages/Plugins/EdgeFilter/index",
     "pages/Plugins/Fisheye/index",
     "pages/Plugins/Timebar/index",
-    "pages/Plugins/ZoomSlider/index"
+    "pages/Plugins/ZoomSlider/index",
+    "pages/Plugins/Bundling/index",
+    "pages/Plugins/Menu/index",
+    "pages/Plugins/SnapLine/index"
   ],
   "window": {
     "defaultTitle": "F6移动端demo",

@@ -14,6 +14,8 @@ import PluginZoomSliderDemo from './pluginZoomSlider';
 import PluginEdgeFilterDemo from './pluginEdgeFilter';
 import PluginFisheyeDemo from './pluginFisheye';
 import PluginMniMapDemo from './pluginMiniMap';
+import PluginBundlingDemo from './pluginBundling';
+import MenuDemo from './pluginMenu';
 
 
 export default {
@@ -40,4 +42,7 @@ export const PluginFisheye = (args) => <PluginFisheyeDemo {...args} />;
 // mini map
 export const PluginMniMap = (args) => <PluginMniMapDemo { ...args }/>
 
+export const PluginBundling = (args) => <PluginBundlingDemo { ...args }/>
+
+export const PluginMenu = (args) => <MenuDemo { ...args }/>
 

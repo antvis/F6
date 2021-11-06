@@ -977,4 +977,34 @@ export const plugins = [
       },
     ],
   },
+  {
+    name: '边绑定',
+    nameEn: 'Bundling',
+    detailList: [
+      {
+        name: 'Bundling',
+        path: '/packagePlugin/pages/Plugin/bundling/index',
+      },
+    ],
+  },
+  {
+    name: '上下文菜单',
+    nameEn: 'Menu',
+    detailList: [
+      {
+        name: 'Menu',
+        path: '/packagePlugin/pages/Plugin/menu/index',
+      },
+    ],
+  },
+  {
+    name: '对齐线',
+    nameEn: 'snapLine',
+    detailList: [
+      {
+        name: 'snapLine',
+        path: '/packagePlugin/pages/Plugin/snapLine/index',
+      },
+    ],
+  },
 ];
