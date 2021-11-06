@@ -917,6 +917,16 @@ export const plugins = [
       },
     ],
   },
+  {
+    name: '上下文菜单',
+    nameEn: 'Menu',
+    detailList: [
+      {
+        name: 'Menu',
+        path: '../Plugins/Menu/index',
+      },
+    ],
+  },
 ];
 
 // 控制搜索框下面的热搜词

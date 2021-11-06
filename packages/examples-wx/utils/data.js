@@ -987,4 +987,14 @@ export const plugins = [
       },
     ],
   },
+  {
+    name: '上下文菜单',
+    nameEn: 'Menu',
+    detailList: [
+      {
+        name: 'Menu',
+        path: '/packagePlugin/pages/Plugin/menu/index',
+      },
+    ],
+  },
 ];

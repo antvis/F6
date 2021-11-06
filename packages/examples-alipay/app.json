@@ -133,7 +133,8 @@
     "pages/Plugins/Fisheye/index",
     "pages/Plugins/Timebar/index",
     "pages/Plugins/ZoomSlider/index",
-    "pages/Plugins/Bundling/index"
+    "pages/Plugins/Bundling/index",
+    "pages/Plugins/Menu/index"
   ],
   "window": {
     "defaultTitle": "F6移动端demo",
