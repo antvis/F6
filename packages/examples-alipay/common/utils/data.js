@@ -927,6 +927,16 @@ export const plugins = [
       },
     ],
   },
+  {
+    name: '对齐线',
+    nameEn: 'SnapLine',
+    detailList: [
+      {
+        name: 'SnapLine',
+        path: '../Plugins/SnapLine/index',
+      },
+    ],
+  },
 ];
 
 // 控制搜索框下面的热搜词

@@ -134,7 +134,8 @@
     "pages/Plugins/Timebar/index",
     "pages/Plugins/ZoomSlider/index",
     "pages/Plugins/Bundling/index",
-    "pages/Plugins/Menu/index"
+    "pages/Plugins/Menu/index",
+    "pages/Plugins/SnapLine/index"
   ],
   "window": {
     "defaultTitle": "F6移动端demo",

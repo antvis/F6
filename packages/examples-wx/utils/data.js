@@ -997,4 +997,14 @@ export const plugins = [
       },
     ],
   },
+  {
+    name: '对齐线',
+    nameEn: 'snapLine',
+    detailList: [
+      {
+        name: 'snapLine',
+        path: '/packagePlugin/pages/Plugin/snapLine/index',
+      },
+    ],
+  },
 ];
