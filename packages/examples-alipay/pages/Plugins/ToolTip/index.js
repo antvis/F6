@@ -2,13 +2,13 @@ import F6 from '@antv/f6';
 import TreeGraph from '@antv/f6/dist/extends/graph/treeGraph';
 import { wrapContext } from '../../../common/utils/context';
 import mockData from './data';
-import { Tooltip } from '@antv/f6-plugin'
+import { Tooltip } from '@antv/f6-plugin';
 
 /**
  * decisionTree
  */
 
- const colors = {
+const colors = {
   B: '#5B8FF9',
   R: '#F46649',
   Y: '#EEBC20',
@@ -342,9 +342,12 @@ Page({
             let { controlPoints } = cfg; // 指定controlPoints
             if (!controlPoints || !controlPoints.length) {
               const { startPoint, endPoint, sourceNode, targetNode } = cfg;
-              const { x: startX, y: startY, coefficientX, coefficientY } = sourceNode
-                ? sourceNode.getModel()
-                : startPoint;
+              const {
+                x: startX,
+                y: startY,
+                coefficientX,
+                coefficientY,
+              } = sourceNode ? sourceNode.getModel() : startPoint;
               const { x: endX, y: endY } = targetNode ? targetNode.getModel() : endPoint;
               let curveStart = (endX - startX) * coefficientX;
               let curveEnd = (endY - startY) * coefficientY;
@@ -379,7 +382,7 @@ Page({
 
     const { onInit, config } = props;
     const tooltip = new Tooltip({
-      trigger:'press',
+      trigger: 'press',
       // TODO: _f2.default.Tooltip is not a constructor
       // offsetX and offsetY include the padding of the parent container
       // the types of items that allow the tooltip show up
@@ -389,13 +392,39 @@ Page({
       // 自定义 tooltip 内容
       getContent: (e) => {
         // outDiv.style.padding = '0px 0px 20px 0px';
-         return `
-          <div >Custom Content</div>
-          <div>Type: ${e.item.getType()}</div>
-          <div>Label: ${e.item.getModel().label || e.item.getModel().id}</div>
-        `
+        return `
+          <div class="f6-tooltip-container">
+            <div>Custom Content</div>
+            <div class='tooltip-type'>Type: ${e.item.getType()}</div>
+            <div class='tooltip-id'>Label: ${e.item.getModel().label || e.item.getModel().id}</div>
+          </div>
+      `;
       },
-     
+      getCss: () => `
+        .f6-tooltip-container {
+          position: absolute;
+          width: 150;
+          border: 1 solid #e2e2e2;
+          border-radius: 4;
+          font-size: 12;
+          color: #545454;
+          background-color: rgba(255, 255, 255, 0.9);
+          padding: 10 8;
+        }
+    
+        .f6-tooltip-container div{
+          height: 20;
+        }
+        
+        .tooltip-type {
+          padding: 0;
+          margin: 0;
+        }
+        .tooltip-id {
+          color: #531dab;
+        }
+      `,
+
       shouldBegin: (e) => {
         if (e.target.get('name') === 'name-shape') return true;
         return true;
@@ -410,17 +439,17 @@ Page({
       linkCenter: true,
       pixelRatio,
       fitView: true,
-      
+
       ...defaultConfig,
       ...config,
       plugins: [tooltip],
       extra: {
         createImage: this.canvas && this.canvas.createImage,
         requestAnimationFrame: this.canvas.requestAnimationFrame,
-        cancelAnimationFrame: this.canvas.cancelAnimationFrame
-      }
+        cancelAnimationFrame: this.canvas.cancelAnimationFrame,
+      },
     });
-    console.log( this.canvas.requestAnimationFrame , this.canvas.cancelAnimationFrame)
+    console.log(this.canvas.requestAnimationFrame, this.canvas.cancelAnimationFrame);
 
     this.graph.data(mockData);
     this.graph.render();

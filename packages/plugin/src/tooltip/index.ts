@@ -26,11 +26,36 @@ export default class Tooltip extends Base {
       // 指定菜单内容，function(e) {...}
       getContent: (e) => {
         return `
-          <h4 class='tooltip-type'>类型：${e.item.getType()}</h4>
-          <span class='tooltip-id'>ID：${e.item.getID()}</span>
+          <div class="f6-tooltip-container">
+            <div class='tooltip-type'>类型：${e.item?.getType()}</div>
+            <div class='tooltip-id'>ID：${e.item?.getID()}</div>
+          </div>
         `;
       },
-      getCss: () => {},
+      getCss: () => `
+        .f6-tooltip-container {
+          position: absolute;
+          width: 200;
+          border: 1 solid #e2e2e2;
+          border-radius: 4;
+          font-size: 12;
+          color: #545454;
+          background-color: rgba(255, 255, 255, 0.9);
+          padding: 10 8;
+        }
+    
+        .f6-tooltip-container div{
+          height: 20;
+        }
+        
+        .tooltip-type {
+          padding: 0;
+          margin: 0;
+        }
+        .tooltip-id {
+          color: #531dab;
+        }
+      `,
       shouldBegin: (e) => {
         return true;
       },
@@ -122,11 +147,9 @@ export default class Tooltip extends Base {
     if (e.item.getType && itemTypes.indexOf(e.item.getType()) === -1) return;
 
     const uiGroup = this.get('graph').get('uiGroup');
-    const className = this.get('className') || 'f6-component-tooltip';
-    const getContent = this.get('getContent');
 
-    const html = getHtml(className, getContent(e));
-    const css = appendCss(this.get('getCss')() || '');
+    const html = getHtml(this.get('getContent')?.(e));
+    const css = appendCss(this.get('getCss')?.());
     const tooltipUI = createUI(html, css, uiGroup);
     this.get('tooltip')?.remove();
     this.set('tooltip', tooltipUI);
