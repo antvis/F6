@@ -907,6 +907,16 @@ export const plugins = [
       },
     ],
   },
+  {
+    name: '边绑定',
+    nameEn: 'Bundling',
+    detailList: [
+      {
+        name: 'Bundling',
+        path: '../Plugins/Bundling/index',
+      },
+    ],
+  },
 ];
 
 // 控制搜索框下面的热搜词
