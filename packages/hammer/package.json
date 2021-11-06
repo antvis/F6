@@ -5,6 +5,8 @@
   "version": "0.0.1",
   "main": "lib/index.js",
   "unpkg": "dist/hammer.min.js",
+  "module": "es/index.js",
+  "browser": "dist/hammer.min.js",
   "license": "MIT",
   "keywords": ["touch", "gestures"],
   "author": {
