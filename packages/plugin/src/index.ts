@@ -7,6 +7,7 @@ import EdgeFilterLens from './edgeFilterLens';
 import Fisheye from './fisheye';
 import MiniMap from './minimap';
 import Bundling from './bundling';
+import Menu from './menu';
 
 const plugin = {
   TimeBar,
@@ -18,6 +19,7 @@ const plugin = {
   Fisheye,
   MiniMap,
   Bundling,
+  Menu,
 };
 export {
   TimeBar,
@@ -29,5 +31,6 @@ export {
   Fisheye,
   MiniMap,
   Bundling,
+  Menu,
 };
 export default plugin;
