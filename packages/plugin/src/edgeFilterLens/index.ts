@@ -81,14 +81,14 @@ export default class EdgeFilterLens extends Base {
     let lensDelegate = self.get('delegate');
     if (!lensDelegate || lensDelegate.destroyed) {
       const graph = this.get('graph');
-      const pos = graph.getPointByClient(e.x, e.y);
+      const pos = graph.getPointByClient(e.clientX, e.clientY);
       self.filter(pos);
       lensDelegate = self.get('delegate');
 
       // drag to move the lens
       lensDelegate.on('dragstart', (evt) => {});
       lensDelegate.on('drag', (e) => {
-        const pos = graph.getPointByClient(e.x, e.y);
+        const pos = graph.getPointByClient(e.clientX, e.clientY);
         self.filter(pos);
       });
     }
