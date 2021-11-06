@@ -1,4 +1,4 @@
-<view>
+<view style="background: url(https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*G23iRqkiibIAAAAAAAAAAABkARQnAQ) no-repeat center/100% auto;">
   <f6-canvas
     width="{{width}}"
     height="{{height}}"
@@ -7,8 +7,4 @@
     bind:onTouchEvent="handleTouch"
     bind:onInit="handleInit"
   ></f6-canvas>
-  <cover-image
-    style="position: absolute; top: 200px; left: 30px;"
-    src="https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*G23iRqkiibIAAAAAAAAAAABkARQnAQ"
-  />
 </view>

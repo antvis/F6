@@ -1,7 +1,6 @@
 import F6 from '@antv/f6-wx';
 import TreeGraph from '@antv/f6-wx/extends/graph/treeGraph';
 
-
 import data from './data';
 
 /**
@@ -32,7 +31,7 @@ Page({
     this.setData({
       width: windowWidth,
       height: windowHeight,
-      // pixelRatio,
+      pixelRatio,
     });
   },
 
@@ -44,7 +43,7 @@ Page({
    * @param {*} renderer 使用canvas 1.0还是canvas 2.0，mini | mini-native
    */
   handleInit(event) {
-    const {ctx, rect, canvas, renderer} = event.detail
+    const { ctx, rect, canvas, renderer } = event.detail;
     this.isCanvasInit = true;
     this.ctx = ctx;
     this.renderer = renderer;
@@ -89,8 +88,7 @@ Page({
           fill: '#e6fffb',
           stroke: '#e6fffb',
         },
-        img:
-          'https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*Q_FQT6nwEC8AAAAAAAAAAABkARQnAQ',
+        img: 'https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*Q_FQT6nwEC8AAAAAAAAAAABkARQnAQ',
       };
       return true;
     });
@@ -269,6 +267,7 @@ Page({
 
     // 创建F6实例
     this.graph = new F6.TreeGraph({
+      container: this.canvas,
       context: this.ctx,
       renderer: this.renderer,
       width,
@@ -330,8 +329,7 @@ Page({
                 fill: '#e6fffb',
                 stroke: '#e6fffb',
               },
-              img:
-                'https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*Q_FQT6nwEC8AAAAAAAAAAABkARQnAQ',
+              img: 'https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*Q_FQT6nwEC8AAAAAAAAAAABkARQnAQ',
             },
           });
           this.graph.updateChild(model, model.id);

@@ -1,6 +1,6 @@
 import F6 from '@antv/f6-wx';
 
-import data from './data';
+import getData from './data';
 import force from '@antv/f6-wx/extends/layout/forceLayout';
 
 /**
@@ -29,7 +29,7 @@ Page({
     this.setData({
       width: windowWidth,
       height: windowHeight,
-      // pixelRatio,
+      pixelRatio,
     });
   },
 
@@ -41,7 +41,7 @@ Page({
    * @param {*} renderer 使用canvas 1.0还是canvas 2.0，mini | mini-native
    */
   handleInit(event) {
-    const {ctx, rect, canvas, renderer} = event.detail
+    const { ctx, rect, canvas, renderer } = event.detail;
     this.isCanvasInit = true;
     this.ctx = ctx;
     this.renderer = renderer;
@@ -58,6 +58,7 @@ Page({
 
   updateChart() {
     const { width, height, pixelRatio } = this.data;
+    const data = getData();
 
     function refreshDragedNodePosition(e) {
       const model = e.item.get('model');
@@ -105,25 +106,29 @@ Page({
     const { nodes } = data;
     this.graph.data({
       nodes,
-      edges: data.edges.map(function(edge, i) {
+      edges: data.edges.map(function (edge, i) {
         edge.id = `edge${i}`;
         return Object.assign({}, edge);
       }),
     });
 
-    this.graph.on('node:dragstart', function(e) {
+    this.graph.on('node:dragstart', function (e) {
       this.graph.layout();
       refreshDragedNodePosition(e);
     });
-    this.graph.on('node:drag', function(e) {
+    this.graph.on('node:drag', function (e) {
       refreshDragedNodePosition(e);
     });
-    this.graph.on('node:dragend', function(e) {
+    this.graph.on('node:dragend', function (e) {
       e.item.get('model').fx = null;
       e.item.get('model').fy = null;
     });
 
     this.graph.render();
     this.graph.fitView();
+  },
+
+  onUnload() {
+    this.graph && this.graph.destroy();
   },
 });

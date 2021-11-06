@@ -1,5 +1,6 @@
 import F6 from '@antv/f6-wx';
 import TreeGraph from '@antv/f6-wx/extends/graph/treeGraph';
+import { Tooltip } from '@antv/f6-plugin/f6Plugin';
 
 import mockData from './data';
 
@@ -39,7 +40,7 @@ Page({
     this.setData({
       width: windowWidth,
       height: windowHeight,
-      // pixelRatio,
+      pixelRatio,
     });
   },
 
@@ -51,7 +52,7 @@ Page({
    * @param {*} renderer 使用canvas 1.0还是canvas 2.0，mini | mini-native
    */
   handleInit(event) {
-    const {ctx, rect, canvas, renderer} = event.detail
+    const { ctx, rect, canvas, renderer } = event.detail;
     this.isCanvasInit = true;
     this.ctx = ctx;
     this.renderer = renderer;
@@ -342,9 +343,12 @@ Page({
             let { controlPoints } = cfg; // 指定controlPoints
             if (!controlPoints || !controlPoints.length) {
               const { startPoint, endPoint, sourceNode, targetNode } = cfg;
-              const { x: startX, y: startY, coefficientX, coefficientY } = sourceNode
-                ? sourceNode.getModel()
-                : startPoint;
+              const {
+                x: startX,
+                y: startY,
+                coefficientX,
+                coefficientY,
+              } = sourceNode ? sourceNode.getModel() : startPoint;
               const { x: endX, y: endY } = targetNode ? targetNode.getModel() : endPoint;
               let curveStart = (endX - startX) * coefficientX;
               let curveEnd = (endY - startY) * coefficientY;
@@ -379,35 +383,42 @@ Page({
 
     const { onInit, config } = props;
     console.log(onInit);
-    const tooltip = new F6.Tooltip({
+    const tooltip = new Tooltip({
+      trigger: 'press',
       // TODO: _f2.default.Tooltip is not a constructor
       // offsetX and offsetY include the padding of the parent container
-      offsetX: 20,
-      offsetY: 30,
       // the types of items that allow the tooltip show up
       // 允许出现 tooltip 的 item 类型
       itemTypes: ['node'],
       // custom the tooltip's content
       // 自定义 tooltip 内容
       getContent: (e) => {
-        const outDiv = document.createElement('div');
         // outDiv.style.padding = '0px 0px 20px 0px';
-        const nodeName = e.item.getModel().name;
-        let formatedNodeName = '';
-        for (let i = 0; i < nodeName.length; i++) {
-          formatedNodeName = `${formatedNodeName}${nodeName[i]}`;
-          if (i !== 0 && i % 20 === 0) formatedNodeName = `${formatedNodeName}<br/>`;
+        return `
+        <div>Custom Content</div>
+        <div>Type: ${e.item.getType()}</div>
+        <div>Label: ${e.item.getModel().label || e.item.getModel().id}</div>
+      `;
+      },
+      getCss: () => {
+        return `
+        #tootip-content{
+          width: 150;
+          padding: 10;
         }
-        outDiv.innerHTML = `${formatedNodeName}`;
-        return outDiv;
+         #tootip-content div{
+           height: 20;
+         }
+        `;
       },
       shouldBegin: (e) => {
         if (e.target.get('name') === 'name-shape') return true;
-        return false;
+        return true;
       },
     });
     // 创建F6实例
     this.graph = new F6.TreeGraph({
+      container: this.canvas,
       context: this.ctx,
       renderer: this.renderer,
       width,

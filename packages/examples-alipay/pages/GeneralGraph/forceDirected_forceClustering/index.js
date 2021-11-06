@@ -1,6 +1,6 @@
 import F6 from '@antv/f6';
 import { wrapContext } from '../../../common/utils/context';
-import data from './data';
+import getData from './data';
 import force from '@antv/f6/dist/extends/layout/forceLayout';
 
 /**
@@ -57,6 +57,7 @@ Page({
 
   updateChart() {
     const { width, height, pixelRatio } = this.data;
+    const data = getData();
 
     // 创建F6实例
     this.graph = new F6.Graph({
@@ -101,5 +102,9 @@ Page({
 
     this.graph.render();
     this.graph.fitView();
+  },
+
+  onUnload() {
+    this.graph && this.graph.destroy();
   },
 });

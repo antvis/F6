@@ -1,6 +1,6 @@
 import F6 from '@antv/f6';
 import { wrapContext } from '../../../common/utils/context';
-import data from './data';
+import getData from './data';
 import force from '@antv/f6/dist/extends/layout/forceLayout';
 
 /**
@@ -57,6 +57,7 @@ Page({
 
   updateChart() {
     const { width, height, pixelRatio } = this.data;
+    const data = getData();
 
     // 创建F6实例
     this.graph = new F6.Graph({
@@ -142,7 +143,7 @@ Page({
     // map the value to node size
     let maxNodeValue = -9999;
     let minNodeValue = 9999;
-    nodes.forEach(function(n) {
+    nodes.forEach(function (n) {
       if (maxNodeValue < n.value) maxNodeValue = n.value;
       if (minNodeValue > n.value) minNodeValue = n.value;
     });
@@ -150,7 +151,7 @@ Page({
     const nodeSizeDataRange = [minNodeValue, maxNodeValue];
     scaleNodeProp(nodes, 'size', 'value', nodeSizeDataRange, nodeSizeRange);
 
-    nodes.forEach(function(node) {
+    nodes.forEach(function (node) {
       node.oriSize = node.size;
       node.oriLabel = node.label;
     });
@@ -162,25 +163,25 @@ Page({
     }
 
     // 监听
-    this.graph.on('node:dragstart', function(e) {
+    this.graph.on('node:dragstart', function (e) {
       this.graph.layout();
       refreshDragedNodePosition(e);
     });
-    this.graph.on('node:drag', function(e) {
+    this.graph.on('node:drag', function (e) {
       refreshDragedNodePosition(e);
     });
-    this.graph.on('node:dragend', function(e) {
+    this.graph.on('node:dragend', function (e) {
       e.item.get('model').fx = null;
       e.item.get('model').fy = null;
     });
-    this.graph.on('node:click', function(e) {
+    this.graph.on('node:click', function (e) {
       const node = e.item;
       const states = node.getStates();
       let clicked = false;
       const model = node.getModel();
       let size = 200;
       let labelText = `NODE: ${model.id}\n${model.description}`;
-      states.forEach(function(state) {
+      states.forEach(function (state) {
         if (state === 'click') {
           clicked = true;
           size = model.oriSize;
@@ -202,7 +203,7 @@ Page({
     function scaleNodeProp(elements, propName, refPropName, dataRange, outRange) {
       const outLength = outRange[1] - outRange[0];
       const dataLength = dataRange[1] - dataRange[0];
-      elements.forEach(function(n) {
+      elements.forEach(function (n) {
         if (propName.split('.')[0] === 'style') {
           if (n.style) {
             n.style[propName.split('.')[1]] =
@@ -219,5 +220,9 @@ Page({
         }
       });
     }
+  },
+
+  onUnload() {
+    this.graph && this.graph.destroy();
   },
 });

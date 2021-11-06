@@ -1,4 +1,4 @@
-export default {
+export default () => ({
   nodes: [
     {
       id: 'Myriel',
@@ -1504,4 +1504,4 @@ export default {
       value: 1,
     },
   ],
-};
+});

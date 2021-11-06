@@ -275,10 +275,6 @@ export const generalGraphContainer = [
         name: '参数动态变化',
         path: '/packageGeneralGraph/pages/GeneralGraph/fruchtermanConfigurationTranslate/index',
       },
-      {
-        name: '使用Web-worker',
-        path: '/packageGeneralGraph/pages/GeneralGraph/fruchtermanWebWorker/index',
-      },
     ],
   },
   {
@@ -658,21 +654,21 @@ export const basicElementContainer = [
 ];
 
 export const basicInteractiveContainer = [
-  {
-    name: '高亮',
-    thumb: '/images/icon/button.png',
-    nameEn: 'HighLight',
-    detailList: [
-      {
-        name: '内置的高亮节点',
-        path: '/packageInteractive/pages/Interactive/activateRelations/index',
-      },
-      {
-        name: '自定义高亮',
-        path: '/packageInteractive/pages/Interactive/highlightDark/index',
-      },
-    ],
-  },
+  // {
+  //   name: '高亮',
+  //   thumb: '/images/icon/button.png',
+  //   nameEn: 'HighLight',
+  //   detailList: [
+  //     {
+  //       name: '内置的高亮节点',
+  //       path: '/packageInteractive/pages/Interactive/activateRelations/index',
+  //     },
+  //     {
+  //       name: '自定义高亮',
+  //       path: '/packageInteractive/pages/Interactive/highlightDark/index',
+  //     },
+  //   ],
+  // },
   {
     name: '自定义树图交互',
     thumb: '/images/icon/interact.png',
@@ -886,10 +882,10 @@ export const classicCace = [
         name: '自定义流向图',
         path: '/packageSceneCase/pages/SceneCase/customFlow/index',
       },
-      {
-        name: '桑基图',
-        path: '/packageSceneCase/pages/SceneCase/sankey/index',
-      },
+      // {
+      //   name: '桑基图',
+      //   path: '/packageSceneCase/pages/SceneCase/sankey/index',
+      // },
       // {
       //   name: '思维导图',
       //   path: '/packageSceneCase/pages/SceneCase/mindMap/index',

@@ -1,4 +1,4 @@
-export default {
+export default () => ({
   nodes: [
     { id: 'node0', size: 50 },
     { id: 'node1', size: 30 },
@@ -36,4 +36,4 @@ export default {
     { source: 'node3', target: 'node15' },
     { source: 'node3', target: 'node16' },
   ],
-};
+});

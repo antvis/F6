@@ -24,8 +24,8 @@ Page({
     const { windowWidth, windowHeight, pixelRatio } = wx.getSystemInfoSync();
 
     this.setData({
-      width: windowWidth * pixelRatio,
-      height: windowHeight * pixelRatio,
+      width: windowWidth ,
+      height: windowHeight ,
       pixelRatio,
     });
   },

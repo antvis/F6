@@ -26,7 +26,7 @@ Page({
     this.setData({
       width: windowWidth,
       height: windowHeight,
-      // pixelRatio,
+      pixelRatio,
     });
   },
 
@@ -38,7 +38,7 @@ Page({
    * @param {*} renderer 使用canvas 1.0还是canvas 2.0，mini | mini-native
    */
   handleInit(event) {
-    const {ctx, rect, canvas, renderer} = event.detail
+    const { ctx, rect, canvas, renderer } = event.detail;
     this.isCanvasInit = true;
     this.ctx = ctx;
     this.renderer = renderer;
@@ -58,6 +58,7 @@ Page({
 
     // 创建F6实例
     this.graph = new F6.Graph({
+      container: this.canvas,
       context: this.ctx,
       renderer: this.renderer,
       width,
@@ -112,8 +113,7 @@ Page({
           x: 0,
           y: 0,
           // the image url for the icon, string type
-          img:
-            'https://gw.alipayobjects.com/zos/basement_prod/4f81893c-1806-4de4-aff3-9a6b266bc8a2.svg',
+          img: 'https://gw.alipayobjects.com/zos/basement_prod/4f81893c-1806-4de4-aff3-9a6b266bc8a2.svg',
           width: 16,
           height: 16,
           // adjust the offset along x-axis for the icon
@@ -126,8 +126,7 @@ Page({
           x: 0,
           y: 0,
           // the image url for the icon, string type
-          img:
-            'https://gw.alipayobjects.com/zos/basement_prod/300a2523-67e0-4cbf-9d4a-67c077b40395.svg',
+          img: 'https://gw.alipayobjects.com/zos/basement_prod/300a2523-67e0-4cbf-9d4a-67c077b40395.svg',
           width: 16,
           height: 16,
           // adjust hte offset along x-axis for the icon

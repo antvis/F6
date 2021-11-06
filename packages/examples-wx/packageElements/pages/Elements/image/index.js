@@ -26,7 +26,7 @@ Page({
     this.setData({
       width: windowWidth,
       height: windowHeight,
-      // pixelRatio,
+      pixelRatio,
     });
   },
 
@@ -58,6 +58,7 @@ Page({
 
     // 创建F6实例
     this.graph = new F6.Graph({
+      container: this.canvas,
       context: this.ctx,
       renderer: this.renderer,
       width,
