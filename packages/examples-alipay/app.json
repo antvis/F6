@@ -127,7 +127,7 @@
     "pages/SceneCase/metroLines/index",
     "pages/SceneCase/customFlow/index",
     "pages/SceneCase/sankey/index",
-    "pages/Plugins/DecisionTree/index",
+    "pages/Plugins/ToolTip/index",
     "pages/Plugins/DonutTransfer/index",
     "pages/Plugins/EdgeFilter/index",
     "pages/Plugins/Fisheye/index",

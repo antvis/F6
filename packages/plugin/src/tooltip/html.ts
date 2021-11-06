@@ -1,6 +1,6 @@
-export default function getHtml(className, content) {
+export default function getHtml(content = '') {
   return `
-  <div class=${className}> 
+  <root> 
     ${content}
-  </div>`;
+  </root>`;
 }

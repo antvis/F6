@@ -853,7 +853,7 @@ export const plugins = [
     detailList: [
       {
         name: 'Tooltip',
-        path: '../Plugins/DecisionTree/index',
+        path: '../Plugins/ToolTip/index',
       },
     ],
   },

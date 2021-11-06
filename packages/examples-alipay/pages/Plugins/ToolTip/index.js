@@ -393,11 +393,37 @@ Page({
       getContent: (e) => {
         // outDiv.style.padding = '0px 0px 20px 0px';
         return `
-          <div >Custom Content</div>
-          <div>Type: ${e.item.getType()}</div>
-          <div>Label: ${e.item.getModel().label || e.item.getModel().id}</div>
-        `;
+          <div class="f6-tooltip-container">
+            <div>Custom Content</div>
+            <div class='tooltip-type'>Type: ${e.item.getType()}</div>
+            <div class='tooltip-id'>Label: ${e.item.getModel().label || e.item.getModel().id}</div>
+          </div>
+      `;
       },
+      getCss: () => `
+        .f6-tooltip-container {
+          position: absolute;
+          width: 150;
+          border: 1 solid #e2e2e2;
+          border-radius: 4;
+          font-size: 12;
+          color: #545454;
+          background-color: rgba(255, 255, 255, 0.9);
+          padding: 10 8;
+        }
+    
+        .f6-tooltip-container div{
+          height: 20;
+        }
+        
+        .tooltip-type {
+          padding: 0;
+          margin: 0;
+        }
+        .tooltip-id {
+          color: #531dab;
+        }
+      `,
 
       shouldBegin: (e) => {
         if (e.target.get('name') === 'name-shape') return true;
