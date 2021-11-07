@@ -6,7 +6,7 @@ import { subscribe, unsubscribeAll } from './dispatcher';
 import { SLIDER_END, SLIDER_START } from './utils/const';
 import { SliderOption, SliderTick, TrendConfig } from './type/slider';
 import { TimeBarTickOption } from './type/tick';
-import { ControllerCfg } from './type/controlBar';
+import { ControllerCfg } from './type/control-bar';
 
 interface TimeBarConfig extends IPluginBaseConfig {
   // position size

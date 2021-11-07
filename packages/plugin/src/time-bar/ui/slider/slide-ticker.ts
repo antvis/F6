@@ -1,6 +1,6 @@
 import { createSegmentNode } from '@antv/f6-ui';
 import { SliderTick } from '../../type/slider';
-import { TimeBarData } from '../../type/timeBar';
+import { TimeBarData } from '../../type/time-bar';
 import { TICK_LABEL_STYLE, TICK_LINE_STYLE } from '../../utils/const';
 
 export default function createTiker(
