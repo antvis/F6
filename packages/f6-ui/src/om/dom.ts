@@ -1,4 +1,4 @@
-import { parseAttr } from '../parser/attrParser';
+import { parseAttr } from '../parser/attr-parser';
 
 class Node {
   type = '';

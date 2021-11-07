@@ -1,4 +1,4 @@
-import { parseAttr } from '../parser/attrParser';
+import { parseAttr } from '../parser/attr-parser';
 import { isSelectorMatchDom, selectorToArr, walkDomSelector } from '../utils/index';
 
 export class StyleNode {
