@@ -1,11 +1,11 @@
 import { createUI } from '@antv/f6-ui';
-import createControlbar from './controlBar';
+import createControlbar from './control-bar';
 import {
   createSimpleProgressBar,
   createTickProgressBar,
   createTrendProgressBar,
-} from './progressBar';
-import { SimpleTimeBarOption, TickTimeBarOption, TrendTimeBarOption } from '../type/timeBar';
+} from './progress-bar';
+import { SimpleTimeBarOption, TickTimeBarOption, TrendTimeBarOption } from '../type/time-bar';
 
 /**
  * 创建简单模式的时间轴
