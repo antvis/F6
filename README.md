@@ -1,50 +1,60 @@
-# F6: A Mobile Graph Visualization Framework in TypeScript.
+# F6：移动端图可视化引擎
 
 ![](https://gw.alipayobjects.com/mdn/rms_5c3b4a/afts/img/A*KV1pSIPeJPAAAAAAAAAAAAAAARQnAQ)
+[![travis-ci](https://img.shields.io/travis/antvis/f6.svg)](https://travis-ci.org/antvis/f6)
+[![codecov](https://codecov.io/gh/antvis/f6/branch/master/graph/badge.svg)](https://codecov.io/gh/antvis/f6) 
+![typescript](https://img.shields.io/badge/language-typescript-red.svg) 
+![MIT](https://img.shields.io/badge/license-MIT-000000.svg) 
+[![npm package](https://img.shields.io/npm/v/@antv/f6.svg)](https://www.npmjs.com/package/@antv/f6) 
+[![NPM downloads](http://img.shields.io/npm/dm/@antv/f6.svg)](https://npmjs.org/package/@antv/f6) 
+[![Percentage of issues still open](http://isitmaintained.com/badge/open/antvis/f6.svg)](http://isitmaintained.com/project/antvis/f6 'Percentage of issues still open')
 
-[![travis-ci](https://img.shields.io/travis/antvis/f6/master.svg)](https://travis-ci.org/antvis/f6) [![codecov](https://codecov.io/gh/antvis/f6/branch/master/graph/badge.svg)](https://codecov.io/gh/antvis/f6) ![typescript](https://img.shields.io/badge/language-typescript-red.svg) ![MIT](https://img.shields.io/badge/license-MIT-000000.svg) [![npm package](https://img.shields.io/npm/v/@antv/f6.svg)](https://www.npmjs.com/package/@antv/f6) [![NPM downloads](http://img.shields.io/npm/dm/@antv/f6.svg)](https://npmjs.org/package/@antv/f6) [![Percentage of issues still open](http://isitmaintained.com/badge/open/antvis/f6.svg)](http://isitmaintained.com/project/antvis/f6 'Percentage of issues still open')
+[English](./README.en-US.md) | 简体中文
 
-[中文 README](README-zh_CN.md)
+## 什么是 f6
 
-## What is F6
-
-[F6](https://github.com/antvis/f6) is a mobile graph visualization engine, which provides a set of basic mechanisms, including rendering, layout, analysis, interaction, animation, and other auxiliary tools. F6 aims to simplify the relationships, and help people to obtain the insight of relational data.
+[F6](https://github.com/antvis/f6) 是一个移动端图可视化引擎。它提供了图的绘制、布局、分析、交互、动画等图可视化的基础能力。旨在让关系变得透明，简单。让用户获得关系数据的 Insight。
 
 <img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*zTjwQaXokeQAAAAAAAAAAABkARQnAQ' width=550 alt='' />
 
-Developers are able to build graph visualization **analysis** applications or graph visualization **modeling** applications easily.
+基于 F6，用户可以快速搭建自己的 **图分析** 应用。 ![](https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*cDzXR4jIWr8AAAAAAAAAAABkARQnAQ)  
 
-![](https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*cDzXR4jIWr8AAAAAAAAAAABkARQnAQ)
 
-> Powerful Animation and Interactions
+<!-- > 强大的动画及交互
 
-<img src="https://user-images.githubusercontent.com/6113694/44995293-02858600-afd5-11e8-840c-349e4730d63d.gif" height=150 alt='' /><img src="https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*I9OdTbXJIi0AAAAAAAAAAABkARQnAQ" height=150 alt='' /><img src="https://user-images.githubusercontent.com/6113694/44995332-2ba61680-afd5-11e8-8cab-db0e9d08ceb7.gif" height=150 alt='' />
+<img src="https://user-images.githubusercontent.com/6113694/44995293-02858600-afd5-11e8-840c-349e4730d63d.gif" height=150 alt='' />
+<img src="https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*I9OdTbXJIi0AAAAAAAAAAABkARQnAQ" height=150 alt='' />
+<img src="https://user-images.githubusercontent.com/6113694/44995332-2ba61680-afd5-11e8-8cab-db0e9d08ceb7.gif" height=150 alt='' />
 
-<img src="https://gw.alipayobjects.com/zos/rmsportal/HQxYguinFOMIXrGQOABY.gif" height=150 alt='' /><img src="https://gw.alipayobjects.com/zos/rmsportal/nAugyFgrbrUWPmDIDiQm.gif" height=150 alt='' /><img src="https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*xoufSYcjK2AAAAAAAAAAAABkARQnAQ" height=150 alt='' />
+<img src="https://gw.alipayobjects.com/zos/rmsportal/HQxYguinFOMIXrGQOABY.gif" height=150>
+<img src="https://gw.alipayobjects.com/zos/rmsportal/nAugyFgrbrUWPmDIDiQm.gif" height=150 alt='' />
+<img src="https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*xoufSYcjK2AAAAAAAAAAAABkARQnAQ" height=150 alt='' /> -->
 
-> Powerful Layouts
+<!-- > 强大的布局 -->
 
-## Features
+## F6 的特性
 
-- Abundant Built-in Items: Nodes and edges with free configurations;
-- Steerable Interactions: More than 10 basic interaction behaviors ;
-- Powerful Layout: More than 10 layout algorithms;
-- Convenient Components: Outstanding ability and performance;
-- Friendly User Experience: Complete documents for different levels of user requirements. TypeScript supported.
+F6 作为一款专业的图可视化引擎，具有以下特性：
 
-F6 concentrates on the principle of 'good by default'. In addition, the custom mechanism of the item, interation behavior, and layout satisfies the customazation requirements.
+- 丰富的元素：内置丰富的节点与边元素，自由配置，支持自定义；
+- 可控的交互：内置 10+ 交互行为，支持自定义交互；
+- 强大的布局：内置了 10+ 常用的图布局，支持自定义布局；
+- 便捷的组件：优化内置组件功能及性能；
+- 友好的体验：根据用户需求分层梳理文档，支持 TypeScript 类型推断。
+
+除了默认好用、配置自由的内置功能，元素、交互、布局均具有高可扩展的自定义机制。
 
 <img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*Y0c6S7cxjVkAAAAAAAAAAABkARQnAQ' width=800 height=200 alt='' />
 
-> Abundant Built-in Items
+> 丰富的图元素
 
-## Installation
+## 安装
 
 ```bash
 $ npm install @antv/f6
 ```
 
-## Usage
+## 使用
 
 <img src="https://gw.alipayobjects.com/mdn/rms_5c3b4a/afts/img/A*g8A8T6urwOEAAAAAAAAAAAAAARQnAQ" width=500 alt='' />
 
@@ -74,7 +84,6 @@ Page({
     });
   },
   onCanvasInit(ctx, rect, canvas, renderer) {
-    console.log(ctx, rect, canvas, renderer);
     this.graph = new F6.TreeGraph({
       context: ctx,
       renderer,
@@ -122,12 +131,15 @@ Page({
   onTouch(e) {
     this.graph.emitEvent(e);
   },
+  onUnload() {
+    this.graph?.destroy()
+  }
 });
 ```
 
-For more information of the usage, please refer to [Getting Started](https://antv-f6.gitee.io/en/docs/manual/getting-started).
+更多关于 F6 使用的问题，请参考[快速上手](https://f6.antv.vision/zh/docs/manual/getting-started)。
 
-## Development
+## 开发
 
 ```bash
 $ npm install
@@ -150,24 +162,24 @@ npm test -- --watch ./tests/unit/algorithm/find-path-spec
 DEBUG_MODE=1 npm test -- --watch ./tests/unit/algorithm/find-path-spec
 ```
 
-## Documents
+## 文档
 
-- <a href='https://f6.antv.vision/en/docs/manual/tutorial/preface' target='_blank'>Tutorial</a>
-- <a href='https://f6.antv.vision/en/docs/manual/middle/overview' target='_blank'>Middle Guides</a>
-- <a href='https://f6.antv.vision/en/docs/manual/advanced/coordinate-system' target='_blank'>Further Reading</a>
-- <a href='https://f6.antv.vision/en/docs/api/Graph' target='_blank'>API Reference</a>
+- <a href='https://f6.antv.vision/zh/docs/manual/introduction' target='_blank'>入门教程</a>
+- <a href='https://f6.antv.vision/zh/docs/manual/middle/overview' target='_blank'>核心概念</a>
+- <a href='https://f6.antv.vision/zh/docs/manual/advanced/coordinate-system' target='_blank'>扩展阅读</a>
+- <a href='https://f6.antv.vision/zh/docs/api/Graph' target='_blank'>API</a>
 
-## F6 Communication Group
+## F6 图可视化交流群
 
-Welcome to join the **F6 Communication Group** (DingTalk groups). We also welcome the github issues.
+欢迎各界 F6 使用者、图可视化爱好者加入 **F6 超级服务群**（钉钉群，使用钉钉扫一扫加入）讨论与交流。
 
-<img src='https://gw.alipayobjects.com/mdn/rms_5c3b4a/afts/img/A*wEQkTKK9GgMAAAAAAAAAAAAAARQnAQ' width=550 alt='' />
+<img src='https://gw.alipayobjects.com/mdn/rms_5c3b4a/afts/img/A*J5qVTo11-1MAAAAAAAAAAAAAARQnAQ' width=550 alt='' />
 
-## How to Contribute
+## 如何贡献
 
-Please let us know what you are you going to help. Do check out [issues](https://github.com/antvis/f6/issues) for bug reports or suggestions first.
+请让我们知道您要解决或贡献什么，所以在贡献之前请先提交 [issues](https://github.com/antvis/f6/issues) 描述 bug 或建议。
 
-To become a contributor, please follow our [contributing guide](https://github.com/antvis/f6/blob/master/packages/f6/CONTRIBUTING.md).
+成为一个贡献者前请阅读 [代码贡献规范](https://github.com/antvis/f6/blob/master/packages/f6/CONTRIBUTING.zh-CN.md).
 
 ## License
 
