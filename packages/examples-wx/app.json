@@ -166,18 +166,18 @@
       ]
     },
     {
-      "root": "packagePlugin",
-      "name": "packagePlugin",
+      "root": "package-plugin",
+      "name": "package-plugin",
       "pages": [
-        "pages/Plugin/edgeFilter/index",
-        "pages/Plugin/fishEye/index",
-        "pages/Plugin/legend/index",
-        "pages/Plugin/timeBar/index",
-        "pages/Plugin/toolTip/index",
-        "pages/Plugin/zoomSlider/index",
-        "pages/Plugin/bundling/index",
-        "pages/Plugin/menu/index",
-        "pages/Plugin/snapLine/index"
+        "pages/plugin/edge-filter/index",
+        "pages/plugin/fish-eye/index",
+        "pages/plugin/legend/index",
+        "pages/plugin/time-bar/index",
+        "pages/plugin/tool-tip/index",
+        "pages/plugin/zoom-slider/index",
+        "pages/plugin/bundling/index",
+        "pages/plugin/menu/index",
+        "pages/plugin/snap-line/index"
       ]
     }
   ],

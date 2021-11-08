@@ -13,20 +13,20 @@
     "miniprogram": {
       "list": [
         {
-          "name": "packagePlugin/pages/Plugin/edgeFilter/index",
-          "pathName": "packagePlugin/pages/Plugin/edgeFilter/index",
+          "name": "package-plugin/pages/plugin/edge-filter/index",
+          "pathName": "package-plugin/pages/plugin/edge-filter/index",
           "query": "",
           "scene": null
         },
         {
-          "name": "packagePlugin/pages/Plugin/fishEye/index",
-          "pathName": "packagePlugin/pages/Plugin/fishEye/index",
+          "name": "package-plugin/pages/plugin/fish-eye/index",
+          "pathName": "package-plugin/pages/plugin/fish-eye/index",
           "query": "",
           "scene": null
         },
         {
-          "name": "packagePlugin/pages/Plugin/timeBar/index",
-          "pathName": "packagePlugin/pages/Plugin/timeBar/index",
+          "name": "package-plugin/pages/plugin/time-bar/index",
+          "pathName": "package-plugin/pages/plugin/time-bar/index",
           "query": "",
           "scene": null
         }
