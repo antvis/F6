@@ -4,7 +4,7 @@ import data from './data';
 import force from '@antv/f6-wx/extends/layout/forceLayout';
 
 /**
- * layoutTiming
+ * layout-timing
  */
 
 let currentPage = null;

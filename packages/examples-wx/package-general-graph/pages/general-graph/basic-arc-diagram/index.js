@@ -3,7 +3,7 @@ import F6 from '@antv/f6-wx';
 import data from './data';
 import mds from '@antv/f6-wx/extends/layout/mdsLayout';
 /**
- * basicArcDiagram
+ * basic-arc-diagram
  */
 Page({
   canvas: null,

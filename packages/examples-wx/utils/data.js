@@ -181,43 +181,43 @@ export const generalGraphContainer = [{
         nameEn: 'ForceAtalas',
         detailList: [{
                 name: 'FA布局及节点拖拽',
-                path: '/packageGeneralGraph/pages/GeneralGraph/basicForceDirected/index',
+                path: '/package-general-graph/pages/general-graph/basic-force-directed/index',
             },
             {
                 name: 'FA2布局',
-                path: '/packageGeneralGraph/pages/GeneralGraph/basicFA2/index',
+                path: '/package-general-graph/pages/general-graph/basic-FA2/index',
             },
             {
                 name: 'FA布局防止节点重叠',
-                path: '/packageGeneralGraph/pages/GeneralGraph/forceDirectedPreventOverlap/index',
+                path: '/package-general-graph/pages/general-graph/force-directed-prevent-overlap/index',
             },
             {
                 name: 'FA布局聚类',
-                path: '/packageGeneralGraph/pages/GeneralGraph/forceDirected_forceClustering/index',
+                path: '/package-general-graph/pages/general-graph/force-directed-force-clustering/index',
             },
             {
                 name: '定制不同节点的参数',
-                path: '/packageGeneralGraph/pages/GeneralGraph/forceDirectedFunctionalParams/index',
+                path: '/package-general-graph/pages/general-graph/force-directed-functional-params/index',
             },
             {
                 name: '固定被拖拽节点',
-                path: '/packageGeneralGraph/pages/GeneralGraph/basicForceDirectedDragFix/index',
+                path: '/package-general-graph/pages/general-graph/basic-force-directed-drag-fix/index',
             },
             {
                 name: 'FA布局参数动态变化',
-                path: '/packageGeneralGraph/pages/GeneralGraph/forceDirectedConfigurationTranslate/index',
+                path: '/package-general-graph/pages/general-graph/force-directed-configuration-translate/index',
             },
             {
                 name: 'FA气泡图',
-                path: '/packageGeneralGraph/pages/GeneralGraph/forceBubbles/index',
+                path: '/package-general-graph/pages/general-graph/force-bubbles/index',
             },
             {
                 name: '约束在范围内布局',
-                path: '/packageGeneralGraph/pages/GeneralGraph/forceConstrainedInRect/index',
+                path: '/package-general-graph/pages/general-graph/force-constrained-in-rect/index',
             },
             {
                 name: 'Combo FA布局',
-                path: '/packageGeneralGraph/pages/GeneralGraph/basicComboForce/index',
+                path: '/package-general-graph/pages/general-graph/basic-combo-force/index',
             },
         ],
     },
@@ -227,23 +227,23 @@ export const generalGraphContainer = [{
         nameEn: 'Dagre',
         detailList: [{
                 name: '流程图',
-                path: '/packageGeneralGraph/pages/GeneralGraph/basicDagre/index',
+                path: '/package-general-graph/pages/general-graph/basic-dagre/index',
             },
             {
                 name: '带有Combo的流程图',
-                path: '/packageGeneralGraph/pages/GeneralGraph/dagreCombo/index',
+                path: '/package-general-graph/pages/general-graph/dagre-combo/index',
             },
             {
                 name: '自左向右的流程图',
-                path: '/packageGeneralGraph/pages/GeneralGraph/Dagre/index',
+                path: '/package-general-graph/pages/general-graph/dagre/index',
             },
             {
                 name: '自左向右的流程图对齐',
-                path: '/packageGeneralGraph/pages/GeneralGraph/DagreUL/index',
+                path: '/package-general-graph/pages/general-graph/dagre-UL/index',
             },
             {
                 name: '布局参数动态变化',
-                path: '/packageGeneralGraph/pages/GeneralGraph/dagreConfigurationTranslate/index',
+                path: '/package-general-graph/pages/general-graph/dagre-configuration-translate/index',
             },
         ],
     },
@@ -253,15 +253,15 @@ export const generalGraphContainer = [{
         nameEn: 'Fruchterman',
         detailList: [{
                 name: '基本Fruchterman',
-                path: '/packageGeneralGraph/pages/GeneralGraph/fruchterman/index',
+                path: '/package-general-graph/pages/general-graph/fruchterman/index',
             },
             {
                 name: 'Fruchterman聚类',
-                path: '/packageGeneralGraph/pages/GeneralGraph/fruchtermanClustering/index',
+                path: '/package-general-graph/pages/general-graph/fruchterman-clustering/index',
             },
             {
                 name: '参数动态变化',
-                path: '/packageGeneralGraph/pages/GeneralGraph/fruchtermanConfigurationTranslate/index',
+                path: '/package-general-graph/pages/general-graph/fruchterman-configuration-translate/index',
             },
         ],
     },
@@ -271,27 +271,27 @@ export const generalGraphContainer = [{
         nameEn: 'Radial',
         detailList: [{
                 name: '基本辐射布局',
-                path: '/packageGeneralGraph/pages/GeneralGraph/basicRadial/index',
+                path: '/package-general-graph/pages/general-graph/basic-radial/index',
             },
             {
                 name: '防止节点重叠的严格辐射布局',
-                path: '/packageGeneralGraph/pages/GeneralGraph/preventOverlapRadial/index',
+                path: '/package-general-graph/pages/general-graph/prevent-overlap-radial/index',
             },
             {
                 name: '防止节点重叠的非严格辐射布局',
-                path: '/packageGeneralGraph/pages/GeneralGraph/preventOverlapUnstrictRadial/index',
+                path: '/package-general-graph/pages/general-graph/prevent-overlap-unstrict-radial/index',
             },
             {
                 name: '交互扩展节点的辐射布局',
-                path: '/packageGeneralGraph/pages/GeneralGraph/interactRadial/index',
+                path: '/package-general-graph/pages/general-graph/interact-radial/index',
             },
             {
                 name: '布局参数动态变化',
-                path: '/packageGeneralGraph/pages/GeneralGraph/radialConfigurationTranslate/index',
+                path: '/package-general-graph/pages/general-graph/radial-configuration-translate/index',
             },
             {
                 name: '同层节点按照指定字段聚类',
-                path: '/packageGeneralGraph/pages/GeneralGraph/sortRadial/index',
+                path: '/package-general-graph/pages/general-graph/sort-radial/index',
             },
         ],
     },
@@ -301,23 +301,23 @@ export const generalGraphContainer = [{
         nameEn: 'Circle',
         detailList: [{
                 name: '基本环形布局',
-                path: '/packageGeneralGraph/pages/GeneralGraph/basicCircular/index',
+                path: '/package-general-graph/pages/general-graph/basic-circular/index',
             },
             {
                 name: '按节点度数排序',
-                path: '/packageGeneralGraph/pages/GeneralGraph/degreeCircular/index',
+                path: '/package-general-graph/pages/general-graph/degree-circular/index',
             },
             {
                 name: '螺旋线布局',
-                path: '/packageGeneralGraph/pages/GeneralGraph/spiralCircular/index',
+                path: '/package-general-graph/pages/general-graph/spiral-circular/index',
             },
             {
                 name: '分割环形布局',
-                path: '/packageGeneralGraph/pages/GeneralGraph/divisionCircular/index',
+                path: '/package-general-graph/pages/general-graph/division-circular/index',
             },
             {
                 name: '参数动态变化',
-                path: '/packageGeneralGraph/pages/GeneralGraph/circularConfigurationTranslate/index',
+                path: '/package-general-graph/pages/general-graph/circular-configuration-translate/index',
             },
         ],
     },
@@ -327,11 +327,11 @@ export const generalGraphContainer = [{
         nameEn: 'Grid',
         detailList: [{
                 name: '基本网格布局',
-                path: '/packageGeneralGraph/pages/GeneralGraph/basicGrid/index',
+                path: '/package-general-graph/pages/general-graph/basic-grid/index',
             },
             {
                 name: '指定排序方式的网格布局',
-                path: '/packageGeneralGraph/pages/GeneralGraph/clusterGrid/index',
+                path: '/package-general-graph/pages/general-graph/cluster-grid/index',
             },
         ],
     },
@@ -341,7 +341,7 @@ export const generalGraphContainer = [{
         nameEn: 'Concentric',
         detailList: [{
             name: '基本同心圆布局',
-            path: '/packageGeneralGraph/pages/GeneralGraph/basicConcentric/index',
+            path: '/package-general-graph/pages/general-graph/basic-concentric/index',
         }, ],
     },
     {
@@ -350,7 +350,7 @@ export const generalGraphContainer = [{
         nameEn: 'MDS',
         detailList: [{
             name: '基本降维布局图',
-            path: '/packageGeneralGraph/pages/GeneralGraph/basicMDS/index',
+            path: '/package-general-graph/pages/general-graph/basic-MDS/index',
         }, ],
     },
     {
@@ -359,11 +359,11 @@ export const generalGraphContainer = [{
         nameEn: 'Arc Diagram ',
         detailList: [{
                 name: '基本弧线图',
-                path: '/packageGeneralGraph/pages/GeneralGraph/basicArcDiagram/index',
+                path: '/package-general-graph/pages/general-graph/basic-arc-diagram/index',
             },
             {
                 name: '环形弧线图',
-                path: '/packageGeneralGraph/pages/GeneralGraph/circularArcDiagram/index',
+                path: '/package-general-graph/pages/general-graph/circular-arc-diagram/index',
             },
         ],
     },
@@ -373,27 +373,27 @@ export const generalGraphContainer = [{
         nameEn: 'Layout',
         detailList: [{
                 name: '布局切换',
-                path: '/packageGeneralGraph/pages/GeneralGraph/layoutTranslate/index',
+                path: '/package-general-graph/pages/general-graph/layoutTranslate/index',
             },
             {
                 name: '子图布局',
-                path: '/packageGeneralGraph/pages/GeneralGraph/subgraphLayout/index',
+                path: '/package-general-graph/pages/general-graph/subgraph-layout/index',
             },
             {
                 name: '流水线子图布局',
-                path: '/packageGeneralGraph/pages/GeneralGraph/sublayoutPipes/index',
+                path: '/package-general-graph/pages/general-graph/sublayout-pipes/index',
             },
             {
                 name: '数据动态切换',
-                path: '/packageGeneralGraph/pages/GeneralGraph/dataChange/index',
+                path: '/package-general-graph/pages/general-graph/data-change/index',
             },
             {
                 name: '自定义二分图布局',
-                path: '/packageGeneralGraph/pages/GeneralGraph/customBiGraph/index',
+                path: '/package-general-graph/pages/general-graph/custom-bi-graph/index',
             },
             {
                 name: '布局时机监听',
-                path: '/packageGeneralGraph/pages/GeneralGraph/layoutTiming/index',
+                path: '/package-general-graph/pages/general-graph/layout-timing/index',
             },
         ],
     },

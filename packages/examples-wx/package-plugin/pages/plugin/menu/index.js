@@ -3,7 +3,7 @@ import data from './data';
 import { Menu } from '@antv/f6-plugin/f6Plugin';
 
 /**
- * basicArcDiagram
+ * basic-arc-diagram
  */
 Page({
   canvas: null,

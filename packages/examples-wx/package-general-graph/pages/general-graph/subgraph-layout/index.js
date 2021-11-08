@@ -4,7 +4,7 @@ import data from './data';
 import Force from '@antv/f6-wx/extends/layout/forceLayout';
 
 /**
- * subgraphLayout
+ * subgraph-layout
  */
 
 Page({

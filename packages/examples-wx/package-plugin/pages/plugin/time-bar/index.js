@@ -2,7 +2,7 @@ import F6 from '@antv/f6-wx';
 import { TimeBar } from '@antv/f6-plugin/f6Plugin';
 
 /**
- * basicArcDiagram
+ * basic-arc-diagram
  */
 Page({
   canvas: null,
