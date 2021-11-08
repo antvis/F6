@@ -1,9 +1,9 @@
 import F6 from '@antv/f6';
 import { wrapContext } from '../../../common/utils/context';
 import { data, legendData } from './data';
-import { Legend } from '@antv/f6-plugin'
+import { Legend } from '@antv/f6-plugin';
 
-import radialLayout from '@antv/f6/dist/extends/layout/radialLayout'
+import radialLayout from '@antv/f6/dist/extends/layout/radialLayout';
 
 F6.registerLayout('radial', radialLayout);
 /**
@@ -67,7 +67,7 @@ Page({
       align: 'center',
       layout: 'horizontal', // vertical
       position: 'top-left',
-      padding:10,
+      padding: 10,
       margin: 0,
       containerStyle: {
         fill: '#ccc',
@@ -119,7 +119,7 @@ Page({
 
     this.graph.data(data);
     this.graph.render();
-    this.graph.get('canvas').set('localRefresh', false)
+    this.graph.get('canvas').set('localRefresh', false);
 
     this.graph.on('node:tap', (evt) => {
       const { item } = evt;

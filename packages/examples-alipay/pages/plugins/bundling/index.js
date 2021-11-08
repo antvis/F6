@@ -25,8 +25,7 @@ Page({
 
   onLoad() {
     // 同步获取window的宽高
-    const { windowWidth, windowHeight, pixelRatio, titleBarHeight, statusBarHeight } =
-      my.getSystemInfoSync();
+    const { windowWidth, windowHeight, pixelRatio } = my.getSystemInfoSync();
 
     this.setData({
       width: windowWidth,
