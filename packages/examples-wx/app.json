@@ -2,14 +2,15 @@
   "pages": ["pages/index/index"],
   "subpackages": [
     {
-      "root": "packageAnimation",
+      "root": "package-animation",
       "pages": [
-        "pages/Animation/changePosition_default/index",
-        "pages/Animation/customAnimate_position/index",
-        "pages/Animation/edge_edge/index",
-        "pages/Animation/edge_lineGrowth/index",
-        "pages/Animation/pointInLine/index",
-        "pages/Animation/stateChange_hover/index"
+        "pages/animation/change-position-default/index",
+        "pages/animation/custom-animate-position/index",
+        "pages/animation/edge-edge/index",
+        "pages/animation/edge-line-growth/index",
+        "pages/animation/node-node/index",
+        "pages/animation/point-in-line/index",
+        "pages/animation/state-change-hover/index"
       ]
     },
     {

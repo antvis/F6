@@ -795,7 +795,7 @@ export const aminationContainer = [
     detailList: [
       {
         name: '节点动画',
-        path: '/packageAnimation/pages/Animation/node_node/index',
+        path: '/package-animation/pages/animation/node-node/index',
       },
     ],
   },
@@ -806,15 +806,15 @@ export const aminationContainer = [
     detailList: [
       {
         name: '圆点沿边运动',
-        path: '/packageAnimation/pages/Animation/pointInLine/index',
+        path: '/package-animation/pages/animation/point-in-line/index',
       },
       {
         name: '虚线运动',
-        path: '/packageAnimation/pages/Animation/edge_edge/index',
+        path: '/package-animation/pages/animation/edge-edge/index',
       },
       {
         name: '无到有的边',
-        path: '/packageAnimation/pages/Animation/edge_lineGrowth/index',
+        path: '/package-animation/pages/animation/edge-line-growth/index',
       },
     ],
   },
@@ -825,7 +825,7 @@ export const aminationContainer = [
     detailList: [
       {
         name: '状态与动画',
-        path: '/packageAnimation/pages/Animation/stateChange_hover/index',
+        path: '/package-animation/pages/animation/state-change-hover/index',
       },
     ],
   },
@@ -836,7 +836,7 @@ export const aminationContainer = [
     detailList: [
       {
         name: '节点移动动画',
-        path: '/packageAnimation/pages/Animation/changePosition_default/index',
+        path: '/package-animation/pages/animation/change-position-default/index',
       },
     ],
   },
@@ -847,7 +847,7 @@ export const aminationContainer = [
     detailList: [
       {
         name: '自定义动画',
-        path: '/packageAnimation/pages/Animation/customAnimate_position/index',
+        path: '/package-animation/pages/animation/custom-animate-position/index',
       },
     ],
   },

@@ -3,7 +3,7 @@ import F6 from '@antv/f6-wx';
 import data from './data';
 
 /**
- * pointInLine
+ * point-in-line
  */
 
 F6.registerEdge(

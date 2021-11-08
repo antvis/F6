@@ -3,7 +3,7 @@ import F6 from '@antv/f6-wx';
 import { nodes, edges } from './data';
 
 /**
- * stateChange_hover
+ * state-change-hover
  */
 
 F6.registerNode(
