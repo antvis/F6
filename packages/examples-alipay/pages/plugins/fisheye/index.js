@@ -22,8 +22,7 @@ Page({
 
   onLoad() {
     // 同步获取window的宽高
-    const { windowWidth, windowHeight, pixelRatio, titleBarHeight, statusBarHeight } =
-      my.getSystemInfoSync();
+    const { windowWidth, windowHeight, pixelRatio } = my.getSystemInfoSync();
 
     this.setData({
       width: windowWidth,
@@ -57,7 +56,7 @@ Page({
   updateChart() {
     const { width, height, pixelRatio } = this.data;
 
-    let fisheye = new Fisheye({
+    const fisheye = new Fisheye({
       r: 200,
       trigger: 'drag',
     });

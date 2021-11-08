@@ -12,7 +12,7 @@ App({
         requestData: [{}],
         headers: {},
       },
-      function (result) {
+      function(result) {
         console.log(result);
       },
     );

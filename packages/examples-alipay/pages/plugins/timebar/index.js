@@ -21,8 +21,7 @@ Page({
 
   onLoad() {
     // 同步获取window的宽高
-    const { windowWidth, windowHeight, pixelRatio, titleBarHeight, statusBarHeight } =
-      my.getSystemInfoSync();
+    const { windowWidth, windowHeight, pixelRatio } = my.getSystemInfoSync();
 
     this.setData({
       width: windowWidth,
@@ -82,7 +81,6 @@ Page({
         value: Math.round(Math.random() * 300),
       });
     }
-    let count = 0;
     const timebar = new TimeBar({
       x: 0,
       y: 0,
@@ -98,7 +96,7 @@ Page({
       context: this.ctx,
       width,
       height,
-      pixelRatio: 2,
+      pixelRatio,
       fitView: true,
       localRefresh: false,
       modes: {
