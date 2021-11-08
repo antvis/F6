@@ -22,8 +22,6 @@ Page({
   },
 
   onLoad() {
-    // 注册布局
-    F6.registerLayout('fruchterman', fruchtermanLayout);
     // 同步获取window的宽高
     const { windowWidth, windowHeight, pixelRatio } = my.getSystemInfoSync();
 
@@ -61,7 +59,7 @@ Page({
 
     const { nodes } = data;
 
-    nodes.forEach(function (node, i) {
+    nodes.forEach(function(node, i) {
       if (i <= 16 && i !== 12) {
         if (!node.style) {
           node.style = {
@@ -113,14 +111,14 @@ Page({
       nodes[0].fx = nodes[0].x;
       nodes[0].fy = nodes[0].y;
       // add the nodes which should be re-layout
-      nodes.forEach(function (node, i) {
+      nodes.forEach(function(node, i) {
         if (i <= 16 && i !== 12) {
           newNodes.push(node);
           newNodeMap.set(node.id, i);
         }
       });
       // add related edges
-      edges.forEach(function (edge) {
+      edges.forEach(function(edge) {
         const sourceId = edge.source;
         const targetId = edge.target;
         if (newNodeMap.get(sourceId) !== undefined && newNodeMap.get(targetId) !== undefined) {

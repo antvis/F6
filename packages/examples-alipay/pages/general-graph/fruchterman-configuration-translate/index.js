@@ -98,7 +98,7 @@ Page({
     layoutConfigTranslation();
 
     function layoutConfigTranslation() {
-      setTimeout(function () {
+      setTimeout(function() {
         me.setData({
           description: 'Fructherman layout, gravity = 5',
         });
@@ -107,7 +107,7 @@ Page({
         });
       }, 1000);
 
-      setTimeout(function () {
+      setTimeout(function() {
         me.setData({
           description: 'Fructherman layout, gravity = 10, layout by cluster',
         });
@@ -117,7 +117,7 @@ Page({
         });
       }, 2500);
 
-      setTimeout(function () {
+      setTimeout(function() {
         me.setData({
           description: 'Fructherman layout, gravity = 20, layout by cluster',
         });
@@ -126,7 +126,7 @@ Page({
         });
       }, 4000);
 
-      setTimeout(function () {
+      setTimeout(function() {
         me.setData({
           description: 'Fructherman layout, gravity = 50, layout by cluster',
         });
@@ -135,7 +135,7 @@ Page({
         });
       }, 5500);
 
-      setTimeout(function () {
+      setTimeout(function() {
         me.setData({
           description: 'Fructherman layout, gravity = 80, layout by cluster',
         });
