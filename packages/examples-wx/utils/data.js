@@ -919,7 +919,7 @@ export const plugins = [
     detailList: [
       {
         name: 'Tooltip',
-        path: '/packagePlugin/pages/Plugin/toolTip/index',
+        path: '/package-plugin/pages/plugin/tool-tip/index',
       },
     ],
   },
@@ -929,7 +929,7 @@ export const plugins = [
     detailList: [
       {
         name: 'Legend',
-        path: '/packagePlugin/pages/Plugin/legend/index',
+        path: '/package-plugin/pages/plugin/legend/index',
       },
     ],
   },
@@ -939,7 +939,7 @@ export const plugins = [
     detailList: [
       {
         name: 'EdgeFilter',
-        path: '/packagePlugin/pages/Plugin/edgeFilter/index',
+        path: '/package-plugin/pages/plugin/edge-filter/index',
       },
     ],
   },
@@ -949,7 +949,7 @@ export const plugins = [
     detailList: [
       {
         name: 'Fisheye',
-        path: '/packagePlugin/pages/Plugin/fishEye/index',
+        path: '/package-plugin/pages/plugin/fish-eye/index',
       },
     ],
   },
@@ -959,7 +959,7 @@ export const plugins = [
     detailList: [
       {
         name: 'Timebar',
-        path: '/packagePlugin/pages/Plugin/timeBar/index',
+        path: '/package-plugin/pages/plugin/time-bar/index',
       },
     ],
   },
@@ -969,7 +969,7 @@ export const plugins = [
     detailList: [
       {
         name: 'ZoomSlider',
-        path: '/packagePlugin/pages/Plugin/zoomSlider/index',
+        path: '/package-plugin/pages/plugin/zoom-slider/index',
       },
     ],
   },
@@ -979,7 +979,7 @@ export const plugins = [
     detailList: [
       {
         name: 'Bundling',
-        path: '/packagePlugin/pages/Plugin/bundling/index',
+        path: '/package-plugin/pages/plugin/bundling/index',
       },
     ],
   },
@@ -989,17 +989,17 @@ export const plugins = [
     detailList: [
       {
         name: 'Menu',
-        path: '/packagePlugin/pages/Plugin/menu/index',
+        path: '/package-plugin/pages/plugin/menu/index',
       },
     ],
   },
   {
     name: '对齐线',
-    nameEn: 'snapLine',
+    nameEn: 'SnapLine',
     detailList: [
       {
-        name: 'snapLine',
-        path: '/packagePlugin/pages/Plugin/snapLine/index',
+        name: 'SnapLine',
+        path: '/package-plugin/pages/plugin/snap-line/index',
       },
     ],
   },
