@@ -1,4 +1,4 @@
-// TreeGraph/fileSystem/index.js
+// TreeGraph/file-system/index.js
 import F6 from '@antv/f6-wx';
 import TreeGraph from '@antv/f6-wx/extends/graph/treeGraph';
 
