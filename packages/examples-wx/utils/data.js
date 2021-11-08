@@ -428,39 +428,39 @@ export const basicElementContainer = [
     detailList: [
       {
         name: '圆形',
-        path: '/packageElements/pages/Elements/circle/index',
+        path: '/package-elements/pages/elements/circle/index',
       },
       {
         name: '甜甜圈',
-        path: '/packageElements/pages/Elements/donut/index',
+        path: '/package-elements/pages/elements/donut/index',
       },
       {
         name: '椭圆',
-        path: '/packageElements/pages/Elements/ellipse/index',
+        path: '/package-elements/pages/elements/ellipse/index',
       },
       {
         name: '矩形',
-        path: '/packageElements/pages/Elements/rect/index',
+        path: '/package-elements/pages/elements/rect/index',
       },
       {
         name: '模态矩形',
-        path: '/packageElements/pages/Elements/modeRect/index',
+        path: '/package-elements/pages/elements/mode-rect/index',
       },
       {
         name: '模态菱形',
-        path: '/packageElements/pages/Elements/diamond/index',
+        path: '/package-elements/pages/elements/diamond/index',
       },
       {
         name: '五角星',
-        path: '/packageElements/pages/Elements/star/index',
+        path: '/package-elements/pages/elements/star/index',
       },
       {
         name: '三角形',
-        path: '/packageElements/pages/Elements/triangle/index',
+        path: '/package-elements/pages/elements/triangle/index',
       },
       {
         name: '图片',
-        path: '/packageElements/pages/Elements/image/index',
+        path: '/package-elements/pages/elements/image/index',
       },
     ],
   },
@@ -471,31 +471,31 @@ export const basicElementContainer = [
     detailList: [
       {
         name: '折线1',
-        path: '/packageElements/pages/Elements/polyline1/index',
+        path: '/package-elements/pages/elements/polyline1/index',
       },
       {
         name: '折线2',
-        path: '/packageElements/pages/Elements/polyline2/index',
+        path: '/package-elements/pages/elements/polyline2/index',
       },
       {
         name: '折线3',
-        path: '/packageElements/pages/Elements/polyline3/index',
+        path: '/package-elements/pages/elements/polyline3/index',
       },
       {
         name: '三次贝塞尔曲线-垂直',
-        path: '/packageElements/pages/Elements/cubic1/index',
+        path: '/package-elements/pages/elements/cubic1/index',
       },
       {
         name: '三次贝塞尔曲线-水平',
-        path: '/packageElements/pages/Elements/cubic2/index',
+        path: '/package-elements/pages/elements/cubic2/index',
       },
       {
         name: '弧线',
-        path: '/packageElements/pages/Elements/arc/index',
+        path: '/package-elements/pages/elements/arc/index',
       },
       {
         name: '自环边',
-        path: '/packageElements/pages/Elements/loop/index',
+        path: '/package-elements/pages/elements/loop/index',
       },
     ],
   },
@@ -506,11 +506,11 @@ export const basicElementContainer = [
     detailList: [
       {
         name: '圆形',
-        path: '/packageElements/pages/Elements/circleWithCombo/index',
+        path: '/package-elements/pages/elements/circle-with-combo/index',
       },
       {
         name: '矩形',
-        path: '/packageElements/pages/Elements/rectWithCombo/index',
+        path: '/package-elements/pages/elements/rect-with-combo/index',
       },
     ],
   },
@@ -521,11 +521,11 @@ export const basicElementContainer = [
     detailList: [
       {
         name: '默认内置箭头',
-        path: '/packageElements/pages/Elements/built_in_arrows/index',
+        path: '/package-elements/pages/elements/built-in-arrows/index',
       },
       {
         name: '自定义箭头',
-        path: '/packageElements/pages/Elements/customArrows/index',
+        path: '/package-elements/pages/elements/custom-arrows/index',
       },
     ],
   },
@@ -536,39 +536,39 @@ export const basicElementContainer = [
     detailList: [
       {
         name: '卡片',
-        path: '/packageElements/pages/Elements/card/index',
+        path: '/package-elements/pages/elements/card/index',
       },
       {
         name: '卡片2',
-        path: '/packageElements/pages/Elements/cardNode/index',
+        path: '/package-elements/pages/elements/card-node/index',
       },
       {
         name: '面积图节点',
-        path: '/packageElements/pages/Elements/areaChart/index',
+        path: '/package-elements/pages/elements/area-chart/index',
       },
       {
         name: '堆叠图节点',
-        path: '/packageElements/pages/Elements/stackChart/index',
+        path: '/package-elements/pages/elements/stack-chart/index',
       },
       {
         name: '折线图节点',
-        path: '/packageElements/pages/Elements/lineChart/index',
+        path: '/package-elements/pages/elements/line-chart/index',
       },
       {
         name: '南丁格尔图节点',
-        path: '/packageElements/pages/Elements/barChart/index',
+        path: '/package-elements/pages/elements/bar-chart/index',
       },
       {
         name: '点线图节点',
-        path: '/packageElements/pages/Elements/pointChart/index',
+        path: '/package-elements/pages/elements/point-chart/index',
       },
       {
         name: '饼图节点',
-        path: '/packageElements/pages/Elements/pieChart/index',
+        path: '/package-elements/pages/elements/pie-chart/index',
       },
       {
         name: '列表',
-        path: '/packageElements/pages/Elements/list/index',
+        path: '/package-elements/pages/elements/list/index',
       },
     ],
   },
@@ -579,19 +579,19 @@ export const basicElementContainer = [
     detailList: [
       {
         name: '添加额外图形',
-        path: '/packageElements/pages/Elements/extraShape/index',
+        path: '/package-elements/pages/elements/extra-shape/index',
       },
       {
         name: '自定义折线',
-        path: '/packageElements/pages/Elements/customPolyline/index',
+        path: '/package-elements/pages/elements/custom-polyline/index',
       },
       {
         name: '自定义折线2',
-        path: '/packageElements/pages/Elements/customPolyline2/index',
+        path: '/package-elements/pages/elements/custom-polyline2/index',
       },
       {
         name: '多标签边',
-        path: '/packageElements/pages/Elements/edgeMulLabel/index',
+        path: '/package-elements/pages/elements/edge-mul-label/index',
       },
     ],
   },
@@ -602,11 +602,11 @@ export const basicElementContainer = [
     detailList: [
       {
         name: '带有Marker的圆',
-        path: '/packageElements/pages/Elements/cCircle/index',
+        path: '/package-elements/pages/elements/c-circle/index',
       },
       {
         name: '带有Marker的矩形',
-        path: '/packageElements/pages/Elements/cRect/index',
+        path: '/package-elements/pages/elements/c-rect/index',
       },
     ],
   },
@@ -617,11 +617,11 @@ export const basicElementContainer = [
     detailList: [
       {
         name: '文本超长',
-        path: '/packageElements/pages/Elements/labelLen/index',
+        path: '/package-elements/pages/elements/label-len/index',
       },
       {
         name: '使用换行符处理',
-        path: '/packageElements/pages/Elements/labelLen1/index',
+        path: '/package-elements/pages/elements/label-len1/index',
       },
     ],
   },
@@ -632,11 +632,11 @@ export const basicElementContainer = [
     detailList: [
       {
         name: '节点文本背景',
-        path: '/packageElements/pages/Elements/nodeBg/index',
+        path: '/package-elements/pages/elements/node-bg/index',
       },
       {
         name: '边上文本背景',
-        path: '/packageElements/pages/Elements/edgeBg/index',
+        path: '/package-elements/pages/elements/edge-bg/index',
       },
     ],
   },
@@ -647,7 +647,7 @@ export const basicElementContainer = [
     detailList: [
       {
         name: '两节点间存在多条边',
-        path: '/packageElements/pages/Elements/multiEdges/index',
+        path: '/package-elements/pages/elements/multi-edges/index',
       },
     ],
   },
