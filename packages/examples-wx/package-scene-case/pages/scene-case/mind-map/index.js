@@ -3,7 +3,7 @@ import F6 from '@antv/f6-wx';
 import result from './data';
 
 /**
- * mindMap
+ * mind-map
  */
 
 Page({

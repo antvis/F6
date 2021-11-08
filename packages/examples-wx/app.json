@@ -130,16 +130,16 @@
       ]
     },
     {
-      "root": "packageSceneCase",
-      "name": "packageSceneCase",
+      "root": "package-scene-case",
+      "name": "package-scene-case",
       "pages": [
-        "pages/SceneCase/sankey/index",
-        "pages/SceneCase/knowledgeTreeGraph/index",
-        "pages/SceneCase/metroLines/index",
-        "pages/SceneCase/decisionTree/index",
-        "pages/SceneCase/customFlow/index",
-        "pages/SceneCase/donutTransfer/index",
-        "pages/SceneCase/mindMap/index"
+        "pages/scene-case/sankey/index",
+        "pages/scene-case/knowledge-tree-graph/index",
+        "pages/scene-case/metro-lines/index",
+        "pages/scene-case/decision-tree/index",
+        "pages/scene-case/custom-flow/index",
+        "pages/scene-case/donut-transfer/index",
+        "pages/scene-case/mind-map/index"
       ]
     },
     {
@@ -159,7 +159,7 @@
         "pages/TreeGraph/intendAlignTop/index",
         "pages/TreeGraph/tbCompactBox/index",
         "pages/TreeGraph/radialCompactBox/index",
-        "pages/TreeGraph/mindMap/index",
+        "pages/TreeGraph/mind-map/index",
         "pages/TreeGraph/treeEdgeLabel/index",
         "pages/TreeGraph/hIntended/index",
         "pages/TreeGraph/RightMindMap/index"

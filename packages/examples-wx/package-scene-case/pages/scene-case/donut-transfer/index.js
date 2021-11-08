@@ -2,7 +2,7 @@ import F6 from '@antv/f6-wx';
 
 import { data, legendData } from './data';
 /**
- * donutTransfer
+ * donut-transfer
  */
 
 Page({

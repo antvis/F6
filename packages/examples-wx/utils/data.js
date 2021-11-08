@@ -111,7 +111,7 @@ export const treeGraphContainer = [
     detailList: [
       {
         name: '子节点自动两侧分布',
-        path: '/packageTreeGraph/pages/TreeGraph/mindMap/index',
+        path: '/packageTreeGraph/pages/TreeGraph/mind-map/index',
       },
       {
         name: '子节点右侧分布',
@@ -862,11 +862,11 @@ export const customizeTree = [
     detailList: [
       {
         name: '决策树',
-        path: '/packageSceneCase/pages/SceneCase/decisionTree/index',
+        path: '/package-scene-case/pages/scene-case/decision-tree/index',
       },
       {
         name: '知识图谱树',
-        path: '/packageSceneCase/pages/SceneCase/knowledgeTreeGraph/index',
+        path: '/package-scene-case/pages/scene-case/knowledge-tree-graph/index',
       },
     ],
   },
@@ -880,19 +880,19 @@ export const classicCace = [
     detailList: [
       {
         name: '自定义流向图',
-        path: '/packageSceneCase/pages/SceneCase/customFlow/index',
+        path: '/package-scene-case/pages/scene-case/custom-flow/index',
       },
       // {
       //   name: '桑基图',
-      //   path: '/packageSceneCase/pages/SceneCase/sankey/index',
+      //   path: '/package-scene-case/pages/scene-case/sankey/index',
       // },
       // {
       //   name: '思维导图',
-      //   path: '/packageSceneCase/pages/SceneCase/mindMap/index',
+      //   path: '/package-scene-case/pages/scene-case/mind-map/index',
       // },
       {
         name: '甜甜圈转账图',
-        path: '/packageSceneCase/pages/SceneCase/donutTransfer/index',
+        path: '/package-scene-case/pages/scene-case/donut-transfer/index',
       },
     ],
   },
@@ -906,7 +906,7 @@ export const newsMapVisualize = [
     detailList: [
       {
         name: '地铁路线图',
-        path: '/packageSceneCase/pages/SceneCase/metroLines/index',
+        path: '/package-scene-case/pages/scene-case/metro-lines/index',
       },
     ],
   },

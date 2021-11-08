@@ -6,7 +6,7 @@ import radialLayout from '@antv/f6-wx/extends/layout/radialLayout'
 
 F6.registerLayout('radial', radialLayout);
 /**
- * donutTransfer
+ * donut-transfer
  */
 
 Page({
