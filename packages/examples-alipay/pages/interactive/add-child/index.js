@@ -123,7 +123,7 @@ Page({
 
     let count = 0;
 
-    this.graph.on('node:tap', (evt) =>{
+    this.graph.on('node:tap', (evt) => {
       const { item } = evt;
 
       const nodeId = item.get('id');

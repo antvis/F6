@@ -204,7 +204,7 @@ export const generalGraphContainer = [
       {
         name: '参数动态变化',
         path: '../general-graph/fruchterman-configuration-translate/index',
-      }
+      },
     ],
   },
   {
@@ -947,6 +947,5 @@ export const hot = [
   { name: '基本同心圆布局', url: '../general-graph/basic-concentric/index' },
   { name: '布局切换', url: '../general-graph/layout-translate/index' },
 ];
-
 
 export const tabs = ['基础能力', '拓展能力'];

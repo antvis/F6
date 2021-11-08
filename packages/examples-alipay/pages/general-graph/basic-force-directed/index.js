@@ -78,7 +78,7 @@ Page({
     // 注册数据
     this.graph.data({
       nodes: data.nodes,
-      edges: data.edges.map(function (edge, i) {
+      edges: data.edges.map(function(edge, i) {
         edge.id = `edge${i}`;
         return Object.assign({}, edge);
       }),
@@ -92,16 +92,16 @@ Page({
     }
 
     // 监听事件
-    this.graph.on('node:dragstart', function (e) {
+    this.graph.on('node:dragstart', function(e) {
       this.graph.layout();
       refreshDragedNodePosition(e);
     });
-    this.graph.on('node:drag', function (e) {
+    this.graph.on('node:drag', function(e) {
       const forceLayout = this.graph.get('layoutController').layoutMethods[0];
       forceLayout.execute();
       refreshDragedNodePosition(e);
     });
-    this.graph.on('node:dragend', function (e) {
+    this.graph.on('node:dragend', function(e) {
       e.item.get('model').fx = null;
       e.item.get('model').fy = null;
     });
@@ -111,6 +111,6 @@ Page({
   },
 
   onUnload() {
-    this.graph && this.graph.destroy()
-  }
+    this.graph && this.graph.destroy();
+  },
 });

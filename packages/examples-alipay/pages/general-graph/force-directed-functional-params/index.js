@@ -105,20 +105,20 @@ Page({
     const { nodes } = data;
     this.graph.data({
       nodes,
-      edges: data.edges.map(function (edge, i) {
+      edges: data.edges.map(function(edge, i) {
         edge.id = `edge${i}`;
         return Object.assign({}, edge);
       }),
     });
 
-    this.graph.on('node:dragstart', function (e) {
+    this.graph.on('node:dragstart', function(e) {
       this.graph.layout();
       refreshDragedNodePosition(e);
     });
-    this.graph.on('node:drag', function (e) {
+    this.graph.on('node:drag', function(e) {
       refreshDragedNodePosition(e);
     });
-    this.graph.on('node:dragend', function (e) {
+    this.graph.on('node:dragend', function(e) {
       e.item.get('model').fx = null;
       e.item.get('model').fy = null;
     });
