@@ -1,14 +1,14 @@
 import { createSegmentNode } from '@antv/f6-ui';
 import { dispatch } from '../../dispatcher';
-import { ControllerCfg } from '../../type/controlBar';
+import { ControllerCfg } from '../../type/control-bar';
 import {
   CONTROL_NEXT,
   CONTROL_PREV,
   DEFAULT_CONTROLLER_CONFIG,
   SPEED_CHANGE,
 } from '../../utils/const';
-import createControlBtn from './controlBtn';
-import createPlayBtn from './playBtn';
+import createControlBtn from './control-btn';
+import createPlayBtn from './play-btn';
 import { deepMix } from '@antv/util';
 
 function createControlbar(option: ControllerCfg) {

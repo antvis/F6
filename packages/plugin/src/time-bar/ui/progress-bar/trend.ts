@@ -1,8 +1,8 @@
 import { createSegmentNode } from '@antv/f6-ui';
-import bindDragEvents from '../slider/sliderLogic';
-import createSimpleSlider from '../slider/simpleSlider';
-import createTrendSlider from '../slider/trendSlider';
-import createTiker from '../slider/slideTicker';
+import bindDragEvents from '../slider/slider-logic';
+import createSimpleSlider from '../slider/simple-slider';
+import createTrendSlider from '../slider/trend-slider';
+import createTiker from '../slider/slide-ticker';
 import { subscribe } from '../../dispatcher';
 import {
   CONTROL_NEXT,

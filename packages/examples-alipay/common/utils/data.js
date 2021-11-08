@@ -7,15 +7,15 @@ export const treeGraphContainer = [
     detailList: [
       {
         name: '紧凑树',
-        path: '../TreeGraph/compactBox/index',
+        path: '../tree-graph/compact-box/index',
       },
       {
         name: '至上而下的紧凑树',
-        path: '../TreeGraph/tbCompactBox/index',
+        path: '../tree-graph/tb-compact-box/index',
       },
       {
         name: '节点左对齐的紧凑树',
-        path: '../TreeGraph/compactBoxLeftAlign/index',
+        path: '../tree-graph/compact-box-left-align/index',
       },
     ],
   },
@@ -26,11 +26,11 @@ export const treeGraphContainer = [
     detailList: [
       {
         name: '生态树',
-        path: '../TreeGraph/BasicDendrogram/index',
+        path: '../tree-graph/basic-dendrogram/index',
       },
       {
         name: '至上而下的生态树',
-        path: '../TreeGraph/tbDendrogram/index',
+        path: '../tree-graph/tb-dendrogram/index',
       },
     ],
   },
@@ -41,19 +41,19 @@ export const treeGraphContainer = [
     detailList: [
       {
         name: '子节点自动两侧分布',
-        path: '../TreeGraph/mindMap/index',
+        path: '../tree-graph/mind-map/index',
       },
       {
         name: '子节点右侧分布',
-        path: '../TreeGraph/RightMindMap/index',
+        path: '../tree-graph/right-mind-map/index',
       },
       {
         name: '子节点左侧分布',
-        path: '../TreeGraph/LeftMindMap/index',
+        path: '../tree-graph/left-mind-map/index',
       },
       {
         name: '自定义子节点分布',
-        path: '../TreeGraph/CustomSideMindMap/index',
+        path: '../tree-graph/custom-side-mind-map/index',
       },
     ],
   },
@@ -65,15 +65,15 @@ export const treeGraphContainer = [
     detailList: [
       {
         name: '文件系统',
-        path: '../TreeGraph/fileSystem/index',
+        path: '../tree-graph/file-system/index',
       },
       {
         name: '顶部对齐',
-        path: '../TreeGraph/intendAlignTop/index',
+        path: '../tree-graph/intend-align-top/index',
       },
       {
         name: '子节点两侧分布',
-        path: '../TreeGraph/hIntended/index',
+        path: '../tree-graph/intended/index',
       },
     ],
   },
@@ -84,11 +84,11 @@ export const treeGraphContainer = [
     detailList: [
       {
         name: '生态辐射树',
-        path: '../TreeGraph/radialDendrogram/index',
+        path: '../tree-graph/radial-dendrogram/index',
       },
       {
         name: '紧凑辐射树',
-        path: '../TreeGraph/radialCompactBox/index',
+        path: '../tree-graph/radial-compact-box/index',
       },
     ],
   },
@@ -99,15 +99,15 @@ export const treeGraphContainer = [
     detailList: [
       {
         name: '自定义树中的边',
-        path: '../TreeGraph/customEdgeTree/index',
+        path: '../tree-graph/custom-edge-tree/index',
       },
       {
         name: '树边上的标签',
-        path: '../TreeGraph/treeEdgeLabel/index',
+        path: '../tree-graph/tree-edge-label/index',
       },
       {
         name: '复杂树样式',
-        path: '../TreeGraph/customTree/index',
+        path: '../tree-graph/custom-tree/index',
       },
     ],
   },
@@ -121,43 +121,43 @@ export const generalGraphContainer = [
     detailList: [
       {
         name: 'FA布局及节点拖拽',
-        path: '../GeneralGraph/basicForceDirected/index',
+        path: '../general-graph/basic-force-directed/index',
       },
       {
         name: 'FA2布局',
-        path: '../GeneralGraph/basicFA2/index',
+        path: '../general-graph/basic-FA2/index',
       },
       {
         name: 'FA布局防止节点重叠',
-        path: '../GeneralGraph/forceDirectedPreventOverlap/index',
+        path: '../general-graph/force-directed-prevent-overlap/index',
       },
       {
         name: 'FA布局聚类',
-        path: '../GeneralGraph/forceDirected_forceClustering/index',
+        path: '../general-graph/force-directed-force-clustering/index',
       },
       {
         name: '定制不同节点的参数',
-        path: '../GeneralGraph/forceDirectedFunctionalParams/index',
+        path: '../general-graph/force-directed-functional-params/index',
       },
       {
         name: '固定被拖拽节点',
-        path: '../GeneralGraph/basicForceDirectedDragFix/index',
+        path: '../general-graph/basic-force-directed-drag-fix/index',
       },
       {
         name: 'FA布局参数动态变化',
-        path: '../GeneralGraph/forceDirectedConfigurationTranslate/index',
+        path: '../general-graph/force-directed-configuration-translate/index',
       },
       {
         name: 'FA气泡图',
-        path: '../GeneralGraph/forceBubbles/index',
+        path: '../general-graph/force-bubbles/index',
       },
       {
         name: '约束在范围内布局',
-        path: '../GeneralGraph/forceConstrainedInRect/index',
+        path: '../general-graph/force-constrained-in-rect/index',
       },
       {
         name: 'Combo FA布局',
-        path: '../GeneralGraph/basicComboForce/index',
+        path: '../general-graph/basic-combo-force/index',
       },
     ],
   },
@@ -168,23 +168,23 @@ export const generalGraphContainer = [
     detailList: [
       {
         name: '流程图',
-        path: '../GeneralGraph/basicDagre/index',
+        path: '../general-graph/basic-dagre/index',
       },
       {
         name: '带有Combo的流程图',
-        path: '../GeneralGraph/dagreCombo/index',
+        path: '../general-graph/dagre-combo/index',
       },
       {
         name: '自左向右的流程图',
-        path: '../GeneralGraph/Dagre/index',
+        path: '../general-graph/dagre/index',
       },
       {
         name: '自左向右的流程图对齐',
-        path: '../GeneralGraph/DagreUL/index',
+        path: '../general-graph/dagre-UL/index',
       },
       {
         name: '布局参数动态变化',
-        path: '../GeneralGraph/dagreConfigurationTranslate/index',
+        path: '../general-graph/dagre-configuration-translate/index',
       },
     ],
   },
@@ -195,15 +195,15 @@ export const generalGraphContainer = [
     detailList: [
       {
         name: '基本Fruchterman',
-        path: '../GeneralGraph/fruchterman/index',
+        path: '../general-graph/fruchterman/index',
       },
       {
         name: 'Fruchterman聚类',
-        path: '../GeneralGraph/fruchtermanClustering/index',
+        path: '../general-graph/fruchterman-clustering/index',
       },
       {
         name: '参数动态变化',
-        path: '../GeneralGraph/fruchtermanConfigurationTranslate/index',
+        path: '../general-graph/fruchterman-configuration-translate/index',
       }
     ],
   },
@@ -214,27 +214,27 @@ export const generalGraphContainer = [
     detailList: [
       {
         name: '基本辐射布局',
-        path: '../GeneralGraph/basicRadial/index',
+        path: '../general-graph/basic-radial/index',
       },
       {
         name: '防止节点重叠的严格辐射布局',
-        path: '../GeneralGraph/preventOverlapRadial/index',
+        path: '../general-graph/prevent-overlap-radial/index',
       },
       {
         name: '防止节点重叠的非严格辐射布局',
-        path: '../GeneralGraph/preventOverlapUnstrictRadial/index',
+        path: '../general-graph/prevent-overlap-unstrict-radial/index',
       },
       {
         name: '交互扩展节点的辐射布局',
-        path: '../GeneralGraph/interactRadial/index',
+        path: '../general-graph/interact-radial/index',
       },
       {
         name: '布局参数动态变化',
-        path: '../GeneralGraph/radialConfigurationTranslate/index',
+        path: '../general-graph/radial-configuration-translate/index',
       },
       {
         name: '同层节点按照指定字段聚类',
-        path: '../GeneralGraph/sortRadial/index',
+        path: '../general-graph/sort-radial/index',
       },
     ],
   },
@@ -245,23 +245,23 @@ export const generalGraphContainer = [
     detailList: [
       {
         name: '基本环形布局',
-        path: '../GeneralGraph/basicCircular/index',
+        path: '../general-graph/basic-circular/index',
       },
       {
         name: '按节点度数排序',
-        path: '../GeneralGraph/degreeCircular/index',
+        path: '../general-graph/degree-circular/index',
       },
       {
         name: '螺旋线布局',
-        path: '../GeneralGraph/spiralCircular/index',
+        path: '../general-graph/spiral-circular/index',
       },
       {
         name: '分割环形布局',
-        path: '../GeneralGraph/divisionCircular/index',
+        path: '../general-graph/division-circular/index',
       },
       {
         name: '参数动态变化',
-        path: '../GeneralGraph/circularConfigurationTranslate/index',
+        path: '../general-graph/circular-configuration-translate/index',
       },
     ],
   },
@@ -272,11 +272,11 @@ export const generalGraphContainer = [
     detailList: [
       {
         name: '基本网格布局',
-        path: '../GeneralGraph/basicGrid/index',
+        path: '../general-graph/basic-grid/index',
       },
       {
         name: '指定排序方式的网格布局',
-        path: '../GeneralGraph/clusterGrid/index',
+        path: '../general-graph/cluster-grid/index',
       },
     ],
   },
@@ -287,7 +287,7 @@ export const generalGraphContainer = [
     detailList: [
       {
         name: '基本同心圆布局',
-        path: '../GeneralGraph/basicConcentric/index',
+        path: '../general-graph/basic-concentric/index',
       },
     ],
   },
@@ -298,7 +298,7 @@ export const generalGraphContainer = [
     detailList: [
       {
         name: '基本降维布局图',
-        path: '../GeneralGraph/basicMDS/index',
+        path: '../general-graph/basic-MDS/index',
       },
     ],
   },
@@ -309,11 +309,11 @@ export const generalGraphContainer = [
     detailList: [
       {
         name: '基本弧线图',
-        path: '../GeneralGraph/basicArcDiagram/index',
+        path: '../general-graph/basic-arc-diagram/index',
       },
       {
         name: '环形弧线图',
-        path: '../GeneralGraph/circularArcDiagram/index',
+        path: '../general-graph/circular-arc-diagram/index',
       },
     ],
   },
@@ -324,27 +324,27 @@ export const generalGraphContainer = [
     detailList: [
       {
         name: '布局切换',
-        path: '../GeneralGraph/layoutTranslate/index',
+        path: '../general-graph/layout-translate/index',
       },
       {
         name: '子图布局',
-        path: '../GeneralGraph/subgraphLayout/index',
+        path: '../general-graph/subgraph-layout/index',
       },
       // {
       //   name: '流水线子图布局',
-      //   path: '../GeneralGraph/sublayoutPipes/index',
+      //   path: '../general-graph/sublayoutPipes/index',
       // },
       {
         name: '数据动态切换',
-        path: '../GeneralGraph/dataChange/index',
+        path: '../general-graph/data-change/index',
       },
       {
         name: '自定义二分图布局',
-        path: '../GeneralGraph/customBiGraph/index',
+        path: '../general-graph/custom-bi-graph/index',
       },
       {
         name: '布局时机监听',
-        path: '../GeneralGraph/layoutTiming/index',
+        path: '../general-graph/layout-timing/index',
       },
     ],
   },
@@ -358,39 +358,39 @@ export const basicElementContainer = [
     detailList: [
       {
         name: '圆形',
-        path: '../Elements/circle/index',
+        path: '../elements/circle/index',
       },
       {
         name: '甜甜圈',
-        path: '../Elements/donut/index',
+        path: '../elements/donut/index',
       },
       {
         name: '椭圆',
-        path: '../Elements/ellipse/index',
+        path: '../elements/ellipse/index',
       },
       {
         name: '矩形',
-        path: '../Elements/rect/index',
+        path: '../elements/rect/index',
       },
       {
         name: '模态矩形',
-        path: '../Elements/modeRect/index',
+        path: '../elements/mode-rect/index',
       },
       {
         name: '模态菱形',
-        path: '../Elements/diamond/index',
+        path: '../elements/diamond/index',
       },
       {
         name: '五角星',
-        path: '../Elements/star/index',
+        path: '../elements/star/index',
       },
       {
         name: '三角形',
-        path: '../Elements/triangle/index',
+        path: '../elements/triangle/index',
       },
       {
         name: '图片',
-        path: '../Elements/image/index',
+        path: '../elements/image/index',
       },
     ],
   },
@@ -401,31 +401,31 @@ export const basicElementContainer = [
     detailList: [
       {
         name: '折线1',
-        path: '../Elements/polyline1/index',
+        path: '../elements/polyline1/index',
       },
       {
         name: '折线2',
-        path: '../Elements/polyline2/index',
+        path: '../elements/polyline2/index',
       },
       {
         name: '折线3',
-        path: '../Elements/polyline3/index',
+        path: '../elements/polyline3/index',
       },
       {
         name: '三次贝塞尔曲线-垂直',
-        path: '../Elements/cubic1/index',
+        path: '../elements/cubic1/index',
       },
       {
         name: '三次贝塞尔曲线-水平',
-        path: '../Elements/cubic2/index',
+        path: '../elements/cubic2/index',
       },
       {
         name: '弧线',
-        path: '../Elements/arc/index',
+        path: '../elements/arc/index',
       },
       {
         name: '自环边',
-        path: '../Elements/loop/index',
+        path: '../elements/loop/index',
       },
     ],
   },
@@ -436,11 +436,11 @@ export const basicElementContainer = [
     detailList: [
       {
         name: '圆形',
-        path: '../Elements/circleWithCombo/index',
+        path: '../elements/circle-with-combo/index',
       },
       {
         name: '矩形',
-        path: '../Elements/rectWithCombo/index',
+        path: '../elements/rect-with-combo/index',
       },
     ],
   },
@@ -451,11 +451,11 @@ export const basicElementContainer = [
     detailList: [
       {
         name: '默认内置箭头',
-        path: '../Elements/built_in_arrows/index',
+        path: '../elements/built-in-arrows/index',
       },
       {
         name: '自定义箭头',
-        path: '../Elements/customArrows/index',
+        path: '../elements/custom-arrows/index',
       },
     ],
   },
@@ -466,39 +466,39 @@ export const basicElementContainer = [
     detailList: [
       {
         name: '卡片',
-        path: '../Elements/card/index',
+        path: '../elements/card/index',
       },
       {
         name: '卡片2',
-        path: '../Elements/cardNode/index',
+        path: '../elements/card-node/index',
       },
       {
         name: '面积图节点',
-        path: '../Elements/areaChart/index',
+        path: '../elements/area-chart/index',
       },
       {
         name: '堆叠图节点',
-        path: '../Elements/stackChart/index',
+        path: '../elements/stack-chart/index',
       },
       {
         name: '折线图节点',
-        path: '../Elements/lineChart/index',
+        path: '../elements/line-chart/index',
       },
       {
         name: '南丁格尔图节点',
-        path: '../Elements/barChart/index',
+        path: '../elements/bar-chart/index',
       },
       {
         name: '点线图节点',
-        path: '../Elements/pointChart/index',
+        path: '../elements/point-chart/index',
       },
       {
         name: '饼图节点',
-        path: '../Elements/pieChart/index',
+        path: '../elements/pie-chart/index',
       },
       {
         name: '列表',
-        path: '../Elements/list/index',
+        path: '../elements/list/index',
       },
     ],
   },
@@ -509,19 +509,19 @@ export const basicElementContainer = [
     detailList: [
       {
         name: '添加额外图形',
-        path: '../Elements/extraShape/index',
+        path: '../elements/extra-shape/index',
       },
       {
         name: '自定义折线',
-        path: '../Elements/customPolyline/index',
+        path: '../elements/custom-polyline/index',
       },
       {
         name: '自定义折线2',
-        path: '../Elements/customPolyline2/index',
+        path: '../elements/custom-polyline2/index',
       },
       {
         name: '多标签边',
-        path: '../Elements/edgeMulLabel/index',
+        path: '../elements/edge-mul-label/index',
       },
     ],
   },
@@ -532,11 +532,11 @@ export const basicElementContainer = [
     detailList: [
       {
         name: '带有Marker的圆',
-        path: '../Elements/cCircle/index',
+        path: '../elements/c-circle/index',
       },
       {
         name: '带有Marker的矩形',
-        path: '../Elements/cRect/index',
+        path: '../elements/c-rect/index',
       },
     ],
   },
@@ -547,11 +547,11 @@ export const basicElementContainer = [
     detailList: [
       {
         name: '文本超长',
-        path: '../Elements/labelLen/index',
+        path: '../elements/label-len/index',
       },
       {
         name: '使用换行符处理',
-        path: '../Elements/labelLen1/index',
+        path: '../elements/label-len1/index',
       },
     ],
   },
@@ -562,11 +562,11 @@ export const basicElementContainer = [
     detailList: [
       {
         name: '节点文本背景',
-        path: '../Elements/nodeBg/index',
+        path: '../elements/node-bg/index',
       },
       {
         name: '边上文本背景',
-        path: '../Elements/edgeBg/index',
+        path: '../elements/edge-bg/index',
       },
     ],
   },
@@ -577,7 +577,7 @@ export const basicElementContainer = [
     detailList: [
       {
         name: '两节点间存在多条边',
-        path: '../Elements/multiEdges/index',
+        path: '../elements/multi-edges/index',
       },
     ],
   },
@@ -591,11 +591,11 @@ export const basicInteractiveContainer = [
   //   detailList: [
   //     {
   //       name: '内置的高亮节点',
-  //       path: '../Interactive/activateRelations/index',
+  //       path: '../interactive/activateRelations/index',
   //     },
   //     {
   //       name: '自定义高亮',
-  //       path: '../Interactive/highlightDark/index',
+  //       path: '../interactive/highlightDark/index',
   //     },
   //   ],
   // },
@@ -606,19 +606,19 @@ export const basicInteractiveContainer = [
     detailList: [
       {
         name: '拖拽子树改变结构',
-        path: '../Interactive/dragSubtree/index',
+        path: '../interactive/drag-subtree/index',
       },
       {
         name: '合并同类兄弟节点',
-        path: '../Interactive/collapseSlibing/index',
+        path: '../interactive/collapse-slibing/index',
       },
       {
         name: '使用changeData',
-        path: '../Interactive/changeData/index',
+        path: '../interactive/change-data/index',
       },
       {
         name: '使用addChild',
-        path: '../Interactive/addChild/index',
+        path: '../interactive/add-child/index',
       },
     ],
   },
@@ -629,11 +629,11 @@ export const basicInteractiveContainer = [
     detailList: [
       {
         name: '圆形组合',
-        path: '../Interactive/combo_circle/index',
+        path: '../interactive/combo-circle/index',
       },
       {
         name: '矩形组合',
-        path: '../Interactive/combo_rect/index',
+        path: '../interactive/combo-rect/index',
       },
     ],
   },
@@ -644,11 +644,11 @@ export const basicInteractiveContainer = [
     detailList: [
       {
         name: '用轮廓包裹节点集合',
-        path: '../Interactive/hull/index',
+        path: '../interactive/hull/index',
       },
       {
         name: '修改包裹内部成员',
-        path: '../Interactive/changeMembers/index',
+        path: '../interactive/change-members/index',
       },
     ],
   },
@@ -659,11 +659,11 @@ export const basicInteractiveContainer = [
     detailList: [
       {
         name: '点击节点移动',
-        path: '../Interactive/move/index',
+        path: '../interactive/move/index',
       },
       {
         name: '点击节点动画',
-        path: '../Interactive/moveAnimate/index',
+        path: '../interactive/move-animate/index',
       },
     ],
   },
@@ -674,7 +674,7 @@ export const basicInteractiveContainer = [
     detailList: [
       {
         name: '响应节点中部分区域',
-        path: '../Interactive/partialNode/index',
+        path: '../interactive/partial-node/index',
       },
     ],
   },
@@ -685,7 +685,7 @@ export const basicInteractiveContainer = [
     detailList: [
       {
         name: '设置交互模式',
-        path: '../Interactive/setMode/index',
+        path: '../interactive/set-mode/index',
       },
     ],
   },
@@ -696,7 +696,7 @@ export const basicInteractiveContainer = [
     detailList: [
       {
         name: '两指平移画布',
-        path: '../Interactive/canvasTwoFingers/index',
+        path: '../interactive/canvas-two-fingers/index',
       },
     ],
   },
@@ -707,11 +707,11 @@ export const basicInteractiveContainer = [
     detailList: [
       {
         name: '缩放画布时固定元素',
-        path: '../Interactive/fixItem/index',
+        path: '../interactive/fix-item/index',
       },
       {
         name: '拖拽画布时候隐藏',
-        path: '../Interactive/hideItem/index',
+        path: '../interactive/hide-item/index',
       },
     ],
   },
@@ -725,7 +725,7 @@ export const aminationContainer = [
     detailList: [
       {
         name: '节点动画',
-        path: '../Animation/node_node/index',
+        path: '../animation/node-node/index',
       },
     ],
   },
@@ -736,15 +736,15 @@ export const aminationContainer = [
     detailList: [
       {
         name: '圆点沿边运动',
-        path: '../Animation/pointInLine/index',
+        path: '../animation/point-in-line/index',
       },
       {
         name: '虚线运动',
-        path: '../Animation/edge_edge/index',
+        path: '../animation/edge-edge/index',
       },
       {
         name: '无到有的边',
-        path: '../Animation/edge_lineGrowth/index',
+        path: '../animation/edge-line-growth/index',
       },
     ],
   },
@@ -755,7 +755,7 @@ export const aminationContainer = [
     detailList: [
       {
         name: '状态与动画',
-        path: '../Animation/stateChange_hover/index',
+        path: '../animation/state-change-hover/index',
       },
     ],
   },
@@ -766,7 +766,7 @@ export const aminationContainer = [
     detailList: [
       {
         name: '节点移动动画',
-        path: '../Animation/changePosition_default/index',
+        path: '../animation/change-position-default/index',
       },
     ],
   },
@@ -777,7 +777,7 @@ export const aminationContainer = [
     detailList: [
       {
         name: '自定义动画',
-        path: '../Animation/customAnimate_position/index',
+        path: '../animation/custom-animate-position/index',
       },
     ],
   },
@@ -792,11 +792,11 @@ export const customizeTree = [
     detailList: [
       // {
       //   name: '决策树',
-      //   path: '../SceneCase/decisionTree/index',
+      //   path: '../scene-case/decision-tree/index',
       // },
       {
         name: '知识图谱树',
-        path: '../SceneCase/knowledgeTreeGraph/index',
+        path: '../scene-case/knowledge-tree-graph/index',
       },
     ],
   },
@@ -810,19 +810,19 @@ export const classicCace = [
     detailList: [
       {
         name: '自定义流向图',
-        path: '../SceneCase/customFlow/index',
+        path: '../scene-case/custom-flow/index',
       },
       // {
       //   name: '桑基图',
-      //   path: '../SceneCase/sankey/index',
+      //   path: '../scene-case/sankey/index',
       // },
       // {
       //   name: '思维导图',
-      //   path: '../SceneCase/mindMap/index',
+      //   path: '../scene-case/mind-map/index',
       // },
       // {
       //   name: '甜甜圈转账图',
-      //   path: '../SceneCase/donutTransfer/index',
+      //   path: '../scene-case/donut-transfer/index',
       // },
     ],
   },
@@ -836,7 +836,7 @@ export const newsMapVisualize = [
     detailList: [
       {
         name: '地铁路线图',
-        path: '../SceneCase/metroLines/index',
+        path: '../scene-case/metro-lines/index',
       },
     ],
   },
@@ -849,7 +849,7 @@ export const plugins = [
     detailList: [
       {
         name: 'Tooltip',
-        path: '../Plugins/ToolTip/index',
+        path: '../plugins/tool-tip/index',
       },
     ],
   },
@@ -859,7 +859,7 @@ export const plugins = [
     detailList: [
       {
         name: 'Legend',
-        path: '../Plugins/DonutTransfer/index',
+        path: '../plugins/donut-transfer/index',
       },
     ],
   },
@@ -869,7 +869,7 @@ export const plugins = [
     detailList: [
       {
         name: 'EdgeFilter',
-        path: '../Plugins/EdgeFilter/index',
+        path: '../plugins/edge-filter/index',
       },
     ],
   },
@@ -879,7 +879,7 @@ export const plugins = [
     detailList: [
       {
         name: 'Fisheye',
-        path: '../Plugins/Fisheye/index',
+        path: '../plugins/fisheye/index',
       },
     ],
   },
@@ -889,7 +889,7 @@ export const plugins = [
     detailList: [
       {
         name: 'Timebar',
-        path: '../Plugins/Timebar/index',
+        path: '../plugins/timebar/index',
       },
     ],
   },
@@ -899,7 +899,7 @@ export const plugins = [
     detailList: [
       {
         name: 'ZoomSlider',
-        path: '../Plugins/ZoomSlider/index',
+        path: '../plugins/zoom-slider/index',
       },
     ],
   },
@@ -909,7 +909,7 @@ export const plugins = [
     detailList: [
       {
         name: 'Bundling',
-        path: '../Plugins/Bundling/index',
+        path: '../plugins/bundling/index',
       },
     ],
   },
@@ -919,7 +919,7 @@ export const plugins = [
     detailList: [
       {
         name: 'Menu',
-        path: '../Plugins/Menu/index',
+        path: '../plugins/menu/index',
       },
     ],
   },
@@ -929,7 +929,7 @@ export const plugins = [
     detailList: [
       {
         name: 'SnapLine',
-        path: '../Plugins/SnapLine/index',
+        path: '../plugins/snap-line/index',
       },
     ],
   },
@@ -937,15 +937,16 @@ export const plugins = [
 
 // 控制搜索框下面的热搜词
 export const hot = [
-  { name: '知识图谱树', url: '../SceneCase/knowledgeTreeGraph/index' },
-  { name: '基本弧线图', url: '../GeneralGraph/basicArcDiagram/index' },
-  { name: 'FA气泡图', url: '../GeneralGraph/forceBubbles/index' },
-  { name: '无到有的边', url: '../Animation/edge_lineGrowth/index' },
-  { name: '自定义流向图', url: '../SceneCase/customFlow/index' },
-  { name: '生态树', url: '../TreeGraph/BasicDendrogram/index' },
-  { name: '自定义树中的边', url: '../TreeGraph/customEdgeTree/index' },
-  { name: '基本同心圆布局', url: '../GeneralGraph/basicConcentric/index' },
-  { name: '布局切换', url: '../GeneralGraph/layoutTranslate/index' },
+  { name: '知识图谱树', url: '../scene-case/knowledge-tree-graph/index' },
+  { name: '基本弧线图', url: '../general-graph/basic-arc-diagram/index' },
+  { name: 'FA气泡图', url: '../general-graph/force-bubbles/index' },
+  { name: '无到有的边', url: '../animation/edge_line-growth/index' },
+  { name: '自定义流向图', url: '../scene-case/custom-flow/index' },
+  { name: '生态树', url: '../tree-graph/basic-dendrogram/index' },
+  { name: '自定义树中的边', url: '../tree-graph/custom-edge-tree/index' },
+  { name: '基本同心圆布局', url: '../general-graph/basic-concentric/index' },
+  { name: '布局切换', url: '../general-graph/layout-translate/index' },
 ];
+
 
 export const tabs = ['基础能力', '拓展能力'];
