@@ -1,10 +1,10 @@
 import htmlParse from './om/dom';
 import cssParse from './om/css';
 import styleParse from './om/style';
-import { createUINode } from './uiNode';
-import { registerUINode } from './uiNode';
-import { registerAttr } from './parser/attrParser';
-import UIBaseNode from './uiNode/base';
+import { createUINode } from './ui-node';
+import { registerUINode } from './ui-node';
+import { registerAttr } from './parser/attr-parser';
+import UIBaseNode from './ui-node/base';
 
 function createUI(htmlString, cssString, group) {
   const tree = create(htmlString, cssString, true);

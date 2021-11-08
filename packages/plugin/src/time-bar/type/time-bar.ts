@@ -1,5 +1,5 @@
 import { IGroup } from '@antv/g-base';
-import { ControllerCfg } from './controlBar';
+import { ControllerCfg } from './control-bar';
 import { SliderOption, SliderTick, TrendConfig } from './slider';
 import { TimeBarTickOption } from './tick';
 
