@@ -74,15 +74,15 @@ export const treeGraphContainer = [{
         nameEn: 'CompactTree',
         detailList: [{
                 name: '紧凑树',
-                path: '/packageTreeGraph/pages/TreeGraph/compactBox/index',
+                path: '/package-tree-graph/pages/tree-graph/compact-box/index',
             },
             {
                 name: '至上而下的紧凑树',
-                path: '/packageTreeGraph/pages/TreeGraph/tbCompactBox/index',
+                path: '/package-tree-graph/pages/tree-graph/tb-compact-box/index',
             },
             {
                 name: '节点左对齐的紧凑树',
-                path: '/packageTreeGraph/pages/TreeGraph/compactBoxLeftAlign/index',
+                path: '/package-tree-graph/pages/tree-graph/compact-box-left-align/index',
             },
         ],
     },
@@ -92,11 +92,11 @@ export const treeGraphContainer = [{
         nameEn: 'Dendrogram',
         detailList: [{
                 name: '生态树',
-                path: '/packageTreeGraph/pages/TreeGraph/BasicDendrogram/index',
+                path: '/package-tree-graph/pages/tree-graph/basic-dendrogram/index',
             },
             {
                 name: '至上而下的生态树',
-                path: '/packageTreeGraph/pages/TreeGraph/tbDendrogram/index',
+                path: '/package-tree-graph/pages/tree-graph/tb-dendrogram/index',
             },
         ],
     },
@@ -106,19 +106,19 @@ export const treeGraphContainer = [{
         nameEn: 'MindMap',
         detailList: [{
                 name: '子节点自动两侧分布',
-                path: '/packageTreeGraph/pages/TreeGraph/mind-map/index',
+                path: '/package-tree-graph/pages/tree-graph/mind-map/index',
             },
             {
                 name: '子节点右侧分布',
-                path: '/packageTreeGraph/pages/TreeGraph/RightMindMap/index',
+                path: '/package-tree-graph/pages/tree-graph/right-mind-map/index',
             },
             {
                 name: '子节点左侧分布',
-                path: '/packageTreeGraph/pages/TreeGraph/LeftMindMap/index',
+                path: '/package-tree-graph/pages/tree-graph/left-mind-map/index',
             },
             {
                 name: '自定义子节点分布',
-                path: '/packageTreeGraph/pages/TreeGraph/CustomSideMindMap/index',
+                path: '/package-tree-graph/pages/tree-graph/custom-side-mind-map/index',
             },
         ],
     },
@@ -129,15 +129,15 @@ export const treeGraphContainer = [{
         path: '/page/component/movable-view/movable-view',
         detailList: [{
                 name: '文件系统',
-                path: '/packageTreeGraph/pages/TreeGraph/fileSystem/index',
+                path: '/package-tree-graph/pages/tree-graph/file-system/index',
             },
             {
                 name: '顶部对齐',
-                path: '/packageTreeGraph/pages/TreeGraph/intendAlignTop/index',
+                path: '/package-tree-graph/pages/tree-graph/intend-align-top/index',
             },
             {
                 name: '子节点两侧分布',
-                path: '/packageTreeGraph/pages/TreeGraph/hIntended/index',
+                path: '/package-tree-graph/pages/tree-graph/h-intended/index',
             },
         ],
     },
@@ -147,11 +147,11 @@ export const treeGraphContainer = [{
         nameEn: 'Radial',
         detailList: [{
                 name: '生态辐射树',
-                path: '/packageTreeGraph/pages/TreeGraph/radialDendrogram/index',
+                path: '/package-tree-graph/pages/tree-graph/radial-dendrogram/index',
             },
             {
                 name: '紧凑辐射树',
-                path: '/packageTreeGraph/pages/TreeGraph/radialCompactBox/index',
+                path: '/package-tree-graph/pages/tree-graph/radial-compact-box/index',
             },
         ],
     },
@@ -161,15 +161,15 @@ export const treeGraphContainer = [{
         nameEn: 'Custom',
         detailList: [{
                 name: '自定义树中的边',
-                path: '/packageTreeGraph/pages/TreeGraph/customEdgeTree/index',
+                path: '/package-tree-graph/pages/tree-graph/custom-edge-tree/index',
             },
             {
                 name: '树边上的标签',
-                path: '/packageTreeGraph/pages/TreeGraph/treeEdgeLabel/index',
+                path: '/package-tree-graph/pages/tree-graph/tree-edge-label/index',
             },
             {
                 name: '复杂树样式',
-                path: '/packageTreeGraph/pages/TreeGraph/customTree/index',
+                path: '/package-tree-graph/pages/tree-graph/custom-tree/index',
             },
         ],
     },
