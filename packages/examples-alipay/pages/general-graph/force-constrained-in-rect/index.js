@@ -112,7 +112,7 @@ Page({
 
     this.graph.data({
       nodes: data.nodes,
-      edges: data.edges.map(function (edge, i) {
+      edges: data.edges.map(function(edge, i) {
         edge.id = `edge${i}`;
         return Object.assign({}, edge);
       }),

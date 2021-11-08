@@ -342,12 +342,9 @@ Page({
             let { controlPoints } = cfg; // 指定controlPoints
             if (!controlPoints || !controlPoints.length) {
               const { startPoint, endPoint, sourceNode, targetNode } = cfg;
-              const {
-                x: startX,
-                y: startY,
-                coefficientX,
-                coefficientY,
-              } = sourceNode ? sourceNode.getModel() : startPoint;
+              const { x: startX, y: startY, coefficientX, coefficientY } = sourceNode
+                ? sourceNode.getModel()
+                : startPoint;
               const { x: endX, y: endY } = targetNode ? targetNode.getModel() : endPoint;
               let curveStart = (endX - startX) * coefficientX;
               let curveEnd = (endY - startY) * coefficientY;
@@ -380,7 +377,7 @@ Page({
     };
     registerFn();
 
-    const { onInit, config } = props;
+    const { config } = props;
     const tooltip = new Tooltip({
       trigger: 'press',
       // TODO: _f2.default.Tooltip is not a constructor

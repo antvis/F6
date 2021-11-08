@@ -22,8 +22,7 @@ Page({
 
   onLoad() {
     // 同步获取window的宽高
-    const { windowWidth, windowHeight, pixelRatio, titleBarHeight, statusBarHeight } =
-      my.getSystemInfoSync();
+    const { windowWidth, windowHeight, pixelRatio } = my.getSystemInfoSync();
 
     this.setData({
       width: windowWidth,
@@ -70,7 +69,7 @@ Page({
       showLabel: 'edge',
       r: 60,
     };
-    let filterLens = new EdgeFilterLens(filterConfigs);
+    const filterLens = new EdgeFilterLens(filterConfigs);
 
     // 创建F6实例
     this.graph = new F6.Graph({

@@ -444,7 +444,7 @@ function getData() {
   const { nodes } = data;
   const clusterMap = new Map();
   let clusterId = 0;
-  nodes.forEach(function (node) {
+  nodes.forEach(function(node) {
     // cluster
     if (node.cluster && clusterMap.get(node.cluster) === undefined) {
       clusterMap.set(node.cluster, clusterId);

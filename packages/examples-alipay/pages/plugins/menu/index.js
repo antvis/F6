@@ -22,8 +22,7 @@ Page({
 
   onLoad() {
     // 同步获取window的宽高
-    const { windowWidth, windowHeight, pixelRatio, titleBarHeight, statusBarHeight } =
-      my.getSystemInfoSync();
+    const { windowWidth, windowHeight, pixelRatio } = my.getSystemInfoSync();
 
     this.setData({
       width: windowWidth,
@@ -93,7 +92,7 @@ Page({
           }
         `;
       },
-      handleMenuClick: (target, _item) => {
+      handleMenuClick: (target) => {
         my.alert({
           title: `点击了: ${target.title}`,
         });

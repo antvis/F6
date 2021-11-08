@@ -85,7 +85,7 @@ Page({
   },
 
   updateChart() {
-    const { width, height, pixelRatio, currentMode } = this.data;
+    const { width, height, pixelRatio } = this.data;
     // 创建F6实例
     this.graph = new F6.Graph({
       context: this.ctx,
