@@ -5,7 +5,7 @@ import { Tooltip } from '@antv/f6-plugin/f6Plugin';
 import mockData from './data';
 
 /**
- * decisionTree
+ * decision-tree
  */
 
 const colors = {

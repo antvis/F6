@@ -3,7 +3,7 @@ import F6 from '@antv/f6-wx';
 import data from './data';
 import dagreLayout from '@antv/f6-wx/extends/layout/dagreLayout';
 /**
- * customFlow
+ * custom-flow
  */
 
 Page({

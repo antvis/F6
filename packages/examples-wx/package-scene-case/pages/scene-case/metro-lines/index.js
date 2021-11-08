@@ -2,7 +2,7 @@ import F6 from '@antv/f6-wx';
 
 import { nodes, edges, data } from './data';
 /**
- * metroLines
+ * metro-lines
  */
 
 Page({
