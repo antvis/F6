@@ -6,7 +6,7 @@ import { Bundling } from '@antv/f6-plugin/f6Plugin';
 F6.registerLayout('circular', CircularLayout);
 
 /**
- * basicArcDiagram
+ * basic-arc-diagram
  */
 Page({
   canvas: null,

@@ -1,9 +1,9 @@
 import F6 from '@antv/f6-wx';
 
 import data from './data';
-import mds from '@antv/f6-wx/extends/layout/mdsLayout';
+import radial from '@antv/f6-wx/extends/layout/radialLayout';
 /**
- * basicMDS
+ * basic-radial
  */
 
 Page({
@@ -22,8 +22,7 @@ Page({
 
   onLoad() {
     // 注册布局
-    F6.registerLayout('mds', mds);
-
+    F6.registerLayout('radial', radial);
     // 同步获取window的宽高
     const { windowWidth, windowHeight, pixelRatio } = wx.getSystemInfoSync();
 
@@ -69,11 +68,11 @@ Page({
       pixelRatio,
       fitView: true,
       modes: {
-        default: ['drag-node'],
+        default: ['drag-canvas', 'drag-node'],
       },
       layout: {
-        type: 'mds',
-        linkDistance: 100,
+        type: 'radial',
+        unitRadius: 50,
       },
       animate: true,
       defaultNode: {

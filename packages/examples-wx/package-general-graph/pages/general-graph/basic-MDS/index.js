@@ -1,9 +1,9 @@
 import F6 from '@antv/f6-wx';
 
 import data from './data';
-import concentric from '@antv/f6-wx/extends/layout/concentricLayout';
+import mds from '@antv/f6-wx/extends/layout/mdsLayout';
 /**
- * basicConcentric
+ * basic-MDS
  */
 
 Page({
@@ -22,7 +22,7 @@ Page({
 
   onLoad() {
     // 注册布局
-    F6.registerLayout('concentric', concentric);
+    F6.registerLayout('mds', mds);
 
     // 同步获取window的宽高
     const { windowWidth, windowHeight, pixelRatio } = wx.getSystemInfoSync();
@@ -69,16 +69,15 @@ Page({
       pixelRatio,
       fitView: true,
       modes: {
-        default: ['zoom-canvas', 'drag-canvas', 'drag-node'],
+        default: ['drag-node'],
       },
       layout: {
-        type: 'concentric',
-        maxLevelDiff: 0.5,
-        sortBy: 'degree',
+        type: 'mds',
+        linkDistance: 100,
       },
       animate: true,
       defaultNode: {
-        size: 5,
+        size: 20,
       },
     });
 

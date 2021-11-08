@@ -1,9 +1,10 @@
 import F6 from '@antv/f6-wx';
 
 import data from './data';
-import radial from '@antv/f6-wx/extends/layout/radialLayout';
+import dagreLayout from '@antv/f6-wx/extends/layout/dagreLayout';
+
 /**
- * basicRadial
+ * dagre-combo
  */
 
 Page({
@@ -12,17 +13,19 @@ Page({
   renderer: '', // mini、mini-native等，F6需要，标记环境
   isCanvasInit: false, // canvas是否准备好了
   graph: null,
+  sortByCombo: false,
 
   data: {
     width: 375,
     height: 600,
     pixelRatio: 1,
     forceMini: false,
+    description: 'Enable sortByCombo',
   },
 
   onLoad() {
-    // 注册布局
-    F6.registerLayout('radial', radial);
+    F6.registerLayout('dagre', dagreLayout);
+
     // 同步获取window的宽高
     const { windowWidth, windowHeight, pixelRatio } = wx.getSystemInfoSync();
 
@@ -56,6 +59,18 @@ Page({
     this.graph && this.graph.emitEvent(e.detail);
   },
 
+  handleClickButton() {
+    console.log('click', this.sortByCombo);
+    this.sortByCombo = !this.sortByCombo;
+    this.setData({
+      description: this.sortByCombo ? 'Disable sortByCombo' : 'Enable sortByCombo',
+    });
+    const { sortByCombo } = this;
+    this.graph.updateLayout({
+      sortByCombo,
+    });
+  },
+
   updateChart() {
     const { width, height, pixelRatio } = this.data;
 
@@ -67,16 +82,42 @@ Page({
       height,
       pixelRatio,
       fitView: true,
+      fitViewPadding: 30,
+      animate: true,
+      groupByTypes: false,
       modes: {
-        default: ['drag-canvas', 'drag-node'],
+        default: [
+          'drag-combo',
+          'drag-node',
+          'drag-canvas',
+          {
+            type: 'collapse-expand-combo',
+            relayout: false,
+          },
+        ],
       },
       layout: {
-        type: 'radial',
-        unitRadius: 50,
+        type: 'dagre',
+        sortByCombo: false,
+        ranksep: 10,
+        nodesep: 10,
       },
-      animate: true,
       defaultNode: {
-        size: 20,
+        size: [60, 30],
+        type: 'rect',
+        anchorPoints: [
+          [0.5, 0],
+          [0.5, 1],
+        ],
+      },
+      defaultEdge: {
+        type: 'line',
+      },
+      defaultCombo: {
+        type: 'rect',
+        style: {
+          fillOpacity: 0.1,
+        },
       },
     });
 
