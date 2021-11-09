@@ -16,6 +16,7 @@ import PluginFisheyeDemo from './pluginFisheye';
 import PluginMniMapDemo from './pluginMiniMap';
 import PluginBundlingDemo from './pluginBundling';
 import MenuDemo from './pluginMenu';
+import NodeDemo from './nodeDemo';
 
 
 export default {
@@ -45,4 +46,6 @@ export const PluginMniMap = (args) => <PluginMniMapDemo { ...args }/>
 export const PluginBundling = (args) => <PluginBundlingDemo { ...args }/>
 
 export const PluginMenu = (args) => <MenuDemo { ...args }/>
+
+export const nodeDemo = (args) => <NodeDemo { ...args }/>
 
