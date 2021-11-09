@@ -138,8 +138,8 @@
     "pages/plugins/snap-line/index"
   ],
   "window": {
-    "default-title": "-f6移动端demo",
-    "allows-bounceVertical": "-n-o",
-    "can-pull-down": "-n-o"
+    "defaultTitle": "F6移动端DEMO",
+    "allowsBounceVertical": "NO",
+    "canPullDown": "NO"
   }
 }
