@@ -61,7 +61,7 @@ Page({
   onShareAppMessage() {
     return {
       title: 'F6能力演示',
-      path: 'page/component/index',
+      path: 'pages/index/index',
     };
   },
 
