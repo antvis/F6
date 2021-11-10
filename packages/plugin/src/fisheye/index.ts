@@ -10,8 +10,8 @@ interface FisheyeConfig {
   r?: number;
   delegateStyle?: ShapeStyle;
   showLabel?: boolean;
-  scaleRBy?: 'wheel' | 'drag' | 'unset' | undefined;
-  scaleDBy?: 'wheel' | 'drag' | 'unset' | undefined;
+  scaleRBy?: 'drag' | 'unset' | undefined;
+  scaleDBy?: 'drag' | 'unset' | undefined;
   maxR?: number;
   minR?: number;
   maxD?: number;
@@ -56,7 +56,7 @@ export default class Fisheye extends Base {
         break;
       case 'drag':
         events = {
-          tap: 'createDelegate',
+          press: 'createDelegate',
         };
         break;
       default:
@@ -95,6 +95,10 @@ export default class Fisheye extends Base {
       });
       lensDelegate.on('drag', (evt) => {
         self.magnify(evt);
+      });
+
+      lensDelegate.on('dragend', (evt) => {
+        this.clear()
       });
 
       // 绑定调整范围（r）和缩放系数(d)的监听
@@ -373,7 +377,7 @@ export default class Fisheye extends Base {
     if (trigger === 'mousemove' || trigger === 'tap' || trigger === 'drag') {
       self.set('trigger', trigger);
     }
-    if (scaleDBy === 'drag' || scaleDBy === 'wheel' || scaleDBy === 'unset') {
+    if (scaleDBy === 'drag'  || scaleDBy === 'unset') {
       self.set('scaleDBy', scaleDBy);
       self.get('delegate').remove();
       self.get('delegate').destroy();
@@ -383,7 +387,7 @@ export default class Fisheye extends Base {
         dPercentText.destroy();
       }
     }
-    if (scaleRBy === 'drag' || scaleRBy === 'wheel' || scaleRBy === 'unset') {
+    if (scaleRBy === 'drag' || scaleRBy === 'unset') {
       self.set('scaleRBy', scaleRBy);
       self.get('delegate').remove();
       self.get('delegate').destroy();
@@ -521,6 +525,7 @@ export default class Fisheye extends Base {
       dPercentText.remove();
       dPercentText.destroy();
     }
+    this.set('delegateCenterDiff', undefined)
   }
 
   /**
