@@ -52,7 +52,7 @@ export default class EdgeFilterLens extends Base {
         break;
       case 'drag':
         events = {
-          drag: 'createDelegate',
+          press: 'createDelegate',
         };
         break;
       default:
@@ -90,6 +90,9 @@ export default class EdgeFilterLens extends Base {
       lensDelegate.on('drag', (e) => {
         const pos = graph.getPointByClient(e.clientX, e.clientY);
         self.filter(pos);
+      });
+      lensDelegate.on('dragend', (e) => {
+        this.clear();
       });
     }
   }
@@ -190,6 +193,7 @@ export default class EdgeFilterLens extends Base {
         const shapeType = shape.get('type');
         const vShape = group.addShape(shapeType, {
           attrs: shape.attr(),
+          capture: false
         });
         vShapes.push(vShape);
         if (showNodeLabel && shapeType === 'text') {
@@ -201,6 +205,7 @@ export default class EdgeFilterLens extends Base {
     Object.keys(hitNodesMap).forEach((key) => {
       const node = hitNodesMap[key];
       const clonedGroup = node.get('group').clone();
+      clonedGroup.set('capture', false)
       group.add(clonedGroup);
       vShapes.push(clonedGroup);
       if (showEdgeLabel) {
@@ -272,6 +277,7 @@ export default class EdgeFilterLens extends Base {
         },
         name: 'lens-shape',
         draggable: true,
+        zIndex: 1000
       });
     } else {
       lensDelegate.attr({
