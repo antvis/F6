@@ -43,7 +43,7 @@ Page({
    * @param {*} renderer 使用canvas 1.0还是canvas 2.0，mini | mini-native
    */
   handleInit(event) {
-    const { ctx, rect, canvas, renderer } = event.detail;
+    const { ctx, canvas, renderer } = event.detail;
     this.isCanvasInit = true;
     this.ctx = ctx;
     this.renderer = renderer;
@@ -100,7 +100,7 @@ Page({
     layoutConfigTranslation();
 
     function layoutConfigTranslation() {
-      setTimeout(function () {
+      setTimeout(() => {
         me.setData({
           description: 'Fructherman layout, gravity = 5',
         });
@@ -109,7 +109,7 @@ Page({
         });
       }, 1000);
 
-      setTimeout(function () {
+      setTimeout(() => {
         me.setData({
           description: 'Fructherman layout, gravity = 10, layout by cluster',
         });
@@ -119,7 +119,7 @@ Page({
         });
       }, 2500);
 
-      setTimeout(function () {
+      setTimeout(() => {
         me.setData({
           description: 'Fructherman layout, gravity = 20, layout by cluster',
         });
@@ -128,7 +128,7 @@ Page({
         });
       }, 4000);
 
-      setTimeout(function () {
+      setTimeout(() => {
         me.setData({
           description: 'Fructherman layout, gravity = 50, layout by cluster',
         });
@@ -137,7 +137,7 @@ Page({
         });
       }, 5500);
 
-      setTimeout(function () {
+      setTimeout(() => {
         me.setData({
           description: 'Fructherman layout, gravity = 80, layout by cluster',
         });

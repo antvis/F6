@@ -41,7 +41,7 @@ Page({
    * @param {*} renderer 使用canvas 1.0还是canvas 2.0，mini | mini-native
    */
   handleInit(event) {
-    const { ctx, rect, canvas, renderer } = event.detail;
+    const { ctx, canvas, renderer } = event.detail;
     this.isCanvasInit = true;
     this.ctx = ctx;
     this.renderer = renderer;
@@ -144,7 +144,7 @@ Page({
     // map the value to node size
     let maxNodeValue = -9999;
     let minNodeValue = 9999;
-    nodes.forEach(function (n) {
+    nodes.forEach((n) => {
       if (maxNodeValue < n.value) maxNodeValue = n.value;
       if (minNodeValue > n.value) minNodeValue = n.value;
     });
@@ -152,7 +152,7 @@ Page({
     const nodeSizeDataRange = [minNodeValue, maxNodeValue];
     scaleNodeProp(nodes, 'size', 'value', nodeSizeDataRange, nodeSizeRange);
 
-    nodes.forEach(function (node) {
+    nodes.forEach((node) => {
       node.oriSize = node.size;
       node.oriLabel = node.label;
     });
@@ -168,10 +168,10 @@ Page({
       this.graph.layout();
       refreshDragedNodePosition(e);
     });
-    this.graph.on('node:drag', function (e) {
+    this.graph.on('node:drag', (e) => {
       refreshDragedNodePosition(e);
     });
-    this.graph.on('node:dragend', function (e) {
+    this.graph.on('node:dragend', (e) => {
       e.item.get('model').fx = null;
       e.item.get('model').fy = null;
     });
@@ -182,7 +182,7 @@ Page({
       const model = node.getModel();
       let size = 200;
       let labelText = `NODE: ${model.id}\n${model.description}`;
-      states.forEach(function (state) {
+      states.forEach((state) => {
         if (state === 'click') {
           clicked = true;
           size = model.oriSize;
@@ -204,7 +204,7 @@ Page({
     function scaleNodeProp(elements, propName, refPropName, dataRange, outRange) {
       const outLength = outRange[1] - outRange[0];
       const dataLength = dataRange[1] - dataRange[0];
-      elements.forEach(function (n) {
+      elements.forEach((n) => {
         if (propName.split('.')[0] === 'style') {
           if (n.style) {
             n.style[propName.split('.')[1]] =

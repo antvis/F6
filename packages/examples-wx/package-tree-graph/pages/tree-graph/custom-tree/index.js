@@ -1,7 +1,6 @@
 import F6 from '@antv/f6-wx';
 import TreeGraph from '@antv/f6-wx/extends/graph/treeGraph';
 
-
 import data_ from './data';
 
 /**
@@ -106,7 +105,7 @@ Page({
    * @param {*} renderer 使用canvas 1.0还是canvas 2.0，mini | mini-native
    */
   handleInit(event) {
-    const {ctx, rect, canvas, renderer} = event.detail
+    const { ctx, canvas, renderer } = event.detail;
     this.isCanvasInit = true;
     this.ctx = ctx;
     this.renderer = renderer;
@@ -184,7 +183,7 @@ Page({
       },
     });
 
-    F6.Util.traverseTree(data_, function(item) {
+    F6.Util.traverseTree(data_, (item) => {
       item.id = item.name;
     });
     this.graph.data(data_);

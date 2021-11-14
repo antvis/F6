@@ -51,7 +51,7 @@ Page({
    * @param {*} renderer 使用canvas 1.0还是canvas 2.0，mini | mini-native
    */
   handleInit(event) {
-    const { ctx, rect, canvas, renderer } = event.detail;
+    const { ctx, canvas, renderer } = event.detail;
     this.isCanvasInit = true;
     this.ctx = ctx;
     this.renderer = renderer;
@@ -380,7 +380,7 @@ Page({
     };
     registerFn();
 
-    const { onInit, config } = props;
+    const { config } = props;
     const tooltip = new Tooltip({
       trigger: 'press',
       // TODO: _f2.default.Tooltip is not a constructor

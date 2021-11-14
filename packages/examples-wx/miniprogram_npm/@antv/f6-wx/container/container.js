@@ -31,7 +31,7 @@ Component({
     },
   },
   observers: {
-    pixelRatio: function (pixelRatio) {
+    pixelRatio(pixelRatio) {
       this.setData({
         finalPixelRatio: pixelRatio >= 1 ? Math.ceil(pixelRatio) : 1,
       });
@@ -48,7 +48,7 @@ Component({
       .exec((ret) => {
         console.log('ret', ret);
         const { node: canvas } = ret[0];
-        const finalPixelRatio = this.data.finalPixelRatio;
+        const { finalPixelRatio } = this.data;
         canvas.width = this.data.width * finalPixelRatio;
         canvas.height = this.data.height * finalPixelRatio;
         this.rect = {

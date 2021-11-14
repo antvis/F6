@@ -42,7 +42,7 @@ Page({
    * @param {*} renderer 使用canvas 1.0还是canvas 2.0，mini | mini-native
    */
   handleInit(event) {
-    const {ctx, rect, canvas, renderer} = event.detail
+    const { ctx, canvas, renderer } = event.detail;
     this.isCanvasInit = true;
     this.ctx = ctx;
     this.renderer = renderer;
@@ -95,12 +95,12 @@ Page({
 
     layoutConfigTranslation();
 
-    setInterval(function() {
+    setInterval(() => {
       layoutConfigTranslation();
     }, 7000);
 
     function layoutConfigTranslation() {
-      setTimeout(function() {
+      setTimeout(() => {
         me.setData({
           description: 'Radial layout, focusNode =  = 0, unitRadius = 50, preventOverlap: true',
         });
@@ -110,7 +110,7 @@ Page({
         });
       }, 1000);
 
-      setTimeout(function() {
+      setTimeout(() => {
         me.setData({
           description: 'Radial layout, focusNode =  = 0, unitRadius = 80, preventOverlap: true',
         });
@@ -119,7 +119,7 @@ Page({
         });
       }, 2500);
 
-      setTimeout(function() {
+      setTimeout(() => {
         me.setData({
           description: 'Radial layout, focusNode =  = 10, unitRadius = 80, preventOverlap: true',
         });
@@ -128,7 +128,7 @@ Page({
         });
       }, 4000);
 
-      setTimeout(function() {
+      setTimeout(() => {
         me.setData({
           description: 'Radial layout, focusNode =  = 20, unitRadius = 80, preventOverlap: true',
         });
@@ -137,7 +137,7 @@ Page({
         });
       }, 5500);
 
-      setTimeout(function() {
+      setTimeout(() => {
         me.setData({
           description: 'Radial layout, focusNode =  = 0, unitRadius = 50, preventOverlap: false',
         });
