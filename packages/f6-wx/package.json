@@ -1,6 +1,6 @@
 {
   "name": "@antv/f6-wx",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "微信小程序f6组件",
   "files": ["src"],
   "keywords": ["f6", "Wechat"],
