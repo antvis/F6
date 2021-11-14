@@ -213,7 +213,7 @@ Page({
    * @param {*} renderer 使用canvas 1.0还是canvas 2.0，mini | mini-native
    */
   handleInit(event) {
-    const { ctx, rect, canvas, renderer } = event.detail
+    const { ctx, canvas, renderer } = event.detail;
     this.isCanvasInit = true;
     this.ctx = ctx;
     this.renderer = renderer;
@@ -271,7 +271,7 @@ Page({
     // this.graph.fitView();
 
     const edges = this.graph.getEdges();
-    edges.forEach(function(edge) {
+    edges.forEach((edge) => {
       const line = edge.getKeyShape();
       const stroke = line.attr('stroke');
       const targetNode = edge.getTarget();

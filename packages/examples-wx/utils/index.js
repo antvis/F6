@@ -22,7 +22,7 @@ const processed_classicCace = processDisplayData(classicCace);
 const processed_newsMapVisualize = processDisplayData(newsMapVisualize);
 const processed_plugins = processDisplayData(plugins);
 
-//所有处理好的列表数据，用于展示
+// 所有处理好的列表数据，用于展示
 // const list = processDisplayData(all_data)
 
 const all_list = [

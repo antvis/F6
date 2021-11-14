@@ -5,8 +5,8 @@ import data from './data';
 /**
  * setMode
  */
-let modeNum = 0; // 用来标记选择的模式
-const modeList = ['默认模式', '添加节点模式', '添加边模式'];
+// const modeNum = 0; // 用来标记选择的模式
+// const modeList = ['默认模式', '添加节点模式', '添加边模式'];
 
 Page({
   canvas: null,
@@ -23,18 +23,18 @@ Page({
     currentMode: '请选择模式',
     showDialog: false,
     groups: [
-        { text: '示例菜单', value: 1 },
-        { text: '示例菜单', value: 2 },
-        { text: '负向菜单', type: 'warn', value: 3 }
-    ]
+      { text: '示例菜单', value: 1 },
+      { text: '示例菜单', value: 2 },
+      { text: '负向菜单', type: 'warn', value: 3 },
+    ],
   },
 
- tapButton: function(event) {
-   console.log(event)
-  const { mode } = event.target.dataset
-  console.log(mode)
-  this.graph.setMode(mode)
- },
+  tapButton(event) {
+    console.log(event);
+    const { mode } = event.target.dataset;
+    console.log(mode);
+    this.graph.setMode(mode);
+  },
 
   onLoad() {
     // 同步获取window的宽高
@@ -137,7 +137,7 @@ Page({
    * @param {*} renderer 使用canvas 1.0还是canvas 2.0，mini | mini-native
    */
   handleInit(event) {
-    const {ctx, rect, canvas, renderer} = event.detail
+    const { ctx, canvas, renderer } = event.detail;
     this.isCanvasInit = true;
     this.ctx = ctx;
     this.renderer = renderer;

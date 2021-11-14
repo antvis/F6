@@ -42,7 +42,7 @@ Page({
         const part1NodeMap = new Map();
         const part2NodeMap = new Map();
         // separate the nodes and init the positions
-        nodes.forEach(function(node, i) {
+        nodes.forEach((node, i) => {
           if (node.cluster === 'part1') {
             part1Nodes.push(node);
             part1NodeMap.set(node.id, i);
@@ -53,10 +53,10 @@ Page({
         });
 
         // order the part1 node
-        part1Nodes.forEach(function(p1n) {
+        part1Nodes.forEach((p1n) => {
           let index = 0;
           let adjCount = 0;
-          edges.forEach(function(edge) {
+          edges.forEach((edge) => {
             const sourceId = edge.source;
             const targetId = edge.target;
             if (sourceId === p1n.id) {
@@ -70,13 +70,13 @@ Page({
           index /= adjCount;
           p1n.index = index;
         });
-        part1Nodes.sort(function(a, b) {
+        part1Nodes.sort((a, b) => {
           return a.index - b.index;
         });
-        part2Nodes.forEach(function(p2n) {
+        part2Nodes.forEach((p2n) => {
           let index = 0;
           let adjCount = 0;
-          edges.forEach(function(edge) {
+          edges.forEach((edge) => {
             const sourceId = edge.source;
             const targetId = edge.target;
             if (sourceId === p2n.id) {
@@ -90,7 +90,7 @@ Page({
           index /= adjCount;
           p2n.index = index;
         });
-        part2Nodes.sort(function(a, b) {
+        part2Nodes.sort((a, b) => {
           return a.index - b.index;
         });
 
@@ -102,7 +102,7 @@ Page({
         if (direction === 'vertical') {
           begin = center[0] - height / 2;
         }
-        part1Nodes.forEach(function(p1n, i) {
+        part1Nodes.forEach((p1n, i) => {
           if (direction === 'horizontal') {
             p1n.x = part1Pos;
             p1n.y = begin + i * (nodeSep + nodeSize);
@@ -111,7 +111,7 @@ Page({
             p1n.y = part1Pos;
           }
         });
-        part2Nodes.forEach(function(p2n, i) {
+        part2Nodes.forEach((p2n, i) => {
           if (direction === 'horizontal') {
             p2n.x = part2Pos;
             p2n.y = begin + i * (nodeSep + nodeSize);
@@ -140,7 +140,7 @@ Page({
    * @param {*} renderer 使用canvas 1.0还是canvas 2.0，mini | mini-native
    */
   handleInit(event) {
-    const {ctx, rect, canvas, renderer} = event.detail
+    const { ctx, canvas, renderer } = event.detail;
     this.isCanvasInit = true;
     this.ctx = ctx;
     this.renderer = renderer;

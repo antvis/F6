@@ -41,13 +41,8 @@ Page({
         const rootNode = depth === 0;
         const hasChildren = children && children.length !== 0;
 
-        const {
-          childCountWidth,
-          countMarginLeft,
-          itemPadding,
-          nameMarginLeft,
-          rootPadding,
-        } = BaseConfig;
+        const { childCountWidth, countMarginLeft, itemPadding, nameMarginLeft, rootPadding } =
+          BaseConfig;
 
         let width = 0;
         const height = 28;
@@ -251,7 +246,7 @@ Page({
    * @param {*} renderer 使用canvas 1.0还是canvas 2.0，mini | mini-native
    */
   handleInit(event) {
-    const { ctx, rect, canvas, renderer } = event.detail
+    const { ctx, canvas, renderer } = event.detail;
     this.isCanvasInit = true;
     this.ctx = ctx;
     this.renderer = renderer;

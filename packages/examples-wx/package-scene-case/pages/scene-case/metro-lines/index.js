@@ -181,7 +181,7 @@ Page({
    * @param {*} renderer 使用canvas 1.0还是canvas 2.0，mini | mini-native
    */
   handleInit(event) {
-    const { ctx, rect, canvas, renderer } = event.detail
+    const { ctx, canvas, renderer } = event.detail;
     this.isCanvasInit = true;
     this.ctx = ctx;
     this.renderer = renderer;
@@ -204,16 +204,16 @@ Page({
       let maxX = -99999999999999999;
       let minY = 99999999999999999;
       let maxY = -99999999999999999;
-      nodes_.forEach(function(node) {
+      nodes_.forEach((node) => {
         if (node.x > maxX) maxX = node.x;
         if (node.x < minX) minX = node.x;
         if (node.y > maxY) maxY = node.y;
         if (node.y < minY) minY = node.y;
       });
 
-      edges_.forEach(function(edge) {
+      edges_.forEach((edge) => {
         const { controlPoints } = edge;
-        controlPoints.forEach(function(cp) {
+        controlPoints.forEach((cp) => {
           if (cp.x > maxX) maxX = cp.x;
           if (cp.x < minX) minX = cp.x;
           if (cp.y > maxY) maxY = cp.y;
@@ -223,15 +223,15 @@ Page({
 
       const xScale = maxX - minX;
       const yScale = maxY - minY;
-      nodes_.forEach(function(node) {
+      nodes_.forEach((node) => {
         node.orix = node.x;
         node.oriy = node.y;
         node.x = ((node.x - minX) / xScale) * size;
         node.y = ((node.y - minY) / yScale) * size;
       });
-      edges_.forEach(function(edge) {
+      edges_.forEach((edge) => {
         const { controlPoints } = edge;
-        controlPoints.forEach(function(cp) {
+        controlPoints.forEach((cp) => {
           cp.x = ((cp.x - minX) / xScale) * size;
           cp.y = ((cp.y - minY) / yScale) * size;
         });

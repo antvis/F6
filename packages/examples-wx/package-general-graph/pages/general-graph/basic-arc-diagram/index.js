@@ -41,7 +41,7 @@ Page({
    * @param {*} renderer 使用canvas 1.0还是canvas 2.0，mini | mini-native
    */
   handleInit(event) {
-    const {ctx, rect, canvas, renderer} = event.detail
+    const { ctx, canvas, renderer } = event.detail;
     this.isCanvasInit = true;
     this.ctx = ctx;
     this.renderer = renderer;
@@ -77,7 +77,7 @@ Page({
     function scaleNodeProp(nodes, propName, refPropName, dataRange, outRange) {
       const outLength = outRange[1] - outRange[0];
       const dataLength = dataRange[1] - dataRange[0];
-      nodes.forEach(function(n) {
+      nodes.forEach((n) => {
         n[propName] = ((n[refPropName] - dataRange[0]) * outLength) / dataLength + outRange[0];
       });
     }
@@ -120,11 +120,11 @@ Page({
     });
 
     // 订阅事件
-    this.graph.on('edge:mouseenter', function(e) {
+    this.graph.on('edge:mouseenter', function (e) {
       const edge = e.item;
       this.graph.setItemState(edge, 'hover', true);
     });
-    this.graph.on('edge:mouseleave', function(e) {
+    this.graph.on('edge:mouseleave', function (e) {
       const edge = e.item;
       this.graph.setItemState(edge, 'hover', false);
     });
@@ -143,7 +143,7 @@ Page({
     const yLength = end[1] - begin[1];
     const xSep = xLength / n;
     const ySep = yLength / n;
-    nodes.forEach(function(node, i) {
+    nodes.forEach((node, i) => {
       node.x = begin[0] + i * xSep;
       node.y = begin[1] + i * ySep;
       nodeMap.set(node.id, node);
@@ -187,7 +187,7 @@ Page({
     // map the value to node size
     let maxValue = -9999;
     let minValue = 9999;
-    nodes.forEach(function(k) {
+    nodes.forEach((k) => {
       if (maxValue < k.value) maxValue = k.value;
       if (minValue > k.value) minValue = k.value;
     });

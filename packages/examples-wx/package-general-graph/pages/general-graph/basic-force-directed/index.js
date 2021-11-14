@@ -41,7 +41,7 @@ Page({
    * @param {*} renderer 使用canvas 1.0还是canvas 2.0，mini | mini-native
    */
   handleInit(event) {
-    const { ctx, rect, canvas, renderer } = event.detail;
+    const { ctx, canvas, renderer } = event.detail;
     this.isCanvasInit = true;
     this.ctx = ctx;
     this.renderer = renderer;
@@ -79,7 +79,7 @@ Page({
     // 注册数据
     this.graph.data({
       nodes: data.nodes,
-      edges: data.edges.map(function (edge, i) {
+      edges: data.edges.map((edge, i) => {
         edge.id = `edge${i}`;
         return Object.assign({}, edge);
       }),
@@ -102,7 +102,7 @@ Page({
       forceLayout.execute();
       refreshDragedNodePosition(e);
     });
-    this.graph.on('node:dragend', function (e) {
+    this.graph.on('node:dragend', (e) => {
       e.item.get('model').fx = null;
       e.item.get('model').fy = null;
     });

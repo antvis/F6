@@ -20,13 +20,12 @@ Page({
 
   onLoad() {
     // 同步获取window的宽高
-    const { windowWidth, windowHeight, pixelRatio, titleBarHeight, statusBarHeight } =
-      wx.getSystemInfoSync();
+    const { windowWidth, windowHeight, pixelRatio } = wx.getSystemInfoSync();
 
     this.setData({
       width: windowWidth,
       height: windowHeight,
-      pixelRatio: 2,
+      pixelRatio,
     });
   },
 
@@ -38,7 +37,7 @@ Page({
    * @param {*} renderer 使用canvas 1.0还是canvas 2.0，mini | mini-native
    */
   handleInit(event) {
-    const {ctx, rect, canvas, renderer} = event.detail
+    const { ctx, canvas, renderer } = event.detail;
     this.isCanvasInit = true;
     this.ctx = ctx;
     this.renderer = renderer;
@@ -82,7 +81,6 @@ Page({
         value: Math.round(Math.random() * 300),
       });
     }
-    let count = 0;
     const timebar = new TimeBar({
       x: 0,
       y: 0,
