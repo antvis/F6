@@ -1,5 +1,4 @@
 import {
-  all_list,
   processed_treeGraphContainer as treeGraphContainer,
   processed_generalGraphContainer as generalGraphContainer,
   processed_basicElementContainer as basicElementContainer,
@@ -66,8 +65,8 @@ Page({
   },
 
   data: {
-    all_list: basicComponentList, //展示列表
-    theme: 'light', //日间夜间主题 'light', 'dark'
+    all_list: basicComponentList, // 展示列表
+    theme: 'light', // 日间夜间主题 'light', 'dark'
   },
 
   onLoad() {
@@ -84,7 +83,7 @@ Page({
   },
 
   kindToggle(e) {
-    const id = e.currentTarget.id;
+    const { id } = e.currentTarget;
     const lists = this.data.all_list;
     lists.forEach((component) => {
       const { list } = component;

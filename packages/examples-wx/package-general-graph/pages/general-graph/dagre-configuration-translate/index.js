@@ -43,7 +43,7 @@ Page({
    * @param {*} renderer 使用canvas 1.0还是canvas 2.0，mini | mini-native
    */
   handleInit(event) {
-    const {ctx, rect, canvas, renderer} = event.detail
+    const { ctx, canvas, renderer } = event.detail;
     this.isCanvasInit = true;
     this.ctx = ctx;
     this.renderer = renderer;
@@ -109,7 +109,7 @@ Page({
     layoutConfigTranslation();
 
     function layoutConfigTranslation() {
-      setTimeout(function() {
+      setTimeout(() => {
         me.setData({
           description:
             'Dagre layout, rank seperation: 10, node seperation in same level: 1, layout direction: Top->Bottom, alignment of nodes: DL',
@@ -119,7 +119,7 @@ Page({
         });
       }, 1000);
 
-      setTimeout(function() {
+      setTimeout(() => {
         me.setData({
           description:
             'Dagre layout, rank seperation: 10, node seperation in same level: 5, layout direction: Left->Right, alignment of nodes: DL',
@@ -129,7 +129,7 @@ Page({
         });
       }, 2500);
 
-      setTimeout(function() {
+      setTimeout(() => {
         me.setData({
           description:
             'Dagre layout, rank seperation: 10, node seperation in same level: 5, layout direction: Left->Right, alignment of nodes: UL',
@@ -139,7 +139,7 @@ Page({
         });
       }, 4000);
 
-      setTimeout(function() {
+      setTimeout(() => {
         me.setData({
           description:
             'Dagre layout, rank seperation: 10, node seperation in same level: 5, layout direction: Left->Right, alignment of nodes: UR',
@@ -149,7 +149,7 @@ Page({
         });
       }, 5500);
 
-      setTimeout(function() {
+      setTimeout(() => {
         me.setData({
           description:
             'Dagre layout, rank seperation: 10, node seperation in same level: 5, layout direction: Left->Right, alignment of nodes: Down Right, alignment of nodes: DL',
@@ -160,7 +160,7 @@ Page({
         });
       }, 7000);
 
-      setTimeout(function() {
+      setTimeout(() => {
         me.setData({
           description:
             'Dagre layout, rank seperation: 30, node seperation in same level: 5, layout direction: Left->Right, alignment of nodes: Down Right, alignment of nodes: DL',

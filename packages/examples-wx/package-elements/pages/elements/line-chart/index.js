@@ -89,7 +89,7 @@ Page({
                 name: 'circle-shape',
               });
               // 加上交互动画
-              littleCircle.on('mouseenter', function() {
+              littleCircle.on('mouseenter', () => {
                 littleCircle.animate(
                   {
                     r: 5,
@@ -100,7 +100,7 @@ Page({
                   },
                 );
               });
-              littleCircle.on('mouseleave', function() {
+              littleCircle.on('mouseleave', () => {
                 littleCircle.animate(
                   {
                     r: 2,
@@ -161,7 +161,7 @@ Page({
    * @param {*} renderer 使用canvas 1.0还是canvas 2.0，mini | mini-native
    */
   handleInit(event) {
-    const {ctx, rect, canvas, renderer} = event.detail
+    const { ctx, canvas, renderer } = event.detail;
     this.isCanvasInit = true;
     this.ctx = ctx;
     this.renderer = renderer;

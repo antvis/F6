@@ -68,10 +68,10 @@ const data = {
 };
 
 // Modify the label in the data
-data.nodes.forEach(function(node) {
+data.nodes.forEach((node) => {
   node.label = fittingString(node.label, node.size, globalFontSize);
 });
-data.edges.forEach(function(edge) {
+data.edges.forEach((edge) => {
   edge.label = fittingString(edge.label, 120, globalFontSize);
 });
 

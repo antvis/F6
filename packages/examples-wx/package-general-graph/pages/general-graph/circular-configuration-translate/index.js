@@ -43,7 +43,7 @@ Page({
    * @param {*} renderer 使用canvas 1.0还是canvas 2.0，mini | mini-native
    */
   handleInit(event) {
-    const {ctx, rect, canvas, renderer} = event.detail
+    const { ctx, canvas, renderer } = event.detail;
     this.isCanvasInit = true;
     this.ctx = ctx;
     this.renderer = renderer;
@@ -96,12 +96,12 @@ Page({
 
     layoutConfigTranslation();
 
-    setInterval(function() {
+    setInterval(() => {
       layoutConfigTranslation();
     }, 11500);
 
     function layoutConfigTranslation() {
-      setTimeout(function() {
+      setTimeout(() => {
         me.setData({
           discription: 'Circular layout, radius = 200, divisions = 5, ordering: degree',
         });
@@ -114,7 +114,7 @@ Page({
         });
       }, 1000);
 
-      setTimeout(function() {
+      setTimeout(() => {
         me.setData({
           discription: 'Circular layout, radius = 200, divisions = 3, ordering: degree',
         });
@@ -125,7 +125,7 @@ Page({
         });
       }, 2500);
 
-      setTimeout(function() {
+      setTimeout(() => {
         me.setData({
           discription: 'Circular layout, radius = 200, divisions = 8, ordering: degree',
         });
@@ -137,7 +137,7 @@ Page({
         });
       }, 4000);
 
-      setTimeout(function() {
+      setTimeout(() => {
         me.setData({
           discription:
             'Circular layout, radius = 10～300(spiral), endAngle: PI, divisions = 1, ordering: degree',
@@ -152,7 +152,7 @@ Page({
         });
       }, 5500);
 
-      setTimeout(function() {
+      setTimeout(() => {
         me.setData({
           discription:
             'Circular layout, radius = 10～300(spiral),endAngle: 2 * PI, divisions= 1, ordering: degree',
@@ -162,7 +162,7 @@ Page({
         });
       }, 7000);
 
-      setTimeout(function() {
+      setTimeout(() => {
         me.setData({
           discription: 'Circular layout, radius = 200, ordering: degree',
         });
@@ -171,7 +171,7 @@ Page({
         });
       }, 8500);
 
-      setTimeout(function() {
+      setTimeout(() => {
         me.setData({
           discription: 'Circular layout, radius = 200, ordering: topology',
         });

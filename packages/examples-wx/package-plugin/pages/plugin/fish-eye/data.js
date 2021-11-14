@@ -225,7 +225,6 @@ const data = {
       x: 350.35613429759803,
       y: 214.42252912270644,
     },
-    
   ],
   edges: [
     {
@@ -308,7 +307,6 @@ const data = {
       target: 'Valjean',
       value: 1,
     },
-    
   ],
 };
 

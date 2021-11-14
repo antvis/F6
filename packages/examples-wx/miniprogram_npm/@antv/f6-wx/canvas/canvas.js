@@ -33,26 +33,26 @@ Component({
     },
   },
   observers: {
-    pixelRatio: function (pixelRatio) {
+    pixelRatio(pixelRatio) {
       this.setData({
         finalPixelRatio: pixelRatio >= 1 ? Math.ceil(pixelRatio) : 1,
       });
     },
   },
   ready: function ready() {
-    var _this = this;
+    const _this = this;
 
-    var query = wx.createSelectorQuery().in(this);
+    const query = wx.createSelectorQuery().in(this);
     query
       .select('#f6-canvas')
       .fields({
         node: true,
         size: true,
       })
-      .exec(function (ret) {
+      .exec((ret) => {
         console.log('ret', ret);
-        var canvas = ret[0].node;
-        const finalPixelRatio = _this.data.finalPixelRatio;
+        const canvas = ret[0].node;
+        const { finalPixelRatio } = _this.data;
         canvas.width = _this.data.width * finalPixelRatio;
         canvas.height = _this.data.height * finalPixelRatio;
         _this.rect = {
@@ -67,7 +67,7 @@ Component({
         _this.triggerEvent('onInit', {
           ctx: _this.ctx,
           rect: _this.rect,
-          canvas: canvas,
+          canvas,
           renderer: 'mini-native',
         });
         // _this.data.onInit(_this.ctx, _this.rect, canvas, 'mini-native');
@@ -78,7 +78,7 @@ Component({
       this.data.onError(e);
     },
     ontouch: function ontouch(e) {
-      var i = 0;
+      let i = 0;
 
       for (i = 0; i < e.touches.length; i++) {
         modifyEvent(e.touches[i]);
@@ -90,7 +90,7 @@ Component({
 
       this.triggerEvent('onTouchEvent', e);
 
-      //this.data.onTouchEvent(e);
+      // this.data.onTouchEvent(e);
     },
   },
 });

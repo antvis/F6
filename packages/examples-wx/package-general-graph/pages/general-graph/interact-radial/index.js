@@ -42,7 +42,7 @@ Page({
    * @param {*} renderer 使用canvas 1.0还是canvas 2.0，mini | mini-native
    */
   handleInit(event) {
-    const {ctx, rect, canvas, renderer} = event.detail
+    const { ctx, canvas, renderer } = event.detail;
     this.isCanvasInit = true;
     this.ctx = ctx;
     this.renderer = renderer;
@@ -108,9 +108,9 @@ Page({
       const newNodeModels = newData.nodes;
       const newEdgeModels = [];
       // deduplication the items in newEdgeModels
-      newData.edges.forEach(function(e) {
+      newData.edges.forEach((e) => {
         let exist = false;
-        newEdgeModels.forEach(function(ne) {
+        newEdgeModels.forEach((ne) => {
           if (ne.source === e.source && ne.target === e.target) exist = true;
         });
         if (!exist) {
@@ -139,12 +139,12 @@ Page({
 
       // add new edges to graph
       const edgeMap = new Map();
-      edges.forEach(function(e, i) {
+      edges.forEach((e, i) => {
         const eModel = e.getModel();
         edgeMap.set(`${eModel.source},${eModel.target}`, i);
       });
       const oldEdgeNum = edges.length;
-      newEdgeModels.forEach(function(em, i) {
+      newEdgeModels.forEach(function (em, i) {
         const exist = edgeMap.get(`${em.source},${em.target}`);
         if (exist === undefined) {
           this.graph.addItem('edge', em);

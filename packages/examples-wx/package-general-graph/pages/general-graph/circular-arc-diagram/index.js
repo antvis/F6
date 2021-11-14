@@ -41,7 +41,7 @@ Page({
    * @param {*} renderer 使用canvas 1.0还是canvas 2.0，mini | mini-native
    */
   handleInit(event) {
-    const {ctx, rect, canvas, renderer} = event.detail
+    const { ctx, canvas, renderer } = event.detail;
     this.isCanvasInit = true;
     this.ctx = ctx;
     this.renderer = renderer;
@@ -109,11 +109,11 @@ Page({
     });
 
     // 订阅
-    this.graph.on('edge:mouseenter', function(e) {
+    this.graph.on('edge:mouseenter', function (e) {
       const edge = e.item;
       this.graph.setItemState(edge, 'hover', true);
     });
-    this.graph.on('edge:mouseleave', function(e) {
+    this.graph.on('edge:mouseleave', function (e) {
       const edge = e.item;
       this.graph.setItemState(edge, 'hover', false);
     });
@@ -122,7 +122,7 @@ Page({
     function scaleNodeProp(nodes, propName, refPropName, dataRange, outRange) {
       const outLength = outRange[1] - outRange[0];
       const dataLength = dataRange[1] - dataRange[0];
-      nodes.forEach(function(n) {
+      nodes.forEach((n) => {
         n[propName] = ((n[refPropName] - dataRange[0]) * outLength) / dataLength + outRange[0];
       });
     }
@@ -136,7 +136,7 @@ Page({
     let clusterId = 0;
     const n = nodes.length;
     const angleSep = (Math.PI * 2) / n;
-    nodes.forEach(function(node, i) {
+    nodes.forEach((node, i) => {
       const angle = i * angleSep;
       node.x = radius * Math.cos(angle) + origin[0];
       node.y = radius * Math.sin(angle) + origin[1];
@@ -184,7 +184,7 @@ Page({
     // map the value to node size
     let maxValue = -9999;
     let minValue = 9999;
-    nodes.forEach(function(k) {
+    nodes.forEach((k) => {
       if (maxValue < k.value) maxValue = k.value;
       if (minValue > k.value) minValue = k.value;
     });

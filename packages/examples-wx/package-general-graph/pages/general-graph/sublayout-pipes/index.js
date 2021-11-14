@@ -1,10 +1,10 @@
 import F6 from '@antv/f6-wx';
+import { Legend } from '@antv/f6-plugin/f6Plugin';
 
 import { data, legendData } from './data';
 /**
  * sublayout-pipes
  */
-
 
 Page({
   canvas: null,
@@ -39,7 +39,7 @@ Page({
    * @param {*} renderer 使用canvas 1.0还是canvas 2.0，mini | mini-native
    */
   handleInit(event) {
-    const {ctx, rect, canvas, renderer} = event.detail
+    const { ctx, canvas, renderer } = event.detail;
     this.isCanvasInit = true;
     this.ctx = ctx;
     this.renderer = renderer;
@@ -58,52 +58,51 @@ Page({
     const { width, height, pixelRatio } = this.data;
 
     // 新建F6.legend实例
-    // TODO:Ledgend is not a constructor
-    // const legend = new F6.Legend({
-    //   data: legendData,
-    //   align: 'center',
-    //   layout: 'horizontal', // vertical
-    //   position: 'bottom-left',
-    //   vertiSep: 12,
-    //   horiSep: 24,
-    //   offsetY: -24,
-    //   padding: [4, 16, 8, 16],
-    //   containerStyle: {
-    //     fill: '#ccc',
-    //     lineWidth: 1,
-    //   },
-    //   title: 'Legend',
-    //   titleConfig: {
-    //     position: 'left',
-    //     offsetX: 0,
-    //     offsetY: 12,
-    //   },
-    //   filter: {
-    //     enable: true,
-    //     multiple: true,
-    //     trigger: 'click',
-    //     graphActiveState: 'activeByLegend',
-    //     graphInactiveState: 'inactiveByLegend',
-    //     filterFunctions: {
-    //       a: (d) => {
-    //         if (d.cluster === 'a') return true;
-    //         return false;
-    //       },
-    //       b: (d) => {
-    //         if (d.cluster === 'b') return true;
-    //         return false;
-    //       },
-    //       c: (d) => {
-    //         if (d.cluster === 'c') return true;
-    //         return false;
-    //       },
-    //       d: (d) => {
-    //         if (d.cluster === 'd') return true;
-    //         return false;
-    //       },
-    //     },
-    //   },
-    // });
+    const legend = new Legend({
+      data: legendData,
+      align: 'center',
+      layout: 'horizontal', // vertical
+      position: 'bottom-left',
+      vertiSep: 12,
+      horiSep: 24,
+      offsetY: -24,
+      padding: [4, 16, 8, 16],
+      containerStyle: {
+        fill: '#ccc',
+        lineWidth: 1,
+      },
+      title: 'Legend',
+      titleConfig: {
+        position: 'left',
+        offsetX: 0,
+        offsetY: 12,
+      },
+      filter: {
+        enable: true,
+        multiple: true,
+        trigger: 'click',
+        graphActiveState: 'activeByLegend',
+        graphInactiveState: 'inactiveByLegend',
+        filterFunctions: {
+          a: (d) => {
+            if (d.cluster === 'a') return true;
+            return false;
+          },
+          b: (d) => {
+            if (d.cluster === 'b') return true;
+            return false;
+          },
+          c: (d) => {
+            if (d.cluster === 'c') return true;
+            return false;
+          },
+          d: (d) => {
+            if (d.cluster === 'd') return true;
+            return false;
+          },
+        },
+      },
+    });
 
     // 创建F6实例
     this.graph = new F6.Graph({
@@ -117,7 +116,7 @@ Page({
       modes: {
         default: ['drag-canvas', 'drag-node'],
       },
-      // plugins: [legend],
+      plugins: [legend],
       animate: true,
       nodeStateStyles: {
         activeByLegend: {
