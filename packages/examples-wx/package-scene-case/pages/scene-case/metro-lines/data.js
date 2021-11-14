@@ -12507,10 +12507,10 @@ const { nodes } = data;
 const { edges } = data;
 const classMap = new Map();
 let classId = 0;
-nodes.forEach(function(node) {
+nodes.forEach((node) => {
   node.y = -node.y;
 });
-edges.forEach(function(edge) {
+edges.forEach((edge) => {
   edge.id = `edge-${edge.id}`;
   // edge cluster
   if (edge.class && classMap.get(edge.class) === undefined) {
@@ -12521,7 +12521,7 @@ edges.forEach(function(edge) {
   edge.color = colors[cid % colors.length];
   const { controlPoints } = edge;
 
-  controlPoints.forEach(function(cp) {
+  controlPoints.forEach((cp) => {
     cp.y = -cp.y;
   });
 });

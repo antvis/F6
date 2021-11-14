@@ -2,7 +2,7 @@ import F6 from '@antv/f6-wx';
 import { data, legendData } from './data';
 import { Legend } from '@antv/f6-plugin/f6Plugin';
 
-import radialLayout from '@antv/f6-wx/extends/layout/radialLayout'
+import radialLayout from '@antv/f6-wx/extends/layout/radialLayout';
 
 F6.registerLayout('radial', radialLayout);
 /**
@@ -41,7 +41,7 @@ Page({
    * @param {*} renderer 使用canvas 1.0还是canvas 2.0，mini | mini-native
    */
   handleInit(event) {
-    const {ctx, rect, canvas, renderer} = event.detail
+    const { ctx, canvas, renderer } = event.detail;
     this.isCanvasInit = true;
     this.ctx = ctx;
     this.renderer = renderer;
@@ -67,7 +67,7 @@ Page({
       align: 'center',
       layout: 'horizontal', // vertical
       position: 'top-left',
-      padding:10,
+      padding: 10,
       margin: 0,
       containerStyle: {
         fill: '#ccc',
@@ -119,7 +119,7 @@ Page({
 
     this.graph.data(data);
     this.graph.render();
-    this.graph.get('canvas').set('localRefresh', false)
+    this.graph.get('canvas').set('localRefresh', false);
 
     this.graph.on('node:tap', (evt) => {
       const { item } = evt;

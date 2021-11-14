@@ -45,7 +45,7 @@ Page({
    * @param {*} renderer 使用canvas 1.0还是canvas 2.0，mini | mini-native
    */
   handleInit(event) {
-    const {ctx, rect, canvas, renderer} = event.detail
+    const { ctx, canvas, renderer } = event.detail;
     this.isCanvasInit = true;
     this.ctx = ctx;
     this.renderer = renderer;
@@ -83,14 +83,14 @@ Page({
     });
 
     // 监听
-    this.graph.on('beforelayout', function() {
+    this.graph.on('beforelayout', () => {
       currentPage.setData({
         message:
           'Doing force-directed layout... the text will be changed after the layout being done.',
       });
     });
 
-    this.graph.on('afterlayout', function() {
+    this.graph.on('afterlayout', () => {
       currentPage.setData({
         message: 'Done!',
       });

@@ -56,8 +56,9 @@ Page({
           <group>
             <rect draggable="true" style={{width: ${width}, height: 42, stroke: ${stroke}, radius: 4}} keyshape>
               <text style={{ fontSize: 16, marginLeft: 12, marginTop: 12 }}>${cfg.label}</text>
-              <text style={{ marginLeft: ${width -
-                16}, marginTop: -20, stroke: '#66ccff', fill: '#000', cursor: 'pointer', opacity: ${
+              <text style={{ marginLeft: ${
+                width - 16
+              }, marginTop: -20, stroke: '#66ccff', fill: '#000', cursor: 'pointer', opacity: ${
             cfg.hover ? 0.75 : 0
           } }} action="add">+</text>
             </rect>
@@ -86,12 +87,14 @@ Page({
               <text draggable="true" style={{ fontSize: 14, marginLeft: 12, marginTop: 6 }}>${
                 cfg.label
               }</text>
-              <text style={{ marginLeft: ${width -
-                8}, marginTop: -10, stroke: ${color}, fill: '#000', cursor: 'pointer', opacity: ${
+              <text style={{ marginLeft: ${
+                width - 8
+              }, marginTop: -10, stroke: ${color}, fill: '#000', cursor: 'pointer', opacity: ${
             cfg.hover ? 0.75 : 0
           }, next: 'inline' }} action="add">+</text>
-              <text style={{ marginLeft: ${width -
-                4}, marginTop: -10, stroke: ${color}, fill: '#000', cursor: 'pointer', opacity: ${
+              <text style={{ marginLeft: ${
+                width - 4
+              }, marginTop: -10, stroke: ${color}, fill: '#000', cursor: 'pointer', opacity: ${
             cfg.hover ? 0.75 : 0
           }, next: 'inline' }} action="delete">-</text>
             </rect>
@@ -120,12 +123,14 @@ Page({
           <group>
             <rect draggable="true" style={{width: ${width + 20}, height: 26, fill: 'transparent' }}>
               <text style={{ fontSize: 12, marginLeft: 12, marginTop: 6 }}>${cfg.label}</text>
-                  <text style={{ marginLeft: ${width -
-                    8}, marginTop: -10, stroke: ${color}, fill: '#000', cursor: 'pointer', opacity: ${
+                  <text style={{ marginLeft: ${
+                    width - 8
+                  }, marginTop: -10, stroke: ${color}, fill: '#000', cursor: 'pointer', opacity: ${
             cfg.hover ? 0.75 : 0
           }, next: 'inline' }} action="add">+</text>
-                  <text style={{ marginLeft: ${width -
-                    4}, marginTop: -10, stroke: ${color}, fill: '#000', cursor: 'pointer', opacity: ${
+                  <text style={{ marginLeft: ${
+                    width - 4
+                  }, marginTop: -10, stroke: ${color}, fill: '#000', cursor: 'pointer', opacity: ${
             cfg.hover ? 0.75 : 0
           }, next: 'inline' }} action="delete">-</text>
             </rect>
@@ -311,7 +316,7 @@ Page({
    * @param {*} renderer 使用canvas 1.0还是canvas 2.0，mini | mini-native
    */
   handleInit(event) {
-    const {ctx, rect, canvas, renderer} = event.detail
+    const { ctx, canvas, renderer } = event.detail;
     this.isCanvasInit = true;
     this.ctx = ctx;
     this.renderer = renderer;

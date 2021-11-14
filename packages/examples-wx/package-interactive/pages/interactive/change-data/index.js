@@ -1,7 +1,6 @@
 import F6 from '@antv/f6-wx';
 import TreeGraph from '@antv/f6-wx/extends/graph/treeGraph';
 
-
 import data from './data';
 
 /**
@@ -44,7 +43,7 @@ Page({
    * @param {*} renderer 使用canvas 1.0还是canvas 2.0，mini | mini-native
    */
   handleInit(event) {
-    const {ctx, rect, canvas, renderer} = event.detail
+    const { ctx, canvas, renderer } = event.detail;
     this.isCanvasInit = true;
     this.ctx = ctx;
     this.renderer = renderer;
@@ -95,7 +94,7 @@ Page({
       },
     });
 
-    this.graph.node(function(node) {
+    this.graph.node((node) => {
       return {
         size: 16,
         anchorPoints: [
@@ -114,7 +113,7 @@ Page({
     });
 
     let i = 0;
-    this.graph.edge(function() {
+    this.graph.edge(() => {
       i++;
       return {
         type: 'cubic-horizontal',
@@ -129,7 +128,7 @@ Page({
 
     let count = 0;
 
-    this.graph.on('node:tap', function(evt) {
+    this.graph.on('node:tap', function (evt) {
       const { item } = evt;
 
       const nodeId = item.get('id');

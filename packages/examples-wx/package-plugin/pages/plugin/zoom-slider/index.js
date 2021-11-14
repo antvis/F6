@@ -16,7 +16,7 @@ Page({
     this.setData({
       width: windowWidth,
       height: windowHeight,
-      pixelRatio: 2,
+      pixelRatio,
     });
   },
 
@@ -28,10 +28,11 @@ Page({
    * @param {*} renderer 使用canvas 1.0还是canvas 2.0，mini | mini-native
    */
   handleInit(event) {
-    const { ctx, rect, canvas, renderer } = event.detail;
+    const { ctx, canvas, renderer } = event.detail;
     const zoomSlider = new ZoomSlider();
     const { width, height, pixelRatio } = this.data;
     this.graph = new F6.Graph({
+      container: canvas,
       context: ctx,
       width,
       height,

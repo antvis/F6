@@ -41,7 +41,7 @@ Page({
    * @param {*} renderer 使用canvas 1.0还是canvas 2.0，mini | mini-native
    */
   handleInit(event) {
-    const { ctx, rect, canvas, renderer } = event.detail;
+    const { ctx, canvas, renderer } = event.detail;
     this.isCanvasInit = true;
     this.ctx = ctx;
     this.renderer = renderer;
@@ -106,7 +106,7 @@ Page({
     const { nodes } = data;
     this.graph.data({
       nodes,
-      edges: data.edges.map(function (edge, i) {
+      edges: data.edges.map((edge, i) => {
         edge.id = `edge${i}`;
         return Object.assign({}, edge);
       }),
@@ -116,10 +116,10 @@ Page({
       this.graph.layout();
       refreshDragedNodePosition(e);
     });
-    this.graph.on('node:drag', function (e) {
+    this.graph.on('node:drag', (e) => {
       refreshDragedNodePosition(e);
     });
-    this.graph.on('node:dragend', function (e) {
+    this.graph.on('node:dragend', (e) => {
       e.item.get('model').fx = null;
       e.item.get('model').fy = null;
     });

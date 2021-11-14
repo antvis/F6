@@ -54,7 +54,7 @@ Page({
         const subGroup = group.addGroup({
           id: 'sub-group',
         });
-        cfg.values.forEach(function(data, index) {
+        cfg.values.forEach((data, index) => {
           subGroup.addShape('rect', {
             attrs: {
               x: 110 + index * 60,
@@ -109,7 +109,7 @@ Page({
         });
 
         const rectWidth = 100 + 60 * cfg.values.length - 80;
-        cfg.properties.forEach(function(property, index) {
+        cfg.properties.forEach((property, index) => {
           listGroup.addShape('rect', {
             attrs: {
               width: rectWidth,
@@ -158,7 +158,7 @@ Page({
    * @param {*} renderer 使用canvas 1.0还是canvas 2.0，mini | mini-native
    */
   handleInit(event) {
-    const {ctx, rect, canvas, renderer} = event.detail
+    const { ctx, canvas, renderer } = event.detail;
     this.isCanvasInit = true;
     this.ctx = ctx;
     this.renderer = renderer;
@@ -190,25 +190,25 @@ Page({
       },
     });
 
-    this.graph.on('node:tap', function(evt) {
+    this.graph.on('node:tap', function (evt) {
       const { target } = evt;
 
       const parentGroup = target.get('parent').get('parent');
       const detailGroup = parentGroup.findById('detail-list-group');
       // 将sub-group中的内容网上移动一段距离
       const subGroup = parentGroup.findById('sub-group');
-      const keyTexts = subGroup.findAll(function(item) {
+      const keyTexts = subGroup.findAll((item) => {
         return item.attr('className') === 'sub-group-text';
       });
       const isVisible = detailGroup.get('visible');
       if (isVisible) {
         detailGroup.hide();
-        keyTexts.forEach(function(text) {
+        keyTexts.forEach((text) => {
           const top = text.attr('y');
           text.attr('y', top + 10);
         });
       } else {
-        keyTexts.forEach(function(text) {
+        keyTexts.forEach((text) => {
           const top = text.attr('y');
           text.attr('y', top - 10);
         });

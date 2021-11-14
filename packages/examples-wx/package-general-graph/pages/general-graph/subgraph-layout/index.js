@@ -40,7 +40,7 @@ Page({
    * @param {*} renderer 使用canvas 1.0还是canvas 2.0，mini | mini-native
    */
   handleInit(event) {
-    const {ctx, rect, canvas, renderer} = event.detail
+    const { ctx, canvas, renderer } = event.detail;
     this.isCanvasInit = true;
     this.ctx = ctx;
     this.renderer = renderer;
@@ -60,7 +60,7 @@ Page({
 
     const { nodes } = data;
 
-    nodes.forEach(function(node, i) {
+    nodes.forEach((node, i) => {
       if (i <= 16 && i !== 12) {
         if (!node.style) {
           node.style = {
@@ -102,7 +102,7 @@ Page({
     this.graph.render();
     this.graph.fitView();
 
-    setTimeout(() =>{
+    setTimeout(() => {
       // const { nodes } = data;
       const { edges } = data;
       const newNodes = [];
@@ -112,14 +112,14 @@ Page({
       nodes[0].fx = nodes[0].x;
       nodes[0].fy = nodes[0].y;
       // add the nodes which should be re-layout
-      nodes.forEach(function(node, i) {
+      nodes.forEach((node, i) => {
         if (i <= 16 && i !== 12) {
           newNodes.push(node);
           newNodeMap.set(node.id, i);
         }
       });
       // add related edges
-      edges.forEach(function(edge) {
+      edges.forEach((edge) => {
         const sourceId = edge.source;
         const targetId = edge.target;
         if (newNodeMap.get(sourceId) !== undefined && newNodeMap.get(targetId) !== undefined) {
