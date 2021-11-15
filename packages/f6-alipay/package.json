@@ -1,6 +1,6 @@
 {
   "name": "@antv/f6-alipay",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "支付宝小程序g6组件",
   "files": ["es"],
   "keywords": ["G6", "G6Mobile", "Wechat"],
