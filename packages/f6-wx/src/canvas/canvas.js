@@ -40,37 +40,34 @@ Component({
     },
   },
   ready: function ready() {
-    var _this = this;
-
-    var query = wx.createSelectorQuery().in(this);
+    const query = wx.createSelectorQuery().in(this);
     query
       .select('#f6-canvas')
       .fields({
         node: true,
         size: true,
       })
-      .exec(function (ret) {
+      .exec((ret) => {
         console.log('ret', ret);
         var canvas = ret[0].node;
         const finalPixelRatio = this.data.finalPixelRatio;
-        canvas.width = _this.data.width * finalPixelRatio;
-        canvas.height = _this.data.height * finalPixelRatio;
-        _this.rect = {
-          width: _this.data.width * finalPixelRatio,
-          height: _this.data.height * finalPixelRatio,
+        canvas.width = this.data.width * finalPixelRatio;
+        canvas.height = this.data.height * finalPixelRatio;
+        this.rect = {
+          width: this.data.width * finalPixelRatio,
+          height: this.data.height * finalPixelRatio,
           left: canvas._left,
           top: canvas._top,
         };
-        console.log('rect', _this.rect);
-        _this.ctx = canvas.getContext('2d');
+        console.log('rect', this.rect);
+        this.ctx = canvas.getContext('2d');
 
-        _this.triggerEvent('onInit', {
-          ctx: _this.ctx,
-          rect: _this.rect,
+        this.triggerEvent('onInit', {
+          ctx: this.ctx,
+          rect: this.rect,
           canvas: canvas,
           renderer: 'mini-native',
         });
-        // _this.data.onInit(_this.ctx, _this.rect, canvas, 'mini-native');
       });
   },
   methods: {
@@ -89,8 +86,6 @@ Component({
       }
 
       this.triggerEvent('onTouchEvent', e);
-
-      //this.data.onTouchEvent(e);
     },
   },
 });
