@@ -1,5 +1,5 @@
 {
-  "defaultTitle": "自定义子节点分布",
+  "navigationBarTitleText": "自定义子节点分布",
   "usingComponents": {
     "f6-canvas": "@antv/f6-wx/canvas/canvas"
   }

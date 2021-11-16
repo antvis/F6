@@ -1,5 +1,5 @@
 {
-  "defaultTitle": "布局参数动态变化",
+  "navigationBarTitleText": "布局参数动态变化",
   "usingComponents": {
     "f6-canvas": "@antv/f6-wx/canvas/canvas"
   }

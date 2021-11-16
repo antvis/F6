@@ -1,5 +1,5 @@
 {
-  "defaultTitle": "圆形组合",
+  "navigationBarTitleText": "圆形组合",
   "usingComponents": {
     "f6-canvas": "@antv/f6-wx/canvas/canvas"
   }

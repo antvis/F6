@@ -1,5 +1,5 @@
 {
-  "defaultTitle": "对齐线",
+  "navigationBarTitleText": "对齐线",
   "usingComponents": {
     "f6-canvas": "@antv/f6-wx/canvas/canvas"
   }

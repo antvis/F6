@@ -1,5 +1,5 @@
 {
-  "defaultTitle": "合并同类兄弟节点",
+  "navigationBarTitleText": "合并同类兄弟节点",
   "usingComponents": {
     "f6-canvas": "@antv/f6-wx/canvas/canvas"
   }

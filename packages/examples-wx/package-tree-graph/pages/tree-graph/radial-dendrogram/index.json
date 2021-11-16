@@ -1,5 +1,5 @@
 {
-  "defaultTitle": "生态辐射树",
+  "navigationBarTitleText": "生态辐射树",
   "usingComponents": {
     "f6-canvas": "@antv/f6-wx/canvas/canvas"
   }

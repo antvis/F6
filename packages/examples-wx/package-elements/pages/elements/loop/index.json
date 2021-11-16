@@ -1,5 +1,5 @@
 {
-  "defaultTitle": "自环边",
+  "navigationBarTitleText": "自环边",
   "usingComponents": {
     "f6-canvas": "@antv/f6-wx/canvas/canvas"
   }
