@@ -1,5 +1,5 @@
 {
-  "defaultTitle": "基本环形布局",
+  "navigationBarTitleText": "基本环形布局",
   "usingComponents": {
     "f6-canvas": "@antv/f6-wx/canvas/canvas"
   }

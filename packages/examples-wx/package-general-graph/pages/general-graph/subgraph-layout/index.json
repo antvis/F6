@@ -1,5 +1,5 @@
 {
-  "defaultTitle": "子图布局",
+  "navigationBarTitleText": "子图布局",
   "usingComponents": {
     "f6-canvas": "@antv/f6-wx/canvas/canvas"
   }

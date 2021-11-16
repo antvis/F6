@@ -1,5 +1,5 @@
 {
-  "defaultTitle": "自左向右的流程图对齐",
+  "navigationBarTitleText": "自左向右的流程图对齐",
   "usingComponents": {
     "f6-canvas": "@antv/f6-wx/canvas/canvas"
   }

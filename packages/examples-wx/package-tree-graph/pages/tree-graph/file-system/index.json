@@ -1,5 +1,5 @@
 {
-  "defaultTitle": "文件系统",
+  "navigationBarTitleText": "文件系统",
   "usingComponents": {
     "f6-canvas": "@antv/f6-wx/canvas/canvas"
   }

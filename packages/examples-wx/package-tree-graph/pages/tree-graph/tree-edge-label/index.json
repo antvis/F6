@@ -1,5 +1,5 @@
 {
-  "defaultTitle": "树边上的标签",
+  "navigationBarTitleText": "树边上的标签",
   "usingComponents": {
     "f6-canvas": "@antv/f6-wx/canvas/canvas"
   }

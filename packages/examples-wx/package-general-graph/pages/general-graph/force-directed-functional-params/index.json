@@ -1,5 +1,5 @@
 {
-  "defaultTitle": "定制不同节点的参数",
+  "navigationBarTitleText": "定制不同节点的参数",
   "usingComponents": {
     "f6-canvas": "@antv/f6-wx/canvas/canvas"
   }
