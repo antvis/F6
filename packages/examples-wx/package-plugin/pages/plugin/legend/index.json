@@ -1,5 +1,5 @@
 {
-  "defaultTitle": "图例",
+  "navigationBarTitleText": "图例",
   "usingComponents": {
     "f6-canvas": "@antv/f6-wx/canvas/canvas"
   }

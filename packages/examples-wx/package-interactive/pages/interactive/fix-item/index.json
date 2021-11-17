@@ -1,5 +1,5 @@
 {
-  "defaultTitle": "缩放画布时固定元素",
+  "navigationBarTitleText": "缩放画布时固定元素",
   "usingComponents": {
     "f6-canvas": "@antv/f6-wx/canvas/canvas"
   }

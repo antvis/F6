@@ -1,5 +1,5 @@
 {
-  "defaultTitle": "力导向气泡图",
+  "navigationBarTitleText": "力导向气泡图",
   "usingComponents": {
     "f6-canvas": "@antv/f6-wx/canvas/canvas"
   }
