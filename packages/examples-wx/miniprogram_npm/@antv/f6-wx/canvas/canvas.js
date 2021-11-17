@@ -33,15 +33,13 @@ Component({
     },
   },
   observers: {
-    pixelRatio(pixelRatio) {
+    pixelRatio: function (pixelRatio) {
       this.setData({
         finalPixelRatio: pixelRatio >= 1 ? Math.ceil(pixelRatio) : 1,
       });
     },
   },
   ready: function ready() {
-    const _this = this;
-
     const query = wx.createSelectorQuery().in(this);
     query
       .select('#f6-canvas')
@@ -51,26 +49,25 @@ Component({
       })
       .exec((ret) => {
         console.log('ret', ret);
-        const canvas = ret[0].node;
-        const { finalPixelRatio } = _this.data;
-        canvas.width = _this.data.width * finalPixelRatio;
-        canvas.height = _this.data.height * finalPixelRatio;
-        _this.rect = {
-          width: _this.data.width * finalPixelRatio,
-          height: _this.data.height * finalPixelRatio,
+        var canvas = ret[0].node;
+        const finalPixelRatio = this.data.finalPixelRatio;
+        canvas.width = this.data.width * finalPixelRatio;
+        canvas.height = this.data.height * finalPixelRatio;
+        this.rect = {
+          width: this.data.width * finalPixelRatio,
+          height: this.data.height * finalPixelRatio,
           left: canvas._left,
           top: canvas._top,
         };
-        console.log('rect', _this.rect);
-        _this.ctx = canvas.getContext('2d');
+        console.log('rect', this.rect);
+        this.ctx = canvas.getContext('2d');
 
-        _this.triggerEvent('onInit', {
-          ctx: _this.ctx,
-          rect: _this.rect,
-          canvas,
+        this.triggerEvent('onInit', {
+          ctx: this.ctx,
+          rect: this.rect,
+          canvas: canvas,
           renderer: 'mini-native',
         });
-        // _this.data.onInit(_this.ctx, _this.rect, canvas, 'mini-native');
       });
   },
   methods: {
@@ -78,7 +75,7 @@ Component({
       this.data.onError(e);
     },
     ontouch: function ontouch(e) {
-      let i = 0;
+      var i = 0;
 
       for (i = 0; i < e.touches.length; i++) {
         modifyEvent(e.touches[i]);
@@ -89,8 +86,6 @@ Component({
       }
 
       this.triggerEvent('onTouchEvent', e);
-
-      // this.data.onTouchEvent(e);
     },
   },
 });
