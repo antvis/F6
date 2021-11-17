@@ -176,7 +176,8 @@
                 "pages/plugin/zoom-slider/index",
                 "pages/plugin/bundling/index",
                 "pages/plugin/menu/index",
-                "pages/plugin/snap-line/index"
+                "pages/plugin/snap-line/index",
+                "pages/plugin/mini-map/index"
             ]
         }
     ],

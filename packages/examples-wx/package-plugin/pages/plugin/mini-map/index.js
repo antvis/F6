@@ -1,6 +1,6 @@
-import { MiniMap } from '@antv/f6-plugin';
+import F6 from '@antv/f6-wx';
 import data from './data';
-import F6 from '@antv/f6';
+import { MiniMap } from '@antv/f6-plugin/f6Plugin';
 
 Page({
   data: {
@@ -12,11 +12,11 @@ Page({
 
   onLoad() {
     // 同步获取window的宽高
-    const sys = my.getSystemInfoSync();
-    const { windowWidth, screenHeight,titleBarHeight,statusBarHeight, pixelRatio } = sys;
+    const sys = wx.getSystemInfoSync();
+    const { windowWidth, windowHeight, pixelRatio } = sys;
     this.setData({
       width: windowWidth,
-      height: screenHeight - titleBarHeight - statusBarHeight,
+      height: windowHeight,
       pixelRatio,
     });
   },
@@ -28,7 +28,9 @@ Page({
    * @param {*} canvas canvas对象，在render为mini时为null
    * @param {*} renderer 使用canvas 1.0还是canvas 2.0，mini | mini-native
    */
-  handleInit(ctx, rect, canvas, renderer) {
+  handleInit(event) {
+    const { ctx, canvas, renderer } = event.detail;
+    console.log( ctx, canvas, renderer)
     const miniMap = new MiniMap({
       className: "custom-container",
       viewportClassName: "custom-viewport",
@@ -46,14 +48,15 @@ Page({
       }
     });
     const { width, height, pixelRatio } = this.data;
-    console.log('------->', ctx, rect, canvas, renderer);
+    console.log('------->', ctx, canvas, renderer);
     this.graph = new F6.Graph({
+      container: canvas,
       context: ctx,
+      renderer,
       width,
       height,
       pixelRatio,
       linkCenter: true,
-      renderer,
       defaultNode: {
         size: 30,
       },
@@ -73,6 +76,6 @@ Page({
    * canvas派发的事件，转派给graph实例
    */
   handleTouch(e) {
-    this.graph && this.graph.emitEvent(e);
+    this.graph && this.graph.emitEvent(e.detail);
   },
 });
