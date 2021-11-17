@@ -1,5 +1,5 @@
 {
-  "defaultTitle": "地铁路线图",
+  "navigationBarTitleText": "地铁路线图",
   "usingComponents": {
     "f6-canvas": "@antv/f6-wx/canvas/canvas"
   }

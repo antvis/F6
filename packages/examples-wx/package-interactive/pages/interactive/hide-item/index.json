@@ -1,5 +1,5 @@
 {
-  "defaultTitle": "拖拽画布时候隐藏",
+  "navigationBarTitleText": "拖拽画布时候隐藏",
   "usingComponents": {
     "f6-canvas": "@antv/f6-wx/canvas/canvas"
   }

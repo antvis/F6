@@ -1,5 +1,5 @@
 {
-  "defaultTitle": "自定义箭头",
+  "navigationBarTitleText": "自定义箭头",
   "usingComponents": {
     "f6-canvas": "@antv/f6-wx/canvas/canvas"
   }

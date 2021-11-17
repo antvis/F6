@@ -1,5 +1,5 @@
 {
-  "defaultTitle": "力导向布局聚类",
+  "navigationBarTitleText": "力导向布局聚类",
   "usingComponents": {
     "f6-canvas": "@antv/f6-wx/canvas/canvas"
   }

@@ -1,5 +1,5 @@
 {
-  "defaultTitle": "按节点度数排序",
+  "navigationBarTitleText": "按节点度数排序",
   "usingComponents": {
     "f6-canvas": "@antv/f6-wx/canvas/canvas"
   }

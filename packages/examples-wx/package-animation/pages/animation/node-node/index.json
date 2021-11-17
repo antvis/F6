@@ -1,5 +1,5 @@
 {
-  "defaultTitle": "节点动画",
+  "navigationBarTitleText": "节点动画",
   "usingComponents": {
     "f6-canvas": "@antv/f6-wx/canvas/canvas"
   }

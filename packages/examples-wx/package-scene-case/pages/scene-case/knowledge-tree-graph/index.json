@@ -1,5 +1,5 @@
 {
-  "defaultTitle": "知识图谱树",
+  "navigationBarTitleText": "知识图谱树",
   "usingComponents": {
     "f6-canvas": "@antv/f6-wx/canvas/canvas"
   }

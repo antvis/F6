@@ -1,5 +1,5 @@
 {
-  "defaultTitle": "面积图节点",
+  "navigationBarTitleText": "面积图节点",
   "usingComponents": {
     "f6-canvas": "@antv/f6-wx/canvas/canvas"
   }
