@@ -1003,4 +1003,14 @@ export const plugins = [
       },
     ],
   },
+  {
+    name: 'miniMap',
+    nameEn: 'miniMap',
+    detailList: [
+      {
+        name: 'miniMap',
+        path: '/package-plugin/pages/plugin/mini-map/index',
+      },
+    ],
+  }
 ];

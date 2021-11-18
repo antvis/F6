@@ -933,6 +933,16 @@ export const plugins = [
       },
     ],
   },
+  {
+    name: 'minimap',
+    nameEn: 'minimap',
+    detailList: [
+      {
+        name: 'minimap',
+        path: '../plugins/mini-map/index',
+      },
+    ],
+  }
 ];
 
 // 控制搜索框下面的热搜词
