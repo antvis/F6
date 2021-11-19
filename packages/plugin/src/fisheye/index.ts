@@ -1,4 +1,4 @@
-import { clone } from '@antv/util';
+import { clone, throttle } from '@antv/util';
 import { IG6GraphEvent, ShapeStyle, IAbstractGraph as IGraph } from '@antv/f6-core';
 import Base from '../base';
 
@@ -93,12 +93,14 @@ export default class Fisheye extends Base {
           y: lensDelegate.attr('y') - evt.y,
         });
       });
-      lensDelegate.on('drag', (evt) => {
-        self.magnify(evt);
+      const throMmagnify = throttle(self.magnify.bind(self), 100, {
+        leading: false,
+        trailing: false,
       });
+      lensDelegate.on('drag', throMmagnify);
 
       lensDelegate.on('dragend', (evt) => {
-        this.clear()
+        this.clear();
       });
 
       // 绑定调整范围（r）和缩放系数(d)的监听
@@ -377,7 +379,7 @@ export default class Fisheye extends Base {
     if (trigger === 'mousemove' || trigger === 'tap' || trigger === 'drag') {
       self.set('trigger', trigger);
     }
-    if (scaleDBy === 'drag'  || scaleDBy === 'unset') {
+    if (scaleDBy === 'drag' || scaleDBy === 'unset') {
       self.set('scaleDBy', scaleDBy);
       self.get('delegate').remove();
       self.get('delegate').destroy();
@@ -525,7 +527,7 @@ export default class Fisheye extends Base {
       dPercentText.remove();
       dPercentText.destroy();
     }
-    this.set('delegateCenterDiff', undefined)
+    this.set('delegateCenterDiff', undefined);
   }
 
   /**
