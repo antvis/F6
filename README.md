@@ -24,9 +24,117 @@
 - [API](/zh/docs/api/Graph)
 - [F6 Blog](https://www.yuque.com/antv/g6-blog)
 
-## 快速上手
+## 安装
 
-<iframe src="https://herbox-embed.alipay.com/p/f6/demo?editorSlider=expand&previewZoom=100&defaultOpenedFiles=pages/index/index.js" width="100%" height=800/>
+```bash
+$ npm install @antv/f6
+```
+
+## 使用
+
+<img src="https://gw.alipayobjects.com/mdn/rms_5c3b4a/afts/img/A*g8A8T6urwOEAAAAAAAAAAAAAARQnAQ" width=500 alt='' />
+
+- <a href='https://herbox-embed.alipay.com/p/f6/demo' target='_blank'>demo</a>
+
+```js
+import F6 from '@antv/f6';
+import graphData from './data';
+import dagreLayout from '@antv/f6/dist/extends/layout/dagreLayout';
+import TreeGraph from '@antv/f6/dist/extends/graph/treeGraph';
+
+F6.registerLayout('dagreLayout', dagreLayout);
+F6.registerGraph('TreeGraph', TreeGraph);
+
+Page({
+  data: {
+    width: 300,
+    height: 400,
+    pixelRatio: 1,
+  },
+  onLoad() {
+    const { windowWidth, windowHeight, pixelRatio } = my.getSystemInfoSync();
+    this.setData({
+      width: windowWidth,
+      height: windowHeight,
+      pixelRatio: pixelRatio,
+    });
+  },
+  onCanvasInit(ctx, rect, canvas, renderer) {
+    this.graph = new F6.TreeGraph({
+      context: ctx,
+      renderer,
+      width: this.data.width,
+      height: this.data.height,
+      linkCenter: true,
+      modes: {
+        default: ['drag-canvas', 'zoom-canvas'],
+      },
+      defaultNode: {
+        size: 40,
+      },
+      layout: {
+        type: 'compactBox',
+        direction: 'RL',
+        getId: function getId(d) {
+          return d.id;
+        },
+        getHeight: () => {
+          return 26;
+        },
+        getWidth: () => {
+          return 26;
+        },
+        getVGap: () => {
+          return 20;
+        },
+        getHGap: () => {
+          return 30;
+        },
+        radial: false,
+      },
+    });
+
+    this.graph.node(function (node) {
+      return {
+        label: node.id,
+      };
+    });
+
+    this.graph.data(graphData);
+    this.graph.render();
+    this.graph.fitView();
+  },
+  onTouch(e) {
+    this.graph.emitEvent(e);
+  },
+  onUnload() {
+    this.graph?.destroy();
+  },
+});
+```
+
+## 如何开发
+
+```bash
+$ npm install
+
+# lerna bootstrap for multiple packages
+$ npm run bootstrap
+
+# build the packages
+$ npm run build:all
+
+# if you wanna watch one of the packages, e.g. packages/core
+$ cd ./packages/core
+$ npm run watch
+
+# run test case
+$ npm test
+
+# run test case in watch mode
+npm test -- --watch ./tests/unit/algorithm/find-path-spec
+DEBUG_MODE=1 npm test -- --watch ./tests/unit/algorithm/find-path-spec
+```
 
 更详细的内容请参考 [快速上手](/zh/docs/manual/getting-started) 文档。
 
