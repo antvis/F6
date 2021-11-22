@@ -4,12 +4,6 @@
 
 [English](./README-en-US.md) | 简体中文
 
-<img src="https://gw.alipayobjects.com/mdn/rms_5c3b4a/afts/img/A*KV1pSIPeJPAAAAAAAAAAAAAAARQnAQ" height="250" alt="f6 banner" />
-
-[![](https://img.shields.io/travis/antvis/f6.svg)](https://travis-ci.org/antvis/f6) [![Coverage Status](https://coveralls.io/repos/github/antvis/F6/badge.svg)](https://coveralls.io/github/antvis/F6) ![](https://img.shields.io/badge/language-javascript-red.svg) ![](https://img.shields.io/badge/license-MIT-000000.svg) [![npm package](https://img.shields.io/npm/v/@antv/f6.svg)](https://www.npmjs.com/package/@antv/f6) [![NPM downloads](https://img.shields.io/npm/dm/@antv/f6.svg)](https://npmjs.org/package/@antv/f6) [![Percentage of issues still open](https://isitmaintained.com/badge/open/antvis/f6.svg)](https://isitmaintained.com/project/antvis/f6 'Percentage of issues still open')
-
-[English Introduction](/en/docs/manual/introduction/)
-
 ## 欢迎扫码体验
 
 <img src='https://gw.alipayobjects.com/mdn/rms_5c3b4a/afts/img/A*-VctS49Qe6QAAAAAAAAAAAAAARQnAQ' width=550 alt='img'/>
