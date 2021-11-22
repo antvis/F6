@@ -12,7 +12,7 @@
 
 <a href='https://github.com/antvis/f6' target='_blank'>F6</a> 是一款可以快速、流畅运行于移动设备中的图可视化引擎，通过丰富的布局、组件及分析能力，帮助用户落地跨平台的图可视化应用解决方案。在 H5、小程序等移动端平台上，对包体积、性能有更高的要求，也需要定义一套合适的交互模式。针对以上问题，我们在 G6 的基础上重新设计并构建了 F6。F6 不仅具有基础的关联图绘制、事件、动画，同时内置了常用的移动端交互模式、丰富的布局和分析组件，通过简单的配置即可使用。
 
-<img src='https://raw.githubusercontent.com/antvis/F6/master/examples.gif' width=550 alt='img'/>
+<img src='https://raw.githubusercontent.com/antvis/F6/master/examples.gif' width='100%' alt='img'/>
 
 如果您还没有使用过 F6， 建议通过 [快速上手](/zh/docs/manual/getting-started) 抢先体验 F6 的魅力。
 
