@@ -12,12 +12,12 @@ module.exports = {
   // Customize your site metadata:
   siteMetadata: {
     title: 'F6',
-    description: 'A library for mobile graph visualization, simple and extendable.',
+    description: 'graph visualization engine for mobile devices',
     siteUrl: homepage,
     githubUrl: repository.url,
     showAPIDoc: true,
     isAntVSite: false,
-    showChinaMirror: false, // 是否展示国内镜像链接
+    showChinaMirror: true, // 是否展示国内镜像链接
     showLanguageSwitcher: false, // 用于定义是否展示语言切换
     versions: {
       [version]: 'https://f6.antv.vision',
