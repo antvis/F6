@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "@antv/f6-site",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "F6 sites deployed on gh-pages",
   "keywords": [
     "antv",
