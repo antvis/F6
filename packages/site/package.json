@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "@antv/f6-site",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "F6 sites deployed on gh-pages",
   "keywords": [
     "antv",
@@ -36,6 +36,7 @@
   "dependencies": {
     "@ant-design/icons": "^4.0.6",
     "@antv/chart-node-g6": "^0.0.3",
+    "@antv/f6": "^0.0.15",
     "@antv/g6": "4.2.7",
     "@antv/gatsby-theme-antv": "1.1.15",
     "@antv/util": "^2.0.9",
