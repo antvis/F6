@@ -13,8 +13,6 @@ Behavior 是 F6 提供的定义图上交互事件的机制。它与[交互模式
 
 ### drag-combo
 
-V3.5 以上版本支持。
-
 - 含义：拖动 Combo；
 - 配置项：
   - `type: 'drag-combo'`；
@@ -63,8 +61,6 @@ const graph = new F6.Graph({
 ```
 
 ### collapse-expand-combo
-
-V3.5 以上版本支持。
 
 - 含义：收起和展开 Combo。若图配置有布局，则该 behavior 被触发后会触发图的重新布局。若希望避免重新布局，可以通过监听 combo 点击事件和 [graph.collapseExpandCombo API](/zh/docs/api/Graph#collapseexpandcombocombo) 控制收缩展开逻辑；
 - 配置项：
@@ -213,8 +209,6 @@ const graph = new F6.Graph({
 **提示：若要限定缩放尺寸，请在 graph 上设置  `minZoom`  和  `maxZoom`。**
 
 ### drag-node
-
-**说明：** V3.5 以上版本才支持拖动 Combo 中的节点。
 
 - 含义：拖拽节点，或拖动 Combo 中的节点；
 - 配置项：

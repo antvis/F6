@@ -5,10 +5,9 @@ order: 4
 
 ## 流水线子图布局
 
-**v4.3.0 新增**，支持在 Graph.layout 中同时配置多个子图布局。
+支持在 Graph.layout 中同时配置多个子图布局。
 
 <img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*TaymQYKOJkgAAAAAAAAAAAAAARQnAQ' alt="img" width='400px'>
-
 
 ### 使用方法
 
@@ -17,14 +16,24 @@ order: 4
 `layout.pipes` 的数据类型如下：
 
 ```javascript
-type Pipes =
-  {
-    // 该子图所使用的布局类型
-    type: 'random' | 'radial' | 'mds' | 'circular' | 'fruchterman' | 'force' | 'gForce' | 'dagre' | 'concentric' | 'grid' | 'forceAtlas2',
-    // 节点的筛选器，参数为节点数据，返回布尔值代表该节点是否在该子图中
-    nodesFilter: (node: NodeData) => boolean;
-    ... // 布局对应的参数，详见各个布局的参数
-  }[];
+type Pipes = {
+  // 该子图所使用的布局类型
+  type:
+    | 'random'
+    | 'radial'
+    | 'mds'
+    | 'circular'
+    | 'fruchterman'
+    | 'force'
+    | 'gForce'
+    | 'dagre'
+    | 'concentric'
+    | 'grid'
+    | 'forceAtlas2',
+  // 节点的筛选器，参数为节点数据，返回布尔值代表该节点是否在该子图中
+  nodesFilter: (node: NodeData) => boolean, // 布局对应的参数，详见各个布局的参数
+  ...
+}[];
 ```
 
 使用示例：
@@ -47,8 +56,8 @@ const graph = new F6.Graph({
         nodesFilter: (node) => node.subGraphId === '2',
         // 该 grid 布局的其他参数
         begin: [100, 0],
-      }
-    ]
+      },
+    ],
   },
 });
 ```
