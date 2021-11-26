@@ -261,7 +261,7 @@ F6.registerEdge(
 
 ### afterDraw(cfg, group)
 
-绘制完成以后的操作，用户可继承现有的节点或边，在 `afterDraw()` 方法中扩展图形或添加动画。可参考在 afterDraw 中添加动画的 [demo](/zh/examples/scatter/edge)。图形动画 API 详见 F6 的渲染引擎 [G 的动画相关 API](https://g.antv.vision/zh/docs/api/general/element/#%E5%8A%A8%E7%94%BB%E6%96%B9%E6%B3%95)。
+绘制完成以后的操作，用户可继承现有的节点或边，在 `afterDraw()` 方法中扩展图形或添加动画。可参考在 afterDraw 中添加动画的 [demo](/zh/docs/examples/scatter/edge)。图形动画 API 详见 F6 的渲染引擎 [G 的动画相关 API](https://g.antv.vision/zh/docs/api/general/element/#%E5%8A%A8%E7%94%BB%E6%96%B9%E6%B3%95)。
 
 ## 更新函数
 
@@ -278,7 +278,7 @@ F6.registerEdge(
 
 ### afterUpdate(cfg, item)
 
-更新完以后的操作，如扩展图形或添加动画。可参考添加动画的 [demo](/zh/examples/scatter/edge)。图形动画 API 详见 F6 的渲染引擎 [G 的动画相关 API](https://g.antv.vision/zh/docs/api/general/element/#%E5%8A%A8%E7%94%BB%E6%96%B9%E6%B3%95)。
+更新完以后的操作，如扩展图形或添加动画。可参考添加动画的 [demo](/zh/docs/examples/scatter/edge)。图形动画 API 详见 F6 的渲染引擎 [G 的动画相关 API](https://g.antv.vision/zh/docs/api/general/element/#%E5%8A%A8%E7%94%BB%E6%96%B9%E6%B3%95)。
 
 ### shouldUpdate(type)
 

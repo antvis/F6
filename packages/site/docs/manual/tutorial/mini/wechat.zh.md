@@ -62,7 +62,7 @@ found 0 vulnerabilities
 ```
 {
   "usingComponents": {
-    "F6": "@antv/f6-wx/container/container"
+    "F6": "@antv/f6-wx/canvas/canvas"
   }
 }
 ```

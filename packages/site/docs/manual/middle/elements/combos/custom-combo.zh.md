@@ -68,7 +68,7 @@ F6.registerCombo(
 
 ## 1. 自定义扩展内置 Rect Combo
 
-<a href='/zh/examples/item/customCombo#cRect' target='_blank'>Demo</a>。
+<a href='/zh/docs/examples/item/customCombo#cRect' target='_blank'>Demo</a>。
 
 ### 内置 Rect Combo 位置逻辑详解
 
@@ -184,7 +184,7 @@ graph.render();
 
 ## 2. 自定义扩展内置 Circle Combo
 
-<a href='/zh/examples/item/customCombo#cCircle' target='_blank'>Demo</a>。
+<a href='/zh/docs/examples/item/customCombo#cCircle' target='_blank'>Demo</a>。
 
 ### 内置 Circle Combo 位置逻辑详解
 

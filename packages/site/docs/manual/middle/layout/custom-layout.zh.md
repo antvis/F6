@@ -105,7 +105,7 @@ const data = {
 
 ## 实现
 
-下面代码展示了自定义名为  `'bigraph-layout'` 的二分图布局，完整代码参见：<a href='/zh/examples/net/layoutMechanism#customBigraph' target='_blank'>自定义布局-二分图</a>。使用该布局的方式与使用内置布局方式相同，都是在实例化图时将其配置到 `layout` 配置项中，详见：[一般图布局](/zh/docs/manual/middle/layout/graph-layout)。
+下面代码展示了自定义名为  `'bigraph-layout'` 的二分图布局，完整代码参见：<a href='/zh/docs/examples/net/layoutMechanism#customBigraph' target='_blank'>自定义布局-二分图</a>。使用该布局的方式与使用内置布局方式相同，都是在实例化图时将其配置到 `layout` 配置项中，详见：[一般图布局](/zh/docs/manual/middle/layout/graph-layout)。
 
 ```javascript
 F6.registerLayout('bigraph-layout', {

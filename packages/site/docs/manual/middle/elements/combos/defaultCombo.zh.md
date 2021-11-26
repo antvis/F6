@@ -3,9 +3,7 @@ title: Combo 总览
 order: 0
 ---
 
-> V3.5 后支持的全新节点分组 Combo 机制。[原节点分组](/zh/docs/manual/middle/discard/nodeGroup)即将废除。
-
-对于熟悉图可视化类库的用户来说，节点分组是非常实用的一个功能。此前，F6 已经存在一个节点分组 Node Group 功能，但它的机制无法支持一些较复杂的功能，例如：带有节点分组的图布局、自定义 Combo、嵌套节点分组的均匀 padding、节点与分组的边、分组与分组的边、空的节点分组等。V3.5 推出了全新的节点分组 Combo 机制，能够支持所有常用功能，参考 <a href='/zh/examples/item/defaultCombos' target='_blank'>Demo</a>。 <br /><img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*AngFRpOo4SAAAAAAAAAAAABkARQnAQ' width=600 alt='img'/>
+对于熟悉图可视化类库的用户来说，节点分组是非常实用的一个功能。支持带有节点分组的图布局、自定义 Combo、嵌套节点分组的均匀 padding、节点与分组的边、分组与分组的边、空的节点分组等。具体使用可以参考 <a href='/zh/docs/examples/item/defaultCombos' target='_blank'>Demo</a>。 <br /> <img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*AngFRpOo4SAAAAAAAAAAAABkARQnAQ' width=600 alt='img'/>
 
 F6 的内置 Combo 包括 circle 和 rect 两种类型，分别如下图所示。<br /> <img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*UwaHSKkwoVUAAAAAAAAAAABkARQnAQ' width='250' alt='img'/>
 
@@ -86,8 +84,8 @@ F6 的内置 Combo 包括 circle 和 rect 两种类型，分别如下图所示�
 
 | 名称 | 描述 | 默认示例 |
 | --- | --- | --- |
-| circle | 圆形：<br />- `size` 是单个数字，表示直径<br />- 圆心位置对应 Combo 的位置<br />- `color` 字段默认在描边上生效<br />- 标签文本默认在 Combo 正上方<br />- 更多字段见 [Circle](/zh/docs/manual/middle/elements/combos/built-in/circle) Combo 教程<br />- <a href='/zh/examples/item/defaultCombos#circle' target='_blank'>Demo</a> | <img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*ijeuQoiH0JUAAAAAAAAAAABkARQnAQ' width=150 alt='img'/> |
-| rect | 矩形：<br />- `size` 是数组，例如：[100, 50]<br />- 矩形的中心位置是 Combo 的位置，而不是左上角<br />- `color` 字段默认在描边上生效<br />- 标签文本默认在 Combo 左上角<br />- 更多字段见 [Rect](/zh/docs/manual/middle/elements/combos/built-in/rect) Combo 教程<br />- <a href='/zh/examples/item/defaultCombos#rect' target='_blank'>Demo</a> | <img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*Khp4QpxXVlQAAAAAAAAAAABkARQnAQ' width=150 alt='img'/> |
+| circle | 圆形：<br />- `size` 是单个数字，表示直径<br />- 圆心位置对应 Combo 的位置<br />- `color` 字段默认在描边上生效<br />- 标签文本默认在 Combo 正上方<br />- 更多字段见 [Circle](/zh/docs/manual/middle/elements/combos/built-in/circle) Combo 教程<br />- <a href='/zh/docs/examples/item/defaultCombos#circle' target='_blank'>Demo</a> | <img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*ijeuQoiH0JUAAAAAAAAAAABkARQnAQ' width=150 alt='img'/> |
+| rect | 矩形：<br />- `size` 是数组，例如：[100, 50]<br />- 矩形的中心位置是 Combo 的位置，而不是左上角<br />- `color` 字段默认在描边上生效<br />- 标签文本默认在 Combo 左上角<br />- 更多字段见 [Rect](/zh/docs/manual/middle/elements/combos/built-in/rect) Combo 教程<br />- <a href='/zh/docs/examples/item/defaultCombos#rect' target='_blank'>Demo</a> | <img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*Khp4QpxXVlQAAAAAAAAAAABkARQnAQ' width=150 alt='img'/> |
 
 ## Combo 的通用属性
 
