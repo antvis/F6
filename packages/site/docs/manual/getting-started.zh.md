@@ -45,7 +45,7 @@ npm install --save @antv/f6-wx
 若在移动端 H5 页面中使用，则可以通过 cdn 引入
 
 ```html
-<script src="https://gw.alipayobjects.com/os/antv/pkg/_antv.f6-{$version}/dist/f6.min.js"></script>
+<script src="https://gw.alipayobjects.com/os/antv/pkg/_antv.f6-{$version}/dist/f6.js"></script>
 ```
 
 <span style="background-color: rgb(251, 233, 231); color: rgb(139, 53, 56)"><strong>⚠️ 注意:</strong></span>
