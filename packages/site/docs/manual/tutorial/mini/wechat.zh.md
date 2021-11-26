@@ -26,7 +26,7 @@ npm init
 首先安装 F6 和 F6 微信小程序组件，使用小程序组件可以省去很多功夫
 
 ```
-➜  miniprogram-3 git:(master) ✗ npm i @antv/f6 @antv/f6-wx -S
+➜  miniprogram-3 git:(master) ✗ npm i @antv/f6-wx -S
 
 added 78 packages, and audited 79 packages in 14s
 
@@ -39,186 +39,183 @@ found 0 vulnerabilities
 
 执行完安装命令后，我们可以看到以下结构
 
-![](https://gw.alipayobjects.com/mdn/rms_5c3b4a/afts/img/A*corORLwy6egAAAAAAAAAAAAAARQnAQ)
+![](https://gw.alipayobjects.com/mdn/rms_5c3b4a/afts/img/A*0tb7QrHWRn4AAAAAAAAAAAAAARQnAQ)
 
-⚠️：由于微信对 npm 支持不那么友好，所以删除没用的包，否则构建速度会比较慢
+安装完成依赖后，在微信开发者工具中需要进行一次转换
 
-![](https://gw.alipayobjects.com/mdn/rms_5c3b4a/afts/img/A*9xylQJW57vQAAAAAAAAAAAAAARQnAQ)
-
-安装完成依赖后，在微信开发者工具中需要进行一次转换，具体操作步骤如下
-
-![](https://gw.alipayobjects.com/mdn/rms_5c3b4a/afts/img/A*BsWpT7RSAb4AAAAAAAAAAAAAARQnAQ)
-
-看到这个弹窗，基本上已经成功一大半了
-
-![](https://gw.alipayobjects.com/mdn/rms_5c3b4a/afts/img/A*PTF_T4c-SC0AAAAAAAAAAAAAARQnAQ)
+![](https://gw.alipayobjects.com/mdn/rms_5c3b4a/afts/img/A*rL7VRpSJD10AAAAAAAAAAAAAARQnAQ)
 
 展开 `miniprogram_npm` 这个目录，可以看到类似这样的目录结构
 
-![](https://gw.alipayobjects.com/mdn/rms_5c3b4a/afts/img/A*E4GWR5mrcOIAAAAAAAAAAAAAARQnAQ)
+![](https://gw.alipayobjects.com/mdn/rms_5c3b4a/afts/img/A*Sip7RpVOvcIAAAAAAAAAAAAAARQnAQ)
 
 剩下的就是进行编码了对原有的 `pages/index/index.json`做一些简单改造
 
-```
+```json
 {
   "usingComponents": {
-    "F6": "@antv/f6-wx/canvas/canvas"
+    "f6-canvas": "@antv/f6-wx/canvas/canvas"
   }
 }
 ```
 
 `pages/index/index.wxml`
 
-```
+```xml
 <view>
   <view>width: {{canvasWidth}}</view>
   <view>height: {{canvasHeight}}</view>
   <view>pixelRatio: {{pixelRatio}}</view>
-  <F6 width="{{canvasWidth}}" height="{{canvasHeight}}" pixelRatio="{{pixelRatio}}" onInit="{{onCanvasInit}}" onTouchEvent="{{onTouch}}" ></F6>
+  <f6-canvas
+    width="{{canvasWidth}}"
+    height="{{canvasHeight}}"
+    pixelRatio="{{pixelRatio}}"
+    bind:onInit="handleCanvasInit"
+    bind:onTouchEvent="handleTouch"
+  />
 </view>
 ```
 
 `pages/index/index.js`
 
-```
-const F6 = require('@antv/f6/f6');
-const force = require('@antv/f6/extends/layout/forceLayout');
+```javascript
+import F6 from '@antv/f6-wx';
+import force from '@antv/f6-wx/extends/layout/forceLayout';
 
-F6.registerLayout('force', force);
-
-const data = {
-  nodes: [
-    { id: 'node0', size: 50 },
-    { id: 'node1', size: 30 },
-    { id: 'node2', size: 30 },
-    { id: 'node3', size: 30 },
-    { id: 'node4', size: 30, isLeaf: true },
-    { id: 'node5', size: 30, isLeaf: true },
-    { id: 'node6', size: 15, isLeaf: true },
-    { id: 'node7', size: 15, isLeaf: true },
-    { id: 'node8', size: 15, isLeaf: true },
-    { id: 'node9', size: 15, isLeaf: true },
-    { id: 'node10', size: 15, isLeaf: true },
-    { id: 'node11', size: 15, isLeaf: true },
-    { id: 'node12', size: 15, isLeaf: true },
-    { id: 'node13', size: 15, isLeaf: true },
-    { id: 'node14', size: 15, isLeaf: true },
-    { id: 'node15', size: 15, isLeaf: true },
-    { id: 'node16', size: 15, isLeaf: true },
-  ],
-  edges: [
-    { source: 'node0', target: 'node1', id: 'edge0' },
-    { source: 'node0', target: 'node2', id: 'edge1' },
-    { source: 'node0', target: 'node3', id: 'edge2' },
-    { source: 'node0', target: 'node4', id: 'edge3' },
-    { source: 'node0', target: 'node5', id: 'edge4' },
-    { source: 'node1', target: 'node6', id: 'edge5' },
-    { source: 'node1', target: 'node7', id: 'edge6' },
-    { source: 'node2', target: 'node8', id: 'edge7' },
-    { source: 'node2', target: 'node9', id: 'edge8' },
-    { source: 'node2', target: 'node10', id: 'edge9' },
-    { source: 'node2', target: 'node11', id: 'edge10' },
-    { source: 'node2', target: 'node12', id: 'edge11' },
-    { source: 'node2', target: 'node13', id: 'edge12' },
-    { source: 'node3', target: 'node14', id: 'edge13' },
-    { source: 'node3', target: 'node15', id: 'edge14' },
-    { source: 'node3', target: 'node16', id: 'edge15' },
-  ],
-};
-
-function refreshDragedNodePosition(e) {
-  const model = e.item.get('model');
-  model.fx = e.x;
-  model.fy = e.y;
-}
+/**
+ * 基本力导向布局及节点拖拽
+ */
 
 Page({
+  canvas: null,
+  ctx: null,
+  renderer: '', // mini、mini-native等，F6需要，标记环境
+  graph: null,
+
   data: {
-    canvasWidth: 100,
-    canvasHeight: 100,
+    width: 375,
+    height: 600,
     pixelRatio: 1,
-    onCanvasInit(ctx, rect, canvas, renderer) {
-      console.log(ctx, rect, canvas, renderer, this);
-      this.graph = new F6.Graph({
-        context: ctx,
-        renderer,
-        width: rect.width,
-        height: rect.height,
-        defaultNode: {
-          color: '#5B8FF9',
-        },
-        modes: {
-          default: ['drag-canvas', 'drag-node', 'zoom-canvas'],
-        },
-        layout: {
-          type: 'force',
-          preventOverlap: true,
-          linkDistance: (d) => {
-            if (d.source.id === 'node0') {
-              return 100;
-            }
-            return 30;
-          },
-          nodeStrength: (d) => {
-            if (d.isLeaf) {
-              return -50;
-            }
-            return -10;
-          },
-          edgeStrength: (d) => {
-            if (
-              d.source.id === 'node1' ||
-              d.source.id === 'node2' ||
-              d.source.id === 'node3'
-            ) {
-              return 0.7;
-            }
-            return 0.1;
-          },
-        },
-      });
-      this.graph.data(data);
-      this.graph.render();
-
-      this.graph.on('node:dragstart', (e) => {
-        this.graph.layout();
-        refreshDragedNodePosition(e);
-      });
-
-      this.graph.on('node:drag', (e) => {
-        refreshDragedNodePosition(e);
-      });
-
-      this.graph.on('node:dragend', (e) => {
-        e.item.get('model').fx = null;
-        e.item.get('model').fy = null;
-      });
-    },
-    onTouch(e) {
-      console.log('canvas ontouch', e);
-      this.graph.emitEvent(e);
-    },
+    forceMini: false,
   },
+
   onLoad() {
+    F6.registerLayout('force', force);
+    // 同步获取window的宽高
     const { windowWidth, windowHeight, pixelRatio } = wx.getSystemInfoSync();
+
     this.setData({
       canvasWidth: windowWidth,
       canvasHeight: windowHeight,
       pixelRatio,
     });
   },
+
+  /**
+   * 初始化cnavas回调，缓存获得的context
+   * @param {*} ctx 绘图context
+   * @param {*} rect 宽高信息
+   * @param {*} canvas canvas对象，在render为mini时为null
+   * @param {*} renderer 使用canvas 1.0还是canvas 2.0，mini | mini-native
+   */
+  handleCanvasInit(event) {
+    const { ctx, canvas, renderer } = event.detail;
+    this.isCanvasInit = true;
+    this.ctx = ctx;
+    this.renderer = renderer;
+    this.canvas = canvas;
+    this.updateChart();
+  },
+
+  /**
+   * canvas派发的事件，转派给graph实例
+   */
+  handleTouch(e) {
+    this.graph && this.graph.emitEvent(e.detail);
+  },
+
+  updateChart() {
+    const { canvasWidth, canvasHeight, pixelRatio } = this.data;
+    const data = {
+      nodes: [
+        { id: 'node0', size: 50 },
+        { id: 'node1', size: 30 },
+        { id: 'node2', size: 30 },
+        { id: 'node3', size: 30 },
+        { id: 'node4', size: 30, isLeaf: true },
+        { id: 'node5', size: 30, isLeaf: true },
+        { id: 'node6', size: 15, isLeaf: true },
+        { id: 'node7', size: 15, isLeaf: true },
+        { id: 'node8', size: 15, isLeaf: true },
+        { id: 'node9', size: 15, isLeaf: true },
+        { id: 'node10', size: 15, isLeaf: true },
+        { id: 'node11', size: 15, isLeaf: true },
+        { id: 'node12', size: 15, isLeaf: true },
+        { id: 'node13', size: 15, isLeaf: true },
+        { id: 'node14', size: 15, isLeaf: true },
+        { id: 'node15', size: 15, isLeaf: true },
+        { id: 'node16', size: 15, isLeaf: true },
+      ],
+      edges: [
+        { source: 'node0', target: 'node1', id: 'edge0' },
+        { source: 'node0', target: 'node2', id: 'edge1' },
+        { source: 'node0', target: 'node3', id: 'edge2' },
+        { source: 'node0', target: 'node4', id: 'edge3' },
+        { source: 'node0', target: 'node5', id: 'edge4' },
+        { source: 'node1', target: 'node6', id: 'edge5' },
+        { source: 'node1', target: 'node7', id: 'edge6' },
+        { source: 'node2', target: 'node8', id: 'edge7' },
+        { source: 'node2', target: 'node9', id: 'edge8' },
+        { source: 'node2', target: 'node10', id: 'edge9' },
+        { source: 'node2', target: 'node11', id: 'edge10' },
+        { source: 'node2', target: 'node12', id: 'edge11' },
+        { source: 'node2', target: 'node13', id: 'edge12' },
+        { source: 'node3', target: 'node14', id: 'edge13' },
+        { source: 'node3', target: 'node15', id: 'edge14' },
+        { source: 'node3', target: 'node16', id: 'edge15' },
+      ],
+    };
+
+    // 创建F6实例
+    this.graph = new F6.Graph({
+      container: this.canvas,
+      context: this.ctx,
+      renderer: this.renderer,
+      width: canvasWidth,
+      height: canvasHeight,
+      pixelRatio,
+      modes: {
+        default: ['drag-canvas', 'drag-node', 'zoom-canvas'],
+      },
+      layout: {
+        type: 'force',
+      },
+      defaultNode: {
+        size: 15,
+      },
+    });
+
+    // 注册数据
+    this.graph.data(data);
+    this.graph.render();
+    this.graph.fitView();
+  },
+
+  onUnload() {
+    this.graph && this.graph.destroy();
+  },
 });
-
-
 ```
 
-接下来保存看看效果吧 ![](https://gw.alipayobjects.com/mdn/rms_5c3b4a/afts/img/A*HY5-Rq33wMoAAAAAAAAAAAAAARQnAQ)
+接下来保存看看效果吧 <br/>
+
+![](https://gw.alipayobjects.com/mdn/rms_5c3b4a/afts/img/A*KPjqSIAo9J4AAAAAAAAAAAAAARQnAQ)
 
 真机体验会更棒
 
 ![](https://gw.alipayobjects.com/mdn/rms_5c3b4a/afts/img/A*gyGjSr9o1QQAAAAAAAAAAAAAARQnAQ)
 
-完整示例源码可以参考这里[F6 微信小程序演示](https://github.com/openwayne/g6-component-wx-demo)
+完整示例源码可以参考这里[F6 微信小程序演示](https://github.com/antvis/F6/tree/master/packages/examples-wx/package-general-graph/pages/general-graph/basic-force-directed)
 
 ## 注意事项
 
