@@ -19,19 +19,9 @@ redirect_from:
 
 <img src='https://gw.alipayobjects.com/mdn/rms_5c3b4a/afts/img/A*vSB8TolCFVYAAAAAAAAAAAAAARQnAQ' width=550 alt='img'/>
 
-如果您还没有使用过 F6， 建议通过 [快速上手](/zh/docs/manual/getting-started) 抢先体验 F6 的魅力。
-
-## F6 文档
-
-- [F6 入门教程](/zh/docs/manual/tutorial/preface)
-- [F6 核心概念](/zh/docs/manual/middle/graph)
-- [F6 扩展阅读](/zh/docs/manual/advanced/coordinate-system)
-- [API](/zh/docs/api/Graph)
-- [F6 Blog](https://www.yuque.com/antv/g6-blog)
-
 ## 快速上手
 
-<iframe src="https://herbox-embed.alipay.com/p/f6/demo?editorSlider=expand&previewZoom=100&defaultOpenedFiles=pages/index/index.js" width="100%" height=800/>
+<iframe src="https://herbox-embed.alipay.com/p/f6/demo?editorSlider=expand&previewZoom=100&defaultOpenedFiles=pages/index/index.js" width="100%" height=800> </iframe>
 
 更详细的内容请参考 [快速上手](/zh/docs/manual/getting-started) 文档。
 

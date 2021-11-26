@@ -61,7 +61,7 @@ const graph = new F6.Graph({
 
 <description> _Boolean_ **optional** _default:_ `false`</description>
 
-*v3.5.1 后支持。*开启后，图将会被平移，图的中心将对齐到画布中心，但不缩放。优先级低于 fitView。
+开启后，图将会被平移，图的中心将对齐到画布中心，但不缩放。优先级低于 fitView。
 
 ### GraphOptions.linkCenter
 
@@ -246,18 +246,16 @@ layout: {
 
 ### GraphOptions.renderer
 
-<description> _'canvas' / 'svg' _ **optional** _default:_ `'canvas'`</description>
-
-渲染方式，该配置项除 V3.3.x 外其他版本均支持。
+<description> _'canvas' / 'svg' / 'mini' / 'mini-native' _ **optional** _default:_ `'canvas'`</description>
 
 ### GraphOptions.enabledStack
 
 <description> _boolean_ **optional** _default:_ `false`</description>
 
-是否启用 stack，即是否开启 redo & undo 功能，该配置项 V3.6 及以上版本支持。
+是否启用 stack，即是否开启 redo & undo 功能。
 
 ### GraphOptions.maxStep
 
 <description> _number_ **optional** _default:_ `10`</description>
 
-redo & undo 最大步数, 只有当 enabledStack 为 true 时才起作用，该配置项 V3.6 及以上版本支持。
+redo & undo 最大步数, 只有当 enabledStack 为 true 时才起作用。

@@ -3,7 +3,9 @@ title: 使用类 JSX 语法定义 F6 节点
 order: 4
 ---
 
-在 F6 3.7.0 及以后的版本中，用户以使用类似 JSX 的语法来定义节点。只需要在使用 F6.registerNode 自定义节点时，将第二个参数设置为字符串或一个返回值为 `string` 的 `function`。
+<span style="background-color: rgb(251, 233, 231); color: rgb(139, 53, 56)"><strong>⚠️ 注意:</strong></span> 小程序不支持
+
+用户以使用类似 JSX 的语法来定义节点。只需要在使用 F6.registerNode 自定义节点时，将第二个参数设置为字符串或一个返回值为 `string` 的 `function`。
 
 #### 基础语法
 

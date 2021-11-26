@@ -3,7 +3,7 @@ title: Rect
 order: 2
 ---
 
-F6 内置了矩形 Rect Combo，其默认样式如下。标签文本位于矩形内部左上方。<a href='/zh/examples/item/defaultCombos#rect' target='_blank'>Demo</a> <br /> <img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*Khp4QpxXVlQAAAAAAAAAAABkARQnAQ' width=150 alt='img'/>
+F6 内置了矩形 Rect Combo，其默认样式如下。标签文本位于矩形内部左上方。<a href='/zh/docs/examples/item/defaultCombos#rect' target='_blank'>Demo</a> <br /> <img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*Khp4QpxXVlQAAAAAAAAAAABkARQnAQ' width=150 alt='img'/>
 
 ## 使用方法
 

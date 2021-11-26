@@ -33,4 +33,4 @@ F6 允许用户通过自定义节点/边的方式，给元素增加动画效果�
 
 <img src='https://gw.alipayobjects.com/mdn/rms_5c3b4a/afts/img/A*3IcaQrFvQU0AAAAAAAAAAAAAARQnAQ' width=330  alt='img'/>
 
-更多关于动画的案例请参考 [F6 中的动画案例](/zh/examples/scatter/node)。
+更多关于动画的案例请参考 [F6 中的动画案例](/zh/docs/examples/scatter/node)。

@@ -70,7 +70,7 @@ modelRect 节点支持 [节点通用配置](/zh/docs/manual/middle/elements/node
 | **logoIcon** | **左侧的 logo 图标** | **Object** | **modelRect 节点特有** |
 | **stateIcon** | **右侧的状态图标** | **Object** | **modelRect 节点特有** |
 | **description** | **节点主要文本下方的描述文本** | **String** | **modelRect 节点特有** |
-| **descriptionCfg**<br/>_在 V3.3 版本后支持_ | **描述文本的配置项** | **Object** | **modelRect 节点特有** |
+| **descriptionCfg** | **描述文本的配置项** | **Object** | **modelRect 节点特有** |
 
 ```javascript
     // 节点中 icon 配置
@@ -159,7 +159,7 @@ const graph = new F6.Graph({
 
 ### 描述文本配置  descriptionCfg
 
-<span style="background-color: rgb(251, 233, 231); color: rgb(139, 53, 56)"><strong>⚠️ 注意:</strong></span> 在 V3.3 版本后支持。
+<span style="background-color: rgb(251, 233, 231); color: rgb(139, 53, 56)"> 。
 
 Object 类型。通过 `descriptionCfg` 配置标签文本。支持 [节点通用标签配置](/zh/docs/manual/middle/elements/nodes/defaultNode/#标签文本-label-及其配置-labelcfg)。此外，还有一个特殊属性：
 
@@ -286,8 +286,7 @@ const graph = new F6.Graph({
     },
     stateIcon: {
       show: true,
-      img:
-        'https://gw.alipayobjects.com/zos/basement_prod/c781088a-c635-452a-940c-0173663456d4.svg',
+      img: 'https://gw.alipayobjects.com/zos/basement_prod/c781088a-c635-452a-940c-0173663456d4.svg',
     },
   },
 });

@@ -25,7 +25,7 @@ order: 0
 - [Dagre Layout](#dagre)：层次布局；
 - [Concentric Layout](#concentric)：同心圆布局；
 - [Grid Layout](#grid)：网格布局；
-- [Combo Force Layout](#combo-force)：*V3.5 新增。*适用于带有 combo 图的力导向布局，推荐有 combo 的图使用该布局。
+- [Combo Force Layout](#combo-force)，适用于带有 combo 图的力导向布局，推荐有 combo 的图使用该布局。
 
 ## 配置一般图布局
 

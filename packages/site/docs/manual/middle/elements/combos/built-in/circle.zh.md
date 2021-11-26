@@ -3,7 +3,7 @@ title: Circle
 order: 1
 ---
 
-F6 内置了圆  Circle Combo，其默认样式如下。标签文本位于圆形上方。 <a href='/zh/examples/item/defaultCombos#circle' target='_blank'>Demo</a> <br /> <img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*ijeuQoiH0JUAAAAAAAAAAABkARQnAQ' width=150 alt='img'/>
+F6 内置了圆  Circle Combo，其默认样式如下。标签文本位于圆形上方。 <a href='/zh/docs/examples/item/defaultCombos#circle' target='_blank'>Demo</a> <br /> <img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*ijeuQoiH0JUAAAAAAAAAAABkARQnAQ' width=150 alt='img'/>
 
 ## 使用方法
 
