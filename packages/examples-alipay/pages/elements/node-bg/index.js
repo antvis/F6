@@ -99,4 +99,8 @@ Page({
     this.graph.render();
     this.graph.fitView();
   },
+
+  onUnload() {
+    this.graph && this.graph.destroy();
+  },
 });

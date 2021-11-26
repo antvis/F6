@@ -283,4 +283,8 @@ Page({
     });
     this.graph.paint();
   },
+
+  onUnload() {
+    this.graph && this.graph.destroy();
+  },
 });

@@ -206,4 +206,8 @@ Page({
       toggle = !toggle;
     });
   },
+
+  onUnload() {
+    this.graph && this.graph.destroy();
+  },
 });

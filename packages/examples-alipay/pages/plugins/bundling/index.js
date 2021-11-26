@@ -100,4 +100,8 @@ Page({
       edgeBundling.bundling(data);
     }, 1000);
   },
+
+  onUnload() {
+    this.graph && this.graph.destroy();
+  },
 });
