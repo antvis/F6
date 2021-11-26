@@ -241,7 +241,7 @@ graph.on('edge:dbltap', (ev) => {
 
 ## 5. 自定义箭头
 
-F6（v3.5.8 及后续版本）为内置边、自定义边提供了[默认箭头和内置箭头](/zh/docs/manual/middle/elements/edges/arrow)。很多时候，F6 提供的箭头并不能满足业务上的需求，这个时候，就需要我们自定义箭头。<br />
+F6 为内置边、自定义边提供了[默认箭头和内置箭头](/zh/docs/manual/middle/elements/edges/arrow)。很多时候，F6 提供的箭头并不能满足业务上的需求，这个时候，就需要我们自定义箭头。<br />
 
 <img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*f1G9RJ5dE2oAAAAAAAAAAABkARQnAQ' alt='img' width='250'/>
 
@@ -250,8 +250,6 @@ F6（v3.5.8 及后续版本）为内置边、自定义边提供了[默认箭头�
 <span style="background-color: rgb(251, 233, 231); color: rgb(139, 53, 56)"><strong>⚠️ 注意:</strong></span> F6 3.4.1 后的自定义箭头坐标系有所变化。如下图所示，左图为 F6 3.4.1 之前版本的演示，右图为 F6 3.4.1 及之后版本的演示。箭头由指向 x 轴负方向更正为指向 x 轴正方向。同时，偏移量 `d` 的方向也发生响应变化。不变的是，自定义箭头本身坐标系的原点都与相应边 / path 的端点重合，且自定义箭头的斜率与相应边 / path 端点处的微分斜率相同。
 
 <img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*gN_NSqjLRo0AAAAAAAAAAABkARQnAQ' width=565 alt='img'/>
-
-> （左）v3.4.1 之前的自定义箭头坐标系演示。（右）v3.4.1 及之后版本的自定义箭头坐标系演示。
 
 F6 中有三种途径在边上配置自定义箭头：
 
@@ -271,7 +269,6 @@ const graph = new Graph({
         path: 'M 0,0 L 20,10 L 20,-10 Z',
         // 箭头的偏移量，负值代表向 x 轴正方向移动
         // d: -10,
-        // v3.4.1 后支持各样式属性
         fill: '#333',
         stroke: '#666',
         opacity: 0.8,
@@ -301,7 +298,6 @@ const data = {
           path: 'M 0,0 L 20,10 L 20,-10 Z',
           // 箭头的偏移量，负值代表向 x 轴正方向移动
           // d: -10,
-          // v3.4.1 后支持各样式属性
           fill: '#333',
           stroke: '#666',
           opacity: 0.8,
@@ -334,7 +330,6 @@ F6.registerEdge('line-arrow', {
           path: 'M 0,0 L 20,10 L 20,-10 Z',
           // 箭头的偏移量，负值代表向 x 轴正方向移动
           // d: -10,
-          // v3.4.1 后支持各样式属性
           fill: '#333',
           stroke: '#666',
           opacity: 0.8,
@@ -345,7 +340,6 @@ F6.registerEdge('line-arrow', {
           path: 'M 0,0 L 20,10 L 20,-10 Z',
           // 箭头的偏移量，负值代表向 x 轴正方向移动
           // d: -10,
-          // v3.4.1 后支持各样式属性
           fill: '#333',
           stroke: '#666',
           opacity: 0.8,
