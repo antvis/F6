@@ -47,7 +47,7 @@ const graph = new F6.Graph({
 <img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*uFQsQqxIa_QAAAAAAAAAAABkARQnAQ' alt='download' width='150'/>
 <br />
 
-以上三个动画节点的 demo 代码见： <a href='/zh/examples/scatter/node' target='_blank'>节点动画</a>。
+以上三个动画节点的 demo 代码见： <a href='/zh/docs/examples/scatter/node' target='_blank'>节点动画</a>。
 
 #### 节点上图形的动画
 
@@ -260,7 +260,7 @@ F6.registerNode(
 <img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*VUgETK6aMzcAAAAAAAAAAABkARQnAQ' alt='download' width='150'/>
 <img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*-l9lQ7Ck1QcAAAAAAAAAAABkARQnAQ' alt='download' width='150'/>
 
-以上三个边动画的 demo 代码见：<a href='/zh/examples/scatter/edge' target='_blank'>边动画</a>。
+以上三个边动画的 demo 代码见：<a href='/zh/docs/examples/scatter/edge' target='_blank'>边动画</a>。
 
 #### 圆点运动
 
@@ -389,14 +389,14 @@ F6.registerEdge(
 
 ### 交互动画
 
-在交互的过程中也可以添加动画。如下图所示，当鼠标移到节点上时，所有与该节点相关联的边都展示虚线运动的动画。<br />![交互动画.gif](https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*-90pSrm4hkUAAAAAAAAAAABkARQnAQ)<br />上图完整 demo 即代码参见：<a href='/zh/examples/scatter/stateChange' target='_blank'>状态切换动画</a>。
+在交互的过程中也可以添加动画。如下图所示，当鼠标移到节点上时，所有与该节点相关联的边都展示虚线运动的动画。<br />![交互动画.gif](https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*-90pSrm4hkUAAAAAAAAAAABkARQnAQ)<br />上图完整 demo 即代码参见：<a href='/zh/docs/examples/scatter/stateChange' target='_blank'>状态切换动画</a>。
 
 这种动画涉及到了边的 [状态](/zh/docs/manual/middle/states/state)。在自定义边时复写 `setState` 方法，可对边的各种状态进行监听。鼠标移动到节点上，相关边的某个状态被开启，`setState` 方法中监听到后开启动画效果。步骤如下：
 
 - 自定义边中复写 `setState` 方法监听该边的状态，以及某状态下的动画效果；
 - 监听中间的节点的 `mouseenter` 和 `mouseleave` 事件，触发相关边的状态变化。
 
-下面代码节选自 demo <a href='/zh/examples/scatter/stateChange' target='_blank'>状态切换动画</a>，请注意省略了部分代码，只展示了交互相关以及边动画相关的代码。`animate` 函数的第一个参数是返回每一帧需要变化的参数集的函数，其参数 `ratio` 是当前正在进行的一次动画的进度，范围 [0, 1]；第二个参数是动画的参数，动画参数的具体配置参见 [animateCfg](#animateCfg)。
+下面代码节选自 demo <a href='/zh/docs/examples/scatter/stateChange' target='_blank'>状态切换动画</a>，请注意省略了部分代码，只展示了交互相关以及边动画相关的代码。`animate` 函数的第一个参数是返回每一帧需要变化的参数集的函数，其参数 `ratio` 是当前正在进行的一次动画的进度，范围 [0, 1]；第二个参数是动画的参数，动画参数的具体配置参见 [animateCfg](#animateCfg)。
 
 ```javascript
 // const data = ...

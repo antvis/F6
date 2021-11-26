@@ -13,7 +13,7 @@ F6 从 V3.5 版本开始加入了图算法，在以后版本更新中，我们�
 
 <span style="background-color: rgb(251, 233, 231); color: rgb(139, 53, 56)"><strong>「v4.2.2」新特性</strong></span>
 
-[GADDI 图模式匹配]()算法是一种支持结构和语义的图模式匹配算法，给定一个模式，可通过在算法在原数据上查找结果和语义相同、相似的结构。[DEMO](/zh/examples/algorithm/algoDemos#gaddi)。
+[GADDI 图模式匹配]()算法是一种支持结构和语义的图模式匹配算法，给定一个模式，可通过在算法在原数据上查找结果和语义相同、相似的结构。[DEMO](/zh/docs/examples/algorithm/algoDemos#gaddi)。
 
 <img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*ahYwQJtk00EAAAAAAAAAAAAAARQnAQ' alt="img" width='500px'>
 

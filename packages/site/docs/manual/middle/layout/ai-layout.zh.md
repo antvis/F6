@@ -49,4 +49,4 @@ const graph = new F6.Graph({
 
 ### Demo
 
-具体 Demo 参考这里：[AI 智能布局推荐 DEMO](/zh/examples/net/aiLayout#layoutPrediction)
+具体 Demo 参考这里：[AI 智能布局推荐 DEMO](/zh/docs/examples/net/aiLayout#layoutPrediction)

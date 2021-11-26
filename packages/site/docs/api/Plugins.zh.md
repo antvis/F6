@@ -195,8 +195,6 @@ imageMinimap.updateGraphImg(img); // 使用新的图片（用户自己生成）�
 
 <img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*z9iXQq_kcrYAAAAAAAAAAABkARQnAQ' width=600 alt='img'/>
 
-> 美国航线图边绑定。<a href='http://g6.antv.vision/zh/examples/case/edgeBundling' target='_blank'>Demo 链接</a>。该 <a href='https://g6.antv.vision/zh/docs/manual/cases/edgeBundling' target='_blank'>Demo 教程</a>。
-
 实例化时可以通过配置项调整边绑定的功能。
 
 ### 配置项
@@ -309,7 +307,7 @@ ToolBar 集成了以下常见的操作：
 ### 配置项
 
 | 名称 | 类型 | 默认值 | 描述 |
-| --- | --- | --- | --- |
+| --- | --- | --- | --- | --- |
 | container | HTMLDivElement | null | ToolBar 容器，如果不设置，则默认使用 canvas 的 DOM 容器 |
 | className | string | null | ToolBar 内容元素的 class 类名 |
 | getContent | (graph?: IGraph) => HTMLDivElement | string | <img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*7QSRRJwAWxQAAAAAAAAAAABkARQnAQ' width=80 alt='img'/> | ToolBar 内容，支持 DOM 元素或字符串 |
@@ -480,7 +478,7 @@ Fisheye 鱼眼放大镜是为 focus+context 的探索场景设计的，它能够
 ### 配置项
 
 | 名称 | 类型 | 默认值 | 描述 |
-| --- | --- | --- | --- |
+| --- | --- | --- | --- | --- |
 | trigger | 'mousemove' / 'click' / 'drag' | 'mousemove' | 放大镜的触发事件 |
 | d | Number | 1.5 | 放大系数，数值越大，放大程度越大 |
 | r | Number | 300 | 放大区域的范围半径 |
@@ -608,7 +606,7 @@ const graph = new F6.Graph({
 
 <img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*17VoSoTm9o8AAAAAAAAAAAAAARQnAQ' width='500' />
 
-<br />虽然 F6 提供了各种不同类型的 TimeBar 组件，但在使用的方式却非常简单，通过配置字段就可以进行区分。<br /> <br />关于 TimeBar 的使用案例，请参考[这里](https://g6.antv.vision/zh/examples/tool/timebar#timebar)。<br />
+<br />虽然 F6 提供了各种不同类型的 TimeBar 组件，但在使用的方式却非常简单，通过配置字段就可以进行区分。
 
 ### 使用 TimeBar 组件
 

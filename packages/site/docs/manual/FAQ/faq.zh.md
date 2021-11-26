@@ -10,4 +10,3 @@ order: 0
 - [如何给元素设置纹理](/zh/docs/manual/middle/elements/advanced-style/texture)
 - [如何设置 Edge 前置](/zh/docs/manual/middle/elements/methods/elementIndex)
 - [两点之间存在多条边](/zh/docs/manual/middle/elements/methods/multi-line)
-- [React 中使用 F6](/zh/docs/manual/advanced/f6InReact)

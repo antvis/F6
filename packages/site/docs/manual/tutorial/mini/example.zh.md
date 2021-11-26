@@ -52,7 +52,7 @@ npm install --save @antv/f6-wx
 ```
 {
   "usingComponents": {
-    "f6-canvas": "@antv/f6-wx/container/container"
+    "f6-canvas": "@antv/f6-wx/canvas/canvas"
   }
 }
 ```

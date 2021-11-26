@@ -49,7 +49,7 @@ F6.Util.processParallelEdges(data.edges, offsetDiff, multiEdgeType, singleEdgeTy
 
 #### 使用示例
 
-[Demo](/zh/examples/item/multiEdge#multiEdges)
+[Demo](/zh/docs/examples/item/multiEdge#multiEdges)
 
 ### traverseTree 深度优先遍历树数据
 
