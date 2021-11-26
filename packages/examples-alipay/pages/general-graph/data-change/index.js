@@ -97,4 +97,8 @@ Page({
       this.graph.changeData(data2);
     }, 2500);
   },
+
+  onUnload() {
+    this.graph && this.graph.destroy();
+  },
 });

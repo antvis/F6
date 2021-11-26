@@ -98,4 +98,8 @@ Page({
       this.graph.focusItem(item);
     });
   },
+
+  onUnload() {
+    this.graph && this.graph.destroy();
+  },
 });

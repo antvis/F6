@@ -149,4 +149,8 @@ Page({
       }, 5500);
     }
   },
+
+  onUnload() {
+    this.graph && this.graph.destroy();
+  },
 });

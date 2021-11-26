@@ -470,4 +470,8 @@ Page({
       handleCollapse(e);
     });
   },
+
+  onUnload() {
+    this.graph && this.graph.destroy();
+  },
 });

@@ -115,4 +115,8 @@ Page({
       this.graph.refresh();
     }, 1000);
   },
+
+  onUnload() {
+    this.graph && this.graph.destroy();
+  },
 });

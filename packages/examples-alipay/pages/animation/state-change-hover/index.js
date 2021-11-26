@@ -206,4 +206,8 @@ Page({
     //   edges_.forEach((edge) => this.graph.setItemState(edge, 'running', false));
     // });
   },
+
+  onUnload() {
+    this.graph && this.graph.destroy();
+  },
 });
