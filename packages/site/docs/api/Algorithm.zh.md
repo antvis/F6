@@ -7,8 +7,6 @@ order: 15
 
 如果你对数据结构及算法感兴趣，可以通过 [javascript-algorithms](https://github.com/trekhleb/javascript-algorithms) 来进一步学习。
 
-F6 从 V3.5 版本开始加入了图算法，在以后版本更新中，我们会不断丰富内置的算法。
-
 ### GADDI 图模式匹配
 
 <span style="background-color: rgb(251, 233, 231); color: rgb(139, 53, 56)"><strong>「v4.2.2」新特性</strong></span>

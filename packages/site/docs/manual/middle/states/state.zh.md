@@ -123,8 +123,6 @@ F6.registerBehavior('nodeClick', {
 
 可为二值/多值状态设置 keyShape 样式以及其他子图形的样式。
 
-<span style="background-color: rgb(251, 233, 231); color: rgb(139, 53, 56)"><strong>⚠️ 注意: </strong></span> 多值状态和除 keyShape 以外的子图形状态样式设置在 V3.4 后支持。
-
 `nodeStateStyles` 、 `edgeStateStyles` 、 `stateStyles` 对象的格式如下：
 
 ```javascript
@@ -271,8 +269,6 @@ F6.registerNode('customShape', {
 ```
 
 ## 更新状态样式配置
-
-<span style="background-color: rgb(251, 233, 231); color: rgb(139, 53, 56)"><strong>⚠️ 注意: </strong></span> 更新状态样式配置在 V3.4 后支持。
 
 更新状态样式配置是指更改在 [配置 state 样式](#配置-state-样式) 中设置的某状态下的样式配置。如下代码可以修改节点/边实例的默认样式以及各状态下的样式配置。同样，您也可以使用 [配置 state 样式](#配置-state-样式) 中的样式格式修改多值状态的样式配置。
 
