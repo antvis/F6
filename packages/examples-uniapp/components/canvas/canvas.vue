@@ -57,8 +57,54 @@ export default {
       default: 1,
     },
   },
-  onReady: function (e) {
-    var query = uni.createSelectorQuery().in(this);
+  mounted: function (e) {
+    // #ifdef H5
+    const canvas = this.$el;
+    const rect = canvas.getBoundingClientRect();
+    canvas.width = this.$props.width * this.$props.pixelRatio;
+    canvas.height = this.$props.height * this.$props.pixelRatio;
+    this.rect = {
+      width: this.$props.width * this.$props.pixelRatio,
+      height: this.$props.height * this.$props.pixelRatio,
+      left: rect.left,
+      top: rect.top,
+    };
+    this.ctx = uni.createCanvasContext('#f6-canvas');
+
+    this.$props.onInit({
+      ctx: this.ctx,
+      rect: this.rect,
+      canvas: canvas,
+      renderer: 'h5',
+    });
+    // #endif
+
+    // #ifdef MP-ALIPAY
+    my.createSelectorQuery()
+      .select('#f6-canvas')
+      .boundingClientRect()
+      .exec((ret) => {
+        debugger;
+        if (ret && ret[0]) {
+          this.rect = ret[0];
+        } else {
+          this.rect = {
+            bottom: 0,
+            height: 0,
+            left: 0,
+            right: 0,
+            top: 0,
+            width: 0,
+          };
+          this.$props.onError && this.$props.onError(ret);
+        }
+        this.ctx = my.createCanvasContext('f6-canvas');
+        this.$parent.onCanvasInit(this.ctx, ret[0], null, 'mini');
+      });
+    // #endif
+
+    // #ifdef MP-WEIXIN
+    const query = uni.createSelectorQuery().in(this);
     query
       .select('#f6-canvas')
       .fields({
@@ -77,7 +123,6 @@ export default {
           top: canvas._top,
         };
         this.ctx = canvas.getContext('2d');
-
         this.$props.onInit({
           ctx: this.ctx,
           rect: this.rect,
@@ -85,6 +130,8 @@ export default {
           renderer: 'mini-native',
         });
       });
+
+    // #endif
   },
   methods: {
     onTouch(e) {
@@ -98,8 +145,13 @@ export default {
       for (i = 0; i < origin.changedTouches.length; i++) {
         modifyEvent(origin.changedTouches[i], this.$props.pixelRatio);
       }
+      // #ifdef MP-ALIPAY
+      this.$parent.onTouchEvent(origin);
+      // #endif
 
+      // #ifdef MP-WEIXIN || H5
       this.$props.onTouchEvent(origin);
+      // #endif
     },
   },
 };
