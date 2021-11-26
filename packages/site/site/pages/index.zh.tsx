@@ -96,7 +96,7 @@ const IndexPage = () => {
   const bannerButtons = [
     {
       text: t('官方示例'),
-      link: `/${i18n.language}/examples/gallery`,
+      link: `/${i18n.language}/docs/examples/tree/compactBox`,
       type: 'primary',
     },
     {
