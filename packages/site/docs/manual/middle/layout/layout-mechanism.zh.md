@@ -56,7 +56,7 @@ changeData(data);
   </head>
   <body>
     <div id="mountNode"></div>
-    <script src="https://gw.alipayobjects.com/os/antv/pkg/_antv.f6-0.0.15/dist/f6.min.js"></script>
+    <script src="https://gw.alipayobjects.com/os/antv/pkg/_antv.f6-0.0.15/dist/f6.js"></script>
     <script src="https://gw.alipayobjects.com/os/antv/assets/lib/jquery-3.2.1.min.js"></script>
     <script>
       const data = {

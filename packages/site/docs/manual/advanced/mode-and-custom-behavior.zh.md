@@ -42,7 +42,7 @@ order: 7
       <option value="addEdge">添加边</option>
     </select>
     <div id="mountNode"></div>
-    <script src="https://gw.alipayobjects.com/os/antv/pkg/_antv.f6-0.0.15/dist/f6.min.js"></script>
+    <script src="https://gw.alipayobjects.com/os/antv/pkg/_antv.f6-0.0.15/dist/f6.js"></script>
     <script>
       // 初始数据
       const data = {
