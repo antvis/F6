@@ -3,8 +3,8 @@
     <f6-canvas
       :width="width"
       :height="height"
-      :onInit="onCanvasInit"
-      :onTouchEvent="onTouchEvent"
+      @onInit="onCanvasInit"
+      @onTouchEvent="onTouchEvent"
     ></f6-canvas>
     <image class="logo" src="/static/logo.png"></image>
     <view class="text-area">
@@ -33,10 +33,10 @@ export default {
     onTouchEvent(e) {
       this.graph && this.graph.emitEvent(e);
     },
-    onCanvasInit({ ctx, rect, canvas, renderer }) {
-      console.log('canvas init ready', this, F6, ctx, rect, canvas, renderer);
+    onCanvasInit({ ctx, rect, container, renderer }) {
+      console.log('canvas init ready', ctx, rect, container, renderer);
       this.graph = new F6.Graph({
-        container: canvas,
+        container: container,
         context: ctx,
         renderer,
         width: 300,

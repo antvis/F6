@@ -1,5 +1,6 @@
 <template>
   <canvas
+    ref="f6-canvess"
     name="f6-canvas"
     type="2d"
     canvas-id="f6-canvas"
@@ -59,10 +60,10 @@ export default {
   },
   mounted: function (e) {
     // #ifdef H5
-    const canvas = this.$el;
-    const rect = canvas.getBoundingClientRect();
-    canvas.width = this.$props.width * this.$props.pixelRatio;
-    canvas.height = this.$props.height * this.$props.pixelRatio;
+    const container = this.$el;
+    const rect = container.getBoundingClientRect();
+    container.width = this.$props.width * this.$props.pixelRatio;
+    container.height = this.$props.height * this.$props.pixelRatio;
     this.rect = {
       width: this.$props.width * this.$props.pixelRatio,
       height: this.$props.height * this.$props.pixelRatio,
@@ -71,10 +72,10 @@ export default {
     };
     this.ctx = uni.createCanvasContext('#f6-canvas');
 
-    this.$props.onInit({
+    this.$emit('onInit', {
       ctx: this.ctx,
       rect: this.rect,
-      canvas: canvas,
+      container: container,
       renderer: 'h5',
     });
     // #endif
@@ -84,22 +85,22 @@ export default {
       .select('#f6-canvas')
       .boundingClientRect()
       .exec((ret) => {
-        debugger;
-        if (ret && ret[0]) {
-          this.rect = ret[0];
-        } else {
-          this.rect = {
-            bottom: 0,
-            height: 0,
-            left: 0,
-            right: 0,
-            top: 0,
-            width: 0,
-          };
-          this.$props.onError && this.$props.onError(ret);
-        }
-        this.ctx = my.createCanvasContext('f6-canvas');
-        this.$parent.onCanvasInit(this.ctx, ret[0], null, 'mini');
+        my._createCanvas({
+          id: 'f6-canvas',
+          success: (canvas) => {
+            this.$emit('onInit', {
+              ctx: canvas.getContext('2d'),
+              rect: {
+                width: ret[0].width * this.$props.pixelRatio,
+                height: ret[0].height * this.$props.pixelRatio,
+                left: ret[0].left,
+                top: ret[0].top,
+              },
+              container: null,
+              renderer: 'mini-native',
+            });
+          },
+        });
       });
     // #endif
 
@@ -123,10 +124,10 @@ export default {
           top: canvas._top,
         };
         this.ctx = canvas.getContext('2d');
-        this.$props.onInit({
+        this.$emit('onInit', {
           ctx: this.ctx,
           rect: this.rect,
-          canvas: canvas,
+          container: canvas,
           renderer: 'mini-native',
         });
       });
@@ -136,8 +137,7 @@ export default {
   methods: {
     onTouch(e) {
       const origin = e.mp;
-      var i = 0;
-
+      let i = 0;
       for (i = 0; i < origin.touches.length; i++) {
         modifyEvent(origin.touches[i], this.$props.pixelRatio);
       }
@@ -145,13 +145,7 @@ export default {
       for (i = 0; i < origin.changedTouches.length; i++) {
         modifyEvent(origin.changedTouches[i], this.$props.pixelRatio);
       }
-      // #ifdef MP-ALIPAY
-      this.$parent.onTouchEvent(origin);
-      // #endif
-
-      // #ifdef MP-WEIXIN || H5
-      this.$props.onTouchEvent(origin);
-      // #endif
+      this.$emit('onTouchEvent', origin);
     },
   },
 };
