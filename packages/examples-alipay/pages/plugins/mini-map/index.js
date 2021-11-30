@@ -75,4 +75,8 @@ Page({
   handleTouch(e) {
     this.graph && this.graph.emitEvent(e);
   },
+
+  onUnload() {
+    this.graph && this.graph.destroy();
+  },
 });

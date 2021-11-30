@@ -112,4 +112,8 @@ Page({
         });
     });
   },
+
+  onUnload() {
+    this.graph && this.graph.destroy();
+  },
 });

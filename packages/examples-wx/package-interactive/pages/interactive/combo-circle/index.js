@@ -125,4 +125,8 @@ Page({
       this.graph.setItemState(item, 'active', false);
     });
   },
+
+  onUnload() {
+    this.graph && this.graph.destroy();
+  },
 });

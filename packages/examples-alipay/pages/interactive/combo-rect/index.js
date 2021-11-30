@@ -119,4 +119,8 @@ Page({
       this.graph.setItemState(e.item, 'dragenter', false);
     });
   },
+
+  onUnload() {
+    this.graph && this.graph.destroy();
+  },
 });
