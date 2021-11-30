@@ -93,4 +93,8 @@ Page({
     // listen to the node click event
     this.graph.on('node:tap', handleNodeClick);
   },
+
+  onUnload() {
+    this.graph && this.graph.destroy();
+  },
 });

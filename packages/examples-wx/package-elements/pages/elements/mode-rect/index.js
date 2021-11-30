@@ -160,4 +160,8 @@ Page({
       this.graph.setItemState(item, 'hover', false);
     });
   },
+
+  onUnload() {
+    this.graph && this.graph.destroy();
+  },
 });

@@ -181,4 +181,8 @@ Page({
       }, 10000);
     }
   },
+
+  onUnload() {
+    this.graph && this.graph.destroy();
+  },
 });

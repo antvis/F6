@@ -80,4 +80,8 @@ Page({
       this.graph.changeData(data);
     }, 600);
   },
+
+  onUnload() {
+    this.graph && this.graph.destroy();
+  },
 });
