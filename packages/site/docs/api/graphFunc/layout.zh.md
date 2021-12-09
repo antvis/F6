@@ -3,7 +3,7 @@ title: 布局
 order: 10
 ---
 
-F6 3.1 内置了丰富的布局。关于如何使用 F6 中内置的布局，请参考  [图布局 API](/zh/docs/api/graphLayout/guide) 或 [树图布局 API](/zh/docs/api/treeGraphLayout/guide)。
+F6 内置了丰富的布局。关于如何使用 F6 中内置的布局，请参考  [图布局 API](/zh/docs/api/graphLayout/guide) 或 [树图布局 API](/zh/docs/api/treeGraphLayout/guide)。
 
 ### graph.layout()
 

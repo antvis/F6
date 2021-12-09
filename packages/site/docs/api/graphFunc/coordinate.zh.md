@@ -121,7 +121,7 @@ console.log('图内容中心的绘制坐标是', point.x, point.y);
 
 ### graph.getViewPortCenterPoint()
 
-获取视口中心绘制坐标。v4.2.1 支持。
+获取视口中心绘制坐标。
 
 **参数**
 
