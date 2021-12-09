@@ -293,7 +293,7 @@ breadthFirstSearch(data, 'A', {
 
 ### labelPropagation
 
-_F6 4.0 起支持_ 标签传播算法，自动为数据聚类。优势：速度较 LOUVAIN 快。
+标签传播算法，自动为数据聚类。优势：速度较 LOUVAIN 快。
 
 参考资料：https://en.wikipedia.org/wiki/Label_propagation_algorithm
 
@@ -382,7 +382,7 @@ let result = labelPropagation(data);
 
 ### louvain
 
-_F6 4.0 起支持_ LOUVAIN 自动聚类算法。优势：根据节点间的紧密程度计算，较之于 Label Propagation 更准确。
+LOUVAIN 自动聚类算法。优势：根据节点间的紧密程度计算，较之于 Label Propagation 更准确。
 
 参考资料：https://en.wikipedia.org/wiki/Louvain_method
 

@@ -38,7 +38,7 @@ F6 支持以下图形：
 
 <description> _String_ **required** </description>
 
-图形名称标识，F6 3.3 版本以上必须配置。
+图形名称标识，必须配置。
 
 ### fill
 
@@ -459,6 +459,12 @@ group.addShape('text', {
   name: 'text-shape',
 });
 ```
+
+### text
+
+<description> _String_ **optional** </description>
+
+文本文字内容。
 
 ### textAlign
 

@@ -5,8 +5,8 @@ order: 14
 
 F6 提供了一些可插拔的组件，包括：
 
-- [Legend](#legend) _v4.3.0 起支持_
-- [SnapLine](#snapline) _v4.3.0 起支持_
+- [Legend](#legend)
+- [SnapLine](#snapline)
 - [Grid](#grid)
 - [Minimap](#minimap)
 - [ImageMinimap](#image-minimap)
@@ -70,7 +70,7 @@ Legend 是 F6 内置的图例插件。用于说明图中不同类型的节点和
 
 ## SnapLine
 
-SnapLine 是 F6 内置的对齐线插件。 _v4.3.0 起支持_。
+SnapLine 是 F6 内置的对齐线插件。
 
 实例化时可以通过配置项调整 SnapLine 的样式和功能。
 
