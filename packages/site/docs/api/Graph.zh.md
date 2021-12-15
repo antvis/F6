@@ -97,21 +97,19 @@ const graph = new F6.Graph({
 
 <description> _Object_ **optional** _default:_ `{}`</description>
 
-各个状态下节点的样式，例如 `hover`、`selected`，3.1 版本新增。
-
-<span style="background-color: rgb(251, 233, 231); color: rgb(139, 53, 56)"><strong>⚠️ 注意:</strong></span> F6 3.1 版本中实例化 Graph 时，新增了 `nodeStateStyles` 及 `edgeStateStyles` 两个配置项，删除了 `nodeStyle` 和 `edgeStyle` ，使用 3.1 以下版本的同学，只需要将 `nodeStyle` 改成 `nodeStateStyles` ，将 `edgeStyle` 改成 `edgeStateStyles` ，配置内容保持不变。
+各个状态下节点的样式，例如 `hover`、`selected`。
 
 ### GraphOptions.edgeStateStyles
 
 <description> _Object_ **optional** _default:_ `{}`</description>
 
-各个状态下边的样式，例如 `hover`、`selected`，3.1 版本新增。
+各个状态下边的样式，例如 `hover`、`selected`。
 
 ### GraphOptions.comboStateStyles
 
 <description> _Object_ **optional** _default:_ `{}`</description>
 
-各个状态下 Combo 的样式，例如 `hover`、`selected`，3.5 版本新增。
+各个状态下 Combo 的样式，例如 `hover`、`selected`。
 
 ### GraphOptions.defaultNode
 
@@ -129,7 +127,7 @@ const graph = new F6.Graph({
 
 <description> _Object_ **optional** _default:_ `{}`</description>
 
-默认状态下 Combo 的配置，比如 `type`, `color`。会被写入的 data 覆盖。3.5 版本新增。 见 [Combo 的通用属性](/zh/docs/manual/middle/elements/combos/defaultCombo#combo-的通用属性) 。
+默认状态下 Combo 的配置，比如 `type`, `color`。会被写入的 data 覆盖。见 [Combo 的通用属性](/zh/docs/manual/middle/elements/combos/defaultCombo#combo-的通用属性) 。
 
 ### GraphOptions.plugins
 
@@ -192,7 +190,7 @@ const graph = new F6.Graph({
 
 #### GraphOptions.layout.pipes
 
-**流水线子图布局** _v4.3.0 新增_
+**流水线子图布局**
 
 在 `GraphOptions.layout` 中可配置 `pipes` 达到同时对不通过子图使用不同布局的目的。
 
