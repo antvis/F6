@@ -14,15 +14,15 @@
 
 <img src='https://raw.githubusercontent.com/antvis/F6/master/examples.gif' width='100%' alt='img'/>
 
-如果您还没有使用过 F6， 建议通过 [快速上手](/zh/docs/manual/getting-started) 抢先体验 F6 的魅力。
+如果您还没有使用过 F6， 建议通过 [快速上手](https://f6.antv.vision/zh/docs/manual/getting-started) 抢先体验 F6 的魅力。
 
 ## F6 文档
 
-- [F6 入门教程](/zh/docs/manual/tutorial/preface)
-- [F6 核心概念](/zh/docs/manual/middle/graph)
-- [F6 扩展阅读](/zh/docs/manual/advanced/coordinate-system)
-- [API](/zh/docs/api/Graph)
-- [F6 Blog](https://www.yuque.com/antv/g6-blog)
+- [F6 入门教程](https://f6.antv.vision/zh/docs/manual/introduction)
+- [F6 核心概念](https://f6.antv.vision/zh/docs/manual/middle/overview)
+- [F6 扩展阅读](https://f6.antv.vision/zh/docs/manual/advanced/coordinate-system)
+- [API](https://f6.antv.vision/zh/docs/api/Graph)
+- [示例](https://f6.antv.vision/zh/docs/examples/tree/compactBox)
 
 ## 安装
 
@@ -136,7 +136,7 @@ npm test -- --watch ./tests/unit/algorithm/find-path-spec
 DEBUG_MODE=1 npm test -- --watch ./tests/unit/algorithm/find-path-spec
 ```
 
-更详细的内容请参考 [快速上手](/zh/docs/manual/getting-started) 文档。
+更详细的内容请参考 [快速上手](https://f6.antv.vision/zh/docs/manual/getting-started) 文档。
 
 ## F6 图可视化交流群
 
