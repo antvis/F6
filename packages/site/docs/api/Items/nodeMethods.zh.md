@@ -7,8 +7,6 @@ Node 继承自 Item。所以 Item 上面的方法在 Node 实例中都可以调�
 
 ### node.lock()
 
-> 3.1.4 版本新增
-
 锁定当前节点，锁定节点后，该节点不再响应拖动节点的事件。
 
 提示：锁定节点后，拖动画布和缩放画布的操作依然对该节点有效。如果想在锁定节点后，不响应拖动画布和缩放的事件，需要自定义拖动画布和缩放的 Behavior，具体可参考 [锁定节点不响应拖动画布的事件](/zh/docs/manual/middle/elements/methods/lock-node#拖动画布时候不处理锁定的节点) 和 [锁定节点不响应缩放事件](/zh/docs/manual/middle/elements/methods/lock-node#缩放画布时不处理锁定的节点)。
@@ -22,8 +20,6 @@ node.lock();
 
 ### node.unlock()
 
-> 3.1.4 版本新增
-
 解锁锁定的节点。
 
 **用法**
@@ -34,8 +30,6 @@ node.unlock();
 ```
 
 ### node.hasLocked()
-
-> 3.1.4 版本新增
 
 检测节点是否处于锁定状态。
 

@@ -3,7 +3,7 @@ title: GForce
 order: 2
 ---
 
-GForce 实现了经典的力导向算法，F6 4.0 支持。能够更加自由地支持设置节点质量、群组中心力等。更重要的是，它支持 GPU 并行计算。
+GForce 实现了经典的力导向算法，F6 支持。能够更加自由地支持设置节点质量、群组中心力等。更重要的是，它支持 GPU 并行计算。
 
 <img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*lX-qSqDECrIAAAAAAAAAAAAAARQnAQ' width=600 alt='img'/>
 
