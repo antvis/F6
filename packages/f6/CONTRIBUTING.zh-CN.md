@@ -1,6 +1,6 @@
 # 代码贡献规范
 
-有任何疑问，欢迎提交 [issue](https://github.com/antvis/g6/issues)，或者直接修改提交 [PR](https://github.com/antvis/g6/pulls)!
+有任何疑问，欢迎提交 [issue](https://github.com/antvis/f6/issues)，或者直接修改提交 [PR](https://github.com/antvis/f6/pulls)!
 
 ## 提交 issue
 
