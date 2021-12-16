@@ -74,8 +74,8 @@ const IndexPage = () => {
 
   const cases = [
     {
-      logo: 'https://gw.alipayobjects.com/mdn/rms_5c3b4a/afts/img/A*2LU7RJXXarIAAAAAAAAAAAAAARQnAQ',
-      title: t('蚂蚁企业信用'),
+      logo: 'https://gw.alipayobjects.com/mdn/rms_dd275a/afts/img/A*BBUESKOhtcsAAAAAAAAAAAAAARQnAQ',
+      title: t('芝麻企业信用'),
       isAppLogo: true,
       description: t(
         '帮助中小微企业建立及展示可信的信用档案，通过评级等信用服务让商业合作更简单 。',
