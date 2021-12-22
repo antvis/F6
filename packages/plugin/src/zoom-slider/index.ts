@@ -64,7 +64,7 @@ export default class ZoomSlider extends Base {
           .rail {
             width: ${containerWidth};
             height: 4;
-            background-color: #f5f5f5;
+            background-color: #bcbcbc;
             border-radius: 2;
             opacity: 1;
           }
