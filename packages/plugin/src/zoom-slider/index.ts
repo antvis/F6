@@ -9,6 +9,7 @@ interface ZoomSliderConfig extends IPluginBaseConfig {
   sliderWidthPercent: number;
   // 滑块拖拽的时间戳
   dragTimestamp: number;
+  sliderPosition: 'bottom' | 'top';
 }
 
 /**
@@ -25,6 +26,7 @@ export default class ZoomSlider extends Base {
       maxZoom: 3,
       sliderWidthPercent: 0.3,
       dragTimestamp: +new Date(),
+      sliderPosition: 'bottom',
       getContent: () => {
         return `
           <root class="f6-zoom-slider">
@@ -46,13 +48,15 @@ export default class ZoomSlider extends Base {
         const sliderWidthPercent = this.get('sliderWidthPercent');
         const containerWidth = Math.floor(graphWidth * sliderWidthPercent);
         const resultX = containerWidth * ((1 - minZoom) / (maxZoom - minZoom));
+        const sliderPosition = this.get('sliderPosition');
+        const sliderToTop = (sliderPosition === 'top') ? 30 : (graphHeight - 60);
         return `
           .f6-zoom-slider {
             width: ${containerWidth};
             height: 30;
             margin-left: ${Math.floor((graphWidth * (1 - sliderWidthPercent)) / 2)};
             padding: 13 0;
-            top: ${graphHeight - 40};
+            top: ${sliderToTop};
             position: relative;
             opacity: 0;
           }
