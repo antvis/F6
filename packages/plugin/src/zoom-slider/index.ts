@@ -10,6 +10,7 @@ interface ZoomSliderConfig extends IPluginBaseConfig {
   // 滑块拖拽的时间戳
   dragTimestamp: number;
   sliderPosition: 'bottom' | 'top';
+  customizedStyle: string;
 }
 
 /**
@@ -27,6 +28,7 @@ export default class ZoomSlider extends Base {
       sliderWidthPercent: 0.3,
       dragTimestamp: +new Date(),
       sliderPosition: 'bottom',
+      customizedStyle: '',
       getContent: () => {
         return `
           <root class="f6-zoom-slider">
@@ -50,6 +52,7 @@ export default class ZoomSlider extends Base {
         const resultX = containerWidth * ((1 - minZoom) / (maxZoom - minZoom));
         const sliderPosition = this.get('sliderPosition');
         const sliderToTop = (sliderPosition === 'top') ? 30 : (graphHeight - 60);
+        const customizedStyle = this.get('customizedStyle');
         return `
           .f6-zoom-slider {
             width: ${containerWidth};
@@ -105,7 +108,7 @@ export default class ZoomSlider extends Base {
             color: #666;
             width: 45;
           }
-        `;
+        ` + customizedStyle;
       },
     };
   }
