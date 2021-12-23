@@ -114,6 +114,8 @@ export default class ZoomSlider extends Base {
     return {
       dragstart: 'onDragStart',
       dragend: 'onDragEnd',
+      pinchmove: 'onPinch',
+      pinchend: 'onPinchEnd'
     };
   }
 
