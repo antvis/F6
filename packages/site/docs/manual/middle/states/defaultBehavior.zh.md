@@ -9,7 +9,7 @@ Behavior 是 F6 提供的定义图上交互事件的机制。它与[交互模式
 
 ## 内置 Behavior
 
-理论上， F6 上的所有基础图形、Item（节点/边）都能通过事件来进行操作。考虑到通用性，F6 目前共提供了以下 14 个内置的 Behavior。此外，用户可以注册 [自定义 Behavior](/zh/docs/manual/middle/states/custom-behavior)。
+理论上， F6 上的所有基础图形、Item（节点/边）都能通过事件来进行操作。考虑到通用性，F6 目前共提供了以下 9 个内置的 Behavior。此外，用户可以注册 [自定义 Behavior](/zh/docs/manual/middle/states/custom-behavior)。
 
 ### drag-combo
 
@@ -218,8 +218,7 @@ const graph = new F6.Graph({
 - 含义：点击选中节点，再次点击节点或点击 Canvas 取消选中状态；
 - 配置项：
   - `type: 'click-select'`；
-  - `multiple`：是否允许多选，默认为 `true`，当设置为 `false`，表示不允许多选，此时 `trigger` 参数无效；
-  - `trigger`：指定按住哪个键进行多选，默认为 shift，按住 Shift 键多选，用户可配置 shift、ctrl、alt；
+  - `multiple`：是否允许多选，默认为 `true`，当设置为 `false`，表示不允许多选；
   - `shouldBegin(e)`：是否允许该 behavior 发生，参考下面示例；
   - `shouldUpdate(e)`：是否允许对该 behavior 发生状态响应，参考下面示例。
 - 相关时机事件：
@@ -248,7 +247,7 @@ graph.on('nodeselectchange', (e) => {
 });
 ```
 
-按住 **`Shift`** 键可多选。<br /><img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*mOiIQqBof8sAAAAAAAAAAABkARQnAQ' width=400/>
+当允许多选时，点击节点可多选。<br /><img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*mOiIQqBof8sAAAAAAAAAAABkARQnAQ' width=400/>
 
 **使用自定义参数**
 
@@ -258,7 +257,6 @@ const graph = new F6.Graph({
     default: [
       {
         type: 'click-select',
-        trigger: 'ctrl',
         // 是否允许该 behavior 发生。若返回 false，被操作的 item 不会被选中，也不会触发 'nodeselectchange' 时机事件
         shouldBegin: (e) => {
           // 当点击的图形名为 'text-shape' 时，不允许该 behavior 发生
@@ -336,10 +334,9 @@ const graph = new F6.Graph({
 
 ### activate-relations
 
-- 含义：当鼠标移到某节点时，突出显示该节点以及与其直接关联的节点和连线；
+- 含义：当触碰某节点时，突出显示该节点以及与其直接关联的节点和连线；
 - `type: 'activate-relations'`；
 - 参数：
-  - `trigger: 'mouseenter'`。可以是  `mousenter`，表示鼠标移入时触发；也可以是  `click`，鼠标点击时触发；
   - `activeState: 'active'`。活跃节点状态。当行为被触发，需要被突出显示的节点和边都会附带此状态，默认值为  `active`；可以与 graph 实例的  `nodeStyle`  和  `edgeStyle`  结合实现丰富的视觉效果。
   - `inactiveState: 'inactive'`。非活跃节点状态。不需要被突出显示的节点和边都会附带此状态。默认值为  `inactive`。可以与 graph 实例的  `nodeStyle`  和  `edgeStyle`  结合实现丰富的视觉效果；
   - `resetSelected`：高亮相连节点时是否重置已经选中的节点，默认为 `false`，即选中的节点状态不会被 `activate-relations` 覆盖；
@@ -400,8 +397,8 @@ graph.on('afteractivaterelations', (e) => {
 - 注意：若希望在首次布局时有默认收起的子树，则可以在数据中设置子树根节点的属性 `collapsed` 为 `true`。若希望使用代码控制子树的展开/收起，同样可以在数据中设置子树根节点的 `collapsed` 属性，并调用 `treeGraph.layout()` 使之生效；
 - 配置项：
   - `type: 'collapse-expand'`；
-  - `trigger`：收起和展开树图的方式，支持 `'click'` 和 `'dblclick'` 两种方式。默认为 `'click'`，即单击；
-  - `onChange`：收起或展开的回调函数。警告：V3.1.2 版本中将移除；
+  - `trigger`：收起和展开树图的方式，支持 `'tap'` 和 `'dbltap'` 两种方式。默认为 `'tap'`，即单击；
+  - `onChange`：收起或展开的回调函数。
   - `shouldBegin(e)`：是否允许该 behavior 在当前操作的 item 上发生。
 - 相关时机事件：
   - `itemcollapsed`：当 collapse-expand 发生时被触发。使用 `graph.on('itemcollapsed', e => {...})` 监听，参数 `e` 有以下字段：
@@ -416,7 +413,7 @@ const graph = new F6.TreeGraph({
     default: [
       {
         type: 'collapse-expand',
-        trigger: 'click',
+        trigger: 'tap',
         onChange: (item, collapsed) => {
           const data = item.get('model').data;
           data.collapsed = collapsed;
@@ -439,57 +436,5 @@ graph.on('itemcollapsed', (e) => {
   console.log(e.item);
   // 当前操作是收起（`true`）还是展开（`false`）
   console.log(e.collapsed);
-});
-```
-
-### create-edge
-
-- 含义：通过交互创建边；
-- 配置项：
-  - `type：'create-edge'`；
-  - `trigger`：该交互的触发条件，可选 `'click'`，`'drag'`。默认为 `'click'`，即分别点击两个节点为这两个节点创建边。`'drag'` 代表从一个节点“拖拽”出一条边，在另一个节点上松开鼠标完成创建。注意，`trigger: 'drag'` 不能创建一个自环边；
-  - `key`：键盘按键作为该交互的辅助触发，若不设置或设置为 undefined 则代表只根据 `trigger` 决定该交互的触发条件。可选值：`'shift'`，`'ctrl'`, 'control'，`'alt'`，`'meta'`，`undefined`；
-  - `edgeConfig`: 有该交互创建出的边的配置项，可以配置边的类型、样式等，其类型参考[边的配置](/zh/docs/manual/middle/elements/edges/defaultEdge)。如果需要为不同的被添加边赋予不同样式，请监听 `'aftercreateedge'` 并更新相对应的边；
-  - `shouldBegin(e)`：是否允许当前被操作的条件下开始创建边；
-  - `shouldEnd(e)`：是否允许当前被操作的条件下结束创建边；
-- 相关时机事件：
-  - `'aftercreateedge'`：当边创建完成时将会触发该时机事件。使用 `graph.on('aftercreateedge', e => {...})` 监听。其参数 `e` 中的 `edge` 字段即为刚刚创建的边。
-
-**使用默认配置**
-
-```javascript
-const graph = new F6.Graph({
-  modes: {
-    default: ['create-edge'],
-  },
-});
-graph.on('aftercreateedge', (e) => {
-  console.log(e.edge);
-});
-```
-
-**使用自定义参数**
-
-```javascript
-const graph = new F6.Graph({
-  modes: {
-    default: [
-      // 只有当 'shift' 键被按下，才能够通过从一个节点拖拽到另一个节点来创建一条边
-      {
-        type: 'create-edge',
-        trigger: 'drag',
-        key: 'shift',
-        edgeConfig: {
-          type: 'cubic',
-          style: {
-            stroke: '#f00',
-            lineWidth: 2,
-            // ... // 其它边样式配置
-          },
-          // ... // 其它边配置
-        },
-      },
-    ],
-  },
 });
 ```
