@@ -7,7 +7,6 @@ import Base, { IPluginBaseConfig } from '../base';
 
 import { createUI } from '@antv/f6-ui';
 
-
 const { max } = Math;
 const { transform } = ext;
 
@@ -23,7 +22,7 @@ interface MiniMapConfig extends IPluginBaseConfig {
   delegateStyle?: ShapeStyle;
   refresh?: boolean;
   padding?: number;
-  getCss?: Function
+  getCss?: Function;
 }
 
 export default class MiniMap extends Base {
@@ -98,33 +97,30 @@ export default class MiniMap extends Base {
 
     // 拖拽start事件
     handleUI.on('panstart', (e: GraphEvent) => {
-        cfgs.refresh = false;
+      cfgs.refresh = false;
 
-        // 如果视口已经最大了，不需要拖拽
-         left = parseInt(handleUI.getStyle('left'), 10);
-         top = parseInt(handleUI.getStyle('top'),10);
-         width = parseInt(handleUI.getStyle('width'),10);
-         height = parseInt(handleUI.getStyle('height'),10)
+      // 如果视口已经最大了，不需要拖拽
+      left = parseInt(handleUI.getStyle('left'), 10);
+      top = parseInt(handleUI.getStyle('top'), 10);
+      width = parseInt(handleUI.getStyle('width'), 10);
+      height = parseInt(handleUI.getStyle('height'), 10);
 
-
-        if (width > size[0] || height > size[1]) {
-          return;
-        }
-
-        zoom = graph!.getZoom();
-        ratio = this.get('ratio');
-
-        dragging = true;
-
-        x = e.x;
-        y = e.y;
+      if (width > size[0] || height > size[1]) {
+        return;
       }
-    );
+
+      zoom = graph!.getZoom();
+      ratio = this.get('ratio');
+
+      dragging = true;
+
+      x = e.x;
+      y = e.y;
+    });
 
     handleUI.on(
-      "panmove",
+      'panmove',
       (e: GraphEvent) => {
-
         if (!dragging || isNil(e.x) || isNil(e.y)) {
           return;
         }
@@ -163,7 +159,7 @@ export default class MiniMap extends Base {
       false,
     );
 
-    this.set('viewport', handleUI);  // 这里viewport的 key 先保留，下面继续使用
+    this.set('viewport', handleUI); // 这里viewport的 key 先保留，下面继续使用
   }
 
   /**
@@ -196,7 +192,7 @@ export default class MiniMap extends Base {
       width += left;
       left = 0;
     }
-    if (right > size[0]) {
+    if (right >= size[0]) {
       width = width - (right - size[0]);
     }
     if (top < 0) {
@@ -210,11 +206,16 @@ export default class MiniMap extends Base {
     // 缓存目前缩放比，在移动 minimap 视窗时就不用再计算大图的移动量
     this.set('ratio', ratio);
 
-    if(viewport){
-      viewport.setStyle('left', left);
-      viewport.setStyle('top', top);
-      viewport.setStyle('width', width);
-      viewport.setStyle('height', height);
+    if (viewport) {
+      const borderWidth = viewport.getStyle('borderWidth');
+      if (Math.floor(width) >= borderWidth * 2) {
+        viewport.setStyle('left', left);
+        viewport.setStyle('width', width);
+      }
+      if (Math.floor(height) >= borderWidth * 2) {
+        viewport.setStyle('top', top);
+        viewport.setStyle('height', height);
+      }
     }
   }
 
@@ -227,7 +228,7 @@ export default class MiniMap extends Base {
     if (graphGroup.destroyed) return;
     const clonedGroup = graphGroup.clone();
 
-    const groupCanvas = this.get('groupCanvas')
+    const groupCanvas = this.get('groupCanvas');
 
     clonedGroup.resetMatrix();
 
@@ -241,7 +242,7 @@ export default class MiniMap extends Base {
   private updateKeyShapes() {
     const { graph } = this._cfgs;
 
-    const group = this.get('groupCanvas');  // canvas.get('children')[0] || canvas.addGroup();
+    const group = this.get('groupCanvas'); // canvas.get('children')[0] || canvas.addGroup();
 
     each(graph!.getEdges(), (edge) => {
       this.updateOneEdgeKeyShape(edge, group);
@@ -350,7 +351,7 @@ export default class MiniMap extends Base {
   private updateDelegateShapes() {
     const { graph } = this._cfgs;
 
-    const group =  this.get('groupCanvas');
+    const group = this.get('groupCanvas');
 
     // 差量更新 minimap 上的节点和边
     each(graph!.getEdges(), (edge) => {
@@ -361,10 +362,11 @@ export default class MiniMap extends Base {
     });
     const combos = graph!.getCombos();
     if (combos && combos.length) {
-      const comboGroup = group.find(e => e.get('name') === 'comboGroup') ||
+      const comboGroup =
+        group.find((e) => e.get('name') === 'comboGroup') ||
         group.addGroup({
-        name: 'comboGroup'
-      });
+          name: 'comboGroup',
+        });
       setTimeout(() => {
         if (this.destroyed) return;
         each(combos, (combo) => {
@@ -373,7 +375,7 @@ export default class MiniMap extends Base {
         comboGroup?.sort();
         comboGroup?.toBack();
         this.updateCanvas();
-      }, 250)
+      }, 250);
     }
     this.clearDestroyedShapes();
   }
@@ -470,7 +472,6 @@ export default class MiniMap extends Base {
   );
 
   public init() {
-    
     this.get('graph').on('afterupdateitem', this.handleUpdateCanvas);
     this.get('graph').on('afteritemstatechange', this.handleUpdateCanvas);
     this.get('graph').on('afteradditem', this.handleUpdateCanvas);
@@ -526,20 +527,20 @@ export default class MiniMap extends Base {
         background: rgba(0,0,0,0);
         z-index: 1000;
       }
-      ${getCss?.()??''}
-    `
+      ${getCss?.() ?? ''}
+    `;
     const uiGroup = graph.get('uiGroup');
 
     const miniMapContainerUI = createUI(containerHtml, containerCss, uiGroup);
 
-    const background = miniMapContainerUI.query('.f6-minimap-container')
+    const background = miniMapContainerUI.query('.f6-minimap-container');
     const group = background.gNode;
     const canvasGroup = group.addGroup();
 
-    this.set('groupCanvas', canvasGroup)
+    this.set('groupCanvas', canvasGroup);
 
     this.set('container', miniMapContainerUI);
-    
+
     self.updateCanvas();
     this.initViewport();
   }
@@ -585,8 +586,9 @@ export default class MiniMap extends Base {
     if (!group) return;
 
     group.resetMatrix();
-    // 该 bbox 是准确的，不计算 matrix 的包围盒
-    const bbox = group.getBBox();
+    // 重新计算所有子节点的matrix，从group开始重新计算totalmatrix，重置传递下来的matrix，保证计算canvasBBox的时候，相对左上角
+    group.applyMatrix([1, 0, 0, 0, 1, 0, 0, 0, 1]);
+    const bbox = group.getCanvasBBox();
 
     const graphBBox = graph.get('group').getCanvasBBox(); // 主图的 bbox
     const graphZoom = graph.getZoom() || 1;
@@ -661,6 +663,6 @@ export default class MiniMap extends Base {
   }
 
   public destroy() {
-    this.get('container')?.remove()
+    this.get('container')?.remove();
   }
 }
