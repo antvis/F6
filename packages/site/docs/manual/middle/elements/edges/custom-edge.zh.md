@@ -45,7 +45,7 @@ F6.registerEdge('hvh', {
           ['L', endPoint.x, endPoint.y],
         ],
       },
-      // must be assigned in F6 3.3 and later versions. it can be any value you want
+      // must be assigned in F6. it can be any value you want
       name: 'path-shape',
     });
     return shape;
@@ -346,7 +346,7 @@ F6.registerEdge('line-arrow', {
           // ...
         },
       },
-      // must be assigned in F6 3.3 and later versions. it can be any value you want
+      // must be assigned in F6. it can be any value you want
       name: 'path-shape',
     });
     return keyShape;

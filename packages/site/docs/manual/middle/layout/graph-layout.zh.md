@@ -16,7 +16,7 @@ order: 0
 ## 一般图 Graph 布局方法总览
 
 - [Random Layout](#random)：随机布局；
-- [Force Layout](#gforce)：F6 4.0 支持的经典力导向布局，支持 GPU 并行计算；
+- [Force Layout](#gforce)：F6 支持的经典力导向布局，支持 GPU 并行计算；
 - [Force Layout](#force)：引用 d3 的经典力导向布局；
 - [Fruchterman Layout](#fruchterman)：Fruchterman 布局，一种力导布局；
 - [Circular Layout](#circular)：环形布局；
@@ -74,7 +74,7 @@ const graph = new F6.Graph({
 
 <img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*lX-qSqDECrIAAAAAAAAAAAAAARQnAQ' width=500 alt='img'/>
 
-<br /> **描述**：F6 4.0 支持的经典力导向布局。能够更加自由地支持设置节点质量、群组中心力等。更重要的是，它支持 GPU 并行计算。 <br /> **API**：[Force API](/zh/docs/api/graphLayout/gforce) <br /> **参数**：
+<br /> **描述**：F6 支持的经典力导向布局。能够更加自由地支持设置节点质量、群组中心力等。更重要的是，它支持 GPU 并行计算。 <br /> **API**：[Force API](/zh/docs/api/graphLayout/gforce) <br /> **参数**：
 
 | 参数名 | 类型 | 示例 | 默认值 | 说明 |
 | --- | --- | --- | --- | --- |
