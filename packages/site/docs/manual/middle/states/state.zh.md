@@ -34,7 +34,7 @@ F6 中默认处理的是交互状态。
 
 ### 状态的类型
 
-状态可以是二值的，也可以是多值的（F6 3.4 后支持）。
+状态可以是二值的，也可以是多值的。
 
 #### 二值状态
 
@@ -54,7 +54,7 @@ graph.setItemState(item, 'stateName', true);
 
 #### 多值状态
 
-多值状态在 F6 3.4 后支持。通过 `graph.setItemState(item, stateName, stateValue)` 设置状态的值。
+多值状态在 F6 后支持。通过 `graph.setItemState(item, stateName, stateValue)` 设置状态的值。
 
 | 参数名     | 类型   | 描述                        |
 | ---------- | ------ | --------------------------- |
@@ -139,7 +139,7 @@ F6.registerBehavior('nodeClick', {
   running: {
     stroke: 'steelblue',
   },
-  // 多值状态与子图形样式的设置在 F6 3.4 后支持
+  // 多值状态与子图形样式的设置在 F6 后支持
   // 多值状态 bodyState 为 health 时的样式
   'bodyState:health': {
     // keyShape 该状态值下的样式
@@ -197,9 +197,9 @@ const graph = new F6.Graph({
 });
 ```
 
-上面的实例代码中，我们在实例化 Graph 时候，通过 `nodeStateStyles` 定义了交互状态 `hover` 和业务状态 `running` 的样式。当某个任务状态变为正在执行时，二值状态 `running` 被设置为 `true` 后，节点的描边色将变为 `'steelblue'`。当二值状态 `hover` 被设置为 `true` 时，节点 `keyShape` 的填充色会变为 `'#d3adf7'`；（V3.4 后支持）且该节点中 `name` 为 `'node-label'` 的子图形也会发生改变，这里的 `'node-label'` 即节点上的文本图形，它的 `fontSize` 将会发生改变。 <br /><img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*Beu6QY_ETOgAAAAAAAAAAABkARQnAQ' width=150 alt='img'/>
+上面的实例代码中，我们在实例化 Graph 时候，通过 `nodeStateStyles` 定义了交互状态 `hover` 和业务状态 `running` 的样式。当某个任务状态变为正在执行时，二值状态 `running` 被设置为 `true` 后，节点的描边色将变为 `'steelblue'`。当二值状态 `hover` 被设置为 `true` 时，节点 `keyShape` 的填充色会变为 `'#d3adf7'`；且该节点中 `name` 为 `'node-label'` 的子图形也会发生改变，这里的 `'node-label'` 即节点上的文本图形，它的 `fontSize` 将会发生改变。 <br /><img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*Beu6QY_ETOgAAAAAAAAAAABkARQnAQ' width=150 alt='img'/>
 
-（V3.4 后支持）上面实例还指定了名为 `'bodyState'` 的多值状态各值下的样式。当一个节点的 `'bodyState'` 的值被设置为 `'health'` 时，该节点的 keyShape 样式以及 `name` 为 `'shape-name1'` 和 `'shape-name1'` 的子图形样式都会发生变化。
+上面实例还指定了名为 `'bodyState'` 的多值状态各值下的样式。当一个节点的 `'bodyState'` 的值被设置为 `'health'` 时，该节点的 keyShape 样式以及 `name` 为 `'shape-name1'` 和 `'shape-name1'` 的子图形样式都会发生变化。
 
 同理，`defaultEdge` 中的 `style` 属性定义了默认状态下边的样式，使用 `edgeStateStyles`  可以定义不同状态下边的样式。
 

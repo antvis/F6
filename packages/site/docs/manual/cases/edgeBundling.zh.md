@@ -177,7 +177,7 @@ F6.registerNode(
           lineWidth: 0,
           fill: lightOrange,
         },
-        // must be assigned in F6 3.3 and later versions. it can be any value you want
+        // must be assigned in F6. it can be any value you want
         name: 'in-fan-shape',
       });
       // 定义代表出度的扇形形状
@@ -192,7 +192,7 @@ F6.registerNode(
           lineWidth: 0,
           fill: lightBlue,
         },
-        // must be assigned in F6 3.3 and later versions. it can be any value you want
+        // must be assigned in F6. it can be any value you want
         name: 'out-fan-shape',
       });
       // 返回 keyshape
