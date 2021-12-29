@@ -64,7 +64,7 @@ const keyShape = group.addShape('rect', {
   attrs: {
     stroke: 'red',
   },
-  // must be assigned in F6 3.3 and later versions. it can be any value you want
+  // must be assigned in F6. it can be any value you want
   name: 'rect-shape',
 });
 ```

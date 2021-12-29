@@ -43,7 +43,7 @@ group.addShape('rect', {
     shadowBlur: 10,
     opacity: 0.8,
   },
-  // must be assigned in F6 3.3 and later versions. it can be any value you want
+  // must be assigned in F6. it can be any value you want
   name: 'rect-shape',
 });
 ```
@@ -97,7 +97,7 @@ group.addShape('circle', {
     r: 50,
     fill: 'blue',
   },
-  // must be assigned in F6 3.3 and later versions. it can be any value you want
+  // must be assigned in F6. it can be any value you want
   name: 'circle-shape',
 });
 ```
@@ -126,7 +126,7 @@ group.addShape('rect', {
     stroke: 'black',
     radius: [2, 4],
   },
-  // must be assigned in F6 3.3 and later versions. it can be any value you want
+  // must be assigned in F6. it can be any value you want
   name: 'rect-shape',
 });
 ```
@@ -153,7 +153,7 @@ group.addShape('ellipse', {
     ry: 50,
     fill: 'blue',
   },
-  // must be assigned in F6 3.3 and later versions. it can be any value you want
+  // must be assigned in F6. it can be any value you want
   name: 'ellipse-shape',
 });
 ```
@@ -179,7 +179,7 @@ group.addShape('polygon', {
     ],
     fill: 'red',
   },
-  // must be assigned in F6 3.3 and later versions. it can be any value you want
+  // must be assigned in F6. it can be any value you want
   name: 'polygon-shape',
 });
 ```
@@ -205,7 +205,7 @@ group.addShape('image', {
     y: 0,
     img: 'https://g.alicdn.com/cm-design/arms-trace/1.0.155/styles/armsTrace/images/TAIR.png',
   },
-  // must be assigned in F6 3.3 and later versions. it can be any value you want
+  // must be assigned in F6. it can be any value you want
   name: 'image-shape',
 });
 ```
@@ -233,7 +233,7 @@ group.addShape('marker', {
       return [['M', x, y], ['L', x + r, y + r], ['L', x + r * 2, y], ['Z']];
     },
   },
-  // must be assigned in F6 3.3 and later versions. it can be any value you want
+  // must be assigned in F6. it can be any value you want
   name: 'marker-shape',
 });
 ```
@@ -281,7 +281,7 @@ group.addShape('path', {
     lineWidth: 8,
     lineAppendWidth: 5,
   },
-  // must be assigned in F6 3.3 and later versions. it can be any value you want
+  // must be assigned in F6. it can be any value you want
   name: 'path-shape',
 });
 ```
@@ -321,7 +321,7 @@ group.addShape('text', {
     textBaseline: 'middle',
     fill: '#0000D9',
   },
-  // must be assigned in F6 3.3 and later versions. it can be any value you want
+  // must be assigned in F6. it can be any value you want
   name: 'text-shape',
 });
 ```
@@ -360,7 +360,7 @@ group.addShape('dom', {
     </div>
       `,
   },
-  // must be assigned in F6 3.3 and later versions. it can be any value you want
+  // must be assigned in F6. it can be any value you want
   name: 'dom-shape',
   draggable: true,
 });

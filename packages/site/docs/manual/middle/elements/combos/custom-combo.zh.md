@@ -147,7 +147,7 @@ F6.registerCombo(
 );
 ```
 
-值得注意的是，F6 3.3 需要用户为自定义节点中的图形设置 `name` 和 `draggable`。其中，`name` 可以是不唯一的任意值。`draggable` 为 `true` 是表示允许该图形响应拖拽事件，只有 `draggable: true` 时，图上的交互行为 `'drag-combo'` 才能在该图形上生效。若上面代码仅在 keyShape 上设置了 `draggable: true`，而右侧圆图形上没有设置，则鼠标拖拽只能在 keyShape 上响应。
+值得注意的是，F6 需要用户为自定义节点中的图形设置 `name` 和 `draggable`。其中，`name` 可以是不唯一的任意值。`draggable` 为 `true` 是表示允许该图形响应拖拽事件，只有 `draggable: true` 时，图上的交互行为 `'drag-combo'` 才能在该图形上生效。若上面代码仅在 keyShape 上设置了 `draggable: true`，而右侧圆图形上没有设置，则鼠标拖拽只能在 keyShape 上响应。
 
 ### 使用自定义 Combo
 
@@ -286,7 +286,7 @@ F6.registerCombo(
 );
 ```
 
-值得注意的是，F6 3.3 需要用户为自定义节点中的图形设置 `name` 和 `draggable`。其中，`name` 可以是不唯一的任意值。`draggable` 为 `true` 是表示允许该图形响应拖拽事件，只有 `draggable: true` 时，图上的交互行为 `'drag-combo'` 才能在该图形上生效。若上面代码仅在 keyShape 上设置了 `draggable: true`，而右侧圆图形上没有设置，则鼠标拖拽只能在 keyShape 上响应。
+值得注意的是，F6 需要用户为自定义节点中的图形设置 `name` 和 `draggable`。其中，`name` 可以是不唯一的任意值。`draggable` 为 `true` 是表示允许该图形响应拖拽事件，只有 `draggable: true` 时，图上的交互行为 `'drag-combo'` 才能在该图形上生效。若上面代码仅在 keyShape 上设置了 `draggable: true`，而右侧圆图形上没有设置，则鼠标拖拽只能在 keyShape 上响应。
 
 ### 使用自定义 Combo
 

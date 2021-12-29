@@ -159,8 +159,6 @@ const graph = new F6.Graph({
 
 ### 描述文本配置  descriptionCfg
 
-<span style="background-color: rgb(251, 233, 231); color: rgb(139, 53, 56)"> 。
-
 Object 类型。通过 `descriptionCfg` 配置标签文本。支持 [节点通用标签配置](/zh/docs/manual/middle/elements/nodes/defaultNode/#标签文本-label-及其配置-labelcfg)。此外，还有一个特殊属性：
 
 | 名称       | 含义                       | 类型   | 备注       |
