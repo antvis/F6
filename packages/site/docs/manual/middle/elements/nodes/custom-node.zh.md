@@ -115,7 +115,7 @@ F6.registerNode('diamond', {
         path: this.getPath(cfg), // 根据配置获取路径
         stroke: cfg.color, // 颜色应用到描边上，如果应用到填充，则使用 fill: cfg.color
       },
-      // must be assigned in F6 3.3 and later versions. it can be any value you want
+      // must be assigned in F6. it can be any value you want
       name: 'path-shape',
       // 设置 draggable 以允许响应图拽事件
       draggable: true,
@@ -135,7 +135,7 @@ F6.registerNode('diamond', {
           text: cfg.label,
           fill: '#666',
         },
-        // must be assigned in F6 3.3 and later versions. it can be any value you want
+        // must be assigned in F6. it can be any value you want
         name: 'text-shape',
         // 设置 draggable 以允许响应图拽事件
         draggable: true,
@@ -163,7 +163,7 @@ F6.registerNode('diamond', {
 });
 ```
 
-上面的代码自定义了一个菱形节点。值得注意的是，F6 3.3 需要用户为自定义节点中的图形设置 `name` 和 `draggable`。其中，`name` 可以是不唯一的任意值。`draggable` 为 `true` 是表示允许该图形响应拖拽事件，只有 `draggable: true` 时，图上的交互行为 `'drag-node'` 才能在该图形上生效。若上面代码仅在 keyShape 上设置了 `draggable: true`，而 label 图形上没有设置，则鼠标拖拽只能在 keyShape 上响应。
+上面的代码自定义了一个菱形节点。值得注意的是，F6 需要用户为自定义节点中的图形设置 `name` 和 `draggable`。其中，`name` 可以是不唯一的任意值。`draggable` 为 `true` 是表示允许该图形响应拖拽事件，只有 `draggable: true` 时，图上的交互行为 `'drag-node'` 才能在该图形上生效。若上面代码仅在 keyShape 上设置了 `draggable: true`，而 label 图形上没有设置，则鼠标拖拽只能在 keyShape 上响应。
 
 现在，我们使用下面的数据输入就会绘制出 diamond 这个节点。
 
@@ -299,7 +299,7 @@ F6.registerNode('inner-animate', {
         height: height,
         img: cfg.img
       },
-      // must be assigned in F6 3.3 and later versions. it can be any value you want
+      // must be assigned in F6. it can be any value you want
       name: 'image-shape'
     });
     // 执行旋转动画
@@ -506,7 +506,7 @@ F6.registerNode(
 );
 ```
 
-上面的代码自定义了一个名为 `'dom-node'` 的带有 DOM 的节点。值得注意的是，F6 3.3 需要用户为自定义节点中的图形设置 `name` 和 `draggable`。其中，`name` 可以是不唯一的任意值。`draggable` 为 `true` 是表示允许该图形响应拖拽事件，只有 `draggable: true` 时，图上的交互行为 `'drag-node'` 才能在该图形上生效。
+上面的代码自定义了一个名为 `'dom-node'` 的带有 DOM 的节点。值得注意的是，F6 需要用户为自定义节点中的图形设置 `name` 和 `draggable`。其中，`name` 可以是不唯一的任意值。`draggable` 为 `true` 是表示允许该图形响应拖拽事件，只有 `draggable: true` 时，图上的交互行为 `'drag-node'` 才能在该图形上生效。
 
 现在，我们使用下面的数据输入就会绘制出带有 `'dom-node'` 节点的图。
 

@@ -5,8 +5,8 @@ order: 0
 
 F6 中支持插件提供了一些可插拔的组件，包括：
 
-- [Legend](#legend) _v4.3.0 起支持_
-- [SnapLine](#snapline) _v4.3.0 起支持_
+- [Legend](#legend)
+- [SnapLine](#snapline)
 - [Grid](#grid)
 - [Minimap](#minimap)
 - [ImageMinimap](#image-minimap)

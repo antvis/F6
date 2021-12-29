@@ -89,7 +89,7 @@ group.addShape('rect', {
     shadowBlur: 10,
     opacity: 0.8,
   },
-  // must be assigned in F6 3.3 and later versions. it can be any value you want
+  // must be assigned in F6. it can be any value you want
   name: 'rect-shape',
   zIndex: 1,
 });

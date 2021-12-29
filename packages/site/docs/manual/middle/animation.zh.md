@@ -118,7 +118,7 @@ F6.registerNode(
           fill: cfg.color,
           opacity: 0.6,
         },
-        // must be assigned in F6 3.3 and later versions. it can be any value you want
+        // must be assigned in F6. it can be any value you want
         name: 'circle-shape1',
       });
       // 第二个背景圆
@@ -131,7 +131,7 @@ F6.registerNode(
           fill: 'blue', // 为了显示清晰，随意设置了颜色
           opacity: 0.6,
         },
-        // must be assigned in F6 3.3 and later versions. it can be any value you want
+        // must be assigned in F6. it can be any value you want
         name: 'circle-shape2',
       });
       // 第三个背景圆
@@ -144,7 +144,7 @@ F6.registerNode(
           fill: 'green',
           opacity: 0.6,
         },
-        // must be assigned in F6 3.3 and later versions. it can be any value you want
+        // must be assigned in F6. it can be any value you want
         name: 'circle-shape3',
       });
       group.sort(); // 排序，根据 zIndex 排序
@@ -219,7 +219,7 @@ F6.registerNode(
           height: height,
           img: cfg.img,
         },
-        // must be assigned in F6 3.3 and later versions. it can be any value you want
+        // must be assigned in F6. it can be any value you want
         name: 'image-shape',
       });
       // 该图片 shape 的动画
@@ -286,7 +286,7 @@ F6.registerEdge(
           fill: 'red',
           r: 3,
         },
-        // must be assigned in F6 3.3 and later versions. it can be any value you want
+        // must be assigned in F6. it can be any value you want
         name: 'circle-shape',
       });
 
