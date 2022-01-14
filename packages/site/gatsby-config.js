@@ -366,6 +366,16 @@ module.exports = {
         },
       },
     ],
+    playground: {
+      container: `
+        <div class="mobile-container">
+          <div class="mobile-header"></div>
+          <div class="mobile-content">
+            <canvas id="container"/>
+          </div>
+        </div>
+      `
+    },
     docsearchOptions: {
       apiKey: '9d1cd586972bb492b7b41b13a949ef30',
       indexName: 'antv_g6',
