@@ -28,8 +28,10 @@ Component({
   },
   methods: {
     onCanvasReady() {
+      const canvasId = `f6-canvas-${this.$id}`;
+
       my.createSelectorQuery()
-        .select('#canvas')
+        .select(`#${canvasId}`)
         .boundingClientRect()
         .exec((ret) => {
           if (ret && ret[0]) {
@@ -48,7 +50,7 @@ Component({
           if (this.data.supportNative && !this.props.forceMini) {
             console.log('native support');
             my._createCanvas({
-              id: 'canvas',
+              id: canvasId,
               success: (canvas) => {
                 this.ctx = canvas.getContext('2d');
                 this.props.onInit(this.ctx, ret[0], canvas, 'mini-native');
@@ -56,7 +58,7 @@ Component({
             });
           } else {
             console.log('web support');
-            this.ctx = my.createCanvasContext('canvas');
+            this.ctx = my.createCanvasContext(canvasId);
             this.props.onInit(this.ctx, ret[0], null, 'mini');
           }
         });
