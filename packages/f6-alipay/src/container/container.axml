@@ -8,7 +8,7 @@
 >
   <canvas
     a:if="{{supportNative && !forceMini}}"
-    id="canvas"
+     id="f6-canvas-{{$id}}"
     type="webgl"
     width="{{width * finalPixelRatio}}"
     height="{{height * finalPixelRatio}}"
@@ -18,7 +18,7 @@
   ></canvas>
   <canvas
     a:else
-    id="canvas"
+     id="f6-canvas-{{$id}}"
     width="{{width * finalPixelRatio}}"
     height="{{height * finalPixelRatio}}"
     style="width: {{width}}px; height: {{height}}px;"
