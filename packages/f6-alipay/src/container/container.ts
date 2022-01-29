@@ -78,21 +78,21 @@ Component({
       };
 
       e.touches.forEach((touchEvent) => {
-        ev.touches.push(modifyEvent(touchEvent, target, this.rect));
+        ev.touches.push(modifyEvent(touchEvent, target, this.rect, this.props.forceMini));
       });
 
       e.changedTouches.forEach((touchEvent) => {
         // 真实的x的位置为client的位置 + rect的位置 +
-        ev.changedTouches.push(modifyEvent(touchEvent, target, this.rect));
+        ev.changedTouches.push(modifyEvent(touchEvent, target, this.rect, this.props.forceMini));
       });
       this.props.onTouchEvent(ev);
     },
   },
 });
 
-function modifyEvent(touchEvent, target, rect) {
-  const x = touchEvent.pageX - rect.left; // target.offsetLeft;
-  const y = touchEvent.pageY - rect.top; // target.offsetTop;
+function modifyEvent(touchEvent, target, rect, isMini) {
+  var x = isMini ? touchEvent.x : touchEvent.pageX - rect.left; // target.offsetLeft;
+  var y = isMini ? touchEvent.y : touchEvent.pageY - rect.top; // target.offsetTop;
   return {
     x,
     y,
