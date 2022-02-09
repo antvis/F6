@@ -14,6 +14,7 @@ Component({
     onInit: () => {},
     onError: () => {},
     waterMarker: null,
+    updateEventOffsetFlag: null,
   },
   didMount() {
     // pixel 向上取整，保持和g同样的规则
@@ -26,6 +27,13 @@ Component({
       this.onCanvasReady();
     }
   },
+
+  didUpdate(prev) {
+    if (prev.updateEventOffsetFlag !== this.props.updateEventOffsetFlag) {
+      this.refreshOffset();
+    }
+  },
+
   methods: {
     onCanvasReady() {
       const canvasId = `f6-canvas-${this.$id}`;
@@ -86,6 +94,27 @@ Component({
         ev.changedTouches.push(modifyEvent(touchEvent, target, this.rect, this.props.forceMini));
       });
       this.props.onTouchEvent(ev);
+    },
+    refreshOffset() {
+      const canvasId = `f6-canvas-${this.$id}`;
+      my.createSelectorQuery()
+        .select(`#${canvasId}`)
+        .boundingClientRect()
+        .exec((ret) => {
+          if (ret && ret[0]) {
+            this.rect = ret[0];
+          } else {
+            this.rect = {
+              bottom: 0,
+              height: 0,
+              left: 0,
+              right: 0,
+              top: 0,
+              width: 0,
+            };
+            this.props.onError && this.props.onError(ret);
+          }
+        });
     },
   },
 });
