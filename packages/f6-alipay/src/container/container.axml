@@ -1,6 +1,4 @@
-<block>
  <view
-  a:if="{{supportNative && !forceMini}}"
   id="f6-alipay-container"
   style="width: {{width}}px; height: {{height}}px; {{style}} {{waterStyle}}"
   catchTouchStart="ontouch"
@@ -9,6 +7,7 @@
   catchTouchEnd="ontouch"
 >
   <canvas
+    a:if="{{supportNative && !forceMini}}"
     id="f6-canvas-{{$id}}"
     type="webgl"
     width="{{width * finalPixelRatio}}"
@@ -17,27 +16,12 @@
     disable-scroll="{{true}}"
     onReady="onCanvasReady"
   />
-</view>
-
-<view
-  a:else
-  id="f6-alipay-container"
-  style="width: {{width}}px; height: {{height}}px; {{style}} {{waterStyle}}"
->
   <canvas
+    a:else
     id="f6-canvas-{{$id}}"
     width="{{width * finalPixelRatio}}"
     height="{{height * finalPixelRatio}}"
     style="width: {{width}}px; height: {{height}}px;"
     disable-scroll="{{true}}"
-    catchTouchStart="ontouch"
-    catchTouchCancel="ontouch"
-    catchTouchMove="ontouch"
-    catchTouchEnd="ontouch"
   />
 </view>
-
-</block>
-
-
-
