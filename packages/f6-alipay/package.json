@@ -1,6 +1,6 @@
 {
   "name": "@antv/f6-alipay",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "支付宝小程序F6组件",
   "files": ["es"],
   "keywords": ["F6", "G6Mobile"],
