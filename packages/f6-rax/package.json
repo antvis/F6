@@ -1,0 +1,17 @@
+{
+  "name": "@antv/f6-rax",
+  "version": "0.0.1",
+  "description": "rax F6组件",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@antv/f6": "^0.0.15",
+    "@antv/f6-alipay": "^0.0.7",
+    "rax": "^1.2.2",
+    "rax-view": "^2.3.0"
+  }
+}
