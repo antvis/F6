@@ -1,12 +1,13 @@
 import { createElement, useEffect, useRef, useState } from 'rax';
 import View from 'rax-view';
 import F6 from '@antv/f6';
+import NativeCanvas from '@antv/f6-alipay/es/container/container';
 import force from '@antv/f6/dist/extends/layout/forceLayout';
 import { getInfoSync } from '@uni/system-info';
 import { getBoundingClientRect } from '@uni/element';
 import './index.css';
 
-const F6Chart = (props) => {
+const miniF6 = (props) => {
   const { data, config, handleClick = () => {}, updateEventOffsetFlag = false } = props;
 
   const f6Chart = useRef(null);
@@ -24,9 +25,6 @@ const F6Chart = (props) => {
     const chart = new F6.Graph({
       fitView: true,
       pixelRatio: pixelRatio,
-      layout: {
-        type: 'force',
-      },
       modes: {
         default: ['drag-canvas', 'zoom-canvas', 'drag-node'],
       },
@@ -62,13 +60,36 @@ const F6Chart = (props) => {
     };
   }, []);
 
+  const handleInit = (_ctx, ret, _canvas, _renderer) => {
+    if (!_ctx || !_renderer) return;
+    renderChart({
+      ctx: _ctx,
+      canvas: _canvas,
+      renderer: _renderer,
+    });
+  };
+
   useEffect(() => {
     if (data.nodes.length && f6Chart.current) {
       f6Chart.current.changeData(data);
     }
   }, [data]);
 
-  return <View id="f6-rax-container" style={{ minHeight: 300 }}></View>;
+  return (
+    <View id="f6-rax-mini-container">
+      <NativeCanvas
+        width={bound[0]}
+        height={bound[1]}
+        forceMini={false}
+        pixelRatio={pixelRatio}
+        onTouchEvent={(e) => {
+          f6Chart.current && f6Chart.current.emitEvent(e);
+        }}
+        onInit={handleInit}
+        updateEventOffsetFlag={updateEventOffsetFlag}
+      />
+    </View>
+  );
 };
 
-export default F6Chart;
+export default miniF6;

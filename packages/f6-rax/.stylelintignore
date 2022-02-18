@@ -7,8 +7,8 @@ types/
 .tea
 
 # ignore mix js or css
-**/*.min.js
-**/*-min.js
+**/*.min.css
+**/*-min.css
 
 # Logs
 logs
@@ -27,6 +27,3 @@ node_modules
 out
 gen
 .vsc
-
-#miniapp
-miniapp/**/*.axml
