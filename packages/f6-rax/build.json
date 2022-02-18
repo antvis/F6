@@ -1,0 +1,11 @@
+{
+  "type": "rax",
+  "targets": [
+    "web",
+    "miniapp"
+  ],
+  "plugins": [
+    "build-plugin-component"
+  ],
+  "enablePlatformLoader": true
+}
