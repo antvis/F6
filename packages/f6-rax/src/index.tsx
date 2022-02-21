@@ -7,7 +7,7 @@ import { getBoundingClientRect } from '@uni/element';
 import './index.css';
 
 const F6Chart = (props) => {
-  const { data, config, handleClick = () => {}, updateEventOffsetFlag = false } = props;
+  const { data, config, handleClick = () => {} } = props;
 
   const f6Chart = useRef(null);
   const { pixelRatio } = getInfoSync();
@@ -47,7 +47,7 @@ const F6Chart = (props) => {
   };
 
   useEffect(() => {
-    console.log(bound, updateEventOffsetFlag);
+    console.log(data, props);
     renderChart({
       container: 'f6-rax-container',
       width: bound[0],

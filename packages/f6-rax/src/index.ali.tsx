@@ -16,12 +16,14 @@ const miniF6 = (props) => {
   const [bound, setBound] = useState([340, 410]);
 
   const renderChart = (config) => {
+    console.log(111, data, props);
     if (window) {
       // 目前F6内部使用了getComputedStyle处理判断逻辑，rax注入了该函数，导致绘制错误，屏蔽掉
       window.getComputedStyle = undefined;
     }
 
     F6.registerLayout('force', force);
+
     const chart = new F6.Graph({
       fitView: true,
       pixelRatio: pixelRatio,
@@ -45,12 +47,6 @@ const miniF6 = (props) => {
   };
 
   useEffect(() => {
-    console.log(bound, updateEventOffsetFlag);
-    renderChart({
-      container: 'f6-rax-container',
-      width: bound[0],
-      height: bound[1],
-    });
     window.addEventListener('setDataFinished', getBound);
     return () => {
       window.removeEventListener('setDataFinished', getBound); // 注意添加卸载监听逻辑
@@ -70,6 +66,7 @@ const miniF6 = (props) => {
   };
 
   useEffect(() => {
+    console.log(data, 'test');
     if (data.nodes.length && f6Chart.current) {
       f6Chart.current.changeData(data);
     }
