@@ -10,25 +10,15 @@
   "license": "MIT",
   "keywords": ["touch", "gestures"],
   "author": {
-    "name": "Jorik Tangelder",
-    "email": "j.tangelder@gmail.com"
+    "name": "openwayne",
+    "email": "openwayne@gmail.com"
   },
-  "contributors": [
-    {
-      "name": "Alexander Schmitz",
-      "email": "arschmitz@gmail.com"
-    },
-    {
-      "name": "Chris Thoburn",
-      "email": ""
-    }
-  ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/antvis/g6"
+    "url": "https://github.com/antvis/f6"
   },
   "bugs": {
-    "url": "https://github.com/antvis/g6/issues"
+    "url": "https://github.com/antvis/f6/issues"
   },
   "dependencies": {},
   "devDependencies": {
