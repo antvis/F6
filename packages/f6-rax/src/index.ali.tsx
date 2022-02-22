@@ -1,10 +1,10 @@
-import { createElement, useEffect, useRef, useState } from 'rax';
+import { createElement, useEffect, useRef } from 'rax';
 import View from 'rax-view';
 import F6 from '@antv/f6';
 import NativeCanvas from '@antv/f6-alipay/es/container/container';
 import force from '@antv/f6/dist/extends/layout/forceLayout';
 import { getInfoSync } from '@uni/system-info';
-import { getBoundingClientRect } from '@uni/element';
+// import { getBoundingClientRect } from '@uni/element';
 import './index.css';
 
 const miniF6 = (props) => {
@@ -13,7 +13,7 @@ const miniF6 = (props) => {
   const f6Chart = useRef(null);
   const { pixelRatio } = getInfoSync();
   // 屏幕大小
-  const [bound, setBound] = useState([340, 410]);
+  // const [bound, setBound] = useState([340, 410]);
 
   const renderChart = (config) => {
     console.log(111, data, props);
@@ -39,26 +39,27 @@ const miniF6 = (props) => {
     f6Chart.current = chart;
   };
 
-  const getBound = () => {
-    getBoundingClientRect('#f6-rax-mini-container').then((res) => {
-      const { width = 340, height = 410 } = res && res[0] ? res[0] : props;
-      setBound([width, height]);
-    });
-  };
+  // const getBound = () => {
+  //   getBoundingClientRect('#f6-rax-mini-container').then((res) => {
+  //     const { width = 340, height = 410 } = res && res[0] ? res[0] : props;
+  //     setBound([width, height]);
+  //   });
+  // };
 
   useEffect(() => {
-    window.addEventListener('setDataFinished', getBound);
-    return () => {
-      window.removeEventListener('setDataFinished', getBound); // 注意添加卸载监听逻辑
-      if (config && config.layout && f6Chart.current) {
-        f6Chart.current.destroy();
-      }
-    };
+    // window.addEventListener('setDataFinished', getBound);
+    // return () => {
+    //   window.removeEventListener('setDataFinished', getBound); // 注意添加卸载监听逻辑
+    //   if (config && config.layout && f6Chart.current) {
+    //     f6Chart.current.destroy();
+    //   }
+    // };
   }, []);
 
   const handleInit = (_ctx, ret, _canvas, _renderer) => {
     if (!_ctx || !_renderer) return;
     renderChart({
+      ...config,
       ctx: _ctx,
       canvas: _canvas,
       renderer: _renderer,
@@ -75,8 +76,8 @@ const miniF6 = (props) => {
   return (
     <View id="f6-rax-mini-container">
       <NativeCanvas
-        width={bound[0]}
-        height={bound[1]}
+        width={340}
+        height={410}
         forceMini={false}
         pixelRatio={pixelRatio}
         onTouchEvent={(e) => {
