@@ -7,17 +7,26 @@ const Visualizer = require('webpack-visualizer-plugin');
 const resolve = require('path').resolve;
 // eslint-disable-next-line prefer-destructuring
 
+/** 首字母大写 */
+function upperFirstLetter(name) {
+  return name.replace(/^\w/, ($0) => $0.toUpperCase());
+}
+/** 首字母小写 */
+function lowerFirstLetter(name) {
+  return name.replace(/^\w/, ($0) => $0.toLowerCase());
+}
+
 let entry = {
-  f6: './src/index.ts',
+  F6: './src/index.umd.ts',
 };
 
 const graphExtenders = fs.readdirSync(path.join(__dirname, './src/extends/graph'));
 const layoutExtenders = fs.readdirSync(path.join(__dirname, './src/extends/layout'));
 graphExtenders.forEach((name) => {
-  entry[name] = `./src/extends/graph/${name}/index.ts`;
+  entry[upperFirstLetter(name)] = `./src/extends/graph/${name}/index.ts`;
 });
 layoutExtenders.forEach((name) => {
-  entry[name] = `./src/extends/layout/${name}/index.ts`;
+  entry[upperFirstLetter(name)] = `./src/extends/layout/${name}/index.ts`;
 });
 
 module.exports = {
@@ -26,18 +35,18 @@ module.exports = {
     filename: (pathData) => {
       const chunkName = pathData.chunk.name;
       let filename = 'index.js';
-      if ('f6' === chunkName) {
+      if ('F6' === chunkName) {
         filename = 'f6.js';
       }
       if (/graph/i.test(chunkName)) {
-        filename = 'extends/graph/[name].js';
+        filename = `extends/graph/${lowerFirstLetter(chunkName)}.js`;
       }
       if (/layout/i.test(chunkName)) {
-        filename = 'extends/layout/[name].js';
+        filename = `extends/layout/${lowerFirstLetter(chunkName)}.js`;
       }
       return filename;
     },
-    library: 'f6',
+    library: '[name]',
     libraryTarget: 'umd',
     libraryExport: 'default',
     path: resolve(process.cwd(), 'dist/'),
