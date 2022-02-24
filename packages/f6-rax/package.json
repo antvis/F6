@@ -1,7 +1,7 @@
 {
-  "name": "rax-example",
-  "version": "0.1.0",
-  "description": "组件功能描述",
+  "name": "@antv/f6-rax",
+  "version": "0.0.1",
+  "description": "rax F6组件，支持H5和小程序端",
   "main": "lib/index.js",
   "module": "es/index.js",
   "miniappConfig": {
@@ -65,8 +65,8 @@
     "./*": "./*"
   },
   "publishConfig": {
-    "access": "public"
+    "registry": "https://registry.npm.alibaba-inc.com"
   },
   "license": "MIT",
-  "homepage": "https://unpkg.com/rax-example@0.1.0/build/index.html"
+  "homepage": "https://unpkg.alibaba-inc.com/@alipay/f6-rax@0.0.2-beta.2/build/index.html"
 }
