@@ -1,18 +1,16 @@
-import { createElement, useEffect, useRef, useState } from 'rax';
+import { createElement, useEffect, useRef } from 'rax';
 import View from 'rax-view';
 import F6 from '@antv/f6';
 import force from '@antv/f6/dist/extends/layout/forceLayout';
 import { getInfoSync } from '@uni/system-info';
-import { getBoundingClientRect } from '@uni/element';
+import { isWeb } from '@uni/env';
 import './index.css';
 
 const F6Chart = (props) => {
-  const { data, config, handleClick = () => {} } = props;
+  const { data, config, handleClick = () => {}, width, height } = props;
 
   const f6Chart = useRef(null);
   const { pixelRatio } = getInfoSync();
-  // 屏幕大小
-  const [bound, setBound] = useState([340, 410]);
 
   const renderChart = (config) => {
     if (window) {
@@ -39,27 +37,18 @@ const F6Chart = (props) => {
     f6Chart.current = chart;
   };
 
-  const getBound = () => {
-    getBoundingClientRect('#f6-rax-mini-container').then((res) => {
-      const { width = 340, height = 410 } = res && res[0] ? res[0] : props;
-      setBound([width, height]);
-    });
-  };
-
   useEffect(() => {
-    console.log(data, props);
+    let query = { offsetWidth: 0, offsetHeight: 0 };
+    // bug： 不加判断会影响小程序代码
+    if (isWeb) {
+      query = document.getElementById('f6-rax-container');
+    }
     renderChart({
       container: 'f6-rax-container',
-      width: bound[0],
-      height: bound[1],
+      width: width || query.offsetWidth,
+      height: height || query.offsetHeight,
+      ...config,
     });
-    window.addEventListener('setDataFinished', getBound);
-    return () => {
-      window.removeEventListener('setDataFinished', getBound); // 注意添加卸载监听逻辑
-      if (config && config.layout && f6Chart.current) {
-        f6Chart.current.destroy();
-      }
-    };
   }, []);
 
   useEffect(() => {
@@ -68,7 +57,7 @@ const F6Chart = (props) => {
     }
   }, [data]);
 
-  return <View id="f6-rax-container" style={{ minHeight: 300 }}></View>;
+  return <View id="f6-rax-container"></View>;
 };
 
 export default F6Chart;

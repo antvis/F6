@@ -4,7 +4,12 @@
   font-size: 45rpx;
 }
 
-.f6-rax-container {
-  width: 100rpx;
-  height: 100rpx;
+#f6-rax-container {
+  width: 100%;
+  height: 100%;
+}
+
+#f6-rax-mini-container {
+  width: 100%;
+  height: 100%;
 }
