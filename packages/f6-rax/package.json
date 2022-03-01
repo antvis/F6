@@ -1,0 +1,72 @@
+{
+  "name": "@antv/f6-rax",
+  "version": "0.0.1",
+  "description": "rax F6组件，支持H5和小程序端",
+  "main": "lib/index.js",
+  "module": "es/index.js",
+  "miniappConfig": {
+    "main": "lib/miniapp/index",
+    "main:wechat": "lib/wechat-miniprogram/index"
+  },
+  "files": [
+    "build",
+    "dist",
+    "es",
+    "lib"
+  ],
+  "keywords": [
+    "Rax",
+    "rax-component"
+  ],
+  "engines": {
+    "npm": ">=3.0.0"
+  },
+  "scripts": {
+    "start": "build-scripts start",
+    "build": "build-scripts build",
+    "eslint": "eslint --ext .js,.jsx,.ts,.tsx ./",
+    "eslint:fix": "npm run eslint -- --fix",
+    "stylelint": "stylelint \"**/*.{css,scss,less}\"",
+    "lint": "npm run eslint && npm run stylelint",
+    "prepublishOnly": "npm run build"
+  },
+  "dependencies": {
+    "@antv/f6": "^0.0.15",
+    "@antv/f6-alipay": "^0.0.7",
+    "@uni/element": "^1.0.9",
+    "@uni/system-info": "^1.0.8",
+    "rax-text": "^2.0.0",
+    "rax-view": "^2.0.0",
+    "universal-env": "^3.0.0"
+  },
+  "peerDependencies": {
+    "rax": "^1.1.0"
+  },
+  "devDependencies": {
+    "@iceworks/spec": "^1.0.0",
+    "@types/rax": "^1.0.0",
+    "build-plugin-component": "^1.0.0",
+    "build-scripts": "^1.1.1",
+    "driver-universal": "^3.1.0",
+    "eslint": "^7.0.0",
+    "rax": "^1.1.0",
+    "rax-test-renderer": "^1.0.0",
+    "stylelint": "^13.7.2"
+  },
+  "componentConfig": {
+    "name": "rax-example",
+    "title": "示例组件",
+    "category": ""
+  },
+  "exports": {
+    ".": {
+      "default": "./es/index.js"
+    },
+    "./*": "./*"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npm.alibaba-inc.com"
+  },
+  "license": "MIT",
+  "homepage": "https://unpkg.alibaba-inc.com/@alipay/f6-rax@0.0.2-beta.2/build/index.html"
+}

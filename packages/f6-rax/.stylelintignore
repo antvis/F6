@@ -1,0 +1,29 @@
+build/
+demo/
+dist/
+lib/
+es/
+types/
+.tea
+
+# ignore mix js or css
+**/*.min.css
+**/*-min.css
+
+# Logs
+logs
+*.log
+npm-debug.log*
+
+# Coverage directory used by tools like istanbul
+coverage
+
+# Dependency directories
+node_modules
+
+# IDE
+.idea
+*.iml
+out
+gen
+.vsc
