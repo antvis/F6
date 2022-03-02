@@ -68,5 +68,5 @@
     "registry": "https://registry.npm.alibaba-inc.com"
   },
   "license": "MIT",
-  "homepage": "https://unpkg.alibaba-inc.com/@alipay/f6-rax@0.0.2-beta.2/build/index.html"
+  "homepage": "https://unpkg.com/@antv/f6-rax@0.0.1/build/index.html"
 }
