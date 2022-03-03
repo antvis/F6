@@ -1,6 +1,6 @@
 import EventEmitter from '@antv/event-emitter';
 import { ICanvas, IGroup, Point } from '@antv/g-base';
-import { requestAnimationFrame } from '@antv/g-mobile/esm/util/time';
+import { requestAnimationFrame, clearAnimationFrame } from '@antv/g-mobile/esm/util/time';
 import { ext } from '@antv/matrix-util';
 import { clone, deepMix, each, isPlainObject, isString } from '@antv/util';
 import {
@@ -82,6 +82,9 @@ export default abstract class AbstractGraph extends EventEmitter implements IAbs
   // redo 栈
   protected redoStack: Stack;
 
+  // requestAnimationFrame 引用
+  protected timeIndex: number;
+
   constructor(cfg: GraphOptions) {
     super();
     this.cfg = deepMix(this.getDefaultCfg(), cfg);
@@ -124,7 +127,7 @@ export default abstract class AbstractGraph extends EventEmitter implements IAbs
     /** 初始化插件 */
     this.initPlugins();
 
-    requestAnimationFrame(this.onTick.bind(this));
+    this.timeIndex = requestAnimationFrame(this.onTick.bind(this));
   }
 
   protected abstract initLayoutController(): void;
@@ -2858,6 +2861,7 @@ export default abstract class AbstractGraph extends EventEmitter implements IAbs
   public destroy() {
     this.clear();
 
+    clearAnimationFrame(this.timeIndex);
     // 清空栈数据
     this.clearStack();
 
@@ -2953,6 +2957,6 @@ export default abstract class AbstractGraph extends EventEmitter implements IAbs
     const layoutController = this.get('layoutController');
     layoutController.onTick(timestamp);
 
-    requestAnimationFrame(this.onTick.bind(this));
+    this.timeIndex = requestAnimationFrame(this.onTick.bind(this));
   }
 }
