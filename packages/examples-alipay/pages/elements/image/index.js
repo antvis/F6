@@ -69,9 +69,7 @@ Page({
       modes: {
         default: ['drag-canvas', 'drag-node'],
       },
-      extra: {
-        createImage: this.canvas && this.canvas.createImage,
-      },
+      
       defaultNode: {
         type: 'image',
         size: [260, 80],

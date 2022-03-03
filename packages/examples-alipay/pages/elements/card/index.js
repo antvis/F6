@@ -476,9 +476,7 @@ Page({
       defaultNode: {
         type: 'card-node',
       },
-      extra: {
-        createImage: this.canvas && this.canvas.createImage,
-      },
+      
     });
     this.graph.data(data);
     this.graph.render();
