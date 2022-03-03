@@ -293,9 +293,7 @@ Page({
       nodeStateStyles: defaultStateStyles,
       edgeStateStyles: defaultStateStyles,
       layout: defaultLayout,
-      extra: {
-        createImage: this.canvas && this.canvas.createImage,
-      },
+      
     });
 
     // 监听
