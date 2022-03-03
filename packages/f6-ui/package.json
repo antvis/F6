@@ -51,7 +51,7 @@
     }
   },
   "dependencies": {
-    "@antv/g-mobile": "^0.0.9",
+    "@antv/g-mobile": "^0.0.13",
     "css-layout": "1.1.1",
     "tslib": "2.3.0"
   },
