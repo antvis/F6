@@ -112,6 +112,7 @@ Page({
 
     // 创建F6实例
     this.graph = new F6.Graph({
+      container: this.canvas,
       context: this.ctx,
       renderer: this.renderer,
       width,

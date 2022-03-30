@@ -65,9 +65,7 @@ Page({
       pixelRatio,
       fitView: true,
       fitViewPadding: 60,
-      extra: {
-        createImage: this.canvas && this.canvas.createImage,
-      },
+      
       fitCenter: true,
       modes: {
         default: ['drag-canvas', 'drag-node'],

@@ -52,7 +52,7 @@
   },
   "dependencies": {
     "@antv/f6-core": "*",
-    "@antv/g-mobile": "^0.0.9",
+    "@antv/g-mobile": "^0.0.13",
     "@antv/util": "~2.0.5",
     "@antv/f6-ui": "^1.0.0"
   },

@@ -64,9 +64,7 @@ Page({
       height,
       pixelRatio,
       fitView: true,
-      extra: {
-        createImage: this.canvas && this.canvas.createImage,
-      },
+      
       fitCenter: true,
       defaultNode: {
         type: 'modelRect',

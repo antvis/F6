@@ -662,17 +662,15 @@ export default class Graph extends AbstractGraph implements IGraph {
     this.get('eventController').destroy();
     this.get('layoutController').destroy();
 
-    // this.get('eventController').destroy();
-    // this.get('itemController').destroy();
-    // this.get('modeController').destroy();
-    // this.get('viewController').destroy();
-    // this.get('stateController').destroy();
-    // this.get('canvas').destroy();
-
     if (this.get('graphWaterMarker')) {
       this.get('graphWaterMarker').destroy();
     }
-    if (typeof document !== 'undefined' && document.querySelector('.g6-graph-watermarker')) {
+
+    if (
+      typeof document !== 'undefined' &&
+      document.querySelector &&
+      document.querySelector('.g6-graph-watermarker')
+    ) {
       document.querySelector('.g6-graph-watermarker').remove();
     }
 

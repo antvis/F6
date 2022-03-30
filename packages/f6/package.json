@@ -61,7 +61,7 @@
     "@antv/dom-util": "^2.0.1",
     "@antv/event-emitter": "~0.1.0",
     "@antv/g-math": "^0.1.1",
-    "@antv/g-mobile": "^0.0.12",
+    "@antv/g-mobile": "^0.0.13",
     "@antv/f6-core": "*",
     "@antv/f6-element": "*",
     "@antv/hierarchy": "^0.6.2",
