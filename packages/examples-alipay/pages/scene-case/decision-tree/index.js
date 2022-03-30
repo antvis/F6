@@ -415,9 +415,7 @@ Page({
       linkCenter: true,
       pixelRatio,
       fitView: true,
-      extra: {
-        createImage: this.canvas && this.canvas.createImage,
-      },
+      
       ...defaultConfig,
       ...config,
       plugins: [tooltip],
