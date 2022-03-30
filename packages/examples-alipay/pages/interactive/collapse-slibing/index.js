@@ -133,7 +133,7 @@ Page({
     const colorSets = F6.Util.getColorSetsBySubjectColors(colors, '#fff', 'default', '#777');
 
     // 创建F6实例
-    this.graph =  this.graph = new F6.TreeGraph({
+    this.graph = new F6.TreeGraph({
       container: this.canvas,
       context: this.ctx,
       renderer: this.renderer,
@@ -170,7 +170,7 @@ Page({
       },
     });
 
-    this.graph.node(function(node) {
+    this.graph.node(function (node) {
       const colorSet = colorSets[+node.cluster.replace('c', '')];
       return {
         size: node.size || 16,

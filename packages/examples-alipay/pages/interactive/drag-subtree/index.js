@@ -63,7 +63,7 @@ Page({
     const { width, height, pixelRatio } = this.data;
 
     // 创建F6实例
-    this.graph =  this.graph = new F6.TreeGraph({
+    this.graph = new F6.TreeGraph({
       container: this.canvas,
       context: this.ctx,
       renderer: this.renderer,
@@ -124,7 +124,7 @@ Page({
       },
     });
 
-    this.graph.node(function(node) {
+    this.graph.node(function (node) {
       return {
         label: node.id,
         labelCfg: {
