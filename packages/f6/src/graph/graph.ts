@@ -473,7 +473,7 @@ export default class Graph extends AbstractGraph implements IGraph {
    * @param {WaterMarkerConfig} config 文本水印的配置项
    * @param {any} waterCanvas 小程序canvas
    */
-  public setImageWaterMarker(imgURL: string, config: WaterMarkerConfig, waterCanvas: any) {
+  public setImageWaterMarker(imgURL: string, config: WaterMarkerConfig, waterCanvas?: any) {
     //水印的设置合并
     const waterMarkerConfig = deepMix({}, Global.imageWaterMarkerConfig, config);
     const { width, height, image } = waterMarkerConfig;
@@ -496,6 +496,7 @@ export default class Graph extends AbstractGraph implements IGraph {
       img.crossOrigin = 'anonymous';
       img.src = imgURL;
       img.onload = () => {
+        if (this.destroyed) return;
         //计算缩放比例
         const scaleX = imgWidth / img.width;
         const scaleY = imgHeight / img.height;
@@ -533,6 +534,8 @@ export default class Graph extends AbstractGraph implements IGraph {
       img.crossOrigin = 'anonymous';
       img.src = imgURL;
       img.onload = () => {
+        if (this.destroyed) return;
+
         //计算图片宽高的缩放比例
         const scaleX = imgWidth / img.width;
         const scaleY = imgHeight / img.height;

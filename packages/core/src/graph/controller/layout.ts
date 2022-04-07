@@ -351,7 +351,7 @@ export default abstract class LayoutController {
 
   public onTick(timestamp: number) {
     this.layoutMethods?.forEach((layoutMethod) => {
-      layoutMethod?.onTick(timestamp);
+      layoutMethod?.onTick?.(timestamp);
     });
   }
 }
