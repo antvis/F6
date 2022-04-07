@@ -2955,8 +2955,10 @@ export default abstract class AbstractGraph extends EventEmitter implements IAbs
 
   public onTick(timestamp: number): void {
     const layoutController = this.get('layoutController');
-    layoutController.onTick(timestamp);
+    if (layoutController) {
+      layoutController.onTick(timestamp);
 
-    this.timeIndex = requestAnimationFrame(this.onTick.bind(this));
+      this.timeIndex = requestAnimationFrame(this.onTick.bind(this));
+    }
   }
 }

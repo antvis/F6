@@ -74,21 +74,27 @@ describe('add addWatermark', () => {
     graph.render();
 
     // 此时没有水印，也就没有水印的容器
-    let waterMarker = graph.get('graphWaterMarker');
-    expect(waterMarker).toBe(undefined);
+    let waterMarker = graph.get('waterGroup');
+    expect(waterMarker.getChildren().length).toBe(0);
 
     let children = document.getElementById('watermarker-spec').children;
     expect(children.length).toBe(1);
 
-    graph.setImageWaterMarker();
-    waterMarker = graph.get('graphWaterMarker');
-    expect(waterMarker).not.toBe(undefined);
-    children = document.getElementById('watermarker-spec').children;
-    // 此时 div 元素还没有被创建
-    expect(children.length).toBe(2);
-    expect(children[1].style.display).toEqual('none');
-    expect(children[1].style.width).toEqual('150px');
-    expect(children[1].style.height).toEqual('130px');
+    graph.setImageWaterMarker(
+      'https://gw.alipayobjects.com/zos/bmw-prod/2a5d3fa6-247f-4d38-9eb5-0a0cbd9140c8.svg',
+      {
+        width: 156 / 2,
+        height: 120 / 2,
+        image: {
+          x: -30 / 2,
+          y: 70 / 2,
+          width: 156 / 2,
+          height: 34 / 2,
+          rotate: 30,
+        },
+      },
+    );
+
     graph.destroy();
   });
 
@@ -122,7 +128,6 @@ describe('add addWatermark', () => {
 
     let children = document.getElementById('watermarker-spec').children;
     expect(children.length).toBe(1);
-
     graph.setTextWaterMarker(['antv', 'F6'], {
       width: 80,
       height: 60,
