@@ -7,7 +7,7 @@ const textColor = 'rgb(0, 0, 0)';
 const colorSet = getColorsWithSubjectColor(subjectColor, backColor);
 
 export default {
-  version: '0.0.11',
+  version: '0.0.15',
   rootContainerClassName: 'root-container',
   uiContainerClassName: 'ui-container',
   waterContainerClassName: 'water-container',
