@@ -59,14 +59,15 @@ export default {
     },
   },
   mounted: function (e) {
+    const finalRatio = this.$props.pixelRatio >= 1 ? Math.ceil(this.$props.pixelRatio) : 1
     // #ifdef H5
     const container = this.$el;
     const rect = container.getBoundingClientRect();
-    container.width = this.$props.width * this.$props.pixelRatio;
-    container.height = this.$props.height * this.$props.pixelRatio;
+    container.width = this.$props.width * finalRatio;
+    container.height = this.$props.height * finalRatio;
     this.rect = {
-      width: this.$props.width * this.$props.pixelRatio,
-      height: this.$props.height * this.$props.pixelRatio,
+      width: this.$props.width * finalRatio,
+      height: this.$props.height * finalRatio,
       left: rect.left,
       top: rect.top,
     };
@@ -91,8 +92,8 @@ export default {
             this.$emit('onInit', {
               ctx: canvas.getContext('2d'),
               rect: {
-                width: ret[0].width * this.$props.pixelRatio,
-                height: ret[0].height * this.$props.pixelRatio,
+                width: ret[0].width * finalRatio,
+                height: ret[0].height * finalRatio,
                 left: ret[0].left,
                 top: ret[0].top,
               },
@@ -115,11 +116,11 @@ export default {
       .exec((ret) => {
         console.log('ret', ret);
         var canvas = ret[0].node;
-        canvas.width = this.$props.width * this.$props.pixelRatio;
-        canvas.height = this.$props.height * this.$props.pixelRatio;
+        canvas.width = this.$props.width * finalRatio;
+        canvas.height = this.$props.height * finalRatio;
         this.rect = {
-          width: this.$props.width * this.$props.pixelRatio,
-          height: this.$props.height * this.$props.pixelRatio,
+          width: this.$props.width * finalRatio,
+          height: this.$props.height * finalRatio,
           left: canvas._left,
           top: canvas._top,
         };
@@ -139,22 +140,22 @@ export default {
       const origin = e.mp;
       let i = 0;
       for (i = 0; i < origin.touches.length; i++) {
-        modifyEvent(origin.touches[i], this.$props.pixelRatio);
+        modifyEvent(origin.touches[i]);
       }
 
       for (i = 0; i < origin.changedTouches.length; i++) {
-        modifyEvent(origin.changedTouches[i], this.$props.pixelRatio);
+        modifyEvent(origin.changedTouches[i]);
       }
       this.$emit('onTouchEvent', origin);
     },
   },
 };
 
-function modifyEvent(touchEvent, pixelRatio) {
-  touchEvent.clientX = touchEvent.x * pixelRatio;
-  touchEvent.clientY = touchEvent.y * pixelRatio;
-  touchEvent.pageX = touchEvent.x * pixelRatio;
-  touchEvent.pageY = touchEvent.y * pixelRatio;
+function modifyEvent(touchEvent) {
+  touchEvent.clientX = touchEvent.x;
+  touchEvent.clientY = touchEvent.y;
+  touchEvent.pageX = touchEvent.x;
+  touchEvent.pageY = touchEvent.y;
 }
 </script>
 
