@@ -1,4 +1,8 @@
 <template>
+  <!-- #ifdef H5 -->
+  <view ref="f6-canvess"> </view>
+  <!-- #endif -->
+  <!-- #ifndef H5 -->
   <canvas
     ref="f6-canvess"
     name="f6-canvas"
@@ -12,6 +16,7 @@
     @touchmove="onTouch"
     @touchend="onTouch"
   ></canvas>
+  <!-- #endif -->
 </template>
 
 <script>
@@ -59,19 +64,11 @@ export default {
     },
   },
   mounted: function (e) {
-    const finalRatio = this.$props.pixelRatio >= 1 ? Math.ceil(this.$props.pixelRatio) : 1
+    const finalRatio = this.$props.pixelRatio >= 1 ? Math.ceil(this.$props.pixelRatio) : 1;
     // #ifdef H5
     const container = this.$el;
-    const rect = container.getBoundingClientRect();
-    container.width = this.$props.width * finalRatio;
-    container.height = this.$props.height * finalRatio;
-    this.rect = {
-      width: this.$props.width * finalRatio,
-      height: this.$props.height * finalRatio,
-      left: rect.left,
-      top: rect.top,
-    };
-    this.ctx = uni.createCanvasContext('#f6-canvas');
+    this.rect = null;
+    this.ctx = null;
 
     this.$emit('onInit', {
       ctx: this.ctx,
@@ -92,8 +89,8 @@ export default {
             this.$emit('onInit', {
               ctx: canvas.getContext('2d'),
               rect: {
-                width: ret[0].width * finalRatio,
-                height: ret[0].height * finalRatio,
+                width: ret[0].width,
+                height: ret[0].height,
                 left: ret[0].left,
                 top: ret[0].top,
               },
@@ -119,8 +116,8 @@ export default {
         canvas.width = this.$props.width * finalRatio;
         canvas.height = this.$props.height * finalRatio;
         this.rect = {
-          width: this.$props.width * finalRatio,
-          height: this.$props.height * finalRatio,
+          width: this.$props.width,
+          height: this.$props.height,
           left: canvas._left,
           top: canvas._top,
         };
