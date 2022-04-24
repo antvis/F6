@@ -9,8 +9,8 @@
     type="2d"
     canvas-id="f6-canvas"
     id="f6-canvas"
-    :width="width * pixelRatio"
-    :height="height * pixelRatio"
+    :width="width * finalRatio"
+    :height="height * finalRatio"
     :style="styleCanvas"
     @touchstart="onTouch"
     @touchmove="onTouch"
@@ -25,6 +25,9 @@ export default {
   computed: {
     styleCanvas() {
       return `width: ${this.$props.width}px; height: ${this.$props.height}px; ${this.$props.styles}`;
+    },
+    finalRatio() {
+      return this.$props.pixelRatio >= 1 ? Math.ceil(this.$props.pixelRatio) : 1;
     },
   },
   props: {
@@ -64,7 +67,6 @@ export default {
     },
   },
   mounted: function (e) {
-    const finalRatio = this.$props.pixelRatio >= 1 ? Math.ceil(this.$props.pixelRatio) : 1;
     // #ifdef H5
     const container = this.$el;
     this.rect = null;
@@ -113,8 +115,8 @@ export default {
       .exec((ret) => {
         console.log('ret', ret);
         var canvas = ret[0].node;
-        canvas.width = this.$props.width * finalRatio;
-        canvas.height = this.$props.height * finalRatio;
+        canvas.width = this.$props.width * this.finalRatio;
+        canvas.height = this.$props.height * this.finalRatio;
         this.rect = {
           width: this.$props.width,
           height: this.$props.height,
