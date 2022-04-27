@@ -41,13 +41,8 @@ Page({
         const rootNode = depth === 0;
         const hasChildren = children && children.length !== 0;
 
-        const {
-          childCountWidth,
-          countMarginLeft,
-          itemPadding,
-          nameMarginLeft,
-          rootPadding,
-        } = BaseConfig;
+        const { childCountWidth, countMarginLeft, itemPadding, nameMarginLeft, rootPadding } =
+          BaseConfig;
 
         let width = 0;
         const height = 28;
@@ -277,7 +272,7 @@ Page({
     };
     // 创建F6实例
 
-    this.graph =  this.graph = new F6.TreeGraph({
+    this.graph = new F6.TreeGraph({
       container: this.canvas,
       context: this.ctx,
       renderer: this.renderer,
