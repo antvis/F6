@@ -1,6 +1,0 @@
-{
-  "navigationBarTitleText": "五角星",
-  "usingComponents": {
-    "f6-canvas": "@antv/f6-wx/canvas/canvas"
-  }
-}

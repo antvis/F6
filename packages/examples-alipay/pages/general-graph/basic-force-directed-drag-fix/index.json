@@ -1,6 +1,0 @@
-{
-  "defaultTitle": "固定被拖拽节点",
-  "usingComponents": {
-    "f6-canvas": "@antv/f6-alipay/es/container/container"
-  }
-}

@@ -1,6 +1,0 @@
-{
-  "navigationBarTitleText": "力导向布局防止节点重叠",
-  "usingComponents": {
-    "f6-canvas": "@antv/f6-wx/canvas/canvas"
-  }
-}

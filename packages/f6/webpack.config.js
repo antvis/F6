@@ -17,17 +17,17 @@ function lowerFirstLetter(name) {
 }
 
 let entry = {
-  F6: './src/index.umd.ts',
+  F6: './src/index.ts',
 };
 
-const graphExtenders = fs.readdirSync(path.join(__dirname, './src/extends/graph'));
-const layoutExtenders = fs.readdirSync(path.join(__dirname, './src/extends/layout'));
-graphExtenders.forEach((name) => {
-  entry[upperFirstLetter(name)] = `./src/extends/graph/${name}/index.ts`;
-});
-layoutExtenders.forEach((name) => {
-  entry[upperFirstLetter(name)] = `./src/extends/layout/${name}/index.ts`;
-});
+// const graphExtenders = fs.readdirSync(path.join(__dirname, './src/extends/graph'));
+// const layoutExtenders = fs.readdirSync(path.join(__dirname, './src/extends/layout'));
+// graphExtenders.forEach((name) => {
+//   entry[upperFirstLetter(name)] = `./src/extends/graph/${name}/index.ts`;
+// });
+// layoutExtenders.forEach((name) => {
+//   entry[upperFirstLetter(name)] = `./src/extends/layout/${name}/index.ts`;
+// });
 
 module.exports = {
   entry,
@@ -54,36 +54,45 @@ module.exports = {
   },
   resolve: {
     // Add `.ts` as a resolvable extension.
-    extensions: ['.ts', '.js'],
+    extensions: ['.ts', '.tsx', '.js'],
   },
   module: {
     rules: [
+      // {
+      //   test: /\.worker\.ts$/,
+      //   exclude: /(node_modules)/,
+      //   use: [
+      //     {
+      //       loader: 'worker-loader',
+      //       options: {
+      //         inline: 'fallback',
+      //         filename: 'f6Layout.worker.js',
+      //       },
+      //     },
+      //   ],
+      // },
+      // {
+      //   test: /\.js$/,
+      //   include: /node_modules/,
+      //   use: {
+      //     loader: 'babel-loader',
+      //     options: {
+      //       // babelrc: true,
+      //       presets: ['@babel/preset-env'],
+      //     },
+      //   },
+      // },
       {
-        test: /\.worker\.ts$/,
-        exclude: /(node_modules)/,
-        use: [
-          {
-            loader: 'worker-loader',
-            options: {
-              inline: 'fallback',
-              filename: 'f6Layout.worker.js',
-            },
-          },
-        ],
-      },
-      {
-        test: /\.js$/,
-        include: /node_modules/,
+        test: /\.ts$/,
         use: {
-          loader: 'babel-loader',
+          loader: 'ts-loader',
           options: {
-            // babelrc: true,
-            presets: ['@babel/preset-env'],
+            transpileOnly: true,
           },
         },
       },
       {
-        test: /\.ts$/,
+        test: /\.tsx$/,
         use: {
           loader: 'ts-loader',
           options: {

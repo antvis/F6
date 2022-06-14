@@ -1,7 +1,0 @@
-{
-  "desc": "F6演示",
-  "rules": [{
-  "action": "allow",
-  "page": "*"
-  }]
-}

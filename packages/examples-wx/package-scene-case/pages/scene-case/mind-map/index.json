@@ -1,6 +1,0 @@
-{
-  "navigationBarTitleText": "思维导图",
-  "usingComponents": {
-    "f6-canvas": "@antv/f6-wx/canvas/canvas"
-  }
-}

@@ -1,8 +1,9 @@
-import { G6Event, IG6GraphEvent } from '@antv/f6-core';
+import { BaseBehavior } from './base';
 
 const DEFAULT_TRIGGER = 'tap';
 const ALLOW_EVENTS = ['tap', 'dbltap'];
-export default {
+
+export class CollapseExpand extends BaseBehavior {
   getDefaultCfg(): object {
     return {
       /**
@@ -11,28 +12,25 @@ export default {
       trigger: DEFAULT_TRIGGER,
       onChange() {},
     };
-  },
-  getEvents(): { [key in G6Event]?: string } {
-    let trigger: string;
+  }
+  getEvents() {
+    let { trigger } = this.cfg;
     // 检测输入是否合法
-    if (ALLOW_EVENTS.includes(this.trigger)) {
-      ({ trigger } = this);
-    } else {
+    if (!ALLOW_EVENTS.includes(trigger)) {
       trigger = DEFAULT_TRIGGER;
       // eslint-disable-next-line no-console
       console.warn("Behavior collapse-expand 的 trigger 参数不合法，请输入 'click' 或 'dblclick'");
     }
     return {
       [`node:${trigger}`]: 'onNodeTap',
-      // 支持移动端事件
-      touchstart: 'onNodeTap',
     };
-  },
-  onNodeTap(e: IG6GraphEvent) {
+  }
+  onNodeTap(e) {
     const { item } = e;
+    const { onChange } = this.cfg;
 
     // 如果节点进行过更新，model 会进行 merge，直接改 model 就不能改布局，所以需要去改源数据
-    const sourceData = this.graph.findDataById(item.get('id'));
+    const sourceData = this.graph.findDataById(item.id);
     if (!sourceData) {
       return;
     }
@@ -43,21 +41,22 @@ export default {
       return;
     }
     const collapsed = !sourceData.collapsed;
-    if (!this.shouldBegin(e, collapsed)) {
+    if (!this.shouldBegin()) {
       return;
     }
     sourceData.collapsed = collapsed;
-    item.getModel().collapsed = collapsed;
-    this.graph.emit('itemcollapsed', { item: e.item, collapsed });
-    if (!this.shouldUpdate(e, collapsed)) {
+    // this.graph.updateChild(this.graph)
+    // item.getModel().collapsed = collapsed;
+    // this.graph.emit('itemcollapsed', { item: e.item, collapsed });
+    if (!this.shouldUpdate()) {
       return;
     }
     try {
-      this.onChange(item, collapsed);
+      onChange(item, collapsed);
     } catch (err) {
       // eslint-disable-next-line no-console
       console.warn(err);
     }
     this.graph.layout();
-  },
-};
+  }
+}

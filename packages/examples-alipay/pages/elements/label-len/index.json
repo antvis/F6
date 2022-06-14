@@ -1,6 +1,0 @@
-{
-  "defaultTitle": "文本超长",
-  "usingComponents": {
-    "f6-canvas": "@antv/f6-alipay/es/container/container"
-  }
-}

@@ -1,16 +1,16 @@
+// @ts-nocheck
 /*
  * @Author: moyee
  * @LastEditors: moyee
  * @Description: 拖动 Combo
  */
 import { each } from '@antv/util';
-import { IGroup } from '@antv/g-base';
-import { G6Event, IG6GraphEvent, Item, ComboConfig, ICombo, INode } from '@antv/f6-core';
-import { IGraph } from '../interface/graph';
-import Util from '../util';
+// import { IGroup } from '@antv/g-base';
+import { ComboConfig, ICombo, INode, Item } from '../types';
+// import { IGraph } from '../interface/graph';
 import Global from '../global';
-
-const { calculationItemsBBox } = Util;
+import { calculationItemsBBox } from '../utils';
+import { BaseBehavior } from './base';
 
 /**
  * 遍历拖动的 Combo 下的所有 Combo
@@ -23,8 +23,8 @@ const traverseCombo = (data, fn: (param: any) => boolean) => {
   }
 
   if (data) {
-    const combos = data.get('combos');
-    if (combos.length === 0) {
+    const combos = data.children;
+    if (combos?.length === 0) {
       return false;
     }
     each(combos, (child) => {
@@ -33,7 +33,15 @@ const traverseCombo = (data, fn: (param: any) => boolean) => {
   }
 };
 
-export default {
+export class DragCombo extends BaseBehavior {
+  targets = [];
+  currentItemChildCombos = [];
+  point = {};
+  originPoint = {};
+  origin = { x: 0, y: 0 };
+  enableDelegate = false;
+  endComparison = false;
+  delegateShape = null;
   getDefaultCfg() {
     return {
       enableDelegate: false,
@@ -44,8 +52,8 @@ export default {
       activeState: '',
       selectedState: 'selected',
     };
-  },
-  getEvents(): { [key in G6Event]?: string } {
+  }
+  getEvents() {
     return {
       'combo:dragstart': 'onDragStart',
       'combo:drag': 'onDrag',
@@ -55,39 +63,42 @@ export default {
       'combo:dragenter': 'onDragEnter',
       'combo:dragleave': 'onDragLeave',
     };
-  },
-  validationCombo(evt: IG6GraphEvent) {
+  }
+  validationCombo(evt) {
     const { item } = evt;
     if (!item || item.destroyed) {
       return false;
     }
 
-    if (!this.shouldUpdate(this, evt)) {
+    if (!this.shouldUpdate.call(this, evt)) {
       return false;
     }
 
-    const type = item.getType();
+    const type = item.type;
 
     if (type !== 'combo') {
       return false;
     }
     return true;
-  },
-  onDragStart(evt: IG6GraphEvent) {
-    const graph: IGraph = this.graph;
+  }
+  onDragStart(evt) {
+    const { selectedState, activeState, onlyChangeComboSize } = this.cfg;
+    const graph = this.graph;
     const { item } = evt;
 
     if (!this.validationCombo(evt)) return;
 
+    this.graph.comboManager.setAutoSize(onlyChangeComboSize);
+
     this.targets = [];
 
     // 获取所有选中的 Combo
-    const combos = graph.findAllByState('combo', this.selectedState);
+    const combos = graph.findAllByState('combo', selectedState);
 
-    const currentCombo = item.get('id');
+    const currentCombo = item.id;
 
     const dragCombos = combos.filter((combo) => {
-      const comboId = combo.get('id');
+      const comboId = combo.id;
       return currentCombo === comboId;
     });
 
@@ -97,13 +108,13 @@ export default {
       this.targets = combos;
     }
 
-    if (this.activeState) {
+    if (activeState) {
       this.targets.map((combo: ICombo) => {
         const model = combo.getModel() as ComboConfig;
         if (model.parentId) {
           const parentCombo = graph.findById(model.parentId);
           if (parentCombo) {
-            graph.setItemState(parentCombo, this.activeState, true);
+            graph.setItemState(parentCombo, activeState, true);
           }
         }
       });
@@ -119,27 +130,27 @@ export default {
 
     this.currentItemChildCombos = [];
 
-    traverseCombo(item, (param) => {
-      if (param.destroyed) {
-        return false;
-      }
-      const model = param.getModel();
+    const comboEntity = this.graph.comboManager.getParsedCombo(item.id);
+
+    traverseCombo(comboEntity, (model) => {
       this.currentItemChildCombos.push(model.id);
       return true;
     });
-  },
-  onDrag(evt: IG6GraphEvent) {
+  }
+  onDrag(evt) {
     if (!this.origin) {
       return;
     }
 
     if (!this.validationCombo(evt)) return;
 
+    const { activeState } = this.cfg;
+
     if (this.enableDelegate) {
       this.updateDelegate(evt);
     } else {
-      if (this.activeState) {
-        const graph: IGraph = this.graph;
+      if (activeState) {
+        const graph = this.graph;
         const item: Item = evt.item;
         const model = item.getModel();
         // 拖动过程中实时计算距离
@@ -172,9 +183,9 @@ export default {
           const distance = 2 * Math.sqrt(disX * disX + disY * disY);
 
           if (width + w - distance > 0.8 * width) {
-            graph.setItemState(combo, this.activeState, true);
+            graph.setItemState(combo, activeState, true);
           } else {
-            graph.setItemState(combo, this.activeState, false);
+            graph.setItemState(combo, activeState, false);
           }
         });
       }
@@ -183,43 +194,44 @@ export default {
         this.updateCombo(item, evt);
       });
     }
-  },
+  }
 
-  updatePositions(evt: IG6GraphEvent) {
+  updatePositions(evt) {
+    const { enableDelegate } = this.cfg;
+
     // 当启用 delegate 时，拖动结束时需要更新 combo
-    if (this.enableDelegate) {
+    if (enableDelegate) {
       each(this.targets, (item) => {
         this.updateCombo(item, evt);
       });
     }
-  },
+  }
 
-  onDrop(evt: IG6GraphEvent) {
+  onDrop(evt) {
     // 被放下的目标 combo
     const { item } = evt;
     if (!item || !this.targets || item.destroyed) {
       return;
     }
+    const { activeState, onlyChangeComboSize } = this.cfg;
+
     this.updatePositions(evt);
 
-    const graph: IGraph = this.graph;
+    const graph = this.graph;
 
     const targetModel = item.getModel();
 
     this.targets.map((combo: ICombo) => {
       const model = combo.getModel();
-      if (model.parentId !== targetModel.id) {
-        if (this.activeState) {
-          graph.setItemState(item, this.activeState, false);
+      if (model.parentId !== targetModel.id && model.id !== targetModel.id) {
+        if (activeState) {
+          graph.setItemState(item, activeState, false);
         }
         // 将 Combo 放置到某个 Combo 上面时，只有当 onlyChangeComboSize 为 false 时候才更新 Combo 结构
-        if (!this.onlyChangeComboSize) {
-          graph.updateComboTree(combo, targetModel.id);
-        } else {
-          graph.updateCombo(combo);
+        if (!onlyChangeComboSize) {
+          // graph.updateComboTree(combo, targetModel.id);
+          graph.updateItem(combo, { parentId: targetModel.id });
         }
-      } else {
-        graph.updateCombo(item as ICombo);
       }
     });
 
@@ -227,41 +239,39 @@ export default {
 
     // 如果已经拖放下了，则不需要再通过距离判断了
     this.endComparison = true;
-  },
-  onNodeDrop(evt: IG6GraphEvent) {
+  }
+  onNodeDrop(evt) {
     if (!this.targets || this.targets.length === 0) return;
     this.updatePositions(evt);
-    const graph: IGraph = this.graph;
+    const graph = this.graph;
+    const { activeState, onlyChangeComboSize } = this.cfg;
 
     const item = evt.item as INode;
     const comboId = item.getModel().comboId as string;
     let droppedCombo;
     // 如果被放置的的节点有 comboId，且这个 comboId 与正在被拖拽的 combo 的父 id 不相同，则更新父亲为 comboId
     if (comboId) {
-      if (this.activeState) {
+      if (activeState) {
         const combo = graph.findById(comboId);
-        graph.setItemState(combo, this.activeState, false);
+        graph.setItemState(combo, activeState, false);
       }
       this.targets.map((combo: ICombo) => {
-        if (!this.onlyChangeComboSize) {
-          if (comboId !== combo.getID()) {
+        if (!onlyChangeComboSize) {
+          if (comboId !== combo.id) {
             droppedCombo = graph.findById(comboId);
-            if (comboId !== combo.getModel().parentId) graph.updateComboTree(combo, comboId);
+            if (comboId !== combo.getModel().parentId)
+              graph.updateItem(combo, { parentId: comboId });
           }
-        } else {
-          graph.updateCombo(combo);
         }
       });
     } else {
       // 如果被放置的节点没有 comboId，且正在被拖拽的 combo 有父 id，则更新父亲为 undefined
       this.targets.map((combo: ICombo) => {
-        if (!this.onlyChangeComboSize) {
+        if (!onlyChangeComboSize) {
           const model = combo.getModel();
           if (model.comboId) {
-            graph.updateComboTree(combo);
+            graph.updateItem(combo, { parentId: undefined });
           }
-        } else {
-          graph.updateCombo(combo);
         }
       });
     }
@@ -269,8 +279,9 @@ export default {
     // 如果已经拖放下了，则不需要再通过距离判断了
     this.endComparison = true;
     this.end(droppedCombo, evt);
-  },
-  onDragEnter(evt: IG6GraphEvent) {
+  }
+  onDragEnter(evt) {
+    const { activeState } = this.cfg;
     if (!this.origin) {
       return;
     }
@@ -278,12 +289,14 @@ export default {
     if (!this.validationCombo(evt)) return;
 
     const { item } = evt;
-    const graph: IGraph = this.graph;
-    if (this.activeState) {
-      graph.setItemState(item, this.activeState, true);
+    const graph = this.graph;
+    if (activeState) {
+      graph.setItemState(item, activeState, true);
     }
-  },
+  }
   onDragLeave(evt) {
+    const { activeState } = this.cfg;
+
     if (!this.origin) {
       return;
     }
@@ -291,26 +304,29 @@ export default {
     if (!this.validationCombo(evt)) return;
 
     const item = evt.item as ICombo;
-    const graph: IGraph = this.graph;
-    if (this.activeState) {
-      graph.setItemState(item, this.activeState, false);
+    const graph = this.graph;
+    if (activeState) {
+      graph.setItemState(item, activeState, false);
     }
-  },
-  onDragEnd(evt: IG6GraphEvent) {
+  }
+  onDragEnd(evt) {
     if (!this.targets || this.targets.length === 0) return;
     const item = evt.item;
+    const { activeState } = this.cfg;
     this.updatePositions(evt);
-    const parentCombo = this.getParentCombo(item.getModel().parentId);
-    const graph: IGraph = this.graph;
-    if (parentCombo && this.activeState) {
-      graph.setItemState(parentCombo, this.activeState, false);
-    }
+    // const parentCombo = this.getParentCombo(item.getModel().parentId);
+    // const graph = this.graph;
+    // if (parentCombo && this.activeState) {
+    //   graph.setItemState(parentCombo, this.activeState, false);
+    // }
     this.end(undefined, evt);
-  },
+  }
 
-  end(comboDropedOn: ICombo | undefined, evt: IG6GraphEvent) {
+  end(comboDropedOn: ICombo | undefined, evt) {
+    this.graph.comboManager.setAutoSize(true);
     if (!this.origin) return;
-    const graph: IGraph = this.graph;
+    const graph = this.graph;
+    const { activeState, onlyChangeComboSize } = this.cfg;
 
     // 删除delegate shape
     if (this.delegateShape) {
@@ -319,17 +335,17 @@ export default {
       this.delegateShape = null;
     }
 
-    if (comboDropedOn && this.activeState) {
-      graph.setItemState(comboDropedOn, this.activeState, false);
+    if (comboDropedOn && activeState) {
+      graph.setItemState(comboDropedOn, activeState, false);
     }
     // 若没有被放置的 combo，则是被放置在画布上
     if (!comboDropedOn) {
       this.targets.map((combo: ICombo) => {
         // 将 Combo 放置到某个 Combo 上面时，只有当 onlyChangeComboSize 为 false 时候才更新 Combo 结构
-        if (!this.onlyChangeComboSize) {
-          graph.updateComboTree(combo);
+        if (!onlyChangeComboSize) {
+          // graph.updateComboTree(combo);
         } else {
-          graph.updateCombo(combo);
+          // graph.updateCombo(combo);
         }
       });
     }
@@ -338,7 +354,7 @@ export default {
     this.origin = null;
     this.originPoint = null;
     this.targets.length = 0;
-  },
+  }
 
   /**
    * 遍历 comboTree，分别更新 node 和 combo
@@ -351,58 +367,52 @@ export default {
     }
 
     if (data) {
-      const combos = data.get('combos');
+      const combos = data.combos;
       each(combos, (child) => {
         this.traverse(child, fn);
       });
 
-      const nodes = data.get('nodes');
+      const nodes = data.nodes;
       each(nodes, (child) => {
         this.traverse(child, fn);
       });
     }
-  },
+  }
 
-  updateCombo(item: ICombo, evt: IG6GraphEvent) {
-    this.traverse(item, (param) => {
-      if (param.destroyed) {
+  updateCombo(item: ICombo, evt) {
+    const parsedCombo = this.graph.comboManager.getParsedCombo(item.id);
+    this.traverse(parsedCombo, (param) => {
+      const item = this.graph.findById(param.id);
+      if (item.destroyed) {
         return false;
       }
-      this.updateSignleItem(param, evt);
+      this.updateSignleItem(item, evt);
       return true;
     });
-  },
+  }
 
-  /**
-   *
-   * @param item 当前正在拖动的元素
-   * @param evt
-   */
-  updateSignleItem(item: Item, evt: IG6GraphEvent) {
+  updateSignleItem(item: ICombo, evt) {
     const { origin } = this;
-    const graph: IGraph = this.graph;
-    const model = item.getModel() as ComboConfig;
-    const itemId = item.get('id');
+    const itemId = item.id;
 
     if (!this.point[itemId]) {
       this.point[itemId] = {
-        x: model.x,
-        y: model.y,
+        x: item.model.x,
+        y: item.model.y,
       };
     }
 
     const x: number = evt.x - origin.x + this.point[itemId].x;
     const y: number = evt.y - origin.y + this.point[itemId].y;
-
-    graph.updateItem(item, { x, y });
-  },
+    item.setPosition({ x, y });
+  }
 
   /**
    * 根据 ID 获取父 Combo
    * @param parentId 父 Combo ID
    */
   getParentCombo(parentId: string): ICombo | undefined {
-    const graph: IGraph = this.graph;
+    const graph = this.graph;
     if (!parentId) {
       return undefined;
     }
@@ -413,10 +423,10 @@ export default {
     }
 
     return parentCombo;
-  },
+  }
 
-  updateDelegate(evt: IG6GraphEvent) {
-    const graph: IGraph = this.graph;
+  updateDelegate(evt) {
+    const graph = this.graph;
     // 当没有 delegate shape 时创建
     if (!this.delegateShape) {
       const delegateGroup: IGroup = graph.get('delegateGroup');
@@ -453,5 +463,5 @@ export default {
         y: clientY,
       });
     }
-  },
-};
+  }
+}

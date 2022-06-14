@@ -1,28 +1,8 @@
 {
+  "extends": "../../tsconfig.json",
   "compilerOptions": {
-    "rootDir": "./",
-    "module": "esnext",
-    "declaration": true,
-    "sourceMap": true,
-    "target": "es5",
-    "outDir": "lib",
-    "jsx": "react",
-    "importHelpers": true,
-    "moduleResolution": "node",
-    "allowSyntheticDefaultImports": true,
-    "resolveJsonModule": true,
-    "esModuleInterop": true,
-    "lib": ["esnext", "dom"],
-    "types": ["jest"]
+    "declaration": false,
+    "target": "ES2019",
   },
   "include": ["src", "tests"],
-  "typedocOptions": {
-    "mode": "modules",
-    "out": "docs/api-ts",
-    "excludePrivate": true,
-    "excludeProtected": true,
-    "excludeExternals": true,
-    "plugin": "typedoc-plugin-markdown",
-    "theme": "docusaurus2"
-  }
 }

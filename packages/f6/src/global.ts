@@ -1,16 +1,71 @@
-import { getColorsWithSubjectColor } from './util/color';
-
 const subjectColor = 'rgb(95, 149, 255)';
 const backColor = 'rgb(255, 255, 255)';
 const textColor = 'rgb(0, 0, 0)';
 
-const colorSet = getColorsWithSubjectColor(subjectColor, backColor);
+const activeFill = 'rgb(247, 250, 255)';
+const nodeMainFill = 'rgb(239, 244, 255)';
+const comboFill = 'rgb(253, 253, 253)';
+const disabledFill = 'rgb(250, 250, 250)';
+
+const edgeMainStroke = 'rgb(224, 224, 224)';
+const edgeInactiveStroke = 'rgb(234, 234, 234)';
+const edgeDisablesStroke = 'rgb(245, 245, 245)';
+const inactiveStroke = 'rgb(191, 213, 255)';
+
+const highlightStroke = '#4572d9';
+const highlightFill = 'rgb(223, 234, 255)';
+
+const colorSet = {
+  // for nodes
+  mainStroke: subjectColor,
+  mainFill: nodeMainFill,
+
+  activeStroke: subjectColor,
+  activeFill,
+
+  inactiveStroke,
+  inactiveFill: activeFill,
+
+  selectedStroke: subjectColor,
+  selectedFill: backColor,
+
+  highlightStroke,
+  highlightFill,
+
+  disableStroke: edgeMainStroke,
+  disableFill: disabledFill,
+
+  // for edges
+  edgeMainStroke,
+  edgeActiveStroke: subjectColor,
+  edgeInactiveStroke,
+  edgeSelectedStroke: subjectColor,
+  edgeHighlightStroke: subjectColor,
+  edgeDisableStroke: edgeDisablesStroke,
+
+  // for combos
+  comboMainStroke: edgeMainStroke,
+  comboMainFill: comboFill,
+
+  comboActiveStroke: subjectColor,
+  comboActiveFill: activeFill,
+
+  comboInactiveStroke: edgeMainStroke,
+  comboInactiveFill: comboFill,
+
+  comboSelectedStroke: subjectColor,
+  comboSelectedFill: comboFill,
+
+  comboHighlightStroke: highlightStroke, // 'rgb(53, 119, 222)', // TODO: how to generate it ???
+  comboHighlightFill: comboFill,
+
+  comboDisableStroke: edgeInactiveStroke,
+  comboDisableFill: disabledFill,
+};
 
 export default {
-  version: '0.0.16',
+  version: '1.0.0',
   rootContainerClassName: 'root-container',
-  uiContainerClassName: 'ui-container',
-  waterContainerClassName: 'water-container',
   nodeContainerClassName: 'node-container',
   edgeContainerClassName: 'edge-container',
   comboContainerClassName: 'combo-container',
@@ -30,7 +85,7 @@ export default {
     style: {
       lineWidth: 1,
       stroke: colorSet.mainStroke,
-      fill: colorSet.mainFill,
+      fill: nodeMainFill,
     },
     size: 20,
     color: colorSet.mainStroke,
@@ -194,32 +249,4 @@ export default {
     strokeOpacity: 0.9,
     lineDash: [5, 5],
   },
-  // 文本水印默认配置
-  textWaterMarkerConfig: {
-    width: 150,
-    height: 100,
-    compatible: false,
-    text: {
-      x: 0,
-      y: 60,
-      lineHeight: 20,
-      rotate: 20,
-      fontSize: 14,
-      fontFamily: 'Microsoft YaHei',
-      fill: 'rgba(0, 0, 0, 0.1)',
-      baseline: 'Middle',
-    },
-  },
-  imageWaterMarkerConfig: {
-    // compatible: false,
-    image: {
-      x: 0,
-      y: 0,
-      width: 30,
-      height: 20,
-      rotate: 0,
-    },
-  },
-  waterMarkerImage:
-    'https://gw.alipayobjects.com/os/s/prod/antv/assets/image/logo-with-text-73b8a.svg',
 };

@@ -1,6 +1,0 @@
-{
-  "navigationBarTitleText": "两节点间存在多条边",
-  "usingComponents": {
-    "f6-canvas": "@antv/f6-wx/canvas/canvas"
-  }
-}

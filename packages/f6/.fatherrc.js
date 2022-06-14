@@ -1,15 +1,25 @@
-const fs = require('fs');
-const path = require('path');
+import { visualizer } from 'rollup-plugin-visualizer';
 
-let entry = ['./src/index.ts'];
+const isBundleVis = !!process.env.BUNDLE_VIS;
 
-const extenders = fs.readdirSync(path.join(__dirname, './src/extends'));
-extenders.forEach((name) => {
-  entry.push(`./src/extends/${name}/index.ts`);
-})
-
-export default {
-  entry,
-  esm: 'babel',
-  cjs: 'babel',
+export default  {
+  umd: {
+    name: 'F6',
+    file: 'index',
+    minFile: true
+  },
+  entry: ['src/index.ts'],
+  overridesByEntry: {
+    'src/index.ts': {
+      umd: { name: 'F6', file: 'index' },
+    },
+    'src/ui/jsx/treeGraph.tsx': {
+      umd: { name: 'F6TreeGraph', file: 'treeGraph' },
+    },
+  },
+  extraBabelPlugins: ['@babel/plugin-proposal-class-static-block'],
+  extraRollupPlugins: [...(isBundleVis ? [visualizer({
+    gzipSize: true,
+    open: true
+  })] : [])],
 };

@@ -1,6 +1,0 @@
-{
-  "navigationBarTitleText": "使用addChild",
-  "usingComponents": {
-    "f6-canvas": "@antv/f6-wx/canvas/canvas"
-  }
-}

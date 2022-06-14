@@ -1,6 +1,0 @@
-{
-  "defaultTitle": "native-canvas",
-  "usingComponents": {
-    "native-canvas": "../../../es/container/container"
-  }
-}

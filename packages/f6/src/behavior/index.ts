@@ -1,30 +1,16 @@
-import { each } from '@antv/util';
-import { registerBehavior } from '@antv/f6-core';
-import DragCanvas from './drag-canvas';
-import DragNode from './drag-node';
-import ActivateRelations from './activate-relations';
-import ClickSelect from './click-select';
-import ZoomCanvas from './zoom-canvas';
-import CollapseExpand from './collapse-expand';
-import DragCombo from './drag-combo';
-import CollapseExpandCombo from './collapse-expand-combo';
-import CreateEdge from './create-edge';
-import mobileBehavior from './mobile-behavior';
+// @ts-nocheck
+import { BehaviorService } from './behaviorService';
+import { DragCanvas } from './drag-canvas';
+import { DragCombo } from './drag-combo';
+import { DragNode } from './drag-node';
+import { CollapseExpand } from './collapse-expand';
+import { ClickSelect } from './click-select';
 
-const behaviors = {
-  'drag-canvas': DragCanvas,
-  'zoom-canvas': ZoomCanvas,
-  'drag-node': DragNode,
-  'activate-relations': ActivateRelations,
-  'click-select': ClickSelect,
-  'collapse-expand': CollapseExpand,
-  'drag-combo': DragCombo,
-  'collapse-expand-combo': CollapseExpandCombo,
-  'create-edge': CreateEdge,
-};
+BehaviorService.registerBehavior('drag-canvas', DragCanvas);
+BehaviorService.registerBehavior('drag-node', DragNode);
+BehaviorService.registerBehavior('drag-combo', DragCombo);
+BehaviorService.registerBehavior('collapse-expand', CollapseExpand);
+BehaviorService.registerBehavior('click-select', ClickSelect);
 
-each(behaviors, (behavior, type: string) => {
-  registerBehavior(type, { ...behavior, ...mobileBehavior });
-});
-
-// export default Behavior;
+export * from './base';
+export * from './behaviorService';

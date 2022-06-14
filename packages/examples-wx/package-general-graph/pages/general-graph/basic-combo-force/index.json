@@ -1,6 +1,0 @@
-{
-  "navigationBarTitleText": "Combo力导向布局",
-  "usingComponents": {
-    "f6-canvas": "@antv/f6-wx/canvas/canvas"
-  }
-}
