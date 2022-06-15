@@ -2,7 +2,7 @@
 import { Item } from '../base/item';
 import { ItemManger } from '../base/manager';
 import { Edge } from './edge';
-export class EdgeManager extends ItemManger {
+export class EdgeManager extends ItemManger<Edge> {
   graph = null;
 
   constructor(graph) {

@@ -1,11 +1,9 @@
-//@ts-nocheck
-import { Component } from '@antv/f-engine';
-import { BaseShape } from '../base';
-import { isArray, isNil, clone } from '@antv/util';
+import { clone, isArray, isNil } from '@antv/util';
 import Global from '../../../../global';
-import { Item, LabelStyle, NodeConfig, ModelConfig } from '../../../../types';
+import { ComboConfig, LabelStyle, ModelConfig } from '../../../../types';
+import { BaseShape } from '../base';
 
-export class BaseNode extends BaseShape {
+export class BaseNode extends BaseShape<ComboConfig> {
   keyShapeRef = { current: null };
   getKeyShape() {
     return this.keyShapeRef.current || this.getRootShape();
@@ -44,6 +42,7 @@ export class BaseNode extends BaseShape {
     stateStyles: {
       ...Global.comboStateStyles,
     },
+    padding: 0,
   };
   /**
    * 获取 Combo 宽高
@@ -52,7 +51,7 @@ export class BaseNode extends BaseShape {
    * @return {Array} 宽高
    */
   getSize(cfg: ModelConfig): number[] {
-    let size: number | number[] = clone(cfg.size || this.options!.size || Global.defaultCombo.size);
+    let size: number | number[] = clone(cfg.size || Global.defaultCombo.size);
 
     // size 是数组，若长度为 1，则补长度为 2
     if (isArray(size) && size.length === 1) {
@@ -66,7 +65,7 @@ export class BaseNode extends BaseShape {
     return size;
   }
   // 私有方法，不希望扩展的 Combo 复写这个方法
-  getLabelStyleByPosition(cfg: NodeConfig, labelCfg): LabelStyle {
+  getLabelStyleByPosition(cfg: ComboConfig, labelCfg): LabelStyle {
     const labelPosition = labelCfg.position || this.labelPosition;
     const { style: cfgStyle } = cfg;
     let padding: number | number[] = cfg.padding || this.options.padding;
@@ -130,23 +129,5 @@ export class BaseNode extends BaseShape {
     }
     style.text = cfg.label;
     return style;
-  }
-
-  updateShape(cfg: NodeConfig, item: Item, keyShapeStyle) {
-    const keyShape = item.get('keyShape');
-    const animate = cfg.animate === undefined ? this.options.animate : cfg.animate;
-    if (animate && keyShape.animate) {
-      keyShape.animate(keyShapeStyle, {
-        duration: 200,
-        easing: 'easeLinear',
-      });
-    } else {
-      keyShape.attr({
-        ...keyShapeStyle,
-      });
-    }
-
-    (this as any).updateLabel(cfg, item);
-    // special for some types of nodes
   }
 }

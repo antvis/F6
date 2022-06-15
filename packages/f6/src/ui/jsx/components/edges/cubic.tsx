@@ -1,9 +1,7 @@
-import { jsx } from '@antv/f-engine';
-import { Global } from '../../../../const';
-import { BaseEdge } from './base';
+import { isNumber } from '@antv/util';
+import { EdgeConfig, IPoint, Point } from '../../../../types';
 import { getControlPoint } from '../../../../utils/path';
-import { isArray, isNumber } from '@antv/util';
-import { Item, EdgeData, IPoint, Point, EdgeConfig } from '../../../../types';
+import { BaseEdge } from './base';
 
 export class Cubic extends BaseEdge {
   curvePosition = [1 / 2, 1 / 2];

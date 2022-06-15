@@ -1,21 +1,21 @@
 import { jsx } from '@antv/f-engine';
-import { deepMix, mix } from '@antv/util';
-import { Global } from '../../../../const';
+import { mix } from '@antv/util';
+import global from '../../../../global';
 import { BaseNode } from './base';
 export class SimpleRect extends BaseNode {
   options = {
     size: [100, 30],
     style: {
       radius: 0,
-      stroke: Global.defaultNode.style.stroke,
-      fill: Global.defaultNode.style.fill,
-      lineWidth: Global.defaultNode.style.lineWidth,
+      stroke: global.defaultNode.style.stroke,
+      fill: global.defaultNode.style.fill,
+      lineWidth: global.defaultNode.style.lineWidth,
     },
     // 文本样式配置
     labelCfg: {
       style: {
-        fill: Global.nodeLabel.style.fill,
-        fontSize: Global.nodeLabel.style.fontSize,
+        fill: global.nodeLabel.style.fill,
+        fontSize: global.nodeLabel.style.fontSize,
       },
     },
     // 连接点，默认为左右
@@ -25,7 +25,7 @@ export class SimpleRect extends BaseNode {
       [1, 0.5],
     ],
     stateStyles: {
-      ...Global.nodeStateStyles,
+      ...global.nodeStateStyles,
     },
   };
 
@@ -40,7 +40,7 @@ export class SimpleRect extends BaseNode {
       stroke: cfg.color,
     };
     // 如果设置了color，则覆盖默认的stroke属性
-    const style = mix({}, defaultStyle, strokeStyle);
+    const style = mix({} as any, defaultStyle, strokeStyle);
     const size = this.getSize!(cfg);
     const width = style.width || size[0];
     const height = style.height || size[1];

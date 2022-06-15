@@ -1,5 +1,4 @@
-import { jsx } from '@antv/f-engine';
-import { Global } from '../../../../const';
+import Global from '../../../../global';
 import { BaseEdge } from './base';
 export class Line extends BaseEdge {
   getOptions() {

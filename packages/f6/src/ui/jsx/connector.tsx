@@ -1,6 +1,4 @@
-// @ts-nocheck
-
-import { jsx, Component } from '@antv/f-engine';
+import { Component, jsx } from '@antv/f-engine';
 import { autorun } from 'mobx';
 
 export function connect(mapStatetoProps?): any {

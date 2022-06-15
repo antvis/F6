@@ -1,8 +1,7 @@
-import { jsx } from '@antv/f-engine';
-import { BaseEdge } from './base';
-import { getControlPoint } from '../../../../utils/path';
 import { isArray } from '@antv/util';
-import { Item, EdgeData, IPoint, Point, EdgeConfig } from '../../../../types';
+import { EdgeConfig, IPoint, Point } from '../../../../types';
+import { getControlPoint } from '../../../../utils/path';
+import { BaseEdge } from './base';
 
 export class Quadratic extends BaseEdge {
   curvePosition = 0.5; // 弯曲的默认位置

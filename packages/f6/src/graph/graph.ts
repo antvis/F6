@@ -10,6 +10,7 @@ import { NodeManager } from '../item/node/manager';
 import { layoutManager } from '../layout/manager';
 import EventService from '../service/eventService';
 import ModeService from '../service/modeService';
+import { BBox } from '../types';
 import { View } from '../view';
 const { transform } = ext;
 
@@ -259,8 +260,12 @@ export class Graph {
     item.setState(stateName, value);
   }
 
+  getCombos(): Combo[] {
+    return this.comboManager.items;
+  }
+
   getMatrix() {}
-  getCanvasBBox() {}
+  getCanvasBBox(): BBox {}
   inject(key, fn) {
     this[key] = fn;
   }

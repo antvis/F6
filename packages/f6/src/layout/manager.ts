@@ -1,9 +1,7 @@
-//@ts-nocheck
-
-import { clone, groupBy, isFunction, mix } from '@antv/util';
+import { clone, groupBy, isFunction } from '@antv/util';
 
 import { Layout } from '@antv/layout/lib/layout/layout';
-import { calculationItemsBBox } from '../utils';
+import { calculationItemsBBox } from '../utils/base';
 
 const LayoutPipesAdjustNames = ['force', 'grid', 'circular'];
 export class layoutManager {
@@ -249,9 +247,7 @@ export class layoutManager {
       return n.layoutOrder;
     });
     const layoutNodes = Object.values(graphGroupNodes).map((value) => {
-      const bbox: any = calculationItemsBBox({
-        getBBox: () => node.getBBox(value.id),
-      });
+      const bbox: any = calculationItemsBBox(value);
       bbox.size = [bbox.width, bbox.height];
       return bbox;
     });

@@ -5,22 +5,29 @@ import { BaseBehavior } from './base';
 
 // const { cloneEvent, isNaN } = Util;
 
+interface DragCanvasCfg {
+  direction: string;
+  enableOptimize: boolean;
+  // drag-canvas 可拖动的扩展范围，默认为 0，即最多可以拖动一屏的位置
+  // 当设置的值大于 0 时，即拖动可以超过一屏
+  // 当设置的值小于 0 时，相当于缩小了可拖动范围
+  // 具体实例可参考：https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*IFfoS67_HssAAAAAAAAAAAAAARQnAQ
+  scalableRange: number;
+  allowDragOnItem: boolean;
+}
+
 const { abs } = Math;
 const DRAG_OFFSET = 10;
 
-export class DragCanvas extends BaseBehavior {
+export class DragCanvas extends BaseBehavior<DragCanvasCfg> {
   origin = null;
   scalableRange = 0;
   dragging = false;
   dragbegin = false;
-  getDefaultCfg(): object {
+  getDefaultCfg(): DragCanvasCfg {
     return {
       direction: 'both',
       enableOptimize: false,
-      // drag-canvas 可拖动的扩展范围，默认为 0，即最多可以拖动一屏的位置
-      // 当设置的值大于 0 时，即拖动可以超过一屏
-      // 当设置的值小于 0 时，相当于缩小了可拖动范围
-      // 具体实例可参考：https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*IFfoS67_HssAAAAAAAAAAAAAARQnAQ
       scalableRange: 0,
       allowDragOnItem: false,
     };

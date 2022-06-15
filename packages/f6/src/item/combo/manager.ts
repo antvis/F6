@@ -1,17 +1,18 @@
-// @ts-nocheck
 import { action, computed, makeObservable, observable } from 'mobx';
-import { Item } from '../base/item';
+import { Graph } from '../../graph/graph';
+import { ComboConfig, ID } from '../../types';
 import { ItemManger } from '../base/manager';
 import { Combo } from './combo';
 
-export class ComboManager extends ItemManger {
-  isAutoSize = true;
+type ComboConfigMap = Record<ID, ComboConfig>;
+export class ComboManager extends ItemManger<ComboConfig, Combo> {
+  isAutoSize: boolean = true;
+  graph: Graph = null;
 
-  graph = null;
-
-  constructor(graph) {
+  constructor(graph: Graph) {
     super();
     this.graph = graph;
+    this.models;
     makeObservable(this, {
       sortedCombos: computed,
       isAutoSize: observable,
@@ -19,7 +20,7 @@ export class ComboManager extends ItemManger {
     });
   }
 
-  createItem(data: any): Item {
+  createItem(data: any): Combo {
     return new Combo(data, this.graph);
   }
 
@@ -27,13 +28,13 @@ export class ComboManager extends ItemManger {
     const combos = this.models;
     const nodes = this.graph.nodeManager.models;
     // 邻接
-    const combosMap = {};
+    const combosMap: ComboConfigMap = {};
     combos.forEach((combo) => {
       combosMap[combo.id] = { ...combo };
     });
 
     // 转树
-    const tree = [];
+    const tree: Array<ComboConfig> = [];
     for (const [key, value] of Object.entries(combosMap)) {
       if (typeof combosMap[key].parentId === 'undefined') {
         tree.push(value);
@@ -44,11 +45,11 @@ export class ComboManager extends ItemManger {
     }
 
     // 广度 + 计算depth + reverse = 节点从叶子向根排序
-    const stack = [[{ combos: tree }, 0]];
+    const stack: Array<[ComboConfig, number]> = [[{ combos: tree } as ComboConfig, 0]];
     let combosSorted = [];
     while (stack.length !== 0) {
       for (let i = 0, len = stack.length; i < len; i++) {
-        let [node, depth] = stack.shift();
+        const [node, depth] = stack.shift();
         const nextDepth = depth + 1;
         node.combos?.forEach((child) => {
           child.depth = nextDepth;

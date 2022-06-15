@@ -1,16 +1,24 @@
+import { TreeGraph } from '../graph/treeGraph';
+import { Combo } from '../item/combo/combo';
 import { BaseBehavior } from './base';
 
 const DEFAULT_TRIGGER = 'tap';
 const ALLOW_EVENTS = ['tap', 'dbltap'];
 
-export class CollapseExpand extends BaseBehavior {
-  getDefaultCfg(): object {
+interface CollapseExpandCfg {
+  trigger: string;
+  onChange: (item: Combo, iscollaCsed: boolean) => void;
+}
+export class CollapseExpand extends BaseBehavior<CollapseExpandCfg> {
+  graph: TreeGraph;
+
+  getDefaultCfg(): CollapseExpandCfg {
     return {
       /**
        * 发生收缩/扩展变化时的回调
        */
       trigger: DEFAULT_TRIGGER,
-      onChange() {},
+      onChange(item: Combo, isCollapsed: boolean) {},
     };
   }
   getEvents() {

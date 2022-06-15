@@ -1,15 +1,15 @@
 //@ts-nocheck
-import { IPoint, IBBox, Item, BubblesetCfg } from '../../types';
+import { BubblesetCfg, IBBox, IPoint, Item } from '../../types';
 import {
-  squareDist,
-  pointLineSquareDist,
-  itemIntersectByLine,
-  getPointsCenter,
   fractionToLine,
-  isPointsOverlap,
-  pointRectSquareDist,
-  Line,
+  getPointsCenter,
   isPointInPolygon,
+  isPointsOverlap,
+  itemIntersectByLine,
+  Line,
+  pointLineSquareDist,
+  pointRectSquareDist,
+  squareDist,
 } from '../../utils/math';
 
 const defaultOps = {

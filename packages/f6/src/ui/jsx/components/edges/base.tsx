@@ -1,22 +1,17 @@
-// @ts-nocheck
-import { jsx, Component } from '@antv/f-engine';
-import { deepMix, mix, each, isNil, isNumber, isArray } from '@antv/util';
-import { ILabelConfig, ShapeOptions } from '../interface/shape';
+import { jsx } from '@antv/f-engine';
+import { deepMix, each, isNil, mix } from '@antv/util';
+import Global from '../../../../global';
 import {
   EdgeConfig,
-  EdgeData,
+  ILabelConfig,
   IPoint,
   LabelStyle,
-  ShapeStyle,
-  Item,
   ModelConfig,
   Point,
-} from '../types';
-import { getLabelPosition, getLoopCfgs } from '../../../../utils/graphic';
-import { distance, getCircleCenterByPoints } from '../../../../utils/math';
-import { getControlPoint, getSpline } from '../../../../utils/path';
-import Global from '../../../../global';
-import { BaseShape, CLS_LABEL_BG_SUFFIX } from '../base';
+  ShapeStyle,
+} from '../../../../types';
+import { getLabelPosition } from '../../../../utils/graphic';
+import { BaseShape } from '../base';
 // import Shape from './shape';
 // import { shapeBase, CLS_LABEL_BG_SUFFIX } from './shapeBase';
 
@@ -32,7 +27,7 @@ function revertAlign(labelPosition: string): string {
 }
 const CLS_SHAPE = 'edge-shape';
 
-export class BaseEdge extends BaseShape {
+export class BaseEdge extends BaseShape<EdgeConfig> {
   keyShapeRef = { current: null };
   labelRef = { current: null };
   renderLabelStyle = null;
@@ -71,7 +66,7 @@ export class BaseEdge extends BaseShape {
   labelAutoRotate: false;
 
   // 自定义边时的配置
-  options = {
+  options: EdgeConfig = {
     size: Global.defaultEdge.size,
     style: {
       x: 0,
@@ -108,7 +103,7 @@ export class BaseEdge extends BaseShape {
   }
 
   getShapeStyle(cfg): ShapeStyle {
-    const { style: defaultStyle } = this.options as ModelConfig;
+    const { style: defaultStyle } = this.options as EdgeConfig;
     const strokeStyle: ShapeStyle = {
       stroke: cfg.color,
     };
@@ -184,7 +179,10 @@ export class BaseEdge extends BaseShape {
     style.x = offsetStyle.x;
     style.y = offsetStyle.y;
     style.rotate = offsetStyle.rotate;
-    style.textAlign = this._getTextAlign!(labelPosition as string, offsetStyle.angle as number);
+    style.textAlign = this._getTextAlign!(
+      labelPosition as string,
+      offsetStyle.angle as number,
+    ) as any;
     style.text = cfg.label as string;
     return style;
   }

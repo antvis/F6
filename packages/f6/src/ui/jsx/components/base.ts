@@ -1,17 +1,22 @@
-// @ts-nocheck
-import { IGroup, IShape, IElement } from '@antv/g-base';
-import { ShapeOptions, ILabelConfig } from '../interface/shape';
-import { IPoint, Item, LabelStyle, ShapeStyle, ModelConfig, EdgeConfig } from '../types';
-import Global from '../../../global';
-import { deepMix, each, mix, isBoolean, isPlainObject, clone } from '@antv/util';
-import { cloneBesidesImg } from '../../../utils/graphic';
 import { Component } from '@antv/f-engine';
+import { IElement, IGroup } from '@antv/g-base';
 import { ext } from '@antv/matrix-util';
+import { deepMix } from '@antv/util';
+import Global from '../../../global';
+import {
+  EdgeConfig,
+  ILabelConfig,
+  IPoint,
+  Item,
+  LabelStyle,
+  ModelConfig,
+  ShapeStyle,
+} from '../../../types';
 
 const transform = ext.transform;
 export const CLS_LABEL_BG_SUFFIX = '-label-bg';
 
-export class BaseShape extends Component {
+export class BaseShape<T extends ModelConfig> extends Component {
   // 默认样式及配置
   options = {};
   itemType = ''; // node, edge, combo 等
@@ -19,10 +24,10 @@ export class BaseShape extends Component {
    * 形状的类型，例如 circle，ellipse，polyline...
    */
   type = '';
-  getCustomConfig(cfg: ModelConfig): ModelConfig {
+  getCustomConfig(cfg: T | {}): T | {} {
     return {};
   }
-  getOptions(cfg: ModelConfig): ModelConfig {
+  getOptions(cfg?: T | {}): T {
     return deepMix(
       {
         // 解决局部渲染导致的文字移动残影问题
@@ -51,15 +56,15 @@ export class BaseShape extends Component {
     );
   }
 
-  getLabelStyleByPosition(cfg: ModelConfig, labelCfg?: ILabelConfig, group?: IGroup): LabelStyle {
+  getLabelStyleByPosition(cfg: T, labelCfg?: ILabelConfig, group?: IGroup): Partial<LabelStyle> {
     return { text: cfg.label as string };
   }
   getLabelBgStyleByPosition(
     label: IElement,
-    cfg: ModelConfig,
+    cfg: T,
     labelCfg?: ILabelConfig,
     group?: IGroup,
-  ): LabelStyle {
+  ): Partial<LabelStyle> {
     return {};
   }
 
@@ -69,7 +74,7 @@ export class BaseShape extends Component {
    * @param labelCfg 文本的配置项
    * @param group 父容器，label 的定位可能与图形相关
    */
-  getLabelStyle(cfg: ModelConfig, labelCfg: ILabelConfig, group: IGroup): LabelStyle {
+  getLabelStyle(cfg: T, labelCfg: ILabelConfig, group: IGroup): LabelStyle {
     const calculateStyle = this.getLabelStyleByPosition!(cfg, labelCfg, group);
     const attrName = `${this.itemType}Label`; // 取 nodeLabel，edgeLabel 的配置项
     const defaultStyle = (Global as any)[attrName] ? (Global as any)[attrName].style : null;
@@ -81,7 +86,7 @@ export class BaseShape extends Component {
    * 获取图形的配置项
    * @param cfg
    */
-  getShapeStyle(cfg: ModelConfig): ShapeStyle {
+  getShapeStyle(cfg: T): ShapeStyle {
     return cfg.style!;
   }
 
@@ -114,8 +119,8 @@ export class BaseShape extends Component {
    * @param  {Object} cfg 节点、边的配置项
    * @return {Array|null} 锚点的数组,如果为 null，则没有锚点
    */
-  getAnchorPoints(cfg: ModelConfig): number[][] | undefined {
-    const { anchorPoints } = this.getOptions(cfg) as ModelConfig;
+  getAnchorPoints(cfg: T): number[][] | undefined {
+    const { anchorPoints } = this.getOptions(cfg) as T;
     return anchorPoints;
   }
 

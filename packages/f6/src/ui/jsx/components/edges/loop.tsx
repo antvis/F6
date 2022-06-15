@@ -1,6 +1,6 @@
+import { EdgeConfig, EdgeData, IPoint, ModelConfig } from '../../../../types';
 import { getLoopCfgs } from '../../../../utils/graphic';
 import { Cubic } from './cubic';
-import { Item, EdgeData, IPoint, ModelConfig, EdgeConfig } from '../../../../types';
 
 export class Loop extends Cubic {
   getPathPoints(cfg: ModelConfig): EdgeData {

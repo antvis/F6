@@ -1,7 +1,5 @@
-//@ts-nocheck
 import { Component, Fragment, jsx } from '@antv/f-engine';
 
-import { COMBO_Z_INDEX, EDGE_Z_INDEX, HULL_Z_INDEX, NODE_Z_INDEX } from '../../const';
 import { connect } from './connector';
 import { Edge } from './edge';
 import { Node } from './node';
@@ -9,6 +7,11 @@ import { Node } from './node';
 import { calcCanvasBBox, getMatrix, setMatrix } from '../adapter/element';
 import { Combo } from './combo';
 import { Hull } from './hull';
+
+const NODE_Z_INDEX = 2;
+const EDGE_Z_INDEX = 1;
+const COMBO_Z_INDEX = 0;
+const HULL_Z_INDEX = -1;
 
 @connect((graph, props) => {
   return {
@@ -106,7 +109,6 @@ export class GraphRoot extends Component {
                     combo={item.model}
                     sortedCombo={sortedCombo}
                     item={item}
-                    sortedCombo={sortedCombo}
                     nodes={graph.nodeManager.models.filter((node) => {
                       return sortedCombo.children?.some(({ id }) => id === node.id);
                     })}

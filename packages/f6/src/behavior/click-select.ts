@@ -1,22 +1,27 @@
 import { each } from '@antv/util';
 import { BaseBehavior } from './base';
 
-export class ClickSelect extends BaseBehavior {
-  getDefaultCfg(): object {
+interface ClickSelectCfg {
+  multiple: boolean;
+  selectedState: string;
+}
+
+export class ClickSelect extends BaseBehavior<ClickSelectCfg> {
+  getDefaultCfg(): ClickSelectCfg {
     return {
       multiple: true,
       selectedState: 'selected',
     };
   }
-  getEvents() {
-    const self = this as any;
 
+  getEvents() {
     return {
       'node:tap': 'onClick',
       'combo:tap': 'onClick',
       'canvas:tap': 'onCanvasClick',
     };
   }
+
   onClick(evt) {
     const self = this;
     const { item } = evt;

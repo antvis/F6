@@ -1,13 +1,19 @@
-import { BaseBehavior } from './base';
-
 /*
  * @Author: Shiwu
  * @Description: 收起和展开 Combo
  */
+
+import { BaseBehavior } from './base';
+
+interface CollapseExpandComboCfg {
+  trigger: string;
+  relayout: boolean;
+}
+
 const DEFAULT_TRIGGER = 'dblclick';
 const ALLOW_EVENTS = ['click', 'dblclick'];
-export class CollapseExpandCombo extends BaseBehavior {
-  getDefaultCfg(): object {
+export class CollapseExpandCombo extends BaseBehavior<CollapseExpandComboCfg> {
+  getDefaultCfg(): CollapseExpandComboCfg {
     return {
       trigger: DEFAULT_TRIGGER,
       relayout: true,
@@ -29,6 +35,7 @@ export class CollapseExpandCombo extends BaseBehavior {
       [`combo:${trigger}`]: 'onComboClick',
     };
   }
+
   onComboClick(evt) {
     const { item } = evt;
     const { graph } = this;
@@ -40,8 +47,8 @@ export class CollapseExpandCombo extends BaseBehavior {
     if (!comboId) {
       return;
     }
-    graph.collapseExpandCombo(comboId);
-    if (relayout && graph.get('layout')) graph.layout();
-    else graph.refreshPositions();
+    // graph.collapseExpandCombo(comboId);
+    // if (relayout && graph.get('layout')) graph.layout();
+    // else graph.refreshPositions();
   }
 }

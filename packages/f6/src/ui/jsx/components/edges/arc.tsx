@@ -1,8 +1,7 @@
-import { jsx } from '@antv/f-engine';
-import { Global } from '../../../../const';
-import { BaseEdge } from './base';
-import { distance, getCircleCenterByPoints } from '../../../../utils/math';
 import { isArray } from '@antv/util';
+import Global from '../../../../global';
+import { distance, getCircleCenterByPoints } from '../../../../utils/math';
+import { BaseEdge } from './base';
 
 export class Arc extends BaseEdge {
   curveOffset = 20;

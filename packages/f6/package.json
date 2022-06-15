@@ -44,6 +44,7 @@
     "**/*.{less,md,json}": ["prettier --write"]
   },
   "dependencies": {
+    "@ant-design/colors": "^5.0.1",
     "@antv/algorithm": "^0.1.8",
     "@antv/dom-util": "^2.0.1",
     "@antv/event-emitter": "~0.1.0",

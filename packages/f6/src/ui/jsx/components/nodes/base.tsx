@@ -1,15 +1,14 @@
-import { jsx, Component, renderShape } from '@antv/f-engine';
-import { isArray, isNil, mix } from '@antv/util';
-import { ILabelConfig, ShapeOptions } from '../../../../interface/shape';
-import { Item, LabelStyle, NodeConfig, ModelConfig } from '../../../../types';
-import { formatPadding } from '../../../../utils/base';
-import Global from '../../../../global';
-import { BaseShape } from '../base';
+import { jsx } from '@antv/f-engine';
 import { ext } from '@antv/matrix-util';
+import { isArray, isNil, mix } from '@antv/util';
+import Global from '../../../../global';
+import { ILabelConfig, LabelStyle, ModelConfig, NodeConfig } from '../../../../types';
+import { formatPadding } from '../../../../utils/base';
+import { BaseShape } from '../base';
 
 const transform = ext.transform;
 
-export class BaseNode extends BaseShape {
+export class BaseNode extends BaseShape<NodeConfig> {
   keyShapeRef = { current: null };
   labelRef = { current: null };
   renderLabelStyle = null;
@@ -58,7 +57,7 @@ export class BaseNode extends BaseShape {
     return size;
   }
   // 私有方法，不希望扩展的节点复写这个方法
-  getLabelStyleByPosition(cfg: NodeConfig, labelCfg: ILabelConfig): LabelStyle {
+  getLabelStyleByPosition(cfg: NodeConfig, labelCfg: ILabelConfig): Partial<LabelStyle> {
     const labelPosition = labelCfg.position || this.labelPosition;
 
     // 默认的位置（最可能的情形），所以放在最上面
@@ -245,7 +244,7 @@ export class BaseNode extends BaseShape {
   }
 
   renderLinkPoints(cfg) {
-    const { linkPoints: defaultLinkPoints } = this.getOptions(cfg) as ModelConfig;
+    const { linkPoints: defaultLinkPoints } = this.getOptions(cfg) as NodeConfig;
 
     let currentLinkPoints;
 

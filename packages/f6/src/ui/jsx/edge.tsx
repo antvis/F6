@@ -1,4 +1,3 @@
-//@ts-nocheck
 import { Component, jsx } from '@antv/f-engine';
 import { getEdge } from './components/edges';
 
@@ -15,8 +14,7 @@ export class Edge extends Component {
   }
 
   getPoints() {
-    const { item, edge, linkCenter, getEndCenter, getControlPointsByCenter, getLinkPoint } =
-      this.props;
+    const { item, edge, linkCenter } = this.props;
     if (!edge) return;
     let startPoint, endPoint;
     if (linkCenter) {
@@ -38,7 +36,7 @@ export class Edge extends Component {
   };
 
   render() {
-    const { updateEdgePoints, edge, linkCenter } = this.props;
+    const { edge } = this.props;
     const Shape = getEdge(edge?.type || 'line');
 
     if (!Shape) {

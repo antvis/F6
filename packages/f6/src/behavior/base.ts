@@ -1,17 +1,17 @@
 import { each } from '@antv/util';
+import { Graph } from '../graph/graph';
+import { F6EventType, F6GraphEvent } from '../types';
 
 // 自定义 Behavior 时候共有的方法
-export class BaseBehavior {
-  graph = null;
-  cfg = null;
+export abstract class BaseBehavior<T> {
+  graph: Graph = null;
+  cfg: T = null;
 
-  constructor(cfg) {
+  constructor(cfg: T) {
     this.cfg = Object.assign(this.getDefaultCfg(), cfg);
   }
 
-  getDefaultCfg() {
-    return {};
-  }
+  abstract getDefaultCfg(): T;
 
   /**
    * register event handler, behavior will auto bind events
@@ -20,24 +20,23 @@ export class BaseBehavior {
    *  click: 'onClick'
    * }
    */
-  getEvents() {
-    return {};
-  }
+  abstract getEvents(): {
+    [key in F6EventType]?: string;
+  };
 
-  updateCfg(cfg: object) {
+  updateCfg(cfg: Object) {
     Object.assign(this, cfg);
+  }
+
+  shouldBegin(e?: F6GraphEvent): boolean {
     return true;
   }
 
-  shouldBegin() {
+  shouldUpdate(e?: F6GraphEvent): boolean {
     return true;
   }
 
-  shouldUpdate() {
-    return true;
-  }
-
-  shouldEnd() {
+  shouldEnd(e?: F6GraphEvent): boolean {
     return true;
   }
 
@@ -50,7 +49,7 @@ export class BaseBehavior {
     return this;
   }
 
-  public bindEvents(graph) {
+  public bindEvents(graph: Graph) {
     this.graph = graph;
     const events = this.getEvents();
     each(events, (fn, key) => {
@@ -58,7 +57,7 @@ export class BaseBehavior {
     });
   }
 
-  public unBindEvents(graph) {
+  public unBindEvents(graph: Graph) {
     const events = this.getEvents();
     each(events, (fn, key) => {
       graph.off(key, this[fn].bind(this));

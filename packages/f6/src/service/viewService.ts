@@ -1,4 +1,4 @@
-//@ts-nocheck
+import { Point } from '../types';
 import { applyMatrix, invertMatrix } from '../utils/math';
 
 /**
@@ -28,16 +28,16 @@ export const getPointByClient = (
   return getPointByCanvas(viewportMatrix, canvasPoint.x, canvasPoint.y);
 };
 
-/**
- * 将视口坐标转成页面坐标
- * @param x 视口 x 坐标
- * @param y 视口 y 坐标
- */
-export const getClientByPoint = (canvas, x: number, y: number): Point => {
-  const canvasPoint = getCanvasByPoint(x, y);
-  const point = canvas.getClientByPoint(canvasPoint.x, canvasPoint.y);
-  return { x: point.x, y: point.y };
-};
+// /**
+//  * 将视口坐标转成页面坐标
+//  * @param x 视口 x 坐标
+//  * @param y 视口 y 坐标
+//  */
+// export const getClientByPoint = (viewportMatrix, x: number, y: number): Point => {
+//   const canvasPoint = getCanvasByPoint(viewportMatrix, x, y);
+//   const point = canvas.getClientByPoint(canvasPoint.x, canvasPoint.y);
+//   return { x: point.x, y: point.y };
+// };
 
 /**
  * 将 Canvas 坐标转成视口坐标

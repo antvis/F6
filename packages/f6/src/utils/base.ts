@@ -1,7 +1,6 @@
-//@ts-nocheck
-import { isString, isNumber, isNil, isArray } from '@antv/util';
+import { isArray, isNil, isNumber, isString } from '@antv/util';
 // import { G6GraphEvent } from '../interface/behavior';
-import { IG6GraphEvent, Padding, Matrix, Item } from '../types';
+import { Item, Matrix, Padding } from '../types';
 
 export const uniqueId = (type: string): string => {
   return `${type}-${Math.random()}${Date.now()}`;
@@ -30,23 +29,6 @@ export const formatPadding = (padding: Padding): number[] => {
     left = !isNil(padding[3]) ? padding[3] : right;
   }
   return [top, right, bottom, left];
-};
-
-/**
- * clone event
- * @param e
- */
-export const cloneEvent = (e) => {
-  const event = new G6GraphEvent(e.type, e);
-  event.clientX = e.clientX;
-  event.clientY = e.clientY;
-  event.x = e.x;
-  event.y = e.y;
-  event.target = e.target;
-  event.currentTarget = e.currentTarget;
-  event.bubbles = true;
-  (event.item as Item | null) = e.item;
-  return event;
 };
 
 /**

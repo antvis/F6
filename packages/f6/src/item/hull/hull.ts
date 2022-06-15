@@ -1,9 +1,9 @@
+import { HullCfg } from '@antv/f6-core';
 import { Item } from '../base/item';
 import { ItemManger } from '../base/manager';
 
-export class Hull extends Item {
-  model = {};
-
+export class Hull extends Item<HullCfg> {
+  model: HullCfg;
   constructor(model) {
     super();
     this.model = { ...model };
@@ -14,8 +14,8 @@ export class Hull extends Item {
   }
 }
 
-export class HullManager extends ItemManger {
-  createItem(data: any): Item {
+export class HullManager extends ItemManger<HullCfg, Hull> {
+  createItem(data: any) {
     return new Hull(data);
   }
 }

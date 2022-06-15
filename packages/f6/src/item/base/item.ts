@@ -1,10 +1,12 @@
-//@ts-nocheck
 import { isNil, isString } from '@antv/util';
 import { action, makeObservable, observable } from 'mobx';
+import { BBox } from '../../types';
+import { BaseItemModel } from '../../types/item';
 
-export class Item {
-  model = {};
-  states = [];
+export class Item<T extends BaseItemModel> {
+  model: T;
+  states: String[] = [];
+  destroyed = false;
 
   constructor() {
     makeObservable(
@@ -90,5 +92,20 @@ export class Item {
     return false;
   }
 
-  destory() {}
+  getBBox(): BBox {
+    return {
+      x: 0,
+      y: 0,
+      minX: 0,
+      minY: 0,
+      maxX: 0,
+      maxY: 0,
+      width: 0,
+      height: 0,
+    };
+  }
+
+  destory() {
+    this.destroyed = true;
+  }
 }

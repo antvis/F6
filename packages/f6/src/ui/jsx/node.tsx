@@ -1,6 +1,5 @@
-//@ts-nocheck
-
-import { jsx, Component } from '@antv/f-engine';
+import { Component, jsx } from '@antv/f-engine';
+import { IShape } from '../../types';
 import { calcBBox, calcMatrix, calculateBBox } from '../adapter/element';
 import { getNode } from './components/nodes';
 
@@ -10,7 +9,7 @@ export class Node extends Component {
 
   prevPosition = {};
 
-  shouldUpdate(_nextProps: any): void {
+  shouldUpdate(_nextProps: any): boolean {
     return !this.isAnimating;
   }
 
@@ -23,7 +22,7 @@ export class Node extends Component {
 
   didMount(): void {
     const { item } = this.props;
-    this.container.item = item;
+    (this.container as IShape).item = item;
   }
 
   getBBox = () => {

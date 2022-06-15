@@ -1,5 +1,5 @@
 import { jsx } from '@antv/f-engine';
-import { Global } from '../../../../const';
+import Global from '../../../../global';
 import { BaseNode } from './base';
 export class SimpleCircle extends BaseNode {
   static getOptions() {

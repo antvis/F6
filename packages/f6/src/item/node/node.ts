@@ -1,6 +1,8 @@
-//@ts-nocheck
+import { IPoint } from '@antv/f6-core';
 import { each, isNil } from '@antv/util';
 import { action, makeObservable } from 'mobx';
+import { Graph } from '../../graph/graph';
+import { NodeConfig, Point } from '../../types';
 import {
   distance,
   getCircleIntersectByPoint,
@@ -8,8 +10,9 @@ import {
   getRectIntersectByPoint,
 } from '../../utils/math';
 import { Item } from '../base/item';
+import { Edge } from '../edge/edge';
 
-const getNearestPoint = (points: IPoint[], curPoint: IPoint): IPoint => {
+const getNearestPoint = (points: IPoint[], curPoint: Point): IPoint => {
   let index = 0;
   let nearestPoint = points[0];
   let minDistance = distance(points[0], curPoint);
@@ -26,12 +29,12 @@ const getNearestPoint = (points: IPoint[], curPoint: IPoint): IPoint => {
   return nearestPoint;
 };
 
-export class Node extends Item {
+export class Node extends Item<NodeConfig> {
   rootId = null; // 兼容树图
-  graph = null;
+  graph: Graph = null;
   parent = null;
 
-  constructor(model, graph) {
+  constructor(model: NodeConfig, graph: Graph) {
     super();
     this.graph = graph;
     this.model = { ...model };
@@ -49,8 +52,6 @@ export class Node extends Item {
 
   setPosition(position) {
     this.model = { ...this.model, ...position };
-    // this.model.x = position.x;
-    // this.model.y = position.y;
   }
 
   getParent() {
@@ -64,7 +65,7 @@ export class Node extends Item {
 
   calcAnchorPoints() {
     const id = this.model.id;
-    const bbox = this.getBBox(id);
+    const bbox = this.getBBox();
     const anchorPoints = [];
     const points = this.getAnchorPoints(id);
     each(points, (pointArr, index) => {
@@ -81,18 +82,18 @@ export class Node extends Item {
 
   getLinkPointByAnchor(index: number) {
     const id = this.model.id;
-    const anchorPoints = this.calcAnchorPoints(id);
+    const anchorPoints = this.calcAnchorPoints();
     return anchorPoints[index];
   }
 
-  getLinkPoint = (point: IPoint): IPoint | null => {
+  getLinkPoint = (point: Point): Point | null => {
     const id = this.model.id;
     const nodeState = this.model;
     const type: string = nodeState['type'];
     const itemType: string = nodeState['type'];
     let centerX;
     let centerY;
-    const bbox = this.getBBox(id);
+    const bbox = this.getBBox();
     if (itemType === 'combo') {
       centerX = bbox.centerX || (bbox.maxX + bbox.minX) / 2;
       centerY = bbox.centerY || (bbox.maxY + bbox.minY) / 2;
@@ -100,8 +101,8 @@ export class Node extends Item {
       centerX = bbox.centerX;
       centerY = bbox.centerY;
     }
-    const anchorPoints = this.calcAnchorPoints(id);
-    let intersectPoint: IPoint | null;
+    const anchorPoints = this.calcAnchorPoints();
+    let intersectPoint: Point | null;
     switch (type) {
       case 'circle':
         intersectPoint = getCircleIntersectByPoint(
@@ -138,7 +139,7 @@ export class Node extends Item {
     }
     if (!linkPoint) {
       // 如果最终依然没法找到锚点和连接点，直接返回中心点
-      linkPoint = { x: centerX, y: centerY } as IPoint;
+      linkPoint = { x: centerX, y: centerY } as Point;
     }
     return linkPoint;
   };
@@ -175,28 +176,24 @@ export class Node extends Item {
 
     if (type === 'target') {
       // 当前节点为 source，它所指向的目标节点
-      const neighhborsConverter = (edge: IEdge) => {
+      const neighhborsConverter = (edge: Edge) => {
         return edge.getSource() === this;
       };
       return edges.filter(neighhborsConverter).map((edge) => edge.getTarget());
     }
     if (type === 'source') {
       // 当前节点为 target，它所指向的源节点
-      const neighhborsConverter = (edge: IEdge) => {
+      const neighhborsConverter = (edge: Edge) => {
         return edge.getTarget() === this;
       };
       return edges.filter(neighhborsConverter).map((edge) => edge.getSource());
     }
 
     // 若未指定 type ，则返回所有邻居
-    const neighhborsConverter = (edge: IEdge) => {
+    const neighhborsConverter = (edge: Edge) => {
       return edge.getSource() === this ? edge.getTarget() : edge.getSource();
     };
     return edges.map(neighhborsConverter);
-  }
-
-  getBBox(id) {
-    return {};
   }
 
   getAnchorPoints(id) {

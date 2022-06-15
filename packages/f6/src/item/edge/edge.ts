@@ -1,5 +1,5 @@
-// @ts-nocheck
 import { isNil } from '@antv/util';
+import { EdgeConfig, IPoint, NodeConfig } from '../../types';
 import { Item } from '../base/item';
 
 const END_MAP = { source: 'start', target: 'end' };
@@ -7,7 +7,9 @@ const ITEM_NAME_SUFFIX = 'Node'; // 端点的后缀，如 sourceNode, targetNode
 const POINT_NAME_SUFFIX = 'Point'; // 起点或者结束点的后缀，如 startPoint, endPoint
 const ANCHOR_NAME_SUFFIX = 'Anchor';
 
-export class Edge extends Item {
+type SourceTarget = 'source' | 'target';
+
+export class Edge extends Item<EdgeConfig> {
   graph = null;
 
   constructor(model, graph) {
@@ -45,7 +47,7 @@ export class Edge extends Item {
     const sourceId = model[name];
     let point;
     const anchorName = name + ANCHOR_NAME_SUFFIX;
-    const prePoint = this.getPrePoint(name, controlPoints, model.id);
+    const prePoint = this.getPrePoint(name, controlPoints);
     const anchorIndex = model[anchorName];
 
     if (!isNil(anchorIndex)) {
@@ -104,7 +106,7 @@ export class Edge extends Item {
     return edgeState[pointName];
   };
 
-  getControlPoints() {}
+  getControlPoints(any) {}
   inject(key, fn) {
     this[key] = fn;
   }

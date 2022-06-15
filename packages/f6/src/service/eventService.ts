@@ -1,12 +1,10 @@
-//@ts-nocheck
-import { ICanvas, IShape } from '@antv/g-base';
-import { each } from '@antv/util';
 import EE from 'eventemitter3';
 import { getCanvasByPoint, getPointByCanvas } from './viewService';
 
-import { isViewportChanged } from '../utils';
+import { IShape, Matrix } from '../types';
+import { isViewportChanged } from '../utils/base';
 
-const Event = {
+const OriginEventType = {
   click: 'click',
   dbclick: 'dbclick',
   touchstart: 'touchstart',
@@ -50,8 +48,7 @@ export default class EventService extends EE {
 
   // 初始化 G6 中的事件
   protected initEvents(root, canvas) {
-    root.on(Event.touchstart, (evt) => {
-      console.log('touchstart');
+    root.on(OriginEventType.touchstart, (evt) => {
       evt.target.tap = {
         startTime: Date.now(),
         startX: evt.clientX,
@@ -61,13 +58,13 @@ export default class EventService extends EE {
       };
     });
 
-    root.on(Event.touchMove, (evt) => {
+    root.on(OriginEventType.touchmove, (evt) => {
       const tap = evt.target;
       tap.endX = evt.clientX;
       tap.endY = evt.clientY;
     });
 
-    root.on(Event.touchend, (evt) => {
+    root.on(OriginEventType.touchend, (evt) => {
       if (!evt.target.tap) return;
       const { startTime, startX, startY, endX, endY } = evt.target.tap;
       if (Date.now() - startTime > 250) {
@@ -80,15 +77,14 @@ export default class EventService extends EE {
       this.onCanvasEvents(this.transformEvent(evt, 'tap'));
     });
 
-    Object.values(Event).forEach((type) => {
+    Object.values(OriginEventType).forEach((type) => {
       root.on(type, (evt) => this.onCanvasEvents(this.transformEvent(evt, type)));
     });
 
-    root.on(Event.dbclick, (evt) => {
+    root.on(OriginEventType.dbclick, (evt) => {
       this.onCanvasEvents(this.transformEvent(evt, 'dbtap'));
     });
     this.canvas = canvas;
-    // canvas.off('*').on('*', this.canvasHandler);
   }
 
   // 获取 shape 的 item 对象
@@ -232,23 +228,23 @@ export default class EventService extends EE {
   // }
 
   public destroy() {
-    const { graph, canvasHandler, extendEvents } = this;
-    const canvas: ICanvas = graph.get('canvas');
+    // const { graph, canvasHandler, extendEvents } = this;
+    // const canvas: ICanvas = graph.get('canvas');
 
     // each(EVENTS, event => {
     //   canvas.off(event, canvasHandler);
     // });
 
-    canvas.off('*', canvasHandler);
+    // canvas.off('*', canvasHandler);
 
-    each(extendEvents, (event) => {
-      event.remove();
-    });
+    // each(extendEvents, (event) => {
+    //   event.remove();
+    // });
 
     this.dragging = false;
     this.preItem = null;
     // this.extendEvents.length = 0;
-    (this.canvasHandler as Fun | null) = null;
+    // (this.canvasHandler as Fun | null) = null;
     this.destroyed = true;
   }
 

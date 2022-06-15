@@ -1,15 +1,12 @@
 //@ts-nocheck
 
-import { jsx, Component, renderShape } from '@antv/f-engine';
+import { Component, jsx } from '@antv/f-engine';
 
-import { connect, connector } from './connector';
-
-import { deepMix, isString } from '@antv/util';
 import { parsePathString } from '@antv/path-util';
-import { pathToPoints, getClosedSpline, roundedHull, paddedHull } from '../../utils/path';
+import { getClosedSpline, paddedHull, roundedHull } from '../../utils/path';
 
-import { genConvexHull } from '../hull/convexHull';
 import { genBubbleSet } from '../hull/bubbleset';
+import { genConvexHull } from '../hull/convexHull';
 
 export class Hull extends Component {
   nodeRef = { current: null };

@@ -1,6 +1,6 @@
 import { jsx } from '@antv/f-engine';
 import { deepMix } from '@antv/util';
-import { Global } from '../../../../const';
+import Global from '../../../../global';
 import { BaseNode } from './base';
 export class SimpleCircle extends BaseNode {
   options = {

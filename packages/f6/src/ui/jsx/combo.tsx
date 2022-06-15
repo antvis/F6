@@ -1,11 +1,11 @@
-//@ts-nocheck
 import { Component, jsx } from '@antv/f-engine';
 import { getCombo } from './components/comos';
 
 import { calcBBox, calcMatrix, calculateBBox } from '../adapter/element';
 
 import { isNumber } from '@antv/util';
-import { Global } from '../../const';
+import global from '../../global';
+import { IShape } from '../../types';
 
 export class Combo extends Component {
   nodeRef = { current: null };
@@ -22,11 +22,11 @@ export class Combo extends Component {
   didMount(): void {
     const { sortedCombo, item } = this.props;
     this.container.style.zIndex = sortedCombo.depth;
-    this.container.item = item;
+    (this.container as IShape).item = item;
     this.isInited = true;
   }
 
-  didUpdate(prev): void {
+  didUpdate(): void {
     const { sortedCombo } = this.props;
     this.container.style.zIndex = sortedCombo.depth;
   }
@@ -45,9 +45,9 @@ export class Combo extends Component {
     let x, y;
     const bbox = this.context.graph.comboManager.calcComboBBox(combo.id);
     const size = {
-      r: Math.hypot(bbox.height, bbox.width) / 2 || Global.defaultCombo.size[0] / 2,
-      width: bbox.width || Global.defaultCombo.size[0],
-      height: bbox.height || Global.defaultCombo.size[1],
+      r: Math.hypot(bbox.height, bbox.width) / 2 || global.defaultCombo.size[0] / 2,
+      width: bbox.width || global.defaultCombo.size[0],
+      height: bbox.height || global.defaultCombo.size[1],
     };
     if (isNumber(padding)) {
       size.r += padding;

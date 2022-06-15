@@ -5,20 +5,30 @@
  * @LastEditTime: 2019-08-22 18:41:45
  * @Description: 拖动节点的Behavior
  */
-// import { Point } from '@antv/g-base';
-import { deepMix } from '@antv/util';
-import { ICombo, INode, Item, NodeConfig, Point } from '../types';
 // import { IGraph } from '../interface/graph';
-import Global from '../global';
+import { Combo } from '../item/combo/combo';
+import { Node } from '../item/node/node';
+import { Item, Point } from '../types';
 import { BaseBehavior } from './base';
 
-export class DragNode extends BaseBehavior {
+interface DragNodeCfg {
+  updateEdge: boolean;
+  delegateStyle: Object;
+  // 是否开启delegate
+  enableDelegate: boolean;
+  // 拖动节点过程中是否只改变 Combo 的大小，而不改变其结构
+  onlyChangeComboSize: boolean;
+  // 拖动过程中目标 combo 状态样式
+  comboActiveState: string;
+  selectedState: string;
+}
+export class DragNode extends BaseBehavior<DragNodeCfg> {
   targets = [];
   targetCombo = null;
   origin = { x: 0, y: 0 };
   point = {};
   originPoint = {};
-  getDefaultCfg(): object {
+  getDefaultCfg(): DragNodeCfg {
     return {
       updateEdge: true,
       delegateStyle: {},
@@ -43,7 +53,7 @@ export class DragNode extends BaseBehavior {
       'canvas:drop': 'onDropCanvas',
     };
   }
-  validationCombo(item: ICombo) {
+  validationCombo(item: Combo) {
     if (!this.origin || !item || item.destroyed) {
       return false;
     }
@@ -64,7 +74,7 @@ export class DragNode extends BaseBehavior {
       return;
     }
 
-    const item: INode = evt.item as INode;
+    const item: Node = evt.item;
     if (!item || item.destroyed || item.hasLocked()) {
       return;
     }
@@ -144,7 +154,7 @@ export class DragNode extends BaseBehavior {
    * @param evt
    */
   onDragEnd(evt) {
-    let { delegateRect } = this.cfg;
+    // let { delegateRect } = this.cfg;
 
     this.graph.comboManager.setAutoSize(true);
 
@@ -153,16 +163,16 @@ export class DragNode extends BaseBehavior {
     }
 
     // 拖动结束后，设置拖动元素 group 的 capture 为 true，允许拾取拖动元素
-    // const item = evt.item as INode;
+    // const item = evt.item as Node;
     // if (item) {
     // const group = item.getContainer();
     // group.set('capture', true);
     // }
 
-    if (delegateRect) {
-      delegateRect.remove();
-      delegateRect = null;
-    }
+    // if (delegateRect) {
+    //   delegateRect.remove();
+    //   delegateRect = null;
+    // }
 
     // this.updatePositions(evt);
 
@@ -200,7 +210,7 @@ export class DragNode extends BaseBehavior {
   onDropCombo(evt) {
     const { comboActiveState, onlyChangeComboSize } = this.cfg;
 
-    const item = evt.item as ICombo;
+    const item = evt.item as Combo;
     if (!this.validationCombo(item)) return;
 
     this.updatePositions(evt);
@@ -216,7 +226,7 @@ export class DragNode extends BaseBehavior {
     // 拖动结束后是动态改变 Combo 大小还是将节点从 Combo 中删除
     if (!onlyChangeComboSize) {
       const targetComboModel = item.getModel();
-      this.targets.map((node: INode) => {
+      this.targets.map((node: Node) => {
         const nodeModel = node.getModel();
         if (nodeModel.comboId !== targetComboModel.id) {
           graph.updateItem(node, { comboId: targetComboModel.id });
@@ -239,13 +249,13 @@ export class DragNode extends BaseBehavior {
     this.updatePositions(evt);
     if (onlyChangeComboSize) {
       // 拖动节点结束后，动态改变 Combo 的大小
-      graph.updateCombos();
+      // graph.updateCombos();
     } else {
-      this.targets.map((node: INode) => {
+      this.targets.map((node: Node) => {
         // 拖动的节点有 comboId，即是从其他 combo 中拖出时才处理
         const model = node.getModel();
         if (model.comboId) {
-          graph.updateComboTree(node);
+          // graph.updateComboTree(node);
         }
       });
     }
@@ -260,7 +270,7 @@ export class DragNode extends BaseBehavior {
 
     const self = this;
     if (!self.targets || self.targets.length === 0) return;
-    const item = evt.item as INode;
+    const item = evt.item as Node;
     self.updatePositions(evt);
     const graph = self.graph;
 
@@ -271,15 +281,15 @@ export class DragNode extends BaseBehavior {
       if (comboActiveState) {
         graph.setItemState(combo, comboActiveState, false);
       }
-      self.targets.map((node: INode) => {
+      self.targets.map((node: Node) => {
         const nodeModel = node.getModel();
         if (comboId !== nodeModel.comboId) {
           graph.updateItem(node, { comboId: comboId });
         }
       });
-      // graph.updateCombo(combo as ICombo);
+      // graph.updateCombo(combo as Combo);
     } else {
-      self.targets.map((node: INode) => {
+      self.targets.map((node: Node) => {
         const model = node.getModel();
         if (model.comboId) {
           // graph.updateComboTree(node);
@@ -300,7 +310,7 @@ export class DragNode extends BaseBehavior {
    */
   onDragEnter(evt) {
     const { comboActiveState } = this.cfg;
-    const item = evt.item as ICombo;
+    const item = evt.item as Combo;
     if (!this.validationCombo(item)) return;
 
     const graph = this.graph;
@@ -314,7 +324,7 @@ export class DragNode extends BaseBehavior {
    */
   onDragLeave(evt) {
     const { comboActiveState } = this.cfg;
-    const item = evt.item as ICombo;
+    const item = evt.item as Combo;
     if (!this.validationCombo(item)) return;
 
     const graph = this.graph;
@@ -338,8 +348,8 @@ export class DragNode extends BaseBehavior {
    */
   update(item: Item, evt) {
     const { origin } = this;
-    const model: NodeConfig = item.model;
-    const nodeId: string = model.id;
+    const model = item.model;
+    const nodeId = model.id;
     if (!this.point[nodeId]) {
       this.point[nodeId] = {
         x: model.x || 0,
@@ -367,37 +377,35 @@ export class DragNode extends BaseBehavior {
    * @param {number} y 拖动单个元素时候的y坐标
    */
   updateDelegate(e) {
-    let { delegateRect, delegateStyle } = this.cfg;
-
-    if (!delegateRect) {
-      // 拖动多个
-      const parent = this.graph.get('group');
-      const attrs = deepMix({}, Global.delegateStyle, delegateStyle);
-
-      const { x: cx, y: cy, width, height, minX, minY } = this.calculationGroupPosition(e);
-      this.originPoint = { x: cx, y: cy, width, height, minX, minY };
-      // model上的x, y是相对于图形中心的，delegateShape是g实例，x,y是绝对坐标
-      delegateRect = parent.addShape('rect', {
-        attrs: {
-          width,
-          height,
-          x: cx,
-          y: cy,
-          ...attrs,
-        },
-        name: 'rect-delegate-shape',
-      });
-      // delegateRect.set('capture', false);
-    } else {
-      // @ts-ignore
-      const clientX = e.x - this.origin.x + this.originPoint.minX;
-      // @ts-ignore
-      const clientY = e.y - this.origin.y + this.originPoint.minY;
-      delegateRect.attr({
-        x: clientX,
-        y: clientY,
-      });
-    }
+    // let { delegateRect, delegateStyle } = this.cfg;
+    // if (!delegateRect) {
+    //   // 拖动多个
+    //   const parent = this.graph.get('group');
+    //   const attrs = deepMix({}, Global.delegateStyle, delegateStyle);
+    //   const { x: cx, y: cy, width, height, minX, minY } = this.calculationGroupPosition(e);
+    //   this.originPoint = { x: cx, y: cy, width, height, minX, minY };
+    //   // model上的x, y是相对于图形中心的，delegateShape是g实例，x,y是绝对坐标
+    //   delegateRect = parent.addShape('rect', {
+    //     attrs: {
+    //       width,
+    //       height,
+    //       x: cx,
+    //       y: cy,
+    //       ...attrs,
+    //     },
+    //     name: 'rect-delegate-shape',
+    //   });
+    //   // delegateRect.set('capture', false);
+    // } else {
+    //   // @ts-ignore
+    //   const clientX = e.x - this.origin.x + this.originPoint.minX;
+    //   // @ts-ignore
+    //   const clientY = e.y - this.origin.y + this.originPoint.minY;
+    //   delegateRect.attr({
+    //     x: clientX,
+    //     y: clientY,
+    //   });
+    // }
   }
   /**
    * 计算delegate位置，包括左上角左边及宽度和高度

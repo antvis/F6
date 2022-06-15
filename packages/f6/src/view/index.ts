@@ -1,6 +1,6 @@
-//@ts-nocheck
 import { action, makeObservable, observable } from 'mobx';
-import { formatPadding } from '../utils';
+import { Point } from '../types';
+import { formatPadding } from '../utils/base';
 
 export class View {
   graph = null;

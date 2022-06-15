@@ -1,11 +1,11 @@
-//@ts-nocheck
 import { isNil } from '@antv/util';
 import { action, computed, makeObservable, observable } from 'mobx';
 import { v4 as uuid } from 'uuid';
+import { BaseItemModel, ID } from '../../types';
 import { Item } from './item';
 
-export abstract class ItemManger {
-  items = {};
+export abstract class ItemManger<T extends BaseItemModel, I extends Item<T>> {
+  items: Record<ID, I> = {};
 
   constructor() {
     makeObservable(this, {
@@ -19,10 +19,10 @@ export abstract class ItemManger {
     });
   }
 
-  init(items) {
-    if (isNil(items)) return;
+  init(models) {
+    if (isNil(models)) return;
 
-    const instances = items?.reduce((prev, data) => {
+    const instances = models?.reduce((prev, data) => {
       const item = this.createItem(data);
       if (isNil(item.id)) {
         item.id = uuid();
@@ -33,8 +33,7 @@ export abstract class ItemManger {
     this.items = instances;
   }
 
-  /**  */
-  abstract createItem(data): Item;
+  abstract createItem(data): I;
 
   get models() {
     return Object.values(this.items).map((node) => node.model);

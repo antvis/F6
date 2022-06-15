@@ -1,5 +1,6 @@
-//@ts-nocheck
 import { each, isArray, isString } from '@antv/util';
+import { BaseBehavior } from '../behavior';
+import { ModeOption, Modes, ModeType } from '../types';
 
 export default class ModeService {
   graph = null;
@@ -34,7 +35,7 @@ export default class ModeService {
    */
   public mode: string;
 
-  private currentBehaves: IBehaviorOption[];
+  private currentBehaves: BaseBehavior<any>[];
 
   constructor(graph, modes?, defaultMode?) {
     this.destroyed = false;
@@ -71,8 +72,8 @@ export default class ModeService {
 
   private setBehaviors(mode: string) {
     const behaviors = this.modes[mode];
-    const behaves: IBehaviorOption[] = [];
-    let behave: IBehaviorOption;
+    const behaves: BaseBehavior<any>[] = [];
+    let behave: BaseBehavior<any>;
     each(behaviors || [], (behavior) => {
       const BehaviorInstance = this.behaviorService.getBehavior(behavior.type || behavior);
       if (!BehaviorInstance) {
@@ -204,7 +205,11 @@ export default class ModeService {
    * @param {string | string[]} modes 指定的模式中的行为，不指定则为 default
    * @return {Graph} Graph
    */
-  public updateBehavior(behavior: string, newCfg: object, mode?: string): ModeService {
+  public updateBehavior(
+    behavior: ModeOption | ModeType,
+    newCfg: object,
+    mode?: string,
+  ): ModeService {
     if (isString(behavior)) {
       behavior = { type: behavior };
     }
@@ -251,7 +256,7 @@ export default class ModeService {
   public destroy() {
     // (this.graph as IAbstractGraph | null) = null;
     (this.modes as Modes | null) = null;
-    (this.currentBehaves as IBehaviorOption[] | null) = null;
+    (this.currentBehaves as BaseBehavior<any>[] | null) = null;
     this.destroyed = true;
   }
 }
