@@ -25,12 +25,9 @@ const OriginEventType = {
   drop: 'drop',
 };
 
-type Fun = () => void;
 export default class EventService extends EE {
   graph = null;
-  canvasHandler!: Fun;
   canvas = null;
-
   root = null;
 
   protected dragging: boolean = false;
@@ -46,9 +43,16 @@ export default class EventService extends EE {
     this.graph = graph;
   }
 
+  eventHandlers: Record<string, Array<(e) => void>> = {};
+
+  pushEventHandlers(type, callback) {
+    this.eventHandlers[type] = [...(this.eventHandlers[type] || []), callback];
+    return callback;
+  }
+
   // 初始化 G6 中的事件
   protected initEvents(root, canvas) {
-    root.on(OriginEventType.touchstart, (evt) => {
+    const tapStart = this.pushEventHandlers(OriginEventType.touchstart, (evt) => {
       evt.target.tap = {
         startTime: Date.now(),
         startX: evt.clientX,
@@ -58,13 +62,13 @@ export default class EventService extends EE {
       };
     });
 
-    root.on(OriginEventType.touchmove, (evt) => {
+    const tapMove = this.pushEventHandlers(OriginEventType.touchmove, (evt) => {
       const tap = evt.target;
       tap.endX = evt.clientX;
       tap.endY = evt.clientY;
     });
 
-    root.on(OriginEventType.touchend, (evt) => {
+    const tapEnd = this.pushEventHandlers(OriginEventType.touchend, (evt) => {
       if (!evt.target.tap) return;
       const { startTime, startX, startY, endX, endY } = evt.target.tap;
       if (Date.now() - startTime > 250) {
@@ -77,14 +81,34 @@ export default class EventService extends EE {
       this.onCanvasEvents(this.transformEvent(evt, 'tap'));
     });
 
-    Object.values(OriginEventType).forEach((type) => {
-      root.on(type, (evt) => this.onCanvasEvents(this.transformEvent(evt, type)));
-    });
-
-    root.on(OriginEventType.dbclick, (evt) => {
+    const dbTap = this.pushEventHandlers(OriginEventType.dbclick, (evt) => {
       this.onCanvasEvents(this.transformEvent(evt, 'dbtap'));
     });
+
+    root.on(OriginEventType.touchstart, tapStart);
+    root.on(OriginEventType.touchmove, tapMove);
+    root.on(OriginEventType.touchend, tapEnd);
+    root.on(OriginEventType.dbclick, dbTap);
+
+    Object.values(OriginEventType).forEach((type) => {
+      const fn = this.pushEventHandlers(type, (evt) =>
+        this.onCanvasEvents(this.transformEvent(evt, type)),
+      );
+      root.on(type, fn);
+    });
+
     this.canvas = canvas;
+    this.root = root;
+  }
+
+  protected clearEvents() {
+    const root = this.root;
+    Object.entries(this.eventHandlers).forEach(([eventType, events]) => {
+      events.forEach((fn) => {
+        root.off(eventType, fn);
+      });
+    });
+    this.eventHandlers = {};
   }
 
   // 获取 shape 的 item 对象
@@ -126,7 +150,7 @@ export default class EventService extends EE {
    * 处理 canvas 事件
    * @param evt 事件句柄
    */
-  protected onCanvasEvents = (evt) => {
+  protected onCanvasEvents(evt) {
     const canvas = this.canvas;
     const { target } = evt;
     const eventType = evt.type;
@@ -206,7 +230,7 @@ export default class EventService extends EE {
     // if (eventType === 'panmove') {
     //   this.handleTouchMove(evt, type);
     // }
-  };
+  }
 
   /**
    * 处理扩展事件
@@ -246,6 +270,7 @@ export default class EventService extends EE {
     // this.extendEvents.length = 0;
     // (this.canvasHandler as Fun | null) = null;
     this.destroyed = true;
+    this.clearEvents();
   }
 
   /**

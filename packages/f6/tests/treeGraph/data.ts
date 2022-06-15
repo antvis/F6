@@ -37,7 +37,6 @@ export default {
     {
       id: 'SubTreeNode2',
       cluster: 'c0',
-
       children: [
         {
           id: 'SubTreeNode2.1',

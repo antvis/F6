@@ -7,8 +7,6 @@ export class Node extends Component {
   nodeRef = { current: null };
   isAnimating = false;
 
-  prevPosition = {};
-
   shouldUpdate(_nextProps: any): boolean {
     return !this.isAnimating;
   }
@@ -21,14 +19,25 @@ export class Node extends Component {
   }
 
   didMount(): void {
-    const { item } = this.props;
+    const { item, node } = this.props;
+    const { x, y } = node;
     (this.container as IShape).item = item;
+    this.container.style.x = x;
+    this.container.style.y = y;
+    this.container.style.draggable = true;
+    this.container.style.droppable = true;
+  }
+
+  didUpdate(): void {
+    const { x, y } = this.props.node;
+    this.container.style.x = x;
+    this.container.style.y = y;
   }
 
   getBBox = () => {
     const { node } = this.props;
     if (!node) return;
-    let matrix = calcMatrix(this.getNodeRoot());
+    let matrix = calcMatrix(this.container);
     return calculateBBox(calcBBox(this.getKeyShape()), matrix);
   };
 
@@ -74,7 +83,7 @@ export class Node extends Component {
       console.warn('不存在对应的 Node Shape');
       return null;
     }
-    node.label = node.id;
+
     return (
       <Shape
         node={node}

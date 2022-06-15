@@ -44,6 +44,8 @@ export class BaseEdge extends BaseShape<EdgeConfig> {
     return this.container.children[0];
   }
 
+  itemType = 'edge';
+
   /**
    * 文本的位置
    * @type {String}

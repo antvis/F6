@@ -1,12 +1,14 @@
-import { Canvas, jsx, TreeGraph } from '../../src';
+import { Canvas, jsx, TreeGraph, Util } from '../../src';
 import { createContainer } from '../util';
 import data from './data';
 
 describe('F6 TreeGraph', () => {
   it('export', () => {
     const container = createContainer('TreeGraph');
+    const context = Util.createContext(container, 500, 500);
+
     const { props } = (
-      <Canvas container={container} pixelRatio={1} width={300} height={500}>
+      <Canvas context={context} pixelRatio={1} width={300} height={500}>
         <TreeGraph
           data={data}
           layout={{

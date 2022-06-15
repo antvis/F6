@@ -12,7 +12,6 @@ export class NodeManager extends ItemManger<NodeConfig, Node> {
   }
 
   createItem(data: any) {
-    this.models;
     return new Node(data, this.graph);
   }
 

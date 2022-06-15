@@ -1,9 +1,6 @@
-import { ComboConfig } from '../../types';
 import { Node } from '../node/node';
 
 export class Combo extends Node {
-  model: ComboConfig;
-
   constructor(model, graph) {
     super(model, graph);
     this.model = { ...model };

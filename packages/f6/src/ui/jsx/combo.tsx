@@ -1,5 +1,5 @@
 import { Component, jsx } from '@antv/f-engine';
-import { getCombo } from './components/comos';
+import { getCombo } from './components/combos';
 
 import { calcBBox, calcMatrix, calculateBBox } from '../adapter/element';
 
@@ -113,9 +113,5 @@ export class Combo extends Component {
     };
 
     return <Shape ref={this.nodeRef} combo={this.cacheCombo} states={states} />;
-  }
-
-  didUnmount(): void {
-    console.log('unmount');
   }
 }

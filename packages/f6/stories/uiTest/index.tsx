@@ -1,31 +1,8 @@
-import { makeObservable, observable, reaction } from 'mobx';
 import React, { useEffect } from 'react';
-import { Canvas, Graph, Util } from '../../src';
+import { Canvas, Graph, registerLayout, Util } from '../../src';
+import ForceLayout from '../../src/layout/forceLayout';
 import data from './data';
-class Test {
-  test = [];
-  constructor() {
-    makeObservable(this, {
-      test: observable,
-    });
-  }
 
-  random() {
-    this.test[0] = [];
-  }
-}
-
-const testStore = new Test();
-reaction(
-  () => testStore,
-  () => {
-    console.log(testStore.test);
-  },
-);
-
-setInterval(() => {
-  testStore.random();
-}, 1000);
 export default () => {
   const ref = React.useRef(null);
   const height = window.innerHeight - 32; // demos padding
@@ -93,8 +70,8 @@ export default () => {
   //     graph.fitView();
   //   }
   // }, []);
-  // registerLayout('force', DagreLayout);
-  // registerLayout('dagre', DagreLayout);
+  registerLayout('force', ForceLayout);
+  // registerLayout('dagre', ForceLayout);
   useEffect(() => {
     const context = Util.createContext(ref.current, width, height);
     const { props } = (

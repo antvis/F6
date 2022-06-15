@@ -1,8 +1,8 @@
-// @ts-nocheck
 import { ext } from '@antv/matrix-util';
 import { each, isNil } from '@antv/util';
 import { action, makeObservable, observable } from 'mobx';
 import { BehaviorService } from '../behavior';
+import { Combo } from '../item/combo/combo';
 import { ComboManager } from '../item/combo/manager';
 import { EdgeManager } from '../item/edge/manager';
 import { HullManager } from '../item/hull/hull';
@@ -265,8 +265,18 @@ export class Graph {
   }
 
   getMatrix() {}
+
+  //@ts-ignore
   getCanvasBBox(): BBox {}
   inject(key, fn) {
     this[key] = fn;
+  }
+
+  destory() {
+    this.nodeManager.destory();
+    this.edgeManager.destory();
+    this.comboManager.destory();
+    this.hullManager.destory();
+    this.eventService.destory();
   }
 }

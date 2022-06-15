@@ -1,21 +1,21 @@
 //@ts-nocheck
 
-import { IGroup, BBox } from '@antv/g-base';
+import { BBox, IGroup } from '@antv/g-base';
 import { vec2 } from '@antv/matrix-util';
+import { clone, isNumber, isObject, isString } from '@antv/util';
 import Global from '../global';
 import {
+  ComboConfig,
+  ComboTree,
   EdgeData,
   IBBox,
   IPoint,
   IShapeBase,
   LabelStyle,
   NodeConfig,
-  ComboTree,
-  ComboConfig,
 } from '../types';
-import { applyMatrix } from './math';
 import letterAspectRatio from './letterAspectRatio';
-import { isString, clone, isNumber, isObject } from '@antv/util';
+import { applyMatrix } from './math';
 // import { IAbstractGraph } from '../interface/graph';
 
 const { PI, sin, cos } = Math;

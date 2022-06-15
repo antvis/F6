@@ -3,7 +3,6 @@ import { Item } from '../base/item';
 import { ItemManger } from '../base/manager';
 
 export class Hull extends Item<HullCfg> {
-  model: HullCfg;
   constructor(model) {
     super();
     this.model = { ...model };

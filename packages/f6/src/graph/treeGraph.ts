@@ -109,7 +109,7 @@ export class TreeGraph extends Graph {
     }
 
     // 更新新节点下所有子节点
-    each(data.children || [], (child: TreeGraphData) => {
+    each(data.children || [], (child) => {
       self.innerUpdateChild(child, current);
     });
 

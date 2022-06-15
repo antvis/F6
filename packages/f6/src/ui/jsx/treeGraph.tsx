@@ -1,9 +1,7 @@
-import { jsx, Component } from '@antv/f-engine';
-import { GraphRoot } from './graphRoot';
+import { Component, jsx } from '@antv/f-engine';
 import { TreeGraph as RootStore } from '../../graph/treeGraph';
+import { GraphRoot } from './graphRoot';
 export class TreeGraph extends Component {
-  hammer = null;
-
   willMount(): void {
     const graph = new RootStore();
     graph.eventService.initEvents(this.context.root, this.context.canvas);
@@ -12,5 +10,9 @@ export class TreeGraph extends Component {
 
   render() {
     return <GraphRoot {...this.props}></GraphRoot>;
+  }
+
+  didUnmount(): void {
+    this.context.graph.destory();
   }
 }

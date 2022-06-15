@@ -123,17 +123,12 @@ export class Hull extends Component {
     this.setPadding();
     const path = this.calcPath(members, nonMembers);
     return (
-      <Path2
+      <path
         style={{
           ...{ ...this.cfg.style, ...(hull.style || {}) },
           path,
         }}
-      ></Path2>
+      ></path>
     );
   }
-}
-
-function Path2(props) {
-  const { style, onClick } = props;
-  return <path style={style} onClick={onClick}></path>;
 }

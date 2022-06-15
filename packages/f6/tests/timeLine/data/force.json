@@ -1,0 +1,92 @@
+{
+  "nodes": [
+    {
+      "type": "circle",
+      "size": [30, 30],
+      "label": "0",
+      "id": "0",
+      "cluster": "a",
+      "comboId": "combo1"
+    },
+    {
+      "id": "1",
+      "label": "1",
+      "cluster": "a",
+      "comboId": "combo1",
+      "type": "circle",
+      "size": [30, 30]
+    },
+    {
+      "id": "2",
+      "label": "2",
+      "cluster": "a",
+      "type": "circle",
+      "size": [30, 30]
+    },
+    {
+      "id": "3",
+      "label": "3",
+      "cluster": "a",
+      "type": "circle",
+      "size": [30, 30]
+    },
+    {
+      "type": "circle",
+      "id": "4",
+      "label": "4",
+      "cluster": "a"
+    },
+    {
+      "type": "circle",
+      "id": "5",
+      "label": "5",
+      "cluster": "a"
+    }
+  ],
+  "edges": [
+    {
+      "source": "0",
+      "target": "1"
+    },
+    {
+      "source": "0",
+      "target": "2"
+    },
+
+    {
+      "source": "0",
+      "target": "3"
+    },
+    {
+      "source": "0",
+      "target": "4"
+    },
+    {
+      "source": "0",
+      "target": "5"
+    }
+  ],
+  "combos": [
+    {
+      "id": "combo1",
+      "label": "Combo 1",
+      "parentId": "combo2"
+    },
+    {
+      "id": "combo2",
+      "label": "Combo 2"
+    },
+    {
+      "id": "combo3",
+      "label": "Combo 3"
+    }
+  ],
+  "hulls": [
+    {
+      "id": "centerNode-hull",
+      "type": "bubble",
+      "members": ["0", "1", "2", "3"],
+      "padding": 10
+    }
+  ]
+}

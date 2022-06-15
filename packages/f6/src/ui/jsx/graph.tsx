@@ -1,10 +1,8 @@
-import { jsx, Component } from '@antv/f-engine';
-import { GraphRoot } from './graphRoot';
+import { Component, jsx } from '@antv/f-engine';
 import { Graph as RootStore } from '../../graph/graph';
+import { GraphRoot } from './graphRoot';
 
 export class Graph extends Component {
-  hammer = null;
-
   willMount(): void {
     const graph = new RootStore();
     graph.eventService.initEvents(this.context.root, this.context.canvas);
@@ -13,5 +11,9 @@ export class Graph extends Component {
 
   render() {
     return <GraphRoot {...this.props}></GraphRoot>;
+  }
+
+  didUnmount(): void {
+    this.context.graph.destory();
   }
 }

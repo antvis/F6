@@ -4,11 +4,13 @@ import { BBox } from '../../types';
 import { BaseItemModel } from '../../types/item';
 
 export class Item<T extends BaseItemModel> {
-  model: T;
+  // @ts-ignore
+  model: T = {};
   states: String[] = [];
   destroyed = false;
 
   constructor() {
+    // this.model = {};
     makeObservable(
       this,
       {

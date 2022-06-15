@@ -25,6 +25,7 @@ export class BaseNode extends BaseShape<NodeConfig> {
     return this.container.children[0];
   }
 
+  itemType = 'node';
   /**
    * 文本相对图形的位置，默认以中心点
    * 位置包括： top, bottom, left, right, center
@@ -149,8 +150,6 @@ export class BaseNode extends BaseShape<NodeConfig> {
 
   didUpdate(): void {
     this.rotateLabel(this.renderLabelStyle, this.getLabelShape());
-    const { node } = this.props;
-    // this.getRootShape()?.setPosition(node.x,node.y);
   }
 
   rotateLabel(labelStyle, label) {
@@ -319,29 +318,31 @@ export class BaseNode extends BaseShape<NodeConfig> {
     const { node, animation, onFrame, states, onEnd } = this.props;
     return (
       <group
-        style={{ x: node?.x || 0, y: node?.y || 0, draggable: true, droppable: true }}
-        animation={{
-          // appear: {
-          //   easing: 'linear',
-          //   duration: 300,
-          //   // ...(animation.appear || {}),
-          //   onFrame,
-          //   property: ['x', 'y'],
-          // },
-          update: {
-            easing: 'linear',
-            duration: 150,
-            property: ['x', 'y'],
-            onFrame,
-            onEnd,
-          },
-          // leave: {
-          //   easing: 'linear',
-          //   duration: 300,
-          //   onFrame,
-          //   property: ['x', 'y'],
-          // },
-        }}
+        style={{ draggable: true, droppable: true }}
+        animation={
+          {
+            // appear: {
+            //   easing: 'linear',
+            //   duration: 300,
+            //   // ...(animation.appear || {}),
+            //   onFrame,
+            //   property: ['x', 'y'],
+            // },
+            // update: {
+            //   easing: 'linear',
+            //   duration: 150,
+            //   property: ['x', 'y'],
+            //   onFrame,
+            //   onEnd,
+            // },
+            // leave: {
+            //   easing: 'linear',
+            //   duration: 300,
+            //   onFrame,
+            //   property: ['x', 'y'],
+            // },
+          }
+        }
       >
         {this.renderShape(node, states)}
         {/* label */}
