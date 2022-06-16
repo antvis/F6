@@ -16,6 +16,7 @@ const OriginEventType = {
   panend: 'panend',
   press: 'press',
   swipe: 'swipe',
+
   dragstart: 'dragstart',
   drag: 'drag',
   dragend: 'dragend',
@@ -154,6 +155,8 @@ export default class EventService extends EE {
     const canvas = this.canvas;
     const { target } = evt;
     const eventType = evt.type;
+    console.log(eventType);
+
     // if (eventType === 'drop' || eventType === 'dragend') console.log(eventType);
     /**
      * (clientX, clientY): 相对于页面的坐标；
@@ -179,6 +182,11 @@ export default class EventService extends EE {
     evt.y = point.y;
 
     // evt.currentTarget = graph;
+
+    if (eventType === 'dragend') console.log('dragend: ', evt.target);
+    if (eventType === 'drag') console.log('drag: ', evt.target);
+    if (eventType === 'dragstart') console.log('dragstart: ', evt.target);
+    if (eventType === 'drop') console.log('drop: ', evt.target);
 
     if (target === canvas.document) {
       // if (eventType === 'panmove') {

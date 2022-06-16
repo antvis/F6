@@ -1,5 +1,5 @@
 import { IPoint } from '@antv/f6-core';
-import { each, isNil } from '@antv/util';
+import { each } from '@antv/util';
 import { action, makeObservable } from 'mobx';
 import { Graph } from '../../graph/graph';
 import { NodeConfig, Point } from '../../types';
@@ -58,11 +58,6 @@ export class Node extends Item<NodeConfig> {
     return this.graph.getItem(this.model.parent);
   }
 
-  setRootId(id) {
-    if (isNil(id)) return;
-    this.rootId = id;
-  }
-
   calcAnchorPoints() {
     const id = this.model.id;
     const bbox = this.getBBox();
@@ -81,7 +76,6 @@ export class Node extends Item<NodeConfig> {
   }
 
   getLinkPointByAnchor(index: number) {
-    const id = this.model.id;
     const anchorPoints = this.calcAnchorPoints();
     return anchorPoints[index];
   }

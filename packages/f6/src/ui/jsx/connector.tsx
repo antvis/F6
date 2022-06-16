@@ -15,12 +15,12 @@ export function connect(mapStatetoProps?): any {
           const stateProps = mapStatetoProps(this.context.graph, this.props, this.prevProps);
           if (!stateProps) return;
           let isEqual = true;
-          // for (const [key, value] of Object.entries(stateProps || {})) {
-          //   if (this.prevProps[key] !== value) {
-          //     isEqual = false;
-          //   }
-          // }
-          // if (isEqual) return;
+          for (const [key, value] of Object.entries(stateProps || {})) {
+            if (this.prevProps[key] !== value) {
+              isEqual = false;
+            }
+          }
+          if (isEqual) return;
           this.prevProps = stateProps;
           this.isFirst &&
             (this.state = {

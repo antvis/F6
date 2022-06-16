@@ -24,6 +24,7 @@ export class Graph {
   modeService = null;
   behaviorService = null;
   view = null;
+  enabeAnimate = true;
 
   matrix = [1, 0, 0, 0, 1, 0, 0, 0, 1];
 
@@ -42,6 +43,8 @@ export class Graph {
       matrix: observable,
       translate: action,
       zoom: action,
+      enabeAnimate: observable,
+      setEnableAnimate: action,
     });
   }
 
@@ -270,6 +273,10 @@ export class Graph {
   getCanvasBBox(): BBox {}
   inject(key, fn) {
     this[key] = fn;
+  }
+
+  setEnableAnimate(enabeAnimate: boolean) {
+    this.enabeAnimate = enabeAnimate;
   }
 
   destory() {

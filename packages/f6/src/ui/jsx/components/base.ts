@@ -28,32 +28,7 @@ export class BaseShape<T extends ModelConfig> extends Component {
     return {};
   }
   getOptions(cfg?: T | {}): T {
-    return deepMix(
-      {
-        // 解决局部渲染导致的文字移动残影问题
-        labelCfg: {
-          style: {
-            fontFamily:
-              typeof window !== 'undefined' && window.getComputedStyle
-                ? window.getComputedStyle(document.body, null).getPropertyValue('font-family') ||
-                  'Arial, sans-serif'
-                : 'Arial, sans-serif',
-          },
-        },
-        descriptionCfg: {
-          style: {
-            fontFamily:
-              typeof window !== 'undefined' && window.getComputedStyle
-                ? window.getComputedStyle(document.body, null).getPropertyValue('font-family') ||
-                  'Arial, sans-serif'
-                : 'Arial, sans-serif',
-          },
-        },
-      },
-      this.options,
-      this.getCustomConfig(cfg) || {},
-      cfg,
-    );
+    return deepMix(this.options, this.getCustomConfig(cfg) || {}, cfg);
   }
 
   getLabelStyleByPosition(cfg: T, labelCfg?: ILabelConfig, group?: IGroup): Partial<LabelStyle> {

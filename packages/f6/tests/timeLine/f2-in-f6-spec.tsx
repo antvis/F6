@@ -1,4 +1,4 @@
-import { Canvas, Chart, Interval, jsx } from '@antv/f2/src';
+import { Canvas, Chart, Component, Interval, jsx } from '@antv/f2/src';
 import { Graph, registerLayout, registerNode } from '@antv/f6/src';
 import ForceLayout from '@antv/f6/src/layout/forceLayout';
 import { createContext } from '../util';
@@ -44,20 +44,32 @@ const GraphData = {
       label: '0',
       id: '0',
       cluster: 'a',
+      comboId: 'combo1',
     },
     {
+      id: '1',
+      label: '1',
+      cluster: 'a',
+      comboId: 'combo1',
       type: 'circle',
       size: [30, 30],
-      label: '0',
-      id: '0',
-      cluster: 'a',
     },
     {
+      id: '2',
       type: 'f2',
       size: [30, 30],
       label: '0',
-      id: '0',
       cluster: 'a',
+    },
+  ],
+  edges: [
+    {
+      source: '0',
+      target: '1',
+    },
+    {
+      source: '0',
+      target: '2',
     },
   ],
 };
@@ -67,26 +79,40 @@ describe('Chart', () => {
     const context = createContext('柱图-treemap 转换');
     registerLayout('force', ForceLayout);
 
-    function F2Chart(props) {
-      return (
-        <Chart
-          data={data}
-          coord={{
-            transposed: true,
-            type: 'polar',
-          }}
-        >
-          <Interval
-            x="a"
-            y="percent"
-            adjust="stack"
-            color={{
-              field: 'name',
-              range: ['#1890FF', '#13C2C2', '#2FC25B', '#FACC14', '#F04864', '#8543E0'],
+    class F2Chart extends Component {
+      getKeyShape() {
+        return this.container;
+      }
+      getAnchorPoints() {}
+      render() {
+        const { node } = this.props;
+        // console.log(node);
+        return (
+          <Chart
+            data={data}
+            style={{
+              // left: node.x,
+              // top: node.y,
+              width: 100,
+              height: 100,
             }}
-          />
-        </Chart>
-      );
+            coord={{
+              transposed: true,
+              type: 'polar',
+            }}
+          >
+            <Interval
+              x="a"
+              y="percent"
+              adjust="stack"
+              color={{
+                field: 'name',
+                range: ['#1890FF', '#13C2C2', '#2FC25B', '#FACC14', '#F04864', '#8543E0'],
+              }}
+            />
+          </Chart>
+        );
+      }
     }
 
     registerNode('f2', F2Chart);
@@ -97,8 +123,8 @@ describe('Chart', () => {
           data={GraphData}
           layout={{
             type: 'force',
-            preventOverlap: true,
-            alphaDecay: 0,
+            // preventOverlap: true,
+            // alphaDecay: 0,
           }}
           modes={{
             default: ['drag-node', 'drag-combo', 'click-select'],

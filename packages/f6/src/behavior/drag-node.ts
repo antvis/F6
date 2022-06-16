@@ -78,7 +78,7 @@ export class DragNode extends BaseBehavior<DragNodeCfg> {
     if (!item || item.destroyed || item.hasLocked()) {
       return;
     }
-
+    this.graph.setEnableAnimate(false);
     this.graph.comboManager.setAutoSize(onlyChangeComboSize);
 
     this.targets = [];
@@ -155,8 +155,8 @@ export class DragNode extends BaseBehavior<DragNodeCfg> {
    */
   onDragEnd(evt) {
     // let { delegateRect } = this.cfg;
-
     this.graph.comboManager.setAutoSize(true);
+    this.graph.setEnableAnimate(true);
 
     if (!this.origin || !this.shouldEnd.call(this, evt)) {
       return;

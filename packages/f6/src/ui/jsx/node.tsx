@@ -6,13 +6,13 @@ import { getNode } from './components/nodes';
 export class Node extends Component {
   nodeRef = { current: null };
   isAnimating = false;
+  animate = false;
 
   shouldUpdate(_nextProps: any): boolean {
     return !this.isAnimating;
   }
 
   willMount(): void {
-    this.animate = false;
     const { item } = this.props;
     item.inject('getBBox', this.getBBox);
     item.inject('getAnchorPoints', this.getAnchorPoints);
@@ -22,10 +22,10 @@ export class Node extends Component {
     const { item, node } = this.props;
     const { x, y } = node;
     (this.container as IShape).item = item;
-    this.container.style.x = x;
-    this.container.style.y = y;
-    this.container.style.draggable = true;
-    this.container.style.droppable = true;
+    this.container.setAttribute('x', x);
+    this.container.setAttribute('y', y);
+    this.container.setAttribute('draggable', true);
+    this.container.setAttribute('droppable', true);
   }
 
   didUpdate(): void {

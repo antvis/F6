@@ -96,7 +96,7 @@ export class DragCombo extends BaseBehavior<DragComboCfg> {
     const { item } = evt;
 
     if (!this.validationCombo(evt)) return;
-
+    this.graph.setEnableAnimate(false);
     this.graph.comboManager.setAutoSize(onlyChangeComboSize);
 
     this.targets = [];
@@ -332,6 +332,7 @@ export class DragCombo extends BaseBehavior<DragComboCfg> {
   }
 
   end(comboDropedOn, evt) {
+    this.graph.setEnableAnimate(true);
     this.graph.comboManager.setAutoSize(true);
     if (!this.origin) return;
     const graph = this.graph;

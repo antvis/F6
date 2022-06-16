@@ -89,6 +89,8 @@ export class DragCanvas extends BaseBehavior<DragCanvasCfg> {
       return;
     }
 
+    this.graph.setEnableAnimate(false);
+
     const target = e.target;
     // const targetIsCanvas = target && target.isCanvas && target.isCanvas();
     // if (!this.allowDragOnItem && !targetIsCanvas) return;
@@ -179,6 +181,7 @@ export class DragCanvas extends BaseBehavior<DragCanvasCfg> {
       this.origin = null;
       return;
     }
+    this.graph.setEnableAnimate(true);
 
     // e = cloneEvent(e);
 

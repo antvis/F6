@@ -211,7 +211,7 @@ export class BaseNode extends BaseShape<NodeConfig> {
     // image的情况下有可能为null
     const labelCfg = (defaultLabelCfg || {}) as ILabelConfig;
     this.renderLabelStyle = this.getLabelStyle!(cfg, labelCfg, this.getRootShape());
-
+    this.renderLabelStyle.pointerEvents = 'none';
     return <text style={this.renderLabelStyle} ref={this.labelRef}></text>;
   }
 
@@ -318,7 +318,6 @@ export class BaseNode extends BaseShape<NodeConfig> {
     const { node, animation, onFrame, states, onEnd } = this.props;
     return (
       <group
-        style={{ draggable: true, droppable: true }}
         animation={
           {
             // appear: {

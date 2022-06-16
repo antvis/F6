@@ -56,9 +56,9 @@ export class SimpleCircle extends BaseNode {
           //   onFrame,
           // },
           update: {
-            easing: 'linear',
-            duration: 450,
-            property: ['x', 'y', 'width', 'height', 'fill'],
+            // easing: 'linear',
+            // duration: 450,
+            // property: ['x', 'y', 'width', 'height', 'fill'],
             // ...(animation.update || {}),
             // onFrame,
           },
