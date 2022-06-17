@@ -7,8 +7,8 @@ import { ComboManager } from '../item/combo/manager';
 import { EdgeManager } from '../item/edge/manager';
 import { HullManager } from '../item/hull/hull';
 import { NodeManager } from '../item/node/manager';
-import { layoutManager } from '../layout/manager';
 import EventService from '../service/eventService';
+import { LayoutService } from '../service/layoutService';
 import ModeService from '../service/modeService';
 import { BBox } from '../types';
 import { View } from '../view';
@@ -18,13 +18,14 @@ export class Graph {
   nodeManager = null;
   edgeManager = null;
   comboManager = null;
-  layoutManager = null;
+  layoutService = null;
   hullManager = null;
   eventService = null;
   modeService = null;
   behaviorService = null;
   view = null;
   enabeAnimate = true;
+  isLayoutFinished = false;
 
   matrix = [1, 0, 0, 0, 1, 0, 0, 0, 1];
 
@@ -33,9 +34,9 @@ export class Graph {
     this.edgeManager = new EdgeManager(this);
     this.comboManager = new ComboManager(this);
     this.view = new View(this);
-    this.layoutManager = new layoutManager();
     this.hullManager = new HullManager();
 
+    this.layoutService = new LayoutService();
     this.behaviorService = BehaviorService;
     this.eventService = new EventService(this);
     this.modeService = new ModeService(this);
@@ -45,6 +46,8 @@ export class Graph {
       zoom: action,
       enabeAnimate: observable,
       setEnableAnimate: action,
+      isLayoutFinished: observable,
+      setLayoutFinshed: action,
     });
   }
 
@@ -55,7 +58,7 @@ export class Graph {
     this.edgeManager.init(data.edges);
     this.comboManager.init(data.combos);
     this.hullManager.init(data.hulls);
-    this.layoutManager.setLayoutConfig(layout, width, height);
+    this.layoutService.setLayoutConfig(layout, width, height);
     this.view.init({ width, height, devicePixelRatio });
   }
 
@@ -73,7 +76,15 @@ export class Graph {
         this.nodeManager.setPosition(id, { x, y });
       });
     };
-    this.layoutManager.layout({ nodes, edges, combos: [] }, tick, tick);
+
+    this.layoutService.layout(
+      { nodes, edges, combos: [] },
+      () => {
+        tick();
+        this.setLayoutFinshed(true);
+      },
+      tick,
+    );
   }
 
   getItem(id) {
@@ -279,11 +290,16 @@ export class Graph {
     this.enabeAnimate = enabeAnimate;
   }
 
-  destory() {
-    this.nodeManager.destory();
-    this.edgeManager.destory();
-    this.comboManager.destory();
-    this.hullManager.destory();
-    this.eventService.destory();
+  setLayoutFinshed(isLayoutFinished: boolean) {
+    this.isLayoutFinished = isLayoutFinished;
+  }
+
+  destroy() {
+    this.nodeManager.destroy();
+    this.edgeManager.destroy();
+    this.comboManager.destroy();
+    this.hullManager.destroy();
+    this.eventService.destroy();
+    this.layoutService.destroy();
   }
 }

@@ -262,6 +262,7 @@ export class TreeGraph extends Graph {
     const layout = this.getLayout();
     const layoutData = layout(this.originData, this.layoutCfg);
     this.innerUpdateChild(layoutData);
+    this.setLayoutFinshed(true);
   }
 
   public changeData(data?): any {
@@ -278,5 +279,3 @@ export class TreeGraph extends Graph {
     }
   }
 }
-
-export const treeGraph = new TreeGraph();

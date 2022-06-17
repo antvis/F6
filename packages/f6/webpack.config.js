@@ -17,7 +17,20 @@ function lowerFirstLetter(name) {
 }
 
 let entry = {
-  F6: './src/index.ts',
+  F6: './src/index.umd.ts',
+  CircularLayout: './src/layout/circularLayout.ts',
+  ComboForceLayout: './src/layout/comboForceLayout.ts',
+  ConcentricLayout: './src/layout/concentricLayout.ts',
+  DagreLayout: './src/layout/dagreLayout.ts',
+  ForceAtlas2Layout: './src/layout/forceAtlas2Layout.ts',
+  ForceLayout: './src/layout/forceLayout.ts',
+  FruchtermanLayout: './src/layout/fruchtermanLayout.ts',
+  GForceLayout: './src/layout/gForceLayout.ts',
+  GridLayout: './src/layout/gridLayout.ts',
+  MdsLayout: './src/layout/mdsLayout.ts',
+  RadialLayout: './src/layout/radialLayout.ts',
+  RandomLayout: './src/layout/randomLayout.ts',
+  TreeGraph: './src/ui/jsx/treeGraph.tsx',
 };
 
 // const graphExtenders = fs.readdirSync(path.join(__dirname, './src/extends/graph'));
@@ -32,20 +45,20 @@ let entry = {
 module.exports = {
   entry,
   output: {
-    filename: (pathData) => {
-      const chunkName = pathData.chunk.name;
-      let filename = 'index.js';
-      if ('F6' === chunkName) {
-        filename = 'f6.js';
-      }
-      if (/graph/i.test(chunkName)) {
-        filename = `extends/graph/${lowerFirstLetter(chunkName)}.js`;
-      }
-      if (/layout/i.test(chunkName)) {
-        filename = `extends/layout/${lowerFirstLetter(chunkName)}.js`;
-      }
-      return filename;
-    },
+    // filename: (pathData) => {
+    //   const chunkName = pathData.chunk.name;
+    //   let filename = 'index.js';
+    //   if ('F6' === chunkName) {
+    //     filename = 'f6.js';
+    //   }
+    //   if (/graph/i.test(chunkName)) {
+    //     filename = `extends/graph/${lowerFirstLetter(chunkName)}.js`;
+    //   }
+    //   if (/layout/i.test(chunkName)) {
+    //     filename = `extends/layout/${lowerFirstLetter(chunkName)}.js`;
+    //   }
+    //   return filename;
+    // },
     library: '[name]',
     libraryTarget: 'umd',
     libraryExport: 'default',

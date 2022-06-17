@@ -1,6 +1,7 @@
 import EE from 'eventemitter3';
 import { getCanvasByPoint, getPointByCanvas } from './viewService';
 
+import { Gesture } from '@antv/f-engine';
 import { IShape, Matrix } from '../types';
 import { isViewportChanged } from '../utils/base';
 
@@ -11,25 +12,30 @@ const OriginEventType = {
   touchmove: 'touchmove',
   touchend: 'touchend',
   touchendoutside: 'touchendoutside',
-  panstart: 'panstart',
-  pan: 'pan',
-  panend: 'panend',
-  press: 'press',
-  swipe: 'swipe',
-
+  dragenter: 'dragenter',
+  dragleave: 'dragleave',
+  dragover: 'dragover',
+  drop: 'drop',
   dragstart: 'dragstart',
   drag: 'drag',
   dragend: 'dragend',
-  dragenter: 'dragenter',
-  dragover: 'dragover',
-  dragleave: 'dragleave',
-  drop: 'drop',
+  panstart: 'panstart',
+  pan: 'pan',
+  panend: 'panend',
+  pressstart: 'pressstart',
+  press: 'press',
+  pressend: 'pressend',
+  swipe: 'swipe',
+  pinchstart: 'pinchstart',
+  pinch: 'pinch',
+  pinchend: 'pinchend',
 };
 
 export default class EventService extends EE {
   graph = null;
   canvas = null;
   root = null;
+  gesture = null;
 
   protected dragging: boolean = false;
 
@@ -53,6 +59,8 @@ export default class EventService extends EE {
 
   // 初始化 G6 中的事件
   protected initEvents(root, canvas) {
+    this.gesture = new Gesture(canvas);
+
     const tapStart = this.pushEventHandlers(OriginEventType.touchstart, (evt) => {
       evt.target.tap = {
         startTime: Date.now(),
@@ -86,16 +94,16 @@ export default class EventService extends EE {
       this.onCanvasEvents(this.transformEvent(evt, 'dbtap'));
     });
 
-    root.on(OriginEventType.touchstart, tapStart);
-    root.on(OriginEventType.touchmove, tapMove);
-    root.on(OriginEventType.touchend, tapEnd);
-    root.on(OriginEventType.dbclick, dbTap);
+    this.gesture.on(OriginEventType.touchstart, tapStart);
+    this.gesture.on(OriginEventType.touchmove, tapMove);
+    this.gesture.on(OriginEventType.touchend, tapEnd);
+    this.gesture.on(OriginEventType.dbclick, dbTap);
 
     Object.values(OriginEventType).forEach((type) => {
       const fn = this.pushEventHandlers(type, (evt) =>
         this.onCanvasEvents(this.transformEvent(evt, type)),
       );
-      root.on(type, fn);
+      this.gesture.on(type, fn);
     });
 
     this.canvas = canvas;
@@ -103,10 +111,9 @@ export default class EventService extends EE {
   }
 
   protected clearEvents() {
-    const root = this.root;
     Object.entries(this.eventHandlers).forEach(([eventType, events]) => {
       events.forEach((fn) => {
-        root.off(eventType, fn);
+        this.gesture.off(eventType, fn);
       });
     });
     this.eventHandlers = {};
@@ -155,9 +162,6 @@ export default class EventService extends EE {
     const canvas = this.canvas;
     const { target } = evt;
     const eventType = evt.type;
-    console.log(eventType);
-
-    // if (eventType === 'drop' || eventType === 'dragend') console.log(eventType);
     /**
      * (clientX, clientY): 相对于页面的坐标；
      * (canvasX, canvasY): 相对于 <canvas> 左上角的坐标；
@@ -183,15 +187,12 @@ export default class EventService extends EE {
 
     // evt.currentTarget = graph;
 
-    if (eventType === 'dragend') console.log('dragend: ', evt.target);
-    if (eventType === 'drag') console.log('drag: ', evt.target);
-    if (eventType === 'dragstart') console.log('dragstart: ', evt.target);
-    if (eventType === 'drop') console.log('drop: ', evt.target);
+    // if (eventType === 'dragend') console.log('dragend: ', evt.target);
+    // if (eventType === 'drag') console.log('drag: ', evt.target);
+    // if (eventType === 'dragstart') console.log('dragstart: ', evt.target);
+    // if (eventType === 'drop') console.log('drop: ', evt.target);
 
     if (target === canvas.document) {
-      // if (eventType === 'panmove') {
-      //   this.handleTouchMove(evt, 'canvas');
-      // }
       evt.target = canvas;
       evt.item = null;
 

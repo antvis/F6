@@ -1,7 +1,6 @@
-import { IPoint, TreeGraphData, Util } from '@antv/f6-core';
 import { isNumber } from '@antv/util';
-
-const { traverseTree } = Util;
+import { IPoint, NodeConfig } from '../types';
+import { traverseTree } from './graphic';
 
 /**
  * 将 number | Function 类型的参数转换为 return number 的 Function
@@ -267,7 +266,7 @@ export const arrayToTextureData = (valueArrays: number[][]): Float32Array => {
   return new Float32Array(dataArray);
 };
 
-export type TreeGraphDataWithPosition = TreeGraphData & {
+export type TreeGraphDataWithPosition = NodeConfig & {
   x: number;
   y: number;
   children?: TreeGraphDataWithPosition[];

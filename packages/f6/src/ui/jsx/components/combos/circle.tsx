@@ -48,8 +48,4 @@ export class SimpleCircle extends BaseNode {
       </group>
     );
   }
-
-  didUnmount() {
-    console.log('unmount!!');
-  }
 }

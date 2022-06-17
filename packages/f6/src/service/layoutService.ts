@@ -4,8 +4,10 @@ import { Layout } from '@antv/layout/lib/layout/layout';
 import { calculationItemsBBox } from '../utils/base';
 
 const LayoutPipesAdjustNames = ['force', 'grid', 'circular'];
-export class layoutManager {
+export class LayoutService {
   protected layoutCfg;
+
+  protected destroyed;
 
   protected layoutType: string | string[] = [];
 
@@ -489,16 +491,15 @@ export class layoutManager {
     });
   }
 
-  // public destroy() {
-  //   this.destoryLayoutMethods();
-  //   this.destroyed = true;
-
-  //   this.graph.set('layout', undefined);
-  //   this.layoutCfg = undefined;
-  //   this.layoutType = undefined;
-  //   this.layoutMethods = undefined;
-  //   this.graph = null;
-  // }
+  public destroy() {
+    this.destoryLayoutMethods();
+    this.destroyed = true;
+    // this.graph.set('layout', undefined);
+    this.layoutCfg = undefined;
+    this.layoutType = undefined;
+    this.layoutMethods = undefined;
+    // this.graph = null;
+  }
 
   // 初始化节点到 center 附近
   public initPositions(center, nodes, _width, _height): boolean {

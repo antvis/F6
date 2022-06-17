@@ -25,6 +25,7 @@ const HULL_Z_INDEX = -1;
     comboStates: graph.comboManager.states,
     isAutoSize: graph.comboManager.isAutoSize,
     enabeAnimate: graph.enabeAnimate,
+    isLayoutFinished: graph.isLayoutFinished,
   };
 })
 export class GraphRoot extends Component {
@@ -48,7 +49,7 @@ export class GraphRoot extends Component {
   }
 
   didUpdate(): void {
-    const { enabeAnimate } = this.props;
+    const { enabeAnimate, isLayoutFinished } = this.props;
     this.nodeRoot.current && (this.nodeRoot.current.container.style.zIndex = NODE_Z_INDEX);
     this.edgeRoot.current && (this.edgeRoot.current.container.style.zIndex = EDGE_Z_INDEX);
     this.comboRoot.current && (this.comboRoot.current.container.style.zIndex = COMBO_Z_INDEX);
@@ -56,8 +57,9 @@ export class GraphRoot extends Component {
     const { matrix } = this.props;
     setMatrix(this.container, matrix);
 
+    !this.isFitViewed && console.log('update: ', this.props.nodes, isLayoutFinished);
     // fitView
-    !this.isFitViewed && this.context.graph.fitView();
+    !this.isFitViewed && isLayoutFinished && this.context.graph.fitView();
     this.isFitViewed = true;
     this.animate = enabeAnimate;
   }
@@ -83,6 +85,7 @@ export class GraphRoot extends Component {
       isAutoSize,
     } = this.props;
     const graph = this.context.graph;
+    if (!nodes?.length) return null;
     return (
       <Fragment>
         {nodes?.length > 0 && (
@@ -165,7 +168,6 @@ export class GraphRoot extends Component {
             })}
           </Fragment>
         )}
-        <Fragment></Fragment>
       </Fragment>
     );
   }

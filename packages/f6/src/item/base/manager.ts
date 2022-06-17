@@ -74,11 +74,15 @@ export abstract class ItemManger<T extends BaseItemModel, I extends Item<T>> {
     }
     ids.forEach((id) => {
       delete this.items[id];
-      this.items[id]?.destory();
+      this.items[id]?.destroy();
     });
   }
 
   updateItem(id, model) {
     this.byId(id)?.updateItem(model);
+  }
+  destroy() {
+    Object.values(this.items).forEach((item) => item.destroy());
+    this.items = null;
   }
 }

@@ -1,9 +1,4 @@
-// import { G6Event, IG6GraphEvent } from '@antv/f6-core';
-// import { IGraph } from '../interface/graph';
-// import Util from '../util';
 import { BaseBehavior } from './base';
-
-// const { cloneEvent, isNaN } = Util;
 
 interface DragCanvasCfg {
   direction: string;

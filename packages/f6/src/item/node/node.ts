@@ -1,8 +1,7 @@
-import { IPoint } from '@antv/f6-core';
 import { each } from '@antv/util';
 import { action, makeObservable } from 'mobx';
 import { Graph } from '../../graph/graph';
-import { NodeConfig, Point } from '../../types';
+import { IPoint, NodeConfig, Point } from '../../types';
 import {
   distance,
   getCircleIntersectByPoint,
@@ -30,9 +29,7 @@ const getNearestPoint = (points: IPoint[], curPoint: Point): IPoint => {
 };
 
 export class Node extends Item<NodeConfig> {
-  rootId = null; // 兼容树图
   graph: Graph = null;
-  parent = null;
 
   constructor(model: NodeConfig, graph: Graph) {
     super();
@@ -207,5 +204,10 @@ export class Node extends Item<NodeConfig> {
 
   inject(key, fn) {
     this[key] = fn;
+  }
+
+  destroy() {
+    super.destroy();
+    this.getAnchorPoints = null;
   }
 }

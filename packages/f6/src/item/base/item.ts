@@ -107,7 +107,10 @@ export class Item<T extends BaseItemModel> {
     };
   }
 
-  destory() {
+  destroy() {
     this.destroyed = true;
+    this.model = null;
+    this.states = null;
+    this.getBBox = null;
   }
 }

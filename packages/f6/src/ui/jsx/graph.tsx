@@ -14,6 +14,6 @@ export class Graph extends Component {
   }
 
   didUnmount(): void {
-    this.context.graph.destory();
+    this.context.graph.destroy();
   }
 }

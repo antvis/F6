@@ -1,4 +1,4 @@
-import { Canvas, Chart, Component, Interval, jsx } from '@antv/f2/src';
+import { Canvas, Chart, Component, Interval, jsx } from '@antv/f2';
 import { Graph, registerLayout, registerNode } from '@antv/f6/src';
 import ForceLayout from '@antv/f6/src/layout/forceLayout';
 import { createContext } from '../util';
@@ -81,11 +81,12 @@ describe('Chart', () => {
 
     class F2Chart extends Component {
       getKeyShape() {
+        // @ts-ignore
         return this.container;
       }
       getAnchorPoints() {}
       render() {
-        const { node } = this.props;
+        // const { node } = this.props;
         // console.log(node);
         return (
           <Chart
