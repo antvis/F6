@@ -2,6 +2,7 @@ import { jsx } from '@antv/f-engine';
 import { deepMix } from '@antv/util';
 import Global from '../../../../global';
 import { BaseNode } from './base';
+
 export class SimpleCircle extends BaseNode {
   options = {
     size: Global.defaultNode.size,
@@ -17,6 +18,27 @@ export class SimpleCircle extends BaseNode {
         fill: Global.nodeLabel.style.fill,
         fontSize: Global.nodeLabel.style.fontSize,
       },
+    },
+    // 节点上左右上下四个方向上的链接circle配置
+    linkPoints: {
+      top: false,
+      right: false,
+      bottom: false,
+      left: false,
+      // circle的大小
+      size: Global.defaultNode.linkPoints.size,
+      lineWidth: Global.defaultNode.linkPoints.lineWidth,
+      fill: Global.defaultNode.linkPoints.fill,
+      stroke: Global.defaultNode.linkPoints.stroke,
+    },
+    // 节点中icon配置
+    icon: {
+      // 是否显示icon，值为 false 则不渲染icon
+      show: false,
+      // icon的地址，字符串类型
+      img: 'https://gw.alipayobjects.com/zos/bmw-prod/5d015065-8505-4e7a-baec-976f81e3c41d.svg',
+      width: 20,
+      height: 20,
     },
     stateStyles: {
       ...Global.nodeStateStyles,

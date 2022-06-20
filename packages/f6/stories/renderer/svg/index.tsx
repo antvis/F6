@@ -1,5 +1,6 @@
+import { Renderer as SvgRenderer } from '@antv/g-mobile-svg';
 import React, { useEffect } from 'react';
-import { Canvas, ForceLayout, Graph, registerLayout, Util } from '../../../src';
+import { Canvas, ForceLayout, Graph, registerLayout } from '../../../src';
 import data from './data';
 
 export default () => {
@@ -9,9 +10,15 @@ export default () => {
 
   registerLayout('force', ForceLayout);
   useEffect(() => {
-    const context = Util.createContext(ref.current, width, height);
+    const svgRenderer = new SvgRenderer();
     const { props } = (
-      <Canvas width={width} height={height} pixelRatio={2} context={context}>
+      <Canvas
+        container={'container'}
+        width={width}
+        height={height}
+        pixelRatio={2}
+        renderer={svgRenderer}
+      >
         <Graph
           data={data}
           layout={{
@@ -22,9 +29,6 @@ export default () => {
           modes={{
             default: ['drag-node', 'drag-combo', 'click-select'],
           }}
-          comboStateStyles={{
-            selected: { fill: 'red' },
-          }}
         ></Graph>
       </Canvas>
     );
@@ -32,5 +36,5 @@ export default () => {
     graph.render();
   }, []);
 
-  return <div ref={ref}></div>;
+  return <div id="container" ref={ref}></div>;
 };

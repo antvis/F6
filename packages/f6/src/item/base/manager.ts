@@ -1,4 +1,4 @@
-import { isNil } from '@antv/util';
+import { deepMix, isNil } from '@antv/util';
 import { action, computed, makeObservable, observable } from 'mobx';
 import { v4 as uuid } from 'uuid';
 import { BaseItemModel, ID } from '../../types';
@@ -19,11 +19,10 @@ export abstract class ItemManger<T extends BaseItemModel, I extends Item<T>> {
     });
   }
 
-  init(models) {
+  init(models, defaultModel, defaultStates) {
     if (isNil(models)) return;
-
     const instances = models?.reduce((prev, data) => {
-      const item = this.createItem(data);
+      const item = this.createItem(deepMix({}, data, defaultModel, { stateStyles: defaultStates }));
       if (isNil(item.id)) {
         item.id = uuid();
       }

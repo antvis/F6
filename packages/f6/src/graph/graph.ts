@@ -10,8 +10,8 @@ import { NodeManager } from '../item/node/manager';
 import EventService from '../service/eventService';
 import { LayoutService } from '../service/layoutService';
 import ModeService from '../service/modeService';
+import { ViewService } from '../service/viewService';
 import { BBox } from '../types';
-import { View } from '../view';
 const { transform } = ext;
 
 export class Graph {
@@ -23,7 +23,7 @@ export class Graph {
   eventService = null;
   modeService = null;
   behaviorService = null;
-  view = null;
+  viewService = null;
   enabeAnimate = true;
   isLayoutFinished = false;
 
@@ -33,7 +33,7 @@ export class Graph {
     this.nodeManager = new NodeManager(this);
     this.edgeManager = new EdgeManager(this);
     this.comboManager = new ComboManager(this);
-    this.view = new View(this);
+    this.viewService = new ViewService(this);
     this.hullManager = new HullManager();
 
     this.layoutService = new LayoutService();
@@ -52,14 +52,27 @@ export class Graph {
   }
 
   init(cfg) {
-    const { data, width, height, devicePixelRatio, layout, modes } = cfg;
+    const {
+      data,
+      width,
+      height,
+      devicePixelRatio,
+      layout,
+      modes,
+      defaultNode,
+      defaultEdge,
+      defaultCombo,
+      nodeStateStyles,
+      edgeStateStyles,
+      comboStateStyles,
+    } = cfg;
     this.modeService.setModes(modes);
-    this.nodeManager.init(data.nodes);
-    this.edgeManager.init(data.edges);
-    this.comboManager.init(data.combos);
+    this.nodeManager.init(data.nodes, defaultNode, nodeStateStyles);
+    this.edgeManager.init(data.edges, defaultEdge, edgeStateStyles);
+    this.comboManager.init(data.combos, defaultCombo, comboStateStyles);
     this.hullManager.init(data.hulls);
     this.layoutService.setLayoutConfig(layout, width, height);
-    this.view.init({ width, height, devicePixelRatio });
+    this.viewService.init({ width, height, devicePixelRatio });
   }
 
   layout() {
@@ -146,11 +159,11 @@ export class Graph {
   }
 
   fitView() {
-    this.view.fitView();
+    this.viewService.fitView();
   }
 
   fitCenter() {
-    this.view.fitCenter();
+    this.viewService.fitCenter();
   }
 
   on(...args) {

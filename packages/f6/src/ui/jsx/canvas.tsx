@@ -8,16 +8,10 @@ export class Canvas extends FCanvas {
       width,
       height,
       pixelRatio,
-      context: null,
-      renderer: null,
+      context: context,
+      renderer: renderer || new CanvasRenderer(),
       container,
     };
-
-    // 传入context，默认使用canvasRenderer
-    if (context) {
-      cfg.context = context;
-      cfg.renderer = renderer || new CanvasRenderer();
-    }
 
     super({
       ...props,

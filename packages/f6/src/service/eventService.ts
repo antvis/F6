@@ -1,5 +1,4 @@
 import EE from 'eventemitter3';
-import { getCanvasByPoint, getPointByCanvas } from './viewService';
 
 import { Gesture } from '@antv/f-engine';
 import { IShape, Matrix } from '../types';
@@ -179,7 +178,7 @@ export default class EventService extends EE {
     }
 
     if (isViewportChanged(matrix)) {
-      point = getPointByCanvas(matrix, evt.x, evt.y);
+      point = this.graph.viewService.getPointByCanvas(matrix, evt.x, evt.y);
     }
 
     evt.x = point.x;
@@ -187,10 +186,10 @@ export default class EventService extends EE {
 
     // evt.currentTarget = graph;
 
-    // if (eventType === 'dragend') console.log('dragend: ', evt.target);
-    // if (eventType === 'drag') console.log('drag: ', evt.target);
-    // if (eventType === 'dragstart') console.log('dragstart: ', evt.target);
-    // if (eventType === 'drop') console.log('drop: ', evt.target);
+    if (eventType === 'dragend') console.log('dragend: ', evt.target);
+    if (eventType === 'drag') console.log('drag: ', evt.target);
+    if (eventType === 'dragstart') console.log('dragstart: ', evt.target);
+    if (eventType === 'drop') console.log('drop: ', evt.target);
 
     if (target === canvas.document) {
       evt.target = canvas;
@@ -218,7 +217,7 @@ export default class EventService extends EE {
     evt.target = target;
     evt.item = item;
     if (evt.canvasX === evt.x && evt.canvasY === evt.y) {
-      const canvasPoint = getCanvasByPoint(matrix, evt.x, evt.y);
+      const canvasPoint = this.graph.viewService.getCanvasByPoint(matrix, evt.x, evt.y);
       evt.canvasX = canvasPoint.x;
       evt.canvasY = canvasPoint.y;
     }

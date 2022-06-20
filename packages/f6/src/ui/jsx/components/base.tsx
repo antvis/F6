@@ -16,17 +16,16 @@ import {
 const transform = ext.transform;
 export const CLS_LABEL_BG_SUFFIX = '-label-bg';
 
-export class BaseShape<T extends ModelConfig> extends Component {
+export abstract class BaseElement<T extends ModelConfig> extends Component {
   // 默认样式及配置
   options = {};
+
   itemType = ''; // node, edge, combo 等
-  /**
-   * 形状的类型，例如 circle，ellipse，polyline...
-   */
-  type = '';
+
   getCustomConfig(cfg: T | {}): T | {} {
     return {};
   }
+
   getOptions(cfg?: T | {}): T {
     return deepMix(this.options, this.getCustomConfig(cfg) || {}, cfg);
   }
@@ -75,20 +74,23 @@ export class BaseShape<T extends ModelConfig> extends Component {
   getStateStyle(name: string, model): ShapeStyle {
     const { stateStyles } = this.getOptions(model);
 
+    debugger;
     const modelStateStyle = model.stateStyles
       ? model.stateStyles[name]
       : stateStyles && stateStyles[name];
 
     return modelStateStyle;
   }
+
   /**
    * 获取控制点
    * @param  {Object} cfg 节点、边的配置项
    * @return {Array|null} 控制点的数组,如果为 null，则没有控制点
    */
-  getControlPoints(cfg: EdgeConfig): IPoint[] | undefined {
+  static getControlPoints(cfg: EdgeConfig): IPoint[] | undefined {
     return cfg.controlPoints;
   }
+
   /**
    * 获取控制点
    * @param  {Object} cfg 节点、边的配置项

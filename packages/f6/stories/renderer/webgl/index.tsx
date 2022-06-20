@@ -1,3 +1,4 @@
+import { Renderer as WebglRenderer } from '@antv/g-mobile-webgl';
 import React, { useEffect } from 'react';
 import { Canvas, ForceLayout, Graph, registerLayout, Util } from '../../../src';
 import data from './data';
@@ -9,9 +10,16 @@ export default () => {
 
   registerLayout('force', ForceLayout);
   useEffect(() => {
-    const context = Util.createContext(ref.current, width, height);
+    const context = Util.createContext(ref.current, width, height, 'webgl');
+    const webglRenderer = new WebglRenderer();
     const { props } = (
-      <Canvas width={width} height={height} pixelRatio={2} context={context}>
+      <Canvas
+        width={width}
+        height={height}
+        pixelRatio={2}
+        context={context}
+        renderer={webglRenderer}
+      >
         <Graph
           data={data}
           layout={{
@@ -21,9 +29,6 @@ export default () => {
           }}
           modes={{
             default: ['drag-node', 'drag-combo', 'click-select'],
-          }}
-          comboStateStyles={{
-            selected: { fill: 'red' },
           }}
         ></Graph>
       </Canvas>

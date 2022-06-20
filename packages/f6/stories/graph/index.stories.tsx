@@ -4,7 +4,7 @@ import GraphDemo from './graphTest';
 import TreeDemo from './treeTest';
 
 export default {
-  title: 'Example',
+  title: 'Example/Graph',
 } as Meta;
 
 export const graphDemo = (args) => <GraphDemo {...args} />;

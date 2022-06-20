@@ -1,4 +1,4 @@
-import { jsx } from '@antv/f-engine';
+import { Fragment, jsx } from '@antv/f-engine';
 import { deepMix, each, isNil, mix } from '@antv/util';
 import Global from '../../../../global';
 import {
@@ -11,9 +11,7 @@ import {
   ShapeStyle,
 } from '../../../../types';
 import { getLabelPosition } from '../../../../utils/graphic';
-import { BaseShape } from '../base';
-// import Shape from './shape';
-// import { shapeBase, CLS_LABEL_BG_SUFFIX } from './shapeBase';
+import { BaseElement } from '../base';
 
 // start,end 倒置，center 不变
 function revertAlign(labelPosition: string): string {
@@ -27,13 +25,12 @@ function revertAlign(labelPosition: string): string {
 }
 const CLS_SHAPE = 'edge-shape';
 
-export class BaseEdge extends BaseShape<EdgeConfig> {
-  keyShapeRef = { current: null };
+export class BaseEdge extends BaseElement<EdgeConfig> {
+  pathShapeRef = { current: null };
   labelRef = { current: null };
-  renderLabelStyle = null;
 
   getKeyShape() {
-    return this.keyShapeRef.current || this.getRootShape();
+    return this.pathShapeRef.current;
   }
 
   getLabelShape() {
@@ -86,6 +83,11 @@ export class BaseEdge extends BaseShape<EdgeConfig> {
       ...Global.edgeStateStyles,
     },
   };
+
+  didMount() {
+    this.setState({});
+  }
+
   /**
    * 获取边的 path
    * @internal 供扩展的边覆盖
@@ -116,7 +118,8 @@ export class BaseEdge extends BaseShape<EdgeConfig> {
     cfg = this.getPathPoints!(cfg);
     const { startPoint, endPoint } = cfg;
 
-    const controlPoints = this.getControlPoints!(cfg);
+    //@ts-ignore
+    const controlPoints = this.constructor.getControlPoints!(cfg);
     let points = [startPoint]; // 添加起始点
     // 添加控制点
     if (controlPoints) {
@@ -180,7 +183,8 @@ export class BaseEdge extends BaseShape<EdgeConfig> {
     );
     style.x = offsetStyle.x;
     style.y = offsetStyle.y;
-    style.rotate = offsetStyle.rotate;
+    // @ts-ignore
+    style.transform = `rotate(${(offsetStyle.rotate * 180) / Math.PI}deg)`;
     style.textAlign = this._getTextAlign!(
       labelPosition as string,
       offsetStyle.angle as number,
@@ -280,14 +284,16 @@ export class BaseEdge extends BaseShape<EdgeConfig> {
     }
     return textAlign;
   }
+
   /**
    * @internal 获取边的控制点
    * @param  {Object} cfg 边的配置项
    * @return {Array} 控制点的数组
    */
-  getControlPoints(cfg): IPoint[] | undefined {
+  static getControlPoints(cfg): IPoint[] | undefined {
     return cfg.controlPoints;
   }
+
   /**
    * @internal 处理需要重计算点和边的情况
    * @param {Object} cfg 边的配置项
@@ -324,21 +330,9 @@ export class BaseEdge extends BaseShape<EdgeConfig> {
     const rotate = labelStyle.rotate;
     delete labelStyle.rotate;
 
-    return <text style={this.renderLabelStyle} ref={this.labelRef}></text>;
-    // const label = group.addShape('text', {
-    //   attrs: labelStyle,
-    //   name: 'text-shape',
-    // });
-    // if (rotate) {
-    //   label.rotateAtStart(rotate);
-    // }
+    if (!labelStyle.text) return null;
 
-    // if (labelStyle.background) {
-    //   const rect = this.drawLabelBg(cfg, group, label);
-    //   const labelBgClassname = this.itemType + CLS_LABEL_BG_SUFFIX;
-    //   rect.set('classname', labelBgClassname);
-    //   label.toFront();
-    // }
+    return <text style={labelStyle} ref={this.labelRef}></text>;
   }
 
   renderShape(cfg, states) {
@@ -346,24 +340,14 @@ export class BaseEdge extends BaseShape<EdgeConfig> {
 
     delete style.x;
     delete style.y;
-    return (
-      <path
-        // animation={{
-        //   update: {
-        //     easing: 'linear',
-        //     duration: 450,
-        //     property: ['points'],
-        //   },
-        // }}
-        style={style}
-        ref={this.keyShapeRef}
-      ></path>
-    );
+    return <arrowPath style={style} ref={this.pathShapeRef}></arrowPath>;
   }
 
   renderLabelBg(cfg) {
     const { labelCfg: defaultLabelCfg } = this.options as ModelConfig;
     const labelCfg = deepMix({}, defaultLabelCfg, cfg.labelCfg);
+    if (!labelCfg.background) return null;
+
     const labelStyle = this.getLabelStyle!(cfg, labelCfg, this.getRootShape());
     const rotate = labelStyle.rotate;
 

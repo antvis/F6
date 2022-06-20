@@ -4,9 +4,9 @@ import { getControlPoint } from '../../../../utils/path';
 import { BaseEdge } from './base';
 
 export class Quadratic extends BaseEdge {
-  curvePosition = 0.5; // 弯曲的默认位置
-  curveOffset = -20; // 弯曲度，沿着 startPoint, endPoint 的垂直向量（顺时针）方向，距离线的距离，距离越大越弯曲
-  getControlPoints(cfg: EdgeConfig): IPoint[] {
+  static curvePosition = 0.5; // 弯曲的默认位置
+  static curveOffset = -20; // 弯曲度，沿着 startPoint, endPoint 的垂直向量（顺时针）方向，距离线的距离，距离越大越弯曲
+  static getControlPoints(cfg: EdgeConfig): IPoint[] {
     let { controlPoints } = cfg; // 指定controlPoints
     if (!controlPoints || !controlPoints.length) {
       const { startPoint, endPoint } = cfg;

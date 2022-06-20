@@ -4,21 +4,25 @@ import { isArray, isNil, mix } from '@antv/util';
 import Global from '../../../../global';
 import { ILabelConfig, LabelStyle, ModelConfig, NodeConfig } from '../../../../types';
 import { formatPadding } from '../../../../utils/base';
-import { BaseShape } from '../base';
+import { BaseElement } from '../base';
 
 const transform = ext.transform;
 
-export class BaseNode extends BaseShape<NodeConfig> {
+export class BaseNode extends BaseElement<NodeConfig> {
   keyShapeRef = { current: null };
   labelRef = { current: null };
   renderLabelStyle = null;
 
-  getLabelShape() {
-    return this.labelRef.current;
+  didUpdate(): void {
+    this.rotateLabel(this.renderLabelStyle, this.getLabelShape());
   }
 
   getKeyShape() {
     return this.keyShapeRef.current || this.getRootShape();
+  }
+
+  getLabelShape() {
+    return this.labelRef.current;
   }
 
   getRootShape(): any {
@@ -148,10 +152,6 @@ export class BaseNode extends BaseShape<NodeConfig> {
     return style;
   }
 
-  didUpdate(): void {
-    this.rotateLabel(this.renderLabelStyle, this.getLabelShape());
-  }
-
   rotateLabel(labelStyle, label) {
     const rotate = labelStyle.rotate;
     if (rotate) {
@@ -218,6 +218,7 @@ export class BaseNode extends BaseShape<NodeConfig> {
   renderLabelBg(cfg) {
     const { labelCfg: defaultLabelCfg } = this.options as ModelConfig;
     const labelCfg = mix({}, defaultLabelCfg, cfg.labelCfg) as ILabelConfig;
+    if (!labelCfg?.style?.background) return null;
     const style = this.getLabelBgStyleByPosition(
       this.getLabelShape(),
       cfg,
@@ -227,9 +228,10 @@ export class BaseNode extends BaseShape<NodeConfig> {
 
     return <rect style={style}></rect>;
   }
+
   renderIcon(cfg) {
     const { icon } = this.getOptions(cfg) as NodeConfig;
-    if (!icon) return null;
+    if (!icon || !icon.show || !icon.img) return null;
     const { width: w, height: h } = icon;
     return (
       <image
@@ -262,10 +264,10 @@ export class BaseNode extends BaseShape<NodeConfig> {
     const width = size[0];
     const height = size[1];
     const styles = {
-      r: markSize,
+      r: markSize || 0,
       fill: markFill,
-      stroke: markStroke,
-      lineWidth: borderWidth,
+      stroke: markStroke || '',
+      lineWidth: borderWidth || 1,
     };
 
     return (
@@ -274,9 +276,9 @@ export class BaseNode extends BaseShape<NodeConfig> {
           <circle
             style={{
               ...styles,
-              x: -width / 2,
-              y: 0,
-              capture: false,
+              cx: -width / 2,
+              cy: 0,
+              pointEvents: 'none',
             }}
           />
         )}
@@ -284,9 +286,9 @@ export class BaseNode extends BaseShape<NodeConfig> {
           <circle
             style={{
               ...styles,
-              x: width / 2,
-              y: 0,
-              capture: false,
+              cx: width / 2,
+              cy: 0,
+              pointEvents: 'none',
             }}
           />
         )}
@@ -294,9 +296,9 @@ export class BaseNode extends BaseShape<NodeConfig> {
           <circle
             style={{
               ...styles,
-              x: 0,
-              y: -height / 2,
-              capture: false,
+              cx: 0,
+              cy: -height / 2,
+              pointEvents: 'none',
             }}
           />
         )}
@@ -304,9 +306,9 @@ export class BaseNode extends BaseShape<NodeConfig> {
           <circle
             style={{
               ...styles,
-              x: 0,
-              y: height / 2,
-              capture: false,
+              cx: 0,
+              cy: height / 2,
+              pointEvents: 'none',
             }}
           />
         )}
@@ -315,6 +317,7 @@ export class BaseNode extends BaseShape<NodeConfig> {
   }
 
   render() {
+    // debugger;
     const { node, animation, onFrame, states, onEnd } = this.props;
     return (
       <group

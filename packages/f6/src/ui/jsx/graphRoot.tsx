@@ -34,7 +34,9 @@ export class GraphRoot extends Component {
   comboRoot = { current: null };
   hullRoot = { current: null };
   isFitViewed = false;
+  isFitCentered = false;
   animate = false;
+  prevProps = null;
 
   willMount(): void {
     this.context.graph.inject('getCanvasBBox', this.getRootBBox);
@@ -42,26 +44,55 @@ export class GraphRoot extends Component {
   }
 
   didMount() {
-    const { data, layout, modes } = this.props;
+    const {
+      data,
+      layout,
+      modes,
+      defaultNode,
+      defaultEdge,
+      defaultCombo,
+      nodeStateStyles,
+      edgeStateStyles,
+      comboStateStyles,
+    } = this.props;
     const { width, height, devicePixelRatio } = this.context.root.props;
-    this.context.graph.init({ width, height, devicePixelRatio, data, layout, modes });
+    this.context.graph.init({
+      width,
+      height,
+      devicePixelRatio,
+      data,
+      layout,
+      modes,
+      defaultNode,
+      defaultEdge,
+      defaultCombo,
+      nodeStateStyles,
+      edgeStateStyles,
+      comboStateStyles,
+    });
     this.context.graph.layout();
   }
 
   didUpdate(): void {
-    const { enabeAnimate, isLayoutFinished } = this.props;
+    const { enabeAnimate, isLayoutFinished, fitView = false, fitCenter = true } = this.props;
     this.nodeRoot.current && (this.nodeRoot.current.container.style.zIndex = NODE_Z_INDEX);
     this.edgeRoot.current && (this.edgeRoot.current.container.style.zIndex = EDGE_Z_INDEX);
     this.comboRoot.current && (this.comboRoot.current.container.style.zIndex = COMBO_Z_INDEX);
     this.hullRoot.current && (this.hullRoot.current.container.style.zIndex = HULL_Z_INDEX);
     const { matrix } = this.props;
-    setMatrix(this.container, matrix);
+    if (this.prevProps?.matrix !== matrix) setMatrix(this.container, matrix);
 
-    !this.isFitViewed && console.log('update: ', this.props.nodes, isLayoutFinished);
-    // fitView
-    !this.isFitViewed && isLayoutFinished && this.context.graph.fitView();
+    fitView && !this.isFitViewed && isLayoutFinished && this.context.graph.fitView(fitView);
+    fitCenter &&
+      !fitView &&
+      !this.isFitCentered &&
+      isLayoutFinished &&
+      this.context.graph.fitCenter();
+
     this.isFitViewed = true;
+    this.isFitCentered = true;
     this.animate = enabeAnimate;
+    this.prevProps = this.props;
   }
 
   getRootBBox = () => {

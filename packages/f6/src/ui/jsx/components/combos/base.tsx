@@ -1,9 +1,9 @@
 import { clone, isArray, isNil } from '@antv/util';
 import Global from '../../../../global';
 import { ComboConfig, LabelStyle, ModelConfig } from '../../../../types';
-import { BaseShape } from '../base';
+import { BaseElement } from '../base';
 
-export class BaseNode extends BaseShape<ComboConfig> {
+export class BaseCombo extends BaseElement<ComboConfig> {
   keyShapeRef = { current: null };
   getKeyShape() {
     return this.keyShapeRef.current || this.getRootShape();

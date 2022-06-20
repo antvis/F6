@@ -1,4 +1,4 @@
-import { isNil } from '@antv/util';
+import { isNil, uniqueId } from '@antv/util';
 import { EdgeConfig, IPoint, NodeConfig } from '../../types';
 import { Item } from '../base/item';
 
@@ -16,7 +16,7 @@ export class Edge extends Item<EdgeConfig> {
     super();
     this.graph = graph;
     this.model = { ...model };
-    this.model.id = `${this.getSource().id}-${this.getTarget().id}`;
+    this.model.id = this.model.id || uniqueId();
     this.model.type = model.type || 'line';
     this.model.visible = true;
   }

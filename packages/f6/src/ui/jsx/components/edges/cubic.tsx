@@ -4,9 +4,9 @@ import { getControlPoint } from '../../../../utils/path';
 import { BaseEdge } from './base';
 
 export class Cubic extends BaseEdge {
-  curvePosition = [1 / 2, 1 / 2];
-  curveOffset = [-20, 20];
-  getControlPoints(cfg: EdgeConfig): IPoint[] {
+  static curvePosition = [1 / 2, 1 / 2];
+  static curveOffset = [-20, 20];
+  static getControlPoints(cfg: EdgeConfig): IPoint[] {
     let { controlPoints } = cfg; // 指定 controlPoints
     if (cfg.curveOffset === undefined) cfg.curveOffset = this.curveOffset;
     if (cfg.curvePosition === undefined) cfg.curvePosition = this.curvePosition;

@@ -31,11 +31,7 @@ export class Edge extends Component {
     };
   }
 
-  getControlPoints = (cfg) => {
-    return this.getShapeEdge()?.getControlPoints(cfg);
-  };
-
-  render() {
+  getShapeConstrutor() {
     const { edge } = this.props;
     const Shape = getEdge(edge?.type || 'line');
 
@@ -43,8 +39,23 @@ export class Edge extends Component {
       console.warn('不存在对应的 Node Shape');
       return null;
     }
+    return Shape;
+  }
 
+  getControlPoints = (cfg) => {
+    return this.getShapeConstrutor()?.getControlPoints(cfg);
+  };
+
+  render() {
+    const { edge } = this.props;
     if (!edge) {
+      return null;
+    }
+
+    const Shape = this.getShapeConstrutor();
+
+    if (!Shape) {
+      console.warn('不存在对应的 Edge 节点定义');
       return null;
     }
 

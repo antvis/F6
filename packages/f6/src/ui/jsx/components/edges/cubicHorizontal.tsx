@@ -3,10 +3,10 @@ import { EdgeConfig, IPoint } from '../../../../types';
 import { Cubic } from './cubic';
 
 export class CubicHorizontal extends Cubic {
-  curvePosition = [1 / 2, 1 / 2];
-  minCurveOffset = [0, 0];
-  curveOffset = undefined;
-  getControlPoints(cfg: EdgeConfig): IPoint[] {
+  static minCurveOffset = [0, 0];
+  static curvePosition = [1 / 2, 1 / 2];
+  static curveOffset = undefined;
+  static getControlPoints(cfg: EdgeConfig): IPoint[] {
     const { startPoint, endPoint } = cfg;
     if (cfg.curvePosition === undefined) cfg.curvePosition = this.curvePosition;
     if (cfg.curveOffset === undefined) cfg.curveOffset = this.curveOffset;

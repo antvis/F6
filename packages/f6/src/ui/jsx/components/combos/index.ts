@@ -1,5 +1,9 @@
 import { Component } from '@antv/f-engine';
-import { SimpleCircle } from './circle';
+import { BaseCombo } from './base';
+import { Circle } from './circle';
+import { Rect } from './rect';
+
+export { BaseCombo };
 
 const combos = {};
 
@@ -11,4 +15,5 @@ export const getCombo = (name) => {
   return combos[name];
 };
 
-registerCombo('circle', SimpleCircle);
+registerCombo('circle', Circle);
+registerCombo('rect', Rect);

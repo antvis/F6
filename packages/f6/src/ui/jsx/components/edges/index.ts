@@ -1,11 +1,14 @@
-import { Line } from './line';
 import { Arc } from './arc';
-import { Quadratic } from './quadratic';
+import { BaseEdge } from './base';
 import { Cubic } from './cubic';
 import { CubicHorizontal } from './cubicHorizontal';
 import { CubicVertical } from './cubicVertical';
+import { Line } from './line';
 import { Loop } from './loop';
+import { Quadratic } from './quadratic';
 import { Spline } from './spline';
+
+export { BaseEdge };
 
 const nodes = {};
 

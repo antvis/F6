@@ -22,6 +22,7 @@ export class Combo extends Component {
   didMount(): void {
     const { sortedCombo, item } = this.props;
     this.container.style.zIndex = sortedCombo.depth;
+    // @ts-ignore
     (this.container as IShape).item = item;
     this.isInited = true;
   }
@@ -82,7 +83,7 @@ export class Combo extends Component {
   render() {
     const { isAutoSize, combo, sortedCombo, item, states } = this.props;
 
-    const Shape = getCombo(combo?.type || 'circle');
+    const Shape = getCombo(combo?.type);
 
     if (!Shape) {
       console.warn('不存在对应的 Node Shape');
@@ -103,13 +104,11 @@ export class Combo extends Component {
 
     item.syncPosition(finalPos);
 
-    const defaultStyle = Shape?.getOptions();
     const size = this.size;
 
     this.cacheCombo = {
       ...{ ...combo, ...finalPos },
-      ...defaultStyle,
-      style: { ...defaultStyle.style, ...(size || {}) },
+      style: { ...(size || {}) },
     };
 
     return <Shape ref={this.nodeRef} combo={this.cacheCombo} states={states} />;

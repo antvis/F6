@@ -32,7 +32,7 @@ export default () => {
     const context = Util.createContext(ref.current, width, height);
     const { props } = (
       <Canvas width={width} height={height} pixelRatio={2} context={context}>
-        <Timeline delay={1000} loop>
+        <Timeline delay={2000} loop>
           <Graph
             data={graphData}
             layout={{

@@ -1,4 +1,4 @@
-import { DisplayObject } from '@antv/f-engine';
+import { DisplayObject } from '@antv/g';
 import { Item } from './item';
 
 export interface ArrowConfig {

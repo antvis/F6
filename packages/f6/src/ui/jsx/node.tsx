@@ -21,6 +21,7 @@ export class Node extends Component {
   didMount(): void {
     const { item, node } = this.props;
     const { x, y } = node;
+    // @ts-ignore
     (this.container as IShape).item = item;
     this.container.setAttribute('x', x);
     this.container.setAttribute('y', y);
@@ -80,7 +81,7 @@ export class Node extends Component {
     const { node, appear, update, end, states } = this.props;
     const Shape = getNode(node?.type);
     if (!Shape) {
-      console.warn('不存在对应的 Node Shape');
+      console.warn('不存在对应的 Node 定义');
       return null;
     }
 

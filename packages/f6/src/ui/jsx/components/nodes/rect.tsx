@@ -1,22 +1,45 @@
 import { jsx } from '@antv/f-engine';
 import { mix } from '@antv/util';
-import global from '../../../../global';
+import Global from '../../../../global';
 import { BaseNode } from './base';
+
 export class SimpleRect extends BaseNode {
+  // 自定义节点时的配置
   options = {
     size: [100, 30],
     style: {
       radius: 0,
-      stroke: global.defaultNode.style.stroke,
-      fill: global.defaultNode.style.fill,
-      lineWidth: global.defaultNode.style.lineWidth,
+      stroke: Global.defaultNode.style.stroke,
+      fill: Global.defaultNode.style.fill,
+      lineWidth: Global.defaultNode.style.lineWidth,
     },
     // 文本样式配置
     labelCfg: {
       style: {
-        fill: global.nodeLabel.style.fill,
-        fontSize: global.nodeLabel.style.fontSize,
+        fill: Global.nodeLabel.style.fill,
+        fontSize: Global.nodeLabel.style.fontSize,
       },
+    },
+    // 节点上左右上下四个方向上的链接circle配置
+    linkPoints: {
+      top: false,
+      right: false,
+      bottom: false,
+      left: false,
+      // circle的大小
+      size: Global.defaultNode.linkPoints.size,
+      lineWidth: Global.defaultNode.linkPoints.lineWidth,
+      fill: Global.defaultNode.linkPoints.fill,
+      stroke: Global.defaultNode.linkPoints.stroke,
+    },
+    // 节点中icon配置
+    icon: {
+      // 是否显示icon，值为 false 则不渲染icon
+      show: false,
+      // icon的地址，字符串类型
+      img: 'https://gw.alipayobjects.com/zos/bmw-prod/5d015065-8505-4e7a-baec-976f81e3c41d.svg',
+      width: 20,
+      height: 20,
     },
     // 连接点，默认为左右
     // anchorPoints: [{ x: 0, y: 0.5 }, { x: 1, y: 0.5 }]
@@ -25,7 +48,7 @@ export class SimpleRect extends BaseNode {
       [1, 0.5],
     ],
     stateStyles: {
-      ...global.nodeStateStyles,
+      ...Global.nodeStateStyles,
     },
   };
 
