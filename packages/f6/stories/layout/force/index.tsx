@@ -20,6 +20,7 @@ export default () => {
             preventOverlap: true,
             // alphaDecay: 0,
           }}
+          linkCenter={true}
           modes={{
             default: ['drag-node', 'drag-combo', 'click-select'],
           }}

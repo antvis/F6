@@ -26,7 +26,7 @@ export class Edge extends Item<EdgeConfig> {
   }
 
   getNodeEntity(id) {
-    return this.graph.getItem(id).model;
+    return this.graph.getItem(id)?.model;
   }
 
   getSource() {
@@ -45,17 +45,21 @@ export class Edge extends Item<EdgeConfig> {
 
   getLinkPoint = (name: SourceTarget, model: EdgeConfig, controlPoints: IPoint[]): IPoint => {
     const sourceId = model[name];
-    let point;
-    const anchorName = name + ANCHOR_NAME_SUFFIX;
-    const prePoint = this.getPrePoint(name, controlPoints);
-    const anchorIndex = model[anchorName];
+    const pointName = END_MAP[name] + POINT_NAME_SUFFIX;
+    let point = this.model[pointName];
 
-    if (!isNil(anchorIndex)) {
-      // 如果有锚点，则使用锚点索引获取连接点
-      point = this.getNodeInstance(sourceId).getLinkPointByAnchor(anchorIndex);
+    if (!point) {
+      const anchorName = name + ANCHOR_NAME_SUFFIX;
+      const prePoint = this.getPrePoint(name, controlPoints);
+      const anchorIndex = model[anchorName];
+
+      if (!isNil(anchorIndex)) {
+        // 如果有锚点，则使用锚点索引获取连接点
+        point = this.getNodeInstance(sourceId)?.getLinkPointByAnchor(anchorIndex);
+      }
+      // 如果锚点没有对应的点或者没有锚点，则直接计算连接点
+      point = point || this.getNodeInstance(sourceId)?.getLinkPoint(prePoint);
     }
-    // 如果锚点没有对应的点或者没有锚点，则直接计算连接点
-    point = point || this.getNodeInstance(sourceId).getLinkPoint(prePoint);
 
     return point;
   };
@@ -84,14 +88,12 @@ export class Edge extends Item<EdgeConfig> {
     if (nodeState) {
       return { x: nodeState.x, y: nodeState.y };
     } // 否则直接使用点
-    return null;
-    // return this.get(pointName);
+    return edgeState[pointName];
   };
 
   getEndCenter = (name): IPoint => {
-    const itemName = name + ITEM_NAME_SUFFIX;
     const edgeState = this.model;
-    const sourceId = edgeState[itemName];
+    const sourceId = edgeState[name];
     const nodeState = this.getNodeEntity(sourceId);
 
     const pointName = END_MAP[name] + POINT_NAME_SUFFIX;

@@ -21,8 +21,8 @@ export default () => {
     edges: [
       // Built-in polyline
       {
-        source: '0',
-        target: '1',
+        startPoint: { x: 0, y: 0 },
+        endPoint: { x: 300, y: 500 },
         label: 'fjaksdf',
         labelCfg: {
           autoRotate: true,
@@ -37,6 +37,7 @@ export default () => {
       <Canvas width={width} height={height} pixelRatio={2} context={context}>
         <Graph
           data={data}
+          linkCenter={true}
           modes={{
             default: ['drag-node'],
           }}

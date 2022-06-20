@@ -61,7 +61,12 @@ export class Edge extends Component {
 
     const points = this.getPoints();
 
-    if (Number.isNaN(points.startPoint.x) || Number.isNaN(points.endPoint)) {
+    if (
+      !points.startPoint ||
+      !points.endPoint ||
+      Number.isNaN(points.startPoint.x) ||
+      Number.isNaN(points.endPoint)
+    ) {
       return null;
     }
 

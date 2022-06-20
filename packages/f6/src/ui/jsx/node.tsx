@@ -31,8 +31,8 @@ export class Node extends Component {
 
   didUpdate(): void {
     const { x, y } = this.props.node;
-    this.container.style.x = x;
-    this.container.style.y = y;
+    this.container.setAttribute('x', x);
+    this.container.setAttribute('y', y);
   }
 
   getBBox = () => {

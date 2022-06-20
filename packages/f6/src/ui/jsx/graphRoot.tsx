@@ -54,6 +54,7 @@ export class GraphRoot extends Component {
       nodeStateStyles,
       edgeStateStyles,
       comboStateStyles,
+      linkCenter,
     } = this.props;
     const { width, height, devicePixelRatio } = this.context.root.props;
     this.context.graph.init({
@@ -69,12 +70,19 @@ export class GraphRoot extends Component {
       nodeStateStyles,
       edgeStateStyles,
       comboStateStyles,
+      linkCenter,
     });
     this.context.graph.layout();
   }
 
   didUpdate(): void {
-    const { enabeAnimate, isLayoutFinished, fitView = false, fitCenter = true } = this.props;
+    const {
+      enabeAnimate,
+      isLayoutFinished,
+      fitView = false,
+      fitCenter = true,
+      fitViewPadding = 0,
+    } = this.props;
     this.nodeRoot.current && (this.nodeRoot.current.container.style.zIndex = NODE_Z_INDEX);
     this.edgeRoot.current && (this.edgeRoot.current.container.style.zIndex = EDGE_Z_INDEX);
     this.comboRoot.current && (this.comboRoot.current.container.style.zIndex = COMBO_Z_INDEX);
@@ -82,7 +90,7 @@ export class GraphRoot extends Component {
     const { matrix } = this.props;
     if (this.prevProps?.matrix !== matrix) setMatrix(this.container, matrix);
 
-    fitView && !this.isFitViewed && isLayoutFinished && this.context.graph.fitView(fitView);
+    fitView && !this.isFitViewed && isLayoutFinished && this.context.graph.fitView(fitViewPadding);
     fitCenter &&
       !fitView &&
       !this.isFitCentered &&
@@ -114,6 +122,7 @@ export class GraphRoot extends Component {
       edgeStates,
       comboStates,
       isAutoSize,
+      linkCenter,
     } = this.props;
     const graph = this.context.graph;
     if (!nodes?.length) return null;
@@ -169,9 +178,9 @@ export class GraphRoot extends Component {
                   edge={edge}
                   states={nodeStates[index]}
                   item={item}
-                  linkCenter={false}
-                  sourceNode={item.getSource().model}
-                  endNode={item.getTarget().model}
+                  linkCenter={linkCenter}
+                  sourceNode={item.getSource()?.model}
+                  endNode={item.getTarget()?.model}
                 ></Edge>
               );
             })}

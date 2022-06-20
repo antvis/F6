@@ -22,8 +22,11 @@ export default () => {
           modes={{
             default: ['drag-node', 'drag-combo', 'click-select'],
           }}
-          comboStateStyles={{
-            selected: { fill: 'red' },
+          linkCenter={true}
+          defaultNode={{
+            style: {
+              opacity: 0.5,
+            },
           }}
         ></Graph>
       </Canvas>

@@ -22,7 +22,7 @@ export abstract class ItemManger<T extends BaseItemModel, I extends Item<T>> {
   init(models, defaultModel, defaultStates) {
     if (isNil(models)) return;
     const instances = models?.reduce((prev, data) => {
-      const item = this.createItem(deepMix({}, data, defaultModel, { stateStyles: defaultStates }));
+      const item = this.createItem(deepMix({}, defaultModel, { stateStyles: defaultStates }, data));
       if (isNil(item.id)) {
         item.id = uuid();
       }

@@ -74,7 +74,6 @@ export abstract class BaseElement<T extends ModelConfig> extends Component {
   getStateStyle(name: string, model): ShapeStyle {
     const { stateStyles } = this.getOptions(model);
 
-    debugger;
     const modelStateStyle = model.stateStyles
       ? model.stateStyles[name]
       : stateStyles && stateStyles[name];
