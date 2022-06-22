@@ -6,7 +6,7 @@ import Global from './global';
 
 import { registerLayout, unRegisterLayout } from './layout';
 
-import { Canvas, Graph, registerCombo, registerEdge, registerNode } from './ui/jsx';
+import { Canvas, Graph, registerCombo, registerEdge, registerNode, TreeGraph } from './ui/jsx';
 
 export {
   jsx,
@@ -15,7 +15,7 @@ export {
   registerEdge,
   registerNode,
   Graph,
-  // TreeGraph,
+  TreeGraph,
   Canvas,
   Algorithm,
   Global,
@@ -32,7 +32,7 @@ export default {
   registerLayout,
   unRegisterLayout,
   Graph,
-  // TreeGraph,
+  TreeGraph,
   Canvas,
   Algorithm,
   Global,

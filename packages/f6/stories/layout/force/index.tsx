@@ -1,12 +1,13 @@
 import { Canvas, ForceLayout, Graph, jsx, registerLayout, Util } from '@antv/f6/src';
 import React, { useEffect } from 'react';
-import data from '../../data/graphData';
+import data from './data';
 
 export default () => {
   const ref = React.useRef(null);
   const height = window.innerHeight - 32; // demos padding
   const width = window.innerWidth - 32;
 
+  console.log('节点', data.nodes.length, '边', data.edges.length);
   registerLayout('force', ForceLayout);
 
   useEffect(() => {
@@ -22,7 +23,7 @@ export default () => {
           }}
           linkCenter={true}
           modes={{
-            default: ['drag-node', 'drag-combo', 'click-select'],
+            default: ['drag-node', 'click-select'],
           }}
         ></Graph>
       </Canvas>

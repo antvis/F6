@@ -39,8 +39,6 @@ export class Combo extends Component {
     return calculateBBox(calcBBox(this.getKeyShape()), matrix);
   };
 
-  calcSize() {}
-
   calcRenderRect(padding = 0) {
     const { combo } = this.props;
     let x, y;

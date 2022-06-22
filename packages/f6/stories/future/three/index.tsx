@@ -1,4 +1,5 @@
-import { registerShape } from '@antv/f-engine';
+import { registerTag } from '@antv/f-engine';
+import { Renderer as WebglRenderer } from '@antv/g-mobile-webgl';
 import {
   DirectionalLight,
   Mesh,
@@ -6,11 +7,10 @@ import {
   Plugin as Plugin3D,
   SphereGeometry,
 } from '@antv/g-plugin-3d';
-import { Renderer as WebglRenderer } from '@antv/g-webgl';
 import React, { useEffect } from 'react';
 import {
+  BaseNode,
   Canvas,
-  Component,
   ForceLayout,
   Graph,
   jsx,
@@ -50,12 +50,10 @@ export default () => {
     const canvasRef = { current: null };
 
     let sphereGeometry, material;
-    registerShape('mesh', Mesh);
 
-    class Node3D extends Component {
-      getKeyShape() {
-        return this.container;
-      }
+    registerTag('mesh', Mesh);
+
+    class Node3D extends BaseNode {
       render() {
         if (!sphereGeometry || !material) return null;
         return (
@@ -94,7 +92,7 @@ export default () => {
         <Graph
           fitCenter={true}
           data={data}
-          linkCenter={true}
+          linkCenter={false}
           modes={{
             default: ['drag-node'],
           }}

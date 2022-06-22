@@ -23,16 +23,15 @@ export class Node extends Component {
     const { x, y } = node;
     // @ts-ignore
     (this.container as IShape).item = item;
-    this.container.setAttribute('x', x);
-    this.container.setAttribute('y', y);
+    this.container.setLocalPosition(x, y);
+
     this.container.setAttribute('draggable', true);
     this.container.setAttribute('droppable', true);
   }
 
   didUpdate(): void {
     const { x, y } = this.props.node;
-    this.container.setAttribute('x', x);
-    this.container.setAttribute('y', y);
+    this.container.setLocalPosition(x, y);
   }
 
   getBBox = () => {
@@ -85,6 +84,7 @@ export class Node extends Component {
       return null;
     }
 
+    node.label = node.id;
     return (
       <Shape
         node={node}

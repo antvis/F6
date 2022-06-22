@@ -27,9 +27,12 @@ export class Graph {
   enabeAnimate = true;
   isLayoutFinished = false;
 
+  root = null;
+  canvas = null;
+
   matrix = [1, 0, 0, 0, 1, 0, 0, 0, 1];
 
-  constructor() {
+  constructor(root, canvas) {
     this.nodeManager = new NodeManager(this);
     this.edgeManager = new EdgeManager(this);
     this.comboManager = new ComboManager(this);
@@ -40,6 +43,10 @@ export class Graph {
     this.behaviorService = BehaviorService;
     this.eventService = new EventService(this);
     this.modeService = new ModeService(this);
+
+    this.root = root;
+    this.canvas = canvas;
+
     makeObservable(this, {
       matrix: observable,
       translate: action,
@@ -68,7 +75,7 @@ export class Graph {
     } = cfg;
     this.modeService.setModes(modes);
     this.nodeManager.init(data.nodes, defaultNode, nodeStateStyles);
-    this.edgeManager.init(data.edges, { ...defaultEdge }, edgeStateStyles);
+    this.edgeManager.init(data.edges, defaultEdge, edgeStateStyles);
     this.comboManager.init(data.combos, defaultCombo, comboStateStyles);
     this.hullManager.init(data.hulls);
     this.layoutService.setLayoutConfig(layout, width, height);
@@ -126,21 +133,18 @@ export class Graph {
     temItem.showItem();
   }
 
-  translate(data) {
-    const { x = 0, y = 0 } = data;
+  translate(x = 0, y = 0) {
     this.matrix = transform(this.matrix, [['t', x, y]]);
   }
 
-  translateTo(data) {
-    const { x: tox = 0, y: toy = 0 } = data;
+  translateTo(tox, toy) {
     const curX = this.matrix[6];
     const cury = this.matrix[7];
 
-    this.translate({ x: tox - curX, y: toy - cury });
+    this.translate(tox - curX, toy - cury);
   }
 
-  zoom(data) {
-    const { ratio, center } = data;
+  zoom(ratio, center) {
     if (center) {
       this.matrix = transform(this.matrix, [
         ['t', -center.x, -center.y],
@@ -152,10 +156,13 @@ export class Graph {
     }
   }
 
-  zoomTo(data) {
-    const { ratio: toRatio, center } = data;
+  zoomTo(toRatio, center) {
     const ratio = toRatio / this.matrix[0];
-    this.zoom({ ratio, center });
+    this.zoom(ratio, center);
+  }
+
+  getZoom() {
+    return this.matrix[0] || 1;
   }
 
   fitView() {
@@ -287,6 +294,24 @@ export class Graph {
     item.setState(stateName, value);
   }
 
+  clearItemStates(item, stateNames) {
+    let temItem = item;
+    if (typeof item === 'string' || typeof item === 'number') {
+      temItem = this.getItem(item);
+    }
+    if (isNil(temItem)) return;
+
+    item.clearStates(stateNames);
+  }
+
+  getNodes() {
+    return Object.values(this.nodeManager.items);
+  }
+
+  getEdges() {
+    return Object.values(this.edgeManager.items);
+  }
+
   getCombos(): Combo[] {
     return this.comboManager.items;
   }
@@ -305,6 +330,32 @@ export class Graph {
 
   setLayoutFinshed(isLayoutFinished: boolean) {
     this.isLayoutFinished = isLayoutFinished;
+  }
+
+  getPointByClient(x, y) {
+    return this.viewService.getPointByClient(x, y);
+  }
+
+  getWidth() {
+    return this.viewService.width;
+  }
+
+  getHeight() {
+    return this.viewService.height;
+  }
+
+  changeData(data) {
+    if (!data) return;
+    // nodes
+    this.nodeManager.changeData(data.nodes);
+    // edges
+    this.edgeManager.changeData(data.edges);
+    // combo
+    this.comboManager.changeData(data.combos);
+    // hull
+    this.hullManager.changeData(data.hulls);
+    // layout
+    this.layout();
   }
 
   destroy() {

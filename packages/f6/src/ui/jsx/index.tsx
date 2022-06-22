@@ -1,9 +1,9 @@
-import { registerShape } from '@antv/f-engine';
+import { registerTag } from '@antv/f-engine';
 import { Marker } from '../adapter/marker';
 import { ArrowPath } from '../adapter/path';
 
-registerShape('marker', Marker);
-registerShape('arrowPath', ArrowPath);
+registerTag('marker', Marker);
+registerTag('arrowPath', ArrowPath);
 
 export * from './canvas';
 export { BaseCombo, registerCombo } from './components/combos';

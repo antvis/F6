@@ -55,8 +55,8 @@ export class DragCanvas extends BaseBehavior<DragCanvasCfg> {
       x: clientX,
       y: clientY,
     };
-    const width = this.graph.view.width;
-    const height = this.graph.view.height;
+    const width = this.graph.getWidth();
+    const height = this.graph.getHeight();
     const graphCanvasBBox = this.graph.getCanvasBBox();
 
     if (
@@ -75,7 +75,7 @@ export class DragCanvas extends BaseBehavior<DragCanvasCfg> {
     ) {
       dy = 0;
     }
-    this.graph.translate({ x: dx, y: dy });
+    this.graph.translate(dx, dy);
   }
   onDragStart(e) {
     const self = this as any;

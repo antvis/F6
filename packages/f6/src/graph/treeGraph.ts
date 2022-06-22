@@ -1,7 +1,7 @@
 // @ts-nocheck
 import Hierarchy from '@antv/hierarchy';
 import { each, uniqueId } from '@antv/util';
-import { traverseTree, traverseTreeUp } from '../utils/graphic';
+import { traverseTree } from '../utils/graphic';
 import { Graph } from './graph';
 
 export class TreeGraph extends Graph {
@@ -19,11 +19,7 @@ export class TreeGraph extends Graph {
     while (stack.length) {
       for (let i = 0, len = stack.length; i < len; i++) {
         const [parent, node] = stack.pop();
-        // const newNode = {
-        //   ...node,
-        //   parent: parent?.id,
-        //   children: node.children?.map((node) => node.id),
-        // };
+        node.id = node.id || uniqueId();
         nodes.push({ ...node, parent });
         parent &&
           edges.push({
@@ -41,13 +37,6 @@ export class TreeGraph extends Graph {
     this.rootId = data.id;
     this.layoutCfg = layout;
     super.init({ ...props, data: { nodes, edges } });
-  }
-
-  addId(data) {
-    traverseTreeUp(data, (node) => {
-      node.id = node.id || uniqueId();
-      return true;
-    });
   }
 
   /**
@@ -104,6 +93,11 @@ export class TreeGraph extends Graph {
 
     // 若子树不存在，整体添加即可
     if (!current) {
+      // 如果 root 都不存在，整树替换
+      if (!parent) {
+        self.innerRemoveChild(this.rootId);
+        this.rootId = data.id;
+      }
       self.innerAddChild(data, parent);
       return;
     }
@@ -269,13 +263,12 @@ export class TreeGraph extends Graph {
     const self = this;
 
     // 更改数据源后，取消所有状态
-    // this.getNodes().map((node) => self.clearItemStates(node));
-    // this.getEdges().map((edge) => self.clearItemStates(edge));
+    this.getNodes().map((node) => self.clearItemStates(node));
+    this.getEdges().map((edge) => self.clearItemStates(edge));
 
     if (data) {
       this.originData = data;
-      // self.data(data);
-      // self.render();
+      this.layout();
     }
   }
 }

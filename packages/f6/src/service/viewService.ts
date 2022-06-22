@@ -36,14 +36,14 @@ export class ViewService {
       y: bbox.y + bbox.height / 2,
     };
 
-    this.graph.translate({ x: viewCenter.x - groupCenter.x, y: viewCenter.y - groupCenter.y });
+    this.graph.translate(viewCenter.x - groupCenter.x, viewCenter.y - groupCenter.y);
     const w = (width - padding[1] - padding[3]) / bbox.width;
     const h = (height - padding[0] - padding[2]) / bbox.height;
     let ratio = w;
     if (w > h) {
       ratio = h;
     }
-    this.graph.zoomTo({ ratio, center: viewCenter });
+    this.graph.zoomTo(ratio, viewCenter);
   }
 
   getViewCenter() {
@@ -67,7 +67,7 @@ export class ViewService {
       y: bbox.y + bbox.height / 2,
     };
 
-    this.graph.translate({ x: viewCenter.x - groupCenter.x, y: viewCenter.y - groupCenter.y });
+    this.graph.translate(viewCenter.x - groupCenter.x, viewCenter.y - groupCenter.y);
   }
 
   /**
@@ -75,7 +75,8 @@ export class ViewService {
    * @param x 视口 x 坐标
    * @param y 视口 y 坐标
    */
-  getCanvasByPoint = (viewportMatrix, x: number, y: number): Point => {
+  getCanvasByPoint = (x: number, y: number): Point => {
+    let viewportMatrix = this.graph.getMatrix();
     if (!viewportMatrix) {
       viewportMatrix = [1, 0, 0, 0, 1, 0, 0, 0, 1];
     }
@@ -87,9 +88,10 @@ export class ViewService {
    * @param clientX 页面 x 坐标
    * @param clientY 页面 y 坐标
    */
-  getPointByClient = (canvas, viewportMatrix, clientX: number, clientY: number): Point => {
+  getPointByClient = (clientX: number, clientY: number): Point => {
+    const canvas = this.graph.canvas;
     const canvasPoint: Point = canvas.getPointByClient(clientX, clientY);
-    return this.getPointByCanvas(viewportMatrix, canvasPoint.x, canvasPoint.y);
+    return this.getPointByCanvas(canvasPoint.x, canvasPoint.y);
   };
 
   // /**
@@ -97,18 +99,20 @@ export class ViewService {
   //  * @param x 视口 x 坐标
   //  * @param y 视口 y 坐标
   //  */
-  // getClientByPoint = (viewportMatrix, x: number, y: number): Point => {
-  //   const canvasPoint = getCanvasByPoint(viewportMatrix, x, y);
-  //   const point = canvas.getClientByPoint(canvasPoint.x, canvasPoint.y);
-  //   return { x: point.x, y: point.y };
-  // };
+  getClientByPoint = (x: number, y: number): Point => {
+    const canvas = this.graph.canvas;
+    const canvasPoint = this.getCanvasByPoint(x, y);
+    const point = canvas.getClientByPoint(canvasPoint.x, canvasPoint.y);
+    return { x: point.x, y: point.y };
+  };
 
   /**
    * 将 Canvas 坐标转成视口坐标
    * @param canvasX canvas x 坐标
    * @param canvasY canvas y 坐标
    */
-  getPointByCanvas = (viewportMatrix, canvasX: number, canvasY: number): Point => {
+  getPointByCanvas = (canvasX: number, canvasY: number): Point => {
+    let viewportMatrix = this.graph.getMatrix();
     if (!viewportMatrix) {
       viewportMatrix = [1, 0, 0, 0, 1, 0, 0, 0, 1];
     }
@@ -116,54 +120,3 @@ export class ViewService {
     return point;
   };
 }
-
-// /**
-//  * 将视口坐标转成 Canvas 坐标
-//  * @param x 视口 x 坐标
-//  * @param y 视口 y 坐标
-//  */
-// export const getCanvasByPoint = (viewportMatrix, x: number, y: number): Point => {
-//   if (!viewportMatrix) {
-//     viewportMatrix = [1, 0, 0, 0, 1, 0, 0, 0, 1];
-//   }
-//   return applyMatrix({ x, y }, viewportMatrix);
-// };
-
-/**
- * 将页面坐标转成视口坐标
- * @param clientX 页面 x 坐标
- * @param clientY 页面 y 坐标
- */
-// export const getPointByClient = (
-//   canvas,
-//   viewportMatrix,
-//   clientX: number,
-//   clientY: number,
-// ): Point => {
-//   const canvasPoint: Point = canvas.getPointByClient(clientX, clientY);
-//   return getPointByCanvas(viewportMatrix, canvasPoint.x, canvasPoint.y);
-// };
-
-// /**
-//  * 将视口坐标转成页面坐标
-//  * @param x 视口 x 坐标
-//  * @param y 视口 y 坐标
-//  */
-// export const getClientByPoint = (viewportMatrix, x: number, y: number): Point => {
-//   const canvasPoint = getCanvasByPoint(viewportMatrix, x, y);
-//   const point = canvas.getClientByPoint(canvasPoint.x, canvasPoint.y);
-//   return { x: point.x, y: point.y };
-// };
-
-/**
- * 将 Canvas 坐标转成视口坐标
- * @param canvasX canvas x 坐标
- * @param canvasY canvas y 坐标
- */
-// export const getPointByCanvas = (viewportMatrix, canvasX: number, canvasY: number): Point => {
-//   if (!viewportMatrix) {
-//     viewportMatrix = [1, 0, 0, 0, 1, 0, 0, 0, 1];
-//   }
-//   const point = invertMatrix({ x: canvasX, y: canvasY }, viewportMatrix);
-//   return point;
-// };

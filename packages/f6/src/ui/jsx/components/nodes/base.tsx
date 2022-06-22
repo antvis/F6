@@ -153,6 +153,7 @@ export class BaseNode extends BaseElement<NodeConfig> {
   }
 
   rotateLabel(labelStyle, label) {
+    if (!labelStyle || !label) return;
     const rotate = labelStyle.rotate;
     if (rotate) {
       const labelBBox = label.getBBox();

@@ -55,6 +55,7 @@ export class GraphRoot extends Component {
       edgeStateStyles,
       comboStateStyles,
       linkCenter,
+      onGraphReady,
     } = this.props;
     const { width, height, devicePixelRatio } = this.context.root.props;
     this.context.graph.init({
@@ -73,6 +74,7 @@ export class GraphRoot extends Component {
       linkCenter,
     });
     this.context.graph.layout();
+    onGraphReady?.(this.context.graph);
   }
 
   didUpdate(): void {
@@ -83,6 +85,7 @@ export class GraphRoot extends Component {
       fitCenter = true,
       fitViewPadding = 0,
     } = this.props;
+
     this.nodeRoot.current && (this.nodeRoot.current.container.style.zIndex = NODE_Z_INDEX);
     this.edgeRoot.current && (this.edgeRoot.current.container.style.zIndex = EDGE_Z_INDEX);
     this.comboRoot.current && (this.comboRoot.current.container.style.zIndex = COMBO_Z_INDEX);
@@ -125,19 +128,20 @@ export class GraphRoot extends Component {
       linkCenter,
     } = this.props;
     const graph = this.context.graph;
-    if (!nodes?.length) return null;
     return (
       <Fragment>
         {nodes?.length > 0 && (
           <Fragment ref={this.nodeRoot}>
-            {nodes.map((node, index) => (
-              <Node
-                key={node.id}
-                node={node}
-                states={nodeStates[index]}
-                item={graph.getItem(node.id)}
-              ></Node>
-            ))}
+            {nodes.map((node, index) => {
+              return (
+                <Node
+                  key={node.id}
+                  node={node}
+                  states={nodeStates[index]}
+                  item={graph.getItem(node.id)}
+                ></Node>
+              );
+            })}
           </Fragment>
         )}
 
@@ -208,6 +212,7 @@ export class GraphRoot extends Component {
             })}
           </Fragment>
         )}
+        <Fragment></Fragment>
       </Fragment>
     );
   }

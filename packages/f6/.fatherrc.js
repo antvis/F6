@@ -9,20 +9,23 @@ export default  {
     minFile: true
   },
   entry: [
-    // 'src/index.ts',
+    'src/index.ts',
     'src/index.umd.ts',
-    // 'src/layout/circularLayout.ts',
-    // 'src/layout/comboForceLayout.ts',
-    // 'src/layout/concentricLayout.ts',
-    // 'src/layout/dagreLayout.ts',
-    // 'src/layout/forceAtlas2Layout.ts',
-    // 'src/layout/forceLayout.ts',
-    // 'src/layout/fruchtermanLayout.ts',
-    // 'src/layout/gForceLayout.ts',
-    // 'src/layout/gridLayout.ts',
-    // 'src/layout/mdsLayout.ts',
-    // 'src/layout/radialLayout.ts',
-    // 'src/layout/randomLayout.ts',
+    'src/ui/jsx/treeGraph.tsx',
+    'src/ui/jsx/graph.tsx',
+    'src/layout/comboForceLayout.ts',
+    'src/layout/circularLayout.ts',
+    'src/layout/comboForceLayout.ts',
+    'src/layout/concentricLayout.ts',
+    'src/layout/dagreLayout.ts',
+    'src/layout/forceAtlas2Layout.ts',
+    'src/layout/forceLayout.ts',
+    'src/layout/fruchtermanLayout.ts',
+    'src/layout/gForceLayout.ts',
+    'src/layout/gridLayout.ts',
+    'src/layout/mdsLayout.ts',
+    'src/layout/radialLayout.ts',
+    'src/layout/randomLayout.ts',
 ],
   overridesByEntry: {
     'src/index.ts': {
@@ -31,12 +34,12 @@ export default  {
     'src/index.umd.ts': {
       umd: { name: 'F6', file: 'index.umd' },
     },
-    // 'src/ui/jsx/treeGraph.tsx': {
-    //   umd: { name: 'TreeGraph', file: 'treeGraph' },
-    // },
-    // 'src/ui/jsx/graph.tsx': {
-    //   umd: {name: 'Graph', file:'graph'}
-    // },
+    'src/ui/jsx/treeGraph.tsx': {
+      umd: { name: 'TreeGraph', file: 'treeGraph' },
+    },
+    'src/ui/jsx/graph.tsx': {
+      umd: {name: 'Graph', file:'graph'}
+    },
     'src/layout/circularLayout.ts': {
       umd: {name: 'CircularLayout', file:'circularLayout'}
     },

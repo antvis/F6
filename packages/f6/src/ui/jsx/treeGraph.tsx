@@ -3,7 +3,7 @@ import { TreeGraph as RootStore } from '../../graph/treeGraph';
 import { GraphRoot } from './graphRoot';
 export class TreeGraph extends Component {
   willMount(): void {
-    const graph = new RootStore();
+    const graph = new RootStore(this.context.root, this.context.canvas);
     graph.eventService.initEvents(this.context.root, this.context.canvas);
     this.context.graph = graph;
   }

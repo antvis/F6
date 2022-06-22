@@ -7,6 +7,9 @@ import { Item } from './item';
 export abstract class ItemManger<T extends BaseItemModel, I extends Item<T>> {
   items: Record<ID, I> = {};
 
+  defaultModel: T = null;
+  defaultStates = null;
+
   constructor() {
     makeObservable(this, {
       items: observable,
@@ -19,17 +22,43 @@ export abstract class ItemManger<T extends BaseItemModel, I extends Item<T>> {
     });
   }
 
-  init(models, defaultModel, defaultStates) {
+  init(models, defaultModel: T, defaultStates?) {
+    this.defaultModel = defaultModel;
+    this.defaultStates = defaultStates;
+
     if (isNil(models)) return;
-    const instances = models?.reduce((prev, data) => {
-      const item = this.createItem(deepMix({}, defaultModel, { stateStyles: defaultStates }, data));
-      if (isNil(item.id)) {
-        item.id = uuid();
-      }
-      prev[item.id] = item;
+
+    this.addItem(models);
+  }
+
+  changeData(models = [], defaultModel?, defaultStates?) {
+    const itemKeys = Object.keys(this.items);
+    if (itemKeys.length === 0) {
+      this.init(models, defaultModel, defaultStates);
+      return;
+    }
+
+    const cacheIdMap = models.reduce((prev, cur) => {
+      cur.id && (prev[cur.id] = cur.id);
       return prev;
     }, {});
-    this.items = instances;
+
+    models.forEach((model) => {
+      // update 都存在
+      if (this.items[model.id]) {
+        this.updateItem(model.id, model);
+      }
+      // add 当前不存在，但是传入的存在
+      if (!this.items[model.id]) {
+        this.addItem(model);
+      }
+    });
+
+    itemKeys.forEach((id) => {
+      if (!cacheIdMap[id]) {
+        this.removeItem(id);
+      }
+    });
   }
 
   abstract createItem(data): I;
@@ -56,7 +85,9 @@ export abstract class ItemManger<T extends BaseItemModel, I extends Item<T>> {
       models = [data];
     }
     const instances = models?.reduce((prev, data) => {
-      const item = this.createItem(data);
+      const item = this.createItem(
+        deepMix({}, this.defaultModel || {}, { stateStyles: this.defaultStates || {} }, data),
+      );
       if (isNil(item.id)) {
         item.id = uuid();
       }
@@ -80,6 +111,7 @@ export abstract class ItemManger<T extends BaseItemModel, I extends Item<T>> {
   updateItem(id, model) {
     this.byId(id)?.updateItem(model);
   }
+
   destroy() {
     Object.values(this.items).forEach((item) => item.destroy());
     this.items = null;

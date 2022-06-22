@@ -13,7 +13,7 @@ export default () => {
     const { props } = (
       <Canvas width={width} height={height} pixelRatio={2} context={context}>
         <TreeGraph
-          data={data}
+          data={{}}
           layout={{
             type: 'compactBox',
             direction: 'LR',
@@ -36,6 +36,9 @@ export default () => {
           }}
           modes={{
             default: ['collapse-expand', 'drag-node'],
+          }}
+          onGraphReady={(graph) => {
+            graph.changeData(data);
           }}
         ></TreeGraph>
       </Canvas>

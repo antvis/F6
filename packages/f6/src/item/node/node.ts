@@ -36,7 +36,7 @@ export class Node extends Item<NodeConfig> {
     this.graph = graph;
     this.model = { ...model };
     this.model.type = model.type || 'circle';
-    this.model.visible = true;
+    this.model.visible = typeof this.model.visible === 'boolean' ? this.model.visible : true;
     makeObservable(this, {
       setPosition: action,
       translate: action,

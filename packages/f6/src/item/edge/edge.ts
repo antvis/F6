@@ -18,7 +18,7 @@ export class Edge extends Item<EdgeConfig> {
     this.model = { ...model };
     this.model.id = this.model.id || uniqueId();
     this.model.type = model.type || 'line';
-    this.model.visible = true;
+    this.model.visible = typeof this.model.visible === 'boolean' ? this.model.visible : true;
   }
 
   get type() {
