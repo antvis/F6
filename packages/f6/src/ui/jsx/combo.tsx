@@ -106,7 +106,7 @@ export class Combo extends Component {
 
     this.cacheCombo = {
       ...{ ...combo, ...finalPos },
-      style: { ...(size || {}) },
+      style: { ...combo.style, ...(size || {}) },
     };
 
     return <Shape ref={this.nodeRef} combo={this.cacheCombo} states={states} />;

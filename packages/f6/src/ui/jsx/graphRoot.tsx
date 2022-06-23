@@ -8,15 +8,18 @@ import { calcCanvasBBox, getMatrix, setMatrix } from '../adapter/element';
 import { Combo } from './combo';
 import { Hull } from './hull';
 
-const NODE_Z_INDEX = 2;
-const EDGE_Z_INDEX = 1;
-const COMBO_Z_INDEX = 0;
-const HULL_Z_INDEX = -1;
+const NODE_Z_INDEX = 5;
+const EDGE_Z_INDEX = NODE_Z_INDEX - 1;
+const COMBO_Z_INDEX = EDGE_Z_INDEX - 1;
+const HULL_Z_INDEX = COMBO_Z_INDEX - 1;
 
 @connect((graph, props) => {
   return {
+    nodeModelMap: graph.nodeManager.modelsMap,
     nodes: graph.nodeManager.models,
     edges: graph.edgeManager.models,
+    combos: graph.comboManager.models,
+
     sortedCombos: graph.comboManager.sortedCombos,
     hulls: graph.hullManager.models,
     matrix: graph.matrix,
@@ -33,10 +36,10 @@ export class GraphRoot extends Component {
   edgeRoot = { current: null };
   comboRoot = { current: null };
   hullRoot = { current: null };
-  isFitViewed = false;
-  isFitCentered = false;
+  isFitted = false;
   animate = false;
   prevProps = null;
+  prevRootProps = null;
 
   willMount(): void {
     this.context.graph.inject('getCanvasBBox', this.getRootBBox);
@@ -73,36 +76,65 @@ export class GraphRoot extends Component {
       comboStateStyles,
       linkCenter,
     });
-    this.context.graph.layout();
     onGraphReady?.(this.context.graph);
   }
 
   didUpdate(): void {
+    const graph = this.context.graph;
     const {
       enabeAnimate,
       isLayoutFinished,
       fitView = false,
       fitCenter = true,
       fitViewPadding = 0,
+      layout,
+      modes,
     } = this.props;
+    const { width, height } = this.context.root.props;
 
+    // width height
+    if (
+      (this.prevRootProps && this.prevRootProps.width !== width) ||
+      this.prevProps?.height !== height
+    ) {
+      graph.changeSize(width, height);
+    }
+
+    // fitView fitCenter布局结束后才能fitview 只fitview一次，后序属性更新不做处理，调api
+    if (fitView && !this.isFitted && isLayoutFinished) {
+      this.context.graph.fitView(fitViewPadding);
+      this.isFitted = true;
+    }
+    if (fitCenter && !fitView && !this.isFitted && isLayoutFinished) {
+      this.context.graph.fitCenter();
+      this.isFitted = true;
+    }
+    if (this.prevRootProps && this.prevRootProps.fitViewPadding !== fitViewPadding) {
+      graph.viewService.setFitViewPadding(fitViewPadding);
+    }
+
+    if (this.prevRootProps && this.prevRootProps.modes !== modes) {
+      graph.modeService.setModes(modes);
+    }
+
+    if (this.prevRootProps?.layout && this.prevRootProps.layout !== layout) {
+      graph.updatLayout(layout);
+    }
+
+    // 控制关闭全局动画
+    this.animate = enabeAnimate;
+
+    // 更新zIndex, 边后绘制，但需要在combo下面
     this.nodeRoot.current && (this.nodeRoot.current.container.style.zIndex = NODE_Z_INDEX);
     this.edgeRoot.current && (this.edgeRoot.current.container.style.zIndex = EDGE_Z_INDEX);
     this.comboRoot.current && (this.comboRoot.current.container.style.zIndex = COMBO_Z_INDEX);
     this.hullRoot.current && (this.hullRoot.current.container.style.zIndex = HULL_Z_INDEX);
+
+    // 更新matrix，这部分可能直接用 api 控制会清晰些？
     const { matrix } = this.props;
     if (this.prevProps?.matrix !== matrix) setMatrix(this.container, matrix);
 
-    fitView && !this.isFitViewed && isLayoutFinished && this.context.graph.fitView(fitViewPadding);
-    fitCenter &&
-      !fitView &&
-      !this.isFitCentered &&
-      isLayoutFinished &&
-      this.context.graph.fitCenter();
-
-    this.isFitViewed = true;
-    this.isFitCentered = true;
-    this.animate = enabeAnimate;
+    this.prevRootProps = this.context.root.props;
     this.prevProps = this.props;
   }
 
@@ -126,6 +158,7 @@ export class GraphRoot extends Component {
       comboStates,
       isAutoSize,
       linkCenter,
+      nodeModelMap,
     } = this.props;
     const graph = this.context.graph;
     return (
@@ -133,14 +166,8 @@ export class GraphRoot extends Component {
         {nodes?.length > 0 && (
           <Fragment ref={this.nodeRoot}>
             {nodes.map((node, index) => {
-              return (
-                <Node
-                  key={node.id}
-                  node={node}
-                  states={nodeStates[index]}
-                  item={graph.getItem(node.id)}
-                ></Node>
-              );
+              const item = graph.getItem(node.id);
+              return <Node key={node.id} node={node} states={nodeStates[index]} item={item}></Node>;
             })}
           </Fragment>
         )}
@@ -157,10 +184,10 @@ export class GraphRoot extends Component {
                   combo={item.model}
                   sortedCombo={sortedCombo}
                   item={item}
-                  nodes={graph.nodeManager.models.filter((node) => {
+                  nodes={nodes.filter((node) => {
                     return sortedCombo.children?.some(({ id }) => id === node.id);
                   })}
-                  combos={graph.comboManager.models.filter((node) => {
+                  combos={combos.filter((node) => {
                     return sortedCombo.children?.some(({ id }) => id === node.id);
                   })}
                   states={[...item.states]}
@@ -183,8 +210,8 @@ export class GraphRoot extends Component {
                   states={nodeStates[index]}
                   item={item}
                   linkCenter={linkCenter}
-                  sourceNode={item.getSource()?.model}
-                  endNode={item.getTarget()?.model}
+                  sourceNode={nodeModelMap[edge.source]}
+                  endNode={nodeModelMap[edge.target]}
                 ></Edge>
               );
             })}

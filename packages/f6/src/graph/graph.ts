@@ -80,11 +80,11 @@ export class Graph {
     this.hullManager.init(data.hulls);
     this.layoutService.setLayoutConfig(layout, width, height);
     this.viewService.init({ width, height, devicePixelRatio });
+    this.layout();
   }
 
   layout() {
     const nodes = this.nodeManager.models.map(({ id, x, y, visible }) => ({ id, x, y, visible }));
-
     const edges = this.edgeManager.models.map(({ source, target, visible }) => ({
       source,
       target,
@@ -103,8 +103,15 @@ export class Graph {
         tick();
         this.setLayoutFinshed(true);
       },
-      tick,
+      () => {
+        tick();
+      },
     );
+  }
+
+  updateLayout(cfg) {
+    this.layoutService.setLayoutConfig(cfg, this.getWidth(), this.getHeight());
+    this.layout();
   }
 
   getItem(id) {
@@ -318,12 +325,6 @@ export class Graph {
 
   getMatrix() {}
 
-  //@ts-ignore
-  getCanvasBBox(): BBox {}
-  inject(key, fn) {
-    this[key] = fn;
-  }
-
   setEnableAnimate(enabeAnimate: boolean) {
     this.enabeAnimate = enabeAnimate;
   }
@@ -342,6 +343,10 @@ export class Graph {
 
   getHeight() {
     return this.viewService.height;
+  }
+
+  changeSize(width, height) {
+    this.viewService.changeSize(width, height);
   }
 
   changeData(data) {
@@ -365,5 +370,11 @@ export class Graph {
     this.hullManager.destroy();
     this.eventService.destroy();
     this.layoutService.destroy();
+  }
+
+  //@ts-ignore
+  getCanvasBBox(): BBox {}
+  inject(key, fn) {
+    this[key] = fn;
   }
 }

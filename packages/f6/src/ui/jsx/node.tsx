@@ -100,4 +100,7 @@ export class Node extends Component {
       ></Shape>
     );
   }
+  didUnmount(): void {
+    console.log('unmount');
+  }
 }

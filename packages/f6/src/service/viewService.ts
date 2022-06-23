@@ -119,4 +119,14 @@ export class ViewService {
     const point = invertMatrix({ x: canvasX, y: canvasY }, viewportMatrix);
     return point;
   };
+
+  changeSize(width, height) {
+    this.width = width;
+    this.height = height;
+    this.graph.canvas.changeSize(width, height);
+  }
+
+  setFitViewPadding(fitViewPadding) {
+    this.fitViewPadding = fitViewPadding;
+  }
 }

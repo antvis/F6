@@ -4,6 +4,7 @@ import DargeDemo from './darge';
 import ForceDemo from './force';
 import FruchtermanLayoutDemo from './fruchtermanLayout';
 import GridLayoutDemo from './gridLayout';
+import LayoutChangeDemo from './layoutChange';
 import MdsLayoutDemo from './mdsLayout';
 import RadialLayoutDemo from './radialLayout';
 
@@ -19,3 +20,4 @@ export const FruchtermanLayout = (args) => <FruchtermanLayoutDemo {...args} />;
 export const GridLayout = (args) => <GridLayoutDemo {...args} />;
 export const MdsLayout = (args) => <MdsLayoutDemo {...args} />;
 export const RadialLayout = (args) => <RadialLayoutDemo {...args} />;
+export const LayoutChange = (args) => <LayoutChangeDemo {...args} />;

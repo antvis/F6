@@ -59,13 +59,13 @@ export class LayoutService {
   }
 
   // 绘制
-  public refreshLayout() {
-    // if (graph.get('animate')) {
-    //   graph.positionsAnimate();
-    // } else {
-    //   graph.refreshPositions();
-    // }
-  }
+  // public refreshLayout() {
+  // if (graph.get('animate')) {
+  //   graph.positionsAnimate();
+  // } else {
+  //   graph.refreshPositions();
+  // }
+  // }
 
   // 更换布局
   // public changeLayout(cfg) {
