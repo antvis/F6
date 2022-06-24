@@ -13,7 +13,10 @@ export abstract class ItemManger<T extends BaseItemModel, I extends Item<T>> {
   constructor() {
     makeObservable(this, {
       items: observable,
-      // models: computed,
+      models: computed,
+      modelsMap: computed,
+      states: computed,
+      statesMap: computed,
       ids: computed,
       removeItem: action,
       updateItem: action,
@@ -76,6 +79,13 @@ export abstract class ItemManger<T extends BaseItemModel, I extends Item<T>> {
 
   get states() {
     return Object.values(this.items).map((node) => [...node.states]);
+  }
+
+  get statesMap() {
+    return Object.values(this.items).reduce(
+      (prev, node) => ((prev[node.id] = node.states), prev),
+      {},
+    );
   }
 
   get ids() {

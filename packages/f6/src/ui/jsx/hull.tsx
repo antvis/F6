@@ -39,8 +39,8 @@ export class Hull extends Component {
 
   setPadding() {
     const { members } = this.props;
-    const nodeSize =
-      members.length && this.context.graph.findById(members[0].id).getBBox().width / 2;
+    const f6Context = this.context.f6Context;
+    const nodeSize = members.length && f6Context.getNodeLike(members[0].id).getBBox().width / 2;
     this.padding = this.cfg.padding > 0 ? this.cfg.padding + nodeSize : 10 + nodeSize;
     this.cfg.bubbleCfg = {
       nodeR0: this.padding - nodeSize,
@@ -65,12 +65,14 @@ export class Hull extends Component {
 
   calcPath(members, nonMembers) {
     let contour, path, hull;
+    const f6Context = this.context.f6Context;
+
     const functionalMembers = members.map((node) => {
       return {
         x: node.x,
         y: node.y,
         getBBox: () => {
-          return this.context.graph.findById(node.id).getBBox();
+          return f6Context.getNodeLike(node.id).getBBox();
         },
       };
     });
@@ -79,7 +81,7 @@ export class Hull extends Component {
         x: node.x,
         y: node.y,
         getBBox: () => {
-          return this.context.graph.findById(node.id).getBBox();
+          return f6Context.getNodeLike(node.id).getBBox();
         },
       };
     });

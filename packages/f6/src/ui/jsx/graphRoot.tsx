@@ -15,17 +15,20 @@ const HULL_Z_INDEX = COMBO_Z_INDEX - 1;
 
 @connect((graph, props) => {
   return {
+    nodeItems: graph.nodeManager.items,
+    edgeItems: graph.edgeManager.items,
+    comboItems: graph.comboManager.items,
     nodeModelMap: graph.nodeManager.modelsMap,
+    comboModelMap: graph.comboManager.modelsMap,
     nodes: graph.nodeManager.models,
     edges: graph.edgeManager.models,
     combos: graph.comboManager.models,
-
-    sortedCombos: graph.comboManager.sortedCombos,
     hulls: graph.hullManager.models,
+    sortedCombos: graph.comboManager.sortedCombos,
     matrix: graph.matrix,
-    nodeStates: graph.nodeManager.states,
-    edgeStates: graph.edgeManager.states,
-    comboStates: graph.comboManager.states,
+    nodeStatesMap: graph.nodeManager.statesMap,
+    edgeStatesMap: graph.edgeManager.statesMap,
+    comboStatesMap: graph.comboManager.statesMap,
     isAutoSize: graph.comboManager.isAutoSize,
     enabeAnimate: graph.enabeAnimate,
     isLayoutFinished: graph.isLayoutFinished,
@@ -100,7 +103,7 @@ export class GraphRoot extends Component {
       graph.changeSize(width, height);
     }
 
-    // fitView fitCenter布局结束后才能fitview 只fitview一次，后序属性更新不做处理，调api
+    // fitView fitCenter布局结束后才能fitview
     if (fitView && !this.isFitted && isLayoutFinished) {
       this.context.graph.fitView(fitViewPadding);
       this.isFitted = true;
@@ -109,12 +112,15 @@ export class GraphRoot extends Component {
       this.context.graph.fitCenter();
       this.isFitted = true;
     }
-    if (this.prevRootProps && this.prevRootProps.fitViewPadding !== fitViewPadding) {
+    if (
+      this.prevRootProps?.fitViewPadding &&
+      this.prevRootProps.fitViewPadding !== fitViewPadding
+    ) {
       graph.viewService.setFitViewPadding(fitViewPadding);
     }
 
-    if (this.prevRootProps && this.prevRootProps.modes !== modes) {
-      graph.modeService.setModes(modes);
+    if (this.prevRootProps?.modes && this.prevRootProps?.modes !== modes) {
+      graph.modeService.setMode(modes);
     }
 
     if (this.prevRootProps?.layout && this.prevRootProps.layout !== layout) {
@@ -153,12 +159,16 @@ export class GraphRoot extends Component {
       combos,
       sortedCombos,
       hulls,
-      nodeStates,
-      edgeStates,
-      comboStates,
       isAutoSize,
       linkCenter,
       nodeModelMap,
+      nodeItems,
+      edgeItems,
+      comboItems,
+      comboModelMap,
+      comboStatesMap,
+      nodeStatesMap,
+      edgeStatesMap,
     } = this.props;
     const graph = this.context.graph;
     return (
@@ -166,8 +176,14 @@ export class GraphRoot extends Component {
         {nodes?.length > 0 && (
           <Fragment ref={this.nodeRoot}>
             {nodes.map((node, index) => {
-              const item = graph.getItem(node.id);
-              return <Node key={node.id} node={node} states={nodeStates[index]} item={item}></Node>;
+              return (
+                <Node
+                  key={node.id}
+                  node={node}
+                  states={nodeStatesMap[node.id]}
+                  item={nodeItems[node.id]}
+                ></Node>
+              );
             })}
           </Fragment>
         )}
@@ -175,13 +191,13 @@ export class GraphRoot extends Component {
         {sortedCombos.length > 0 && (
           <Fragment ref={this.comboRoot}>
             {sortedCombos.map((sortedCombo) => {
-              const item = graph.comboManager.byId(sortedCombo.id);
-              if (!item) return null;
+              const item = comboItems[sortedCombo.id];
+              const id = sortedCombo.id;
               return (
                 <Combo
-                  id={sortedCombo.id}
-                  key={sortedCombo.id}
-                  combo={item.model}
+                  id={id}
+                  key={id}
+                  combo={comboModelMap[id]}
                   sortedCombo={sortedCombo}
                   item={item}
                   nodes={nodes.filter((node) => {
@@ -190,7 +206,7 @@ export class GraphRoot extends Component {
                   combos={combos.filter((node) => {
                     return sortedCombo.children?.some(({ id }) => id === node.id);
                   })}
-                  states={[...item.states]}
+                  states={comboStatesMap[id]}
                   isAutoSize={isAutoSize}
                 ></Combo>
               );
@@ -201,17 +217,16 @@ export class GraphRoot extends Component {
         {edges?.length > 0 && (
           <Fragment ref={this.edgeRoot}>
             {edges.map((edge, index) => {
-              const item = graph.edgeManager.byId(edge.id);
-              if (!item) return null;
+              const item = edgeItems[edge.id];
               return (
                 <Edge
                   key={edge.id}
                   edge={edge}
-                  states={nodeStates[index]}
+                  states={edgeStatesMap[edge.id]}
                   item={item}
                   linkCenter={linkCenter}
-                  sourceNode={nodeModelMap[edge.source]}
-                  endNode={nodeModelMap[edge.target]}
+                  sourceNode={nodeModelMap[edge.source] || comboModelMap[edge.source]}
+                  endNode={nodeModelMap[edge.target] || comboModelMap[edge.target]}
                 ></Edge>
               );
             })}
@@ -239,6 +254,7 @@ export class GraphRoot extends Component {
             })}
           </Fragment>
         )}
+
         <Fragment></Fragment>
       </Fragment>
     );

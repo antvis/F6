@@ -44,11 +44,11 @@ export default class ModeService {
     this.behaviorService = graph.behaviorService;
     this.eventService = graph.eventService;
     if (modes) {
-      this.setModes(modes, defaultMode);
+      this.init(modes, defaultMode);
     }
   }
 
-  public setModes(modes, defaultMode = 'default') {
+  public init(modes, defaultMode = 'default') {
     this.modes = modes || {
       default: [],
     };

@@ -1,4 +1,4 @@
-import { Component, jsx } from '@antv/f-engine';
+import { jsx } from '@antv/f-engine';
 import { getCombo } from './components/combos';
 
 import { calcBBox, calcMatrix, calculateBBox } from '../adapter/element';
@@ -6,24 +6,35 @@ import { calcBBox, calcMatrix, calculateBBox } from '../adapter/element';
 import { isNumber } from '@antv/util';
 import global from '../../global';
 import { IShape } from '../../types';
+import { Node } from './node';
 
-export class Combo extends Component {
+export class Combo extends Node {
   nodeRef = { current: null };
   cacheCombo = {};
   size = {};
   position = {};
   isInited = false;
 
+  /**
+   * 返回 View 侧的 model
+   * @returns
+   */
+  getModel() {
+    return this.props.combo;
+  }
+
   willMount(): void {
-    const { item } = this.props;
-    item.inject('getBBox', this.getBBox);
+    const { combo, item } = this.props;
+    // @ts-ignore
+    (this.container as IShape).item = item;
+    // 管理挂在 context 上的 combo 实例
+    this.context.f6Context.addCombo(combo.id, this);
   }
 
   didMount(): void {
-    const { sortedCombo, item } = this.props;
+    const { sortedCombo } = this.props;
+    // 必须设置container的zIndex控制多个combo的层叠关系
     this.container.style.zIndex = sortedCombo.depth;
-    // @ts-ignore
-    (this.container as IShape).item = item;
     this.isInited = true;
   }
 
@@ -39,10 +50,59 @@ export class Combo extends Component {
     return calculateBBox(calcBBox(this.getKeyShape()), matrix);
   };
 
+  calcComboBBox() {
+    const { sortedCombo } = this.props;
+    const f6Context = this.context.f6Context;
+
+    const combo = sortedCombo;
+
+    const children = [...(combo.nodes || []), ...(combo.combos || [])];
+
+    const comboBBox = {
+      minX: Infinity,
+      minY: Infinity,
+      maxX: -Infinity,
+      maxY: -Infinity,
+      x: undefined,
+      y: undefined,
+      width: undefined,
+      height: undefined,
+      centerX: undefined,
+      centerY: undefined,
+    };
+
+    if (!children || children.length === 0) {
+      return comboBBox;
+    }
+
+    children.forEach((node) => {
+      const childBBox = f6Context.getNodeLike(node.id).getBBox();
+      if (!childBBox) return; // ignore hidden children
+      if (childBBox.x && comboBBox.minX > childBBox.minX) comboBBox.minX = childBBox.minX;
+      if (childBBox.y && comboBBox.minY > childBBox.minY) comboBBox.minY = childBBox.minY;
+      if (childBBox.x && comboBBox.maxX < childBBox.maxX) comboBBox.maxX = childBBox.maxX;
+      if (childBBox.y && comboBBox.maxY < childBBox.maxY) comboBBox.maxY = childBBox.maxY;
+    });
+    comboBBox.x = (comboBBox.minX + comboBBox.maxX) / 2;
+    comboBBox.y = (comboBBox.minY + comboBBox.maxY) / 2;
+    comboBBox.width = comboBBox.maxX - comboBBox.minX;
+    comboBBox.height = comboBBox.maxY - comboBBox.minY;
+
+    comboBBox.centerX = (comboBBox.minX + comboBBox.maxX) / 2;
+    comboBBox.centerY = (comboBBox.minY + comboBBox.maxY) / 2;
+
+    Object.keys(comboBBox).forEach((key) => {
+      if (comboBBox[key] === Infinity || comboBBox[key] === -Infinity) {
+        comboBBox[key] = undefined;
+      }
+    });
+
+    return comboBBox;
+  }
+
   calcRenderRect(padding = 0) {
-    const { combo } = this.props;
     let x, y;
-    const bbox = this.context.graph.comboManager.calcComboBBox(combo.id);
+    const bbox = this.calcComboBBox();
     const size = {
       r: Math.hypot(bbox.height, bbox.width) / 2 || global.defaultCombo.size[0] / 2,
       width: bbox.width || global.defaultCombo.size[0],
@@ -110,5 +170,10 @@ export class Combo extends Component {
     };
 
     return <Shape ref={this.nodeRef} combo={this.cacheCombo} states={states} />;
+  }
+
+  didUnmount(): void {
+    console.log('remove combo');
+    this.context.f6Context.removeCombo(this.props.combo.id);
   }
 }

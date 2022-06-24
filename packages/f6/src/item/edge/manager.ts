@@ -1,15 +1,15 @@
-// @ts-nocheck
-import { Item } from '../base/item';
+import { EdgeConfig } from '../../types';
 import { ItemManger } from '../base/manager';
 import { Edge } from './edge';
-export class EdgeManager extends ItemManger<Edge> {
+export class EdgeManager extends ItemManger<EdgeConfig, Edge> {
   graph = null;
 
   constructor(graph) {
     super();
     this.graph = graph;
   }
-  createItem(data: any): Item {
+
+  createItem(data: any): Edge {
     return new Edge(data, this.graph);
   }
 

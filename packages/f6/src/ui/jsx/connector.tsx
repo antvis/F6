@@ -11,9 +11,15 @@ export function connect(mapStatetoProps?): any {
       disposer = null;
 
       willMount(): void {
-        this.disposer = reaction(() => {
-          return mapStatetoProps(this.context.graph, this.props, this.prevProps);
-        }, this.updateProps);
+        this.disposer = reaction(
+          () => {
+            return mapStatetoProps(this.context.graph, this.props, this.prevProps);
+          },
+          this.updateProps,
+          {
+            delay: 10,
+          },
+        );
         this.updateProps();
         this.isFirst = false;
       }

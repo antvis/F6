@@ -73,7 +73,7 @@ export class Graph {
       edgeStateStyles,
       comboStateStyles,
     } = cfg;
-    this.modeService.setModes(modes);
+    this.modeService.init(modes);
     this.nodeManager.init(data.nodes, defaultNode, nodeStateStyles);
     this.edgeManager.init(data.edges, defaultEdge, edgeStateStyles);
     this.comboManager.init(data.combos, defaultCombo, comboStateStyles);

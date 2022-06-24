@@ -237,29 +237,7 @@ export default class EventService extends EE {
     if (eventType === 'dragend') {
       this.dragging = false;
     }
-    // if (eventType === 'panmove') {
-    //   this.handleTouchMove(evt, type);
-    // }
   }
-
-  /**
-   * 处理扩展事件
-   * @param evt 事件句柄
-   */
-  // protected onExtendEvents(evt) {
-  //   this.graph.emit(evt.type, evt);
-  // }
-
-  // /**
-  //  * 在 graph 上面 emit 事件
-  //  * @param itemType item 类型
-  //  * @param eventType 事件类型
-  //  * @param evt 事件句柄
-  //  */
-  // private emitCustomEvent(itemType: string, eventType: string, evt) {
-  //   evt.type = eventType;
-  //   this.graph.emit(`${itemType}:${eventType}`, evt);
-  // }
 
   public destroy() {
     // const { graph, canvasHandler, extendEvents } = this;

@@ -1,5 +1,6 @@
 import { Component, jsx } from '@antv/f-engine';
 import { Graph as RootStore } from '../../graph/graph';
+import { F6Context } from './f6Context';
 import { GraphRoot } from './graphRoot';
 
 export class Graph extends Component {
@@ -7,6 +8,7 @@ export class Graph extends Component {
     const graph = new RootStore(this.context.root, this.context.canvas);
     graph.eventService.initEvents(this.context.root, this.context.canvas);
     this.context.graph = graph;
+    this.context.f6Context = new F6Context();
     this.animate = false;
   }
 

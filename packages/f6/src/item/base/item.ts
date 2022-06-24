@@ -1,6 +1,5 @@
 import { isNil, isString } from '@antv/util';
 import { action, makeObservable, observable } from 'mobx';
-import { BBox } from '../../types';
 import { BaseItemModel } from '../../types/item';
 
 export class Item<T extends BaseItemModel> {
@@ -10,7 +9,6 @@ export class Item<T extends BaseItemModel> {
   destroyed = false;
 
   constructor() {
-    // this.model = {};
     makeObservable(
       this,
       {
@@ -94,23 +92,9 @@ export class Item<T extends BaseItemModel> {
     return false;
   }
 
-  getBBox(): BBox {
-    return {
-      x: 0,
-      y: 0,
-      minX: 0,
-      minY: 0,
-      maxX: 0,
-      maxY: 0,
-      width: 0,
-      height: 0,
-    };
-  }
-
   destroy() {
     this.destroyed = true;
     this.model = null;
     this.states = null;
-    this.getBBox = null;
   }
 }

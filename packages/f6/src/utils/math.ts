@@ -1,17 +1,17 @@
-import { Point, IGroup } from '@antv/g-base';
-import { mat3, vec3, ext, vec2 } from '@antv/matrix-util';
-import { isArray, each } from '@antv/util';
+import { IGroup, Point } from '@antv/g-base';
+import { ext, mat3, vec2, vec3 } from '@antv/matrix-util';
+import { each, isArray } from '@antv/util';
 import {
+  EdgeConfig,
   GraphData,
+  IBBox,
   ICircle,
   IEllipse,
-  IRect,
-  Matrix,
-  EdgeConfig,
-  NodeIdxMap,
-  IBBox,
-  Item,
   IPoint,
+  IRect,
+  Item,
+  Matrix,
+  NodeIdxMap,
 } from '../types';
 
 const transform = ext.transform;
@@ -802,4 +802,21 @@ export const pointLineDistance = (line, point) => {
   const a = [x - x1, y - y1];
   // @ts-ignore
   return Math.abs(vec2.dot(a, u));
+};
+
+export const getNearestPoint = (points: IPoint[], curPoint: Point): IPoint => {
+  let index = 0;
+  let nearestPoint = points[0];
+  let minDistance = distance(points[0], curPoint);
+  for (let i = 0; i < points.length; i++) {
+    const point = points[i];
+    const dis = distance(point, curPoint);
+    if (dis < minDistance) {
+      nearestPoint = point;
+      minDistance = dis;
+      index = i;
+    }
+  }
+  nearestPoint.anchorIndex = index;
+  return nearestPoint;
 };
