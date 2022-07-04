@@ -92,7 +92,7 @@ export default () => {
         <Graph
           fitCenter={false}
           fitview={false}
-          data={data}
+          data={{}}
           linkCenter={true}
           modes={{
             default: ['drag-node'],
@@ -102,26 +102,26 @@ export default () => {
             // preventOverlap: true,
             // alphaDecay: 0,
           }}
+          onGraphReady={(graph) => {
+            const device = plugin.getDevice();
+            // create a sphere geometry
+            sphereGeometry = new SphereGeometry(device, {
+              radius: 10,
+              latitudeBands: 32,
+              longitudeBands: 32,
+            });
+            // create a material with Phong lighting model
+            material = new MeshPhongMaterial(device, {
+              shininess: 30,
+            });
+            graph.changeData(data);
+          }}
         ></Graph>
       </Canvas>
     );
     const graph = new Canvas(props);
     graph.render();
     graph.canvas.appendChild(light);
-
-    setTimeout(() => {
-      const device = plugin.getDevice();
-      // create a sphere geometry
-      sphereGeometry = new SphereGeometry(device, {
-        radius: 10,
-        latitudeBands: 32,
-        longitudeBands: 32,
-      });
-      // create a material with Phong lighting model
-      material = new MeshPhongMaterial(device, {
-        shininess: 30,
-      });
-    }, 100);
   }, []);
   // }
 

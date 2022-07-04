@@ -1,4 +1,4 @@
-import { Canvas, Circle, Group, Path, Text } from '@antv/g';
+import { Canvas, Circle, Group, Path, Rect, Text } from '@antv/g';
 // import { CanvasRenderer } from '@antv/f-engine';
 import { Renderer as CanvasRenderer } from '@antv/g-mobile-canvas';
 import { useEffect } from 'react';
@@ -56,20 +56,54 @@ function testMassG5(canvas, count) {
   loop();
 }
 
+function testZIndex(canvas) {
+  const group = new Group();
+  const group2 = new Group();
+  const rect1 = new Rect({
+    style: {
+      width: 100,
+      height: 100,
+      fill: 'blue',
+    },
+  });
+  const rect2 = new Rect({
+    style: {
+      x: 50,
+      y: 50,
+      width: 100,
+      height: 100,
+      fill: 'red',
+    },
+  });
+  group.appendChild(rect1);
+  group2.appendChild(rect2);
+  canvas.getRoot().appendChild(group);
+  canvas.getRoot().appendChild(group2);
+
+  setTimeout(() => {
+    group.style.zIndex = 2;
+  }, 100);
+}
+
+function testPointUp(canvas) {
+  // const plugin = new Plugin({
+  //   // we can drag the whole document from empty space now!
+  //   isDocumentDraggable: true,
+  //   isDocumentDroppable: true,
+  //   dragstartDistanceThreshold: 10,
+  //   dragstartTimeThreshold: 100,
+  // });
+  // canvasRenderer.registerPlugin(plugin);
+  canvas.addEventListener('pointerup', () => {
+    console.log('canvas up');
+  });
+}
 export default () => {
   const height = window.innerHeight - 32; // demos padding
   const width = window.innerWidth - 32;
   useEffect(() => {
     // create a renderer
     const canvasRenderer = new CanvasRenderer();
-    // const plugin = new Plugin({
-    //   // we can drag the whole document from empty space now!
-    //   isDocumentDraggable: true,
-    //   isDocumentDroppable: true,
-    //   dragstartDistanceThreshold: 10,
-    //   dragstartTimeThreshold: 100,
-    // });
-    // canvasRenderer.registerPlugin(plugin);
 
     const context = Util.createContext('container', width, height);
     // create a canvas
@@ -80,11 +114,8 @@ export default () => {
       renderer: canvasRenderer,
     });
 
-    canvas.addEventListener('pointerup', () => {
-      console.log('canvas up');
-    });
-
-    testMassG5(canvas, 550);
+    // testMassG5(canvas, 550);
+    testZIndex(canvas);
   });
 
   return <div id="container" style={{ width, height, display: 'flex' }}></div>;
