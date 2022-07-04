@@ -71,3 +71,5 @@ export interface SimpleBBox {
 export interface IShape extends DisplayObject {
   item?: Item;
 }
+
+export interface IGroup extends DisplayObject {}

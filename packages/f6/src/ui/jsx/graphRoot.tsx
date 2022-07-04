@@ -69,7 +69,8 @@ export class GraphRoot extends Component {
       linkCenter,
       onGraphReady,
     } = this.props;
-    const { width, height, devicePixelRatio } = this.context.root.props;
+    const { devicePixelRatio = 1 } = this.context.root.props;
+    const { width, height } = this.context;
     this.context.f6Context.graph.init({
       width,
       height,

@@ -1,17 +1,18 @@
-import { IGroup, Point } from '@antv/g-base';
 import { ext, mat3, vec2, vec3 } from '@antv/matrix-util';
-import { each, isArray } from '@antv/util';
+import { each } from '@antv/util';
 import {
   EdgeConfig,
   GraphData,
   IBBox,
   ICircle,
   IEllipse,
+  IGroup,
   IPoint,
   IRect,
   Item,
   Matrix,
   NodeIdxMap,
+  Point,
 } from '../types';
 
 const transform = ext.transform;
@@ -351,63 +352,63 @@ export const translate = (group: IGroup, vec: Point) => {
   group.translate(vec.x, vec.y);
 };
 
-/**
- * 移动到指定坐标点
- * @param group Group 实例
- * @param point 移动到的坐标点
- */
-export const move = (group: IGroup, point: Point) => {
-  let matrix: Matrix = group.getMatrix();
-  if (!matrix) {
-    matrix = [1, 0, 0, 0, 1, 0, 0, 0, 1];
-  }
-  const bbox = group.getCanvasBBox();
-  const vx = point.x - bbox.minX;
-  const vy = point.y - bbox.minY;
+// /**
+//  * 移动到指定坐标点
+//  * @param group Group 实例
+//  * @param point 移动到的坐标点
+//  */
+// export const move = (group: IGroup, point: Point) => {
+//   let matrix: Matrix = group.getMatrix();
+//   if (!matrix) {
+//     matrix = [1, 0, 0, 0, 1, 0, 0, 0, 1];
+//   }
+//   const bbox = group.getCanvasBBox();
+//   const vx = point.x - bbox.minX;
+//   const vy = point.y - bbox.minY;
 
-  const movedMatrix = transform(matrix, [['t', vx, vy]]);
-  group.setMatrix(movedMatrix);
-};
+//   const movedMatrix = transform(matrix, [['t', vx, vy]]);
+//   group.setMatrix(movedMatrix);
+// };
 
-/**
- * 缩放 group
- * @param group Group 实例
- * @param point 在x 和 y 方向上的缩放比例
- */
-export const scale = (group: IGroup, ratio: number | number[]) => {
-  let matrix: Matrix = group.getMatrix();
-  if (!matrix) {
-    matrix = [1, 0, 0, 0, 1, 0, 0, 0, 1];
-  }
+// /**
+//  * 缩放 group
+//  * @param group Group 实例
+//  * @param point 在x 和 y 方向上的缩放比例
+//  */
+// export const scale = (group: IGroup, ratio: number | number[]) => {
+//   let matrix: Matrix = group.getMatrix();
+//   if (!matrix) {
+//     matrix = [1, 0, 0, 0, 1, 0, 0, 0, 1];
+//   }
 
-  let scaleXY = ratio;
-  if (!isArray(ratio)) {
-    scaleXY = [ratio, ratio];
-  }
+//   let scaleXY = ratio;
+//   if (!isArray(ratio)) {
+//     scaleXY = [ratio, ratio];
+//   }
 
-  if (isArray(ratio) && ratio.length === 1) {
-    scaleXY = [ratio[0], ratio[0]];
-  }
+//   if (isArray(ratio) && ratio.length === 1) {
+//     scaleXY = [ratio[0], ratio[0]];
+//   }
 
-  matrix = transform(matrix, [['s', (scaleXY as number[])[0], (scaleXY as number[])[1]]]);
+//   matrix = transform(matrix, [['s', (scaleXY as number[])[0], (scaleXY as number[])[1]]]);
 
-  group.setMatrix(matrix);
-};
+//   group.setMatrix(matrix);
+// };
 
-/**
- *
- * @param group Group 实例
- * @param ratio 选择角度
- */
-export const rotate = (group: IGroup, angle: number) => {
-  let matrix: Matrix = group.getMatrix();
-  if (!matrix) {
-    matrix = [1, 0, 0, 0, 1, 0, 0, 0, 1];
-  }
-  matrix = transform(matrix, [['r', angle]]);
+// /**
+//  *
+//  * @param group Group 实例
+//  * @param ratio 选择角度
+//  */
+// export const rotate = (group: IGroup, angle: number) => {
+//   let matrix: Matrix = group.getMatrix();
+//   if (!matrix) {
+//     matrix = [1, 0, 0, 0, 1, 0, 0, 0, 1];
+//   }
+//   matrix = transform(matrix, [['r', angle]]);
 
-  group.setMatrix(matrix);
-};
+//   group.setMatrix(matrix);
+// };
 
 export const getDegree = (n: number, nodeIdxMap: NodeIdxMap, edges: EdgeConfig[]): number[] => {
   const degrees: number[] = [];

@@ -67,6 +67,7 @@ export const calculationItemsBBox = (items: Item[]) => {
   // 获取已节点的所有最大最小x y值
   for (let i = 0; i < items.length; i++) {
     const element = items[i];
+    // @ts-ignore
     const bbox = element.getBBox();
     const { minX, minY, maxX, maxY } = bbox;
     if (minX < minx) {

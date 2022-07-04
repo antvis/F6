@@ -39,6 +39,7 @@ import {
 // registerLayout('comboForce', ComboForceLayout);
 // registerLayout('forceAtlas2', ForceAtlas2Layout);
 
+export * from './types';
 export {
   jsx,
   Util,

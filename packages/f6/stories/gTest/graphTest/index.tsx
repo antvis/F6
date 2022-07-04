@@ -84,7 +84,7 @@ export default () => {
       console.log('canvas up');
     });
 
-    // testMassG5(canvas, 150);
+    testMassG5(canvas, 550);
   });
 
   return <div id="container" style={{ width, height, display: 'flex' }}></div>;

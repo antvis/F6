@@ -13,7 +13,7 @@ export default () => {
   useEffect(() => {
     const context = Util.createContext(ref.current, width, height);
     const { props } = (
-      <Canvas width={width} height={height} pixelRatio={2} context={context}>
+      <Canvas pixelRatio={2} context={context}>
         <Graph
           data={data}
           layout={{

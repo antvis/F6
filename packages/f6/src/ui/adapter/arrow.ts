@@ -174,7 +174,6 @@ export class Arrow extends CustomElement<ArrowStyleProps> {
     rad = Math.atan2(y, x);
 
     const offset = head.style.offset;
-    console.log('offset', offset);
     if (typeof offset === 'number') {
       x2 = x2 - Math.cos(rad) * offset;
       y2 = y2 - Math.sin(rad) * offset;
