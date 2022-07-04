@@ -13,27 +13,27 @@ export function connect(mapStatetoProps?): any {
       willMount(): void {
         this.disposer = reaction(
           () => {
-            return mapStatetoProps(this.context.graph, this.props, this.prevProps);
+            return mapStatetoProps(this.context.f6Context.graph, this.props, this.prevProps);
           },
           this.updateProps,
           {
-            delay: 10,
+            delay: 1,
           },
         );
-        this.updateProps();
+
+        this.updateProps(mapStatetoProps(this.context.f6Context.graph, this.props, this.prevProps));
         this.isFirst = false;
       }
 
-      updateProps = () => {
-        const stateProps = mapStatetoProps(this.context.graph, this.props, this.prevProps);
+      updateProps = (stateProps) => {
         if (!stateProps) return;
-        // let isEqual = true;
-        // for (const [key, value] of Object.entries(stateProps || {})) {
-        //   if (this.prevProps[key] !== value) {
-        //     isEqual = false;
-        //   }
-        // }
-        // if (isEqual) return;
+        let isEqual = true;
+        for (const [key, value] of Object.entries(stateProps || {})) {
+          if (this.prevProps[key] !== value) {
+            isEqual = false;
+          }
+        }
+        if (isEqual) return;
         this.prevProps = stateProps;
         this.isFirst &&
           (this.state = {

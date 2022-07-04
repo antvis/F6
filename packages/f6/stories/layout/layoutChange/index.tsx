@@ -34,6 +34,8 @@ export default () => {
       <Canvas width={width} height={height} pixelRatio={2} context={context}>
         <Graph
           data={data}
+          fitView={true}
+          fitCenter={false}
           layout={{
             type: 'RadialLayout',
             unitRadius: 50,
@@ -45,47 +47,29 @@ export default () => {
           }}
           onGraphReady={(graph) => {
             const layoutArr = [
-              // 'RadialLayout',
-              // 'CircularLayout',
-              // 'ConcentricLayout',
-              // 'DagreLayout',
+              'RadialLayout',
+              'CircularLayout',
+              'ConcentricLayout',
+              'DagreLayout',
               'force',
-              // 'FruchtermanLayout',
+              'FruchtermanLayout',
               'GridLayout',
             ];
             let index = 0;
-            // const loop = () => {
-            //   setTimeout(() => {
-            //     console.log('layout');
-            //     graph.updateLayout({
-            //       type: layoutArr[index],
-            //     });
-            //     graph.fitCenter();
-            //     index++;
-            //     if (index === layoutArr.length) {
-            //       index = 0;
-            //     }
-            //     loop();
-            //   }, 2000);
-            // };
-
-            setTimeout(() => {
-              console.log('layout');
-              graph.updateLayout({
-                type: layoutArr[0],
-              });
-              // graph.fitCenter();
-            }, 100);
-
-            setTimeout(() => {
-              console.log('layout');
-              graph.updateLayout({
-                type: layoutArr[1],
-              });
-              // graph.fitCenter();
-            }, 2000);
-
-            // loop();
+            const loop = () => {
+              setTimeout(() => {
+                graph.updateLayout({
+                  type: layoutArr[index],
+                });
+                graph.fitView();
+                index++;
+                if (index === layoutArr.length) {
+                  index = 0;
+                }
+                loop();
+              }, 2000);
+            };
+            loop();
           }}
         ></Graph>
       </Canvas>

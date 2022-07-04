@@ -7,12 +7,12 @@ export class NodeManager extends ItemManger<NodeConfig, Node> {
   graph = null;
   isEnableAnimate = true;
   constructor(graph) {
-    super();
+    super(graph);
     this.graph = graph;
   }
 
   createItem(data: any) {
-    return new Node(data, this.graph);
+    return new Node(this.graph, data);
   }
 
   updateById(id, model) {

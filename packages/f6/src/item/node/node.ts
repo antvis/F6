@@ -7,8 +7,8 @@ import { Edge } from '../edge/edge';
 export class Node extends Item<NodeConfig> {
   graph: Graph = null;
 
-  constructor(model: NodeConfig, graph: Graph) {
-    super();
+  constructor(graph: Graph, model: NodeConfig) {
+    super(graph);
     this.graph = graph;
     this.model = { ...model };
     this.model.type = model.type || 'circle';

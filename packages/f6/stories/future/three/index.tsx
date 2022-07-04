@@ -90,9 +90,10 @@ export default () => {
         ref={canvasRef}
       >
         <Graph
-          fitCenter={true}
+          fitCenter={false}
+          fitview={false}
           data={data}
-          linkCenter={false}
+          linkCenter={true}
           modes={{
             default: ['drag-node'],
           }}

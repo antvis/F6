@@ -4,6 +4,10 @@ export class F6Context {
   readonly edges = {};
   readonly combos = {};
 
+  constructor(graph) {
+    this.graph = graph;
+  }
+
   addNode(id, nodeComponent) {
     this.nodes[id] = nodeComponent;
   }

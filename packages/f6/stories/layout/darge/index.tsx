@@ -21,7 +21,7 @@ export default () => {
             nodesep: 10,
           }}
           modes={{
-            default: ['drag-node', 'drag-combo', 'click-select'],
+            default: ['zoom-canvas'],
           }}
         ></Graph>
       </Canvas>

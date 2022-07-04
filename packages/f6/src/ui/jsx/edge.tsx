@@ -21,7 +21,7 @@ export class Edge extends Component {
   }
 
   didMount(): void {
-    console.log('edge mount');
+    // console.log('edge mount');
   }
 
   /**
@@ -98,7 +98,7 @@ export class Edge extends Component {
     const sourceId = edgeState[name];
 
     // todo position
-    const nodeState = f6Context.getNodeLike(sourceId).getModel();
+    const nodeState = f6Context.getNodeLike(sourceId)?.getModel();
     // 如果有端点，直接使用 model
     if (nodeState) {
       return { x: nodeState.x, y: nodeState.y };
@@ -120,12 +120,12 @@ export class Edge extends Component {
     const edgeState = edge;
     const sourceId = edgeState[name];
 
-    const nodeState = f6Context.getNodeLike(sourceId).getModel();
+    const nodeState = f6Context.getNodeLike(sourceId)?.getModel();
 
     const pointName = END_MAP[name] + POINT_NAME_SUFFIX;
     // 如果有端点，直接使用 model
     if (nodeState) {
-      const bbox = f6Context.getNodeLike(sourceId).getBBox(sourceId);
+      const bbox = f6Context.getNodeLike(sourceId)?.getBBox(sourceId);
       return {
         x: bbox.centerX,
         y: bbox.centerY,
@@ -209,7 +209,6 @@ export class Edge extends Component {
   }
 
   didUnmount(): void {
-    console.log('edge unmount');
     this.context.f6Context.removeEdge(this.props.edge.id);
   }
 }

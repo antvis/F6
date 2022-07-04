@@ -184,7 +184,7 @@ export class BaseEdge extends BaseElement<EdgeConfig> {
     style.x = offsetStyle.x;
     style.y = offsetStyle.y;
     // @ts-ignore
-    style.transform = `rotate(${(offsetStyle.rotate * 180) / Math.PI}deg)`;
+    offsetStyle.rotate && (style.transform = `rotate(${(offsetStyle.rotate * 180) / Math.PI}deg)`);
     style.textAlign = this._getTextAlign!(
       labelPosition as string,
       offsetStyle.angle as number,

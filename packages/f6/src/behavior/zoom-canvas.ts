@@ -45,7 +45,7 @@ export class ZoomCanvas extends BaseBehavior<ZoomCanvasCfg> {
 
     return {
       pinchstart: 'onPinch',
-      pinchmove: 'onPinch',
+      pinch: 'onPinch',
     };
   }
   onPinch(evt) {
@@ -61,10 +61,11 @@ export class ZoomCanvas extends BaseBehavior<ZoomCanvasCfg> {
       this.firstScale = this.graph.getZoom();
     }
 
-    const scale = evt.originalEvent.scale || evt.originalEvent.srcEvent.extra.scale;
+    const scale = evt.zoom;
 
     // 应用到画布上的缩放比例
     const zoom = this.firstScale * scale;
+    const center = evt.center;
 
     // 缓存当前的缩放比例
     this.currentScale = zoom;
@@ -74,10 +75,10 @@ export class ZoomCanvas extends BaseBehavior<ZoomCanvasCfg> {
     }
     const canvas = this.graph.canvas;
 
-    const posA = { x: pointers[0].x, y: pointers[0].y };
-    const posB = { x: pointers[1].x, y: pointers[1].y };
+    // const posA = { x: pointers[0].x, y: pointers[0].y };
+    // const posB = { x: pointers[1].x, y: pointers[1].y };
     // 缩放点放中间
-    const point = canvas.getPointByClient((posA.x + posB.x) / 2, (posA.y + posB.y) / 2);
-    this.graph.zoomTo(zoom, { x: point.x, y: point.y });
+    // const point = canvas.getPointByClient((posA.x + posB.x) / 2, (posA.y + posB.y) / 2);
+    this.graph.zoomTo(zoom, center);
   }
 }

@@ -32,8 +32,6 @@ const traverseCombo = (data, fn: (param: any) => boolean) => {
 };
 
 interface DragComboCfg {
-  enableDelegate: boolean;
-  delegateStyle: object;
   // 拖动节点过程中是否只改变 Combo 的大小，而不改变其结构
   onlyChangeComboSize: boolean;
   // 拖动过程中目标 combo 状态样式
@@ -53,8 +51,6 @@ export class DragCombo extends BaseBehavior<DragComboCfg> {
 
   getDefaultCfg(): DragComboCfg {
     return {
-      enableDelegate: false,
-      delegateStyle: {},
       // 拖动节点过程中是否只改变 Combo 的大小，而不改变其结构
       onlyChangeComboSize: false,
       // 拖动过程中目标 combo 状态样式
@@ -153,67 +149,9 @@ export class DragCombo extends BaseBehavior<DragComboCfg> {
 
     if (!this.validationCombo(evt)) return;
 
-    const { activeState } = this.cfg;
-
-    if (this.enableDelegate) {
-      this.updateDelegate(evt);
-    } else {
-      if (activeState) {
-        const graph = this.graph;
-        const item = evt.item;
-        const model = item.getModel();
-        // 拖动过程中实时计算距离
-        const combos = graph.getCombos();
-        const sourceBBox = item.getBBox();
-
-        const { centerX, centerY, width } = sourceBBox;
-
-        // 参与计算的 Combo，需要排除掉：
-        // 1、拖动 combo 自己
-        // 2、拖动 combo 的 parent
-        // 3、拖动 Combo 的 children
-
-        const calcCombos = combos.filter((combo) => {
-          const cmodel = combo.getModel();
-          // 被拖动的是最外层的 Combo，无 parent，排除自身和子元素
-          if (!model.parentId) {
-            return cmodel.id !== model.id && !this.currentItemChildCombos.includes(cmodel.id);
-          }
-          return cmodel.id !== model.id && !this.currentItemChildCombos.includes(cmodel.id);
-        });
-
-        calcCombos.map((combo) => {
-          const { centerX: cx, centerY: cy, width: w } = combo.getBBox();
-
-          // 拖动的 combo 和要进入的 combo 之间的距离
-          const disX = centerX - cx;
-          const disY = centerY - cy;
-          // 圆心距离
-          const distance = 2 * Math.sqrt(disX * disX + disY * disY);
-
-          if (width + w - distance > 0.8 * width) {
-            graph.setItemState(combo, activeState, true);
-          } else {
-            graph.setItemState(combo, activeState, false);
-          }
-        });
-      }
-
-      each(this.targets, (item) => {
-        this.updateCombo(item, evt);
-      });
-    }
-  }
-
-  updatePositions(evt) {
-    const { enableDelegate } = this.cfg;
-
-    // 当启用 delegate 时，拖动结束时需要更新 combo
-    if (enableDelegate) {
-      each(this.targets, (item) => {
-        this.updateCombo(item, evt);
-      });
-    }
+    each(this.targets, (item) => {
+      this.updateCombo(item, evt);
+    });
   }
 
   onDrop(evt) {
@@ -223,8 +161,6 @@ export class DragCombo extends BaseBehavior<DragComboCfg> {
       return;
     }
     const { activeState, onlyChangeComboSize } = this.cfg;
-
-    this.updatePositions(evt);
 
     const graph = this.graph;
 
@@ -238,7 +174,6 @@ export class DragCombo extends BaseBehavior<DragComboCfg> {
         }
         // 将 Combo 放置到某个 Combo 上面时，只有当 onlyChangeComboSize 为 false 时候才更新 Combo 结构
         if (!onlyChangeComboSize) {
-          // graph.updateComboTree(combo, targetModel.id);
           graph.updateItem(combo, { parentId: targetModel.id });
         }
       }
@@ -251,7 +186,6 @@ export class DragCombo extends BaseBehavior<DragComboCfg> {
   }
   onNodeDrop(evt) {
     if (!this.targets || this.targets.length === 0) return;
-    this.updatePositions(evt);
     const graph = this.graph;
     const { activeState, onlyChangeComboSize } = this.cfg;
 
@@ -322,7 +256,6 @@ export class DragCombo extends BaseBehavior<DragComboCfg> {
     if (!this.targets || this.targets.length === 0) return;
     const item = evt.item;
     const { activeState } = this.cfg;
-    this.updatePositions(evt);
     // const parentCombo = this.getParentCombo(item.getModel().parentId);
     // const graph = this.graph;
     // if (parentCombo && this.activeState) {
@@ -337,13 +270,6 @@ export class DragCombo extends BaseBehavior<DragComboCfg> {
     if (!this.origin) return;
     const graph = this.graph;
     const { activeState, onlyChangeComboSize } = this.cfg;
-
-    // 删除delegate shape
-    // if (this.delegateShape) {
-    //   const delegateGroup = graph.get('delegateGroup');
-    //   delegateGroup.clear();
-    //   this.delegateShape = null;
-    // }
 
     if (comboDropedOn && activeState) {
       graph.setItemState(comboDropedOn, activeState, false);
@@ -433,39 +359,5 @@ export class DragCombo extends BaseBehavior<DragComboCfg> {
     }
 
     return parentCombo;
-  }
-
-  updateDelegate(evt) {
-    // const graph = this.graph;
-    // // 当没有 delegate shape 时创建
-    // if (!this.delegateShape) {
-    //   const delegateGroup: IGroup = graph.get('delegateGroup');
-    //   let bbox = null;
-    //   if (this.targets.length > 1) {
-    //     bbox = calculationItemsBBox(this.targets);
-    //   } else {
-    //     bbox = this.targets[0].getBBox();
-    //   }
-    //   const { x, y, width, height, minX, minY } = bbox;
-    //   this.originPoint = { x, y, width, height, minX, minY };
-    //   const attrs = { ...Global.delegateStyle, ...this.delegateStyle };
-    //   this.delegateShape = delegateGroup.addShape('rect', {
-    //     attrs: {
-    //       width: bbox.width,
-    //       height: bbox.height,
-    //       x: bbox.x,
-    //       y: bbox.y,
-    //       ...attrs,
-    //     },
-    //     name: 'combo-delegate-shape',
-    //   });
-    // } else {
-    //   const clientX = evt.x - this.origin.x + this.originPoint.minX;
-    //   const clientY = evt.y - this.origin.y + this.originPoint.minY;
-    //   this.delegateShape.attr({
-    //     x: clientX,
-    //     y: clientY,
-    //   });
-    // }
   }
 }

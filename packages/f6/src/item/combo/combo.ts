@@ -1,8 +1,8 @@
 import { Node } from '../node/node';
 
 export class Combo extends Node {
-  constructor(model, graph) {
-    super(model, graph);
+  constructor(graph, model) {
+    super(graph, model);
     this.model = { ...model };
     this.model.type = model.type || 'circle';
     this.model.visible = true;

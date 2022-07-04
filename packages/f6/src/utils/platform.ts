@@ -11,7 +11,7 @@ export function createContext(container, width, height, contextType = '2d'): Ren
   canvasEl.style.height = height;
   canvasEl.width = width;
   canvasEl.height = height;
-  container.appendChild(canvasEl);
+  containerEl.appendChild(canvasEl);
 
   return canvasEl.getContext(contextType);
 }

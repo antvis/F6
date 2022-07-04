@@ -659,9 +659,9 @@ const fractionAlongLineA = (la: Line, lb: Line) => {
   }
   return Number.POSITIVE_INFINITY;
 };
-
 export const itemIntersectByLine = (item: Item, line: Line): [IPoint[], number] => {
   const directions = ['top', 'left', 'bottom', 'right'];
+  // @ts-ignore
   const bbox = item.getBBox();
   let countIntersections = 0;
   const intersections = [];
@@ -683,6 +683,7 @@ export const itemIntersectByLine = (item: Item, line: Line): [IPoint[], number] 
 
 export const fractionToLine = (item: Item, line: Line) => {
   const directions = ['top', 'left', 'bottom', 'right'];
+  // @ts-ignore
   const bbox = item.getBBox();
   let minDistance = Number.POSITIVE_INFINITY;
   let countIntersections = 0;

@@ -1,7 +1,10 @@
 import { Point } from '../types';
 import { applyMatrix, invertMatrix } from '../utils/math';
 
+import { ext } from '@antv/matrix-util';
 import { formatPadding } from '../utils/base';
+
+const { transform } = ext;
 
 export class ViewService {
   graph = null;
@@ -9,6 +12,7 @@ export class ViewService {
   height = 0;
   devicePixelRatio = 1;
   fitViewPadding = 0;
+  graphRoot = null;
 
   constructor(graph) {
     this.graph = graph;
@@ -20,6 +24,10 @@ export class ViewService {
     this.height = height;
     this.devicePixelRatio = devicePixelRatio;
     this.fitViewPadding = fitViewPadding;
+  }
+
+  setGraphRoot(graphRoot) {
+    this.graphRoot = graphRoot;
   }
 
   fitView() {
@@ -35,15 +43,14 @@ export class ViewService {
       x: bbox.x + bbox.width / 2,
       y: bbox.y + bbox.height / 2,
     };
-
-    this.graph.translate(viewCenter.x - groupCenter.x, viewCenter.y - groupCenter.y);
+    this.translate(viewCenter.x - groupCenter.x, viewCenter.y - groupCenter.y);
     const w = (width - padding[1] - padding[3]) / bbox.width;
     const h = (height - padding[0] - padding[2]) / bbox.height;
     let ratio = w;
     if (w > h) {
       ratio = h;
     }
-    this.graph.zoomTo(ratio, viewCenter);
+    this.zoom(ratio, viewCenter);
   }
 
   getViewCenter() {
@@ -67,7 +74,7 @@ export class ViewService {
       y: bbox.y + bbox.height / 2,
     };
 
-    this.graph.translate(viewCenter.x - groupCenter.x, viewCenter.y - groupCenter.y);
+    this.translate(viewCenter.x - groupCenter.x, viewCenter.y - groupCenter.y);
   }
 
   /**
@@ -128,5 +135,39 @@ export class ViewService {
 
   setFitViewPadding(fitViewPadding) {
     this.fitViewPadding = fitViewPadding;
+  }
+
+  translate(x = 0, y = 0) {
+    let matrix = this.graphRoot.getMatrix();
+    matrix = transform(matrix, [['t', x, y]]);
+    this.graphRoot.setMatrix(matrix);
+  }
+
+  translateTo(tox, toy) {
+    const matrix = this.graphRoot.getMatrix();
+    const curX = matrix[6];
+    const cury = matrix[7];
+
+    this.translate(tox - curX, toy - cury);
+  }
+
+  zoom(ratio, center) {
+    let matrix = this.graphRoot.getMatrix();
+    if (center) {
+      matrix = transform(matrix, [
+        ['t', -center.x, -center.y],
+        ['s', ratio, ratio],
+        ['t', center.x, center.y],
+      ]);
+    } else {
+      matrix = transform(matrix, [['s', ratio, ratio]]);
+    }
+    this.graphRoot.setMatrix(matrix);
+  }
+
+  zoomTo(toRatio, center) {
+    const matrix = this.graphRoot.getMatrix();
+    const ratio = toRatio / matrix[0];
+    this.zoom(ratio, center);
   }
 }

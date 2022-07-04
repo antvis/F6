@@ -1,4 +1,4 @@
-import { HullCfg } from '@antv/f6-core';
+import { HullCfg } from '../../types';
 import { Item } from '../base/item';
 import { ItemManger } from '../base/manager';
 

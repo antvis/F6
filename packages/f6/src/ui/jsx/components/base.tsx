@@ -1,5 +1,4 @@
 import { Component } from '@antv/f-engine';
-import { IElement, IGroup } from '@antv/g-base';
 import { ext } from '@antv/matrix-util';
 import { deepMix } from '@antv/util';
 import Global from '../../../global';
@@ -30,15 +29,10 @@ export abstract class BaseElement<T extends ModelConfig> extends Component {
     return deepMix(this.options, this.getCustomConfig(cfg) || {}, cfg);
   }
 
-  getLabelStyleByPosition(cfg: T, labelCfg?: ILabelConfig, group?: IGroup): Partial<LabelStyle> {
+  getLabelStyleByPosition(cfg: T, labelCfg?: ILabelConfig, group?): Partial<LabelStyle> {
     return { text: cfg.label as string };
   }
-  getLabelBgStyleByPosition(
-    label: IElement,
-    cfg: T,
-    labelCfg?: ILabelConfig,
-    group?: IGroup,
-  ): Partial<LabelStyle> {
+  getLabelBgStyleByPosition(label, cfg: T, labelCfg?: ILabelConfig, group?): Partial<LabelStyle> {
     return {};
   }
 
@@ -48,7 +42,7 @@ export abstract class BaseElement<T extends ModelConfig> extends Component {
    * @param labelCfg 文本的配置项
    * @param group 父容器，label 的定位可能与图形相关
    */
-  getLabelStyle(cfg: T, labelCfg: ILabelConfig, group: IGroup): LabelStyle {
+  getLabelStyle(cfg: T, labelCfg: ILabelConfig, group): LabelStyle {
     const calculateStyle = this.getLabelStyleByPosition!(cfg, labelCfg, group);
     const attrName = `${this.itemType}Label`; // 取 nodeLabel，edgeLabel 的配置项
     const defaultStyle = (Global as any)[attrName] ? (Global as any)[attrName].style : null;
@@ -74,11 +68,7 @@ export abstract class BaseElement<T extends ModelConfig> extends Component {
   getStateStyle(name: string, model): ShapeStyle {
     const { stateStyles } = this.getOptions(model);
 
-    const modelStateStyle = model.stateStyles
-      ? model.stateStyles[name]
-      : stateStyles && stateStyles[name];
-
-    return modelStateStyle;
+    return model?.stateStyles?.[name] || stateStyles?.[name];
   }
 
   /**

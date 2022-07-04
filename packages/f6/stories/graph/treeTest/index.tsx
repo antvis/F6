@@ -42,7 +42,9 @@ export default () => {
           //   graph.changeData(data);
           // }}
           defaultEdge={{
-            type: 'quadratic',
+            type: 'cubicHorizontal',
+            color: '#A3B1BF',
+            arrow: true,
           }}
         ></TreeGraph>
       </Canvas>

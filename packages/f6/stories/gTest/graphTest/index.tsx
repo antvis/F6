@@ -1,8 +1,8 @@
 import { Canvas, Circle, Group, Path, Text } from '@antv/g';
 // import { CanvasRenderer } from '@antv/f-engine';
-import { Renderer as CanvasRenderer } from '@antv/g-canvas';
+import { Renderer as CanvasRenderer } from '@antv/g-mobile-canvas';
 import { useEffect } from 'react';
-
+import { Util } from '../../../src';
 function testMassG5(canvas, count) {
   const group = canvas.getRoot();
   const groups = Array(count)
@@ -62,15 +62,29 @@ export default () => {
   useEffect(() => {
     // create a renderer
     const canvasRenderer = new CanvasRenderer();
+    // const plugin = new Plugin({
+    //   // we can drag the whole document from empty space now!
+    //   isDocumentDraggable: true,
+    //   isDocumentDroppable: true,
+    //   dragstartDistanceThreshold: 10,
+    //   dragstartTimeThreshold: 100,
+    // });
+    // canvasRenderer.registerPlugin(plugin);
 
+    const context = Util.createContext('container', width, height);
     // create a canvas
     const canvas = new Canvas({
-      container: 'container',
+      canvas: context.canvas,
       width: 600,
       height: 500,
       renderer: canvasRenderer,
     });
-    testMassG5(canvas, 500);
+
+    canvas.addEventListener('pointerup', () => {
+      console.log('canvas up');
+    });
+
+    // testMassG5(canvas, 150);
   });
 
   return <div id="container" style={{ width, height, display: 'flex' }}></div>;

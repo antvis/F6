@@ -1,6 +1,5 @@
 import EE from 'eventemitter3';
 
-import { Gesture } from '@antv/f-engine';
 import { IShape, Matrix } from '../types';
 import { isViewportChanged } from '../utils/base';
 
@@ -58,7 +57,7 @@ export default class EventService extends EE {
 
   // 初始化 G6 中的事件
   protected initEvents(root, canvas) {
-    this.gesture = new Gesture(canvas);
+    this.gesture = root.gesture;
 
     const tapStart = this.pushEventHandlers(OriginEventType.touchstart, (evt) => {
       evt.target.tap = {
@@ -128,9 +127,11 @@ export default class EventService extends EE {
 
   transformEvent(event, type) {
     return {
+      type,
       points: event.points,
       originalEvent: event.originalEvent,
-      type,
+      zoom: event.zoom,
+      center: event.center,
       name: type,
       x: event.x,
       y: event.y,
@@ -163,6 +164,7 @@ export default class EventService extends EE {
     const canvas = this.canvas;
     const { target } = evt;
     const eventType = evt.type;
+    // console.log(eventType);
     /**
      * (clientX, clientY): 相对于页面的坐标；
      * (canvasX, canvasY): 相对于 <canvas> 左上角的坐标；
@@ -187,6 +189,9 @@ export default class EventService extends EE {
     evt.y = point.y;
 
     // evt.currentTarget = graph;
+
+    // if (eventType === 'pinchstart') console.log('pinchstart');
+    // if (eventType === 'pinch') console.log('pinch');
 
     // if (eventType === 'dragend') console.log('dragend: ', evt.target);
     // if (eventType === 'drag') console.log('drag: ', evt.target);
@@ -240,23 +245,8 @@ export default class EventService extends EE {
   }
 
   public destroy() {
-    // const { graph, canvasHandler, extendEvents } = this;
-    // const canvas: ICanvas = graph.get('canvas');
-
-    // each(EVENTS, event => {
-    //   canvas.off(event, canvasHandler);
-    // });
-
-    // canvas.off('*', canvasHandler);
-
-    // each(extendEvents, (event) => {
-    //   event.remove();
-    // });
-
     this.dragging = false;
     this.preItem = null;
-    // this.extendEvents.length = 0;
-    // (this.canvasHandler as Fun | null) = null;
     this.destroyed = true;
     this.clearEvents();
   }

@@ -6,11 +6,14 @@ import { Item } from './item';
 
 export abstract class ItemManger<T extends BaseItemModel, I extends Item<T>> {
   items: Record<ID, I> = {};
+  graph = null;
 
   defaultModel: T = null;
   defaultStates = null;
 
-  constructor() {
+  constructor(graph) {
+    this.graph = graph;
+
     makeObservable(this, {
       items: observable,
       models: computed,
@@ -66,6 +69,13 @@ export abstract class ItemManger<T extends BaseItemModel, I extends Item<T>> {
 
   abstract createItem(data): I;
 
+  get animations() {
+    return Object.values(this.items).reduce(
+      (prev, node) => ((prev[node.id] = node.animations), prev),
+      {},
+    );
+  }
+
   get models() {
     return Object.values(this.items).map((node) => node.model);
   }
@@ -83,7 +93,7 @@ export abstract class ItemManger<T extends BaseItemModel, I extends Item<T>> {
 
   get statesMap() {
     return Object.values(this.items).reduce(
-      (prev, node) => ((prev[node.id] = node.states), prev),
+      (prev, node) => ((prev[node.id] = [...node.states]), prev),
       {},
     );
   }

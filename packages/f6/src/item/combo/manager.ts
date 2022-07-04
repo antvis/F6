@@ -10,9 +10,8 @@ export class ComboManager extends ItemManger<ComboConfig, Combo> {
   graph: Graph = null;
 
   constructor(graph: Graph) {
-    super();
+    super(graph);
     this.graph = graph;
-    this.models;
     makeObservable(this, {
       sortedCombos: computed,
       isAutoSize: observable,
@@ -21,7 +20,7 @@ export class ComboManager extends ItemManger<ComboConfig, Combo> {
   }
 
   createItem(data: any): Combo {
-    return new Combo(data, this.graph);
+    return new Combo(this.graph, data);
   }
 
   get sortedCombos() {

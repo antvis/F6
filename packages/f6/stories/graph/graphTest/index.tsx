@@ -36,9 +36,9 @@ export default () => {
               graphInstance.changeData(graphData);
             });
 
-            setTimeout(() => {
-              graphInstance.changeData(graphData);
-            }, 5000);
+            // setTimeout(() => {
+            //   graphInstance.changeData(graphData);
+            // }, 5000);
           }}
         ></Graph>
       </Canvas>

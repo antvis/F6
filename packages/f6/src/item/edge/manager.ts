@@ -5,12 +5,12 @@ export class EdgeManager extends ItemManger<EdgeConfig, Edge> {
   graph = null;
 
   constructor(graph) {
-    super();
+    super(graph);
     this.graph = graph;
   }
 
   createItem(data: any): Edge {
-    return new Edge(data, this.graph);
+    return new Edge(this.graph, data);
   }
 
   getEdges(id) {

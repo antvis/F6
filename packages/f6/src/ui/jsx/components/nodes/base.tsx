@@ -319,34 +319,9 @@ export class BaseNode extends BaseElement<NodeConfig> {
 
   render() {
     // debugger;
-    const { node, animation, onFrame, states, onEnd } = this.props;
+    const { node, states } = this.props;
     return (
-      <group
-        animation={
-          {
-            // appear: {
-            //   easing: 'linear',
-            //   duration: 300,
-            //   // ...(animation.appear || {}),
-            //   onFrame,
-            //   property: ['x', 'y'],
-            // },
-            // update: {
-            //   easing: 'linear',
-            //   duration: 150,
-            //   property: ['x', 'y'],
-            //   onFrame,
-            //   onEnd,
-            // },
-            // leave: {
-            //   easing: 'linear',
-            //   duration: 300,
-            //   onFrame,
-            //   property: ['x', 'y'],
-            // },
-          }
-        }
-      >
+      <group>
         {this.renderShape(node, states)}
         {/* label */}
         {this.renderLabel(node)}

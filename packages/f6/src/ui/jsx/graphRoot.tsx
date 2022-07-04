@@ -4,6 +4,7 @@ import { connect } from './connector';
 import { Edge } from './edge';
 import { Node } from './node';
 
+import { isNil } from '@antv/util';
 import { calcCanvasBBox, getMatrix, setMatrix } from '../adapter/element';
 import { Combo } from './combo';
 import { Hull } from './hull';
@@ -18,6 +19,7 @@ const HULL_Z_INDEX = COMBO_Z_INDEX - 1;
     nodeItems: graph.nodeManager.items,
     edgeItems: graph.edgeManager.items,
     comboItems: graph.comboManager.items,
+    hullItems: graph.hullManager.items,
     nodeModelMap: graph.nodeManager.modelsMap,
     comboModelMap: graph.comboManager.modelsMap,
     nodes: graph.nodeManager.models,
@@ -25,13 +27,15 @@ const HULL_Z_INDEX = COMBO_Z_INDEX - 1;
     combos: graph.comboManager.models,
     hulls: graph.hullManager.models,
     sortedCombos: graph.comboManager.sortedCombos,
-    matrix: graph.matrix,
     nodeStatesMap: graph.nodeManager.statesMap,
     edgeStatesMap: graph.edgeManager.statesMap,
     comboStatesMap: graph.comboManager.statesMap,
     isAutoSize: graph.comboManager.isAutoSize,
     enabeAnimate: graph.enabeAnimate,
     isLayoutFinished: graph.isLayoutFinished,
+    isNeedFitCenter: graph.isNeedFitCenter,
+    isNeedFitView: graph.isNeedFitView,
+    animations: graph.nodeManager.animations,
   };
 })
 export class GraphRoot extends Component {
@@ -39,14 +43,16 @@ export class GraphRoot extends Component {
   edgeRoot = { current: null };
   comboRoot = { current: null };
   hullRoot = { current: null };
-  isFitted = false;
+  isFitViewed = false;
+  isFitCentered = false;
   animate = false;
   prevProps = null;
   prevRootProps = null;
 
   willMount(): void {
-    this.context.graph.inject('getCanvasBBox', this.getRootBBox);
-    this.context.graph.inject('getMatrix', this.getRootMatrix);
+    this.context.f6Context.graph.setGraphRoot(this);
+    this.context.f6Context.graph.inject('getCanvasBBox', this.getBBox);
+    this.context.f6Context.graph.inject('getMatrix', this.getMatrix);
   }
 
   didMount() {
@@ -64,7 +70,7 @@ export class GraphRoot extends Component {
       onGraphReady,
     } = this.props;
     const { width, height, devicePixelRatio } = this.context.root.props;
-    this.context.graph.init({
+    this.context.f6Context.graph.init({
       width,
       height,
       devicePixelRatio,
@@ -79,38 +85,48 @@ export class GraphRoot extends Component {
       comboStateStyles,
       linkCenter,
     });
-    onGraphReady?.(this.context.graph);
+    onGraphReady?.(this.context.f6Context.graph);
   }
 
   didUpdate(): void {
-    const graph = this.context.graph;
+    const graph = this.context.f6Context.graph;
     const {
       enabeAnimate,
       isLayoutFinished,
-      fitView = false,
+      fitView = true,
       fitCenter = true,
       fitViewPadding = 0,
       layout,
       modes,
+      isNeedFitView,
+      isNeedFitCenter,
     } = this.props;
     const { width, height } = this.context.root.props;
 
     // width height
     if (
-      (this.prevRootProps && this.prevRootProps.width !== width) ||
-      this.prevProps?.height !== height
+      (!isNil(this.prevRootProps?.width) && this.prevRootProps.width !== width) ||
+      (!isNil(this.prevRootProps?.height) && this.prevProps?.height !== height)
     ) {
       graph.changeSize(width, height);
     }
 
-    // fitView fitCenter布局结束后才能fitview
-    if (fitView && !this.isFitted && isLayoutFinished) {
-      this.context.graph.fitView(fitViewPadding);
-      this.isFitted = true;
+    // fitView fitCenter布局结束后且配置为true
+    // fitView / fitCenter 标识翻转后
+    if (
+      (fitView && !this.isFitViewed && isLayoutFinished) ||
+      (!isNil(this.prevProps?.isNeedFitView) && this.prevProps?.isNeedFitView !== isNeedFitView)
+    ) {
+      graph.viewService.fitView(fitViewPadding);
+      this.isFitViewed = true;
     }
-    if (fitCenter && !fitView && !this.isFitted && isLayoutFinished) {
-      this.context.graph.fitCenter();
-      this.isFitted = true;
+    if (
+      (fitCenter && !fitView && !this.isFitCentered && isLayoutFinished) ||
+      (!isNil(this.prevProps?.isNeedFitCenter) &&
+        this.prevProps?.isNeedFitCenter !== isNeedFitCenter)
+    ) {
+      graph.viewService.fitCenter();
+      this.isFitCentered = true;
     }
     if (
       this.prevRootProps?.fitViewPadding &&
@@ -137,20 +153,22 @@ export class GraphRoot extends Component {
     this.hullRoot.current && (this.hullRoot.current.container.style.zIndex = HULL_Z_INDEX);
 
     // 更新matrix，这部分可能直接用 api 控制会清晰些？
-    const { matrix } = this.props;
-    if (this.prevProps?.matrix !== matrix) setMatrix(this.container, matrix);
 
     this.prevRootProps = this.context.root.props;
     this.prevProps = this.props;
   }
 
-  getRootBBox = () => {
+  getBBox = () => {
     return calcCanvasBBox(this.container);
   };
 
-  getRootMatrix = () => {
+  getMatrix = () => {
     return getMatrix(this.container);
   };
+
+  setMatrix(matrix) {
+    setMatrix(this.container, matrix);
+  }
 
   render() {
     const {
@@ -165,12 +183,13 @@ export class GraphRoot extends Component {
       nodeItems,
       edgeItems,
       comboItems,
+      hullItems,
       comboModelMap,
       comboStatesMap,
       nodeStatesMap,
       edgeStatesMap,
+      animations,
     } = this.props;
-    const graph = this.context.graph;
     return (
       <Fragment>
         {nodes?.length > 0 && (
@@ -182,13 +201,14 @@ export class GraphRoot extends Component {
                   node={node}
                   states={nodeStatesMap[node.id]}
                   item={nodeItems[node.id]}
+                  animation={animations[node.id]}
                 ></Node>
               );
             })}
           </Fragment>
         )}
 
-        {sortedCombos.length > 0 && (
+        {sortedCombos?.length > 0 && (
           <Fragment ref={this.comboRoot}>
             {sortedCombos.map((sortedCombo) => {
               const item = comboItems[sortedCombo.id];
@@ -236,17 +256,17 @@ export class GraphRoot extends Component {
         {hulls?.length > 0 && (
           <Fragment ref={this.hullRoot}>
             {hulls.map((hull) => {
-              const item = graph.hullManager.byId(hull.id);
+              const item = hullItems[hull.id];
               return (
                 <Hull
                   id={hull.id}
                   key={hull.id}
                   item={item}
                   hull={hull}
-                  members={graph.nodeManager.models.filter((node) => {
+                  members={nodes.filter((node) => {
                     return hull.members?.includes(node.id);
                   })}
-                  nonMembers={graph.nodeManager.models.filter((node) => {
+                  nonMembers={nodes.filter((node) => {
                     return hull.nonMembers?.includes(node.id);
                   })}
                 ></Hull>

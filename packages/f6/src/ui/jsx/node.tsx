@@ -12,8 +12,8 @@ import { getNode } from './components/nodes';
 
 export class Node extends Component {
   nodeRef = { current: null };
-  isAnimating = false;
-  animate = false;
+  prevProps = null;
+  animationObj = {};
 
   /**
    * 返回 View 侧的 model
@@ -21,10 +21,6 @@ export class Node extends Component {
    */
   getModel() {
     return this.props.node;
-  }
-
-  shouldUpdate(_nextProps: any): boolean {
-    return !this.isAnimating;
   }
 
   willMount(): void {
@@ -36,20 +32,60 @@ export class Node extends Component {
   }
 
   didMount(): void {
-    const { node } = this.props;
-    const { x, y, id } = node;
+    const { node, animation } = this.props;
+    const { x, y } = node;
 
     // 设置容器位置和是否可以拖动，保证内部系统完整（拖放时、设置位置时表现能够一致）
     this.container.setLocalPosition(x, y);
     this.container.setAttribute('draggable', true);
     this.container.setAttribute('droppable', true);
+
+    const animationKeys = Object.keys(animation);
+    if (animationKeys.length !== 0) {
+      animationKeys.forEach((key) => {
+        if (!this.animationObj[key]) {
+          const animatie = this.container.animate([], {
+            duration: 2000,
+            easing: 'linear',
+            fill: 'forwards',
+          });
+          this.animationObj[key] = true;
+          animatie.onfinish = () => {
+            delete this.animationObj[key];
+            this.context.f6Context.graph.finishAsyncTask(key);
+          };
+          this.container.setLocalPosition(animation[key].from.x, animation[key].from.y);
+          animatie.onframe = (e) => this.onFrame(e, animation[key].from, animation[key].to);
+        }
+      });
+    }
+    this.prevProps = this.props;
   }
 
   didUpdate(): void {
     const { x, y } = this.props.node;
-    // 每次update更新位置
-    // @todo: x, y 不变化不更新
+    const { animation } = this.props;
+
+    const animationKeys = Object.keys(animation || {});
+    if (animationKeys.length !== 0) {
+      animationKeys.forEach((key) => {
+        if (!this.animationObj[key]) {
+          const animatie = this.container.animate([], {
+            duration: 2000,
+            easing: 'linear',
+            fill: 'forwards',
+          });
+          this.animationObj[key] = true;
+          animatie.onfinish = () => {
+            delete this.animationObj[key];
+            this.context.f6Context.graph.finishAsyncTask(key);
+          };
+          animatie.onframe = (e) => this.onFrame(e, animation[key].from, animation[key].to);
+        }
+      });
+    }
     this.container.setLocalPosition(x, y);
+    this.prevProps = this.props;
   }
 
   /**
@@ -187,22 +223,22 @@ export class Node extends Component {
     return this.getShapeNode()?.getAnchorPoints(node);
   };
 
-  onFrame = () => {
-    this.isAnimating = true;
+  onFrame = (e, from, to) => {
+    const animation = e.target;
+    const computedTiming = (animation as Animation).effect.getComputedTiming();
+    const progress = computedTiming.progress;
+
+    let x = from.x;
+    let toX = to.x;
+    let y = from.y;
+    let toY = to.y;
+
+    x = x + (toX - x) * progress;
+    y = y + (toY - y) * progress;
+
     const { item } = this.props;
-    let { x, y } = this.getNodeRoot().style;
-    if (typeof x === 'string') {
-      x = Number(x.replace('px', ''));
-    }
-    if (typeof y === 'string') {
-      y = Number(y.replace('px', ''));
-    }
 
     item.setPosition({ x, y });
-  };
-
-  onEnd = () => {
-    this.isAnimating = false;
   };
 
   render() {
@@ -214,23 +250,9 @@ export class Node extends Component {
     }
 
     node.label = node.id;
-    return (
-      <Shape
-        node={node}
-        animation={{
-          appear,
-          update,
-          end,
-        }}
-        onFrame={this.onFrame}
-        onEnd={this.onEnd}
-        ref={this.nodeRef}
-        states={states}
-      ></Shape>
-    );
+    return <Shape node={node} ref={this.nodeRef} states={states}></Shape>;
   }
   didUnmount(): void {
-    console.log('unmount');
     this.context.f6Context.removeNode(this.props.node.id);
   }
 }

@@ -1,4 +1,4 @@
-import { CanvasRenderer } from '@antv/f-engine';
+import { Renderer as CanvasRenderer } from '@antv/g-mobile-canvas';
 import { Plugin as PluginRoughCanvasRenderer } from '@antv/g-plugin-rough-canvas-renderer';
 
 import React, { useEffect } from 'react';

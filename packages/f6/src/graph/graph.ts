@@ -1,5 +1,5 @@
 import { ext } from '@antv/matrix-util';
-import { each, isNil } from '@antv/util';
+import { each, isNil, uniqueId } from '@antv/util';
 import { action, makeObservable, observable } from 'mobx';
 import { BehaviorService } from '../behavior';
 import { Combo } from '../item/combo/combo';
@@ -25,19 +25,22 @@ export class Graph {
   behaviorService = null;
   viewService = null;
   enabeAnimate = true;
+  isNeedFitView = false;
+  isNeedFitCenter = false;
   isLayoutFinished = false;
 
   root = null;
   canvas = null;
 
   matrix = [1, 0, 0, 0, 1, 0, 0, 0, 1];
+  graphRoot = null;
 
   constructor(root, canvas) {
     this.nodeManager = new NodeManager(this);
     this.edgeManager = new EdgeManager(this);
     this.comboManager = new ComboManager(this);
     this.viewService = new ViewService(this);
-    this.hullManager = new HullManager();
+    this.hullManager = new HullManager(this);
 
     this.layoutService = new LayoutService();
     this.behaviorService = BehaviorService;
@@ -55,6 +58,10 @@ export class Graph {
       setEnableAnimate: action,
       isLayoutFinished: observable,
       setLayoutFinshed: action,
+      isNeedFitCenter: observable,
+      isNeedFitView: observable,
+      fitView: action,
+      fitCenter: action,
     });
   }
 
@@ -141,31 +148,19 @@ export class Graph {
   }
 
   translate(x = 0, y = 0) {
-    this.matrix = transform(this.matrix, [['t', x, y]]);
+    this.viewService.translate(x, y);
   }
 
   translateTo(tox, toy) {
-    const curX = this.matrix[6];
-    const cury = this.matrix[7];
-
-    this.translate(tox - curX, toy - cury);
+    this.viewService.translateTo(tox, toy);
   }
 
   zoom(ratio, center) {
-    if (center) {
-      this.matrix = transform(this.matrix, [
-        ['t', -center.x, -center.y],
-        ['s', ratio, ratio],
-        ['t', center.x, center.y],
-      ]);
-    } else {
-      this.matrix = transform(this.matrix, [['s', ratio, ratio]]);
-    }
+    this.eventService.zoom(ratio, center);
   }
 
   zoomTo(toRatio, center) {
-    const ratio = toRatio / this.matrix[0];
-    this.zoom(ratio, center);
+    this.viewService.zoomTo(toRatio, center);
   }
 
   getZoom() {
@@ -173,11 +168,11 @@ export class Graph {
   }
 
   fitView() {
-    this.viewService.fitView();
+    this.isNeedFitView = !this.isNeedFitView;
   }
 
   fitCenter() {
-    this.viewService.fitCenter();
+    this.isNeedFitCenter = !this.isNeedFitCenter;
   }
 
   on(...args) {
@@ -323,8 +318,6 @@ export class Graph {
     return this.comboManager.items;
   }
 
-  getMatrix() {}
-
   setEnableAnimate(enabeAnimate: boolean) {
     this.enabeAnimate = enabeAnimate;
   }
@@ -371,6 +364,26 @@ export class Graph {
     this.eventService.destroy();
     this.layoutService.destroy();
   }
+
+  setGraphRoot(graphRoot) {
+    this.viewService.setGraphRoot(graphRoot);
+  }
+
+  asyncViewPool = {};
+
+  runAsyncTask(task) {
+    const uid = uniqueId();
+    this.asyncViewPool[uid] = task;
+    return uid;
+  }
+
+  finishAsyncTask(id) {
+    this.asyncViewPool[id]?.();
+    delete this.asyncViewPool[id];
+  }
+
+  //@ts-ignore
+  getMatrix() {}
 
   //@ts-ignore
   getCanvasBBox(): BBox {}

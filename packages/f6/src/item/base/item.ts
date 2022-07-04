@@ -6,9 +6,13 @@ export class Item<T extends BaseItemModel> {
   // @ts-ignore
   model: T = {};
   states: String[] = [];
+  animations = {};
   destroyed = false;
+  graph = null;
 
-  constructor() {
+  constructor(graph?) {
+    this.graph = graph;
+
     makeObservable(
       this,
       {
@@ -31,20 +35,16 @@ export class Item<T extends BaseItemModel> {
     return this.model.id;
   }
 
+  set id(id) {
+    if (typeof id === 'number' || typeof id === 'string') this.model[id] = id;
+  }
+
   getModel() {
     return this.model;
   }
 
   getType() {
     return this.type;
-  }
-
-  set id(id) {
-    if (typeof id === 'number' || typeof id === 'string') this.model[id] = id;
-  }
-
-  updateItem(model) {
-    this.model = { ...this.model, ...model };
   }
 
   setState(stateName, value) {
@@ -62,6 +62,26 @@ export class Item<T extends BaseItemModel> {
       states.splice(index, 1);
       this.states = [...this.states];
     }
+  }
+
+  updateItem(model) {
+    this.model = { ...this.model, ...model };
+  }
+
+  runAnimation(from, to) {
+    return new Promise((reslove) => {
+      const uid = this.graph.runAsyncTask(() => {
+        reslove(null);
+        delete this.animations[uid];
+      });
+      this.animations = this.animations || {};
+      this.animations[uid] = {
+        id: uid,
+        from,
+        to,
+      };
+      this.animations = { ...this.animations };
+    });
   }
 
   hideItem() {
