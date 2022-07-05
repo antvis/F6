@@ -353,6 +353,7 @@ export class LayoutService {
     this.initPositions(center, nodes, width, height);
     // init hidden ndoes
     this.initPositions(center, hiddenNodes, width, height);
+    innerTickCallBack();
 
     // 在 onAllLayoutEnd 中执行用户自定义 onLayoutEnd，触发 afterlayout、更新节点位置、fitView/fitCenter、触发 afterrender
     const onAllLayoutEnd = async () => {

@@ -10,6 +10,8 @@ export function connect(mapStatetoProps?): any {
 
       disposer = null;
 
+      timer = null;
+
       willMount(): void {
         this.disposer = reaction(
           () => {
@@ -27,13 +29,7 @@ export function connect(mapStatetoProps?): any {
 
       updateProps = (stateProps) => {
         if (!stateProps) return;
-        let isEqual = true;
-        for (const [key, value] of Object.entries(stateProps || {})) {
-          if (this.prevProps[key] !== value) {
-            isEqual = false;
-          }
-        }
-        if (isEqual) return;
+
         this.prevProps = stateProps;
         this.isFirst &&
           (this.state = {
