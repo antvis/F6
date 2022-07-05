@@ -51,8 +51,6 @@ export class GraphRoot extends Component {
 
   willMount(): void {
     this.context.f6Context.graph.setGraphRoot(this);
-    this.context.f6Context.graph.inject('getCanvasBBox', this.getBBox);
-    this.context.f6Context.graph.inject('getMatrix', this.getMatrix);
   }
 
   didMount() {
@@ -159,7 +157,7 @@ export class GraphRoot extends Component {
     this.prevProps = this.props;
   }
 
-  getBBox = () => {
+  getCanvasBBox = () => {
     return calcCanvasBBox(this.container);
   };
 

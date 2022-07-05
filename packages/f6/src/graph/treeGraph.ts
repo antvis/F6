@@ -77,7 +77,7 @@ export class TreeGraph extends Graph {
    * @param animate
    */
   private innerRemoveChild(id: string) {
-    const model = this.getItem(id)?.model;
+    const model = this.findById(id)?.model;
     traverseTree(model, (child) => {
       if (!child) {
         return true;
@@ -89,7 +89,7 @@ export class TreeGraph extends Graph {
 
   innerUpdateChild(data, parent?) {
     const self = this;
-    const current = self.getItem(data.id);
+    const current = self.findById(data.id);
 
     // 若子树不存在，整体添加即可
     if (!current) {
@@ -177,7 +177,7 @@ export class TreeGraph extends Graph {
 
   removeChild(id) {
     const self = this;
-    const node = self.getItem(id);
+    const node = self.findById(id);
 
     if (!node) {
       return;
@@ -204,14 +204,14 @@ export class TreeGraph extends Graph {
     const self = this;
 
     // 如果没有父节点或找不到该节点，是全量的更新，直接重置data
-    if (!parentId || !self.getItem(parentId)) {
+    if (!parentId || !self.findById(parentId)) {
       // self.changeData(data);
       return;
     }
 
     const parentModel = self.findDataById(parentId, this.originData) as NodeConfig;
 
-    const current = self.getItem(data.id);
+    const current = self.findById(data.id);
 
     if (!parentModel.children) {
       // 当 current 不存在时，children 为空数组

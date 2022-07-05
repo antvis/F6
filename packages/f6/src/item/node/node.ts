@@ -28,7 +28,7 @@ export class Node extends Item<NodeConfig> {
   }
 
   getParent() {
-    return this.graph.getItem(this.model.parent);
+    return this.graph.findById(this.model.parent);
   }
 
   /**

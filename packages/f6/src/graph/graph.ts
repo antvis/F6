@@ -1,4 +1,3 @@
-import { ext } from '@antv/matrix-util';
 import { each, isNil, uniqueId } from '@antv/util';
 import { action, makeObservable, observable } from 'mobx';
 import { BehaviorService } from '../behavior';
@@ -11,8 +10,6 @@ import EventService from '../service/eventService';
 import { LayoutService } from '../service/layoutService';
 import ModeService from '../service/modeService';
 import { ViewService } from '../service/viewService';
-import { BBox } from '../types';
-const { transform } = ext;
 
 export class Graph {
   nodeManager = null;
@@ -28,14 +25,13 @@ export class Graph {
   isNeedFitView = false;
   isNeedFitCenter = false;
   isLayoutFinished = false;
+  isDestroyed = false;
 
-  root = null;
+  canvasJSXroot = null;
   canvas = null;
-
-  matrix = [1, 0, 0, 0, 1, 0, 0, 0, 1];
   graphRoot = null;
 
-  constructor(root, canvas) {
+  constructor(canvasJSXroot, canvas) {
     this.nodeManager = new NodeManager(this);
     this.edgeManager = new EdgeManager(this);
     this.comboManager = new ComboManager(this);
@@ -47,13 +43,10 @@ export class Graph {
     this.eventService = new EventService(this);
     this.modeService = new ModeService(this);
 
-    this.root = root;
+    this.canvasJSXroot = canvasJSXroot;
     this.canvas = canvas;
 
     makeObservable(this, {
-      matrix: observable,
-      translate: action,
-      zoom: action,
       enabeAnimate: observable,
       setEnableAnimate: action,
       isLayoutFinished: observable,
@@ -81,6 +74,7 @@ export class Graph {
       comboStateStyles,
     } = cfg;
     this.modeService.init(modes);
+    this.eventService.initEvents(this.canvasJSXroot, this.canvas);
     this.nodeManager.init(data.nodes, defaultNode, nodeStateStyles);
     this.edgeManager.init(data.edges, defaultEdge, edgeStateStyles);
     this.comboManager.init(data.combos, defaultCombo, comboStateStyles);
@@ -88,6 +82,11 @@ export class Graph {
     this.layoutService.setLayoutConfig(layout, width, height);
     this.viewService.init({ width, height, devicePixelRatio });
     this.layout();
+  }
+
+  setGraphRoot(graphRoot) {
+    this.graphRoot = graphRoot;
+    this.viewService.setGraphRoot(graphRoot);
   }
 
   layout() {
@@ -121,10 +120,6 @@ export class Graph {
     this.layout();
   }
 
-  getItem(id) {
-    return this.nodeManager.byId(id) || this.comboManager.byId(id);
-  }
-
   findById(id) {
     return this.nodeManager.byId(id) || this.comboManager.byId(id) || this.edgeManager.byId(id);
   }
@@ -132,7 +127,7 @@ export class Graph {
   hideItem(item) {
     let temItem = item;
     if (typeof item === 'string' || typeof item === 'number') {
-      temItem = this.getItem(item);
+      temItem = this.findById(item);
     }
     if (isNil(temItem)) return;
     temItem.hideItem();
@@ -141,7 +136,7 @@ export class Graph {
   showItem(item) {
     let temItem = item;
     if (typeof item === 'string' || typeof item === 'number') {
-      temItem = this.getItem(item);
+      temItem = this.findById(item);
     }
     if (isNil(temItem)) return;
     temItem.showItem();
@@ -164,7 +159,15 @@ export class Graph {
   }
 
   getZoom() {
-    return this.matrix[0] || 1;
+    return this.viewService.getZoom();
+  }
+
+  getMatrix() {
+    return this.viewService.getMatrix();
+  }
+
+  getCanvasBBox() {
+    return this.viewService.getCanvasBBox();
   }
 
   fitView() {
@@ -206,7 +209,7 @@ export class Graph {
   removeItem(item) {
     let temItem = item;
     if (typeof item === 'string' || typeof item === 'number') {
-      temItem = this.getItem(item);
+      temItem = this.findById(item);
     }
     if (isNil(temItem)) return;
 
@@ -238,7 +241,7 @@ export class Graph {
   updateItem(item, model) {
     let temItem = item;
     if (typeof item === 'string' || typeof item === 'number') {
-      temItem = this.getItem(item);
+      temItem = this.findById(item);
     }
     if (isNil(temItem)) return;
 
@@ -289,7 +292,7 @@ export class Graph {
   setItemState(item, stateName, value) {
     let temItem = item;
     if (typeof item === 'string' || typeof item === 'number') {
-      temItem = this.getItem(item);
+      temItem = this.findById(item);
     }
     if (isNil(temItem)) return;
 
@@ -299,7 +302,7 @@ export class Graph {
   clearItemStates(item, stateNames) {
     let temItem = item;
     if (typeof item === 'string' || typeof item === 'number') {
-      temItem = this.getItem(item);
+      temItem = this.findById(item);
     }
     if (isNil(temItem)) return;
 
@@ -356,19 +359,6 @@ export class Graph {
     this.layout();
   }
 
-  destroy() {
-    this.nodeManager.destroy();
-    this.edgeManager.destroy();
-    this.comboManager.destroy();
-    this.hullManager.destroy();
-    this.eventService.destroy();
-    this.layoutService.destroy();
-  }
-
-  setGraphRoot(graphRoot) {
-    this.viewService.setGraphRoot(graphRoot);
-  }
-
   asyncViewPool = {};
 
   runAsyncTask(task) {
@@ -382,12 +372,14 @@ export class Graph {
     delete this.asyncViewPool[id];
   }
 
-  //@ts-ignore
-  getMatrix() {}
-
-  //@ts-ignore
-  getCanvasBBox(): BBox {}
-  inject(key, fn) {
-    this[key] = fn;
+  destroy() {
+    this.isDestroyed = true;
+    this.nodeManager.destroy();
+    this.edgeManager.destroy();
+    this.comboManager.destroy();
+    this.hullManager.destroy();
+    this.eventService.destroy();
+    this.layoutService.destroy();
+    this.asyncViewPool = {};
   }
 }

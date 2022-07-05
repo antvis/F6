@@ -2,7 +2,6 @@ export default {
   nodes: [
     {
       type: 'circle',
-      size: [30, 30],
       label: '0',
       id: '0',
       cluster: 'a',
@@ -14,21 +13,18 @@ export default {
       cluster: 'a',
       comboId: 'combo1',
       type: 'circle',
-      size: [30, 30],
     },
     {
       id: '2',
       label: '2',
       cluster: 'a',
       type: 'circle',
-      size: [30, 30],
     },
     {
       id: '3',
       label: '3',
       cluster: 'a',
       type: 'circle',
-      size: [30, 30],
     },
     {
       type: 'circle',

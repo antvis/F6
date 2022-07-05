@@ -114,8 +114,8 @@ export default () => {
       renderer: canvasRenderer,
     });
 
-    // testMassG5(canvas, 550);
-    testZIndex(canvas);
+    testMassG5(canvas, 150);
+    // testZIndex(canvas);
   });
 
   return <div id="container" style={{ width, height, display: 'flex' }}></div>;

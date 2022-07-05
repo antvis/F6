@@ -32,7 +32,7 @@ const OriginEventType = {
 export default class EventService extends EE {
   graph = null;
   canvas = null;
-  root = null;
+  canvasJSXRoot = null;
   gesture = null;
 
   protected dragging: boolean = false;
@@ -56,8 +56,10 @@ export default class EventService extends EE {
   }
 
   // 初始化 G6 中的事件
-  protected initEvents(root, canvas) {
-    this.gesture = root.gesture;
+  protected initEvents(canvasJSXRoot, canvas) {
+    this.canvasJSXRoot = canvasJSXRoot;
+    this.canvas = canvas;
+    this.gesture = canvasJSXRoot.gesture;
 
     const tapStart = this.pushEventHandlers(OriginEventType.touchstart, (evt) => {
       evt.target.tap = {
@@ -103,9 +105,6 @@ export default class EventService extends EE {
       );
       this.gesture.on(type, fn);
     });
-
-    this.canvas = canvas;
-    this.root = root;
   }
 
   protected clearEvents() {

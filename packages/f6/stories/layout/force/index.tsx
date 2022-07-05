@@ -1,6 +1,7 @@
 import { Canvas, ForceLayout, Graph, jsx, registerLayout, Util } from '@antv/f6/src';
 import React, { useEffect } from 'react';
 import data from './data';
+// import data from '../../data/largeData100';
 
 export default () => {
   const ref = React.useRef(null);
@@ -23,7 +24,7 @@ export default () => {
           }}
           linkCenter={true}
           modes={{
-            default: ['drag-node', 'click-select'],
+            default: ['drag-node', 'drag-canvas', 'click-select'],
           }}
         ></Graph>
       </Canvas>

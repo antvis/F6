@@ -63,7 +63,7 @@ export class Node extends Component {
   }
 
   didUpdate(): void {
-    const { x, y } = this.props.node;
+    const { x, y, id } = this.props.node;
     const { animation } = this.props;
 
     const animationKeys = Object.keys(animation || {});
@@ -238,7 +238,7 @@ export class Node extends Component {
 
     const { item } = this.props;
 
-    item.setPosition({ x, y });
+    item.updateItem({ x, y });
   };
 
   render() {

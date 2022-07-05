@@ -82,9 +82,9 @@ export class ComboManager extends ItemManger<ComboConfig, Combo> {
 
   translate(id, pos) {
     const combo = this.getParsedCombo(id);
-    this.graph.getItem(id).translate(pos);
+    this.graph.findById(id).translate(pos);
     combo.nodes?.forEach((entity) => {
-      this.graph.getItem(entity.id).translate(pos);
+      this.graph.findById(entity.id).translate(pos);
     });
     combo.combos?.forEach((entity) => {
       this.translate(entity.id, pos);

@@ -1,8 +1,7 @@
-import { Point } from '../types';
-import { applyMatrix, invertMatrix } from '../utils/math';
-
 import { ext } from '@antv/matrix-util';
+import { Point } from '../types';
 import { formatPadding } from '../utils/base';
+import { applyMatrix, invertMatrix } from '../utils/math';
 
 const { transform } = ext;
 
@@ -34,7 +33,7 @@ export class ViewService {
     const padding = formatPadding(this.fitViewPadding);
     const width: number = this.width;
     const height: number = this.height;
-    const bbox = this.graph.getCanvasBBox();
+    const bbox = this.graphRoot.getCanvasBBox();
 
     if (bbox.width === 0 || bbox.height === 0) return;
     const viewCenter = this.getViewCenter();
@@ -64,7 +63,7 @@ export class ViewService {
   }
 
   fitCenter() {
-    const bbox = this.graph.getCanvasBBox();
+    const bbox = this.graphRoot.getCanvasBBox();
 
     if (bbox.width === 0 || bbox.height === 0) return;
     const viewCenter = this.getViewCenter();
@@ -83,7 +82,7 @@ export class ViewService {
    * @param y 视口 y 坐标
    */
   getCanvasByPoint = (x: number, y: number): Point => {
-    let viewportMatrix = this.graph.getMatrix();
+    let viewportMatrix = this.graphRoot.getMatrix();
     if (!viewportMatrix) {
       viewportMatrix = [1, 0, 0, 0, 1, 0, 0, 0, 1];
     }
@@ -101,11 +100,11 @@ export class ViewService {
     return this.getPointByCanvas(canvasPoint.x, canvasPoint.y);
   };
 
-  // /**
-  //  * 将视口坐标转成页面坐标
-  //  * @param x 视口 x 坐标
-  //  * @param y 视口 y 坐标
-  //  */
+  /**
+   * 将视口坐标转成页面坐标
+   * @param x 视口 x 坐标
+   * @param y 视口 y 坐标
+   */
   getClientByPoint = (x: number, y: number): Point => {
     const canvas = this.graph.canvas;
     const canvasPoint = this.getCanvasByPoint(x, y);
@@ -119,7 +118,7 @@ export class ViewService {
    * @param canvasY canvas y 坐标
    */
   getPointByCanvas = (canvasX: number, canvasY: number): Point => {
-    let viewportMatrix = this.graph.getMatrix();
+    let viewportMatrix = this.graphRoot.getMatrix();
     if (!viewportMatrix) {
       viewportMatrix = [1, 0, 0, 0, 1, 0, 0, 0, 1];
     }
@@ -169,5 +168,18 @@ export class ViewService {
     const matrix = this.graphRoot.getMatrix();
     const ratio = toRatio / matrix[0];
     this.zoom(ratio, center);
+  }
+
+  getZoom() {
+    const matrix = this.graphRoot.getMatrix();
+    return typeof matrix[0] === 'number' ? matrix[0] : 1;
+  }
+
+  getMatrix() {
+    return this.graphRoot.getMatrix();
+  }
+
+  getCanvasBBox() {
+    return this.graphRoot.getCanvasBBox();
   }
 }
