@@ -1,4 +1,3 @@
-import * as Algorithm from '@antv/algorithm';
 import { jsx } from '@antv/f-engine';
 import Util from './utils';
 
@@ -17,7 +16,6 @@ export {
   Graph,
   TreeGraph,
   Canvas,
-  Algorithm,
   Global,
   registerLayout,
   unRegisterLayout,
@@ -34,6 +32,5 @@ export default {
   Graph,
   TreeGraph,
   Canvas,
-  Algorithm,
   Global,
 };

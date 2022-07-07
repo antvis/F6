@@ -10,7 +10,7 @@ export default  {
   },
   entry: [
     'src/index.ts',
-    // 'src/index.umd.ts',
+    'src/index.umd.ts',
     // 'src/ui/jsx/treeGraph.tsx',
     // 'src/ui/jsx/graph.tsx',
     // 'src/layout/comboForceLayout.ts',

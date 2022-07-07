@@ -105,7 +105,7 @@ export class GraphRoot extends Component {
     // width height
     if (
       (!isNil(this.prevRootProps?.width) && this.prevRootProps.width !== width) ||
-      (!isNil(this.prevRootProps?.height) && this.prevProps?.height !== height)
+      (!isNil(this.prevRootProps?.height) && this.prevRootProps?.height !== height)
     ) {
       graph.changeSize(width, height);
     }
@@ -143,7 +143,7 @@ export class GraphRoot extends Component {
     }
 
     // 控制关闭全局动画
-    this.animate = enabeAnimate;
+    this.setAnimate(enabeAnimate);
 
     // 更新zIndex, 边后绘制，但需要在combo下面
     this.nodeRoot.current && (this.nodeRoot.current.container.style.zIndex = NODE_Z_INDEX);
