@@ -37,10 +37,10 @@ export abstract class ItemManger<T extends BaseItemModel, I extends Item<T>> {
     this.addItem(models);
   }
 
-  changeData(models = [], defaultModel?, defaultStates?) {
+  changeData(models = [], defaultModel: T, defaultStates?) {
     const itemKeys = Object.keys(this.items);
     if (itemKeys.length === 0) {
-      this.init(models, defaultModel, defaultStates);
+      this.init(models, defaultModel || this.defaultModel, defaultStates || this.defaultStates);
       return;
     }
 
