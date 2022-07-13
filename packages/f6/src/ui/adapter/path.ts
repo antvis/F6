@@ -1,11 +1,11 @@
-import { BaseStyleProps, CustomElement, Line, Path, PathStyleProps, Polyline } from '@antv/g';
+import { BaseStyleProps, CustomElement, Line, Path, PathStyleProps, Polyline, Rect } from '@antv/g';
 import { Arrow } from './arrow';
 
-function getDefaultArrow(pathStyle) {
+function getDefaultArrow(style) {
   const { sin, cos, PI } = Math;
   return new Path({
     style: {
-      ...pathStyle,
+      ...style,
       anchor: [0, 0.5],
       transformOrigin: 'left center',
       path: `M${10 * cos(PI / 6)},${10 * sin(PI / 6)} L0,0 L${10 * cos(PI / 6)},-${
@@ -29,28 +29,40 @@ class ArrowAdpater extends CustomElement<ArrowAdpaterProps> {
     });
     const { attrs, style, ...resConfig } = config;
     const { startArrow, endArrow, ...pathStyle } = style || attrs;
+    const { fill, stroke, opacity, strokeOpacity, fillOpacity, lineWidth } = pathStyle;
+    const pathDisplayStyle = { fill, stroke, opacity, strokeOpacity, fillOpacity, lineWidth };
 
     let startHead: boolean | Path = false;
 
     if (startArrow === true) {
-      startHead = getDefaultArrow(pathStyle);
+      startHead = getDefaultArrow(pathDisplayStyle);
     }
 
     if (typeof startArrow === 'object') {
       startHead = new Path({
-        style: { ...pathStyle, ...startArrow, anchor: [0, 0.5], transformOrigin: 'left center' },
+        style: {
+          ...pathDisplayStyle,
+          ...startArrow,
+          anchor: [0, 0.5],
+          transformOrigin: 'left center',
+        },
       });
     }
 
     let endHead: boolean | Path = false;
 
     if (endArrow === true) {
-      endHead = getDefaultArrow(pathStyle);
+      endHead = getDefaultArrow(pathDisplayStyle);
     }
 
     if (typeof endArrow === 'object') {
       endHead = new Path({
-        style: { ...pathStyle, ...endArrow, anchor: [0, 0.5], transformOrigin: 'left center' },
+        style: {
+          ...pathDisplayStyle,
+          ...endArrow,
+          anchor: [0, 0.5],
+          transformOrigin: 'left center',
+        },
       });
     }
     const BodyClass = this.getBodyClass();
@@ -73,6 +85,25 @@ class ArrowAdpater extends CustomElement<ArrowAdpaterProps> {
   attributeChangedCallback(name, oldValue, newValue) {
     if (name === 'path') {
       this.arrow.getBody().style.path = newValue;
+      this.arrow.refreshHead();
+    }
+    if (name === 'x1') {
+      this.arrow.getBody().style.x1 = newValue;
+    }
+    if (name === 'x2') {
+      this.arrow.getBody().style.x2 = newValue;
+    }
+    if (name === 'y1') {
+      this.arrow.getBody().style.y1 = newValue;
+    }
+    if (name === 'y2') {
+      this.arrow.getBody().style.y2 = newValue;
+    }
+    if (name === 'x1' || name === 'x2' || name === 'y1' || name === 'y2') {
+      this.arrow.refreshHead();
+    }
+    if (name === 'points') {
+      this.arrow.getBody().style.points = newValue;
       this.arrow.refreshHead();
     }
   }

@@ -22,9 +22,15 @@ export default () => {
             preventOverlap: true,
             // alphaDecay: 0,
           }}
-          linkCenter={true}
           modes={{
-            default: ['drag-node', 'drag-canvas', 'click-select'],
+            default: ['drag-node', 'click-select'],
+          }}
+          defaultEdge={{
+            type: 'cubic',
+            style: {
+              startArrow: true,
+              endArrow: true,
+            },
           }}
         ></Graph>
       </Canvas>

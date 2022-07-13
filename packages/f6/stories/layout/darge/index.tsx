@@ -21,7 +21,14 @@ export default () => {
             nodesep: 10,
           }}
           modes={{
-            default: ['zoom-canvas'],
+            default: ['drag-node'],
+          }}
+          defaultEdge={{
+            type: 'cubic',
+            style: {
+              startArrow: true,
+              endArrow: true,
+            },
           }}
         ></Graph>
       </Canvas>

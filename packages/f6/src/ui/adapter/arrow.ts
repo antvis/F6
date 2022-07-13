@@ -147,13 +147,12 @@ export class Arrow extends CustomElement<ArrowStyleProps> {
     let y2 = 0;
 
     const bodyType = this.body && this.body.nodeName;
-
     if (bodyType === Shape.LINE) {
       const { x1: _x1, x2: _x2, y1: _y1, y2: _y2 } = (this.body as Line).attributes;
-      x1 = isStart ? _x1 : _x2;
-      x2 = isStart ? _x2 : _x1;
-      y1 = isStart ? _y1 : _y2;
-      y2 = isStart ? _y2 : _y1;
+      x1 = isStart ? _x2 : _x1;
+      x2 = isStart ? _x1 : _x2;
+      y1 = isStart ? _y2 : _y1;
+      y2 = isStart ? _y1 : _y2;
     } else if (bodyType === Shape.POLYLINE) {
       const points = (this.body as Polyline).attributes.points;
       const { length } = points;
@@ -180,6 +179,7 @@ export class Arrow extends CustomElement<ArrowStyleProps> {
     }
 
     position = vec3.fromValues(x2, y2, 0);
+
     head.setLocalPosition(position);
     head.setLocalEulerAngles((rad * 180) / Math.PI);
   }
