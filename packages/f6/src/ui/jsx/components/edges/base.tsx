@@ -1,4 +1,4 @@
-import { Fragment, jsx } from '@antv/f-engine';
+import { jsx } from '@antv/f-engine';
 import { deepMix, each, isNil, mix } from '@antv/util';
 import Global from '../../../../global';
 import {

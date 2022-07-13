@@ -1,5 +1,4 @@
 import { Component } from '@antv/f-engine';
-import { ext } from '@antv/matrix-util';
 import { deepMix } from '@antv/util';
 import Global from '../../../global';
 import {
@@ -12,7 +11,6 @@ import {
   ShapeStyle,
 } from '../../../types';
 
-const transform = ext.transform;
 export const CLS_LABEL_BG_SUFFIX = '-label-bg';
 
 export abstract class BaseElement<T extends ModelConfig> extends Component {

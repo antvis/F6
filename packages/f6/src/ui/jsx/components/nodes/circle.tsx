@@ -69,29 +69,6 @@ export class SimpleCircle extends BaseNode {
 
   renderShape(node, states) {
     const style = this.getMixedStyle(node, states);
-    return (
-      <circle
-        animation={{
-          // appear: {
-          //   duration: 1500,
-          //   ...(animation.appear || {}),
-          //   onFrame,
-          // },
-          update: {
-            // easing: 'linear',
-            // duration: 450,
-            // property: ['x', 'y', 'width', 'height', 'fill'],
-            // ...(animation.update || {}),
-            // onFrame,
-          },
-          // leave: {
-          //   duration: 1500,
-          //   onFrame,
-          // },
-        }}
-        style={{ ...style, draggable: true, droppable: true }}
-        ref={this.keyShapeRef}
-      />
-    );
+    return <circle style={{ ...style, draggable: true, droppable: true }} ref={this.keyShapeRef} />;
   }
 }

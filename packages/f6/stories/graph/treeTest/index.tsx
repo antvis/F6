@@ -42,7 +42,7 @@ export default () => {
           //   graph.changeData(data);
           // }}
           defaultEdge={{
-            type: 'cubicHorizontal',
+            type: 'cubic-horizontal',
             color: '#A3B1BF',
             arrow: true,
           }}

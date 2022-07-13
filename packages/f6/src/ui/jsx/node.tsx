@@ -242,14 +242,13 @@ export class Node extends Component {
   };
 
   render() {
-    const { node, appear, update, end, states } = this.props;
+    const { node, states } = this.props;
     const Shape = getNode(node?.type);
     if (!Shape) {
       console.warn('不存在对应的 Node 定义');
       return null;
     }
 
-    node.label = node.id;
     return <Shape node={node} ref={this.nodeRef} states={states}></Shape>;
   }
   didUnmount(): void {

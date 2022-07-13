@@ -208,6 +208,7 @@ export class BaseNode extends BaseElement<NodeConfig> {
   }
 
   renderLabel(cfg) {
+    if (isNil(cfg.label)) return null;
     const { labelCfg: defaultLabelCfg } = this.getOptions(cfg) as ModelConfig;
     // image的情况下有可能为null
     const labelCfg = (defaultLabelCfg || {}) as ILabelConfig;
@@ -217,6 +218,7 @@ export class BaseNode extends BaseElement<NodeConfig> {
   }
 
   renderLabelBg(cfg) {
+    if (isNil(cfg.label)) return null;
     const { labelCfg: defaultLabelCfg } = this.options as ModelConfig;
     const labelCfg = mix({}, defaultLabelCfg, cfg.labelCfg) as ILabelConfig;
     if (!labelCfg?.style?.background) return null;

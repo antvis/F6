@@ -25,6 +25,6 @@ registerEdge('spline', Spline);
 registerEdge('arc', Arc);
 registerEdge('quadratic', Quadratic);
 registerEdge('cubic', Cubic);
-registerEdge('cubicHorizontal', CubicHorizontal);
-registerEdge('cubicVertical', CubicVertical);
+registerEdge('cubic-horizontal', CubicHorizontal);
+registerEdge('cubic-vertical', CubicVertical);
 registerEdge('loop', Loop);

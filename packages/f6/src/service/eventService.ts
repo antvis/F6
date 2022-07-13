@@ -167,7 +167,7 @@ export default class EventService extends EE {
     /**
      * (clientX, clientY): 相对于页面的坐标；
      * (canvasX, canvasY): 相对于 <canvas> 左上角的坐标；
-     * (x, y): 相对于整个画布的坐标, 与 model 的 x, y 是同一维度的。
+     * (x, y): 相对于画布group的坐标, 与 model 的 x, y 是同一维度的。
      */
     evt.canvasX = evt.x;
     evt.canvasY = evt.y;
