@@ -1,4 +1,4 @@
-import { Axis, Canvas, Chart, Interval, Point, Timeline } from '@antv/f2';
+import { Axis, Canvas, Chart, Interval, Timeline } from '@antv/f2';
 import { ForceLayout, Graph, jsx, registerLayout, TreeGraph, Util } from '@antv/f6/src';
 import React, { useEffect } from 'react';
 import graphData from '../../data/graphData';
@@ -32,7 +32,7 @@ export default () => {
     const context = Util.createContext(ref.current, width, height);
     const { props } = (
       <Canvas width={width} height={height} pixelRatio={2} context={context}>
-        <Timeline delay={2000}>
+        <Timeline delay={2000} loop>
           <Graph
             data={graphData}
             layout={{
@@ -91,7 +91,7 @@ export default () => {
               }}
             />
           </Chart>
-          <Chart data={data}>
+          {/* <Chart data={data}>
             <Axis field="genre" />
             <Axis field="sold" />
             <Point
@@ -102,7 +102,7 @@ export default () => {
               color="genre"
               size="sold"
             />
-          </Chart>
+          </Chart> */}
           {/* <Treemap
             transformFrom={pointRef}
             ref={treemapRef}

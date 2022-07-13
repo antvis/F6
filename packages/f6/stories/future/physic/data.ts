@@ -2,11 +2,8 @@ export default {
   nodes: [
     {
       type: 'circle',
-      size: [30, 30],
-
       id: '0',
       cluster: 'a',
-      comboId: 'combo1',
       style: {
         rigid: 'dynamic',
         density: 0.1,
@@ -23,9 +20,7 @@ export default {
       id: '1',
 
       cluster: 'a',
-      comboId: 'combo1',
       type: 'circle',
-      size: [30, 30],
       style: {
         rigid: 'dynamic',
         density: 0.1,
@@ -43,7 +38,6 @@ export default {
 
       cluster: 'a',
       type: 'circle',
-      size: [30, 30],
       style: {
         rigid: 'dynamic',
         density: 0.1,
@@ -61,7 +55,6 @@ export default {
 
       cluster: 'a',
       type: 'circle',
-      size: [30, 30],
       style: {
         rigid: 'dynamic',
         density: 0.1,
@@ -493,7 +486,7 @@ export default {
       },
     },
     {
-      id: '30',
+      id: '50',
 
       cluster: 'c',
       style: {
@@ -558,310 +551,6 @@ export default {
     },
   ],
   edges: [
-    // {
-    //   source: '0',
-    //   target: '1',
-    //   type: 'line',
-    // },
-    // {
-    //   source: '0',
-    //   target: '2',
-    //   type: 'line',
-    // },
-    // // {
-    // //   source: '0',
-    // //   target: 'combo1',
-    // // },
-    // {
-    //   source: '0',
-    //   target: '3',
-    //   type: 'line',
-    // },
-    // {
-    //   source: '0',
-    //   target: '4',
-    //   type: 'line',
-    // },
-    // {
-    //   source: '0',
-    //   target: '5',
-    //   type: 'line',
-    // },
-    // {
-    //   source: '0',
-    //   target: '7',
-    //   type: 'line',
-    // },
-    // {
-    //   source: '0',
-    //   target: '8',
-    //   type: 'line',
-    // },
-    // {
-    //   source: '0',
-    //   target: '9',
-    //   type: 'line',
-    // },
-    // {
-    //   source: '0',
-    //   target: '10',
-    //   type: 'line',
-    // },
-    // {
-    //   source: '0',
-    //   target: '11',
-    //   type: 'line',
-    // },
-    // {
-    //   source: '0',
-    //   target: '13',
-    //   type: 'line',
-    // },
-    // {
-    //   source: '0',
-    //   target: '14',
-    //   type: 'line',
-    // },
-    // {
-    //   source: '0',
-    //   target: '15',
-    //   type: 'line',
-    // },
-    // {
-    //   source: '0',
-    //   target: '16',
-    //   type: 'line',
-    // },
-    // {
-    //   source: '2',
-    //   target: '3',
-    //   type: 'line',
-    // },
-    // {
-    //   source: '4',
-    //   target: '5',
-    //   type: 'line',
-    // },
-    // {
-    //   source: '4',
-    //   target: '6',
-    //   type: 'line',
-    // },
-    // {
-    //   source: '5',
-    //   target: '6',
-    //   type: 'line',
-    // },
-    // {
-    //   source: '7',
-    //   target: '13',
-    //   type: 'line',
-    // },
-    // {
-    //   source: '8',
-    //   target: '14',
-    //   type: 'line',
-    // },
-    // {
-    //   source: '9',
-    //   target: '10',
-    //   type: 'line',
-    // },
-    // {
-    //   source: '10',
-    //   target: '22',
-    //   type: 'line',
-    // },
-    // {
-    //   source: '10',
-    //   target: '14',
-    //   type: 'line',
-    // },
-    // {
-    //   source: '10',
-    //   target: '12',
-    //   type: 'line',
-    // },
-    // {
-    //   source: '10',
-    //   target: '24',
-    //   type: 'line',
-    // },
-    // {
-    //   source: '10',
-    //   target: '21',
-    //   type: 'line',
-    // },
-    // {
-    //   source: '10',
-    //   target: '20',
-    //   type: 'line',
-    // },
-    // {
-    //   source: '11',
-    //   target: '24',
-    //   type: 'line',
-    // },
-    // {
-    //   source: '11',
-    //   target: '22',
-    //   type: 'line',
-    // },
-    // {
-    //   source: '11',
-    //   target: '14',
-    //   type: 'line',
-    // },
-    // {
-    //   source: '12',
-    //   target: '13',
-    //   type: 'line',
-    // },
-    // {
-    //   source: '16',
-    //   target: '17',
-    //   type: 'line',
-    // },
-    // {
-    //   source: '16',
-    //   target: '18',
-    //   type: 'line',
-    // },
-    // {
-    //   source: '16',
-    //   target: '21',
-    //   type: 'line',
-    // },
-    // {
-    //   source: '16',
-    //   target: '22',
-    //   type: 'line',
-    // },
-    // {
-    //   source: '17',
-    //   target: '18',
-    //   type: 'line',
-    // },
-    // {
-    //   source: '17',
-    //   target: '20',
-    //   type: 'line',
-    // },
-    // {
-    //   source: '18',
-    //   target: '19',
-    //   type: 'line',
-    // },
-    // {
-    //   source: '19',
-    //   target: '20',
-    //   type: 'line',
-    // },
-    // {
-    //   source: '19',
-    //   target: '33',
-    //   type: 'line',
-    // },
-    // {
-    //   source: '19',
-    //   target: '22',
-    //   type: 'line',
-    // },
-    // {
-    //   source: '19',
-    //   target: '23',
-    //   type: 'line',
-    // },
-    // {
-    //   source: '20',
-    //   target: '21',
-    //   type: 'line',
-    // },
-    // {
-    //   source: '21',
-    //   target: '22',
-    //   type: 'line',
-    // },
-    // {
-    //   source: '22',
-    //   target: '24',
-    //   type: 'line',
-    // },
-    // {
-    //   source: '22',
-    //   target: '25',
-    //   type: 'line',
-    // },
-    // {
-    //   source: '22',
-    //   target: '26',
-    //   type: 'line',
-    // },
-    // {
-    //   source: '22',
-    //   target: '23',
-    //   type: 'line',
-    // },
-    // {
-    //   source: '22',
-    //   target: '28',
-    //   type: 'line',
-    // },
-    // {
-    //   source: '22',
-    //   target: '30',
-    //   type: 'line',
-    // },
-    // {
-    //   source: '22',
-    //   target: '31',
-    //   type: 'line',
-    // },
-    // {
-    //   source: '22',
-    //   target: '32',
-    //   type: 'line',
-    // },
-    // {
-    //   source: '22',
-    //   target: '33',
-    //   type: 'line',
-    // },
-    // {
-    //   source: '23',
-    //   target: '28',
-    //   type: 'line',
-    // },
-    // {
-    //   source: '23',
-    //   target: '27',
-    //   type: 'line',
-    // },
-    // {
-    //   source: '23',
-    //   target: '29',
-    //   type: 'line',
-    // },
-    // {
-    //   source: '23',
-    //   target: '30',
-    //   type: 'line',
-    // },
-    // {
-    //   source: '23',
-    //   target: '31',
-    //   type: 'line',
-    // },
-    // {
-    //   source: '23',
-    //   target: '33',
-    //   type: 'line',
-    // },
-    // {
-    //   source: '32',
-    //   target: '33',
-    //   type: 'line',
-    // },
     {
       startPoint: { x: 0, y: 500 },
       endPoint: { x: 300, y: 500 },

@@ -12,7 +12,6 @@ export default () => {
   registerLayout('force', ForceLayout);
   useEffect(() => {
     const context = Util.createContext(ref.current, width, height);
-
     const { props } = (
       <Canvas width={width} height={height} pixelRatio={2} context={context}>
         <Graph

@@ -1,6 +1,6 @@
-import { Canvas, Circle, Group, Path, Text } from '@antv/g';
+import { Canvas, Circle, Group, Line, Path, Text } from '@antv/g';
 // import { CanvasRenderer } from '@antv/f-engine';
-import { Renderer as CanvasRenderer } from '@antv/g-mobile-canvas';
+import { Renderer as CanvasRenderer } from '@antv/g-webgl';
 import { Plugin } from '@antv/g-plugin-dragndrop';
 import { useEffect } from 'react';
 import { ForceLayout, Util } from '../../../src';
@@ -28,12 +28,12 @@ function testMassG5(canvas, count) {
           fill: '#000',
         },
       });
-      const path = new Path({
+      const path = new Line({
         attrs: {
-          path: [
-            ['M', 0, 0],
-            ['L', 500, 500],
-          ],
+          x1: 0,
+          y1: 0,
+          x2: 500,
+          y2: 500,
           lineWidth: 2,
           stroke: 'black',
         },
@@ -287,27 +287,27 @@ export default () => {
     // create a renderer
     const canvasRenderer = new CanvasRenderer();
 
-    const plugin = new Plugin({
-      // we can drag the whole document from empty space now!
-      isDocumentDraggable: true,
-      isDocumentDroppable: true,
-      dragstartDistanceThreshold: 10,
-      dragstartTimeThreshold: 100,
-    });
-    canvasRenderer.registerPlugin(plugin);
+    // const plugin = new Plugin({
+    //   // we can drag the whole document from empty space now!
+    //   isDocumentDraggable: true,
+    //   isDocumentDroppable: true,
+    //   dragstartDistanceThreshold: 10,
+    //   dragstartTimeThreshold: 100,
+    // });
+    // canvasRenderer.registerPlugin(plugin);
 
-    const context = Util.createContext('container', width, height);
+    const context = Util.createContext('container', width, height, 'webgl');
     // create a canvas
     const canvas = new Canvas({
       canvas: context.canvas,
-      width: 600,
-      height: 500,
+      width,
+      height,
       renderer: canvasRenderer,
     });
 
-    // testMassG5(canvas, 250);
+    testMassG5(canvas, 250);
     // testZIndex(canvas);
-    testLayout(canvas);
+    // testLayout(canvas);
   });
 
   return <div id="container" style={{ width, height, display: 'flex' }}></div>;

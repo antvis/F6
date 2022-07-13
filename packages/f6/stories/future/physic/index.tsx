@@ -24,13 +24,8 @@ export default () => {
       <Canvas width={width} height={height} pixelRatio={2} context={context} renderer={renderer}>
         <Graph
           data={data}
-          layout={{
-            type: 'dagre',
-            ranksep: 10,
-            nodesep: 10,
-          }}
           modes={{
-            default: ['drag-node', 'drag-combo', 'click-select'],
+            default: ['drag-canvas', 'click-select'],
           }}
         ></Graph>
       </Canvas>

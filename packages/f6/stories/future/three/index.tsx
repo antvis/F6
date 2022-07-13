@@ -1,5 +1,4 @@
 import { registerTag } from '@antv/f-engine';
-import { Renderer as WebglRenderer } from '@antv/g-mobile-webgl';
 import {
   DirectionalLight,
   Mesh,
