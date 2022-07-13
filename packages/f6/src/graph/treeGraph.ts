@@ -53,7 +53,7 @@ export class TreeGraph extends Graph {
       for (let i = 0, len = stack.length; i < len; i++) {
         const [parentData, node] = stack.pop();
         node.id = node.id || uniqueId();
-        nodes.push({ ...node, parent: parentData });
+        nodes.push({ ...{ ...node.data, x: node.x, y: node.y }, parent: parentData });
         parentData &&
           edges.push({
             id: `${parentData.id}-${node.id}`,
