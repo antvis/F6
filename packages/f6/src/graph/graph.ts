@@ -22,9 +22,14 @@ export class Graph {
   behaviorService = null;
   viewService = null;
   enabeAnimate = true;
-  isNeedFitView = false;
-  isNeedFitCenter = false;
-  isLayoutFinished = false;
+
+  // fitView、fitCenter 标记，api调用不断反转状态
+  fitViewTag = null;
+  fitCenterTag = null;
+  // fitView、fitCenter 配置，控制layout后，是否需要fit
+  isFitView = false;
+  isFitCenter = false;
+
   isDestroyed = false;
 
   canvasJSXroot = null;
@@ -49,10 +54,8 @@ export class Graph {
     makeObservable(this, {
       enabeAnimate: observable,
       setEnableAnimate: action,
-      isLayoutFinished: observable,
-      setLayoutFinshed: action,
-      isNeedFitCenter: observable,
-      isNeedFitView: observable,
+      fitCenterTag: observable,
+      fitViewTag: observable,
       fitView: action,
       fitCenter: action,
     });
@@ -63,7 +66,7 @@ export class Graph {
       data,
       width,
       height,
-      devicePixelRatio,
+      pixelRatio,
       layout,
       modes,
       defaultNode,
@@ -72,6 +75,8 @@ export class Graph {
       nodeStateStyles,
       edgeStateStyles,
       comboStateStyles,
+      fitView,
+      fitCenter,
     } = cfg;
     this.modeService.init(modes);
     this.eventService.initEvents(this.canvasJSXroot, this.canvas);
@@ -79,8 +84,10 @@ export class Graph {
     this.edgeManager.init(data.edges, defaultEdge, edgeStateStyles);
     this.comboManager.init(data.combos, defaultCombo, comboStateStyles);
     this.hullManager.init(data.hulls);
+    this.setFitView(fitView);
+    this.setFitCenter(fitCenter);
     this.layoutService.setLayoutConfig(layout, width, height);
-    this.viewService.init({ width, height, devicePixelRatio });
+    this.viewService.init({ width, height, pixelRatio });
     this.layout();
   }
 
@@ -107,7 +114,7 @@ export class Graph {
       { nodes, edges, combos: [] },
       () => {
         tick();
-        this.setLayoutFinshed(true);
+        this.fit();
       },
       () => {
         tick();
@@ -170,12 +177,28 @@ export class Graph {
     return this.viewService.getCanvasBBox();
   }
 
+  fit() {
+    if (this.isFitView) {
+      this.fitView();
+    } else if (this.isFitCenter) {
+      this.fitCenter();
+    }
+  }
+
   fitView() {
-    this.isNeedFitView = !this.isNeedFitView;
+    this.fitViewTag = {};
   }
 
   fitCenter() {
-    this.isNeedFitCenter = !this.isNeedFitCenter;
+    this.fitCenterTag = {};
+  }
+
+  setFitView(isFitView) {
+    this.isFitView = isFitView;
+  }
+
+  setFitCenter(isFitCenter) {
+    this.isFitCenter = isFitCenter;
   }
 
   on(...args) {
@@ -323,10 +346,6 @@ export class Graph {
 
   setEnableAnimate(enabeAnimate: boolean) {
     this.enabeAnimate = enabeAnimate;
-  }
-
-  setLayoutFinshed(isLayoutFinished: boolean) {
-    this.isLayoutFinished = isLayoutFinished;
   }
 
   getPointByClient(x, y) {

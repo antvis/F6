@@ -33,24 +33,18 @@ export function connect(mapStatetoProps?): any {
         this.prevProps = stateProps;
         this.isFirst &&
           (this.state = {
-            allProps: {
-              ...stateProps,
-              ...this.props,
-            },
+            stateProps,
           });
         if (!this.isFirst) {
           this.setState({
-            allProps: {
-              ...stateProps,
-              ...this.props,
-            },
+            stateProps,
           });
         }
       };
 
       render() {
-        const { forwardRef } = this.props;
-        return <WrapperComponent {...this.state.allProps} ref={forwardRef} />;
+        const { forwardRef, ...other } = this.props;
+        return <WrapperComponent {...{ ...this.state.stateProps, ...other }} ref={forwardRef} />;
       }
 
       didUnmount(): void {

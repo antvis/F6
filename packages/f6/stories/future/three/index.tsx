@@ -6,6 +6,7 @@ import {
   Plugin as Plugin3D,
   SphereGeometry,
 } from '@antv/g-plugin-3d';
+import { Renderer } from '@antv/g-webgl';
 import React, { useEffect } from 'react';
 import {
   BaseNode,
@@ -43,7 +44,7 @@ export default () => {
   registerLayout('force', ForceLayout);
   useEffect(() => {
     const context = Util.createContext(ref.current, width, height, 'webgl');
-    const renderer = new WebglRenderer();
+    const renderer = new Renderer();
     renderer.registerPlugin(new Plugin3D());
     const plugin = renderer.getPlugin('device-renderer');
     const canvasRef = { current: null };
@@ -120,6 +121,7 @@ export default () => {
     );
     const graph = new Canvas(props);
     graph.render();
+
     graph.canvas.appendChild(light);
   }, []);
   // }

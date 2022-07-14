@@ -59,6 +59,14 @@ export default class ModeService {
     this.setMode(this.mode);
   }
 
+  public setModes(modes, mode?) {
+    this.modes = modes || {
+      default: [],
+    };
+    this.formatModes();
+    this.setMode(mode || this.mode);
+  }
+
   private formatModes() {
     const { modes } = this;
     each(modes, (mode) => {

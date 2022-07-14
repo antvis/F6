@@ -33,8 +33,8 @@ const HULL_Z_INDEX = COMBO_Z_INDEX - 1;
     isAutoSize: graph.comboManager.isAutoSize,
     enabeAnimate: graph.enabeAnimate,
     isLayoutFinished: graph.isLayoutFinished,
-    isNeedFitCenter: graph.isNeedFitCenter,
-    isNeedFitView: graph.isNeedFitView,
+    fitCenterTag: graph.fitCenterTag,
+    fitViewTag: graph.fitViewTag,
     animations: graph.nodeManager.animations,
   };
 })
@@ -43,8 +43,6 @@ export class GraphRoot extends Component {
   edgeRoot = { current: null };
   comboRoot = { current: null };
   hullRoot = { current: null };
-  isFitViewed = false;
-  isFitCentered = false;
   animate = false;
   prevProps = null;
   prevRootProps = null;
@@ -66,13 +64,14 @@ export class GraphRoot extends Component {
       comboStateStyles,
       linkCenter,
       onGraphReady,
+      fitView = true,
+      fitCenter = true,
     } = this.props;
-    const { devicePixelRatio = 1 } = this.context.root.props;
-    const { width, height } = this.context;
+    const { width, height, pixelRatio = 1 } = this.context;
     this.context.f6Context.graph.init({
       width,
       height,
-      devicePixelRatio,
+      pixelRatio,
       data,
       layout,
       modes,
@@ -83,63 +82,78 @@ export class GraphRoot extends Component {
       edgeStateStyles,
       comboStateStyles,
       linkCenter,
+      fitView,
+      fitCenter,
     });
     onGraphReady?.(this.context.f6Context.graph);
+    this.prevRootProps = {
+      width,
+      height,
+    };
+    this.prevProps = this.props;
   }
 
   didUpdate(): void {
     const graph = this.context.f6Context.graph;
     const {
       enabeAnimate,
-      isLayoutFinished,
-      fitView = true,
-      fitCenter = true,
+      fitView,
+      fitCenter,
       fitViewPadding = 0,
       layout,
       modes,
-      isNeedFitView,
-      isNeedFitCenter,
+      fitViewTag,
+      fitCenterTag,
+      data,
     } = this.props;
-    const { width, height } = this.context.root.props;
+    const rootProps = this.context.root.props;
+
+    // 更新context中的width/height
+    if (!isNil(rootProps.height) && rootProps.height !== this.prevRootProps.height) {
+      this.context.height = rootProps.height;
+    }
+    if (!isNil(rootProps.width) && rootProps.width !== this.prevRootProps.width) {
+      this.context.width = rootProps.width;
+    }
+
+    const { width, height } = this.context;
 
     // width height
-    if (
-      (!isNil(this.prevRootProps?.width) && this.prevRootProps.width !== width) ||
-      (!isNil(this.prevRootProps?.height) && this.prevRootProps?.height !== height)
-    ) {
+    if (this.prevRootProps?.width !== width || this.prevRootProps?.height !== height) {
       graph.changeSize(width, height);
     }
 
-    // fitView fitCenter布局结束后且配置为true
+    if (this.prevProps.fitView !== fitView) {
+      graph.setFitView(fitView);
+    }
+
+    if (this.prevProps.fitCenter !== fitCenter) {
+      graph.setFitCenter(fitCenter);
+    }
+
     // fitView / fitCenter 标识翻转后
-    if (
-      (fitView && !this.isFitViewed && isLayoutFinished) ||
-      (!isNil(this.prevProps?.isNeedFitView) && this.prevProps?.isNeedFitView !== isNeedFitView)
-    ) {
+    if (this.prevProps?.fitViewTag !== fitViewTag) {
       graph.viewService.fitView(fitViewPadding);
-      this.isFitViewed = true;
     }
-    if (
-      (fitCenter && !fitView && !this.isFitCentered && isLayoutFinished) ||
-      (!isNil(this.prevProps?.isNeedFitCenter) &&
-        this.prevProps?.isNeedFitCenter !== isNeedFitCenter)
-    ) {
+
+    if (this.prevProps?.fitCenterTag !== fitCenterTag) {
       graph.viewService.fitCenter();
-      this.isFitCentered = true;
     }
-    if (
-      this.prevRootProps?.fitViewPadding &&
-      this.prevRootProps.fitViewPadding !== fitViewPadding
-    ) {
+
+    if (this.prevProps.fitViewPadding !== this.props.fitViewPadding) {
       graph.viewService.setFitViewPadding(fitViewPadding);
     }
 
-    if (this.prevRootProps?.modes && this.prevRootProps?.modes !== modes) {
-      graph.modeService.setMode(modes);
+    if (this.prevProps?.modes !== modes) {
+      graph.modeService.setModes(modes);
     }
 
-    if (this.prevRootProps?.layout && this.prevRootProps.layout !== layout) {
-      graph.updatLayout(layout);
+    if (this.prevProps?.layout !== layout) {
+      graph.updateLayout(layout);
+    }
+
+    if (this.prevProps?.data !== data) {
+      graph.changeData(data);
     }
 
     // 控制关闭全局动画
@@ -151,9 +165,10 @@ export class GraphRoot extends Component {
     this.comboRoot.current && (this.comboRoot.current.container.style.zIndex = COMBO_Z_INDEX);
     this.hullRoot.current && (this.hullRoot.current.container.style.zIndex = HULL_Z_INDEX);
 
-    // 更新matrix，这部分可能直接用 api 控制会清晰些？
-
-    this.prevRootProps = this.context.root.props;
+    this.prevRootProps = {
+      width,
+      height,
+    };
     this.prevProps = this.props;
   }
 

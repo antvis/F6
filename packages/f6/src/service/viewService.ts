@@ -9,7 +9,7 @@ export class ViewService {
   graph = null;
   width = 0;
   height = 0;
-  devicePixelRatio = 1;
+  pixelRatio = 1;
   fitViewPadding = 0;
   graphRoot = null;
 
@@ -18,10 +18,10 @@ export class ViewService {
   }
 
   init(data) {
-    const { width, height, devicePixelRatio, fitViewPadding = 0 } = data;
+    const { width, height, pixelRatio, fitViewPadding = 0 } = data;
     this.width = width;
     this.height = height;
-    this.devicePixelRatio = devicePixelRatio;
+    this.pixelRatio = pixelRatio;
     this.fitViewPadding = fitViewPadding;
   }
 
@@ -42,6 +42,7 @@ export class ViewService {
       x: bbox.x + bbox.width / 2,
       y: bbox.y + bbox.height / 2,
     };
+    if (isNaN(groupCenter.x) || isNaN(groupCenter.y)) return;
     this.translate(viewCenter.x - groupCenter.x, viewCenter.y - groupCenter.y);
     const w = (width - padding[1] - padding[3]) / bbox.width;
     const h = (height - padding[0] - padding[2]) / bbox.height;
@@ -72,6 +73,7 @@ export class ViewService {
       x: bbox.x + bbox.width / 2,
       y: bbox.y + bbox.height / 2,
     };
+    if (isNaN(groupCenter.x) || isNaN(groupCenter.y)) return;
 
     this.translate(viewCenter.x - groupCenter.x, viewCenter.y - groupCenter.y);
   }
