@@ -33,7 +33,7 @@ export class Node extends Component {
 
   didMount(): void {
     const { node, animation } = this.props;
-    const { x, y } = node;
+    const { x = 0, y = 0 } = node;
 
     // 设置容器位置和是否可以拖动，保证内部系统完整（拖放时、设置位置时表现能够一致）
     this.container.setLocalPosition(x, y);
@@ -63,7 +63,7 @@ export class Node extends Component {
   }
 
   didUpdate(): void {
-    const { x, y, id } = this.props.node;
+    const { x = 0, y = 0 } = this.props.node;
     const { animation } = this.props;
 
     const animationKeys = Object.keys(animation || {});

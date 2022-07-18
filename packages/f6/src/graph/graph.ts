@@ -158,7 +158,7 @@ export class Graph {
   }
 
   zoom(ratio, center) {
-    this.eventService.zoom(ratio, center);
+    this.viewService.zoom(ratio, center);
   }
 
   zoomTo(toRatio, center) {
@@ -216,14 +216,11 @@ export class Graph {
   addItem(type, model) {
     switch (type) {
       case 'node':
-        this.nodeManager.addItem(model);
-        break;
+        return this.nodeManager.addItem(model);
       case 'edge':
-        this.edgeManager.addItem(model);
-        break;
+        return this.edgeManager.addItem(model);
       case 'combo':
-        this.comboManager.addItem(model);
-        break;
+        return this.comboManager.addItem(model);
       default:
         break;
     }
@@ -319,7 +316,7 @@ export class Graph {
     }
     if (isNil(temItem)) return;
 
-    item.setState(stateName, value);
+    temItem.setState(stateName, value);
   }
 
   clearItemStates(item, stateNames) {
@@ -329,7 +326,7 @@ export class Graph {
     }
     if (isNil(temItem)) return;
 
-    item.clearStates(stateNames);
+    temItem.clearStates(stateNames);
   }
 
   getNodes() {

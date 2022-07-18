@@ -3,7 +3,7 @@ import { createContainer } from '../util';
 import data from './data';
 
 describe('F6 TreeGraph', () => {
-  it('export', () => {
+  it('TreeGraph render', () => {
     const container = createContainer('TreeGraph');
     const context = Util.createContext(container, 500, 500);
 

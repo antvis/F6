@@ -66,8 +66,13 @@ export class TreeGraph extends Graph {
           });
       }
     }
-    this.addItem('node', nodes);
-    this.addItem('edge', edges);
+    [
+      ['node', nodes],
+      ['edge', edges],
+    ].forEach((data) => {
+      const [type, models] = data;
+      models.forEach((model) => this.addItem(type, model));
+    });
   }
 
   /**

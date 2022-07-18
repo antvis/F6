@@ -173,7 +173,6 @@ export class Combo extends Node {
   }
 
   didUnmount(): void {
-    console.log('remove combo');
     this.context.f6Context.removeCombo(this.props.combo.id);
   }
 }

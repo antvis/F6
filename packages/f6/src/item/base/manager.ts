@@ -15,7 +15,7 @@ export abstract class ItemManger<T extends BaseItemModel, I extends Item<T>> {
     this.graph = graph;
 
     makeObservable(this, {
-      items: observable,
+      items: observable.ref,
       models: computed,
       modelsMap: computed,
       states: computed,
@@ -34,7 +34,9 @@ export abstract class ItemManger<T extends BaseItemModel, I extends Item<T>> {
 
     if (isNil(models)) return;
 
-    this.addItem(models);
+    models.forEach((model) => {
+      this.addItem(model);
+    });
   }
 
   changeData(models = [], defaultModel: T, defaultStates?) {
@@ -106,35 +108,25 @@ export abstract class ItemManger<T extends BaseItemModel, I extends Item<T>> {
     return this.items[id];
   }
 
-  addItem(data) {
-    let models = data;
-    if (!Array.isArray(data)) {
-      models = [data];
+  addItem(model) {
+    if (isNil(model)) return;
+    const item = this.createItem(
+      deepMix({}, this.defaultModel || {}, { stateStyles: this.defaultStates || {} }, model),
+    );
+    if (isNil(item.id)) {
+      item.id = uuid();
     }
-    const instances = models?.reduce((prev, data) => {
-      const item = this.createItem(
-        deepMix({}, this.defaultModel || {}, { stateStyles: this.defaultStates || {} }, data),
-      );
-      if (isNil(item.id)) {
-        item.id = uuid();
-      }
-      prev[item.id] = item;
-      return prev;
-    }, {});
-    this.items = { ...this.items, ...instances };
+    this.items = { ...this.items, ...{ [item.id]: item } };
+    return item;
   }
 
   removeItem(id) {
-    let ids = id;
-    if (!Array.isArray(id)) {
-      ids = [id];
-    }
-    const items = { ...this.items };
-    ids.forEach((id) => {
-      items[id]?.destroy();
-      delete items[id];
-    });
-    this.items = items;
+    if (isNil(id)) return;
+    const item = this.items[id];
+    item?.destroy();
+    delete this.items[id];
+    this.items = { ...this.items };
+    return item;
   }
 
   updateItem(id, model) {
