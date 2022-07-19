@@ -80,17 +80,6 @@ export class ComboManager extends ItemManger<ComboConfig, Combo> {
     }
   }
 
-  translate(id, pos) {
-    const combo = this.getParsedCombo(id);
-    this.graph.findById(id).translate(pos);
-    combo.nodes?.forEach((entity) => {
-      this.graph.findById(entity.id).translate(pos);
-    });
-    combo.combos?.forEach((entity) => {
-      this.translate(entity.id, pos);
-    });
-  }
-
   setAutoSize(isAutoSize) {
     this.isAutoSize = isAutoSize;
   }

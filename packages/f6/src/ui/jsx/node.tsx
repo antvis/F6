@@ -39,6 +39,7 @@ export class Node extends Component {
     this.container.setLocalPosition(x, y);
     this.container.setAttribute('draggable', true);
     this.container.setAttribute('droppable', true);
+    this.container.style.visibility = node.visible === false ? 'hidden' : 'visible';
 
     const animationKeys = Object.keys(animation);
     if (animationKeys.length !== 0) {
@@ -63,7 +64,7 @@ export class Node extends Component {
   }
 
   didUpdate(): void {
-    const { x = 0, y = 0 } = this.props.node;
+    const { x = 0, y = 0, visible } = this.props.node;
     const { animation } = this.props;
 
     const animationKeys = Object.keys(animation || {});
@@ -85,6 +86,7 @@ export class Node extends Component {
       });
     }
     this.container.setLocalPosition(x, y);
+    this.container.style.visibility = visible === false ? 'hidden' : 'visible';
     this.prevProps = this.props;
   }
 

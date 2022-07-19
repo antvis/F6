@@ -22,6 +22,7 @@ export class Item<T extends BaseItemModel> {
         clearStates: action,
         hideItem: action,
         showItem: action,
+        updateItem: action,
       },
       { proxy: false },
     );
@@ -45,23 +46,6 @@ export class Item<T extends BaseItemModel> {
 
   getType() {
     return this.type;
-  }
-
-  setState(stateName, value) {
-    const states = this.states;
-    if (isString(value)) {
-      stateName = `${stateName}:${value}`;
-    }
-    const index = states.indexOf(stateName);
-    if (value) {
-      if (index > -1) {
-        return;
-      }
-      this.states = [...this.states, stateName];
-    } else if (index > -1) {
-      states.splice(index, 1);
-      this.states = [...this.states];
-    }
   }
 
   updateItem(model) {
@@ -101,6 +85,23 @@ export class Item<T extends BaseItemModel> {
       this.states = this.states.filter((state) => {
         return !data.includes(state);
       });
+    }
+  }
+
+  setState(stateName, value) {
+    const states = this.states;
+    if (isString(value)) {
+      stateName = `${stateName}:${value}`;
+    }
+    const index = states.indexOf(stateName);
+    if (value) {
+      if (index > -1) {
+        return;
+      }
+      this.states = [...this.states, stateName];
+    } else if (index > -1) {
+      states.splice(index, 1);
+      this.states = [...this.states];
     }
   }
 

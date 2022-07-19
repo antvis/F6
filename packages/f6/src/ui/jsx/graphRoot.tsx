@@ -133,11 +133,17 @@ export class GraphRoot extends Component {
 
     // fitView / fitCenter 标识翻转后
     if (this.prevProps?.fitViewTag !== fitViewTag) {
-      graph.viewService.fitView(fitViewPadding);
+      setTimeout(() => {
+        // f-engine 内部异步删除节点
+        graph.viewService.fitView(fitViewPadding);
+      });
     }
 
     if (this.prevProps?.fitCenterTag !== fitCenterTag) {
-      graph.viewService.fitCenter();
+      setTimeout(() => {
+        // f-engine 内部异步删除节点
+        graph.viewService.fitCenter(fitViewPadding);
+      });
     }
 
     if (this.prevProps.fitViewPadding !== this.props.fitViewPadding) {

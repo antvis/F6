@@ -3,7 +3,7 @@ import { createContainer, delay } from '../util';
 import data from './data';
 import dargeData from '../data/dagreData';
 
-describe('graph properties', () => {
+describe('graph', () => {
   const container = createContainer('Graph');
   const context = Util.createContext(container, 500, 500);
   let { props } = (

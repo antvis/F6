@@ -4,7 +4,7 @@ import data from './data';
 import dargeData from '../data/dagreData';
 import { Canvas as FCanvas } from '@antv/f-engine';
 
-describe('graph properties', () => {
+describe('graph api', () => {
   const container = createContainer('Graph');
   const context = Util.createContext(container, 500, 500);
   registerLayout('dagre', DagreLayout);

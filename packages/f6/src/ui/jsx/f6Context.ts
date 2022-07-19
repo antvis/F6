@@ -32,6 +32,10 @@ export class F6Context {
     return this.getNodeLike(id)?.model;
   }
 
+  addEdge(id, edgeComponent) {
+    this.edges[id] = edgeComponent;
+  }
+
   getEdge(id) {
     return this.edges[id];
   }

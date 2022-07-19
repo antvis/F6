@@ -24,8 +24,8 @@ export class Graph {
   enabeAnimate = true;
 
   // fitView、fitCenter 标记，api调用不断反转状态
-  fitViewTag = null;
-  fitCenterTag = null;
+  fitViewTag = 0;
+  fitCenterTag = 0;
   // fitView、fitCenter 配置，控制layout后，是否需要fit
   isFitView = false;
   isFitCenter = false;
@@ -186,11 +186,11 @@ export class Graph {
   }
 
   fitView() {
-    this.fitViewTag = {};
+    this.fitViewTag = ++this.fitViewTag;
   }
 
   fitCenter() {
-    this.fitCenterTag = {};
+    this.fitCenterTag = ++this.fitCenterTag;
   }
 
   setFitView(isFitView) {

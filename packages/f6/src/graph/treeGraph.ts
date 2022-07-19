@@ -257,11 +257,11 @@ export class TreeGraph extends Graph {
     return (data: any) => Hierarchy[layout.type](data, layout);
   }
 
-  layout(): void {
+  layout(isFit = true): void {
     const layout = this.getLayout();
     const layoutData = layout(this.originData, this.layoutCfg);
     this.innerUpdateChild(layoutData);
-    this.fit();
+    isFit && this.fit();
   }
 
   public changeData(data?): any {

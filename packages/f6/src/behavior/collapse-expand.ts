@@ -65,6 +65,6 @@ export class CollapseExpand extends BaseBehavior<CollapseExpandCfg> {
       // eslint-disable-next-line no-console
       console.warn(err);
     }
-    this.graph.layout();
+    this.graph.layout(false);
   }
 }

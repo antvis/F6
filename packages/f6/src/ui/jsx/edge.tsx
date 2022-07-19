@@ -17,13 +17,22 @@ export class Edge extends Component {
     const { edge, item } = this.props;
     // @ts-ignore
     this.container.item = item;
-    this.context.f6Context.addNode(edge.id, this);
+    this.context.f6Context.addEdge(edge.id, this);
   }
 
   didMount(): void {
-    // console.log('edge mount');
+    const { edge } = this.props;
+    this.container.setAttribute('draggable', true);
+    this.container.setAttribute('droppable', true);
+    this.container.style.visibility = edge.visible === false ? 'hidden' : 'visible';
   }
 
+  didUpdate(): void {
+    const { edge } = this.props;
+    this.container.setAttribute('draggable', true);
+    this.container.setAttribute('droppable', true);
+    this.container.style.visibility = edge.visible === false ? 'hidden' : 'visible';
+  }
   /**
    * 获取节点上的连接点
    * @param name
@@ -182,7 +191,7 @@ export class Edge extends Component {
   };
 
   render() {
-    const { edge } = this.props;
+    const { edge, states } = this.props;
     if (!edge) {
       return null;
     }
@@ -205,7 +214,7 @@ export class Edge extends Component {
       return null;
     }
 
-    return <Shape edge={{ ...edge, ...points }} ref={this.edgeShapeRef}></Shape>;
+    return <Shape edge={{ ...edge, ...points }} ref={this.edgeShapeRef} states={states}></Shape>;
   }
 
   didUnmount(): void {

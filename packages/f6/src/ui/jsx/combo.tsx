@@ -32,15 +32,21 @@ export class Combo extends Node {
   }
 
   didMount(): void {
-    const { sortedCombo } = this.props;
+    const { sortedCombo, combo } = this.props;
     // 必须设置container的zIndex控制多个combo的层叠关系
     this.container.style.zIndex = sortedCombo.depth;
     this.isInited = true;
+    this.container.setAttribute('draggable', true);
+    this.container.setAttribute('droppable', true);
+    this.container.style.visibility = combo.visible === false ? 'hidden' : 'visible';
   }
 
   didUpdate(): void {
-    const { sortedCombo } = this.props;
+    const { sortedCombo, combo } = this.props;
     this.container.style.zIndex = sortedCombo.depth;
+    this.container.setAttribute('draggable', true);
+    this.container.setAttribute('droppable', true);
+    this.container.style.visibility = combo.visible === false ? 'hidden' : 'visible';
   }
 
   getBBox = () => {

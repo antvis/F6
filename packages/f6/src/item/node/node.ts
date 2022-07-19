@@ -15,7 +15,6 @@ export class Node extends Item<NodeConfig> {
     this.model.visible = typeof this.model.visible === 'boolean' ? this.model.visible : true;
     makeObservable(this, {
       setPosition: action,
-      translate: action,
     });
   }
 
@@ -81,17 +80,6 @@ export class Node extends Item<NodeConfig> {
       return edge.getSource() === this ? edge.getTarget() : edge.getSource();
     };
     return edges.map(neighhborsConverter);
-  }
-
-  translate(pos) {
-    const { x, y } = this.model;
-    this.model = {
-      ...this.model,
-      ...{
-        x: x + pos.x,
-        y: y + pos.y,
-      },
-    };
   }
 
   destroy() {
