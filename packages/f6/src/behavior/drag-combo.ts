@@ -169,7 +169,11 @@ export class DragCombo extends BaseBehavior<DragComboCfg> {
 
     this.targets.map((combo) => {
       const model = combo.getModel();
-      if (model.parentId !== targetModel.id && model.id !== targetModel.id) {
+      if (
+        model.id !== targetModel.parentId &&
+        model.parentId !== targetModel.id &&
+        model.id !== targetModel.id
+      ) {
         // 将 Combo 放置到某个 Combo 上面时，只有当 onlyChangeComboSize 为 false 时候才更新 Combo 结构
         if (!onlyChangeComboSize) {
           graph.updateItem(combo, { parentId: targetModel.id });
