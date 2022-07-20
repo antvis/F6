@@ -194,15 +194,13 @@ export class DragNode extends BaseBehavior<DragNodeCfg> {
 
     const graph = this.graph;
     if (!this.targets || this.targets.length === 0) return;
-    if (onlyChangeComboSize) {
-      // 拖动节点结束后，动态改变 Combo 的大小
-      // graph.updateCombos();
-    } else {
+
+    if (!onlyChangeComboSize) {
       this.targets.map((node: Node) => {
         // 拖动的节点有 comboId，即是从其他 combo 中拖出时才处理
         const model = node.getModel();
         if (model.comboId) {
-          // graph.updateComboTree(node);
+          graph.updateItem(node, { comboId: null });
         }
       });
     }

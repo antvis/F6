@@ -46,7 +46,6 @@ export class DragCombo extends BaseBehavior<DragComboCfg> {
   originPoint = {};
   origin = { x: 0, y: 0 };
   enableDelegate = false;
-  endComparison = false;
   delegateShape = null;
 
   getDefaultCfg(): DragComboCfg {
@@ -63,8 +62,9 @@ export class DragCombo extends BaseBehavior<DragComboCfg> {
       'combo:dragstart': 'onDragStart',
       'combo:drag': 'onDrag',
       'combo:dragend': 'onDragEnd',
-      'combo:drop': 'onDrop',
-      'node:drop': 'onNodeDrop',
+      'combo:drop': 'onDropCombo',
+      'node:drop': 'onDropNode',
+      'canvas:drop': 'onDropCanvas',
       'combo:dragenter': 'onDragEnter',
       'combo:dragleave': 'onDragLeave',
     };
@@ -142,6 +142,7 @@ export class DragCombo extends BaseBehavior<DragComboCfg> {
       return true;
     });
   }
+
   onDrag(evt) {
     if (!this.origin) {
       return;
@@ -154,13 +155,13 @@ export class DragCombo extends BaseBehavior<DragComboCfg> {
     });
   }
 
-  onDrop(evt) {
+  onDropCombo(evt) {
     // 被放下的目标 combo
     const { item } = evt;
     if (!item || !this.targets || item.destroyed) {
       return;
     }
-    const { activeState, onlyChangeComboSize } = this.cfg;
+    const { onlyChangeComboSize } = this.cfg;
 
     const graph = this.graph;
 
@@ -169,35 +170,40 @@ export class DragCombo extends BaseBehavior<DragComboCfg> {
     this.targets.map((combo) => {
       const model = combo.getModel();
       if (model.parentId !== targetModel.id && model.id !== targetModel.id) {
-        if (activeState) {
-          graph.setItemState(item, activeState, false);
-        }
         // 将 Combo 放置到某个 Combo 上面时，只有当 onlyChangeComboSize 为 false 时候才更新 Combo 结构
         if (!onlyChangeComboSize) {
           graph.updateItem(combo, { parentId: targetModel.id });
         }
       }
     });
-
-    this.end(item, evt);
-
-    // 如果已经拖放下了，则不需要再通过距离判断了
-    this.endComparison = true;
   }
-  onNodeDrop(evt) {
+
+  onDropCanvas() {
+    if (!this.targets) {
+      return;
+    }
+    const { onlyChangeComboSize } = this.cfg;
+
+    const graph = this.graph;
+
+    this.targets.map((combo) => {
+      // 将 Combo 放置到某个 Combo 上面时，只有当 onlyChangeComboSize 为 false 时候才更新 Combo 结构
+      if (!onlyChangeComboSize) {
+        graph.updateItem(combo, { parentId: undefined });
+      }
+    });
+  }
+
+  onDropNode(evt) {
     if (!this.targets || this.targets.length === 0) return;
     const graph = this.graph;
-    const { activeState, onlyChangeComboSize } = this.cfg;
+    const { onlyChangeComboSize } = this.cfg;
 
     const item = evt.item;
     const comboId = item.getModel().comboId as string;
     let droppedCombo;
     // 如果被放置的的节点有 comboId，且这个 comboId 与正在被拖拽的 combo 的父 id 不相同，则更新父亲为 comboId
     if (comboId) {
-      if (activeState) {
-        const combo = graph.findById(comboId);
-        graph.setItemState(combo, activeState, false);
-      }
       this.targets.map((combo) => {
         if (!onlyChangeComboSize) {
           if (comboId !== combo.id) {
@@ -218,14 +224,10 @@ export class DragCombo extends BaseBehavior<DragComboCfg> {
         }
       });
     }
-
-    // 如果已经拖放下了，则不需要再通过距离判断了
-    this.endComparison = true;
-    this.end(droppedCombo, evt);
   }
   onDragEnter(evt) {
     const { activeState } = this.cfg;
-    if (!this.origin) {
+    if (!this.origin || this.targets?.length === 0) {
       return;
     }
 
@@ -240,7 +242,7 @@ export class DragCombo extends BaseBehavior<DragComboCfg> {
   onDragLeave(evt) {
     const { activeState } = this.cfg;
 
-    if (!this.origin) {
+    if (!this.origin || this.targets?.length === 0) {
       return;
     }
 
@@ -253,37 +255,16 @@ export class DragCombo extends BaseBehavior<DragComboCfg> {
     }
   }
   onDragEnd(evt) {
+    this.graph.setEnableAnimate(true);
+    this.graph.comboManager.setAutoSize(true);
+
     if (!this.targets || this.targets.length === 0) return;
     const item = evt.item;
     const { activeState } = this.cfg;
-    // const parentCombo = this.getParentCombo(item.getModel().parentId);
-    // const graph = this.graph;
-    // if (parentCombo && this.activeState) {
-    //   graph.setItemState(parentCombo, this.activeState, false);
-    // }
-    this.end(undefined, evt);
-  }
-
-  end(comboDropedOn, evt) {
-    this.graph.setEnableAnimate(true);
-    this.graph.comboManager.setAutoSize(true);
-    if (!this.origin) return;
+    const parentCombo = this.getParentCombo(item.getModel().parentId);
     const graph = this.graph;
-    const { activeState, onlyChangeComboSize } = this.cfg;
-
-    if (comboDropedOn && activeState) {
-      graph.setItemState(comboDropedOn, activeState, false);
-    }
-    // 若没有被放置的 combo，则是被放置在画布上
-    if (!comboDropedOn) {
-      this.targets.map((combo) => {
-        // 将 Combo 放置到某个 Combo 上面时，只有当 onlyChangeComboSize 为 false 时候才更新 Combo 结构
-        if (!onlyChangeComboSize) {
-          // graph.updateComboTree(combo);
-        } else {
-          // graph.updateCombo(combo);
-        }
-      });
+    if (parentCombo && activeState) {
+      graph.setItemState(parentCombo, activeState, false);
     }
 
     this.point = [];

@@ -213,16 +213,16 @@ export class Node extends Component {
   }
 
   getKeyShape() {
-    return this.nodeRef.current?.getKeyShape();
+    return this.nodeRef.current?.getKeyShape?.() || this.nodeRef;
   }
 
   getNodeRoot() {
-    return this.nodeRef.current?.getRootShape();
+    return this.nodeRef.current?.getRootShape?.() || this.nodeRef;
   }
 
   getAnchorPoints = () => {
     const { node } = this.props;
-    return this.getShapeNode()?.getAnchorPoints(node);
+    return this.getShapeNode()?.getAnchorPoints?.(node);
   };
 
   onFrame = (e, from, to) => {

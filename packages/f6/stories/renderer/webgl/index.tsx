@@ -28,7 +28,7 @@ export default () => {
             // alphaDecay: 0,
           }}
           modes={{
-            default: ['drag-canvas', 'drag-combo', 'click-select'],
+            default: ['drag-node', 'drag-combo', 'click-select'],
           }}
         ></Graph>
       </Canvas>

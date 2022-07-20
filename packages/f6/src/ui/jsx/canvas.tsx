@@ -9,7 +9,12 @@ export class Canvas extends FCanvas {
       height,
       pixelRatio,
       context: context,
-      renderer: renderer || new CanvasRenderer(),
+      renderer:
+        renderer ||
+        new CanvasRenderer({
+          dragstartDistanceThreshold: 5,
+          dragstartTimeThreshold: 30,
+        }),
       container,
     };
 
