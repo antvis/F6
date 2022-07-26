@@ -175,7 +175,7 @@ export class Edge extends Component {
     const Shape = getEdge(edge?.type || 'line');
 
     if (!Shape) {
-      console.warn('不存在对应的 Node Shape');
+      console.warn(`边类型 ${edge?.type} 未定义`);
       return null;
     }
     return Shape;
@@ -199,7 +199,6 @@ export class Edge extends Component {
     const Shape = this.getShapeConstrutor();
 
     if (!Shape) {
-      console.warn('不存在对应的 Edge 节点定义');
       return null;
     }
 

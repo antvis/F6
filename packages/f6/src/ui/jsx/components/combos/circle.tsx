@@ -62,16 +62,10 @@ export class Circle extends BaseCombo {
     const style = this.getMixedStyle(combo, states);
     return (
       <group style={{ x: combo?.x || 0, y: combo?.y || 0, droppable: true }}>
-        <circle
-          style={{
-            ...style,
-            draggable: true,
-            droppable: true,
-          }}
-          ref={this.keyShapeRef}
-        />
+        <circle style={style} ref={this.keyShapeRef} />
         <text
           style={{
+            pointerEvents: 'none',
             text: combo?.label || '',
             ...combo.labelCfg?.style,
           }}

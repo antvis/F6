@@ -213,7 +213,7 @@ export class BaseNode extends BaseElement<NodeConfig> {
     // image的情况下有可能为null
     const labelCfg = (defaultLabelCfg || {}) as ILabelConfig;
     this.renderLabelStyle = this.getLabelStyle!(cfg, labelCfg, this.getRootShape());
-    this.renderLabelStyle.pointerEvents = 'none';
+    this.renderLabelStyle.pointerEvents = this.renderLabelStyle.pointerEvents || 'none';
     return <text style={this.renderLabelStyle} ref={this.labelRef}></text>;
   }
 

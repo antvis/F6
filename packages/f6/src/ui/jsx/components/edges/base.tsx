@@ -85,7 +85,7 @@ export class BaseEdge extends BaseElement<EdgeConfig> {
   };
 
   didMount() {
-    // this.setState({});
+    this.setState({});
   }
 
   /**

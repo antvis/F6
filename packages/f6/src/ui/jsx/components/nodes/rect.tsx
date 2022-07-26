@@ -80,6 +80,6 @@ export class SimpleRect extends BaseNode {
   renderShape(node, states) {
     const style = this.getShapeStyle(node);
 
-    return <rect style={{ ...style, draggable: true, droppable: true }} ref={this.keyShapeRef} />;
+    return <rect style={style} ref={this.keyShapeRef} />;
   }
 }

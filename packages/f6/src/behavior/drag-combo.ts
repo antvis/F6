@@ -118,6 +118,10 @@ export class DragCombo extends BaseBehavior<DragComboCfg> {
       });
     }
 
+    this.targets.forEach((item) => {
+      item.updateItem({ isDragging: true });
+    });
+
     this.point = {};
     this.originPoint = {};
 
@@ -131,7 +135,9 @@ export class DragCombo extends BaseBehavior<DragComboCfg> {
     const comboEntity = this.graph.comboManager.getParsedCombo(item.id);
 
     traverseCombo(comboEntity, (model) => {
-      this.currentItemChildCombos.push(model.id);
+      const item = this.graph.findById(model.id);
+      item.updateItem({ isDragging: true });
+      this.currentItemChildCombos.push(item);
       return true;
     });
   }
@@ -258,11 +264,14 @@ export class DragCombo extends BaseBehavior<DragComboCfg> {
     if (parentCombo && activeState) {
       graph.setItemState(parentCombo, activeState, false);
     }
-
+    this.targets.forEach((item) => {
+      item.updateItem({ isDragging: false });
+    });
     this.point = [];
     this.origin = null;
     this.originPoint = null;
     this.targets.length = 0;
+    this.currentItemChildCombos.length = 0;
   }
 
   /**

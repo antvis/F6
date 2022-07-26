@@ -27,4 +27,4 @@ registerEdge('quadratic', Quadratic);
 registerEdge('cubic', Cubic);
 registerEdge('cubic-horizontal', CubicHorizontal);
 registerEdge('cubic-vertical', CubicVertical);
-registerEdge('loop', Loop);
+// registerEdge('loop', Loop);

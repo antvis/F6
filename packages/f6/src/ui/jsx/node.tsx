@@ -247,7 +247,7 @@ export class Node extends Component {
     const { node, states } = this.props;
     const Shape = getNode(node?.type);
     if (!Shape) {
-      console.warn('不存在对应的 Node 定义');
+      console.warn(`节点类型 ${node?.type} 未定义`);
       return null;
     }
 

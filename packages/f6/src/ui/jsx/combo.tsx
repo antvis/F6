@@ -43,7 +43,11 @@ export class Combo extends Node {
 
   didUpdate(): void {
     const { sortedCombo, combo } = this.props;
-    this.container.style.zIndex = sortedCombo.depth;
+    if (combo.isDragging) {
+      this.container.style.zIndex = 9999 + sortedCombo.depth;
+    } else {
+      this.container.style.zIndex = sortedCombo.depth;
+    }
     this.container.setAttribute('draggable', true);
     this.container.setAttribute('droppable', true);
     this.container.style.visibility = combo.visible === false ? 'hidden' : 'visible';
@@ -150,7 +154,7 @@ export class Combo extends Node {
     const Shape = getCombo(combo?.type);
 
     if (!Shape) {
-      console.warn('不存在对应的 Node Shape');
+      console.warn(`combo 类型 ${combo?.type} 未定义`);
       return null;
     }
 

@@ -153,17 +153,11 @@ export class Rect extends BaseCombo {
     const style = this.getMixedStyle(combo, states);
     return (
       <group style={{ x: combo?.x || 0, y: combo?.y || 0, droppable: true }}>
-        <rect
-          style={{
-            ...style,
-            draggable: true,
-            droppable: true,
-          }}
-          ref={this.keyShapeRef}
-        />
+        <rect style={style} ref={this.keyShapeRef} />
         <text
           style={{
             text: combo?.label || '',
+            pointerEvents: 'none',
             ...combo.labelCfg?.style,
           }}
         ></text>

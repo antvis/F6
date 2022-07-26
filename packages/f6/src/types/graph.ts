@@ -10,11 +10,7 @@ export interface LooseObject {
 export type ID = string | number;
 
 export interface LayoutConfig {
-  type?: string;
-  gpuEnabled?: boolean;
-  workerEnabled?: boolean;
-  // 只有当 workerEnabled 为 true 时才生效
-  workerScriptURL?: string;
+  type: string;
   onLayoutEnd?: () => void;
 }
 
@@ -49,26 +45,6 @@ export interface GraphOptions {
    * 当指定一个值时，四边的边距都相等，当指定数组时，数组内数值依次对应 上，右，下，左四边的边距。
    */
   fitViewPadding?: Padding;
-  /**
-   * 各种元素是否在一个分组内，决定节点和边的层级问题，默认情况下所有的节点在一个分组中，所有的边在一个分组中，当这个参数为 false 时，节点和边的层级根据生成的顺序确定。
-   * 默认值：true
-   */
-  groupByTypes?: boolean;
-
-  // 是否有向图
-  directed?: boolean;
-
-  groupStyle?: {
-    style?: {
-      [key: string]: ShapeStyle;
-    };
-  };
-
-  /**
-   * 当图中元素更新，或视口变换时，是否自动重绘。建议在批量操作节点时关闭，以提高性能，完成批量操作后再打开，参见后面的 setAutoPaint() 方法。
-   * 默认值：true
-   */
-  autoPaint?: boolean;
 
   /**
    * 设置画布的模式。详情可见G6中的Mode文档。
@@ -113,50 +89,14 @@ export interface GraphOptions {
   comboStateStyles?: StateStyles;
 
   /**
-   * 向 graph 注册插件。插件机制请见：plugin
-   */
-  plugins?: any[];
-  /**
    * 是否启用全局动画。
    */
   animate?: boolean;
 
   /**
-   * 动画配置项，仅在animate为true时有效。
-   */
-  // animateCfg?: GraphAnimateConfig;
-  /**
-   * 最小缩放比例
-   * 默认值 0.2
-   */
-  minZoom?: number;
-  /**
-   * 最大缩放比例
-   * 默认值 10
-   */
-  maxZoom?: number;
-
-  groupType?: string;
-
-  /**
    * Edge 是否连接到节点中间
    */
   linkCenter?: boolean;
-
-  /**
-   * 是否启用 stack，即是否开启 redo & undo 功能
-   */
-  enabledStack?: boolean;
-
-  /**
-   * redo & undo 最大步数, 只有当 enabledStack 为 true 时才起作用
-   */
-  maxStep?: number;
-
-  /**
-   * 存储图上的 tooltip dom，方便销毁
-   */
-  tooltips?: [];
 
   pixelRatio?: number;
 }
@@ -171,16 +111,6 @@ export type Easeing =
   | 'easeQuadOut'
   | 'easeQuadInOut'
   | string;
-
-export interface LayoutConfig {
-  type?: string;
-  gpuEnabled?: boolean;
-  workerEnabled?: boolean;
-  // 只有当 workerEnabled 为 true 时才生效
-  workerScriptURL?: string;
-  onLayoutEnd?: () => void;
-  [key: string]: unknown;
-}
 
 export interface ModeOption {
   type: string;
