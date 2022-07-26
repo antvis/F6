@@ -280,6 +280,12 @@ export class Graph {
     }
   }
 
+  updateComboParentId(comboId, parentId) {
+    const combo = this.findById(comboId);
+    if (!combo) return;
+    this.comboManager.updateParentId(comboId, parentId);
+  }
+
   getItemManager(type) {
     switch (type) {
       case 'node':

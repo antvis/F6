@@ -1,11 +1,3 @@
-/*
- * @Author: moyee
- * @Date: 2019-06-27 18:12:06
- * @LastEditors: moyee
- * @LastEditTime: 2019-08-22 18:41:45
- * @Description: 拖动节点的Behavior
- */
-// import { IGraph } from '../interface/graph';
 import { Combo } from '../item/combo/combo';
 import { Node } from '../item/node/node';
 import { Item, Point } from '../types';

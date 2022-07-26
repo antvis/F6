@@ -1,3 +1,4 @@
+import { isNil } from '@antv/util';
 import { action, computed, makeObservable, observable } from 'mobx';
 import { Graph } from '../../graph/graph';
 import { ComboConfig, ID } from '../../types';
@@ -71,6 +72,28 @@ export class ComboManager extends ItemManger<ComboConfig, Combo> {
     );
 
     return combosSorted;
+  }
+
+  updateParentId(id, parentId) {
+    if (isNil(id)) return;
+
+    let hasLoop = false;
+
+    // 检测环
+    let next = this.items[parentId];
+    while (next) {
+      if (next.parentId === id) {
+        hasLoop = true;
+        break;
+      }
+      next = this.items[next.parentId];
+    }
+
+    if (hasLoop) {
+      return;
+    }
+
+    this.updateItem(id, { parentId: parentId });
   }
 
   getParsedCombo(comboId) {

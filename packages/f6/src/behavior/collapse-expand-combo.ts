@@ -1,8 +1,3 @@
-/*
- * @Author: Shiwu
- * @Description: 收起和展开 Combo
- */
-
 import { BaseBehavior } from './base';
 
 interface CollapseExpandComboCfg {

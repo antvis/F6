@@ -4,10 +4,11 @@ import { NodeConfig } from '../../types';
 import { Item } from '../base/item';
 import { Edge } from '../edge/edge';
 
-export class Node extends Item<NodeConfig> {
+export class Node<T extends NodeConfig = NodeConfig> extends Item<NodeConfig> {
   graph: Graph = null;
+  model: T;
 
-  constructor(graph: Graph, model: NodeConfig) {
+  constructor(graph: Graph, model: T) {
     super(graph);
     this.graph = graph;
     this.model = { ...model };

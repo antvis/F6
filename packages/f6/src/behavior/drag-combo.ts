@@ -1,12 +1,5 @@
-/*
- * @Author: moyee
- * @LastEditors: moyee
- * @Description: 拖动 Combo
- */
 import { each } from '@antv/util';
-// import { IGroup } from '@antv/g-base';
-// import { ComboConfig, Combo, INode, Item } from '../types';
-// import { IGraph } from '../interface/graph';
+
 import { Combo } from '../item/combo/combo';
 import { BaseBehavior } from './base';
 
@@ -169,14 +162,10 @@ export class DragCombo extends BaseBehavior<DragComboCfg> {
 
     this.targets.map((combo) => {
       const model = combo.getModel();
-      if (
-        model.id !== targetModel.parentId &&
-        model.parentId !== targetModel.id &&
-        model.id !== targetModel.id
-      ) {
+      if (model.parentId !== targetModel.id && model.id !== targetModel.id) {
         // 将 Combo 放置到某个 Combo 上面时，只有当 onlyChangeComboSize 为 false 时候才更新 Combo 结构
         if (!onlyChangeComboSize) {
-          graph.updateItem(combo, { parentId: targetModel.id });
+          graph.updateComboParentId(model.id, targetModel.id);
         }
       }
     });
@@ -193,7 +182,7 @@ export class DragCombo extends BaseBehavior<DragComboCfg> {
     this.targets.map((combo) => {
       // 将 Combo 放置到某个 Combo 上面时，只有当 onlyChangeComboSize 为 false 时候才更新 Combo 结构
       if (!onlyChangeComboSize) {
-        graph.updateItem(combo, { parentId: undefined });
+        graph.updateComboParentId(combo.id, undefined);
       }
     });
   }
@@ -212,8 +201,7 @@ export class DragCombo extends BaseBehavior<DragComboCfg> {
         if (!onlyChangeComboSize) {
           if (comboId !== combo.id) {
             droppedCombo = graph.findById(comboId);
-            if (comboId !== combo.getModel().parentId)
-              graph.updateItem(combo, { parentId: comboId });
+            if (comboId !== combo.getModel().parentId) graph.updateComboParentId(combo.id, comboId);
           }
         }
       });
@@ -223,7 +211,7 @@ export class DragCombo extends BaseBehavior<DragComboCfg> {
         if (!onlyChangeComboSize) {
           const model = combo.getModel();
           if (model.comboId) {
-            graph.updateItem(combo, { parentId: undefined });
+            graph.updateComboParentId(combo.id, undefined);
           }
         }
       });
