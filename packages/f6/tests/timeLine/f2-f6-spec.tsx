@@ -1,4 +1,4 @@
-import { Axis, Canvas, Chart, Interval, jsx, Timeline } from '@antv/f2/src';
+import { Axis, Canvas, Chart, Interval, jsx, Timeline } from '@antv/f2';
 import { Graph, registerLayout, TreeGraph } from '@antv/f6/src';
 import ForceLayout from '@antv/f6/src/layout/forceLayout';
 import { createContext } from '../util';

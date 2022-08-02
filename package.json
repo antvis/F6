@@ -75,6 +75,7 @@
   },
   "resolutions": {
     "@types/react": "^16.9.35",
-    "rollup": "2.75.6"
+    "rollup": "2.75.6",
+    "@antv/g": "~5.6.1"
   }
 }
