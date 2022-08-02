@@ -143,7 +143,7 @@ DEBUG_MODE=1 npm test -- --watch ./tests/unit/algorithm/find-path-spec
 欢迎各界 F6 使用者、图可视化爱好者加入 **F6 超级服务群**（钉钉群，使用钉钉扫一扫加入）讨论与交流。
 
 <p>
-    <img src='https://gw.alipayobjects.com/mdn/rms_5c3b4a/afts/img/A*wEQkTKK9GgMAAAAAAAAAAAAAARQnAQ' style='width:250px;display:inline-block;vertical-align:top;' alt='' />
+    <img src='https://gw.alipayobjects.com/mdn/rms_5c3b4a/afts/img/A*dogGRrb20XYAAAAAAAAAAAAAARQnAQ' style='width:250px;display:inline-block;vertical-align:top;' alt='' />
 </p>
 
 ## 如何贡献
