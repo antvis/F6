@@ -4,6 +4,7 @@ import Global from '../../../../global';
 import { BaseNode } from './base';
 
 export class SimpleCircle extends BaseNode {
+  static shape = 'circle';
   options = {
     size: Global.defaultNode.size,
     style: {
@@ -59,16 +60,17 @@ export class SimpleCircle extends BaseNode {
     const size = this.getSize!(cfg);
     const r = size[0] / 2;
     const styles = {
+      ...style,
       x: 0,
       y: 0,
+      anchor: [0.5, 0.5],
       r,
-      ...style,
     };
     return styles;
   }
 
-  renderShape(node, states) {
-    const style = this.getMixedStyle(node, states);
+  renderShape(node) {
+    const style = this.getMixedStyle(node);
     return <circle style={style} ref={this.keyShapeRef} />;
   }
 }

@@ -1,3 +1,4 @@
+import { each } from '@antv/util';
 import { EdgeConfig } from '../../types';
 import { ItemManger } from '../base/manager';
 import { Edge } from './edge';
@@ -25,5 +26,11 @@ export class EdgeManager extends ItemManger<EdgeConfig, Edge> {
 
   getOutEdges(id) {
     return Object.values(this.items).filter((item) => item.model.target === id);
+  }
+
+  updatePoints() {
+    each(this.items, (edge) => {
+      edge.updatePoints();
+    });
   }
 }

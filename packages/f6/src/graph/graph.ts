@@ -1,6 +1,7 @@
 import { each, isNil, uniqueId } from '@antv/util';
 import { action, makeObservable, observable } from 'mobx';
 import { BehaviorService } from '../behavior';
+import global from '../global';
 import { Combo } from '../item/combo/combo';
 import { ComboManager } from '../item/combo/manager';
 import { EdgeManager } from '../item/edge/manager';
@@ -80,10 +81,22 @@ export class Graph {
     } = cfg;
     this.modeService.init(modes);
     this.eventService.initEvents(this.canvasJSXroot, this.canvas);
-    this.nodeManager.init(data.nodes, defaultNode, nodeStateStyles);
-    this.edgeManager.init(data.edges, defaultEdge, edgeStateStyles);
-    this.comboManager.init(data.combos, defaultCombo, comboStateStyles);
-    this.hullManager.init(data.hulls);
+    this.nodeManager.init(data.nodes, defaultNode, nodeStateStyles, {
+      type: global.defaultNode.type,
+      size: global.defaultNode.size,
+    });
+    this.edgeManager.init(data.edges, defaultEdge, edgeStateStyles, {
+      type: global.defaultEdge.type,
+    });
+    this.comboManager.init(data.combos, defaultCombo, comboStateStyles, {
+      type: global.defaultCombo.type,
+      size: global.defaultCombo.size,
+      padding: global.defaultCombo.padding,
+    });
+    this.hullManager.init(data.hulls, {
+      type: global.defaultHull.type,
+      padding: global.defaultHull.padding,
+    });
     this.setFitView(fitView);
     this.setFitCenter(fitCenter);
     this.layoutService.setLayoutConfig(layout, width, height);
@@ -97,7 +110,13 @@ export class Graph {
   }
 
   layout() {
-    const nodes = this.nodeManager.models.map(({ id, x, y, visible }) => ({ id, x, y, visible }));
+    const nodes = this.nodeManager.models.map(({ id, x, y, size, visible }) => ({
+      id,
+      x,
+      y,
+      size,
+      visible,
+    }));
     const edges = this.edgeManager.models.map(({ source, target, visible }) => ({
       source,
       target,
@@ -108,6 +127,8 @@ export class Graph {
       nodes.forEach(({ id, x, y }) => {
         this.nodeManager.setPosition(id, { x, y });
       });
+      this.edgeManager.updatePoints();
+      this.comboManager.updateComboSize();
     };
 
     this.layoutService.layout(
@@ -214,13 +235,18 @@ export class Graph {
   }
 
   addItem(type, model) {
+    let item;
     switch (type) {
       case 'node':
         return this.nodeManager.addItem(model);
       case 'edge':
-        return this.edgeManager.addItem(model);
+        item = this.edgeManager.addItem(model);
+        item.updatePoints();
+        return item;
       case 'combo':
-        return this.comboManager.addItem(model);
+        item = this.comboManager.addItem(model);
+        this.updateComboSize();
+        return item;
       default:
         break;
     }
@@ -256,6 +282,8 @@ export class Graph {
     removeEdges.forEach((item) => this.edgeManager.removeItem(item.id));
     removeNodes.forEach((item) => this.nodeManager.removeItem(item.id));
     removeCombos.forEach((item) => this.comboManager.removeItem(item.id));
+    this.updateComboSize();
+    this.edgeManager.updatePoints();
   }
 
   updateItem(item, model) {
@@ -268,12 +296,14 @@ export class Graph {
     switch (temItem.type) {
       case 'node':
         this.nodeManager.updateItem(temItem.id, model);
+        temItem.getEdges().forEach((edge) => edge.updatePoints());
         break;
       case 'edge':
         this.edgeManager.updateItem(temItem.id, model);
         break;
       case 'combo':
         this.comboManager.updateItem(temItem.id, model);
+        temItem.getEdges().forEach((edge) => edge.updatePoints());
         break;
       default:
         break;
@@ -284,6 +314,12 @@ export class Graph {
     const combo = this.findById(comboId);
     if (!combo) return;
     this.comboManager.updateParentId(comboId, parentId);
+    this.comboManager.updateComboSize();
+  }
+
+  updateComboSize() {
+    this.comboManager.updateComboSize();
+    this.edgeManager.updatePoints();
   }
 
   getItemManager(type) {

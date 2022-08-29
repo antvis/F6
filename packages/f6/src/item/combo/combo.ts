@@ -1,4 +1,5 @@
 import { ComboConfig } from '../../types';
+import { ElementType, getFactory } from '../factory';
 import { Node } from '../node/node';
 
 export class Combo extends Node<ComboConfig> {
@@ -13,12 +14,12 @@ export class Combo extends Node<ComboConfig> {
     return this.model.parentId;
   }
 
-  syncPosition = (pos) => {
-    this.model.x = pos.x;
-    this.model.y = pos.y;
-  };
-
   get type() {
     return 'combo';
+  }
+
+  getAnchorPoints() {
+    const comboType = getFactory(ElementType.combo).getElement(this.model.type);
+    return comboType.getAnchorPoints?.(this.model) || [];
   }
 }

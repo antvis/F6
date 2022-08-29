@@ -1,133 +1,34 @@
-//@ts-nocheck
-
 import { Component, jsx } from '@antv/f-engine';
+import { connect } from './connector';
 
-import { parsePathString } from '@antv/path-util';
-import { getClosedSpline, paddedHull, roundedHull } from '../../utils/path';
-
-import { genBubbleSet } from '../hull/bubbleset';
-import { genConvexHull } from '../hull/convexHull';
-
+@connect((graph, props) => {
+  const id = props.id;
+  const item = graph.hullManager.items[id];
+  if (!item) return;
+  return {
+    path: item.path,
+    model: item.model,
+  };
+})
 export class Hull extends Component {
-  nodeRef = { current: null };
-  padding = 0;
-  type = '';
-
-  cfg = {
-    type: 'round-convex', // 'round-convex' /'smooth-convex' / 'bubble'
-    members: [],
-    nonMembers: [],
+  defaultCfg = {
     style: {
       fill: 'lightblue',
       stroke: 'blue',
       opacity: 0.2,
     },
-    padding: 10,
   };
 
-  getShapeNode() {
-    return this.nodeRef.current;
-  }
-
-  getKeyShape() {
-    return this.nodeRef.current?.getKeyShape();
-  }
-
-  getNodeRoot() {
-    return this.nodeRef.current?.getRootShape();
-  }
-
-  setPadding() {
-    const { members } = this.props;
-    const f6Context = this.context.f6Context;
-    const nodeSize = members.length && f6Context.getNodeLike(members[0].id).getBBox().width / 2;
-    this.padding = this.cfg.padding > 0 ? this.cfg.padding + nodeSize : 10 + nodeSize;
-    this.cfg.bubbleCfg = {
-      nodeR0: this.padding - nodeSize,
-      nodeR1: this.padding - nodeSize,
-      morphBuffer: this.padding - nodeSize,
-    };
-  }
-
-  setType() {
-    const { members } = this.props;
-    this.type = this.cfg.type;
-    if (members.length < 3) {
-      this.type = 'round-convex';
-    }
-    if (this.type !== 'round-convex' && this.type !== 'smooth-convex' && this.type !== 'bubble') {
-      console.warn(
-        'The hull type should be either round-convex, smooth-convex or bubble, round-convex is used by default.',
-      );
-      this.type = 'round-convex';
-    }
-  }
-
-  calcPath(members, nonMembers) {
-    let contour, path, hull;
-    const f6Context = this.context.f6Context;
-
-    const functionalMembers = members.map((node) => {
-      return {
-        x: node.x,
-        y: node.y,
-        getBBox: () => {
-          return f6Context.getNodeLike(node.id).getBBox();
-        },
-      };
-    });
-    const functionalNoneMembers = nonMembers.map((node) => {
-      return {
-        x: node.x,
-        y: node.y,
-        getBBox: () => {
-          return f6Context.getNodeLike(node.id).getBBox();
-        },
-      };
-    });
-    switch (this.type) {
-      case 'round-convex':
-        contour = genConvexHull(functionalMembers);
-        hull = roundedHull(
-          contour.map((p) => [p.x, p.y]),
-          this.padding,
-        );
-        path = parsePathString(hull);
-        break;
-      case 'smooth-convex':
-        contour = genConvexHull(functionalMembers);
-        if (contour.length === 2) {
-          hull = roundedHull(
-            contour.map((p) => [p.x, p.y]),
-            this.padding,
-          );
-          path = parsePathString(hull);
-        } else if (contour.length > 2) {
-          hull = paddedHull(
-            contour.map((p) => [p.x, p.y]),
-            this.padding,
-          );
-          path = getClosedSpline(hull);
-        }
-        break;
-      case 'bubble':
-        contour = genBubbleSet(functionalMembers, functionalNoneMembers, this.cfg.bubbleCfg);
-        path = contour.length >= 2 && getClosedSpline(contour);
-        break;
-      default:
-    }
-    return path;
-  }
-
   render() {
-    const { hull, members, nonMembers } = this.props;
-    this.setType();
-    this.setPadding();
-    const path = this.calcPath(members, nonMembers);
+    const {
+      model: { style },
+      path,
+    } = this.props;
     return (
       <path
         style={{
-          ...{ ...this.cfg.style, ...(hull.style || {}) },
+          ...this.defaultCfg.style,
+          ...style,
           path,
         }}
       ></path>

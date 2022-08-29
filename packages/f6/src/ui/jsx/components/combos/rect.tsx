@@ -3,7 +3,7 @@ import { isNil, isNumber, mix } from '@antv/util';
 import Global from '../../../../global';
 import { BaseCombo } from './base';
 export class Rect extends BaseCombo {
-  labelPosition: 'top';
+  labelPosition = 'top';
   //@ts-ignore
   options = {
     size: [40, 5],
@@ -34,7 +34,7 @@ export class Rect extends BaseCombo {
 
   getLabelStyleByPosition(cfg, labelCfg) {
     const labelPosition = labelCfg.position || this.labelPosition;
-    const { style: cfgStyle } = cfg;
+    const { style: cfgStyle, size } = cfg;
     let padding = cfg.padding || this.options.padding;
     if (isNumber(padding)) padding = [padding, padding, padding, padding];
 
@@ -47,8 +47,24 @@ export class Rect extends BaseCombo {
       refY = this.refY as number; // 不居中时的偏移量
     }
 
-    const leftDis = cfgStyle.width / 2 + padding[3];
-    const topDis = cfgStyle.height / 2 + padding[0];
+    let width: number;
+    let height: number;
+    const fixSize = cfg.collapsed && cfg.fixCollapseSize ? cfg.fixCollapseSize : cfg.fixSize;
+    if (fixSize) {
+      if (isNumber(fixSize)) {
+        width = fixSize;
+        height = fixSize;
+      } else {
+        width = fixSize[0];
+        height = fixSize[1];
+      }
+    } else {
+      width = size[0];
+      height = size[1];
+    }
+
+    const leftDis = width / 2;
+    const topDis = height / 2;
 
     let style: any;
     switch (labelPosition) {
@@ -81,6 +97,7 @@ export class Rect extends BaseCombo {
           y: 0,
           text: cfg!.label,
           textAlign: 'center',
+          textBaseline: 'middle',
         };
         break;
       default:
@@ -88,6 +105,7 @@ export class Rect extends BaseCombo {
           x: leftDis + refX,
           y: 0,
           textAlign: 'right',
+          textBaseline: 'middle',
         };
         break;
     }
@@ -97,8 +115,7 @@ export class Rect extends BaseCombo {
 
   getShapeStyle(cfg) {
     const { style: defaultStyle } = this.options;
-    let padding: number | number[] = cfg.padding || this.options.padding;
-    if (isNumber(padding)) padding = [padding, padding, padding, padding];
+
     const strokeStyle = {
       stroke: cfg.color,
     };
@@ -118,47 +135,37 @@ export class Rect extends BaseCombo {
         height = fixSize[1];
       }
     } else {
-      if (!isNumber(style.width) || isNaN(style.width))
-        width = size[0] || Global.defaultCombo.style.width;
-      else width = Math.max(style.width, size[0]) || size[0];
-      if (!isNumber(style.height) || isNaN(style.height))
-        height = size[1] || Global.defaultCombo.style.height;
-      else height = Math.max(style.height, size[1]) || size[1];
+      width = size[0];
+      height = size[1];
     }
 
-    const x = -width / 2 - padding[3];
-    const y = -height / 2 - padding[0];
-
-    style.width = width + padding[1] + padding[3];
-    style.height = height + padding[0] + padding[2];
+    const x = -width / 2;
+    const y = -height / 2;
 
     const styles = {
+      ...style,
       x,
       y,
-      ...style,
+      anchor: [0, 0],
+      width,
+      height,
     };
-    if (!cfg.style) {
-      cfg.style = {
-        width,
-        height,
-      };
-    } else {
-      cfg.style.width = width;
-      cfg.style.height = height;
-    }
+
     return styles;
   }
   render() {
-    const { combo, states } = this.props;
-    const style = this.getMixedStyle(combo, states);
+    const { combo } = this.props;
+    const style = this.getMixedStyle(combo);
+    const { labelCfg: defaultLabelCfg } = this.getOptions(combo);
+    const labelStyle = this.getLabelStyle!(combo, defaultLabelCfg);
     return (
-      <group style={{ x: combo?.x || 0, y: combo?.y || 0, droppable: true }}>
-        <rect style={style} ref={this.keyShapeRef} />
+      <group>
+        <rect style={style} />
         <text
           style={{
             text: combo?.label || '',
             pointerEvents: 'none',
-            ...combo.labelCfg?.style,
+            ...labelStyle,
           }}
         ></text>
       </group>

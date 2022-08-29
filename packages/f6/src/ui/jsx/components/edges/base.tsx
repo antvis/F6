@@ -41,8 +41,6 @@ export class BaseEdge extends BaseElement<EdgeConfig> {
     return this.container.children[0];
   }
 
-  itemType = 'edge';
-
   /**
    * 文本的位置
    * @type {String}
@@ -83,6 +81,15 @@ export class BaseEdge extends BaseElement<EdgeConfig> {
       ...Global.edgeStateStyles,
     },
   };
+
+  /**
+   * 获取控制点
+   * @param  {Object} cfg 节点、边的配置项
+   * @return {Array|null} 控制点的数组,如果为 null，则没有控制点
+   */
+  static getControlPoints(cfg: EdgeConfig): IPoint[] | undefined {
+    return cfg.controlPoints;
+  }
 
   didMount() {
     this.setState({});
@@ -286,15 +293,6 @@ export class BaseEdge extends BaseElement<EdgeConfig> {
   }
 
   /**
-   * @internal 获取边的控制点
-   * @param  {Object} cfg 边的配置项
-   * @return {Array} 控制点的数组
-   */
-  static getControlPoints(cfg): IPoint[] | undefined {
-    return cfg.controlPoints;
-  }
-
-  /**
    * @internal 处理需要重计算点和边的情况
    * @param {Object} cfg 边的配置项
    * @return {Object} 边的配置项
@@ -335,8 +333,8 @@ export class BaseEdge extends BaseElement<EdgeConfig> {
     return <text style={labelStyle} ref={this.labelRef}></text>;
   }
 
-  renderShape(cfg, states) {
-    const style = this.getMixedStyle(cfg, states);
+  renderShape(cfg) {
+    const style = this.getMixedStyle(cfg);
 
     delete style.x;
     delete style.y;
@@ -366,11 +364,11 @@ export class BaseEdge extends BaseElement<EdgeConfig> {
   }
 
   render() {
-    const { edge, states } = this.props;
+    const { edge } = this.props;
 
     return (
       <group>
-        {this.renderShape(edge, states)}
+        {this.renderShape(edge)}
 
         {this.renderLabel(edge)}
 

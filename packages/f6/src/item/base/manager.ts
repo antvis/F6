@@ -17,9 +17,6 @@ export abstract class ItemManger<T extends BaseItemModel, I extends Item<T>> {
     makeObservable(this, {
       items: observable.ref,
       models: computed,
-      modelsMap: computed,
-      states: computed,
-      statesMap: computed,
       ids: computed,
       removeItem: action,
       updateItem: action,
@@ -28,9 +25,9 @@ export abstract class ItemManger<T extends BaseItemModel, I extends Item<T>> {
     });
   }
 
-  init(models, defaultModel: T, defaultStates?) {
-    this.defaultModel = defaultModel;
-    this.defaultStates = defaultStates;
+  init(models, defaultModel: T, defaultStates?, globalModel?) {
+    this.defaultModel = Object.assign({}, globalModel, defaultModel);
+    this.defaultStates = Object.assign({}, defaultStates);
 
     if (isNil(models)) return;
 
@@ -82,24 +79,6 @@ export abstract class ItemManger<T extends BaseItemModel, I extends Item<T>> {
     return Object.values(this.items).map((node) => node.model);
   }
 
-  get modelsMap() {
-    return Object.values(this.items).reduce(
-      (prev, node) => ((prev[node.id] = node.model), prev),
-      {},
-    );
-  }
-
-  get states() {
-    return Object.values(this.items).map((node) => [...node.states]);
-  }
-
-  get statesMap() {
-    return Object.values(this.items).reduce(
-      (prev, node) => ((prev[node.id] = [...node.states]), prev),
-      {},
-    );
-  }
-
   get ids() {
     return Object.keys(this.items);
   }
@@ -122,10 +101,10 @@ export abstract class ItemManger<T extends BaseItemModel, I extends Item<T>> {
 
   removeItem(id) {
     if (isNil(id)) return;
-    const item = this.items[id];
-    item?.destroy();
-    delete this.items[id];
     this.items = { ...this.items };
+    const item = this.items[id];
+    delete this.items[id];
+    item?.destroy();
     return item;
   }
 

@@ -63,7 +63,6 @@ export class DragNode extends BaseBehavior<DragNodeCfg> {
       return;
     }
     this.graph.setEnableAnimate(false);
-    this.graph.comboManager.setAutoSize(onlyChangeComboSize);
 
     this.targets = [];
 
@@ -132,7 +131,6 @@ export class DragNode extends BaseBehavior<DragNodeCfg> {
    * @param evt
    */
   onDragEnd(evt) {
-    this.graph.comboManager.setAutoSize(true);
     this.graph.setEnableAnimate(true);
 
     if (!this.origin || !this.shouldEnd.call(this, evt)) {
@@ -170,6 +168,7 @@ export class DragNode extends BaseBehavior<DragNodeCfg> {
         const nodeModel = node.getModel();
         if (nodeModel.comboId !== targetComboModel.id) {
           graph.updateItem(node, { comboId: targetComboModel.id });
+          graph.updateComboSize();
         }
       });
     }
@@ -193,6 +192,7 @@ export class DragNode extends BaseBehavior<DragNodeCfg> {
         const model = node.getModel();
         if (model.comboId) {
           graph.updateItem(node, { comboId: null });
+          graph.updateComboSize();
         }
       });
     }
@@ -221,14 +221,15 @@ export class DragNode extends BaseBehavior<DragNodeCfg> {
         const nodeModel = node.getModel();
         if (comboId !== nodeModel.comboId) {
           graph.updateItem(node, { comboId: comboId });
+          graph.updateComboSize();
         }
       });
     } else {
       self.targets.map((node: Node) => {
         const model = node.getModel();
         if (model.comboId) {
-          // graph.updateComboTree(node);
           graph.updateItem(node, { comboId: model.comboId });
+          graph.updateComboSize();
         }
       });
     }
@@ -289,6 +290,6 @@ export class DragNode extends BaseBehavior<DragNodeCfg> {
 
     const pos: Point = { x, y };
 
-    this.graph.nodeManager.setPosition(nodeId, pos);
+    this.graph.updateItem(nodeId, pos);
   }
 }

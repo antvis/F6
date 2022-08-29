@@ -15,17 +15,7 @@ import GridLayout from './layout/gridLayout';
 import MdsLayout from './layout/mdsLayout';
 import RadialLayout from './layout/radialLayout';
 
-import {
-  BaseCombo,
-  BaseEdge,
-  BaseNode,
-  Canvas,
-  Graph,
-  registerCombo,
-  registerEdge,
-  registerNode,
-  TreeGraph,
-} from './ui/jsx';
+import { BaseCombo, BaseEdge, BaseNode, Canvas, Graph, TreeGraph } from './ui/jsx';
 
 // registerLayout('grid', GridLayout);
 // registerLayout('force', ForceLayout);
@@ -37,6 +27,8 @@ import {
 // registerLayout('fruchterman', FruchtermanLayout);
 // registerLayout('comboForce', ComboForceLayout);
 // registerLayout('forceAtlas2', ForceAtlas2Layout);
+
+import { registerCombo, registerEdge, registerNode } from './ui/jsx';
 
 export * from './types';
 export {

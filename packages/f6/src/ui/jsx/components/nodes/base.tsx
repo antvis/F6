@@ -13,10 +13,6 @@ export class BaseNode extends BaseElement<NodeConfig> {
   labelRef = { current: null };
   renderLabelStyle = null;
 
-  didUpdate(): void {
-    this.rotateLabel(this.renderLabelStyle, this.getLabelShape());
-  }
-
   getKeyShape() {
     return this.keyShapeRef.current || this.getRootShape();
   }
@@ -29,7 +25,15 @@ export class BaseNode extends BaseElement<NodeConfig> {
     return this.container.children[0];
   }
 
-  itemType = 'node';
+  /**
+   * 获取控制点
+   * @param  {Object} cfg 节点、边的配置项
+   * @return {Array|null} 锚点的数组,如果为 null，则没有锚点
+   */
+  static getAnchorPoints(cfg: NodeConfig): number[][] | undefined {
+    return cfg.anchorPoints;
+  }
+
   /**
    * 文本相对图形的位置，默认以中心点
    * 位置包括： top, bottom, left, right, center
@@ -67,7 +71,13 @@ export class BaseNode extends BaseElement<NodeConfig> {
 
     // 默认的位置（最可能的情形），所以放在最上面
     if (labelPosition === 'center') {
-      return { x: 0, y: 0, text: cfg!.label as string };
+      return {
+        x: 0,
+        y: 0,
+        text: cfg!.label as string,
+        textAlign: 'center',
+        textBaseline: 'middle',
+      };
     }
 
     let { offset } = labelCfg;
@@ -87,6 +97,7 @@ export class BaseNode extends BaseElement<NodeConfig> {
         style = {
           x: 0,
           y: 0 - height / 2 - (offset as number),
+          textAlign: 'center',
           textBaseline: 'bottom', // 文本在图形的上面
         };
         break;
@@ -94,6 +105,7 @@ export class BaseNode extends BaseElement<NodeConfig> {
         style = {
           x: 0,
           y: height / 2 + (offset as number),
+          textAlign: 'center',
           textBaseline: 'top',
         };
         break;
@@ -104,11 +116,12 @@ export class BaseNode extends BaseElement<NodeConfig> {
           textAlign: 'right',
         };
         break;
+
       default:
         style = {
           x: width / 2 + (offset as number),
           y: 0,
-          textAlign: 'left',
+          textAlign: 'center',
         };
         break;
     }
@@ -203,7 +216,7 @@ export class BaseNode extends BaseElement<NodeConfig> {
     }
   }
 
-  renderShape(node, states) {
+  renderShape(node) {
     return null;
   }
 
@@ -320,11 +333,10 @@ export class BaseNode extends BaseElement<NodeConfig> {
   }
 
   render() {
-    // debugger;
-    const { node, states } = this.props;
+    const { node } = this.props;
     return (
       <group>
-        {this.renderShape(node, states)}
+        {this.renderShape(node)}
         {/* label */}
         {this.renderLabel(node)}
         {/* label bg */}

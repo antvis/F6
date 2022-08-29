@@ -26,10 +26,9 @@ export default () => {
             default: ['drag-node', 'click-select'],
           }}
           defaultEdge={{
-            type: 'cubic',
             style: {
-              startArrow: true,
-              endArrow: true,
+              startArrow: false,
+              endArrow: false,
             },
           }}
         ></Graph>

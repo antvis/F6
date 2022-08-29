@@ -80,13 +80,12 @@ export class DragCombo extends BaseBehavior<DragComboCfg> {
     return true;
   }
   onDragStart(evt) {
-    const { selectedState, activeState, onlyChangeComboSize } = this.cfg;
+    const { selectedState, activeState } = this.cfg;
     const graph = this.graph;
     const { item } = evt;
 
     if (!this.validationCombo(evt)) return;
     this.graph.setEnableAnimate(false);
-    this.graph.comboManager.setAutoSize(onlyChangeComboSize);
 
     this.targets = [];
 
@@ -117,10 +116,6 @@ export class DragCombo extends BaseBehavior<DragComboCfg> {
         }
       });
     }
-
-    this.targets.forEach((item) => {
-      item.updateItem({ isDragging: true });
-    });
 
     this.point = {};
     this.originPoint = {};
@@ -175,6 +170,7 @@ export class DragCombo extends BaseBehavior<DragComboCfg> {
         }
       }
     });
+    graph.updateComboSize();
   }
 
   onDropCanvas() {
@@ -191,6 +187,7 @@ export class DragCombo extends BaseBehavior<DragComboCfg> {
         graph.updateComboParentId(combo.id, undefined);
       }
     });
+    graph.updateComboSize();
   }
 
   onDropNode(evt) {
@@ -200,14 +197,16 @@ export class DragCombo extends BaseBehavior<DragComboCfg> {
 
     const item = evt.item;
     const comboId = item.getModel().comboId as string;
-    let droppedCombo;
     // 如果被放置的的节点有 comboId，且这个 comboId 与正在被拖拽的 combo 的父 id 不相同，则更新父亲为 comboId
     if (comboId) {
       this.targets.map((combo) => {
         if (!onlyChangeComboSize) {
-          if (comboId !== combo.id) {
-            droppedCombo = graph.findById(comboId);
-            if (comboId !== combo.getModel().parentId) graph.updateComboParentId(combo.id, comboId);
+          if (
+            comboId !== combo.id &&
+            comboId !== combo.getModel().parentId &&
+            !onlyChangeComboSize
+          ) {
+            graph.updateComboParentId(combo.id, comboId);
           }
         }
       });
@@ -222,6 +221,7 @@ export class DragCombo extends BaseBehavior<DragComboCfg> {
         }
       });
     }
+    graph.updateComboSize();
   }
   onDragEnter(evt) {
     const { activeState } = this.cfg;
@@ -254,7 +254,6 @@ export class DragCombo extends BaseBehavior<DragComboCfg> {
   }
   onDragEnd(evt) {
     this.graph.setEnableAnimate(true);
-    this.graph.comboManager.setAutoSize(true);
 
     if (!this.targets || this.targets.length === 0) return;
     const item = evt.item;
@@ -264,7 +263,8 @@ export class DragCombo extends BaseBehavior<DragComboCfg> {
     if (parentCombo && activeState) {
       graph.setItemState(parentCombo, activeState, false);
     }
-    this.targets.forEach((item) => {
+
+    this.currentItemChildCombos.forEach((item) => {
       item.updateItem({ isDragging: false });
     });
     this.point = [];
@@ -322,7 +322,7 @@ export class DragCombo extends BaseBehavior<DragComboCfg> {
 
     const x: number = evt.x - origin.x + this.point[itemId].x;
     const y: number = evt.y - origin.y + this.point[itemId].y;
-    item.setPosition({ x, y });
+    this.graph.updateItem(itemId, { x, y });
   }
 
   /**

@@ -7,8 +7,9 @@ registerTag('arrowPath', ArrowPath);
 registerTag('arrowLine', ArrowLine);
 
 export * from './canvas';
-export { BaseCombo, registerCombo } from './components/combos';
-export { BaseEdge, registerEdge } from './components/edges';
-export { BaseNode, registerNode } from './components/nodes';
+export { BaseCombo } from './components/combos';
+export { BaseEdge } from './components/edges';
+export { BaseNode } from './components/nodes';
 export * from './graph';
 export * from './treeGraph';
+export * from './factory';

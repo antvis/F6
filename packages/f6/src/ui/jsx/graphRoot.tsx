@@ -16,26 +16,15 @@ const HULL_Z_INDEX = COMBO_Z_INDEX - 1;
 
 @connect((graph, props) => {
   return {
-    nodeItems: graph.nodeManager.items,
-    edgeItems: graph.edgeManager.items,
-    comboItems: graph.comboManager.items,
-    hullItems: graph.hullManager.items,
-    nodeModelMap: graph.nodeManager.modelsMap,
-    comboModelMap: graph.comboManager.modelsMap,
-    nodes: graph.nodeManager.models,
-    edges: graph.edgeManager.models,
-    combos: graph.comboManager.models,
-    hulls: graph.hullManager.models,
-    sortedCombos: graph.comboManager.sortedCombos,
-    nodeStatesMap: graph.nodeManager.statesMap,
-    edgeStatesMap: graph.edgeManager.statesMap,
-    comboStatesMap: graph.comboManager.statesMap,
-    isAutoSize: graph.comboManager.isAutoSize,
+    nodeIds: graph.nodeManager.ids,
+    edgeIds: graph.edgeManager.ids,
+    comboIds: graph.comboManager.ids,
+    hullIds: graph.hullManager.ids,
     enabeAnimate: graph.enabeAnimate,
     isLayoutFinished: graph.isLayoutFinished,
     fitCenterTag: graph.fitCenterTag,
     fitViewTag: graph.fitViewTag,
-    animations: graph.nodeManager.animations,
+    // animations: graph.nodeManager.animations,
   };
 })
 export class GraphRoot extends Component {
@@ -191,109 +180,42 @@ export class GraphRoot extends Component {
   }
 
   render() {
-    const {
-      nodes,
-      edges,
-      combos,
-      sortedCombos,
-      hulls,
-      isAutoSize,
-      linkCenter,
-      nodeModelMap,
-      nodeItems,
-      edgeItems,
-      comboItems,
-      hullItems,
-      comboModelMap,
-      comboStatesMap,
-      nodeStatesMap,
-      edgeStatesMap,
-      animations,
-    } = this.props;
+    const { nodeIds, edgeIds, comboIds, hullIds, linkCenter, children, animations } = this.props;
     return (
       <Fragment>
-        {nodes?.length > 0 && (
+        {nodeIds?.length > 0 && (
           <Fragment ref={this.nodeRoot}>
-            {nodes.map((node, index) => {
-              return (
-                <Node
-                  key={node.id}
-                  node={node}
-                  states={nodeStatesMap[node.id]}
-                  item={nodeItems[node.id]}
-                  animation={animations[node.id]}
-                ></Node>
-              );
+            {nodeIds.map((id, index) => {
+              return <Node key={id} id={id} animation={{}}></Node>;
             })}
           </Fragment>
         )}
 
-        {sortedCombos?.length > 0 && (
+        {comboIds?.length > 0 && (
           <Fragment ref={this.comboRoot}>
-            {sortedCombos.map((sortedCombo) => {
-              const item = comboItems[sortedCombo.id];
-              const id = sortedCombo.id;
-              return (
-                <Combo
-                  id={id}
-                  key={id}
-                  combo={comboModelMap[id]}
-                  sortedCombo={sortedCombo}
-                  item={item}
-                  nodes={nodes.filter((node) => {
-                    return sortedCombo.children?.some(({ id }) => id === node.id);
-                  })}
-                  combos={combos.filter((node) => {
-                    return sortedCombo.children?.some(({ id }) => id === node.id);
-                  })}
-                  states={comboStatesMap[id]}
-                  isAutoSize={isAutoSize}
-                ></Combo>
-              );
+            {comboIds.map((id) => {
+              return <Combo id={id} key={id}></Combo>;
             })}
           </Fragment>
         )}
 
-        {edges?.length > 0 && (
+        {edgeIds?.length > 0 && (
           <Fragment ref={this.edgeRoot}>
-            {edges.map((edge, index) => {
-              const item = edgeItems[edge.id];
-              return (
-                <Edge
-                  key={edge.id}
-                  edge={edge}
-                  states={edgeStatesMap[edge.id]}
-                  item={item}
-                  linkCenter={linkCenter}
-                  sourceNode={nodeModelMap[edge.source] || comboModelMap[edge.source]}
-                  endNode={nodeModelMap[edge.target] || comboModelMap[edge.target]}
-                ></Edge>
-              );
+            {edgeIds.map((id, index) => {
+              return <Edge key={id} id={id}></Edge>;
             })}
           </Fragment>
         )}
 
-        {hulls?.length > 0 && (
+        {hullIds?.length > 0 && (
           <Fragment ref={this.hullRoot}>
-            {hulls.map((hull) => {
-              const item = hullItems[hull.id];
-              return (
-                <Hull
-                  id={hull.id}
-                  key={hull.id}
-                  item={item}
-                  hull={hull}
-                  members={nodes.filter((node) => {
-                    return hull.members?.includes(node.id);
-                  })}
-                  nonMembers={nodes.filter((node) => {
-                    return hull.nonMembers?.includes(node.id);
-                  })}
-                ></Hull>
-              );
+            {hullIds.map((id) => {
+              return <Hull id={id} key={id}></Hull>;
             })}
           </Fragment>
         )}
+
+        {children}
 
         <Fragment></Fragment>
       </Fragment>

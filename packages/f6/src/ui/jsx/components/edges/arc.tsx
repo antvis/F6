@@ -4,8 +4,8 @@ import { distance, getCircleCenterByPoints } from '../../../../utils/math';
 import { BaseEdge } from './base';
 
 export class Arc extends BaseEdge {
-  curveOffset = 20;
-  clockwise = 1;
+  static curveOffset = 20;
+  static clockwise = 1;
   getOptions() {
     return {
       size: Global.defaultNode.size,
@@ -27,7 +27,7 @@ export class Arc extends BaseEdge {
       },
     };
   }
-  getControlPoints(cfg) {
+  static getControlPoints(cfg) {
     const { startPoint, endPoint } = cfg;
 
     const midPoint = {
@@ -87,6 +87,7 @@ export class Arc extends BaseEdge {
 
     return controlPoints;
   }
+
   getPath(points): Array<Array<string | number>> {
     const path: Array<Array<string | number>> = [];
     path.push(['M', points[0].x, points[0].y]);
@@ -94,16 +95,7 @@ export class Arc extends BaseEdge {
     if (points.length === 2) {
       path.push(['L', points[1].x, points[1].y]);
     } else {
-      path.push([
-        'A',
-        points[1].x,
-        points[1].y,
-        0,
-        0,
-        this.clockwise as number,
-        points[2].x,
-        points[2].y,
-      ]);
+      path.push(['A', points[1].x, points[1].y, 0, 0, Arc.clockwise, points[2].x, points[2].y]);
     }
     return path;
   }

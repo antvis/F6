@@ -4,25 +4,21 @@ import { ComboConfig, LabelStyle, ModelConfig } from '../../../../types';
 import { BaseElement } from '../base';
 
 export class BaseCombo extends BaseElement<ComboConfig> {
-  keyShapeRef = { current: null };
-  getKeyShape() {
-    return this.keyShapeRef.current || this.getRootShape();
+  /**
+   * 获取控制点
+   * @param  {Object} cfg 节点、边的配置项
+   * @return {Array|null} 锚点的数组,如果为 null，则没有锚点
+   */
+  static getAnchorPoints(cfg: ComboConfig): number[][] | undefined {
+    return cfg.anchorPoints;
   }
-  getRootShape(): any {
-    return this.container.children[0];
-  }
-  getAnchorPoints(state) {
-    return state.anchorPoints;
-  }
-
-  itemType = 'combo';
 
   /**
    * Combo 标题文本相对图形的位置，默认为 top
    * 位置包括： top, bottom, left, right, center
    * @type {String}
    */
-  labelPosition = 'top';
+  labelPosition = 'center';
   /**
    * 标题文本相对偏移，当 labelPosition 不为 center 时有效
    * @type {Number}
@@ -71,8 +67,6 @@ export class BaseCombo extends BaseElement<ComboConfig> {
   getLabelStyleByPosition(cfg: ComboConfig, labelCfg): LabelStyle {
     const labelPosition = labelCfg.position || this.labelPosition;
     const { style: cfgStyle } = cfg;
-    let padding: number | number[] = cfg.padding || this.options.padding;
-    if (isArray(padding)) padding = padding[0];
 
     let { refX, refY } = labelCfg;
     // 考虑 refX 和 refY = 0 的场景，不用用 labelCfg.refX || Global.nodeLabel.refX
@@ -85,9 +79,7 @@ export class BaseCombo extends BaseElement<ComboConfig> {
 
     const size = this.getSize!(cfg as ModelConfig);
 
-    const r = Math.max(cfgStyle.r, size[0] / 2) || size[0] / 2;
-
-    const dis = r + padding;
+    const dis = Math.max(size[0], size[1]) / 2;
 
     let style: any;
     switch (labelPosition) {
@@ -120,6 +112,7 @@ export class BaseCombo extends BaseElement<ComboConfig> {
           y: 0,
           text: cfg!.label,
           textAlign: 'center',
+          textBaseline: 'middle',
         };
         break;
       default:

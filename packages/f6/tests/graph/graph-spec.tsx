@@ -8,18 +8,22 @@ describe('graph', () => {
   const context = Util.createContext(container, 500, 500);
   let { props } = (
     <Canvas context={context} pixelRatio={2}>
-      <Graph data={data}></Graph>
+      <Graph data={data} fitView={false}></Graph>
     </Canvas>
   );
   const canvas = new Canvas(props);
 
   it('base render', async () => {
+    console.log('run 01');
     await canvas.render();
-    await delay(1000);
+    await delay(300);
     expect(context).toMatchImageSnapshot();
   });
 
   it('切换 data + 不居中', async () => {
+    console.log('run 02');
+
+    registerLayout('dagre', DagreLayout);
     // 切换data
     ({ props } = (
       <Canvas context={context} pixelRatio={2}>
@@ -60,6 +64,7 @@ describe('graph', () => {
     ));
     await canvas.update(props);
     await delay(1000);
+    expect(context).toMatchImageSnapshot();
   });
 
   it('change modes', async () => {
@@ -76,5 +81,6 @@ describe('graph', () => {
     ));
     await canvas.update(props);
     await delay(1000);
+    expect(context).toMatchImageSnapshot();
   });
 });

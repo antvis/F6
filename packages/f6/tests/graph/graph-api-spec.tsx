@@ -31,27 +31,10 @@ describe('graph api', () => {
     expect(graph.canvas).not.toBe(null);
     expect(graph.nodeManager.models.length).toBe(34);
     expect(graph.edgeManager.models.length).toBe(60);
-    expect(graph.comboManager.models.length).toBe(3);
+    expect(graph.comboManager.models.length).toBe(2);
     expect(graph.hullManager.models.length).toBe(1);
     expect(graph.isFitView).toBe(false);
     expect(graph.isFitView).toBe(false);
-    expect(context).toMatchImageSnapshot();
-  });
-
-  it('layout', async () => {
-    await canvasPromise;
-
-    graph.setFitView(true);
-    graph.layout();
-
-    await delay(1000);
-    expect(context).toMatchImageSnapshot();
-
-    graph.updateLayout({
-      type: 'dagre',
-    });
-
-    await delay(1000);
     expect(context).toMatchImageSnapshot();
   });
 
@@ -78,12 +61,19 @@ describe('graph api', () => {
         return item.id === 'test-node';
       }).length,
     ).toBe(1);
+    graph.removeItem(node);
+
+    await delay(1000);
+    expect(context).toMatchImageSnapshot();
 
     const node1 = graph.addItem('node', {
       id: 'test-node-another',
     });
     graph.removeItem(node1);
     expect(graph.findById('test-node-another')).toBe(undefined);
+
+    await delay(1000);
+    expect(context).toMatchImageSnapshot();
 
     const node2 = graph.addItem('node', {
       id: 'test-node-update',
@@ -92,6 +82,10 @@ describe('graph api', () => {
       fill: 'red',
     });
     expect(graph.findById('test-node-update').model.fill).toBe('red');
+    graph.removeItem(node2);
+
+    await delay(1000);
+    expect(context).toMatchImageSnapshot();
   });
 
   it('visible', async () => {
@@ -127,7 +121,28 @@ describe('graph api', () => {
 
     graph.setItemState('1', 'selected', true);
     expect(graph.findAllByState('node', 'selected').length).toBe(1);
+
+    await delay(1000);
+    expect(context).toMatchImageSnapshot();
+
     graph.clearItemStates('1', ['selected']);
     expect(graph.findAllByState('node', 'selected').length).toBe(0);
+  });
+
+  it('layout', async () => {
+    await canvasPromise;
+
+    graph.setFitView(true);
+    graph.layout();
+
+    await delay(1500);
+    expect(context).toMatchImageSnapshot();
+
+    graph.updateLayout({
+      type: 'dagre',
+    });
+
+    await delay(1000);
+    expect(context).toMatchImageSnapshot();
   });
 });

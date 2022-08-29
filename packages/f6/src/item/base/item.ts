@@ -5,7 +5,6 @@ import { BaseItemModel } from '../../types/item';
 export class Item<T extends BaseItemModel> {
   // @ts-ignore
   model: T = {};
-  states: String[] = [];
   animations = {};
   destroyed = false;
   graph = null;
@@ -17,7 +16,6 @@ export class Item<T extends BaseItemModel> {
       this,
       {
         model: observable.ref,
-        states: observable.ref,
         setState: action,
         clearStates: action,
         hideItem: action,
@@ -77,19 +75,21 @@ export class Item<T extends BaseItemModel> {
   }
 
   clearStates(data) {
+    this.model = { ...this.model };
     if (isNil(data)) {
-      this.states = [];
+      this.model.states = [];
       return;
     }
     if (Array.isArray(data)) {
-      this.states = this.states.filter((state) => {
+      this.model.states = this.model.states.filter((state) => {
         return !data.includes(state);
       });
     }
   }
 
   setState(stateName, value) {
-    const states = this.states;
+    this.model = { ...this.model };
+    const states = [...(this.model.states || [])];
     if (isString(value)) {
       stateName = `${stateName}:${value}`;
     }
@@ -98,15 +98,15 @@ export class Item<T extends BaseItemModel> {
       if (index > -1) {
         return;
       }
-      this.states = [...this.states, stateName];
+      this.model.states = [...states, stateName];
     } else if (index > -1) {
       states.splice(index, 1);
-      this.states = [...this.states];
+      this.model.states = [...states];
     }
   }
 
   hasState(state) {
-    return this.states.indexOf(state) >= 0;
+    return this.model.states?.indexOf(state) >= 0;
   }
 
   hasLocked() {
@@ -116,6 +116,5 @@ export class Item<T extends BaseItemModel> {
   destroy() {
     this.destroyed = true;
     this.model = null;
-    this.states = null;
   }
 }

@@ -1,15 +1,7 @@
 import { Component } from '@antv/f-engine';
 import { deepMix } from '@antv/util';
 import Global from '../../../global';
-import {
-  EdgeConfig,
-  ILabelConfig,
-  IPoint,
-  Item,
-  LabelStyle,
-  ModelConfig,
-  ShapeStyle,
-} from '../../../types';
+import { ILabelConfig, LabelStyle, ModelConfig, ShapeStyle } from '../../../types';
 
 export const CLS_LABEL_BG_SUFFIX = '-label-bg';
 
@@ -19,11 +11,11 @@ export abstract class BaseElement<T extends ModelConfig> extends Component {
 
   itemType = ''; // node, edge, combo 等
 
-  getCustomConfig(cfg: T | {}): T | {} {
+  getCustomConfig(cfg: Partial<T> | {}): Partial<T> | {} {
     return {};
   }
 
-  getOptions(cfg?: T | {}): T {
+  getOptions(cfg?: Partial<T> | {}): Partial<T> {
     return deepMix(this.options, this.getCustomConfig(cfg) || {}, cfg);
   }
 
@@ -40,7 +32,7 @@ export abstract class BaseElement<T extends ModelConfig> extends Component {
    * @param labelCfg 文本的配置项
    * @param group 父容器，label 的定位可能与图形相关
    */
-  getLabelStyle(cfg: T, labelCfg: ILabelConfig, group): LabelStyle {
+  getLabelStyle(cfg: T, labelCfg: ILabelConfig, group?): LabelStyle {
     const calculateStyle = this.getLabelStyleByPosition!(cfg, labelCfg, group);
     const attrName = `${this.itemType}Label`; // 取 nodeLabel，edgeLabel 的配置项
     const defaultStyle = (Global as any)[attrName] ? (Global as any)[attrName].style : null;
@@ -69,27 +61,8 @@ export abstract class BaseElement<T extends ModelConfig> extends Component {
     return model?.stateStyles?.[name] || stateStyles?.[name];
   }
 
-  /**
-   * 获取控制点
-   * @param  {Object} cfg 节点、边的配置项
-   * @return {Array|null} 控制点的数组,如果为 null，则没有控制点
-   */
-  static getControlPoints(cfg: EdgeConfig): IPoint[] | undefined {
-    return cfg.controlPoints;
-  }
-
-  /**
-   * 获取控制点
-   * @param  {Object} cfg 节点、边的配置项
-   * @return {Array|null} 锚点的数组,如果为 null，则没有锚点
-   */
-  getAnchorPoints(cfg: T): number[][] | undefined {
-    const { anchorPoints } = this.getOptions(cfg) as T;
-    return anchorPoints;
-  }
-
-  getMixedStyle(cfg, states) {
-    const stateStyle = states?.reduce((prev, name) => {
+  getMixedStyle(cfg) {
+    const stateStyle = cfg.states?.reduce((prev, name) => {
       return { ...prev, ...(this.getStateStyle(name, cfg) || {}) };
     }, {});
 

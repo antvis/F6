@@ -1,6 +1,6 @@
 import { Canvas, Circle, Group, Line, Path, Text } from '@antv/g';
 // import { CanvasRenderer } from '@antv/f-engine';
-import { Renderer as CanvasRenderer } from '@antv/g-webgl';
+import { Renderer as CanvasRenderer } from '@antv/g-mobile-canvas';
 import { Plugin } from '@antv/g-plugin-dragndrop';
 import { useEffect } from 'react';
 import { ForceLayout, Util } from '../../../src';
@@ -47,12 +47,7 @@ function testMassG5(canvas, count) {
     });
 
   const loop = () => {
-    groups.forEach((group) =>
-      group.attr({
-        x: Math.random() * 600,
-        y: Math.random() * 500,
-      }),
-    );
+    groups.forEach((group) => group.setLocalPosition(Math.random() * 600, Math.random() * 500));
     setTimeout(loop);
   };
   loop();
@@ -296,7 +291,7 @@ export default () => {
     // });
     // canvasRenderer.registerPlugin(plugin);
 
-    const context = Util.createContext('container', width, height, 'webgl');
+    const context = Util.createContext('container', width, height, '2d');
     // create a canvas
     const canvas = new Canvas({
       canvas: context.canvas,
@@ -305,7 +300,7 @@ export default () => {
       renderer: canvasRenderer,
     });
 
-    testMassG5(canvas, 250);
+    testMassG5(canvas, 350);
     // testZIndex(canvas);
     // testLayout(canvas);
   });

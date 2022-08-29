@@ -22,9 +22,11 @@ export type NodeIdxMap = {
 // model types (node edge group)
 export interface BaseItemModel {
   id?: ID;
+  size?: number | Array<number>;
   visible?: boolean;
   style?: ShapeStyle;
   stateStyles?: StateStyles;
+  states?: string[];
 }
 
 export interface LabelStyle {

@@ -219,17 +219,11 @@ export default {
       fill: colorSet.comboSelectedFill,
       shadowColor: colorSet.comboSelectedStroke,
       shadowBlur: 10,
-      'text-shape': {
-        fontWeight: 500,
-      },
     },
     highlight: {
       stroke: colorSet.comboHighlightStroke,
       lineWidth: 2,
       fill: colorSet.comboHighlightFill,
-      'text-shape': {
-        fontWeight: 500,
-      },
     },
     inactive: {
       stroke: colorSet.comboInactiveStroke,
@@ -248,5 +242,16 @@ export default {
     stroke: '#1890FF',
     strokeOpacity: 0.9,
     lineDash: [5, 5],
+  },
+  defaultHull: {
+    type: 'round-convex', // 'round-convex' /'smooth-convex' / 'bubble'
+    members: [],
+    nonMembers: [],
+    style: {
+      fill: 'lightblue',
+      stroke: 'blue',
+      opacity: 0.2,
+    },
+    padding: 10,
   },
 };

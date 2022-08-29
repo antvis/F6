@@ -4,21 +4,11 @@ import { Cubic } from './cubic';
 import { CubicHorizontal } from './cubicHorizontal';
 import { CubicVertical } from './cubicVertical';
 import { Line } from './line';
-import { Loop } from './loop';
 import { Quadratic } from './quadratic';
 import { Spline } from './spline';
+import { registerEdge } from '../../factory';
 
 export { BaseEdge };
-
-const nodes = {};
-
-export const registerEdge = (name, componentConstructor) => {
-  nodes[name] = componentConstructor;
-};
-
-export const getEdge = (name) => {
-  return nodes[name];
-};
 
 registerEdge('line', Line);
 registerEdge('spline', Spline);
@@ -27,4 +17,3 @@ registerEdge('quadratic', Quadratic);
 registerEdge('cubic', Cubic);
 registerEdge('cubic-horizontal', CubicHorizontal);
 registerEdge('cubic-vertical', CubicVertical);
-// registerEdge('loop', Loop);

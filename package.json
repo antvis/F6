@@ -8,6 +8,7 @@
     "build": "father build",
     "watch": "father build -w",
     "bundle-viz": "BUNDLE_VIS=1 PACKAGE=f6 npm run build",
+    "limit-size": "limit-size",
     "build:site": "cd ./packages/site && npm run start",
     "build:f6": "cd ./packages/f6 && npm run build",
     "build:plugin": "cd ./packages/plugin && npm run build",
@@ -75,7 +76,21 @@
   },
   "resolutions": {
     "@types/react": "^16.9.35",
-    "rollup": "2.75.6",
-    "@antv/g": "~5.6.1"
-  }
+    "@antv/g": "~5.7.3"
+  },
+  "dependencies": {
+    "limit-size": "^0.1.4"
+  },
+  "limit-size": [
+    {
+      "path": "packages/f6/dist/index.all.min.js",
+      "limit": "500 Kb",
+      "gzip": true
+    },
+    {
+      "path": "packages/f6/dist/index.umd.min.js",
+      "limit": "500 Kb",
+      "gzip": true
+    }
+  ]
 }

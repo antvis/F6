@@ -21,11 +21,15 @@ export default () => {
     edges: [
       // Built-in polyline
       {
+        type: 'cubic',
         startPoint: { x: 0, y: 0 },
         endPoint: { x: 300, y: 500 },
+        source: '0',
+        target: '1',
         label: 'fjaksdf',
         labelCfg: {
           autoRotate: true,
+          position: 'middle',
         },
       },
     ],

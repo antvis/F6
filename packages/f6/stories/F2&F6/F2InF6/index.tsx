@@ -51,12 +51,12 @@ const graphData = {
       cluster: 'a',
       comboId: 'combo1',
       type: 'circle',
-      size: [30, 30],
+      size: [100, 100],
     },
     {
       id: '2',
       type: 'f2',
-      size: [30, 30],
+      size: [100, 100],
       label: '0',
       cluster: 'a',
     },
@@ -74,22 +74,17 @@ const graphData = {
 };
 
 class F2Chart extends Component {
-  getKeyShape() {
-    return this.container;
-  }
-  getAnchorPoints() {}
-
+  static shape = 'circle';
   render() {
-    const { node } = this.props;
-    // console.log(node);
     return (
       <Chart
         data={data}
         style={{
-          // left: node.x,
-          // top: node.y,
+          left: -50,
+          top: -50,
           width: 100,
           height: 100,
+          padding: [0, 0, 0, 0],
         }}
         coord={{
           transposed: true,
@@ -123,9 +118,10 @@ export default () => {
       <Canvas width={width} height={height} pixelRatio={2} context={context}>
         <Graph
           data={graphData}
+          fitView={false}
           layout={{
             type: 'force',
-            // preventOverlap: true,
+            preventOverlap: true,
             // alphaDecay: 0,
           }}
           modes={{

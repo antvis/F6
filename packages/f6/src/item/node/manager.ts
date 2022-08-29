@@ -14,12 +14,6 @@ export class NodeManager extends ItemManger<NodeConfig, Node> {
     return new Node(this.graph, data);
   }
 
-  updateById(id, model) {
-    const node = this.byId(id);
-    if (isNil(node)) return;
-    node.updateItem(model);
-  }
-
   setPosition(id, position) {
     const node = this.byId(id);
     if (isNil(node)) return;

@@ -1,9 +1,20 @@
 import { jsx } from '@antv/f-engine';
 import { mix } from '@antv/util';
 import Global from '../../../../global';
+import { NodeConfig } from '../../../../types';
 import { BaseNode } from './base';
 
 export class SimpleRect extends BaseNode {
+  static shape = 'rect';
+
+  // 连接点，默认为左右
+  static getAnchorPoints(cfg: NodeConfig): number[][] {
+    return [
+      [0, 0.5],
+      [1, 0.5],
+    ];
+  }
+
   // 自定义节点时的配置
   options = {
     size: [100, 30],
@@ -41,12 +52,6 @@ export class SimpleRect extends BaseNode {
       width: 20,
       height: 20,
     },
-    // 连接点，默认为左右
-    // anchorPoints: [{ x: 0, y: 0.5 }, { x: 1, y: 0.5 }]
-    anchorPoints: [
-      [0, 0.5],
-      [1, 0.5],
-    ],
     stateStyles: {
       ...Global.nodeStateStyles,
     },
@@ -65,21 +70,21 @@ export class SimpleRect extends BaseNode {
     // 如果设置了color，则覆盖默认的stroke属性
     const style = mix({} as any, defaultStyle, strokeStyle);
     const size = this.getSize!(cfg);
-    const width = style.width || size[0];
-    const height = style.height || size[1];
+    const width = size[0];
+    const height = size[1];
     const styles = {
-      x: -width / 2,
-      y: -height / 2,
+      ...style,
+      x: 0,
+      y: 0,
       width,
       height,
-      ...style,
+      anchor: [0.5, 0.5],
     };
     return styles;
   }
 
-  renderShape(node, states) {
-    const style = this.getShapeStyle(node);
-
+  renderShape(node) {
+    const style = this.getMixedStyle(node);
     return <rect style={style} ref={this.keyShapeRef} />;
   }
 }

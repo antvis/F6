@@ -433,13 +433,11 @@ export default {
   combos: [
     { id: 'combo1', label: 'Combo 1', parentId: 'combo2' },
     { id: 'combo2', label: 'Combo 2' },
-    { id: 'combo3', label: 'Combo 3' },
   ],
 
   hulls: [
     {
       id: 'centerNode-hull',
-      type: 'bubble',
       members: ['0', '1', '2', '3'],
       padding: 10,
     },

@@ -13,15 +13,9 @@ export function connect(mapStatetoProps?): any {
       timer = null;
 
       willMount(): void {
-        this.disposer = reaction(
-          () => {
-            return mapStatetoProps(this.context.f6Context.graph, this.props, this.prevProps);
-          },
-          this.updateProps,
-          {
-            delay: 1,
-          },
-        );
+        this.disposer = reaction(() => {
+          return mapStatetoProps(this.context.f6Context.graph, this.props, this.prevProps);
+        }, this.updateProps);
 
         this.updateProps(mapStatetoProps(this.context.f6Context.graph, this.props, this.prevProps));
         this.isFirst = false;
@@ -30,6 +24,17 @@ export function connect(mapStatetoProps?): any {
       updateProps = (stateProps) => {
         if (!stateProps) return;
 
+        let isEqual = true;
+        for (const [key, value] of Object.entries(stateProps || {})) {
+          if (this.prevProps[key] !== value) {
+            isEqual = false;
+          }
+        }
+        if (isEqual) {
+          return;
+        }
+
+        // console.log(this.props.id);
         this.prevProps = stateProps;
         this.isFirst &&
           (this.state = {
@@ -44,7 +49,8 @@ export function connect(mapStatetoProps?): any {
 
       render() {
         const { forwardRef, ...other } = this.props;
-        return <WrapperComponent {...{ ...this.state.stateProps, ...other }} ref={forwardRef} />;
+
+        return <WrapperComponent {...this.state.stateProps} {...other} ref={forwardRef} />;
       }
 
       didUnmount(): void {
