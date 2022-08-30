@@ -51,7 +51,7 @@ export class GraphRoot extends Component {
       nodeStateStyles,
       edgeStateStyles,
       comboStateStyles,
-      linkCenter,
+      linkCenter = false,
       onGraphReady,
       fitView = true,
       fitCenter = true,
@@ -94,6 +94,7 @@ export class GraphRoot extends Component {
       fitViewTag,
       fitCenterTag,
       data,
+      linkCenter,
     } = this.props;
     const rootProps = this.context.root.props;
 
@@ -133,6 +134,10 @@ export class GraphRoot extends Component {
         // f-engine 内部异步删除节点
         graph.viewService.fitCenter(fitViewPadding);
       });
+    }
+
+    if (!isNil(linkCenter) && this.prevProps?.linkCenter !== fitCenterTag) {
+      graph.setLinkCenter(linkCenter);
     }
 
     if (this.prevProps.fitViewPadding !== this.props.fitViewPadding) {

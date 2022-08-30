@@ -22,27 +22,32 @@ export default () => {
           modes={{
             default: ['drag-node', 'drag-combo', 'click-select'],
           }}
-          linkCenter={true}
+          defaultNode={{
+            style: {
+              opacity: 0.2,
+            },
+          }}
+          linkCenter={false}
         ></Graph>
       </Canvas>
     );
 
     const graph = new Canvas(props);
     graph.render().then(() => {
-      setTimeout(() => {
-        const { props } = (
-          <Canvas width={width} height={height} pixelRatio={2} context={context}>
-            <Graph
-              data={dargeData}
-              fitView={true}
-              modes={{
-                default: ['drag-node', 'drag-combo', 'click-select'],
-              }}
-            ></Graph>
-          </Canvas>
-        );
-        graph.update(props);
-      }, 1000);
+      // setTimeout(() => {
+      //   const { props } = (
+      //     <Canvas width={width} height={height} pixelRatio={2} context={context}>
+      //       <Graph
+      //         data={dargeData}
+      //         fitView={true}
+      //         modes={{
+      //           default: ['drag-node', 'drag-combo', 'click-select'],
+      //         }}
+      //       ></Graph>
+      //     </Canvas>
+      //   );
+      //   graph.update(props);
+      // }, 1000);
     });
   }, []);
 

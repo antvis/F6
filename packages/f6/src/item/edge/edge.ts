@@ -150,8 +150,7 @@ export class Edge extends Item<EdgeConfig> {
    * @returns
    */
   getPoints() {
-    // const { edge, linkCenter } = this.model;
-    const linkCenter = false;
+    const linkCenter = this.graph.isLinkCenter;
     const edge = this.model;
     if (!edge) return;
     let startPoint, endPoint;

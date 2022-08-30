@@ -31,6 +31,8 @@ export class Graph {
   isFitView = false;
   isFitCenter = false;
 
+  isLinkCenter = false;
+
   isDestroyed = false;
 
   canvasJSXroot = null;
@@ -78,6 +80,7 @@ export class Graph {
       comboStateStyles,
       fitView,
       fitCenter,
+      linkCenter,
     } = cfg;
     this.modeService.init(modes);
     this.eventService.initEvents(this.canvasJSXroot, this.canvas);
@@ -99,6 +102,7 @@ export class Graph {
     });
     this.setFitView(fitView);
     this.setFitCenter(fitCenter);
+    this.isLinkCenter = linkCenter;
     this.layoutService.setLayoutConfig(layout, width, height);
     this.viewService.init({ width, height, pixelRatio });
     this.layout();
@@ -220,6 +224,12 @@ export class Graph {
 
   setFitCenter(isFitCenter) {
     this.isFitCenter = isFitCenter;
+  }
+
+  setLinkCenter(linkCenter = false) {
+    if (this.isLinkCenter === linkCenter) return;
+    this.isLinkCenter = linkCenter;
+    this.edgeManager.updatePoints();
   }
 
   on(...args) {
