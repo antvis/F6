@@ -663,7 +663,7 @@ export default class Graph extends AbstractGraph implements IGraph {
     }
 
     this.get('eventController').destroy();
-    this.get('layoutController').destroy();
+    this.get('layoutController')?.destroy();
 
     if (this.get('graphWaterMarker')) {
       this.get('graphWaterMarker').destroy();
