@@ -2,7 +2,15 @@
   "name": "F6",
   "private": true,
   "workspaces": [
-    "packages/*"
+    "packages/core",
+    "packages/f6",
+    "packages/f6-alipay",
+    "packages/f6-wx",
+    "packages/element",
+    "packages/f6-ui",
+    "packages/plugin",
+    "packages/site",
+    "packages/hammer"
   ],
   "scripts": {
     "build:site": "cd ./packages/site && npm run start",
