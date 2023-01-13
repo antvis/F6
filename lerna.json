@@ -1,7 +1,17 @@
 {
   "version": "*",
   "npmClient": "yarn",
-  "packages": ["packages/*"],
+  "packages": [
+    "packages/core",
+    "packages/f6",
+    "packages/f6-alipay",
+    "packages/f6-wx",
+    "packages/element",
+    "packages/f6-ui",
+    "packages/plugin",
+    "packages/site",
+    "packages/hammer"
+  ],
   "useWorkspaces": true,
   "command": {
     "version": {
