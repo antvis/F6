@@ -222,7 +222,7 @@ export default class Bundling extends Base {
       } else {
         let edgeLength = 0;
 
-        if (!edgePoints[i] || edgePoints[i] === []) {
+        if (!edgePoints[i] || (Array.isArray(edgePoints[i]) && edgePoints[i].length === 0)) {
           // it is a straight line
           edgeLength = getEucliDis({ x: source.x!, y: source.y! }, { x: target.x!, y: target.y! });
         } else {
