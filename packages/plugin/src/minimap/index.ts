@@ -1,4 +1,4 @@
-import { Canvas as GCanvas, Group } from '@antv/g-canvas';
+import { Canvas as GCanvas, Group } from '@antv/g-mobile';
 import { Event as GraphEvent, Point } from '@antv/g-base';
 import { isNil, each, debounce } from '@antv/util';
 import { Matrix, ShapeStyle, IAbstractGraph as IGraph } from '@antv/f6-core';
