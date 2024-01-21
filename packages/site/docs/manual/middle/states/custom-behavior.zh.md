@@ -51,15 +51,15 @@ F6 除了提供丰富的 [内置交互行为 Behavior](/zh/docs/manual/middle/st
 F6.registerBehavior('activate-node', {
   getDefaultCfg() {
     return {
-      multiple: true
+      multiple: true,
     };
   },
   getEvents() {
     return {
       'node:tap': 'onNodeTap',
-      'canvas:tap': 'onCanvasTap'
+      'canvas:tap': 'onCanvasTap',
     };
-  }
+  },
   onNodeTap(e) {
     const graph = this.graph;
     const item = e.item;
@@ -77,14 +77,15 @@ F6.registerBehavior('activate-node', {
   onCanvasTap(e) {
     // shouldUpdate 可以由用户复写，返回 true 时取消所有节点的 'active' 状态，即将 'active' 状态置为 false
     if (this.shouldUpdate(e)) {
-      removeNodesState();
+      this.removeNodesState();
     }
   },
   removeNodesState() {
-    graph.findAllByState('node', 'active').forEach(node => {
-        graph.setItemState(node, 'active', false);
-      });
-  }
+    const graph = this.graph;
+    graph.findAllByState('node', 'active').forEach((node) => {
+      graph.setItemState(node, 'active', false);
+    });
+  },
 });
 ```
 
