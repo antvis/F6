@@ -74,7 +74,6 @@
     "father": "^2.29.1",
     "husky": "^4.2.5",
     "jest": "^26.0.1",
-    "jest-electron": "^0.1.7",
     "jest-extended": "^0.11.2",
     "lint-staged": "^10.2.11",
     "pre-commit": "^1.2.2",

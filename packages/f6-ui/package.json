@@ -75,7 +75,6 @@
     "event-simulate": "~1.0.0",
     "father": "^2.29.1",
     "husky": "^4.2.5",
-    "jest-electron": "^0.1.7",
     "jest-extended": "^0.11.2",
     "jquery": "~3.5.1",
     "lint-staged": "^10.2.11",

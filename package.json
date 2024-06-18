@@ -16,9 +16,12 @@
     "build:site": "cd ./packages/site && npm run start",
     "analysis": "cd ./packages/f6 && npm run analysis",
     "build:demos": "cd ./packages/f6 && npm run demos",
+    "build:element": "cd ./packages/element && npm run build",
     "build:f6": "cd ./packages/f6 && npm run build",
+    "build:hammer": "cd ./packages/hammer && npm run build",
     "build:plugin": "cd ./packages/plugin && npm run build",
-    "build:all": "npm run build:f6",
+    "build:f6-ui": "cd ./packages/f6-ui && npm run build",
+    "build:all": "npm run build:element && npm run build:plugin && npm run build:f6-ui && npm run build:hammer && npm run build:f6",
     "lint:f6": "cd ./packages/f6 && npm run lint",
     "build": "lerna run build --include-dependencies --stream",
     "lint": "npm run lint:all",
@@ -58,6 +61,7 @@
     "jest": "^27.0.2",
     "lerna": "^3.22.1",
     "lint-staged": "^10.2.2",
+    "node-gyp": "^10.1.0",
     "npm-run-all": "^4.1.5",
     "pre-commit": "^1.2.2",
     "prettier": "^2.1.2",
@@ -73,5 +77,9 @@
   },
   "resolutions": {
     "@types/react": "^16.9.35"
+  },
+  "repository": "https://github.com/antvis/F6.git",
+  "dependencies": {
+    "node-gyp": "^10.1.0"
   }
 }
