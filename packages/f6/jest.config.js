@@ -1,6 +1,4 @@
 module.exports = {
-  runner: 'jest-electron/runner',
-  testEnvironment: 'jest-electron/environment',
   preset: 'ts-jest',
   collectCoverage: false,
   collectCoverageFrom: ['src/**/*.{ts,js}', '!**/node_modules/**', '!**/vendor/**'],
