@@ -2,8 +2,13 @@
   "name": "@antv/f6-alipay",
   "version": "0.0.7",
   "description": "支付宝小程序F6组件",
-  "files": ["es"],
-  "keywords": ["F6", "G6Mobile"],
+  "files": [
+    "es"
+  ],
+  "keywords": [
+    "F6",
+    "G6Mobile"
+  ],
   "license": "MIT",
   "miniprogram": "es",
   "devDependencies": {
@@ -14,10 +19,6 @@
     "@babel/preset-env": "^7.6.3",
     "@babel/preset-typescript": "^7.6.0",
     "alipay-style": "^0.1.0",
-    "eslint": "^5.16.0",
-    "eslint-config-ali": "^3.1.0",
-    "eslint-plugin-import": "^2.11.0",
-    "eslint-plugin-typescript": "^0.14.0",
     "gulp": "^4.0.0",
     "gulp-babel": "^8.0.0",
     "gulp-clean-css": "^4.0.0",
@@ -25,16 +26,11 @@
     "gulp-inject-envs": "^1.1.1",
     "gulp-less": "^4.0.1",
     "gulp-rename": "^1.2.3",
-    "lint-staged": "^8.2.0",
     "mini-types": "^0.0.1",
-    "pre-commit": "^1.2.2",
-    "stylelint": "^10.1.0",
-    "stylelint-config-standard": "^18.2.0",
-    "typescript": "^3.6.4"
+    "pre-commit": "^1.2.2"
   },
   "dependencies": {},
   "scripts": {
-    "lint-staged": "lint-staged",
     "build": "NODE_ENV=production node scripts/compiler.js",
     "pub": "npm run build && node scripts/pub.js",
     "dev": "node scripts/compiler.js",
@@ -42,10 +38,5 @@
     "pub:rpx": "npm run build:rpx && node scripts/pub.js --rpx",
     "dev:rpx": "node scripts/compiler.js --rpx"
   },
-  "pre-commit": ["lint-staged"],
-  "lint-staged": {
-    "*.ts": ["eslint  --fix --ext .ts", "git add"],
-    "*.js": ["eslint  --fix", "git add"],
-    "*.less": ["stylelint  --fix --syntax less"]
-  }
+  "repository": "git@github.com:antvis/F6.git"
 }
