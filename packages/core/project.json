@@ -1,0 +1,29 @@
+{
+  "sourceRoot": "./src",
+  "projectType": "library",
+  "architect": {
+    "build-esm": {
+      "builder": "@nx/js:swc",
+      "options": {
+        "outputPath": "./esm",
+        "main": "./src/index.ts",
+        "format": "esm"
+      }
+    },
+    "build-lib": {
+      "builder": "@nx/js:swc",
+      "options": {
+        "outputPath": "./lib",
+        "main": "./src/index.ts",
+        "format": "cjs"
+      }
+    },
+    "build-dist": {
+      "builder": "@nx/js:swc",
+      "options": {
+        "outputPath": "./dist",
+        "main": "./src/index.ts"
+      }
+    }
+  }
+}

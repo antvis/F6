@@ -2,13 +2,19 @@
   "name": "@antv/f6-wx",
   "version": "0.0.6",
   "description": "微信小程序f6组件",
-  "files": ["src"],
-  "keywords": ["f6", "Wechat"],
+  "files": [
+    "src"
+  ],
+  "keywords": [
+    "f6",
+    "Wechat"
+  ],
   "license": "MIT",
   "miniprogram": "src",
   "devDependencies": {},
   "dependencies": {},
   "scripts": {
     "build": "echo '@antv/f6-wx is ready'"
-  }
+  },
+  "repository": "git@github.com:antvis/F6.git"
 }
