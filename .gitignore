@@ -87,3 +87,8 @@ es
 .vscode/
 
 stats.json
+
+
+
+.nx/cache
+.nx/workspace-data

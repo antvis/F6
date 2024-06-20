@@ -11,5 +11,6 @@
   "dependencies": {
     "@antv/f6-plugin": "^1.0.3",
     "@antv/f6-wx": "^0.0.6"
-  }
+  },
+  "repository": "git@github.com:antvis/F6.git"
 }

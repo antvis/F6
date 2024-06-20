@@ -3,43 +3,23 @@
   "private": true,
   "workspaces": [
     "packages/core",
-    "packages/f6",
-    "packages/f6-alipay",
-    "packages/f6-wx",
+    "packages/hammer",
     "packages/element",
     "packages/f6-ui",
     "packages/plugin",
     "packages/site",
-    "packages/hammer"
+    "packages/f6",
+    "packages/f6-alipay",
+    "packages/f6-wx"
   ],
   "scripts": {
     "build:site": "cd ./packages/site && npm run start",
     "analysis": "cd ./packages/f6 && npm run analysis",
-    "build:demos": "cd ./packages/f6 && npm run demos",
-    "build:element": "cd ./packages/element && npm run build",
-    "build:f6": "cd ./packages/f6 && npm run build",
-    "build:hammer": "cd ./packages/hammer && npm run build",
-    "build:plugin": "cd ./packages/plugin && npm run build",
-    "build:f6-ui": "cd ./packages/f6-ui && npm run build",
-    "build:all": "npm run build:element && npm run build:plugin && npm run build:f6-ui && npm run build:hammer && npm run build:f6",
-    "lint:f6": "cd ./packages/f6 && npm run lint",
-    "build": "lerna run build --include-dependencies --stream",
-    "lint": "npm run lint:all",
-    "test:f6": "cd ./packages/f6 && npm run test",
-    "test": "npm run test:f6",
+    "start:demos": "npm run build && cd ./packages/f6 && npm run demos",
     "prettier": "prettier --write '**/*.{js,jsx,tsx,ts,less,md,json}'",
     "pretty-quick": "pretty-quick",
-    "clean": "lerna clean -y",
-    "clear": "lerna clean && lerna clean -y",
     "clean:modules": "rimraf node_modules",
-    "bootstrap": "lerna bootstrap",
-    "ci": "npm run clean && npm run clean:modules && npm install && npm run bootstrap && npm run build:all && npm run lint:all && npm run test",
-    "ls": "lerna list"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged && lerna run --concurrency 1 --stream precommit"
-    }
+    "prepare": "simple-git-hooks"
   },
   "lint-staged": {
     "*.{js,jsx,tsx,ts,less,md,json}": [
@@ -47,39 +27,51 @@
     ]
   },
   "devDependencies": {
+    "@eslint/compat": "^1.1.0",
+    "@eslint/js": "^9.5.0",
+    "@swc/cli": "^0.3.12",
+    "@swc/core": "^1.6.1",
     "@types/react": "^16.9.35",
     "@types/react-dom": "^16.9.8",
     "@umijs/fabric": "^2.3.1",
-    "eslint": "^7.11.0",
-    "eslint-config-prettier": "^6.7.0",
-    "eslint-plugin-eslint-comments": "^3.2.0",
-    "eslint-plugin-import": "^2.22.1",
-    "eslint-plugin-react": "^7.22.0",
-    "eslint-plugin-react-hooks": "^4.2.0",
-    "eslint-plugin-unicorn": "^27.0.0",
-    "husky": "^4.2.5",
+    "browserslist": "^4.23.1",
+    "chokidar": "^3.6.0",
+    "eslint": "^9.5.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.1.3",
+    "eslint-plugin-react": "^7.34.2",
+    "globals": "^15.6.0",
+    "install-peerdeps": "^3.0.3",
     "jest": "^27.0.2",
-    "lerna": "^3.22.1",
-    "lint-staged": "^10.2.2",
+    "lint-staged": "^15.2.7",
     "node-gyp": "^10.1.0",
     "npm-run-all": "^4.1.5",
+    "postcss-lit": "^1.1.1",
     "pre-commit": "^1.2.2",
-    "prettier": "^2.1.2",
-    "pretty-quick": "^3.0.2",
+    "prettier": "3.3.2",
+    "pretty-quick": "^4.0.0",
     "react-scripts": "3.1.2",
     "rimraf": "^3.0.0",
+    "simple-git-hooks": "^2.11.1",
+    "stylelint": "^16.6.1",
+    "stylelint-config-standard": "^36.0.0",
+    "stylelint-prettier": "^5.0.0",
+    "swc-loader": "^0.2.6",
     "tslib": "^2.2.0",
-    "tslint": "^6.1.3",
-    "tslint-config-airbnb": "^5.11.2",
-    "tslint-config-prettier": "^1.18.0",
-    "tslint-eslint-rules": "^5.4.0",
-    "typescript": "^3.9.5"
+    "typescript": "^5.4.5",
+    "typescript-eslint": "^7.13.1",
+    "webpack": "^5.92.0",
+    "webpack-cli": "^5.1.4",
+    "node-gyp": "^10.1.0",
+    "typescript": "^5.4.5",
+    "nx": "19.3.0"
   },
   "resolutions": {
     "@types/react": "^16.9.35"
   },
   "repository": "https://github.com/antvis/F6.git",
-  "dependencies": {
-    "node-gyp": "^10.1.0"
+  "dependencies": {},
+  "simple-git-hooks": {
+    "pre-commit": "pretty-quick --staged"
   }
 }

@@ -8,7 +8,10 @@
   "module": "es/index.js",
   "browser": "dist/hammer.min.js",
   "license": "MIT",
-  "keywords": ["touch", "gestures"],
+  "keywords": [
+    "touch",
+    "gestures"
+  ],
   "author": {
     "name": "openwayne",
     "email": "openwayne@gmail.com"
@@ -36,10 +39,10 @@
     "node": ">=0.8.0"
   },
   "scripts": {
-    "build": "npm run clean && run-p build:*",
-    "build:cjs": "babel src --out-dir lib --plugins @babel/plugin-transform-modules-commonjs",
-    "build:umd": "webpack --config webpack.config.js --mode production",
-    "clean": "rm -rf lib dist",
-    "test": ""
+    "clean": "rimraf es esm lib dist",
+    "build:commonjs": "swc src -d lib --config-file ../../.swcrc --source-maps",
+    "build:esm": "swc src -d esm --config-file ../../.swcrc --source-maps -C module.type=\"es6\"",
+    "build:umd": "webpack --env moduleType=umd --config ../../webpack.config.js",
+    "build": "npm run clean && npm run build:commonjs && npm run build:esm && npm run build:umd"
   }
 }
