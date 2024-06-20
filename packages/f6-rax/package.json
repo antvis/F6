@@ -48,7 +48,6 @@
     "build-plugin-component": "^1.0.0",
     "build-scripts": "^1.1.1",
     "driver-universal": "^3.1.0",
-    "eslint": "^7.0.0",
     "rax": "^1.1.0",
     "rax-test-renderer": "^1.0.0",
     "stylelint": "^13.7.2"
@@ -68,5 +67,6 @@
     "registry": "https://registry.npm.alibaba-inc.com"
   },
   "license": "MIT",
-  "homepage": "https://unpkg.com/@antv/f6-rax@0.0.1/build/index.html"
+  "homepage": "https://unpkg.com/@antv/f6-rax@0.0.1/build/index.html",
+  "repository": "git@github.com:antvis/F6.git"
 }
