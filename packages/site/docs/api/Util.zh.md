@@ -39,13 +39,13 @@ F6.Util.processParallelEdges(data.edges, offsetDiff, multiEdgeType, singleEdgeTy
 
 #### 配置项
 
-| 名称 | 类型 | 是否必须 | 描述 |
-| --- | --- | --- | --- |
-| edges | EdgeConfig[] | true | 需要处理的边数据数组 |
-| offsetDiff | number | false | 两条平行边的之间的距离，默认为 15 |
-| multiEdgeType | string | false | 两节点之间若存在多条边时，这些边的类型，默认为 'quadratic' |
-| singleEdgeType | string | false | 两节点之间仅有一条边时，该边的类型，默认为 undefined，即不改变这种边的类型 |
-| loopEdgeType | string | false | 若一条边的起点和终点是同一个节点（自环边），该边的类型，默认为 undefined，即不改变这种边的类型 |
+| 名称           | 类型         | 是否必须 | 描述                                                                                           |
+| -------------- | ------------ | -------- | ---------------------------------------------------------------------------------------------- |
+| edges          | EdgeConfig[] | true     | 需要处理的边数据数组                                                                           |
+| offsetDiff     | number       | false    | 两条平行边的之间的距离，默认为 15                                                              |
+| multiEdgeType  | string       | false    | 两节点之间若存在多条边时，这些边的类型，默认为 'quadratic'                                     |
+| singleEdgeType | string       | false    | 两节点之间仅有一条边时，该边的类型，默认为 undefined，即不改变这种边的类型                     |
+| loopEdgeType   | string       | false    | 若一条边的起点和终点是同一个节点（自环边），该边的类型，默认为 undefined，即不改变这种边的类型 |
 
 #### 使用示例
 
@@ -66,31 +66,31 @@ F6.Util.processParallelEdges(data.edges, offsetDiff, multiEdgeType, singleEdgeTy
 
 ```javascript
 const treeData = {
-  id: '1',
+  id: "1",
   children: [
     {
-      id: '2',
-      children: [{ id: '3' }, { id: '4' }],
+      id: "2",
+      children: [{ id: "3" }, { id: "4" }],
     },
     {
-      id: '5',
+      id: "5",
       children: [
-        { id: '6' },
+        { id: "6" },
         {
-          id: '7',
-          children: [{ id: '8' }, { id: '9' }],
+          id: "7",
+          children: [{ id: "8" }, { id: "9" }],
         },
       ],
     },
     {
-      id: '10',
-      children: [{ id: '11' }],
+      id: "10",
+      children: [{ id: "11" }],
     },
   ],
 };
 
 traverseTree(treeData, (subTree) => {
-  subTree.color = '#f00';
+  subTree.color = "#f00";
   return true;
 });
 ```
@@ -110,31 +110,31 @@ traverseTree(treeData, (subTree) => {
 
 ```javascript
 const treeData = {
-  id: '1',
+  id: "1",
   children: [
     {
-      id: '2',
-      children: [{ id: '3' }, { id: '4' }],
+      id: "2",
+      children: [{ id: "3" }, { id: "4" }],
     },
     {
-      id: '5',
+      id: "5",
       children: [
-        { id: '6' },
+        { id: "6" },
         {
-          id: '7',
-          children: [{ id: '8' }, { id: '9' }],
+          id: "7",
+          children: [{ id: "8" }, { id: "9" }],
         },
       ],
     },
     {
-      id: '10',
-      children: [{ id: '11' }],
+      id: "10",
+      children: [{ id: "11" }],
     },
   ],
 };
 
 traverseTreeUp(treeData, (subTree) => {
-  subTree.color = '#f00';
+  subTree.color = "#f00";
   return true;
 });
 ```

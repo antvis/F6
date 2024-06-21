@@ -60,15 +60,15 @@ const data = {
 
 Rect Combo 支持 [Combo 通用配置](/zh/docs/manual/middle/elements/combos/defaultCombo#combo-的通用属性)，下表对部分属性进行解释。对于 Object 类型的配置项将在后面有详细讲解：<br />
 
-| 名称 | 含义 | 类型 | 备注 |
-| --- | --- | --- | --- |
-| size | 矩形的最小长与宽（非固定大小） | number / number[] | `size` 为 Number 时，长宽相等 |
-| fixSize | 固定该 Combo 的长与宽 | number | 不指定时 Combo 大小由内部元素的分布和大小来决定。若指定了 `fixSize` 而没有指定 `fixCollapseSize`，则即使该 Combo 在收起状态下仍然保持 `fixSize` 指定的长与宽 |
-| fixCollapseSize | 固定该 Combo 收起时的直径 | number | 不指定时，若未指定 `fixSize` 则由 `size` 决定收起时的长与宽，否则统一为 `fixSize` 长与宽 ｜ |
-| style | rect 图形的默认样式 | Object | 参见下文 [样式属性  style](./rect#样式属性-style) 内容 |
-| label | 标签文本内容 | String |  |
-| labelCfg | 标签文本配置项 | Object | 参见下文 [标签文本配置 labelCfg](./rect#标签文本配置-labelcfg) |
-| stateStyles | 各状态下的样式 | Object | 详见[配置状态样式](/zh/docs/manual/middle/states/state#配置-state-样式) |
+| 名称            | 含义                           | 类型              | 备注                                                                                                                                                         |
+| --------------- | ------------------------------ | ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| size            | 矩形的最小长与宽（非固定大小） | number / number[] | `size` 为 Number 时，长宽相等                                                                                                                                |
+| fixSize         | 固定该 Combo 的长与宽          | number            | 不指定时 Combo 大小由内部元素的分布和大小来决定。若指定了 `fixSize` 而没有指定 `fixCollapseSize`，则即使该 Combo 在收起状态下仍然保持 `fixSize` 指定的长与宽 |
+| fixCollapseSize | 固定该 Combo 收起时的直径      | number            | 不指定时，若未指定 `fixSize` 则由 `size` 决定收起时的长与宽，否则统一为 `fixSize` 长与宽 ｜                                                                  |
+| style           | rect 图形的默认样式            | Object            | 参见下文 [样式属性  style](./rect#样式属性-style) 内容                                                                                                       |
+| label           | 标签文本内容                   | String            |                                                                                                                                                              |
+| labelCfg        | 标签文本配置项                 | Object            | 参见下文 [标签文本配置 labelCfg](./rect#标签文本配置-labelcfg)                                                                                               |
+| stateStyles     | 各状态下的样式                 | Object            | 详见[配置状态样式](/zh/docs/manual/middle/states/state#配置-state-样式)                                                                                      |
 
 ### 样式属性  style
 
@@ -118,10 +118,10 @@ const graph = new F6.Graph({
   defaultCombo: {
     // ... Combo 其他属性
     labelCfg: {
-      position: 'bottom',
+      position: "bottom",
       refX: -12,
       style: {
-        fill: '#bae637',
+        fill: "#bae637",
         fontSize: 15,
         // ... 其他文本样式的配置
       },

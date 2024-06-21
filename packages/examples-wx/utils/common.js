@@ -1,4 +1,4 @@
-function strLen(str = '') {
+function strLen(str = "") {
   let len = 0;
   for (let i = 0; i < str.length; i++) {
     if (str.charCodeAt(i) > 0 && str.charCodeAt(i) < 128) {
@@ -14,7 +14,7 @@ function strLen(str = '') {
 function measureText(text, font) {
   let fontSize = 12;
   if (font) {
-    fontSize = parseInt(font.split(' ')[3], 10);
+    fontSize = parseInt(font.split(" ")[3], 10);
   }
   fontSize /= 2;
   return {
@@ -29,7 +29,7 @@ function processSearchData(all_data) {
     detailList.forEach((detail) => {
       const { name, path: tmpPath } = detail;
       const suggestion = nameEn + groupName + name;
-      const path = tmpPath.replace(/../, '/pages');
+      const path = tmpPath.replace(/../, "/pages");
       const result = {
         name,
         thumb,

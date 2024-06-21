@@ -21,7 +21,7 @@ Page({
 
     ctx.save();
     ctx.beginPath();
-    ctx.strokeStyle = '#108ee9';
+    ctx.strokeStyle = "#108ee9";
     ctx.rect(25, 25, 50, 50);
     ctx.stroke();
 
@@ -32,11 +32,11 @@ Page({
     ctx.stroke();
     ctx.restore();
 
-    if (renderer === 'mini') {
+    if (renderer === "mini") {
       ctx.draw();
     }
   },
   onTouch(e) {
-    console.log('canvas on touch', e);
+    console.log("canvas on touch", e);
   },
 });

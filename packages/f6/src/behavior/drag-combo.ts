@@ -3,12 +3,19 @@
  * @LastEditors: moyee
  * @Description: 拖动 Combo
  */
-import { each } from '@antv/util';
-import { IGroup } from '@antv/g-base';
-import { G6Event, IG6GraphEvent, Item, ComboConfig, ICombo, INode } from '@antv/f6-core';
-import { IGraph } from '../interface/graph';
-import Util from '../util';
-import Global from '../global';
+import { each } from "@antv/util";
+import { IGroup } from "@antv/g-base";
+import {
+  G6Event,
+  IG6GraphEvent,
+  Item,
+  ComboConfig,
+  ICombo,
+  INode,
+} from "@antv/f6-core";
+import { IGraph } from "../interface/graph";
+import Util from "../util";
+import Global from "../global";
 
 const { calculationItemsBBox } = Util;
 
@@ -23,7 +30,7 @@ const traverseCombo = (data, fn: (param: any) => boolean) => {
   }
 
   if (data) {
-    const combos = data.get('combos');
+    const combos = data.get("combos");
     if (combos.length === 0) {
       return false;
     }
@@ -41,19 +48,19 @@ export default {
       // 拖动节点过程中是否只改变 Combo 的大小，而不改变其结构
       onlyChangeComboSize: false,
       // 拖动过程中目标 combo 状态样式
-      activeState: '',
-      selectedState: 'selected',
+      activeState: "",
+      selectedState: "selected",
     };
   },
   getEvents(): { [key in G6Event]?: string } {
     return {
-      'combo:dragstart': 'onDragStart',
-      'combo:drag': 'onDrag',
-      'combo:dragend': 'onDragEnd',
-      'combo:drop': 'onDrop',
-      'node:drop': 'onNodeDrop',
-      'combo:dragenter': 'onDragEnter',
-      'combo:dragleave': 'onDragLeave',
+      "combo:dragstart": "onDragStart",
+      "combo:drag": "onDrag",
+      "combo:dragend": "onDragEnd",
+      "combo:drop": "onDrop",
+      "node:drop": "onNodeDrop",
+      "combo:dragenter": "onDragEnter",
+      "combo:dragleave": "onDragLeave",
     };
   },
   validationCombo(evt: IG6GraphEvent) {
@@ -68,7 +75,7 @@ export default {
 
     const type = item.getType();
 
-    if (type !== 'combo') {
+    if (type !== "combo") {
       return false;
     }
     return true;
@@ -82,12 +89,12 @@ export default {
     this.targets = [];
 
     // 获取所有选中的 Combo
-    const combos = graph.findAllByState('combo', this.selectedState);
+    const combos = graph.findAllByState("combo", this.selectedState);
 
-    const currentCombo = item.get('id');
+    const currentCombo = item.get("id");
 
     const dragCombos = combos.filter((combo) => {
-      const comboId = combo.get('id');
+      const comboId = combo.get("id");
       return currentCombo === comboId;
     });
 
@@ -157,9 +164,15 @@ export default {
           const cmodel = combo.getModel() as ComboConfig;
           // 被拖动的是最外层的 Combo，无 parent，排除自身和子元素
           if (!model.parentId) {
-            return cmodel.id !== model.id && !this.currentItemChildCombos.includes(cmodel.id);
+            return (
+              cmodel.id !== model.id &&
+              !this.currentItemChildCombos.includes(cmodel.id)
+            );
           }
-          return cmodel.id !== model.id && !this.currentItemChildCombos.includes(cmodel.id);
+          return (
+            cmodel.id !== model.id &&
+            !this.currentItemChildCombos.includes(cmodel.id)
+          );
         });
 
         calcCombos.map((combo) => {
@@ -246,7 +259,8 @@ export default {
         if (!this.onlyChangeComboSize) {
           if (comboId !== combo.getID()) {
             droppedCombo = graph.findById(comboId);
-            if (comboId !== combo.getModel().parentId) graph.updateComboTree(combo, comboId);
+            if (comboId !== combo.getModel().parentId)
+              graph.updateComboTree(combo, comboId);
           }
         } else {
           graph.updateCombo(combo);
@@ -314,7 +328,7 @@ export default {
 
     // 删除delegate shape
     if (this.delegateShape) {
-      const delegateGroup = graph.get('delegateGroup');
+      const delegateGroup = graph.get("delegateGroup");
       delegateGroup.clear();
       this.delegateShape = null;
     }
@@ -351,12 +365,12 @@ export default {
     }
 
     if (data) {
-      const combos = data.get('combos');
+      const combos = data.get("combos");
       each(combos, (child) => {
         this.traverse(child, fn);
       });
 
-      const nodes = data.get('nodes');
+      const nodes = data.get("nodes");
       each(nodes, (child) => {
         this.traverse(child, fn);
       });
@@ -382,7 +396,7 @@ export default {
     const { origin } = this;
     const graph: IGraph = this.graph;
     const model = item.getModel() as ComboConfig;
-    const itemId = item.get('id');
+    const itemId = item.get("id");
 
     if (!this.point[itemId]) {
       this.point[itemId] = {
@@ -419,7 +433,7 @@ export default {
     const graph: IGraph = this.graph;
     // 当没有 delegate shape 时创建
     if (!this.delegateShape) {
-      const delegateGroup: IGroup = graph.get('delegateGroup');
+      const delegateGroup: IGroup = graph.get("delegateGroup");
 
       let bbox = null;
       if (this.targets.length > 1) {
@@ -434,7 +448,7 @@ export default {
 
       const attrs = { ...Global.delegateStyle, ...this.delegateStyle };
 
-      this.delegateShape = delegateGroup.addShape('rect', {
+      this.delegateShape = delegateGroup.addShape("rect", {
         attrs: {
           width: bbox.width,
           height: bbox.height,
@@ -442,7 +456,7 @@ export default {
           y: bbox.y,
           ...attrs,
         },
-        name: 'combo-delegate-shape',
+        name: "combo-delegate-shape",
       });
     } else {
       const clientX = evt.x - this.origin.x + this.originPoint.minX;

@@ -1,12 +1,12 @@
-import F6 from '@antv/f6-wx';
+import F6 from "@antv/f6-wx";
 
-import data from './data';
-import circular from '@antv/f6-wx/extends/layout/circularLayout';
-import grid from '@antv/f6-wx/extends/layout/gridLayout';
-import force from '@antv/f6-wx/extends/layout/forceLayout';
-import radial from '@antv/f6-wx/extends/layout/radialLayout';
-import concentric from '@antv/f6-wx/extends/layout/concentricLayout';
-import mds from '@antv/f6-wx/extends/layout/mdsLayout';
+import data from "./data";
+import circular from "@antv/f6-wx/extends/layout/circularLayout";
+import grid from "@antv/f6-wx/extends/layout/gridLayout";
+import force from "@antv/f6-wx/extends/layout/forceLayout";
+import radial from "@antv/f6-wx/extends/layout/radialLayout";
+import concentric from "@antv/f6-wx/extends/layout/concentricLayout";
+import mds from "@antv/f6-wx/extends/layout/mdsLayout";
 
 /**
  * layoutTranslate
@@ -15,7 +15,7 @@ import mds from '@antv/f6-wx/extends/layout/mdsLayout';
 Page({
   canvas: null,
   ctx: null,
-  renderer: '', // mini、mini-native等，F6需要，标记环境
+  renderer: "", // mini、mini-native等，F6需要，标记环境
   isCanvasInit: false, // canvas是否准备好了
   graph: null,
 
@@ -28,12 +28,12 @@ Page({
 
   onLoad() {
     // 注册布局
-    F6.registerLayout('circular', circular);
-    F6.registerLayout('grid', grid);
-    F6.registerLayout('force', force);
-    F6.registerLayout('radial', radial);
-    F6.registerLayout('concentric', concentric);
-    F6.registerLayout('mds', mds);
+    F6.registerLayout("circular", circular);
+    F6.registerLayout("grid", grid);
+    F6.registerLayout("force", force);
+    F6.registerLayout("radial", radial);
+    F6.registerLayout("concentric", concentric);
+    F6.registerLayout("mds", mds);
     // 同步获取window的宽高
     const { windowWidth, windowHeight, pixelRatio } = wx.getSystemInfoSync();
 
@@ -79,10 +79,10 @@ Page({
       pixelRatio,
       fitView: true,
       layout: {
-        type: 'circular', // TODO:random
+        type: "circular", // TODO:random
       },
       modes: {
-        default: ['drag-node'],
+        default: ["drag-node"],
       },
       animate: true,
     });
@@ -92,38 +92,38 @@ Page({
     this.graph.fitView();
     setTimeout(() => {
       this.graph.updateLayout({
-        type: 'circular',
+        type: "circular",
         radius: 200,
       });
     }, 3000);
     setTimeout(() => {
       this.graph.updateLayout({
-        type: 'grid',
+        type: "grid",
       });
     }, 6000);
     setTimeout(() => {
       this.graph.updateLayout({
-        type: 'force',
+        type: "force",
         preventOverlap: true,
         nodeSize: 20,
       });
     }, 9000);
     setTimeout(() => {
       this.graph.updateLayout({
-        type: 'radial',
+        type: "radial",
         preventOverlap: true,
         nodeSize: 15,
       });
     }, 12000);
     setTimeout(() => {
       this.graph.updateLayout({
-        type: 'concentric',
+        type: "concentric",
         minNodeSpacing: 30,
       });
     }, 15000);
     setTimeout(() => {
       this.graph.updateLayout({
-        type: 'mds',
+        type: "mds",
         linkDistance: 100,
       });
     }, 18000);

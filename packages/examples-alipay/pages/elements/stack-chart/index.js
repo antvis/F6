@@ -1,6 +1,6 @@
-import F6 from '@antv/f6';
-import { wrapContext } from '../../../common/utils/context';
-import data from './data';
+import F6 from "@antv/f6";
+import { wrapContext } from "../../../common/utils/context";
+import data from "./data";
 /**
  * stackChart
  */
@@ -8,7 +8,7 @@ import data from './data';
 Page({
   canvas: null,
   ctx: null,
-  renderer: '', // mini、mini-native等，F6需要，标记环境
+  renderer: "", // mini、mini-native等，F6需要，标记环境
   isCanvasInit: false, // canvas是否准备好了
   graph: null,
 
@@ -26,17 +26,35 @@ Page({
       const flag1 = clockwise ? 1 : 0;
       const flag2 = clockwise ? 0 : 1;
       return [
-        ['M', Math.cos(startAngle) * rs + cx, Math.sin(startAngle) * rs + cy],
-        ['L', Math.cos(startAngle) * re + cx, Math.sin(startAngle) * re + cy],
-        ['A', re, re, 0, 0, flag1, Math.cos(endAngle) * re + cx, Math.sin(endAngle) * re + cy],
-        ['L', Math.cos(endAngle) * rs + cx, Math.sin(endAngle) * rs + cy],
-        ['A', rs, rs, 0, 0, flag2, Math.cos(startAngle) * rs + cx, Math.sin(startAngle) * rs + cy],
-        ['Z'],
+        ["M", Math.cos(startAngle) * rs + cx, Math.sin(startAngle) * rs + cy],
+        ["L", Math.cos(startAngle) * re + cx, Math.sin(startAngle) * re + cy],
+        [
+          "A",
+          re,
+          re,
+          0,
+          0,
+          flag1,
+          Math.cos(endAngle) * re + cx,
+          Math.sin(endAngle) * re + cy,
+        ],
+        ["L", Math.cos(endAngle) * rs + cx, Math.sin(endAngle) * rs + cy],
+        [
+          "A",
+          rs,
+          rs,
+          0,
+          0,
+          flag2,
+          Math.cos(startAngle) * rs + cx,
+          Math.sin(startAngle) * rs + cy,
+        ],
+        ["Z"],
       ];
     };
 
     // Custom stacked bar chart node
-    F6.registerNode('stacked-bar-node', {
+    F6.registerNode("stacked-bar-node", {
       draw(cfg, group) {
         /*
           G:
@@ -69,13 +87,13 @@ Page({
                 endAngle,
                 false,
               );
-              group.addShape('path', {
+              group.addShape("path", {
                 attrs: {
                   path: path0,
-                  stroke: 'darkgray',
+                  stroke: "darkgray",
                   fill: cat.color,
                 },
-                name: 'path-shape1',
+                name: "path-shape1",
               });
               nowStartR = nowStartR + baseIncR + 2;
               if (i === baseNbr - 1 && last !== 0) {
@@ -88,13 +106,13 @@ Page({
                   endAngle,
                   false,
                 );
-                group.addShape('path', {
+                group.addShape("path", {
                   attrs: {
                     path: path1,
-                    stroke: 'darkgray',
+                    stroke: "darkgray",
                     fill: cat.color,
                   },
-                  name: 'path-shape2',
+                  name: "path-shape2",
                 });
               }
             }
@@ -102,28 +120,28 @@ Page({
           });
         });
 
-        group.addShape('circle', {
+        group.addShape("circle", {
           attrs: {
             x: 0,
             y: 0,
             r: baseR,
             fill: cfg.centerColor,
-            stroke: 'darkgray',
+            stroke: "darkgray",
           },
-          name: 'circle-shape',
+          name: "circle-shape",
         });
         if (cfg.label) {
-          group.addShape('text', {
+          group.addShape("text", {
             attrs: {
               x: 0,
               y: 0,
-              textAlign: 'center',
-              textBaseline: 'middle',
+              textAlign: "center",
+              textBaseline: "middle",
               text: cfg.label,
-              fill: 'white',
-              fontStyle: 'bold',
+              fill: "white",
+              fontStyle: "bold",
             },
-            name: 'text-shape',
+            name: "text-shape",
           });
         }
         return group;

@@ -13,17 +13,17 @@ const graph = new F6.Graph({
   defaultNode: {
     style: {
       fill: "#DEE9FF",
-      stroke: "#5B8FF9"
+      stroke: "#5B8FF9",
     },
     labelCfg: {
       style: {
-        fontSize: 12
-      }
-    }
+        fontSize: 12,
+      },
+    },
   },
   defaultEdge: {
-    color: "#F6BD16"
-  }
+    color: "#F6BD16",
+  },
 });
 graph.data(data);
 graph.render();

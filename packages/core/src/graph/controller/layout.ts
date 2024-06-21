@@ -1,7 +1,7 @@
-import { isFunction, groupBy } from '@antv/util';
-import { isNaN, calculationItemsBBox } from '../../util/base';
-import { GraphData } from '../../types';
-import { IAbstractGraph } from '../../interface/graph';
+import { isFunction, groupBy } from "@antv/util";
+import { isNaN, calculationItemsBBox } from "../../util/base";
+import { GraphData } from "../../types";
+import { IAbstractGraph } from "../../interface/graph";
 
 export default abstract class LayoutController {
   public graph: IAbstractGraph;
@@ -18,7 +18,7 @@ export default abstract class LayoutController {
 
   constructor(graph: IAbstractGraph) {
     this.graph = graph;
-    this.layoutCfg = graph.get('layout') || {};
+    this.layoutCfg = graph.get("layout") || {};
     this.layoutType = this.getLayoutType();
     this.layoutMethods = [];
     this.initLayout();
@@ -42,7 +42,7 @@ export default abstract class LayoutController {
 
     const pipes = layoutCfg.pipes;
     if (Array.isArray(pipes)) {
-      return pipes.map((pipe) => pipe?.type || '');
+      return pipes.map((pipe) => pipe?.type || "");
     }
 
     return null;
@@ -68,7 +68,7 @@ export default abstract class LayoutController {
   public refreshLayout() {
     const { graph } = this;
     if (!graph) return;
-    if (graph.get('animate')) {
+    if (graph.get("animate")) {
       graph.positionsAnimate();
     } else {
       graph.refreshPositions();
@@ -105,7 +105,7 @@ export default abstract class LayoutController {
     const { graph } = this;
     this.destoryLayoutMethods();
 
-    graph.set('layout', undefined);
+    graph.set("layout", undefined);
     this.layoutCfg = undefined;
     this.layoutType = undefined;
     this.layoutMethods = undefined;
@@ -177,19 +177,20 @@ export default abstract class LayoutController {
 
       // 每个布局方法都需要注册
       layoutCfg.onLayoutEnd = () => {
-        graph.emit('aftersublayout', { type: layoutType });
+        graph.emit("aftersublayout", { type: layoutType });
         reslove();
       };
 
       layoutMethod.init(this.data);
-      if (layoutType === 'force') {
+      if (layoutType === "force") {
         layoutMethod.ticking = false;
         layoutMethod.forceSimulation.stop();
       }
 
-      graph.emit('beforesublayout', { type: layoutType });
+      graph.emit("beforesublayout", { type: layoutType });
       layoutMethod.execute();
-      if (layoutMethod.isCustomLayout && layoutCfg.onLayoutEnd) layoutCfg.onLayoutEnd();
+      if (layoutMethod.isCustomLayout && layoutCfg.onLayoutEnd)
+        layoutCfg.onLayoutEnd();
     });
   }
 
@@ -206,7 +207,7 @@ export default abstract class LayoutController {
       this.initPositions(layoutCfg.center, nodes);
     }
 
-    graph.emit('beforelayout');
+    graph.emit("beforelayout");
 
     let start = Promise.resolve();
     layoutMethods?.forEach((layoutMethod: any, index: number) => {
@@ -219,7 +220,7 @@ export default abstract class LayoutController {
         if (layoutCfg.onAllLayoutEnd) layoutCfg.onAllLayoutEnd();
       })
       .catch((error) => {
-        console.warn('relayout failed', error);
+        console.warn("relayout failed", error);
       });
   }
 
@@ -268,7 +269,7 @@ export default abstract class LayoutController {
       return bbox;
     });
 
-    const groupNodes = Object.values(groupBy(nodes, 'layoutOrder'));
+    const groupNodes = Object.values(groupBy(nodes, "layoutOrder"));
     return {
       groupNodes,
       layoutNodes,
@@ -283,7 +284,7 @@ export default abstract class LayoutController {
   public moveToZero() {
     const { graph } = this;
 
-    const data = graph.get('data');
+    const data = graph.get("data");
     const { nodes } = data;
     if (nodes[0].x === undefined || nodes[0].x === null || isNaN(nodes[0].x)) {
       return;
@@ -315,8 +316,8 @@ export default abstract class LayoutController {
     const nodeLength = nodes ? nodes.length : 0;
     if (!nodeLength) return;
 
-    const width = graph.get('width') * 0.85;
-    const height = graph.get('height') * 0.85;
+    const width = graph.get("width") * 0.85;
+    const height = graph.get("height") * 0.85;
     const horiNum = Math.ceil(Math.sqrt(nodeLength) * (width / height));
     const vertiNum = Math.ceil(nodeLength / horiNum);
     let horiGap = width / (horiNum - 1);

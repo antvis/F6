@@ -1,5 +1,5 @@
-import { dispatch } from '../../dispatcher';
-import { createPlayer } from '../../utils/player';
+import { dispatch } from "../../dispatcher";
+import { createPlayer } from "../../utils/player";
 
 export default function createLogicer(option) {
   const {
@@ -59,16 +59,17 @@ export default function createLogicer(option) {
     const controlWidth = leftControl.width;
     const containerWidth = slideContainer.width;
     if (value < 0) value = 0;
-    if (value > containerWidth - controlWidth) value = containerWidth - controlWidth;
+    if (value > containerWidth - controlWidth)
+      value = containerWidth - controlWidth;
     leftControl.onLeftChange?.(value);
-    leftControl.setStyle('left', value);
-    isChangeSliderWidth && slideInner.setStyle('width', getSlideInnerWidth());
-    slideInner.setStyle('left', value < 0 ? 0 : value);
+    leftControl.setStyle("left", value);
+    isChangeSliderWidth && slideInner.setStyle("width", getSlideInnerWidth());
+    slideInner.setStyle("left", value < 0 ? 0 : value);
     const data = getDataItem(value);
     if (data) {
       leftControl.setText(data.date);
       start = value / containerWidth;
-      dispatch('RANGE_CHANGE', { value: [start, end] });
+      dispatch("RANGE_CHANGE", { value: [start, end] });
     }
   }
 
@@ -76,16 +77,17 @@ export default function createLogicer(option) {
     const controlWidth = rightControl.width;
     const containerWidth = slideContainer.width;
     if (value < 0) value = 0;
-    if (value >= containerWidth - controlWidth) value = containerWidth - controlWidth;
+    if (value >= containerWidth - controlWidth)
+      value = containerWidth - controlWidth;
     rightControl.onLeftChange?.(value);
-    rightControl.setStyle('left', value);
-    isChangeSliderWidth && slideInner.setStyle('width', getSlideInnerWidth());
+    rightControl.setStyle("left", value);
+    isChangeSliderWidth && slideInner.setStyle("width", getSlideInnerWidth());
     const data = getDataItem(value + controlWidth);
     if (data) {
       cur = value;
       rightControl.setText(data.date);
       end = (value + controlWidth) / containerWidth;
-      dispatch('RANGE_CHANGE', { value: [start, end] });
+      dispatch("RANGE_CHANGE", { value: [start, end] });
     }
   }
 
@@ -94,7 +96,8 @@ export default function createLogicer(option) {
     const slideWidth = slideInner.width;
     const containerWidth = slideContainer.width;
     if (value < 0) value = 0;
-    if (value > containerWidth - slideWidth) value = containerWidth - slideWidth;
+    if (value > containerWidth - slideWidth)
+      value = containerWidth - slideWidth;
     updateLeft(value, false);
     updateRight(value + slideWidth - controlWidth, false);
   }
@@ -117,7 +120,7 @@ export default function createLogicer(option) {
   let startLeft = 0;
   let dragingNode;
 
-  delegateNode.on('panstart', (e) => {
+  delegateNode.on("panstart", (e) => {
     if (!e.uiNode) return;
     dragingNode = undefined;
     const drager = map.get(e.uiNode);
@@ -128,7 +131,7 @@ export default function createLogicer(option) {
     }
   });
 
-  delegateNode.on('panmove', (e) => {
+  delegateNode.on("panmove", (e) => {
     if (!dragingNode) return;
     const drager = map.get(dragingNode);
     const delta = e.clientX - startX;

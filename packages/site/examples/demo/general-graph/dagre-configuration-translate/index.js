@@ -12,13 +12,13 @@ const graph = new F6.Graph({
   fitView: true,
   fitViewPadding: 30,
   modes: {
-    default: ["drag-canvas", "drag-node"]
+    default: ["drag-canvas", "drag-node"],
   },
   layout: {
     type: "dagre",
     nodeSize: [40, 20],
     nodesep: 1,
-    ranksep: 1
+    ranksep: 1,
   },
   animate: true,
   defaultNode: {
@@ -27,8 +27,8 @@ const graph = new F6.Graph({
     style: {
       lineWidth: 2,
       stroke: "#5B8FF9",
-      fill: "#C6E5FF"
-    }
+      fill: "#C6E5FF",
+    },
   },
   defaultEdge: {
     size: 1,
@@ -36,10 +36,10 @@ const graph = new F6.Graph({
     style: {
       endArrow: {
         path: "M 0,0 L 8,4 L 8,-4 Z",
-        fill: "#e2e2e2"
-      }
-    }
-  }
+        fill: "#e2e2e2",
+      },
+    },
+  },
 });
 const me = this;
 graph.data(data);
@@ -50,51 +50,57 @@ layoutConfigTranslation();
 function layoutConfigTranslation() {
   setTimeout(function () {
     me.setData({
-      description: "Dagre layout, rank seperation: 10, node seperation in same level: 1, layout direction: Top->Bottom, alignment of nodes: DL"
+      description:
+        "Dagre layout, rank seperation: 10, node seperation in same level: 1, layout direction: Top->Bottom, alignment of nodes: DL",
     });
     me.graph.updateLayout({
-      ranksep: 10
+      ranksep: 10,
     });
   }, 1000);
   setTimeout(function () {
     me.setData({
-      description: "Dagre layout, rank seperation: 10, node seperation in same level: 5, layout direction: Left->Right, alignment of nodes: DL"
+      description:
+        "Dagre layout, rank seperation: 10, node seperation in same level: 5, layout direction: Left->Right, alignment of nodes: DL",
     });
     me.graph.updateLayout({
-      nodesep: 5
+      nodesep: 5,
     });
   }, 2500);
   setTimeout(function () {
     me.setData({
-      description: "Dagre layout, rank seperation: 10, node seperation in same level: 5, layout direction: Left->Right, alignment of nodes: UL"
+      description:
+        "Dagre layout, rank seperation: 10, node seperation in same level: 5, layout direction: Left->Right, alignment of nodes: UL",
     });
     me.graph.updateLayout({
-      align: "UL"
+      align: "UL",
     });
   }, 4000);
   setTimeout(function () {
     me.setData({
-      description: "Dagre layout, rank seperation: 10, node seperation in same level: 5, layout direction: Left->Right, alignment of nodes: UR"
+      description:
+        "Dagre layout, rank seperation: 10, node seperation in same level: 5, layout direction: Left->Right, alignment of nodes: UR",
     });
     me.graph.updateLayout({
-      align: "UR"
+      align: "UR",
     });
   }, 5500);
   setTimeout(function () {
     me.setData({
-      description: "Dagre layout, rank seperation: 10, node seperation in same level: 5, layout direction: Left->Right, alignment of nodes: Down Right, alignment of nodes: DL"
+      description:
+        "Dagre layout, rank seperation: 10, node seperation in same level: 5, layout direction: Left->Right, alignment of nodes: Down Right, alignment of nodes: DL",
     });
     me.graph.updateLayout({
       rankdir: "LR",
-      align: "DL"
+      align: "DL",
     });
   }, 7000);
   setTimeout(function () {
     me.setData({
-      description: "Dagre layout, rank seperation: 30, node seperation in same level: 5, layout direction: Left->Right, alignment of nodes: Down Right, alignment of nodes: DL"
+      description:
+        "Dagre layout, rank seperation: 30, node seperation in same level: 5, layout direction: Left->Right, alignment of nodes: Down Right, alignment of nodes: DL",
     });
     me.graph.updateLayout({
-      ranksep: 30
+      ranksep: 30,
     });
   }, 8500);
 }

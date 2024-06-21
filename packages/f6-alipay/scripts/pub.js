@@ -1,12 +1,12 @@
-const { execSync, spawn } = require('child_process');
+const { execSync, spawn } = require("child_process");
 
 const packageJson = require(`${process.cwd()}/package.json`);
 const { version } = packageJson;
 
-const runner = spawn('npm', ['publish']);
+const runner = spawn("npm", ["publish"]);
 
-runner.on('close', () => {
+runner.on("close", () => {
   execSync(`git tag ${version}`);
   execSync(`git push origin ${version}:${version}`);
-  execSync('git push origin master:master');
+  execSync("git push origin master:master");
 });

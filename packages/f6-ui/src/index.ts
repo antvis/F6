@@ -1,10 +1,10 @@
-import htmlParse from './om/dom';
-import cssParse from './om/css';
-import styleParse from './om/style';
-import { createUINode } from './ui-node';
-import { registerUINode } from './ui-node';
-import { registerAttr } from './parser/attr-parser';
-import UIBaseNode from './ui-node/base';
+import htmlParse from "./om/dom";
+import cssParse from "./om/css";
+import styleParse from "./om/style";
+import { createUINode } from "./ui-node";
+import { registerUINode } from "./ui-node";
+import { registerAttr } from "./parser/attr-parser";
+import UIBaseNode from "./ui-node/base";
 
 function createUI(htmlString, cssString, group) {
   const tree = create(htmlString, cssString, true);
@@ -38,6 +38,18 @@ function create(htmlString, cssString, isNeedRoot = false) {
   }
   return tree;
 }
-const f6ui = { UIBaseNode, createUI, registerUINode, registerAttr, createSegmentNode };
+const f6ui = {
+  UIBaseNode,
+  createUI,
+  registerUINode,
+  registerAttr,
+  createSegmentNode,
+};
 export default f6ui;
-export { UIBaseNode, createUI, registerUINode, registerAttr, createSegmentNode };
+export {
+  UIBaseNode,
+  createUI,
+  registerUINode,
+  registerAttr,
+  createSegmentNode,
+};

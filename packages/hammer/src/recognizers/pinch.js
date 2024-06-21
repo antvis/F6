@@ -1,6 +1,6 @@
-import AttrRecognizer from './attribute';
-import { TOUCH_ACTION_NONE } from '../touchactionjs/touchaction-Consts';
-import { STATE_BEGAN } from '../recognizerjs/recognizer-consts';
+import AttrRecognizer from "./attribute";
+import { TOUCH_ACTION_NONE } from "../touchactionjs/touchaction-Consts";
+import { STATE_BEGAN } from "../recognizerjs/recognizer-consts";
 
 /**
  * @private
@@ -28,7 +28,7 @@ export default class PinchRecognizer extends AttrRecognizer {
 
   emit(input) {
     if (input.scale !== 1) {
-      let inOut = input.scale < 1 ? 'in' : 'out';
+      let inOut = input.scale < 1 ? "in" : "out";
       input.additionalEvent = this.options.event + inOut;
     }
     super.emit(input);
@@ -36,7 +36,7 @@ export default class PinchRecognizer extends AttrRecognizer {
 }
 
 PinchRecognizer.prototype.defaults = {
-  event: 'pinch',
+  event: "pinch",
   threshold: 0,
   pointers: 2,
 };

@@ -21,12 +21,12 @@ const graph = new F6.Graph({
   pixelRatio,
   fitView: true,
   layout: {
-    type: "circular"
+    type: "circular",
   },
   modes: {
-    default: ["drag-node"]
+    default: ["drag-node"],
   },
-  animate: true
+  animate: true,
 });
 graph.data(data);
 graph.render();
@@ -34,37 +34,37 @@ graph.fitView();
 setTimeout(() => {
   graph.updateLayout({
     type: "circular",
-    radius: 200
+    radius: 200,
   });
 }, 3000);
 setTimeout(() => {
   graph.updateLayout({
-    type: "grid"
+    type: "grid",
   });
 }, 6000);
 setTimeout(() => {
   graph.updateLayout({
     type: "force",
     preventOverlap: true,
-    nodeSize: 20
+    nodeSize: 20,
   });
 }, 9000);
 setTimeout(() => {
   graph.updateLayout({
     type: "radial",
     preventOverlap: true,
-    nodeSize: 15
+    nodeSize: 15,
   });
 }, 12000);
 setTimeout(() => {
   graph.updateLayout({
     type: "concentric",
-    minNodeSpacing: 30
+    minNodeSpacing: 30,
   });
 }, 15000);
 setTimeout(() => {
   graph.updateLayout({
     type: "mds",
-    linkDistance: 100
+    linkDistance: 100,
   });
 }, 18000);

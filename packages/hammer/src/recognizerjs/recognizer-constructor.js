@@ -6,15 +6,15 @@ import {
   STATE_CANCELLED,
   STATE_BEGAN,
   STATE_CHANGED,
-} from './recognizer-consts';
-import assign from '../utils/assign';
-import uniqueId from '../utils/unique-id';
-import ifUndefined from '../utils/if-undefined';
-import invokeArrayArg from '../utils/invoke-array-arg';
-import inArray from '../utils/in-array';
-import boolOrFn from '../utils/bool-or-fn';
-import getRecognizerByNameIfManager from './get-recognizer-by-name-if-manager';
-import stateStr from './state-str';
+} from "./recognizer-consts";
+import assign from "../utils/assign";
+import uniqueId from "../utils/unique-id";
+import ifUndefined from "../utils/if-undefined";
+import invokeArrayArg from "../utils/invoke-array-arg";
+import inArray from "../utils/in-array";
+import boolOrFn from "../utils/bool-or-fn";
+import getRecognizerByNameIfManager from "./get-recognizer-by-name-if-manager";
+import stateStr from "./state-str";
 
 /**
  * @private
@@ -89,7 +89,7 @@ export default class Recognizer {
    * @returns {Recognizer} this
    */
   recognizeWith(otherRecognizer) {
-    if (invokeArrayArg(otherRecognizer, 'recognizeWith', this)) {
+    if (invokeArrayArg(otherRecognizer, "recognizeWith", this)) {
       return this;
     }
 
@@ -109,7 +109,7 @@ export default class Recognizer {
    * @returns {Recognizer} this
    */
   dropRecognizeWith(otherRecognizer) {
-    if (invokeArrayArg(otherRecognizer, 'dropRecognizeWith', this)) {
+    if (invokeArrayArg(otherRecognizer, "dropRecognizeWith", this)) {
       return this;
     }
 
@@ -125,7 +125,7 @@ export default class Recognizer {
    * @returns {Recognizer} this
    */
   requireFailure(otherRecognizer) {
-    if (invokeArrayArg(otherRecognizer, 'requireFailure', this)) {
+    if (invokeArrayArg(otherRecognizer, "requireFailure", this)) {
       return this;
     }
 
@@ -145,7 +145,7 @@ export default class Recognizer {
    * @returns {Recognizer} this
    */
   dropRequireFailure(otherRecognizer) {
-    if (invokeArrayArg(otherRecognizer, 'dropRequireFailure', this)) {
+    if (invokeArrayArg(otherRecognizer, "dropRequireFailure", this)) {
       return this;
     }
 

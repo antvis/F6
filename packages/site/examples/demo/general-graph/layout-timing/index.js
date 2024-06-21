@@ -14,20 +14,21 @@ const graph = new F6.Graph({
   layout: {
     type: "force",
     preventOverlap: true,
-    nodeSize: 20
+    nodeSize: 20,
   },
   modes: {
-    default: ["drag-node"]
-  }
+    default: ["drag-node"],
+  },
 });
 graph.on("beforelayout", function () {
   currentPage.setData({
-    message: "Doing force-directed layout... the text will be changed after the layout being done."
+    message:
+      "Doing force-directed layout... the text will be changed after the layout being done.",
   });
 });
 graph.on("afterlayout", function () {
   currentPage.setData({
-    message: "Done!"
+    message: "Done!",
   });
 });
 graph.data(data);

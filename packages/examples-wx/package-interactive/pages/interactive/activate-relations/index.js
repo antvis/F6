@@ -1,7 +1,7 @@
-import F6 from '@antv/f6-wx';
+import F6 from "@antv/f6-wx";
 
-import data from './data';
-import force from '@antv/f6-wx/extends/layout/forceLayout';
+import data from "./data";
+import force from "@antv/f6-wx/extends/layout/forceLayout";
 
 /**
  * activate-relations:内置的高亮节点
@@ -10,7 +10,7 @@ import force from '@antv/f6-wx/extends/layout/forceLayout';
 Page({
   canvas: null,
   ctx: null,
-  renderer: '', // mini、mini-native等，F6需要，标记环境
+  renderer: "", // mini、mini-native等，F6需要，标记环境
   isCanvasInit: false, // canvas是否准备好了
   graph: null,
 
@@ -25,7 +25,7 @@ Page({
     // 同步获取window的宽高
     const { windowWidth, windowHeight, pixelRatio } = wx.getSystemInfoSync();
 
-    F6.registerLayout('force', force);
+    F6.registerLayout("force", force);
 
     this.setData({
       width: windowWidth,
@@ -94,12 +94,12 @@ Page({
       fitView: true,
       fitViewPadding: 50,
       layout: {
-        type: 'force',
+        type: "force",
         edgeStrength: 0.7,
       },
       // plugins: [tooltip],
       modes: {
-        default: ['drag-canvas', 'activate-relations'],
+        default: ["drag-canvas", "activate-relations"],
       },
       defaultNode: {
         size: [10, 10],
@@ -113,7 +113,7 @@ Page({
       defaultEdge: {
         /* style for the keyShape */
         style: {
-          stroke: '#aaa',
+          stroke: "#aaa",
           lineAppendWidth: 2,
           opacity: 0.3,
         },

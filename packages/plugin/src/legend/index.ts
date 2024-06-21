@@ -1,38 +1,38 @@
-import { IAbstractGraph as IGraph, GraphData, ShapeStyle } from '@antv/f6-core';
-import Base from '../base';
-import { isArray, isNumber, uniqueId } from '@antv/util';
-import { createUI } from '@antv/f6-ui';
-import { createItem } from './item';
+import { IAbstractGraph as IGraph, GraphData, ShapeStyle } from "@antv/f6-core";
+import Base from "../base";
+import { isArray, isNumber, uniqueId } from "@antv/util";
+import { createUI } from "@antv/f6-ui";
+import { createItem } from "./item";
 
-const ALLOW_EVENTS = ['click', 'mouseenter'];
+const ALLOW_EVENTS = ["click", "mouseenter"];
 
 interface LegendConfig {
   data: GraphData;
   position?:
-    | 'top'
-    | 'top-left'
-    | 'top-right'
-    | 'right'
-    | 'right-top'
-    | 'right-bottom'
-    | 'left'
-    | 'left-top'
-    | 'left-bottom'
-    | 'bottom'
-    | 'bottom-left'
-    | 'bottom-right';
+    | "top"
+    | "top-left"
+    | "top-right"
+    | "right"
+    | "right-top"
+    | "right-bottom"
+    | "left"
+    | "left-top"
+    | "left-bottom"
+    | "bottom"
+    | "bottom-left"
+    | "bottom-right";
   padding?: number | number[];
   margin?: number | number[];
   offsetX?: number;
   offsetY?: number;
   containerStyle?: ShapeStyle;
-  layout?: 'vertical' | 'horizontal';
+  layout?: "vertical" | "horizontal";
   width?: number;
   height?: number;
-  align?: 'center' | 'right' | 'left';
+  align?: "center" | "right" | "left";
   title?: string;
   titleConfig?: {
-    position?: 'center' | 'right' | 'left';
+    position?: "center" | "right" | "left";
     offsetX?: number;
     offsetY?: number;
     [key: string]: unknown;
@@ -41,12 +41,12 @@ interface LegendConfig {
     width?: number;
     height?: number;
     fontSize?: number;
-    margin?: 'string';
+    margin?: "string";
   };
   filter?: {
     enable?: boolean;
     multiple?: boolean;
-    trigger?: 'click';
+    trigger?: "click";
     legendStateStyles?: {
       active?: ShapeStyle;
       inactive?: ShapeStyle;
@@ -72,17 +72,17 @@ export default class Legend extends Base {
   public getDefaultCfgs(): LegendConfig {
     return {
       data: {},
-      position: 'top',
+      position: "top",
       padding: 0,
       margin: 0,
       offsetX: -10,
       offsetY: 0,
-      layout: 'horizontal',
+      layout: "horizontal",
       containerStyle: {},
       align: undefined,
       filter: {
         enable: false,
-        trigger: 'click',
+        trigger: "click",
       },
       itemConfig: {
         width: 100,
@@ -93,25 +93,25 @@ export default class Legend extends Base {
   }
 
   public init() {
-    this.formatArray('padding');
-    this.formatArray('margin');
-    const filter = this.get('filter') || {};
+    this.formatArray("padding");
+    this.formatArray("margin");
+    const filter = this.get("filter") || {};
     const multiple = filter.multiple;
-    if (multiple) this.set('multiple', false);
-    let align = this.get('align');
+    if (multiple) this.set("multiple", false);
+    let align = this.get("align");
     if (!align) {
-      const positions = this.get('position').split('-');
-      if (positions.includes('left')) align = 'left';
-      if (positions.includes('right')) align = 'right';
-      else align = 'center';
-      this.set('align', align);
+      const positions = this.get("position").split("-");
+      if (positions.includes("left")) align = "left";
+      if (positions.includes("right")) align = "right";
+      else align = "center";
+      this.set("align", align);
     }
     setTimeout(() => {
       const size = this.render();
 
       const pos = this.getContainerPos(size);
 
-      this.get('graph').get('uiGroup').translate(pos.left, pos.top);
+      this.get("graph").get("uiGroup").translate(pos.left, pos.top);
 
       this.bindEvents();
     });
@@ -119,11 +119,11 @@ export default class Legend extends Base {
 
   protected getContainerPos(size: number[] = [0, 0]) {
     const self = this;
-    const graph: IGraph = self.get('graph');
-    const offsetX = this.get('offsetX');
-    const offsetY = this.get('offsetY');
-    const margin = this.get('margin');
-    const positions = this.get('position').split('-');
+    const graph: IGraph = self.get("graph");
+    const offsetX = this.get("offsetX");
+    const offsetY = this.get("offsetY");
+    const margin = this.get("margin");
+    const positions = this.get("position").split("-");
     const posIdxMap = { top: 0, right: 1, bottom: 2, left: 3 };
 
     const x = 0,
@@ -136,19 +136,19 @@ export default class Legend extends Base {
       let marginValue = margin[posIdxMap[pos]];
       let key = pos;
       switch (pos) {
-        case 'top':
+        case "top":
           marginValue += y;
           break;
-        case 'left':
+        case "left":
           marginValue += x;
           break;
-        case 'bottom':
+        case "bottom":
           marginValue = graph.getHeight() - size[1] - marginValue + y;
-          key = 'top';
+          key = "top";
           break;
         default:
           marginValue = graph.getWidth() - size[0] - marginValue + x;
-          key = 'left';
+          key = "left";
           break;
       }
       containerCSS[key] = marginValue;
@@ -166,18 +166,18 @@ export default class Legend extends Base {
   // class-methods-use-this
   public bindEvents() {
     const self = this;
-    const filter = self.get('filter');
+    const filter = self.get("filter");
     if (!filter || !filter.enable) return;
-    let trigger = filter.trigger || 'click';
+    let trigger = filter.trigger || "click";
     if (!ALLOW_EVENTS.includes(trigger)) {
       console.warn(
         "Trigger for legend filterling must be 'click' or 'mouseenter', 'click' will take effect by default.",
       );
-      trigger = 'click';
+      trigger = "click";
     }
-    const ui = this.get('legendUI');
-    ui.on('tap', (e) => {
-      if (e?.uiNode?.getAttribute('class') === 'node-container') {
+    const ui = this.get("legendUI");
+    ui.on("tap", (e) => {
+      if (e?.uiNode?.getAttribute("class") === "node-container") {
         self.filterData(e.uiNode);
       } else {
         self.clearFilter();
@@ -191,64 +191,70 @@ export default class Legend extends Base {
    * @param param
    */
   public changeData(data: GraphData) {
-    this.set('data', data);
+    this.set("data", data);
     const size = this.render();
     const pos = this.getContainerPos(size);
-    this.get('graph').get('uiGroup').translate(pos.left, pos.top);
+    this.get("graph").get("uiGroup").translate(pos.left, pos.top);
   }
 
   goActive(node) {
     this.goDefault(node);
-    const filter = this.get('filter');
+    const filter = this.get("filter");
     const stateStyles = filter?.lengedStateStyles || {};
     const legendActive = stateStyles?.active || {
-      stroke: '#000',
+      stroke: "#000",
       lineWidth: 2,
-      'text-shape': {
-        fontWeight: 'bold',
+      "text-shape": {
+        fontWeight: "bold",
         opacity: 1,
       },
     };
-    node.query('shape').setStyle('borderColor', legendActive.stroke);
-    node.query('shape').setStyle('borderWidth', legendActive.lineWidth);
-    node.query('text').setStyle('fontWeight', legendActive['text-shape'].fontWeight);
-    node.query('text').setStyle('opacity', legendActive['text-shape'].opacity);
+    node.query("shape").setStyle("borderColor", legendActive.stroke);
+    node.query("shape").setStyle("borderWidth", legendActive.lineWidth);
+    node
+      .query("text")
+      .setStyle("fontWeight", legendActive["text-shape"].fontWeight);
+    node.query("text").setStyle("opacity", legendActive["text-shape"].opacity);
     this.active.push(node);
-    this.inActive.includes(node) && this.inActive.splice(this.inActive.indexOf(node), 1);
+    this.inActive.includes(node) &&
+      this.inActive.splice(this.inActive.indexOf(node), 1);
   }
 
   goDefault(node) {
-    const originStyle = node.getAttribute('orignStyle');
-    node.query('shape').setStyle('borderColor', originStyle.stroke);
-    node.query('shape').setStyle('opacity', 1);
-    node.query('shape').setStyle('borderWidth', originStyle.lineWidth || 1);
-    node.query('text').setStyle('fontWeight', 'normal');
-    node.query('text').setStyle('opacity', 1);
+    const originStyle = node.getAttribute("orignStyle");
+    node.query("shape").setStyle("borderColor", originStyle.stroke);
+    node.query("shape").setStyle("opacity", 1);
+    node.query("shape").setStyle("borderWidth", originStyle.lineWidth || 1);
+    node.query("text").setStyle("fontWeight", "normal");
+    node.query("text").setStyle("opacity", 1);
   }
 
   goInActive(node) {
     this.goDefault(node);
-    const filter = this.get('filter');
+    const filter = this.get("filter");
     const stateStyles = filter?.lengedStateStyles || {};
     const legendInactive = stateStyles?.inactive || {
       opacity: 0.5,
-      'text-shape': {
+      "text-shape": {
         opacity: 0.5,
       },
     };
-    node.query('shape').setStyle('opacity', legendInactive.opacity);
-    node.query('text').setStyle('opacity', legendInactive['text-shape'].opacity);
+    node.query("shape").setStyle("opacity", legendInactive.opacity);
+    node
+      .query("text")
+      .setStyle("opacity", legendInactive["text-shape"].opacity);
     this.inActive.push(node);
-    this.active.includes(node) && this.active.splice(this.active.indexOf(node), 1);
+    this.active.includes(node) &&
+      this.active.splice(this.active.indexOf(node), 1);
   }
 
   public activateLegend(node) {
-    const filter = this.get('filter');
+    const filter = this.get("filter");
     const multiple = filter?.multiple;
     if (!multiple) this.clearActiveLegend();
     if (this.active.includes(node)) return;
-    const ui = this.get('legendUI');
-    const nodes = ui.queryAll('.node-container');
+    const ui = this.get("legendUI");
+    const nodes = ui.queryAll(".node-container");
     this.goActive(node);
     nodes.forEach((node) => {
       if (this.active.includes(node)) return;
@@ -257,8 +263,8 @@ export default class Legend extends Base {
   }
 
   public clearActiveLegend() {
-    const ui = this.get('legendUI');
-    const nodes = ui.queryAll('.node-container');
+    const ui = this.get("legendUI");
+    const nodes = ui.queryAll(".node-container");
     nodes.forEach((node) => {
       this.goDefault(node);
     });
@@ -271,12 +277,12 @@ export default class Legend extends Base {
    * @param param
    */
   public filterData(activeNode) {
-    const filter = this.get('filter');
+    const filter = this.get("filter");
     const filterFunctions = filter?.filterFunctions;
     if (!filter || !filterFunctions) return;
-    const graph = this.get('graph');
-    const activeState = filter.graphActiveState || 'active';
-    const inactiveState = filter.graphInactiveState || 'inactive';
+    const graph = this.get("graph");
+    const activeState = filter.graphActiveState || "active";
+    const inactiveState = filter.graphInactiveState || "inactive";
     const multiple = filter.multiple;
     this.clearFilter();
     if (!multiple) this.clearActiveLegend();
@@ -288,16 +294,16 @@ export default class Legend extends Base {
       this.activateLegend(activeNode);
     }
     if (this.active.length === 0) {
-      const ui = this.get('legendUI');
-      ui.queryAll('.node-container').forEach((child) => this.goDefault(child));
+      const ui = this.get("legendUI");
+      ui.queryAll(".node-container").forEach((child) => this.goDefault(child));
     }
     let activeCount = 0;
-    const typeFuncs = ['getNodes', 'getEdges'];
+    const typeFuncs = ["getNodes", "getEdges"];
     typeFuncs.forEach((typeFunc) => {
       graph[typeFunc]().forEach((graphItem) => {
         let active = false;
         this.active.forEach((node) => {
-          const func = filterFunctions[node.getAttribute('legendId')];
+          const func = filterFunctions[node.getAttribute("legendId")];
           active = active || func(graphItem.getModel());
         });
         if (active) {
@@ -324,11 +330,11 @@ export default class Legend extends Base {
    */
   public clearFilter() {
     // 清除 legend 的高亮状态
-    const graph = this.get('graph');
-    const filter = this.get('filter');
+    const graph = this.get("graph");
+    const filter = this.get("filter");
     if (!filter) return;
-    const activeState = filter.graphActiveState || 'active';
-    const inactiveState = filter.graphInactiveState || 'inactive';
+    const activeState = filter.graphActiveState || "active";
+    const inactiveState = filter.graphInactiveState || "inactive";
     graph.getNodes().forEach((node) => {
       graph.clearItemStates(node, [activeState, inactiveState]);
     });
@@ -344,20 +350,20 @@ export default class Legend extends Base {
   protected render(): number[] {
     this.processData();
 
-    const itemsData = this.get('itemsData');
-    const itemTypes = ['nodes', 'edges'];
+    const itemsData = this.get("itemsData");
+    const itemTypes = ["nodes", "edges"];
 
     // 创建单个节点
     let nodes = [[], []];
     itemTypes.forEach((itemType, i) => {
       itemsData[itemType].forEach((data) => {
         const style = this.getStyle(itemType.substr(0, 4), data);
-        nodes[i].push(createItem(data, style, this.get('itemConfig')));
+        nodes[i].push(createItem(data, style, this.get("itemConfig")));
       });
     });
 
     // 创建title
-    const title = this.get('title');
+    const title = this.get("title");
     const html = ` 
     <div class='g6-legend-container'>
       ${title && `<div class='text-container'>${title}</div>`}
@@ -369,28 +375,33 @@ export default class Legend extends Base {
 
     const defaultTitleStyle = {
       fontSize: 20,
-      fontFamily: 'Arial',
+      fontFamily: "Arial",
       fontWeight: 300,
-      textBaseline: 'top',
-      textAlign: 'center',
-      fill: '#000',
+      textBaseline: "top",
+      textAlign: "center",
+      fill: "#000",
     };
-    const titleConfig = this.get('titleConfig') || {};
-    const titleStyle = Object.assign(defaultTitleStyle, titleConfig.style || {});
-    const containerStyle = this.get('containerStyle');
-    const padding = this.get('padding');
-    const margin = this.get('margin');
+    const titleConfig = this.get("titleConfig") || {};
+    const titleStyle = Object.assign(
+      defaultTitleStyle,
+      titleConfig.style || {},
+    );
+    const containerStyle = this.get("containerStyle");
+    const padding = this.get("padding");
+    const margin = this.get("margin");
     // flex-direction: ${this.get('layout') === 'vertical' ? 'column' : 'row'};
 
     const css = `
       .g6-legend-container{
-        width: ${this.get('width')};
-        height: ${this.get('height')};
-        padding: ${padding.join(' ')};
-        margin: ${margin.join(' ')};
-        background: ${containerStyle.fill || '#f00'};
-        border: ${containerStyle.lineWidth || '1'} solid ${containerStyle.stroke || '#000'};
-        opacity: ${containerStyle.opacity || '0.5'}
+        width: ${this.get("width")};
+        height: ${this.get("height")};
+        padding: ${padding.join(" ")};
+        margin: ${margin.join(" ")};
+        background: ${containerStyle.fill || "#f00"};
+        border: ${containerStyle.lineWidth || "1"} solid ${
+          containerStyle.stroke || "#000"
+        };
+        opacity: ${containerStyle.opacity || "0.5"}
       }
       .text-container {
         font-size: ${titleStyle.fontSize};
@@ -405,28 +416,28 @@ export default class Legend extends Base {
       }
       .edge-row, .node-row {
         display: flex;
-        flex-direction: ${this.get('layout') === 'vertical' ? 'column' : 'row'};
+        flex-direction: ${this.get("layout") === "vertical" ? "column" : "row"};
         flex-wrap: nowrap;
         justify-content: space-between;
         background-opacity: 0;
       }
       .node-wrap {
         flex: 1;
-        flex-direction: ${this.get('layout') === 'vertical' ? 'row' : 'column'};
+        flex-direction: ${this.get("layout") === "vertical" ? "row" : "column"};
         justify-content: space-between;
         background-opacity: 0;
       }
     `;
-    const ui = createUI(html, css, this.get('graph').get('uiGroup'));
-    ui.query('.node-row').appendChild(...nodes[0]);
-    ui.query('.edge-row').appendChild(...nodes[1]);
-    this.set('legendUI', ui);
+    const ui = createUI(html, css, this.get("graph").get("uiGroup"));
+    ui.query(".node-row").appendChild(...nodes[0]);
+    ui.query(".edge-row").appendChild(...nodes[1]);
+    this.set("legendUI", ui);
 
     return [ui.width, ui.height];
   }
 
   protected processData() {
-    const data = this.get('data');
+    const data = this.get("data");
     const itemsData = { nodes: [], edges: [] };
     if (data.nodes) {
       data.nodes.sort((a, b) => a.order - b.order);
@@ -438,18 +449,18 @@ export default class Legend extends Base {
         const labelStyle = node.labelCfg?.style || {};
         itemsData.nodes.push({
           id: node.id || uniqueId(),
-          type: node.type || 'circle',
+          type: node.type || "circle",
           style: {
             ...node.style,
           },
           order: node.order,
           label: node.label,
-          itemType: 'node',
+          itemType: "node",
           size,
           labelCfg: {
-            position: 'right',
+            position: "right",
             style: {
-              fontFamily: 'Arial',
+              fontFamily: "Arial",
               ...labelStyle,
             },
           },
@@ -459,8 +470,8 @@ export default class Legend extends Base {
     if (data.edges) {
       data.edges.sort((a, b) => a.order - b.order);
       data.edges.forEach((edge) => {
-        let type = edge.type || 'line';
-        if (edge.type === 'cubic-horizontal') type = 'cubic';
+        let type = edge.type || "line";
+        if (edge.type === "cubic-horizontal") type = "cubic";
         const labelStyle = edge.labelCfg?.style || {};
         const size = edge.size || [edge.style?.width || 8, 1];
 
@@ -474,11 +485,11 @@ export default class Legend extends Base {
           },
           order: edge.order,
           label: edge.label,
-          itemType: 'edge',
+          itemType: "edge",
           labelCfg: {
-            position: 'right',
+            position: "right",
             style: {
-              fontFamily: 'Arial',
+              fontFamily: "Arial",
               ...labelStyle,
             },
           },
@@ -486,7 +497,7 @@ export default class Legend extends Base {
       });
     }
 
-    this.set('itemsData', itemsData);
+    this.set("itemsData", itemsData);
   }
 
   protected formatArray(key: string) {
@@ -515,13 +526,13 @@ export default class Legend extends Base {
 
   private getStyle(type, data) {
     const defaultStyle =
-      type === 'node'
+      type === "node"
         ? {
-            fill: '#ccc',
+            fill: "#ccc",
             lineWidth: 0,
           }
         : {
-            stroke: '#000',
+            stroke: "#000",
             lineWidth: 1,
           };
     return {
@@ -531,9 +542,9 @@ export default class Legend extends Base {
   }
 
   public destroy() {
-    const graph: IGraph = this.get('graph');
-    const graphContainer = graph.get<HTMLDivElement>('container');
-    const container: HTMLDivElement = this.get('container');
+    const graph: IGraph = this.get("graph");
+    const graphContainer = graph.get<HTMLDivElement>("container");
+    const container: HTMLDivElement = this.get("container");
     graphContainer.removeChild(container);
   }
 }

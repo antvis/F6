@@ -1,7 +1,7 @@
-import F6 from '@antv/f6';
-import { wrapContext } from '../../../common/utils/context';
-import data from './data';
-import force from '@antv/f6/dist/extends/layout/forceLayout';
+import F6 from "@antv/f6";
+import { wrapContext } from "../../../common/utils/context";
+import data from "./data";
+import force from "@antv/f6/dist/extends/layout/forceLayout";
 
 /**
  * highlightDark:自定义高亮
@@ -10,7 +10,7 @@ import force from '@antv/f6/dist/extends/layout/forceLayout';
 Page({
   canvas: null,
   ctx: null,
-  renderer: '', // mini、mini-native等，F6需要，标记环境
+  renderer: "", // mini、mini-native等，F6需要，标记环境
   isCanvasInit: false, // canvas是否准备好了
   graph: null,
 
@@ -25,7 +25,7 @@ Page({
     // 同步获取window的宽高
     const { windowWidth, windowHeight, pixelRatio } = my.getSystemInfoSync();
 
-    F6.registerLayout('force', force);
+    F6.registerLayout("force", force);
 
     this.setData({
       width: windowWidth,
@@ -64,20 +64,22 @@ Page({
       fixToNode: [1, 0.5],
       // the types of items that allow the tooltip show up
       // 允许出现 tooltip 的 item 类型
-      itemTypes: ['node', 'edge'],
+      itemTypes: ["node", "edge"],
       // custom the tooltip's content
       // 自定义 tooltip 内容
       getContent: (e) => {
-        const outDiv = document.createElement('div');
-        outDiv.style.width = 'fit-content';
-        outDiv.style.height = 'fit-content';
+        const outDiv = document.createElement("div");
+        outDiv.style.width = "fit-content";
+        outDiv.style.height = "fit-content";
         const model = e.item.getModel();
-        if (e.item.getType() === 'node') {
+        if (e.item.getType() === "node") {
           outDiv.innerHTML = `${model.name}`;
         } else {
           const source = e.item.getSource();
           const target = e.item.getTarget();
-          outDiv.innerHTML = `来源：${source.getModel().name}<br/>去向：${target.getModel().name}`;
+          outDiv.innerHTML = `来源：${source.getModel().name}<br/>去向：${
+            target.getModel().name
+          }`;
         }
         return outDiv;
       },
@@ -95,24 +97,24 @@ Page({
       fitViewPadding: 50,
       plugins: [tooltip],
       layout: {
-        type: 'force',
+        type: "force",
         edgeStrength: 0.7,
       },
       modes: {
-        default: ['drag-canvas'],
+        default: ["drag-canvas"],
       },
       defaultNode: {
         size: [10, 10],
         style: {
           lineWidth: 2,
-          fill: '#DEE9FF',
-          stroke: '#5B8FF9',
+          fill: "#DEE9FF",
+          stroke: "#5B8FF9",
         },
       },
       defaultEdge: {
         size: 1,
         style: {
-          stroke: '#e2e2e2',
+          stroke: "#e2e2e2",
           lineAppendWidth: 2,
         },
       },
@@ -126,7 +128,7 @@ Page({
       },
       edgeStateStyles: {
         highlight: {
-          stroke: '#999',
+          stroke: "#999",
         },
       },
     });
@@ -134,49 +136,49 @@ Page({
     // 监听
     function clearAllStats() {
       this.graph.setAutoPaint(false);
-      this.graph.getNodes().forEach(function(node) {
+      this.graph.getNodes().forEach(function (node) {
         this.graph.clearItemStates(node);
       });
-      this.graph.getEdges().forEach(function(edge) {
+      this.graph.getEdges().forEach(function (edge) {
         this.graph.clearItemStates(edge);
       });
       this.graph.paint();
       this.graph.setAutoPaint(true);
     }
 
-    this.graph.on('node:mouseenter', function(e) {
+    this.graph.on("node:mouseenter", function (e) {
       const { item } = e;
       this.graph.setAutoPaint(false);
-      this.graph.getNodes().forEach(function(node) {
+      this.graph.getNodes().forEach(function (node) {
         this.graph.clearItemStates(node);
-        this.graph.setItemState(node, 'dark', true);
+        this.graph.setItemState(node, "dark", true);
       });
-      this.graph.setItemState(item, 'dark', false);
-      this.graph.setItemState(item, 'highlight', true);
-      this.graph.getEdges().forEach(function(edge) {
+      this.graph.setItemState(item, "dark", false);
+      this.graph.setItemState(item, "highlight", true);
+      this.graph.getEdges().forEach(function (edge) {
         if (edge.getSource() === item) {
-          this.graph.setItemState(edge.getTarget(), 'dark', false);
-          this.graph.setItemState(edge.getTarget(), 'highlight', true);
-          this.graph.setItemState(edge, 'highlight', true);
+          this.graph.setItemState(edge.getTarget(), "dark", false);
+          this.graph.setItemState(edge.getTarget(), "highlight", true);
+          this.graph.setItemState(edge, "highlight", true);
           edge.toFront();
         } else if (edge.getTarget() === item) {
-          this.graph.setItemState(edge.getSource(), 'dark', false);
-          this.graph.setItemState(edge.getSource(), 'highlight', true);
-          this.graph.setItemState(edge, 'highlight', true);
+          this.graph.setItemState(edge.getSource(), "dark", false);
+          this.graph.setItemState(edge.getSource(), "highlight", true);
+          this.graph.setItemState(edge, "highlight", true);
           edge.toFront();
         } else {
-          this.graph.setItemState(edge, 'highlight', false);
+          this.graph.setItemState(edge, "highlight", false);
         }
       });
       this.graph.paint();
       this.graph.setAutoPaint(true);
     });
-    this.graph.on('node:mouseleave', clearAllStats);
-    this.graph.on('canvas:tap', clearAllStats);
+    this.graph.on("node:mouseleave", clearAllStats);
+    this.graph.on("canvas:tap", clearAllStats);
 
     this.graph.data({
       nodes: data.nodes,
-      edges: data.edges.map(function(edge, i) {
+      edges: data.edges.map(function (edge, i) {
         edge.id = `edge${i}`;
         return Object.assign({}, edge);
       }),

@@ -1,10 +1,16 @@
-import { IGroup, IShape } from '@antv/g-base';
-import { registerNode, Item, NodeConfig, ShapeStyle, BaseGlobal as Global } from '@antv/f6-core';
-import { mix } from '@antv/util';
+import { IGroup, IShape } from "@antv/g-base";
+import {
+  registerNode,
+  Item,
+  NodeConfig,
+  ShapeStyle,
+  BaseGlobal as Global,
+} from "@antv/f6-core";
+import { mix } from "@antv/util";
 
 // 菱形shape
 registerNode(
-  'diamond',
+  "diamond",
   {
     // 自定义节点时的配置
     options: {
@@ -38,7 +44,7 @@ registerNode(
         // 是否显示icon，值为 false 则不渲染icon
         show: false,
         // icon的地址，字符串类型
-        img: 'https://gw.alipayobjects.com/zos/bmw-prod/5d015065-8505-4e7a-baec-976f81e3c41d.svg',
+        img: "https://gw.alipayobjects.com/zos/bmw-prod/5d015065-8505-4e7a-baec-976f81e3c41d.svg",
         width: 20,
         height: 20,
       },
@@ -46,14 +52,14 @@ registerNode(
         ...Global.nodeStateStyles,
       },
     },
-    shapeType: 'diamond',
+    shapeType: "diamond",
     // 文本位置
-    labelPosition: 'center',
+    labelPosition: "center",
     drawShape(cfg: NodeConfig, group: IGroup): IShape {
       const { icon = {} } = this.getOptions(cfg) as NodeConfig;
       const style = this.getShapeStyle!(cfg);
 
-      const keyShape = group.addShape('path', {
+      const keyShape = group.addShape("path", {
         attrs: style,
         className: `${this.type}-keyShape`,
         name: `${this.type}-keyShape`,
@@ -63,15 +69,15 @@ registerNode(
       const { width: w, height: h, show, text } = icon;
       if (show) {
         if (text) {
-          group.addShape('text', {
+          group.addShape("text", {
             attrs: {
               x: 0,
               y: 0,
               fontSize: 12,
-              fill: '#000',
-              stroke: '#000',
-              textBaseline: 'middle',
-              textAlign: 'center',
+              fill: "#000",
+              stroke: "#000",
+              textBaseline: "middle",
+              textAlign: "center",
               ...icon,
             },
             className: `${this.type}-icon`,
@@ -79,7 +85,7 @@ registerNode(
             draggable: true,
           });
         } else {
-          group.addShape('image', {
+          group.addShape("image", {
             attrs: {
               x: -w! / 2,
               y: -h! / 2,
@@ -104,66 +110,74 @@ registerNode(
     drawLinkPoints(cfg: NodeConfig, group: IGroup) {
       const { linkPoints = {} } = this.getOptions(cfg) as NodeConfig;
 
-      const { top, left, right, bottom, size: markSize, r: markR, ...markStyle } = linkPoints;
+      const {
+        top,
+        left,
+        right,
+        bottom,
+        size: markSize,
+        r: markR,
+        ...markStyle
+      } = linkPoints;
       const size = this.getSize!(cfg);
       const width = size[0];
       const height = size[1];
       if (left) {
         // left circle
-        group.addShape('circle', {
+        group.addShape("circle", {
           attrs: {
             ...markStyle,
             x: -width / 2,
             y: 0,
             r: markSize / 2 || markR || 5,
           },
-          className: 'link-point-left',
-          name: 'link-point-left',
+          className: "link-point-left",
+          name: "link-point-left",
           isAnchorPoint: true,
         });
       }
 
       if (right) {
         // right circle
-        group.addShape('circle', {
+        group.addShape("circle", {
           attrs: {
             ...markStyle,
             x: width / 2,
             y: 0,
             r: markSize / 2 || markR || 5,
           },
-          className: 'link-point-right',
-          name: 'link-point-right',
+          className: "link-point-right",
+          name: "link-point-right",
           isAnchorPoint: true,
         });
       }
 
       if (top) {
         // top circle
-        group.addShape('circle', {
+        group.addShape("circle", {
           attrs: {
             ...markStyle,
             x: 0,
             y: -height / 2,
             r: markSize / 2 || markR || 5,
           },
-          className: 'link-point-top',
-          name: 'link-point-top',
+          className: "link-point-top",
+          name: "link-point-top",
           isAnchorPoint: true,
         });
       }
 
       if (bottom) {
         // bottom circle
-        group.addShape('circle', {
+        group.addShape("circle", {
           attrs: {
             ...markStyle,
             x: 0,
             y: height / 2,
             r: markSize / 2 || markR || 5,
           },
-          className: 'link-point-bottom',
-          name: 'link-point-bottom',
+          className: "link-point-bottom",
+          name: "link-point-bottom",
           isAnchorPoint: true,
         });
       }
@@ -173,11 +187,11 @@ registerNode(
       const width = size[0];
       const height = size[1];
       const path = [
-        ['M', 0, -height / 2], // 上部顶点
-        ['L', width / 2, 0], // 右侧点
-        ['L', 0, height / 2], // 下部
-        ['L', -width / 2, 0], // 左侧
-        ['Z'], // 封闭
+        ["M", 0, -height / 2], // 上部顶点
+        ["L", width / 2, 0], // 右侧点
+        ["L", 0, height / 2], // 下部
+        ["L", -width / 2, 0], // 左侧
+        ["Z"], // 封闭
       ];
       return path;
     },
@@ -208,7 +222,7 @@ registerNode(
         path,
       };
       // 与 getShapeStyle 不同在于，update 时需要获取到当前的 style 进行融合。即新传入的配置项中没有涉及的属性，保留当前的配置。
-      const keyShape = item.get('keyShape');
+      const keyShape = item.get("keyShape");
       let style = mix({}, defaultStyle, keyShape.attr(), strokeStyle);
       style = mix(style, cfg.style);
 
@@ -216,5 +230,5 @@ registerNode(
       (this as any).updateLinkPoints(cfg, group);
     },
   },
-  'single-node',
+  "single-node",
 );

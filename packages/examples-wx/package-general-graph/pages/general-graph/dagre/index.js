@@ -1,7 +1,7 @@
-import F6 from '@antv/f6-wx';
+import F6 from "@antv/f6-wx";
 
-import data from './data';
-import dagreLayout from '@antv/f6-wx/extends/layout/dagreLayout';
+import data from "./data";
+import dagreLayout from "@antv/f6-wx/extends/layout/dagreLayout";
 
 /**
  * 自左向右的Dagre
@@ -10,7 +10,7 @@ import dagreLayout from '@antv/f6-wx/extends/layout/dagreLayout';
 Page({
   canvas: null,
   ctx: null,
-  renderer: '', // mini、mini-native等，F6需要，标记环境
+  renderer: "", // mini、mini-native等，F6需要，标记环境
   isCanvasInit: false, // canvas是否准备好了
   graph: null,
 
@@ -22,7 +22,7 @@ Page({
   },
 
   onLoad() {
-    F6.registerLayout('dagre', dagreLayout);
+    F6.registerLayout("dagre", dagreLayout);
 
     // 同步获取window的宽高
     const { windowWidth, windowHeight, pixelRatio } = wx.getSystemInfoSync();
@@ -69,31 +69,31 @@ Page({
       pixelRatio,
       fitView: true,
       modes: {
-        default: ['drag-canvas', 'drag-node'],
+        default: ["drag-canvas", "drag-node"],
       },
       layout: {
-        type: 'dagre',
-        rankdir: 'LR',
-        align: 'DL',
+        type: "dagre",
+        rankdir: "LR",
+        align: "DL",
         nodesepFunc: () => 1,
         ranksepFunc: () => 1,
       },
       defaultNode: {
         size: [30, 20],
-        type: 'rect',
+        type: "rect",
         style: {
           lineWidth: 2,
-          stroke: '#5B8FF9',
-          fill: '#C6E5FF',
+          stroke: "#5B8FF9",
+          fill: "#C6E5FF",
         },
       },
       defaultEdge: {
         size: 1,
-        color: '#e2e2e2',
+        color: "#e2e2e2",
         style: {
           endArrow: {
-            path: 'M 0,0 L 8,4 L 8,-4 Z',
-            fill: '#e2e2e2',
+            path: "M 0,0 L 8,4 L 8,-4 Z",
+            fill: "#e2e2e2",
           },
         },
       },

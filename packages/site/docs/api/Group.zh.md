@@ -12,7 +12,7 @@ order: 10
 const group = item.getContainer();
 
 // 等价于
-const group = item.get('group');
+const group = item.get("group");
 ```
 
 ## group 实例方法
@@ -29,14 +29,14 @@ const group = item.get('group');
 
 其中，`cfg` 不是必须指定到，它包括以下字段：
 
-| 名称 | 类型 | 说明 |
-| --- | --- | --- |
-| id | String | 图形分组的唯一标识，非必须指定，指定则必须唯一 |
-| name | String | 图形分组的标识，非必须指定，可以不唯一。在 F6 3.3 及以后版本中必须指定。另外，`name` 可以用于组内搜索到该元素：`const shape = group.find(element => element.get('name') === 'shape-name')`，find 函数用法见 [find(fn)](#findfn) |
-| capture | Boolean | 非必须指定，该图形分组是否可以被鼠标事件捕捉到，即是否能够响应各鼠标事件。非必须指定 |
-| visible | Boolean | 非必须指定，该图形分组是否可见。非必须指定，默认为 `true` |
+| 名称      | 类型    | 说明                                                                                                                                                                                                                                                                                                     |
+| --------- | ------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| id        | String  | 图形分组的唯一标识，非必须指定，指定则必须唯一                                                                                                                                                                                                                                                           |
+| name      | String  | 图形分组的标识，非必须指定，可以不唯一。在 F6 3.3 及以后版本中必须指定。另外，`name` 可以用于组内搜索到该元素：`const shape = group.find(element => element.get('name') === 'shape-name')`，find 函数用法见 [find(fn)](#findfn)                                                                          |
+| capture   | Boolean | 非必须指定，该图形分组是否可以被鼠标事件捕捉到，即是否能够响应各鼠标事件。非必须指定                                                                                                                                                                                                                     |
+| visible   | Boolean | 非必须指定，该图形分组是否可见。非必须指定，默认为 `true`                                                                                                                                                                                                                                                |
 | draggable | Boolean | 非必须指定，该图形分组是否允许被拖拽。例如，自定义节点通过 `addGroup` 添加图形分组，当该图形分组的 `draggable` 值为 `true` 时，鼠标在该自定义节点的这个图形分组上才能够响应 `dragstart`，`drag`，与 `dragend` 事件；在实例化图时的 `modes` 中配置的 `'drag-node'` 交互才可以在该图形分组上进行拖拽时生效 |
-| zIndex | Number | 非必须指定，该图形分组的视觉层次 z-index。非必须指定。指定后，调用 `group.sort()` 可以对组内所有图形根据各自 zIndex 进行视觉层次的排序 |
+| zIndex    | Number  | 非必须指定，该图形分组的视觉层次 z-index。非必须指定。指定后，调用 `group.sort()` 可以对组内所有图形根据各自 zIndex 进行视觉层次的排序                                                                                                                                                                   |
 
 **用法**
 
@@ -46,7 +46,7 @@ group.addGroup();
 
 // Configured
 group.addGroup({
-  id: 'groupId',
+  id: "groupId",
   draggable: true,
   // other configurations
 });
@@ -58,39 +58,39 @@ group.addGroup({
 
 **参数**
 
-| 名称 | 类型 | 说明 |
-| --- | --- | --- |
+| 名称 | 类型   | 说明                                                                                                                                                                                       |
+| ---- | ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | type | String | 图元素类型，值可以为：`'rect'`、`'circle'`、`'fan'`、`'ellipse'`、`'marker'`、`'image'` 等，具体参考 [Shape 的类型及属性](/zh/docs/manual/middle/elements/shape/shape-and-properties) 教程 |
-| cfg | Object | 图元素的属性 |
+| cfg  | Object | 图元素的属性                                                                                                                                                                               |
 
 其中，`cfg` 包括以下字段：
 
-| 名称 | 类型 | 说明 |
-| --- | --- | --- |
-| attrs | Object | 图形样式，必须配置，例如：`{x: 0, y: 10, fill: '#0f0'}` |
-| name | String | 图形的标识，可以不唯一。在 F6 3.3 及以后版本中必须指定。另外，`name` 可以用于组内搜索到该元素：`const shape = group.find(element => element.get('name') === 'shape-name')`，find 函数用法见 [find(fn)](#findfn) |
-| capture | Boolean | 该图形是否可以被鼠标事件捕捉到，即是否能够响应各鼠标事件。非必须指定 |
-| visible | Boolean | 该图形是否可见。非必须指定，默认为 `true` |
+| 名称      | 类型    | 说明                                                                                                                                                                                                                                                                     |
+| --------- | ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| attrs     | Object  | 图形样式，必须配置，例如：`{x: 0, y: 10, fill: '#0f0'}`                                                                                                                                                                                                                  |
+| name      | String  | 图形的标识，可以不唯一。在 F6 3.3 及以后版本中必须指定。另外，`name` 可以用于组内搜索到该元素：`const shape = group.find(element => element.get('name') === 'shape-name')`，find 函数用法见 [find(fn)](#findfn)                                                          |
+| capture   | Boolean | 该图形是否可以被鼠标事件捕捉到，即是否能够响应各鼠标事件。非必须指定                                                                                                                                                                                                     |
+| visible   | Boolean | 该图形是否可见。非必须指定，默认为 `true`                                                                                                                                                                                                                                |
 | draggable | Boolean | 该图形是否允许被拖拽。例如，自定义节点通过 `addShape` 添加图形，当该图形的 `draggable` 值为 `true` 时，鼠标在该自定义节点的这个图形上才能够响应 `dragstart`，`drag`，与 `dragend` 事件；在实例化图时的 `modes` 中配置的 `'drag-node'` 交互才可以在该图形上进行拖拽时生效 |
-| zIndex | Number | 该图形的视觉层次 z-index。非必须指定。指定后，调用 `group.sort()` 可以对组内所有图形根据各自 zIndex 进行视觉层次的排序 |
+| zIndex    | Number  | 该图形的视觉层次 z-index。非必须指定。指定后，调用 `group.sort()` 可以对组内所有图形根据各自 zIndex 进行视觉层次的排序                                                                                                                                                   |
 
 **用法**
 
 ```javascript
-group.addShape('rect', {
+group.addShape("rect", {
   attrs: {
     x: 0, // 必须配置
     y: 0, // 必须配置
-    fill: 'red',
-    stroke: 'red',
+    fill: "red",
+    stroke: "red",
     shadowOffsetX: 10,
     shadowOffsetY: 10,
-    shadowColor: 'blue',
+    shadowColor: "blue",
     shadowBlur: 10,
     opacity: 0.8,
   },
   // must be assigned in F6. it can be any value you want
-  name: 'rect-shape',
+  name: "rect-shape",
   zIndex: 1,
 });
 ```
@@ -125,7 +125,7 @@ const has = group.contain(child);
 
 ```javascript
 const child = group.find(function (item) {
-  return item.attr('fill') === 'red'; // 找到首个填充为红色的图形
+  return item.attr("fill") === "red"; // 找到首个填充为红色的图形
 });
 ```
 
@@ -142,7 +142,7 @@ const child = group.find(function (item) {
 **用法**
 
 ```javascript
-const group1 = group.findById('group1');
+const group1 = group.findById("group1");
 ```
 
 ### group.findAll(fn)
@@ -159,7 +159,7 @@ const group1 = group.findById('group1');
 
 ```javascript
 const children = group.findAll(function (item) {
-  return item.get('id') < 10; // 获取所有id小于10的元素
+  return item.get("id") < 10; // 获取所有id小于10的元素
 });
 ```
 
@@ -191,7 +191,7 @@ const element = group.getShape(10, 30);
 const child = group.getFirst();
 
 // 等价于
-const childrens = group.get('children');
+const childrens = group.get("children");
 const child = childrens[0];
 ```
 
@@ -205,7 +205,7 @@ const child = childrens[0];
 const child = group.getLast();
 
 // 等价于
-const childrens = group.get('children');
+const childrens = group.get("children");
 const child = childrens[childrens.length - 1];
 ```
 

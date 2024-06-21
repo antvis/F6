@@ -11,26 +11,26 @@ order: 8
 const data = {
   nodes: [
     {
-      id: 'node1',
+      id: "node1",
       x: 100,
       y: 150,
-      label: 'node1',
+      label: "node1",
     },
     {
-      id: 'node2',
+      id: "node2",
       x: 300,
       y: 150,
-      label: 'node2',
+      label: "node2",
     },
   ],
   edges: [
     {
-      source: 'node1',
-      target: 'node2',
+      source: "node1",
+      target: "node2",
     },
     {
-      source: 'node2',
-      target: 'node1',
+      source: "node2",
+      target: "node1",
     },
   ],
 };
@@ -45,8 +45,8 @@ const graph = new F6.Graph({
   height: 500,
   defaultNode: {
     style: {
-      fill: '#DEE9FF',
-      stroke: '#5B8FF9',
+      fill: "#DEE9FF",
+      stroke: "#5B8FF9",
     },
     labelCfg: {
       style: {
@@ -55,9 +55,9 @@ const graph = new F6.Graph({
     },
   },
   defaultEdge: {
-    type: 'quadratic', // 指定边的形状为二阶贝塞尔曲线
+    type: "quadratic", // 指定边的形状为二阶贝塞尔曲线
     style: {
-      stroke: '#e2e2e2',
+      stroke: "#e2e2e2",
     },
   },
 });
@@ -78,30 +78,30 @@ graph.render();
 const data = {
   nodes: [
     {
-      id: 'node1',
+      id: "node1",
       x: 100,
       y: 150,
-      label: 'node1',
+      label: "node1",
     },
     {
-      id: 'node2',
+      id: "node2",
       x: 300,
       y: 150,
-      label: 'node2',
+      label: "node2",
     },
   ],
   edges: [
     {
-      source: 'node1',
-      target: 'node2',
+      source: "node1",
+      target: "node2",
     },
     {
-      source: 'node2',
-      target: 'node1',
+      source: "node2",
+      target: "node1",
     },
     {
-      source: 'node2',
-      target: 'node1',
+      source: "node2",
+      target: "node1",
     },
   ],
 };

@@ -58,19 +58,19 @@ const data = {
 
 modelRect 节点支持 [节点通用配置](/zh/docs/manual/middle/elements/nodes/defaultNode#节点的通用属性)，下表对部分属性进行解释。对于 Object 类型的配置项将在后面有详细讲解：
 
-| 名称 | 含义 | 类型 | 备注 |
-| --- | --- | --- | --- | --- |
-| size | 卡片的大小 | Number | Array |  |
-| style | 卡片的默认样式 | Object | Canvas 支持的属性 |
-| label | 标签文本内容 | String |  |
-| labelCfg | 文本配置项 | Object |  |
-| stateStyles | 各状态下的样式 | Object | 详见[配置状态样式](/zh/docs/manual/middle/states/state#配置-state-样式) |
-| linkPoints | **视觉上的**四个锚点 | Object | 默认不显示，应与 [anchorPoints](/zh/docs/manual/middle/elements/nodes/anchorpoint) 配合使用。二者区别请看 [linkPoints](#linkpoints) |
-| **preRect** | **左侧的小矩形** | **Object** | **modelRect 节点特有** |
-| **logoIcon** | **左侧的 logo 图标** | **Object** | **modelRect 节点特有** |
-| **stateIcon** | **右侧的状态图标** | **Object** | **modelRect 节点特有** |
-| **description** | **节点主要文本下方的描述文本** | **String** | **modelRect 节点特有** |
-| **descriptionCfg** | **描述文本的配置项** | **Object** | **modelRect 节点特有** |
+| 名称               | 含义                           | 类型       | 备注                                                                                                                                |
+| ------------------ | ------------------------------ | ---------- | ----------------------------------------------------------------------------------------------------------------------------------- | --- |
+| size               | 卡片的大小                     | Number     | Array                                                                                                                               |     |
+| style              | 卡片的默认样式                 | Object     | Canvas 支持的属性                                                                                                                   |
+| label              | 标签文本内容                   | String     |                                                                                                                                     |
+| labelCfg           | 文本配置项                     | Object     |                                                                                                                                     |
+| stateStyles        | 各状态下的样式                 | Object     | 详见[配置状态样式](/zh/docs/manual/middle/states/state#配置-state-样式)                                                             |
+| linkPoints         | **视觉上的**四个锚点           | Object     | 默认不显示，应与 [anchorPoints](/zh/docs/manual/middle/elements/nodes/anchorpoint) 配合使用。二者区别请看 [linkPoints](#linkpoints) |
+| **preRect**        | **左侧的小矩形**               | **Object** | **modelRect 节点特有**                                                                                                              |
+| **logoIcon**       | **左侧的 logo 图标**           | **Object** | **modelRect 节点特有**                                                                                                              |
+| **stateIcon**      | **右侧的状态图标**             | **Object** | **modelRect 节点特有**                                                                                                              |
+| **description**    | **节点主要文本下方的描述文本** | **String** | **modelRect 节点特有**                                                                                                              |
+| **descriptionCfg** | **描述文本的配置项**           | **Object** | **modelRect 节点特有**                                                                                                              |
 
 ```javascript
     // 节点中 icon 配置
@@ -148,7 +148,7 @@ const graph = new F6.Graph({
     // ... 节点其他属性
     labelCfg: {
       style: {
-        fill: '#9254de',
+        fill: "#9254de",
         fontSize: 18,
       },
     },
@@ -177,7 +177,7 @@ const graph = new F6.Graph({
     // ... 节点其他属性
     descriptionCfg: {
       style: {
-        fill: '#f00',
+        fill: "#f00",
       },
     },
   },
@@ -218,7 +218,7 @@ const graph = new F6.Graph({
       left: true,
       right: true,
       size: 5,
-      fill: '#fff',
+      fill: "#fff",
     },
   },
 });
@@ -249,7 +249,7 @@ const graph = new F6.Graph({
     preRect: {
       // 设置为 false，则不显示
       show: true,
-      fill: '#f759ab',
+      fill: "#f759ab",
       width: 8,
     },
   },
@@ -261,13 +261,13 @@ const graph = new F6.Graph({
 
 通过 `logoIcon` 和 `stateIcon` 可以配置左侧的 logo 小图标和右边的状态小图标，这两个的配置项完全相同。
 
-| 名称 | 含义 | 类型 | 备注 |
-| --- | --- | --- | --- |
-| show | 是否显示图标 | Boolean | 默认为 `true` |
-| img | 图标图片 | String | <br />- 左侧图标 `logoIcon` 的图片默认为  <img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*KpqSS4INnRUAAAAAAAAAAABkARQnAQ' width=25 alt='img'/><br />- 右侧图标 `stateIcon` 的图片默认为 <img src='https://gw.alipayobjects.com/zos/basement_prod/300a2523-67e0-4cbf-9d4a-67c077b40395.svg' width=25 alt='img'/><br /> |
-| width | 图标的宽度 | Number | 默认为 16 |
-| height | 图标的高度 | Number | 默认为 16 |
-| offset | 图标的左右偏移量 | Number | <br />- 左侧图标 `logoIcon` 的 `offset` 默认为 0<br />- 右侧图标 `stateIcon` 的 `offset`  默认为 -5<br /> |
+| 名称   | 含义             | 类型    | 备注                                                                                                                                                                                                                                                                                                                                   |
+| ------ | ---------------- | ------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| show   | 是否显示图标     | Boolean | 默认为 `true`                                                                                                                                                                                                                                                                                                                          |
+| img    | 图标图片         | String  | <br />- 左侧图标 `logoIcon` 的图片默认为  <img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*KpqSS4INnRUAAAAAAAAAAABkARQnAQ' width=25 alt='img'/><br />- 右侧图标 `stateIcon` 的图片默认为 <img src='https://gw.alipayobjects.com/zos/basement_prod/300a2523-67e0-4cbf-9d4a-67c077b40395.svg' width=25 alt='img'/><br /> |
+| width  | 图标的宽度       | Number  | 默认为 16                                                                                                                                                                                                                                                                                                                              |
+| height | 图标的高度       | Number  | 默认为 16                                                                                                                                                                                                                                                                                                                              |
+| offset | 图标的左右偏移量 | Number  | <br />- 左侧图标 `logoIcon` 的 `offset` 默认为 0<br />- 右侧图标 `stateIcon` 的 `offset`  默认为 -5<br />                                                                                                                                                                                                                              |
 
 基于上面 [样式属性 style](#样式属性-style) 中的代码，下面代码在 `defaultNode` 中增加了 `logoIcon` 和 `stateIcon` 配置项进行左右图标的配置，使之达到如下图效果，左侧图标不显示，右侧图标更换图片。<br /><img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*pBsqR7McSiYAAAAAAAAAAABkARQnAQ' width=150 alt='img'/>
 
@@ -284,7 +284,7 @@ const graph = new F6.Graph({
     },
     stateIcon: {
       show: true,
-      img: 'https://gw.alipayobjects.com/zos/basement_prod/c781088a-c635-452a-940c-0173663456d4.svg',
+      img: "https://gw.alipayobjects.com/zos/basement_prod/c781088a-c635-452a-940c-0173663456d4.svg",
     },
   },
 });

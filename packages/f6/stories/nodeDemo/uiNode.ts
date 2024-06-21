@@ -1,12 +1,11 @@
-import {createUI} from '../../../f6-ui/lib';
+import { createUI } from "../../../f6-ui/lib";
 
 export default {
-  
   draw(cfg, group) {
     const styles = this.getShapeStyle(cfg);
     const w = styles.width;
     const h = styles.height;
-    const bg = '#E6F7FF';
+    const bg = "#E6F7FF";
 
     const html = `
       <root class="f6_ui_node">
@@ -21,7 +20,7 @@ export default {
           <shape type="path" path='[["M",7,14],["L",21,14],["M",14,7],["L",14,21]]'> </shape>
         </div>
       </root>
-    `
+    `;
 
     const css = `
       text{
@@ -65,7 +64,7 @@ export default {
       .marker{
         position: absolute;
         bottom: -30;
-        left: ${w/2-28/2};
+        left: ${w / 2 - 28 / 2};
         background: #1890FF;
         width: 28;
         height: 28;
@@ -76,9 +75,9 @@ export default {
         background: black;
         border: 1 solid #fff;
       }
-    `
+    `;
 
-    const ui = createUI(html, css, group)
-    return ui.backgroudNode.get('children')[0]
-  }   
+    const ui = createUI(html, css, group);
+    return ui.backgroudNode.get("children")[0];
+  },
 };

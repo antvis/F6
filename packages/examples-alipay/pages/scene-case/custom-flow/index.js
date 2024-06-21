@@ -1,16 +1,16 @@
-import F6 from '@antv/f6';
-import { wrapContext } from '../../../common/utils/context';
-import data from './data';
-import dagreLayout from '@antv/f6/dist/extends/layout/dagreLayout';
+import F6 from "@antv/f6";
+import { wrapContext } from "../../../common/utils/context";
+import data from "./data";
+import dagreLayout from "@antv/f6/dist/extends/layout/dagreLayout";
 /**
  * customFlow
  */
-import { isObject } from '@antv/util';
+import { isObject } from "@antv/util";
 
 Page({
   canvas: null,
   ctx: null,
-  renderer: '', // mini、mini-native等，F6需要，标记环境
+  renderer: "", // mini、mini-native等，F6需要，标记环境
   isCanvasInit: false, // canvas是否准备好了
   graph: null,
 
@@ -22,20 +22,20 @@ Page({
   },
 
   onLoad() {
-    F6.registerLayout('dagre', dagreLayout);
+    F6.registerLayout("dagre", dagreLayout);
 
     const colorMap = {
-      A: '#72CC4A',
-      B: '#1A91FF',
-      C: '#FFAA15',
+      A: "#72CC4A",
+      B: "#1A91FF",
+      C: "#FFAA15",
     };
     F6.registerNode(
-      'round-rect',
+      "round-rect",
       {
         drawShape: function drawShape(cfg, group) {
           const { width } = cfg.style;
           const { stroke } = cfg.style;
-          const rect = group.addShape('rect', {
+          const rect = group.addShape("rect", {
             attrs: {
               x: -width / 2,
               y: -15,
@@ -46,25 +46,25 @@ Page({
               lineWidth: 1.2,
               fillOpacity: 1,
             },
-            name: 'rect-shape',
+            name: "rect-shape",
           });
-          group.addShape('circle', {
+          group.addShape("circle", {
             attrs: {
               x: -width / 2,
               y: 0,
               r: 3,
               fill: stroke,
             },
-            name: 'circle-shape',
+            name: "circle-shape",
           });
-          group.addShape('circle', {
+          group.addShape("circle", {
             attrs: {
               x: width / 2,
               y: 0,
               r: 3,
               fill: stroke,
             },
-            name: 'circle-shape2',
+            name: "circle-shape2",
           });
           return rect;
         },
@@ -76,7 +76,7 @@ Page({
         },
         update: function update(cfg, item) {
           const group = item.getContainer();
-          const children = group.get('children');
+          const children = group.get("children");
           const node = children[0];
           const circleLeft = children[1];
           const circleRight = children[2];
@@ -84,17 +84,17 @@ Page({
           const { stroke } = cfg.style;
 
           if (stroke) {
-            node.attr('stroke', stroke);
-            circleLeft.attr('fill', stroke);
-            circleRight.attr('fill', stroke);
+            node.attr("stroke", stroke);
+            circleLeft.attr("fill", stroke);
+            circleRight.attr("fill", stroke);
           }
         },
       },
-      'single-node',
+      "single-node",
     );
 
-    F6.registerEdge('fund-polyline', {
-      itemType: 'edge',
+    F6.registerEdge("fund-polyline", {
+      itemType: "edge",
       draw: function draw(cfg, group) {
         const { startPoint } = cfg;
         const { endPoint } = cfg;
@@ -126,72 +126,79 @@ Page({
         };
 
         let path = [
-          ['M', startPoint.x, startPoint.y],
-          ['L', line1EndPoint.x, line1EndPoint.y],
-          ['Q', controlPoint.x, controlPoint.y, line2StartPoint.x, line2StartPoint.y],
-          ['L', endPoint.x, endPoint.y],
+          ["M", startPoint.x, startPoint.y],
+          ["L", line1EndPoint.x, line1EndPoint.y],
+          [
+            "Q",
+            controlPoint.x,
+            controlPoint.y,
+            line2StartPoint.x,
+            line2StartPoint.y,
+          ],
+          ["L", endPoint.x, endPoint.y],
         ];
 
         if (Math.abs(Ydiff) <= 5) {
           path = [
-            ['M', startPoint.x, startPoint.y],
-            ['L', endPoint.x, endPoint.y],
+            ["M", startPoint.x, startPoint.y],
+            ["L", endPoint.x, endPoint.y],
           ];
         }
 
-        const endArrow = cfg.style && cfg.style.endArrow ? cfg.style.endArrow : false; // 不支持？.
+        const endArrow =
+          cfg.style && cfg.style.endArrow ? cfg.style.endArrow : false; // 不支持？.
         if (isObject(endArrow)) endArrow.fill = stroke;
-        const line = group.addShape('path', {
+        const line = group.addShape("path", {
           attrs: {
             path,
             stroke: colorMap[cfg.data && cfg.data.type],
             lineWidth: 1.2,
             endArrow,
           },
-          name: 'path-shape',
+          name: "path-shape",
         });
 
         const labelLeftOffset = 0;
         const labelTopOffset = 8;
         // amount
-        const amount = group.addShape('text', {
+        const amount = group.addShape("text", {
           attrs: {
             text: cfg.data && cfg.data.amount,
             x: line2StartPoint.x + labelLeftOffset,
             y: endPoint.y - labelTopOffset - 2,
             fontSize: 14,
-            textAlign: 'left',
-            textBaseline: 'middle',
-            fill: '#000000D9',
+            textAlign: "left",
+            textBaseline: "middle",
+            fill: "#000000D9",
           },
-          name: 'text-shape-amount',
+          name: "text-shape-amount",
         });
         // type
-        group.addShape('text', {
+        group.addShape("text", {
           attrs: {
             text: cfg.data && cfg.data.type,
             x: line2StartPoint.x + labelLeftOffset,
             y: endPoint.y - labelTopOffset - amount.getBBox().height - 2,
             fontSize: 10,
-            textAlign: 'left',
-            textBaseline: 'middle',
-            fill: '#000000D9',
+            textAlign: "left",
+            textBaseline: "middle",
+            fill: "#000000D9",
           },
-          name: 'text-shape-type',
+          name: "text-shape-type",
         });
         // date
-        group.addShape('text', {
+        group.addShape("text", {
           attrs: {
             text: cfg.data && cfg.data.date,
             x: line2StartPoint.x + labelLeftOffset,
             y: endPoint.y + labelTopOffset + 4,
             fontSize: 12,
             fontWeight: 300,
-            textAlign: 'left',
-            textBaseline: 'middle',
-            fill: '#000000D9',
+            textAlign: "left",
+            textBaseline: "middle",
+            fill: "#000000D9",
           },
-          name: 'text-shape-date',
+          name: "text-shape-date",
         });
         return line;
       },
@@ -241,29 +248,29 @@ Page({
       pixelRatio,
       fitView: true,
       layout: {
-        type: 'dagre',
-        rankdir: 'LR',
+        type: "dagre",
+        rankdir: "LR",
         nodesep: 30,
         ranksep: 100,
       },
       modes: {
-        default: ['drag-canvas'],
+        default: ["drag-canvas"],
       },
       defaultNode: {
-        type: 'round-rect',
+        type: "round-rect",
         labelCfg: {
           style: {
-            fill: '#000000A6',
+            fill: "#000000A6",
             fontSize: 10,
           },
         },
         style: {
-          stroke: '#72CC4A',
+          stroke: "#72CC4A",
           width: 150,
         },
       },
       defaultEdge: {
-        type: 'fund-polyline',
+        type: "fund-polyline",
       },
     });
 
@@ -272,9 +279,9 @@ Page({
     // this.graph.fitView();
 
     const edges = this.graph.getEdges();
-    edges.forEach(function(edge) {
+    edges.forEach(function (edge) {
       const line = edge.getKeyShape();
-      const stroke = line.attr('stroke');
+      const stroke = line.attr("stroke");
       const targetNode = edge.getTarget();
       targetNode.update({
         style: {

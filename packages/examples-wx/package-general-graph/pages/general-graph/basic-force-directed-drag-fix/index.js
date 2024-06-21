@@ -1,7 +1,7 @@
-import F6 from '@antv/f6-wx';
+import F6 from "@antv/f6-wx";
 
-import getData from './data';
-import force from '@antv/f6-wx/extends/layout/forceLayout';
+import getData from "./data";
+import force from "@antv/f6-wx/extends/layout/forceLayout";
 
 /**
  * 固定被拖拽节点
@@ -10,7 +10,7 @@ import force from '@antv/f6-wx/extends/layout/forceLayout';
 Page({
   canvas: null,
   ctx: null,
-  renderer: '', // mini、mini-native等，F6需要，标记环境
+  renderer: "", // mini、mini-native等，F6需要，标记环境
   isCanvasInit: false, // canvas是否准备好了
   graph: null,
 
@@ -22,7 +22,7 @@ Page({
   },
 
   onLoad() {
-    F6.registerLayout('force', force);
+    F6.registerLayout("force", force);
     // 同步获取window的宽高
     const { windowWidth, windowHeight, pixelRatio } = wx.getSystemInfoSync();
 
@@ -69,12 +69,12 @@ Page({
       pixelRatio,
       fitView: true,
       layout: {
-        type: 'force',
+        type: "force",
         preventOverlap: true,
         nodeSize: 20,
       },
       modes: {
-        default: ['drag-node'],
+        default: ["drag-node"],
       },
       defaultNode: {
         size: 20,
@@ -82,15 +82,15 @@ Page({
     });
 
     function refreshDragedNodePosition(e) {
-      const model = e.item.get('model');
+      const model = e.item.get("model");
       model.fx = e.x;
       model.fy = e.y;
     }
-    this.graph.on('node:dragstart', (e) => {
+    this.graph.on("node:dragstart", (e) => {
       this.graph.layout();
       refreshDragedNodePosition(e);
     });
-    this.graph.on('node:drag', (e) => {
+    this.graph.on("node:drag", (e) => {
       refreshDragedNodePosition(e);
     });
 

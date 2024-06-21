@@ -1,4 +1,4 @@
-import each from './each';
+import each from "./each";
 /**
  * @private
  * if the argument is an array, we want to execute the fn on each entry

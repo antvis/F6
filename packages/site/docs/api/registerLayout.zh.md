@@ -9,15 +9,15 @@ order: 11
 
 ### 参数
 
-| 名称 | 类型 | 是否必选 | 描述 |
-| --- | --- | --- | --- |
-| layoutName | String | true | 自定义布局名称。 |
-| layout | Object | true | 自定义布局的配置项，配置项中包括的方法及作用具体请参考：[Layout API](/zh/docs/manual/middle/layout)。 |
+| 名称       | 类型   | 是否必选 | 描述                                                                                                  |
+| ---------- | ------ | -------- | ----------------------------------------------------------------------------------------------------- |
+| layoutName | String | true     | 自定义布局名称。                                                                                      |
+| layout     | Object | true     | 自定义布局的配置项，配置项中包括的方法及作用具体请参考：[Layout API](/zh/docs/manual/middle/layout)。 |
 
 ### 用法
 
 ```javascript
-F6.registerLayout('layoutName', {
+F6.registerLayout("layoutName", {
   /**
    * 定义自定义行为的默认参数，会与用户传入的参数进行合并
    */

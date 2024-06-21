@@ -1,17 +1,29 @@
-import { createSegmentNode } from '@antv/f6-ui';
-import { SliderOption } from '../../type/slider';
+import { createSegmentNode } from "@antv/f6-ui";
+import { SliderOption } from "../../type/slider";
 import {
   SIMPLE_BACKGROUND_STYLE,
   SIMPLE_HANDLE_STYLE,
   FOREGROUND_STYLE,
   TEXT_STYLE,
-} from '../../utils/const';
+} from "../../utils/const";
 
 export default function createSimpleSlider(option: SliderOption) {
   const { width, height = 4 } = option;
-  const handlerStyle = Object.assign({}, SIMPLE_HANDLE_STYLE, option.handlerStyle);
-  const backgroundStyle = Object.assign({}, SIMPLE_BACKGROUND_STYLE, option.backgroundStyle);
-  const foregroundStyle = Object.assign({}, FOREGROUND_STYLE, option.foregroundStyle);
+  const handlerStyle = Object.assign(
+    {},
+    SIMPLE_HANDLE_STYLE,
+    option.handlerStyle,
+  );
+  const backgroundStyle = Object.assign(
+    {},
+    SIMPLE_BACKGROUND_STYLE,
+    option.backgroundStyle,
+  );
+  const foregroundStyle = Object.assign(
+    {},
+    FOREGROUND_STYLE,
+    option.foregroundStyle,
+  );
   const textStyle = Object.assign({}, TEXT_STYLE, option.textStyle);
 
   const html = `
@@ -85,8 +97,8 @@ export default function createSimpleSlider(option: SliderOption) {
 
   return {
     slideContainer: node,
-    leftControl: node.query('.left-control'),
-    rightControl: node.query('.right-control'),
-    slideInner: node.query('.slider-inner'),
+    leftControl: node.query(".left-control"),
+    rightControl: node.query(".right-control"),
+    slideInner: node.query(".slider-inner"),
   };
 }

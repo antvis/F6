@@ -1,4 +1,4 @@
-import deprecate from './deprecate';
+import deprecate from "./deprecate";
 /**
  * @private
  * extend object.
@@ -20,8 +20,8 @@ const extend = deprecate(
     }
     return dest;
   },
-  'extend',
-  'Use `assign`.',
+  "extend",
+  "Use `assign`.",
 );
 
 export default extend;

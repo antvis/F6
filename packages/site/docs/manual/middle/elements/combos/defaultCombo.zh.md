@@ -17,17 +17,17 @@ F6 的内置 Combo 包括 circle 和 rect 两种类型，分别如下图所示�
 
 1. 新增 `combos` 数组，用于定义图上所有的 Combo 及其配置。`combos` 数组中的一个数据项有如下属性：
 
-| 属性名 | 类型 | 是否必须 | 示例 | 解释 |
-| --- | --- | --- | --- | --- |
-| id | string | true | 'comboA' | 一个 Combo 的唯一标识，**必须是 string 类型，必须唯一** |
-| parentId | string | false | 'comboB' | 该 Combo 的父 Combo 的 ID |
-| padding | Number / Number[] | false | 10 或 [ 10, 20, 10, 20 ] | 该 Combo 内边距 |
-| size | number / number[] | false | 10 或 [ 10, 20 ] | 该 Combo 的最小尺寸（非固定尺寸），默认 'circle' 类型 Combo 的 size 为 20，'rect' 类型的为 [20, 5] |
-| fixSize | number / number[] | false | 10 或 [ 10, 20 ] | 固定该 Combo 的尺寸，不指定时 Combo 大小由内部元素的分布和大小来决定。若指定了 fixSize 而没有指定 fixCollapseSize，则即使该 Combo 在收起状态下仍然保持 fixSize 指定的尺寸 |
-| fixCollapseSize | number / number[] | false | 10 或 [ 10, 20 ] | 固定该 Combo 收起时的尺寸，不指定时，若未指定 fixSize 则由 size 决定收起时的尺寸，否则统一为 fixSize 尺寸 |
-| label | string | false | 'combo A' | 该 Combo 的文本标签 |
-| style | Object | false |  | 该 Combo 的样式配置项，详见[内置 Combo 配置文档](/zh/docs/manual/middle/elements/combos/defaultCombo#样式属性-style)及各类型 Combo 的文档 |
-| labelCfg | Object | false |  | 该 Combo 的文本标签样式配置项，详见[内置 Combo 配置文档](/zh/docs/manual/middle/elements/combos/defaultCombo#标签文本-label-及其配置-labelcfg)及各类型 Combo 的文档 |
+| 属性名          | 类型              | 是否必须 | 示例                     | 解释                                                                                                                                                                      |
+| --------------- | ----------------- | -------- | ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| id              | string            | true     | 'comboA'                 | 一个 Combo 的唯一标识，**必须是 string 类型，必须唯一**                                                                                                                   |
+| parentId        | string            | false    | 'comboB'                 | 该 Combo 的父 Combo 的 ID                                                                                                                                                 |
+| padding         | Number / Number[] | false    | 10 或 [ 10, 20, 10, 20 ] | 该 Combo 内边距                                                                                                                                                           |
+| size            | number / number[] | false    | 10 或 [ 10, 20 ]         | 该 Combo 的最小尺寸（非固定尺寸），默认 'circle' 类型 Combo 的 size 为 20，'rect' 类型的为 [20, 5]                                                                        |
+| fixSize         | number / number[] | false    | 10 或 [ 10, 20 ]         | 固定该 Combo 的尺寸，不指定时 Combo 大小由内部元素的分布和大小来决定。若指定了 fixSize 而没有指定 fixCollapseSize，则即使该 Combo 在收起状态下仍然保持 fixSize 指定的尺寸 |
+| fixCollapseSize | number / number[] | false    | 10 或 [ 10, 20 ]         | 固定该 Combo 收起时的尺寸，不指定时，若未指定 fixSize 则由 size 决定收起时的尺寸，否则统一为 fixSize 尺寸                                                                 |
+| label           | string            | false    | 'combo A'                | 该 Combo 的文本标签                                                                                                                                                       |
+| style           | Object            | false    |                          | 该 Combo 的样式配置项，详见[内置 Combo 配置文档](/zh/docs/manual/middle/elements/combos/defaultCombo#样式属性-style)及各类型 Combo 的文档                                 |
+| labelCfg        | Object            | false    |                          | 该 Combo 的文本标签样式配置项，详见[内置 Combo 配置文档](/zh/docs/manual/middle/elements/combos/defaultCombo#标签文本-label-及其配置-labelcfg)及各类型 Combo 的文档       |
 
 `combos` 数组中一个数据项的示例：
 
@@ -82,27 +82,27 @@ F6 的内置 Combo 包括 circle 和 rect 两种类型，分别如下图所示�
 
 下面表格中显示了内置的各类 Combo，同时对一些特殊的字段进行了说明：
 
-| 名称 | 描述 | 默认示例 |
-| --- | --- | --- |
-| circle | 圆形：<br />- `size` 是单个数字，表示直径<br />- 圆心位置对应 Combo 的位置<br />- `color` 字段默认在描边上生效<br />- 标签文本默认在 Combo 正上方<br />- 更多字段见 [Circle](/zh/docs/manual/middle/elements/combos/built-in/circle) Combo 教程<br />- <a href='/zh/docs/examples/item/defaultCombos#circle' target='_blank'>Demo</a> | <img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*ijeuQoiH0JUAAAAAAAAAAABkARQnAQ' width=150 alt='img'/> |
-| rect | 矩形：<br />- `size` 是数组，例如：[100, 50]<br />- 矩形的中心位置是 Combo 的位置，而不是左上角<br />- `color` 字段默认在描边上生效<br />- 标签文本默认在 Combo 左上角<br />- 更多字段见 [Rect](/zh/docs/manual/middle/elements/combos/built-in/rect) Combo 教程<br />- <a href='/zh/docs/examples/item/defaultCombos#rect' target='_blank'>Demo</a> | <img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*Khp4QpxXVlQAAAAAAAAAAABkARQnAQ' width=150 alt='img'/> |
+| 名称   | 描述                                                                                                                                                                                                                                                                                                                                                 | 默认示例                                                                                                               |
+| ------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- |
+| circle | 圆形：<br />- `size` 是单个数字，表示直径<br />- 圆心位置对应 Combo 的位置<br />- `color` 字段默认在描边上生效<br />- 标签文本默认在 Combo 正上方<br />- 更多字段见 [Circle](/zh/docs/manual/middle/elements/combos/built-in/circle) Combo 教程<br />- <a href='/zh/docs/examples/item/defaultCombos#circle' target='_blank'>Demo</a>                | <img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*ijeuQoiH0JUAAAAAAAAAAABkARQnAQ' width=150 alt='img'/> |
+| rect   | 矩形：<br />- `size` 是数组，例如：[100, 50]<br />- 矩形的中心位置是 Combo 的位置，而不是左上角<br />- `color` 字段默认在描边上生效<br />- 标签文本默认在 Combo 左上角<br />- 更多字段见 [Rect](/zh/docs/manual/middle/elements/combos/built-in/rect) Combo 教程<br />- <a href='/zh/docs/examples/item/defaultCombos#rect' target='_blank'>Demo</a> | <img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*Khp4QpxXVlQAAAAAAAAAAABkARQnAQ' width=150 alt='img'/> |
 
 ## Combo 的通用属性
 
 所有内置的 Combo 支持的通用属性：
 
-| 属性名 | 类型 | 是否必须 | 示例 | 说明 |
-| --- | --- | --- | --- | --- |
-| id | string | true | 'comboA' | 一个 Combo 的唯一标识，**必须是 string 类型，必须唯一** |
-| type | string | false | 'rect' | 指定该 Combo 的类型，可以是内置 Combo 的类型名，也可以是自定义 Combo 的类型名。默认是 `'circle'` |
-| parentId | string | false | 'comboB' | 该 Combo 的父 Combo 的 ID |
-| size | false | Number / Array | 30 或 [30, 20] | Combo 的最小尺寸（非固定尺寸），默认 'circle' 类型 Combo 的 size 为 20，'rect' 类型的为 [20, 5] |
-| fixSize | number / number[] | false | 10 或 [ 10, 20 ] | 固定该 Combo 的尺寸，不指定时 Combo 大小由内部元素的分布和大小来决定。若指定了 fixSize 而没有指定 fixCollapseSize，则即使该 Combo 在收起状态下仍然保持 fixSize 指定的尺寸 |
-| fixCollapseSize | number / number[] | false | 10 或 [ 10, 20 ] | 固定该 Combo 收起时的尺寸，不指定时，若未指定 fixSize 则由 size 决定收起时的尺寸，否则统一为 fixSize 尺寸 ｜ |
-| padding | Number / Number[] | false | 10 或 [ 10, 20, 10, 20 ] | 该 Combo 内边距，默认 'circle' 类型 Combo 的 padding 为 25，'rect' 类型的为 [25, 20, 15, 20] |
-| style | Object | false |  | 该 Combo 的样式配置项 |
-| label | string | false | 'Combo A' | 该 Combo 的文本标签 |
-| labelCfg | Object | false |  | 该 Combo 的文本标签样式配置项 |
+| 属性名          | 类型              | 是否必须       | 示例                     | 说明                                                                                                                                                                      |
+| --------------- | ----------------- | -------------- | ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| id              | string            | true           | 'comboA'                 | 一个 Combo 的唯一标识，**必须是 string 类型，必须唯一**                                                                                                                   |
+| type            | string            | false          | 'rect'                   | 指定该 Combo 的类型，可以是内置 Combo 的类型名，也可以是自定义 Combo 的类型名。默认是 `'circle'`                                                                          |
+| parentId        | string            | false          | 'comboB'                 | 该 Combo 的父 Combo 的 ID                                                                                                                                                 |
+| size            | false             | Number / Array | 30 或 [30, 20]           | Combo 的最小尺寸（非固定尺寸），默认 'circle' 类型 Combo 的 size 为 20，'rect' 类型的为 [20, 5]                                                                           |
+| fixSize         | number / number[] | false          | 10 或 [ 10, 20 ]         | 固定该 Combo 的尺寸，不指定时 Combo 大小由内部元素的分布和大小来决定。若指定了 fixSize 而没有指定 fixCollapseSize，则即使该 Combo 在收起状态下仍然保持 fixSize 指定的尺寸 |
+| fixCollapseSize | number / number[] | false          | 10 或 [ 10, 20 ]         | 固定该 Combo 收起时的尺寸，不指定时，若未指定 fixSize 则由 size 决定收起时的尺寸，否则统一为 fixSize 尺寸 ｜                                                              |
+| padding         | Number / Number[] | false          | 10 或 [ 10, 20, 10, 20 ] | 该 Combo 内边距，默认 'circle' 类型 Combo 的 padding 为 25，'rect' 类型的为 [25, 20, 15, 20]                                                                              |
+| style           | Object            | false          |                          | 该 Combo 的样式配置项                                                                                                                                                     |
+| label           | string            | false          | 'Combo A'                | 该 Combo 的文本标签                                                                                                                                                       |
+| labelCfg        | Object            | false          |                          | 该 Combo 的文本标签样式配置项                                                                                                                                             |
 
 ### 样式属性 style
 
@@ -145,23 +145,23 @@ const graph = new F6.Graph({
 
 `label` String 类型。标签文本的文字内容。<br />`labelCfg` Object 类型。配置标签文本。下面是 `labelCfg` 对象中的常用配置项：
 
-| 名称 | 是否必须 | 类型 | 备注 |
-| --- | --- | --- | --- |
-| position | false | String | 文本相对于 Combo 的位置，目前支持的位置有:  `'center'`，`'top'`，`'left'`，`'right'`，`'bottom'`。默认为 `'top'` |
-| refX | false | Number | 文本的偏移，在 x 方向上的偏移量 |
-| refY | false | Number | 文本的偏移，在 y 方向上的偏移量 |
-| style | false | Object | 标签的样式属性。 |
+| 名称     | 是否必须 | 类型   | 备注                                                                                                             |
+| -------- | -------- | ------ | ---------------------------------------------------------------------------------------------------------------- |
+| position | false    | String | 文本相对于 Combo 的位置，目前支持的位置有:  `'center'`，`'top'`，`'left'`，`'right'`，`'bottom'`。默认为 `'top'` |
+| refX     | false    | Number | 文本的偏移，在 x 方向上的偏移量                                                                                  |
+| refY     | false    | Number | 文本的偏移，在 y 方向上的偏移量                                                                                  |
+| style    | false    | Object | 标签的样式属性。                                                                                                 |
 
 上表中的标签的样式属性 `style` 的常用配置项如下：
 
-| 名称 | 是否必须 | 类型 | 备注 |
-| --- | --- | --- | --- |
-| fill | false | String | 文本颜色 |
-| stroke | false | String | 文本描边颜色 |
-| lineWidth | false | Number | 文本描边粗细 |
-| opacity | false | Number | 文本透明度 |
-| fontSize | false | Number | 文本字体大小 |
-| fontFamily | false | String | 文字字体 |
+| 名称                                                                                                          | 是否必须 | 类型   | 备注         |
+| ------------------------------------------------------------------------------------------------------------- | -------- | ------ | ------------ |
+| fill                                                                                                          | false    | String | 文本颜色     |
+| stroke                                                                                                        | false    | String | 文本描边颜色 |
+| lineWidth                                                                                                     | false    | Number | 文本描边粗细 |
+| opacity                                                                                                       | false    | Number | 文本透明度   |
+| fontSize                                                                                                      | false    | Number | 文本字体大小 |
+| fontFamily                                                                                                    | false    | String | 文字字体     |
 | ... Combo 标签与节点、边标签样式属性相同，统一整理在 [Text 图形 API](/zh/docs/api/shapeProperties/#文本-text) |
 
 下面代码演示在实例化图时全局配置方法中配置  `label` 和  `labelCfg`。
@@ -264,9 +264,9 @@ const data = {
 graph.combo((combo) => {
   return {
     id: combo.id,
-    type: 'rect',
+    type: "rect",
     style: {
-      fill: 'blue',
+      fill: "blue",
     },
   };
 });

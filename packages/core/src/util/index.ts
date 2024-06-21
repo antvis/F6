@@ -1,9 +1,9 @@
-import * as MathUtil from './math';
-import * as GraphicUtil from './graphic';
-import * as PathUtil from './path';
-import * as BaseUtil from './base';
-import * as ColorUtil from './color';
-import { ext, mat3 } from '@antv/matrix-util';
+import * as MathUtil from "./math";
+import * as GraphicUtil from "./graphic";
+import * as PathUtil from "./path";
+import * as BaseUtil from "./base";
+import * as ColorUtil from "./color";
+import { ext, mat3 } from "@antv/matrix-util";
 
 const transform = ext.transform;
 

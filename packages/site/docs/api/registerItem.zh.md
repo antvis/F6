@@ -15,17 +15,17 @@ order: 7
 
 ### 参数
 
-| 名称 | 类型 | 是否必选 | 描述 |
-| --- | --- | --- | --- |
-| nodeName | String | true | 自定义节点名称，需保持唯一性。 |
-| options | Object | true | 自定义节点时的配置项，配置项中包括完整的生命周期方法，具体请参考：[Shape Doc](/zh/docs/manual/middle/elements/shape/shape-keyshape) 和 [自定义节点与边 API](/zh/docs/api/registerItem)。 |
-| extendNodeName | String | false | 自定义节点时可基于内置节点进行定义，该字段表示内置节点名称，所有内置节点请参考：[内置节点](/zh/docs/manual/middle/elements/nodes/defaultNode) 教程。 |
+| 名称           | 类型   | 是否必选 | 描述                                                                                                                                                                                     |
+| -------------- | ------ | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| nodeName       | String | true     | 自定义节点名称，需保持唯一性。                                                                                                                                                           |
+| options        | Object | true     | 自定义节点时的配置项，配置项中包括完整的生命周期方法，具体请参考：[Shape Doc](/zh/docs/manual/middle/elements/shape/shape-keyshape) 和 [自定义节点与边 API](/zh/docs/api/registerItem)。 |
+| extendNodeName | String | false    | 自定义节点时可基于内置节点进行定义，该字段表示内置节点名称，所有内置节点请参考：[内置节点](/zh/docs/manual/middle/elements/nodes/defaultNode) 教程。                                     |
 
 ### 用法
 
 ```javascript
 F6.registerNode(
-  'nodeName',
+  "nodeName",
   {
     /**
      * 绘制节点，包含文本
@@ -69,7 +69,7 @@ F6.registerNode(
      */
     getAnchorPoints(cfg) {},
   },
-  'extendedNodeName',
+  "extendedNodeName",
 );
 ```
 
@@ -79,17 +79,17 @@ F6.registerNode(
 
 ### 参数
 
-| 名称 | 类型 | 是否必选 | 描述 |
-| --- | --- | --- | --- |
-| edgeName | String | true | 自定义边的名称 |
-| options | Object | true | 自定义边时的配置项，配置项中包括完整的生命周期方法，具体请参考：[Shape Doc](/zh/docs/manual/middle/elements/shape/shape-keyshape) 和 [自定义节点与边 API](/zh/docs/api/registerItem)。 |
-| extendedEdgeName | String | false | 自定义边时可基于内置边进行定义，该字段表示内置边的名称，所有内置边请参考：[内置边](/zh/docs/manual/middle/elements/edges/defaultEdge) 教程。 |
+| 名称             | 类型   | 是否必选 | 描述                                                                                                                                                                                   |
+| ---------------- | ------ | -------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| edgeName         | String | true     | 自定义边的名称                                                                                                                                                                         |
+| options          | Object | true     | 自定义边时的配置项，配置项中包括完整的生命周期方法，具体请参考：[Shape Doc](/zh/docs/manual/middle/elements/shape/shape-keyshape) 和 [自定义节点与边 API](/zh/docs/api/registerItem)。 |
+| extendedEdgeName | String | false    | 自定义边时可基于内置边进行定义，该字段表示内置边的名称，所有内置边请参考：[内置边](/zh/docs/manual/middle/elements/edges/defaultEdge) 教程。                                           |
 
 ### 用法
 
 ```javascript
 F6.registerEdge(
-  'edgeName',
+  "edgeName",
   {
     /**
      * 绘制边，包含文本
@@ -127,7 +127,7 @@ F6.registerEdge(
      */
     setState(name, value, edge) {},
   },
-  'extendedEdgeName',
+  "extendedEdgeName",
 );
 ```
 
@@ -137,17 +137,17 @@ F6.registerEdge(
 
 ### 参数
 
-| 名称 | 类型 | 是否必选 | 描述 |
-| --- | --- | --- | --- |
-| comboName | String | true | 自定义 combo 的名称，需保持唯一性。 |
-| options | Object | true | 自定义 combo 时的配置项，配置项中包括完整的生命周期方法，具体请参考：[Shape Doc](/zh/docs/manual/middle/elements/shape/shape-keyshape) 和 [自定义节点与边 API](/zh/docs/api/registerItem)。 |
-| extendedComboName | String | false | 自定义节点时可基于内置 combo 进行定义，该字段表示内置 combo 名称，所有内置 Combo 请参考：[内置 Combo](/zh/docs/manual/middle/elements/combos/defaultCombo) 教程。 |
+| 名称              | 类型   | 是否必选 | 描述                                                                                                                                                                                        |
+| ----------------- | ------ | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| comboName         | String | true     | 自定义 combo 的名称，需保持唯一性。                                                                                                                                                         |
+| options           | Object | true     | 自定义 combo 时的配置项，配置项中包括完整的生命周期方法，具体请参考：[Shape Doc](/zh/docs/manual/middle/elements/shape/shape-keyshape) 和 [自定义节点与边 API](/zh/docs/api/registerItem)。 |
+| extendedComboName | String | false    | 自定义节点时可基于内置 combo 进行定义，该字段表示内置 combo 名称，所有内置 Combo 请参考：[内置 Combo](/zh/docs/manual/middle/elements/combos/defaultCombo) 教程。                           |
 
 ### 用法
 
 ```javascript
 F6.registerCombo(
-  'comboName',
+  "comboName",
   {
     /**
      * 绘制 combo，包含文本
@@ -191,7 +191,7 @@ F6.registerCombo(
      */
     getAnchorPoints(cfg) {},
   },
-  'extendedComboName',
+  "extendedComboName",
 );
 ```
 
@@ -200,11 +200,11 @@ F6.registerCombo(
 下面以注册边为例：
 
 ```javascript
-import F6 from '@antv/f6';
+import F6 from "@antv/f6";
 F6.registerEdge(
-  'edgeName',
+  "edgeName",
   {
-    labelPosition: 'center',
+    labelPosition: "center",
     labelAutoRotate: true,
     draw(cfg, group) {
       // 定义的其他方法，都可以在draw里面调用， 如 drawShape、drawLabel 等。
@@ -223,7 +223,7 @@ F6.registerEdge(
       // 更新绘制的元素
     },
   },
-  'line',
+  "line",
 );
 ```
 

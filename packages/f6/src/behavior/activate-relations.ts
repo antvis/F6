@@ -1,10 +1,10 @@
-import { G6Event, IG6GraphEvent, INode } from '@antv/f6-core';
+import { G6Event, IG6GraphEvent, INode } from "@antv/f6-core";
 
 export default {
   getDefaultCfg(): object {
     return {
-      activeState: 'active',
-      inactiveState: 'inactive',
+      activeState: "active",
+      inactiveState: "inactive",
       resetSelected: false,
       shouldUpdate() {
         return true;
@@ -13,8 +13,8 @@ export default {
   },
   getEvents(): { [key in G6Event]?: string } {
     return {
-      'node:tap': 'setAllItemStates',
-      'canvas:tap': 'clearAllItemStates',
+      "node:tap": "setAllItemStates",
+      "canvas:tap": "clearAllItemStates",
     };
   },
   setAllItemStates(e: IG6GraphEvent) {
@@ -22,7 +22,7 @@ export default {
     const item: INode = e.item as INode;
     const graph = self.graph;
     self.item = item;
-    if (!self.shouldUpdate(e.item, { event: e, action: 'activate' })) {
+    if (!self.shouldUpdate(e.item, { event: e, action: "activate" })) {
       return;
     }
     const activeState = self.activeState;
@@ -33,10 +33,10 @@ export default {
     const edgeLength = edges.length;
     for (let i = 0; i < nodeLength; i++) {
       const node = nodes[i];
-      const hasSelected = node.hasState('selected');
+      const hasSelected = node.hasState("selected");
       if (self.resetSelected) {
         if (hasSelected) {
-          graph.setItemState(node, 'selected', false);
+          graph.setItemState(node, "selected", false);
         }
       }
       graph.setItemState(node, activeState, false);
@@ -76,19 +76,19 @@ export default {
       graph.setItemState(edge, activeState, true);
       edge.toFront();
     }
-    graph.emit('afteractivaterelations', { item: e.item, action: 'activate' });
+    graph.emit("afteractivaterelations", { item: e.item, action: "activate" });
   },
   clearActiveState(e: any) {
     const self = this;
-    const graph = self.get('graph');
-    if (!self.shouldUpdate(e.item, { event: e, action: 'deactivate' })) {
+    const graph = self.get("graph");
+    if (!self.shouldUpdate(e.item, { event: e, action: "deactivate" })) {
       return;
     }
 
     const activeState = this.activeState;
     const inactiveState = this.inactiveState;
 
-    const autoPaint = graph.get('autoPaint');
+    const autoPaint = graph.get("autoPaint");
     graph.setAutoPaint(false);
     const nodes = graph.getNodes();
     const edges = graph.getEdges();
@@ -101,19 +101,19 @@ export default {
     }
     for (let i = 0; i < edgeLength; i++) {
       const edge = edges[i];
-      graph.clearItemStates(edge, [activeState, inactiveState, 'deactivate']);
+      graph.clearItemStates(edge, [activeState, inactiveState, "deactivate"]);
     }
     graph.paint();
     graph.setAutoPaint(autoPaint);
-    graph.emit('afteractivaterelations', {
-      item: e.item || self.get('item'),
-      action: 'deactivate',
+    graph.emit("afteractivaterelations", {
+      item: e.item || self.get("item"),
+      action: "deactivate",
     });
   },
   clearAllItemStates(e: any) {
     const self = this;
     const graph = self.graph;
-    if (!self.shouldUpdate(e.item, { event: e, action: 'deactivate' })) {
+    if (!self.shouldUpdate(e.item, { event: e, action: "deactivate" })) {
       return;
     }
 
@@ -131,12 +131,12 @@ export default {
     }
     for (let i = 0; i < edgeLength; i++) {
       const edge = edges[i];
-      graph.clearItemStates(edge, [activeState, inactiveState, 'deactivate']);
+      graph.clearItemStates(edge, [activeState, inactiveState, "deactivate"]);
     }
 
-    graph.emit('afteractivaterelations', {
-      item: e.item || self.get('item'),
-      action: 'deactivate',
+    graph.emit("afteractivaterelations", {
+      item: e.item || self.get("item"),
+      action: "deactivate",
     });
   },
 };

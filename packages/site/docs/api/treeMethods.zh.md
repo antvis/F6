@@ -14,7 +14,7 @@ order: 4
 **参数**
 
 | 名称   | 类型   | 是否必选 | 描述       |
-| ------ | ------ | -------- | ---------- |
+| ------ | ------ | -------- | ---------- | ----------------- |
 | data   | Object | true     | 子树的数据 |
 | parent | Node   | String   | true       | 父节点或父节点 ID |
 
@@ -112,7 +112,7 @@ treeGraph.updateChildren(data, 'root')
 **用法**
 
 ```javascript
-treeGraph.removeChild('sub');
+treeGraph.removeChild("sub");
 ```
 
 ## 布局
@@ -131,8 +131,8 @@ treeGraph.removeChild('sub');
 
 ```javascript
 const layout = {
-  type: 'mindmap',
-  dirction: 'H',
+  type: "mindmap",
+  dirction: "H",
   getSubTreeSep: () => 20,
   getVGap: () => 25,
   getHeight: () => 30,

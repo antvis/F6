@@ -1,3 +1,3 @@
-import Index from './index.zh';
+import Index from "./index.zh";
 
 export default Index;

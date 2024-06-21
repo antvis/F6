@@ -13,27 +13,27 @@ order: 4
 
 **参数**
 
-| 名称 | 类型 | 是否必选 | 描述 |
-| --- | --- | --- | --- |
-| type | string | true | 元素类型，可选值为 `'node'`、`'edge'` |
-| model | Object | true | 元素的数据模型，具体内容参见[元素配置项](/zh/docs/api/Items/itemProperties)。 |
-| stack | boolean | false | 操作是否入 undo & redo 栈，当实例化 Graph 时设置 enableStack 为 true 时，默认情况下会自动入栈，入栈以后，就支持 undo & redo 操作，如果不需要，则设置该参数为 false 即可 |
+| 名称  | 类型    | 是否必选 | 描述                                                                                                                                                                    |
+| ----- | ------- | -------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| type  | string  | true     | 元素类型，可选值为 `'node'`、`'edge'`                                                                                                                                   |
+| model | Object  | true     | 元素的数据模型，具体内容参见[元素配置项](/zh/docs/api/Items/itemProperties)。                                                                                           |
+| stack | boolean | false    | 操作是否入 undo & redo 栈，当实例化 Graph 时设置 enableStack 为 true 时，默认情况下会自动入栈，入栈以后，就支持 undo & redo 操作，如果不需要，则设置该参数为 false 即可 |
 
 **用法**
 
 ```javascript
 const model = {
-  id: 'node',
-  label: 'node',
-  address: 'cq',
+  id: "node",
+  label: "node",
+  address: "cq",
   x: 200,
   y: 150,
   style: {
-    fill: 'blue',
+    fill: "blue",
   },
 };
 
-graph.addItem('node', model);
+graph.addItem("node", model);
 ```
 
 ### graph.removeItem(item, stack)
@@ -42,16 +42,16 @@ graph.addItem('node', model);
 
 **参数**
 
-| 名称 | 类型 | 是否必选 | 描述 |
-| --- | --- | --- | --- |
-| item | string / Object | true | 元素 ID 或元素实例 |
-| stack | boolean | false | 操作是否入 undo & redo 栈，当实例化 Graph 时设置 enableStack 为 true 时，默认情况下会自动入栈，入栈以后，就支持 undo & redo 操作，如果不需要，则设置该参数为 false 即可 |
+| 名称  | 类型            | 是否必选 | 描述                                                                                                                                                                    |
+| ----- | --------------- | -------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| item  | string / Object | true     | 元素 ID 或元素实例                                                                                                                                                      |
+| stack | boolean         | false    | 操作是否入 undo & redo 栈，当实例化 Graph 时设置 enableStack 为 true 时，默认情况下会自动入栈，入栈以后，就支持 undo & redo 操作，如果不需要，则设置该参数为 false 即可 |
 
 **用法**
 
 ```javascript
 // 通过 ID 查询节点实例
-const item = graph.findById('node');
+const item = graph.findById("node");
 graph.removeItem(item);
 
 // 该操作不会进入到 undo & redo 栈，即 redo & undo 操作会忽略该操作
@@ -66,28 +66,28 @@ graph.removeItem(item, false);
 
 **参数**
 
-| 名称 | 类型 | 是否必选 | 描述 |
-| --- | --- | --- | --- |
-| item | string / Object | true | 元素 ID 或元素实例 |
-| model | Object | true | 需要更新的数据模型，具体内容参见[元素配置项](/zh/docs/api/Items/itemProperties) |
-| stack | boolean | false | 操作是否入 undo & redo 栈，当实例化 Graph 时设置 enableStack 为 true 时，默认情况下会自动入栈，入栈以后，就支持 undo & redo 操作，如果不需要，则设置该参数为 false 即可 |
+| 名称  | 类型            | 是否必选 | 描述                                                                                                                                                                    |
+| ----- | --------------- | -------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| item  | string / Object | true     | 元素 ID 或元素实例                                                                                                                                                      |
+| model | Object          | true     | 需要更新的数据模型，具体内容参见[元素配置项](/zh/docs/api/Items/itemProperties)                                                                                         |
+| stack | boolean         | false    | 操作是否入 undo & redo 栈，当实例化 Graph 时设置 enableStack 为 true 时，默认情况下会自动入栈，入栈以后，就支持 undo & redo 操作，如果不需要，则设置该参数为 false 即可 |
 
 **用法**
 
 ```javascript
 const model = {
-  id: 'node',
-  label: 'node',
-  address: 'cq',
+  id: "node",
+  label: "node",
+  address: "cq",
   x: 200,
   y: 150,
   style: {
-    fill: 'blue',
+    fill: "blue",
   },
 };
 
 // 通过 ID 查询节点实例
-const item = graph.findById('node');
+const item = graph.findById("node");
 graph.updateItem(item, model);
 ```
 
@@ -105,7 +105,7 @@ graph.updateItem(item, model);
 
 ```javascript
 // 通过 ID 查询节点实例
-const item = graph.findById('node');
+const item = graph.findById("node");
 graph.refreshItem(item);
 ```
 
@@ -146,7 +146,7 @@ graph.updateCombos();
 
 ```javascript
 // 更新了某个节点的位置
-const node1 = graph.findById('node1');
+const node1 = graph.findById("node1");
 graph.updateItem(node1, {
   x: 100,
   y: 100,
@@ -198,9 +198,9 @@ graph.updateComboTree('combo1', 'combo2')
 graph.node((node) => {
   return {
     id: node.id,
-    type: 'rect',
+    type: "rect",
     style: {
-      fill: 'blue',
+      fill: "blue",
     },
   };
 });
@@ -227,9 +227,9 @@ graph.render();
 graph.edge((edge) => {
   return {
     id: edge.id,
-    type: 'cubic-horizontal',
+    type: "cubic-horizontal",
     style: {
-      stroke: 'green',
+      stroke: "green",
     },
   };
 });
@@ -256,9 +256,9 @@ graph.render();
 graph.combo((combo) => {
   return {
     id: combo.id,
-    type: 'rect',
+    type: "rect",
     style: {
-      stroke: 'green',
+      stroke: "green",
     },
   };
 });
@@ -275,20 +275,20 @@ graph.render();
 
 **参数**
 
-| 名称 | 类型 | 是否必选 | 描述 |
-| --- | --- | --- | --- |
-| item | string / Object | true | 元素 ID 或元素实例 |
-| stack | boolean | false | 操作是否入 undo & redo 栈，当实例化 Graph 时设置 enableStack 为 true 时，默认情况下会自动入栈，入栈以后，就支持 undo & redo 操作，如果不需要，则设置该参数为 false 即可 |
+| 名称  | 类型            | 是否必选 | 描述                                                                                                                                                                    |
+| ----- | --------------- | -------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| item  | string / Object | true     | 元素 ID 或元素实例                                                                                                                                                      |
+| stack | boolean         | false    | 操作是否入 undo & redo 栈，当实例化 Graph 时设置 enableStack 为 true 时，默认情况下会自动入栈，入栈以后，就支持 undo & redo 操作，如果不需要，则设置该参数为 false 即可 |
 
 **用法**
 
 ```javascript
 // 通过 ID 查询节点实例
-const item = graph.findById('nodeId');
+const item = graph.findById("nodeId");
 graph.showItem(item);
 
 // 等价于
-graph.showItem('nodeId');
+graph.showItem("nodeId");
 ```
 
 ### graph.hideItem(item, stack)
@@ -297,18 +297,18 @@ graph.showItem('nodeId');
 
 **参数**
 
-| 名称 | 类型 | 是否必选 | 描述 |
-| --- | --- | --- | --- |
-| item | string / Object | true | 元素 ID 或元素实例 |
-| stack | boolean | false | 操作是否入 undo & redo 栈，当实例化 Graph 时设置 enableStack 为 true 时，默认情况下会自动入栈，入栈以后，就支持 undo & redo 操作，如果不需要，则设置该参数为 false 即可 |
+| 名称  | 类型            | 是否必选 | 描述                                                                                                                                                                    |
+| ----- | --------------- | -------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| item  | string / Object | true     | 元素 ID 或元素实例                                                                                                                                                      |
+| stack | boolean         | false    | 操作是否入 undo & redo 栈，当实例化 Graph 时设置 enableStack 为 true 时，默认情况下会自动入栈，入栈以后，就支持 undo & redo 操作，如果不需要，则设置该参数为 false 即可 |
 
 **用法**
 
 ```javascript
 // 通过 ID 查询节点实例
-const item = graph.findById('nodeId');
+const item = graph.findById("nodeId");
 graph.hideItem(item);
 
 // 等价于
-graph.hideItem('nodeId');
+graph.hideItem("nodeId");
 ```

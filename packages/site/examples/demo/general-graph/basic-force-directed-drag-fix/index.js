@@ -14,14 +14,14 @@ const graph = new F6.Graph({
   layout: {
     type: "force",
     preventOverlap: true,
-    nodeSize: 20
+    nodeSize: 20,
   },
   modes: {
-    default: ["drag-node"]
+    default: ["drag-node"],
   },
   defaultNode: {
-    size: 20
-  }
+    size: 20,
+  },
 });
 
 function refreshDragedNodePosition(e) {
@@ -30,11 +30,11 @@ function refreshDragedNodePosition(e) {
   model.fy = e.y;
 }
 
-graph.on("node:dragstart", e => {
+graph.on("node:dragstart", (e) => {
   graph.layout();
   refreshDragedNodePosition(e);
 });
-graph.on("node:drag", e => {
+graph.on("node:drag", (e) => {
   refreshDragedNodePosition(e);
 });
 graph.data(data);

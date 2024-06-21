@@ -9,7 +9,7 @@ var pressCount = 0;
 var panStartCount = 0;
 var swipeCount = 0;
 
-QUnit.module('Require Failure ( Swipe & Press )', {
+QUnit.module("Require Failure ( Swipe & Press )", {
   beforeEach: function () {
     el = utils.createHitArea();
     hammer = new Hammer(el, { recognizers: [] });
@@ -28,10 +28,10 @@ QUnit.module('Require Failure ( Swipe & Press )', {
 
     pressCount = 0;
     swipeCount = 0;
-    hammer.on('press', function () {
+    hammer.on("press", function () {
       pressCount++;
     });
-    hammer.on('swipe', function () {
+    hammer.on("swipe", function () {
       swipeCount++;
     });
   },
@@ -41,41 +41,41 @@ QUnit.module('Require Failure ( Swipe & Press )', {
 });
 
 QUnit.test(
-  'When swipe does not recognize the gesture, a press gesture can be fired',
+  "When swipe does not recognize the gesture, a press gesture can be fired",
   function (assert) {
     var done = assert.async();
     assert.expect(1);
 
-    utils.dispatchTouchEvent(el, 'start', 50, 50);
+    utils.dispatchTouchEvent(el, "start", 50, 50);
 
     setTimeout(function () {
-      assert.equal(pressCount, 1, '1 press recognized');
+      assert.equal(pressCount, 1, "1 press recognized");
       done();
     }, pressPeriod + 100);
   },
 );
 
 QUnit.test(
-  'When swipe does recognize the gesture, a press gesture cannot be fired',
+  "When swipe does recognize the gesture, a press gesture cannot be fired",
   function (assert) {
     var done = assert.async();
     assert.expect(2);
 
     Simulator.gestures.swipe(el, null, function () {
-      assert.ok(swipeCount > 0, 'swipe gesture should be recognizing');
+      assert.ok(swipeCount > 0, "swipe gesture should be recognizing");
 
       assert.equal(
         pressCount,
         0,
-        'press gesture should not be recognized because swipe gesture is recognizing',
+        "press gesture should not be recognized because swipe gesture is recognizing",
       );
       done();
     });
   },
 );
-QUnit.module('Require Failure ( Pan & Press )', {
+QUnit.module("Require Failure ( Pan & Press )", {
   beforeEach: function () {
-    el = document.createElement('div');
+    el = document.createElement("div");
     document.body.appendChild(el);
 
     hammer = new Hammer(el, { recognizers: [] });
@@ -93,10 +93,10 @@ QUnit.module('Require Failure ( Pan & Press )', {
 
     pressCount = 0;
     panStartCount = 0;
-    hammer.on('press', function () {
+    hammer.on("press", function () {
       pressCount++;
     });
-    hammer.on('panstart', function () {
+    hammer.on("panstart", function () {
       panStartCount++;
     });
   },
@@ -107,36 +107,36 @@ QUnit.module('Require Failure ( Pan & Press )', {
 });
 
 QUnit.test(
-  'When pan does not recognize the gesture, a press gesture can be fired',
+  "When pan does not recognize the gesture, a press gesture can be fired",
   function (assert) {
     var done = assert.async();
     assert.expect(1);
 
-    utils.dispatchTouchEvent(el, 'start', 50, 50);
+    utils.dispatchTouchEvent(el, "start", 50, 50);
 
     setTimeout(function () {
-      assert.equal(pressCount, 1, '1 press recognized');
+      assert.equal(pressCount, 1, "1 press recognized");
       done();
     }, pressPeriod + 100);
   },
 );
 
 QUnit.test(
-  'When pan recognizes the gesture, a press gesture cannot be fired',
+  "When pan recognizes the gesture, a press gesture cannot be fired",
   function (assert) {
     var done = assert.async();
     assert.expect(2);
 
-    utils.dispatchTouchEvent(el, 'start', 50, 50);
-    utils.dispatchTouchEvent(el, 'move', 50 + pressThreshold / 4, 50);
+    utils.dispatchTouchEvent(el, "start", 50, 50);
+    utils.dispatchTouchEvent(el, "move", 50 + pressThreshold / 4, 50);
 
     setTimeout(function () {
-      assert.ok(panStartCount > 0, 'pan gesture should be recognizing');
+      assert.ok(panStartCount > 0, "pan gesture should be recognizing");
 
       assert.equal(
         pressCount,
         0,
-        'press gesture should not be recognized because pan gesture is recognizing',
+        "press gesture should not be recognized because pan gesture is recognizing",
       );
       done();
     }, pressPeriod + 100);

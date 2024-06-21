@@ -1,7 +1,7 @@
-import F6 from '@antv/f6';
-import { wrapContext } from '../../../common/utils/context';
-import data from './data';
-import dagreLayout from '@antv/f6/dist/extends/layout/dagreLayout';
+import F6 from "@antv/f6";
+import { wrapContext } from "../../../common/utils/context";
+import data from "./data";
+import dagreLayout from "@antv/f6/dist/extends/layout/dagreLayout";
 
 /**
  * Dagre流程图
@@ -10,7 +10,7 @@ import dagreLayout from '@antv/f6/dist/extends/layout/dagreLayout';
 Page({
   canvas: null,
   ctx: null,
-  renderer: '', // mini、mini-native等，F6需要，标记环境
+  renderer: "", // mini、mini-native等，F6需要，标记环境
   isCanvasInit: false, // canvas是否准备好了
   graph: null,
 
@@ -22,43 +22,43 @@ Page({
   },
 
   onLoad() {
-    F6.registerLayout('dagre', dagreLayout);
+    F6.registerLayout("dagre", dagreLayout);
     F6.registerNode(
-      'sql',
+      "sql",
       {
         drawShape(cfg, group) {
-          const rect = group.addShape('rect', {
+          const rect = group.addShape("rect", {
             attrs: {
               x: -75,
               y: -25,
               width: 150,
               height: 50,
               radius: 10,
-              stroke: '#5B8FF9',
-              fill: '#C6E5FF',
+              stroke: "#5B8FF9",
+              fill: "#C6E5FF",
               lineWidth: 3,
             },
-            name: 'rect-shape',
+            name: "rect-shape",
           });
           if (cfg.name) {
-            group.addShape('text', {
+            group.addShape("text", {
               attrs: {
                 text: cfg.name,
                 x: 0,
                 y: 0,
-                fill: '#00287E',
+                fill: "#00287E",
                 fontSize: 14,
-                textAlign: 'center',
-                textBaseline: 'middle',
-                fontWeight: 'bold',
+                textAlign: "center",
+                textBaseline: "middle",
+                fontWeight: "bold",
               },
-              name: 'text-shape',
+              name: "text-shape",
             });
           }
           return rect;
         },
       },
-      'single-node',
+      "single-node",
     );
 
     // 同步获取window的宽高
@@ -105,9 +105,9 @@ Page({
       height,
       pixelRatio,
       layout: {
-        type: 'dagre',
+        type: "dagre",
         nodesepFunc: (d) => {
-          if (d.id === '3') {
+          if (d.id === "3") {
             return 500;
           }
           return 50;
@@ -116,38 +116,38 @@ Page({
         controlPoints: true,
       },
       defaultNode: {
-        type: 'sql',
+        type: "sql",
       },
       defaultEdge: {
-        type: 'polyline',
+        type: "polyline",
         style: {
           radius: 20,
           offset: 45,
           endArrow: true,
           lineWidth: 2,
-          stroke: '#C2C8D5',
+          stroke: "#C2C8D5",
         },
       },
       nodeStateStyles: {
         selected: {
-          stroke: '#d9d9d9',
-          fill: '#5394ef',
+          stroke: "#d9d9d9",
+          fill: "#5394ef",
         },
       },
       modes: {
         default: [
-          'drag-canvas',
-          'zoom-canvas',
-          'click-select',
+          "drag-canvas",
+          "zoom-canvas",
+          "click-select",
           {
-            type: 'tooltip',
+            type: "tooltip",
             formatText(model) {
               const cfg = model.conf;
               const text = [];
               cfg.forEach((row) => {
                 text.push(`${row.label}:${row.value}<br>`);
               });
-              return text.join('\n');
+              return text.join("\n");
             },
             offset: 30,
           },

@@ -1,105 +1,105 @@
 export default {
-  id: 'Modeling Methods',
+  id: "Modeling Methods",
   children: [
     {
-      id: 'Classification',
+      id: "Classification",
       children: [
         {
-          id: 'Logistic regression',
+          id: "Logistic regression",
         },
         {
-          id: 'Linear discriminant analysis',
+          id: "Linear discriminant analysis",
         },
         {
-          id: 'Rules',
+          id: "Rules",
         },
         {
-          id: 'Decision trees',
+          id: "Decision trees",
         },
         {
-          id: 'Naive Bayes',
+          id: "Naive Bayes",
         },
         {
-          id: 'K nearest neighbor',
+          id: "K nearest neighbor",
         },
         {
-          id: 'Probabilistic neural network',
+          id: "Probabilistic neural network",
         },
         {
-          id: 'Support vector machine',
+          id: "Support vector machine",
         },
       ],
     },
     {
-      id: 'Consensus',
+      id: "Consensus",
       children: [
         {
-          id: 'Models diversity',
+          id: "Models diversity",
           children: [
             {
-              id: 'Different initializations',
+              id: "Different initializations",
             },
             {
-              id: 'Different parameter choices',
+              id: "Different parameter choices",
             },
             {
-              id: 'Different architectures',
+              id: "Different architectures",
             },
             {
-              id: 'Different modeling methods',
+              id: "Different modeling methods",
             },
             {
-              id: 'Different training sets',
+              id: "Different training sets",
             },
             {
-              id: 'Different feature sets',
+              id: "Different feature sets",
             },
           ],
         },
         {
-          id: 'Methods',
+          id: "Methods",
           children: [
             {
-              id: 'Classifier selection',
+              id: "Classifier selection",
             },
             {
-              id: 'Classifier fusion',
+              id: "Classifier fusion",
             },
           ],
         },
         {
-          id: 'Common',
+          id: "Common",
           children: [
             {
-              id: 'Bagging',
+              id: "Bagging",
             },
             {
-              id: 'Boosting',
+              id: "Boosting",
             },
             {
-              id: 'AdaBoost',
+              id: "AdaBoost",
             },
           ],
         },
       ],
     },
     {
-      id: 'Regression',
+      id: "Regression",
       children: [
         {
-          id: 'Multiple linear regression',
+          id: "Multiple linear regression",
         },
         {
-          id: 'Partial least squares',
+          id: "Partial least squares",
         },
         {
-          id: 'Multi-layer feedforward neural network',
+          id: "Multi-layer feedforward neural network",
         },
         {
-          id: 'General regression neural network',
+          id: "General regression neural network",
         },
         {
-          id: 'Support vector regression',
+          id: "Support vector regression",
         },
       ],
     },

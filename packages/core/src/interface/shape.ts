@@ -1,5 +1,5 @@
-import { IGroup, IShape } from '@antv/g-base';
-import { IPoint, Item, LabelStyle, ModelConfig } from '../types';
+import { IGroup, IShape } from "@antv/g-base";
+import { IPoint, Item, LabelStyle, ModelConfig } from "../types";
 
 export type ILabelConfig = Partial<{
   position: string;
@@ -35,8 +35,16 @@ export type ShapeOptions = Partial<{
   getCustomConfig: (cfg: ModelConfig) => ModelConfig;
   drawShape: (cfg?: ModelConfig, group?: IGroup) => IShape;
   drawLabel: (cfg: ModelConfig, group: IGroup) => IShape;
-  getLabelStyleByPosition: (cfg: ModelConfig, labelCfg: ILabelConfig, group?: IGroup) => LabelStyle;
-  getLabelStyle: (cfg: ModelConfig, labelCfg: ILabelConfig, group: IGroup) => LabelStyle;
+  getLabelStyleByPosition: (
+    cfg: ModelConfig,
+    labelCfg: ILabelConfig,
+    group?: IGroup,
+  ) => LabelStyle;
+  getLabelStyle: (
+    cfg: ModelConfig,
+    labelCfg: ILabelConfig,
+    group: IGroup,
+  ) => LabelStyle;
 
   /**
    * 绘制完成后的操作，便于用户继承现有的节点、边

@@ -1,4 +1,4 @@
-import { IAbstractGraph } from '../../interface/graph';
+import { IAbstractGraph } from "../../interface/graph";
 
 export default abstract class EventController {
   protected graph: IAbstractGraph;

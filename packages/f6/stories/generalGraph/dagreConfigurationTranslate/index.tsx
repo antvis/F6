@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from 'react';
-import F6 from '../../../src';
-import dagreLayout from '../../../src/extends/layout/dagreLayout';
-import data from './data';
+import React, { useEffect, useState } from "react";
+import F6 from "../../../src";
+import dagreLayout from "../../../src/extends/layout/dagreLayout";
+import data from "./data";
 
-F6.registerLayout('dagre', dagreLayout);
+F6.registerLayout("dagre", dagreLayout);
 export default () => {
   const ref = React.useRef(null);
-  const [description, setDescription] = useState('');
+  const [description, setDescription] = useState("");
   const height = window.innerHeight - 32; // demos padding
   const width = window.innerWidth - 32;
 
@@ -23,10 +23,10 @@ export default () => {
         fitView: true,
         fitViewPadding: 30,
         modes: {
-          default: ['drag-canvas', 'drag-node'],
+          default: ["drag-canvas", "drag-node"],
         },
         layout: {
-          type: 'dagre',
+          type: "dagre",
           nodeSize: [40, 20],
           nodesep: 1,
           ranksep: 1,
@@ -34,20 +34,20 @@ export default () => {
         animate: true,
         defaultNode: {
           size: [40, 20],
-          type: 'rect',
+          type: "rect",
           style: {
             lineWidth: 2,
-            stroke: '#5B8FF9',
-            fill: '#C6E5FF',
+            stroke: "#5B8FF9",
+            fill: "#C6E5FF",
           },
         },
         defaultEdge: {
           size: 1,
-          color: '#e2e2e2',
+          color: "#e2e2e2",
           style: {
             endArrow: {
-              path: 'M 0,0 L 8,4 L 8,-4 Z',
-              fill: '#e2e2e2',
+              path: "M 0,0 L 8,4 L 8,-4 Z",
+              fill: "#e2e2e2",
             },
           },
         },
@@ -62,7 +62,7 @@ export default () => {
       function layoutConfigTranslation() {
         setTimeout(() => {
           setDescription(
-            'Dagre layout, rank seperation: 10, node seperation in same level: 1, layout direction: Top->Bottom, alignment of nodes: DL',
+            "Dagre layout, rank seperation: 10, node seperation in same level: 1, layout direction: Top->Bottom, alignment of nodes: DL",
           ),
             graph.updateLayout({
               ranksep: 10,
@@ -71,7 +71,7 @@ export default () => {
 
         setTimeout(() => {
           setDescription(
-            'Dagre layout, rank seperation: 10, node seperation in same level: 5, layout direction: Left->Right, alignment of nodes: DL',
+            "Dagre layout, rank seperation: 10, node seperation in same level: 5, layout direction: Left->Right, alignment of nodes: DL",
           );
           graph.updateLayout({
             nodesep: 5,
@@ -80,35 +80,35 @@ export default () => {
 
         setTimeout(() => {
           setDescription(
-            'Dagre layout, rank seperation: 10, node seperation in same level: 5, layout direction: Left->Right, alignment of nodes: UL',
+            "Dagre layout, rank seperation: 10, node seperation in same level: 5, layout direction: Left->Right, alignment of nodes: UL",
           );
           graph.updateLayout({
-            align: 'UL',
+            align: "UL",
           });
         }, 4000);
 
         setTimeout(() => {
           setDescription(
-            'Dagre layout, rank seperation: 10, node seperation in same level: 5, layout direction: Left->Right, alignment of nodes: UR',
+            "Dagre layout, rank seperation: 10, node seperation in same level: 5, layout direction: Left->Right, alignment of nodes: UR",
           );
           graph.updateLayout({
-            align: 'UR',
+            align: "UR",
           });
         }, 5500);
 
         setTimeout(() => {
           setDescription(
-            'Dagre layout, rank seperation: 10, node seperation in same level: 5, layout direction: Left->Right, alignment of nodes: Down Right, alignment of nodes: DL',
+            "Dagre layout, rank seperation: 10, node seperation in same level: 5, layout direction: Left->Right, alignment of nodes: Down Right, alignment of nodes: DL",
           );
           graph.updateLayout({
-            rankdir: 'LR',
-            align: 'DL',
+            rankdir: "LR",
+            align: "DL",
           });
         }, 7000);
 
         setTimeout(() => {
           setDescription(
-            'Dagre layout, rank seperation: 30, node seperation in same level: 5, layout direction: Left->Right, alignment of nodes: Down Right, alignment of nodes: DL',
+            "Dagre layout, rank seperation: 30, node seperation in same level: 5, layout direction: Left->Right, alignment of nodes: Down Right, alignment of nodes: DL",
           );
           graph.updateLayout({
             ranksep: 30,

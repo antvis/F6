@@ -1,7 +1,7 @@
-import F6 from '@antv/f6';
-import { wrapContext } from '../../../common/utils/context';
-import getData from './data';
-import fruchtermanLayout from '@antv/f6/dist/extends/layout/fruchtermanLayout';
+import F6 from "@antv/f6";
+import { wrapContext } from "../../../common/utils/context";
+import getData from "./data";
+import fruchtermanLayout from "@antv/f6/dist/extends/layout/fruchtermanLayout";
 /**
  * fruchterman 布局参数动态变化
  */
@@ -9,7 +9,7 @@ import fruchtermanLayout from '@antv/f6/dist/extends/layout/fruchtermanLayout';
 Page({
   canvas: null,
   ctx: null,
-  renderer: '', // mini、mini-native等，F6需要，标记环境
+  renderer: "", // mini、mini-native等，F6需要，标记环境
   isCanvasInit: false, // canvas是否准备好了
   graph: null,
 
@@ -18,12 +18,12 @@ Page({
     height: 600,
     pixelRatio: 2,
     forceMini: false,
-    description: 'Fructherman layout, gravity = 1',
+    description: "Fructherman layout, gravity = 1",
   },
 
   onLoad() {
     // 注册布局
-    F6.registerLayout('fruchterman', fruchtermanLayout);
+    F6.registerLayout("fruchterman", fruchtermanLayout);
 
     // 同步获取window的宽高
     const { windowWidth, windowHeight, pixelRatio } = my.getSystemInfoSync();
@@ -70,10 +70,10 @@ Page({
       pixelRatio,
       fitView: true,
       modes: {
-        default: ['drag-canvas', 'drag-node'],
+        default: ["drag-canvas", "drag-node"],
       },
       layout: {
-        type: 'fruchterman',
+        type: "fruchterman",
         gravity: 1,
         speed: 5,
       },
@@ -85,8 +85,8 @@ Page({
         size: 1,
         style: {
           endArrow: {
-            path: 'M 0,0 L 8,4 L 8,-4 Z',
-            fill: '#e2e2e2',
+            path: "M 0,0 L 8,4 L 8,-4 Z",
+            fill: "#e2e2e2",
           },
         },
       },
@@ -99,18 +99,18 @@ Page({
     layoutConfigTranslation();
 
     function layoutConfigTranslation() {
-      setTimeout(function() {
+      setTimeout(function () {
         me.setData({
-          description: 'Fructherman layout, gravity = 5',
+          description: "Fructherman layout, gravity = 5",
         });
         me.graph.updateLayout({
           gravity: 5,
         });
       }, 1000);
 
-      setTimeout(function() {
+      setTimeout(function () {
         me.setData({
-          description: 'Fructherman layout, gravity = 10, layout by cluster',
+          description: "Fructherman layout, gravity = 10, layout by cluster",
         });
         me.graph.updateLayout({
           gravity: 10,
@@ -118,27 +118,27 @@ Page({
         });
       }, 2500);
 
-      setTimeout(function() {
+      setTimeout(function () {
         me.setData({
-          description: 'Fructherman layout, gravity = 20, layout by cluster',
+          description: "Fructherman layout, gravity = 20, layout by cluster",
         });
         me.graph.updateLayout({
           gravity: 20,
         });
       }, 4000);
 
-      setTimeout(function() {
+      setTimeout(function () {
         me.setData({
-          description: 'Fructherman layout, gravity = 50, layout by cluster',
+          description: "Fructherman layout, gravity = 50, layout by cluster",
         });
         me.graph.updateLayout({
           gravity: 50,
         });
       }, 5500);
 
-      setTimeout(function() {
+      setTimeout(function () {
         me.setData({
-          description: 'Fructherman layout, gravity = 80, layout by cluster',
+          description: "Fructherman layout, gravity = 80, layout by cluster",
         });
         me.graph.updateLayout({
           gravity: 80,

@@ -39,10 +39,10 @@ const graph = new F6.Graph({
 const data = {
   nodes: [
     {
-      id: 'node1',
-      label: 'node1',
+      id: "node1",
+      label: "node1",
       style: {
-        fill: '#fff',
+        fill: "#fff",
         fontSize: 12,
       },
     },
@@ -58,7 +58,7 @@ const data = {
 graph.updateItem(node, {
   // 节点的样式
   style: {
-    stroke: 'blue',
+    stroke: "blue",
   },
 });
 ```

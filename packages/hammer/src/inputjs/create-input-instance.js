@@ -1,5 +1,5 @@
-import inputHandler from './input-handler';
-import TouchInput from '../input/touch';
+import inputHandler from "./input-handler";
+import TouchInput from "../input/touch";
 
 /**
  * @private

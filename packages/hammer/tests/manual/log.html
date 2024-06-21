@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
   <head>
     <meta charset="UTF-8" />
@@ -34,25 +34,25 @@
           if (this.hasOwnProperty(key)) {
             var value = this[key];
             if (Array.isArray(value)) {
-              value = 'Array(' + value.length + '):' + value;
+              value = "Array(" + value.length + "):" + value;
             } else if (value instanceof HTMLElement) {
-              value = value + ' (' + value.outerHTML.substring(0, 50) + '...)';
+              value = value + " (" + value.outerHTML.substring(0, 50) + "...)";
             }
-            output.push(key + ': ' + value);
+            output.push(key + ": " + value);
           }
         }
-        return output.join('\n');
+        return output.join("\n");
       };
 
-      var el = document.querySelector('#hit');
-      var log = document.querySelector('#log');
-      var debug = document.querySelector('#debug');
+      var el = document.querySelector("#hit");
+      var log = document.querySelector("#log");
+      var debug = document.querySelector("#debug");
 
       var mc = new Hammer(el);
-      mc.get('pinch').set({ enable: true });
-      mc.get('rotate').set({ enable: true });
+      mc.get("pinch").set({ enable: true });
+      mc.get("rotate").set({ enable: true });
       mc.on(
-        'swipe pan panstart panmove panend pancancel multipan press pressup pinch rotate tap doubletap',
+        "swipe pan panstart panmove panend pancancel multipan press pressup pinch rotate tap doubletap",
         logGesture,
       );
 

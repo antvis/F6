@@ -57,13 +57,13 @@ order: 7
 
 `label` String 类型。标签文本的文字内容。<br />`labelCfg` Object 类型。配置标签文本。下面是 `labelCfg` 对象中的常用配置项：
 
-| 名称 | 是否必须 | 类型 | 备注 |
-| --- | --- | --- | --- |
-| refX | false | Number | 标签在 x 方向的偏移量 |
-| refY | false | Number | 标签在 y 方向的偏移量 |
-| position | false | String | 文本相对于边的位置，目前支持的位置有：`'start'`，`'middle'`，`'end'`。默认为`'middle'`。 |
-| autoRotate | false | Boolean | 标签文字是否跟随边旋转，默认 `false` |
-| style | false | Object | 标签的样式属性，具体配置项参见统一整理在 [图形样式属性 - Text 图形](/zh/docs/api/shapeProperties/#文本-text) |
+| 名称       | 是否必须 | 类型    | 备注                                                                                                         |
+| ---------- | -------- | ------- | ------------------------------------------------------------------------------------------------------------ |
+| refX       | false    | Number  | 标签在 x 方向的偏移量                                                                                        |
+| refY       | false    | Number  | 标签在 y 方向的偏移量                                                                                        |
+| position   | false    | String  | 文本相对于边的位置，目前支持的位置有：`'start'`，`'middle'`，`'end'`。默认为`'middle'`。                     |
+| autoRotate | false    | Boolean | 标签文字是否跟随边旋转，默认 `false`                                                                         |
+| style      | false    | Object  | 标签的样式属性，具体配置项参见统一整理在 [图形样式属性 - Text 图形](/zh/docs/api/shapeProperties/#文本-text) |
 
 ## 内置边的特有属性
 

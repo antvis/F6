@@ -1,12 +1,12 @@
-import { IGroup, IShape } from '@antv/g-base';
-import { mix, isNumber, clone, isNil } from '@antv/util';
-import { LabelStyle, Item, ComboConfig, ShapeStyle } from '../../types';
-import Global from '../../global';
-import Shape from '../shape';
-import { ILabelConfig, ShapeOptions } from '../../interface/shape';
+import { IGroup, IShape } from "@antv/g-base";
+import { mix, isNumber, clone, isNil } from "@antv/util";
+import { LabelStyle, Item, ComboConfig, ShapeStyle } from "../../types";
+import Global from "../../global";
+import Shape from "../shape";
+import { ILabelConfig, ShapeOptions } from "../../interface/shape";
 
 Shape.registerCombo(
-  'rect',
+  "rect",
   {
     // 自定义 Combo 时的配置
     options: {
@@ -35,20 +35,23 @@ Shape.registerCombo(
         ...Global.comboStateStyles,
       },
     },
-    shapeType: 'rect',
-    labelPosition: 'top',
+    shapeType: "rect",
+    labelPosition: "top",
     drawShape(cfg: ComboConfig, group: IGroup): IShape {
       const style = this.getShapeStyle!(cfg);
-      const keyShape = group.addShape('rect', {
+      const keyShape = group.addShape("rect", {
         attrs: style,
-        className: 'rect-combo',
-        name: 'rect-combo',
+        className: "rect-combo",
+        name: "rect-combo",
         draggable: true,
       });
       return keyShape;
     },
     // 私有方法，不希望扩展的 Combo 复写这个方法
-    getLabelStyleByPosition(cfg: ComboConfig, labelCfg: ILabelConfig): LabelStyle {
+    getLabelStyleByPosition(
+      cfg: ComboConfig,
+      labelCfg: ILabelConfig,
+    ): LabelStyle {
       const labelPosition = labelCfg.position || this.labelPosition;
       const { style: cfgStyle } = cfg;
       let padding = cfg.padding || this.options.padding;
@@ -68,42 +71,42 @@ Shape.registerCombo(
 
       let style: any;
       switch (labelPosition) {
-        case 'top':
+        case "top":
           style = {
             x: 0 - leftDis + refX,
             y: 0 - topDis + refY,
-            textBaseline: 'top', // 文本在图形的上方
-            textAlign: 'left',
+            textBaseline: "top", // 文本在图形的上方
+            textAlign: "left",
           };
           break;
-        case 'bottom':
+        case "bottom":
           style = {
             x: 0,
             y: topDis + refY,
-            textBaseline: 'bottom',
-            textAlign: 'center',
+            textBaseline: "bottom",
+            textAlign: "center",
           };
           break;
-        case 'left':
+        case "left":
           style = {
             x: 0 - leftDis + refY,
             y: 0,
-            textAlign: 'left',
+            textAlign: "left",
           };
           break;
-        case 'center':
+        case "center":
           style = {
             x: 0,
             y: 0,
             text: cfg!.label,
-            textAlign: 'center',
+            textAlign: "center",
           };
           break;
         default:
           style = {
             x: leftDis + refX,
             y: 0,
-            textAlign: 'right',
+            textAlign: "right",
           };
           break;
       }
@@ -128,7 +131,10 @@ Shape.registerCombo(
       const size = (this as ShapeOptions).getSize!(cfg);
       let width: number;
       let height: number;
-      const fixSize = cfg.collapsed && cfg.fixCollapseSize ? cfg.fixCollapseSize : cfg.fixSize;
+      const fixSize =
+        cfg.collapsed && cfg.fixCollapseSize
+          ? cfg.fixCollapseSize
+          : cfg.fixSize;
       if (fixSize) {
         if (isNumber(fixSize)) {
           width = fixSize;
@@ -174,7 +180,10 @@ Shape.registerCombo(
       if (isNumber(padding)) padding = [padding, padding, padding, padding];
       const cfgStyle = clone(cfg.style);
       let width, height;
-      const fixSize = cfg.collapsed && cfg.fixCollapseSize ? cfg.fixCollapseSize : cfg.fixSize;
+      const fixSize =
+        cfg.collapsed && cfg.fixCollapseSize
+          ? cfg.fixCollapseSize
+          : cfg.fixSize;
       if (fixSize) {
         if (isNumber(fixSize)) {
           width = fixSize;
@@ -191,7 +200,7 @@ Shape.registerCombo(
       cfgStyle.width = width + padding[1] + padding[3];
       cfgStyle.height = height + padding[0] + padding[2];
 
-      const itemCacheSize = item.get('sizeCache');
+      const itemCacheSize = item.get("sizeCache");
       if (itemCacheSize) {
         itemCacheSize.width = cfgStyle.width;
         itemCacheSize.height = cfgStyle.height;
@@ -204,7 +213,7 @@ Shape.registerCombo(
         stroke: cfg.color,
       };
       // 与 getShapeStyle 不同在于，update 时需要获取到当前的 style 进行融合。即新传入的配置项中没有涉及的属性，保留当前的配置。
-      const keyShape = item.get('keyShape');
+      const keyShape = item.get("keyShape");
       const style = mix({}, keyShape.attr(), strokeStyle, cfgStyle);
 
       if (cfg.style) {
@@ -217,12 +226,13 @@ Shape.registerCombo(
       (this as any).updateShape(cfg, item, style, false);
     },
     updateShape(cfg: ComboConfig, item: Item, keyShapeStyle: object) {
-      const keyShape = item.get('keyShape');
-      const animate = cfg.animate === undefined ? this.options.animate : cfg.animate;
+      const keyShape = item.get("keyShape");
+      const animate =
+        cfg.animate === undefined ? this.options.animate : cfg.animate;
       if (animate && keyShape.animate) {
         keyShape.animate(keyShapeStyle, {
           duration: 200,
-          easing: 'easeLinear',
+          easing: "easeLinear",
         });
       } else {
         keyShape.attr({
@@ -233,5 +243,5 @@ Shape.registerCombo(
       (this as any).updateLabel(cfg, item);
     },
   },
-  'single-combo',
+  "single-combo",
 );

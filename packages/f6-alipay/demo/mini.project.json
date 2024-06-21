@@ -3,7 +3,5 @@
   "axmlStrictCheck": true,
   "enableAppxNg": true,
   "enableNodeModuleBabelTransform": true,
-  "exclude": [
-    "dist/**/*"
-  ]
+  "exclude": ["dist/**/*"]
 }

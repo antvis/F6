@@ -9,16 +9,16 @@ order: 12
 
 **参数**
 
-| 名称 | 类型 | 是否必选 | 描述 |
-| --- | --- | --- | --- |
-| node | string / INode | true | 节点 ID 或实例 |
-| degreeType | `'in'` \ `'out'` \ `'total'` \ `'all'` | false | 获取度数的类型。设置为 `'in'` 将返回入度；`'out'` 将返回出度；`'total'` 将返回总度数；`'all'` 将返回一个含有三种度数的对象：`{ inDegree, outDegree, degree}`；若不指定，将返回总度数 |
-| refresh | boolean | false | 是否强制更新整个图的度数缓存。默认为 `false`。当通过 `addItem` 添加边后，再使用 getNodeDegree 时应当将 `refresh` 设置为 `true` |
+| 名称       | 类型                                   | 是否必选 | 描述                                                                                                                                                                                 |
+| ---------- | -------------------------------------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| node       | string / INode                         | true     | 节点 ID 或实例                                                                                                                                                                       |
+| degreeType | `'in'` \ `'out'` \ `'total'` \ `'all'` | false    | 获取度数的类型。设置为 `'in'` 将返回入度；`'out'` 将返回出度；`'total'` 将返回总度数；`'all'` 将返回一个含有三种度数的对象：`{ inDegree, outDegree, degree}`；若不指定，将返回总度数 |
+| refresh    | boolean                                | false    | 是否强制更新整个图的度数缓存。默认为 `false`。当通过 `addItem` 添加边后，再使用 getNodeDegree 时应当将 `refresh` 设置为 `true`                                                       |
 
 **用法**
 
 ```javascript
-graph.getNodeDegree('node1', 'in');
+graph.getNodeDegree("node1", "in");
 ```
 
 ### graph.getShortestPathMatrix(cache, directed)

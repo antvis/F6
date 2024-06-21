@@ -1,7 +1,7 @@
-import F6 from '@antv/f6';
-import { wrapContext } from '../../../common/utils/context';
-import data from './data';
-import comboforce from '@antv/f6/dist/extends/layout/comboForceLayout';
+import F6 from "@antv/f6";
+import { wrapContext } from "../../../common/utils/context";
+import data from "./data";
+import comboforce from "@antv/f6/dist/extends/layout/comboForceLayout";
 /**
  * basicComboForce
  */
@@ -9,7 +9,7 @@ import comboforce from '@antv/f6/dist/extends/layout/comboForceLayout';
 Page({
   canvas: null,
   ctx: null,
-  renderer: '', // mini、mini-native等，F6需要，标记环境
+  renderer: "", // mini、mini-native等，F6需要，标记环境
   isCanvasInit: false, // canvas是否准备好了
   graph: null,
 
@@ -22,7 +22,7 @@ Page({
 
   onLoad() {
     // 注册布局
-    F6.registerLayout('comboforce', comboforce);
+    F6.registerLayout("comboforce", comboforce);
 
     // 同步获取window的宽高
     const { windowWidth, windowHeight, pixelRatio } = my.getSystemInfoSync();
@@ -71,26 +71,26 @@ Page({
       fitViewPadding: 50,
       minZoom: 0.00000001,
       layout: {
-        type: 'comboforce',
+        type: "comboforce",
         nodeSpacing: (d) => {
-          if (d.id == '0') return 100;
+          if (d.id == "0") return 100;
           return 10;
         },
       },
       defaultNode: {
         size: 15,
-        color: '#5B8FF9',
+        color: "#5B8FF9",
         style: {
           lineWidth: 2,
-          fill: '#C6E5FF',
+          fill: "#C6E5FF",
         },
       },
       defaultEdge: {
         size: 2,
-        color: '#e2e2e2',
+        color: "#e2e2e2",
       },
       modes: {
-        default: ['drag-combo', 'drag-node', 'drag-canvas', 'zoom-canvas'],
+        default: ["drag-combo", "drag-node", "drag-canvas", "zoom-canvas"],
       },
     });
 

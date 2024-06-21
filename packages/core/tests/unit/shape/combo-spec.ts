@@ -3,63 +3,63 @@
  * @author dxq613@gmai.com
  */
 
-import Shape from '../../../src/element/shape';
-import { Canvas } from '@antv/g-canvas';
-import { translate } from '../../../src/util/math';
-import '../../../src/element/combo';
-import '../../../src/element/combos';
-import Combo from '../../../src/item/combo';
+import Shape from "../../../src/element/shape";
+import { Canvas } from "@antv/g-canvas";
+import { translate } from "../../../src/util/math";
+import "../../../src/element/combo";
+import "../../../src/element/combos";
+import Combo from "../../../src/item/combo";
 
-const div = document.createElement('div');
-div.id = 'combo-shape';
+const div = document.createElement("div");
+div.id = "combo-shape";
 document.body.appendChild(div);
 
 const canvas = new Canvas({
-  container: 'combo-shape',
+  container: "combo-shape",
   width: 500,
   height: 500,
 });
 
-describe('combo node test', () => {
-  describe('basic method test', () => {
-    it('get factory', () => {
-      const factory = Shape.getFactory('combo');
+describe("combo node test", () => {
+  describe("basic method test", () => {
+    it("get factory", () => {
+      const factory = Shape.getFactory("combo");
       expect(factory).not.toBe(undefined);
     });
-    it('get default', () => {
-      const factory = Shape.getFactory('combo');
+    it("get default", () => {
+      const factory = Shape.getFactory("combo");
       const shape = factory.getShape();
-      expect(shape.type).toBe('circle');
+      expect(shape.type).toBe("circle");
     });
   });
 
-  describe('nodes test', () => {
-    const factory = Shape.getFactory('combo');
-    it('circle no label', () => {
+  describe("nodes test", () => {
+    const factory = Shape.getFactory("combo");
+    it("circle no label", () => {
       const group = canvas.addGroup();
       translate(group, { x: 50, y: 50 });
       const shape = factory.draw(
-        'circle',
+        "circle",
         {
           size: 40,
-          color: 'red',
+          color: "red",
         },
         group,
       );
       canvas.draw();
-      expect(shape.attr('r')).toBe(45); // size / 2 + padding
+      expect(shape.attr("r")).toBe(45); // size / 2 + padding
       expect(group.getCount()).toBe(1);
     });
 
-    it('circle with label', () => {
+    it("circle with label", () => {
       const group = canvas.addGroup();
       translate(group, { x: 150, y: 100 });
       factory.draw(
-        'circle',
+        "circle",
         {
           size: 200,
-          color: 'blue',
-          label: '你好，我好，大家好',
+          color: "blue",
+          label: "你好，我好，大家好",
         },
         group,
       );
@@ -67,16 +67,16 @@ describe('combo node test', () => {
       expect(group.getCount()).toBe(2);
     });
 
-    it('rect', () => {
+    it("rect", () => {
       const group = canvas.addGroup({
-        id: 'rect',
+        id: "rect",
       });
       translate(group, { x: 100, y: 100 });
       const shape = factory.draw(
-        'rect',
+        "rect",
         {
           size: [200, 120],
-          label: 'rect',
+          label: "rect",
         },
         group,
       );
@@ -88,86 +88,86 @@ describe('combo node test', () => {
       // expect(group.getCount()).toBe(2);
     });
 
-    it('update', (done) => {
+    it("update", (done) => {
       const group = canvas.addGroup({
-        id: 'rect',
+        id: "rect",
       });
       // 伪造 item, 仅测试接口和图形的变化，不测试一致性
       const item = new Combo({
         model: {
           size: [40, 20],
-          color: 'yellow',
-          type: 'rect',
+          color: "yellow",
+          type: "rect",
           labelCfg: {
             style: {
-              fill: 'white',
+              fill: "white",
             },
           },
           style: {
-            fill: 'red',
+            fill: "red",
           },
         },
         group,
       });
       factory.baseUpdate(
-        'rect',
+        "rect",
         {
           style: {
-            fill: 'red',
+            fill: "red",
           },
         },
         item,
       );
-      const shape = group.get('children')[0];
-      expect(shape.attr('fill')).toBe('red');
-      expect(shape.attr('width')).toBe(80);
+      const shape = group.get("children")[0];
+      expect(shape.attr("fill")).toBe("red");
+      expect(shape.attr("width")).toBe(80);
       expect(group.getCount()).toBe(1);
       factory.baseUpdate(
-        'rect',
+        "rect",
         {
           style: {
-            fill: 'blue',
+            fill: "blue",
           },
-          label: 'new rect',
+          label: "new rect",
         },
         item,
       );
       expect(group.getCount()).toBe(2);
-      const label = group.get('children')[1];
-      expect(label.attr('text')).toBe('new rect');
+      const label = group.get("children")[1];
+      expect(label.attr("text")).toBe("new rect");
       factory.baseUpdate(
-        'rect',
+        "rect",
         {
           style: {
-            fill: 'red',
+            fill: "red",
           },
-          label: 'old rect',
+          label: "old rect",
         },
         item,
       );
-      expect(label.attr('text')).toBe('old rect');
+      expect(label.attr("text")).toBe("old rect");
 
       item.update({
         style: {
-          fill: 'steelblue',
+          fill: "steelblue",
         },
       });
       // since the update is animated, check it after 300ms
       setTimeout(() => {
-        expect(shape.attr('fill')).toBe('steelblue');
+        expect(shape.attr("fill")).toBe("steelblue");
         done();
       }, 300);
     });
 
-    it('active', () => {
+    it("active", () => {
       const rectGroup = canvas.addGroup({
-        id: 'rect-active',
+        id: "rect-active",
       });
       // 伪造 item, 仅测试接口和图形的变化，不测试一致性
       const item = new Combo({
         model: {
-          id: 'rectnode',
-          type: 'rect',
+          id: "rectnode",
+          type: "rect",
           stateStyles: {
             active: {
               fillOpacity: 0.8,
@@ -176,27 +176,27 @@ describe('combo node test', () => {
         },
         group: rectGroup,
       });
-      const shape = rectGroup.get('children')[0];
+      const shape = rectGroup.get("children")[0];
 
-      expect(shape.attr('fillOpacity')).toBe(1);
-      factory.setState('rectnode', 'active', true, item);
-      expect(shape.attr('fillOpacity')).not.toBe(1);
-      factory.setState('rectnode', 'active', false, item);
-      expect(shape.attr('fillOpacity')).toBe(1);
+      expect(shape.attr("fillOpacity")).toBe(1);
+      factory.setState("rectnode", "active", true, item);
+      expect(shape.attr("fillOpacity")).not.toBe(1);
+      factory.setState("rectnode", "active", false, item);
+      expect(shape.attr("fillOpacity")).toBe(1);
     });
 
-    it('label position', () => {
+    it("label position", () => {
       const group = canvas.addGroup();
       translate(group, { x: 200, y: 200 });
       const model = {
-        color: 'green',
-        label: 'circle position',
+        color: "green",
+        label: "circle position",
         labelCfg: {
-          position: 'top',
+          position: "top",
           offset: 5,
         },
       };
-      factory.draw('circle', model, group);
+      factory.draw("circle", model, group);
 
       // 伪造 item
       const item = new Combo({
@@ -204,10 +204,10 @@ describe('combo node test', () => {
         group,
       });
 
-      const label = group.get('children')[1];
-      expect(label.attr('x')).toBe(0);
+      const label = group.get("children")[1];
+      expect(label.attr("x")).toBe(0);
     });
-    it('clear', () => {
+    it("clear", () => {
       canvas.destroy();
     });
   });

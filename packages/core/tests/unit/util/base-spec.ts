@@ -5,16 +5,16 @@ import {
   cloneEvent,
   isNaN,
   calculationItemsBBox,
-} from '../../../src/util/base';
-import { IG6GraphEvent, G6GraphEvent } from '../../../src';
-import Graph from '../implement-graph';
+} from "../../../src/util/base";
+import { IG6GraphEvent, G6GraphEvent } from "../../../src";
+import Graph from "../implement-graph";
 
-describe('base util', () => {
-  it('formatPadding', () => {
+describe("base util", () => {
+  it("formatPadding", () => {
     let padding = formatPadding(5);
     expect(padding).toEqual([5, 5, 5, 5]);
 
-    padding = formatPadding('10');
+    padding = formatPadding("10");
     expect(padding).toEqual([10, 10, 10, 10]);
 
     padding = formatPadding([5]);
@@ -30,7 +30,7 @@ describe('base util', () => {
     expect(padding).toEqual([5, 10, 15, 20]);
   });
 
-  it('isViewportChanged', () => {
+  it("isViewportChanged", () => {
     let isChanged = isViewportChanged(null);
     expect(isChanged).toBe(false);
 
@@ -41,38 +41,38 @@ describe('base util', () => {
     expect(isChanged).toBe(true);
   });
 
-  it('processParallelEdges', () => {
+  it("processParallelEdges", () => {
     const edges: any = [
       { source: 0, target: 1 },
       { source: 0, target: 1 },
     ];
     processParallelEdges(edges);
-    expect(edges[0].type).toEqual('quadratic');
-    expect(edges[1].type).toEqual('quadratic');
+    expect(edges[0].type).toEqual("quadratic");
+    expect(edges[1].type).toEqual("quadratic");
     expect(edges[0].curveOffset).toEqual(15);
     expect(edges[1].curveOffset).toEqual(-15);
 
     edges.push({ source: 1, target: 0 });
     processParallelEdges(edges);
     // console.log(edges);
-    expect(edges[2].type).toEqual('quadratic');
+    expect(edges[2].type).toEqual("quadratic");
     expect(edges[0].curveOffset).toEqual(0);
     expect(edges[1].curveOffset).toEqual(-30);
     expect(edges[2].curveOffset).toEqual(-30);
 
     edges.push({ source: 0, target: 0 });
     edges.push({ source: 0, target: 0 });
-    edges[3].type = 'loop';
-    edges[4].type = 'loop';
+    edges[3].type = "loop";
+    edges[4].type = "loop";
     processParallelEdges(edges);
-    expect(edges[3].type).toEqual('loop');
-    expect(edges[4].type).toEqual('loop');
-    expect(edges[3].loopCfg.position).toEqual('top');
-    expect(edges[4].loopCfg.position).toEqual('top-right');
+    expect(edges[3].type).toEqual("loop");
+    expect(edges[4].type).toEqual("loop");
+    expect(edges[3].loopCfg.position).toEqual("top");
+    expect(edges[4].loopCfg.position).toEqual("top-right");
   });
 
-  it('cloneEvent', () => {
-    const event = new G6GraphEvent('click', {
+  it("cloneEvent", () => {
+    const event = new G6GraphEvent("click", {
       clientX: Math.random(),
       clientY: Math.random(),
       x: Math.random(),
@@ -88,25 +88,25 @@ describe('base util', () => {
     expect(cEvent.bubbles).toEqual(true);
   });
 
-  it('isNaN', () => {
+  it("isNaN", () => {
     expect(isNaN(NaN)).toEqual(true);
     expect(isNaN(undefined)).toEqual(true);
     expect(isNaN(null)).toEqual(false);
-    expect(isNaN('')).toEqual(false);
+    expect(isNaN("")).toEqual(false);
     expect(isNaN(1)).toEqual(false);
   });
 
-  it('calculationItemsBBox', () => {
-    const div = document.createElement('div');
-    div.id = 'base-spec';
+  it("calculationItemsBBox", () => {
+    const div = document.createElement("div");
+    div.id = "base-spec";
     document.body.appendChild(div);
     const graph = new Graph({
       container: div,
       width: 800,
       height: 600,
     });
-    graph.addItem('node', { x: 100, y: 100 });
-    graph.addItem('node', { x: -100, y: -100 });
+    graph.addItem("node", { x: 100, y: 100 });
+    graph.addItem("node", { x: -100, y: -100 });
     const bbox = calculationItemsBBox(graph.getNodes());
     expect(bbox.height).toBe(222);
     expect(bbox.width).toBe(222);

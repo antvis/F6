@@ -20,23 +20,23 @@ const graph = new F6.Graph({
           fill: "#ffffff",
           stroke: "#9EC9FF",
           padding: [2, 2, 2, 2],
-          radius: 2
-        }
+          radius: 2,
+        },
       },
-      position: "bottom"
-    }
+      position: "bottom",
+    },
   },
   modes: {
-    default: ["drag-canvas", "drag-node"]
+    default: ["drag-canvas", "drag-node"],
   },
   nodeStateStyles: {
     hover: {
-      fillOpacity: 0.8
+      fillOpacity: 0.8,
     },
     selected: {
-      lineWidth: 5
-    }
-  }
+      lineWidth: 5,
+    },
+  },
 });
 graph.data(data);
 graph.render();

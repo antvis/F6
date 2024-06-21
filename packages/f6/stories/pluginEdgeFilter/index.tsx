@@ -1,21 +1,21 @@
-import React, { useEffect } from 'react';
-import F6 from '../../src';
-import data from './data';
-import plugins from '../../../plugin/src'
+import React, { useEffect } from "react";
+import F6 from "../../src";
+import data from "./data";
+import plugins from "../../../plugin/src";
 
-const EdgeFilterLens = plugins.EdgeFilterLens
+const EdgeFilterLens = plugins.EdgeFilterLens;
 
 data.edges.forEach((edge) => {
-  edge.color = '#aaa';
+  edge.color = "#aaa";
   edge.size = 2;
   edge.style = {
     opacity: 0.7,
   };
-  edge.label = 'a';
+  edge.label = "a";
 });
 const filterConfigs = {
-  trigger: 'drag',
-  showLabel: 'edge',
+  trigger: "drag",
+  showLabel: "edge",
   r: 60,
 };
 let filterLens = new EdgeFilterLens(filterConfigs);
@@ -33,24 +33,24 @@ export default () => {
         width,
         height,
         modes: {
-          default: ['drag-canvas', 'zoom-canvas', 'drag-node'],
+          default: ["drag-canvas", "zoom-canvas", "drag-node"],
         },
         plugins: [filterLens],
         defaultEdge: {
           labelCfg: {
             autoRotate: true,
             style: {
-              stroke: '#fff',
+              stroke: "#fff",
               lineWidth: 2,
             },
           },
         },
         defaultNode: {
           size: 15,
-          color: '#5B8FF9',
+          color: "#5B8FF9",
           style: {
             lineWidth: 2,
-            fill: '#C6E5FF',
+            fill: "#C6E5FF",
           },
         },
       });
@@ -61,11 +61,11 @@ export default () => {
           .getContainer()
           .getChildren()
           .forEach((shape) => {
-            if (shape.get('type') === 'text') shape.set('visible', false);
+            if (shape.get("type") === "text") shape.set("visible", false);
           });
       });
     }
   }, []);
 
   return <div ref={ref}></div>;
-}
+};

@@ -1,6 +1,6 @@
-import { each } from '@antv/util';
-import { IAbstractGraph } from '../interface/graph';
-import { G6Event } from '../types';
+import { each } from "@antv/util";
+import { IAbstractGraph } from "../interface/graph";
+import { G6Event } from "../types";
 
 // 自定义 Behavior 时候共有的方法
 export default {
@@ -20,7 +20,7 @@ export default {
   },
 
   updateCfg(cfg: object) {
-    Object.assign(this, cfg)
+    Object.assign(this, cfg);
     return true;
   },
 
@@ -44,11 +44,11 @@ export default {
     const { events } = this;
     this.graph = graph;
     if (
-      this.type === 'drag-canvas' ||
-      this.type === 'brush-select' ||
-      this.type === 'lasso-select'
+      this.type === "drag-canvas" ||
+      this.type === "brush-select" ||
+      this.type === "lasso-select"
     ) {
-      graph.get('canvas').set('draggable', true);
+      graph.get("canvas").set("draggable", true);
     }
     each(events, (handler: () => void, event: G6Event) => {
       graph.on(event, handler);
@@ -58,11 +58,11 @@ export default {
   unbind(graph: IAbstractGraph) {
     const { events } = this;
     if (
-      this.type === 'drag-canvas' ||
-      this.type === 'brush-select' ||
-      this.type === 'lasso-select'
+      this.type === "drag-canvas" ||
+      this.type === "brush-select" ||
+      this.type === "lasso-select"
     ) {
-      graph.get('canvas').set('draggable', false);
+      graph.get("canvas").set("draggable", false);
     }
     each(events, (handler: () => void, event: G6Event) => {
       graph.off(event, handler);

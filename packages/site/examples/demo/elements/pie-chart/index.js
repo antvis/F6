@@ -21,22 +21,32 @@ F6.registerNode("pie-node", {
 
     const fanIn = group.addShape("path", {
       attrs: {
-        path: [["M", radius, 0], ["A", radius, radius, 0, isInBigArc, 0, inArcEnd[0], inArcEnd[1]], ["L", 0, 0], ["Z"]],
+        path: [
+          ["M", radius, 0],
+          ["A", radius, radius, 0, isInBigArc, 0, inArcEnd[0], inArcEnd[1]],
+          ["L", 0, 0],
+          ["Z"],
+        ],
         lineWidth: 0,
-        fill: lightOrange
+        fill: lightOrange,
       },
-      name: "in-fan-shape"
+      name: "in-fan-shape",
     });
     group.addShape("path", {
       attrs: {
-        path: [["M", inArcEnd[0], inArcEnd[1]], ["A", radius, radius, 0, isOutBigArc, 0, radius, 0], ["L", 0, 0], ["Z"]],
+        path: [
+          ["M", inArcEnd[0], inArcEnd[1]],
+          ["A", radius, radius, 0, isOutBigArc, 0, radius, 0],
+          ["L", 0, 0],
+          ["Z"],
+        ],
         lineWidth: 0,
-        fill: lightBlue
+        fill: lightBlue,
       },
-      name: "out-fan-shape"
+      name: "out-fan-shape",
     });
     return fanIn;
-  }
+  },
 });
 const graph = new F6.Graph({
   width,
@@ -45,8 +55,8 @@ const graph = new F6.Graph({
   fitView: true,
   fitCenter: true,
   defaultNode: {
-    type: "pie-node"
-  }
+    type: "pie-node",
+  },
 });
 graph.data(data);
 graph.render();

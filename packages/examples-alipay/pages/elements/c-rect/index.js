@@ -1,6 +1,6 @@
-import F6 from '@antv/f6';
-import { wrapContext } from '../../../common/utils/context';
-import data from './data';
+import F6 from "@antv/f6";
+import { wrapContext } from "../../../common/utils/context";
+import data from "./data";
 /**
  * cRect
  */
@@ -8,7 +8,7 @@ import data from './data';
 Page({
   canvas: null,
   ctx: null,
-  renderer: '', // mini、mini-native等，F6需要，标记环境
+  renderer: "", // mini、mini-native等，F6需要，标记环境
   isCanvasInit: false, // canvas是否准备好了
   graph: null,
 
@@ -25,27 +25,27 @@ Page({
     // The symbols for the marker inside the combo
     const collapseIcon = (x, y, r) => {
       return [
-        ['M', x - r, y],
-        ['a', r, r, 0, 1, 0, r * 2, 0],
-        ['a', r, r, 0, 1, 0, -r * 2, 0],
-        ['M', x - r + 4, y],
-        ['L', x - r + 2 * r - 4, y],
+        ["M", x - r, y],
+        ["a", r, r, 0, 1, 0, r * 2, 0],
+        ["a", r, r, 0, 1, 0, -r * 2, 0],
+        ["M", x - r + 4, y],
+        ["L", x - r + 2 * r - 4, y],
       ];
     };
     const expandIcon = (x, y, r) => {
       return [
-        ['M', x - r, y],
-        ['a', r, r, 0, 1, 0, r * 2, 0],
-        ['a', r, r, 0, 1, 0, -r * 2, 0],
-        ['M', x - r + 4, y],
-        ['L', x - r + 2 * r - 4, y],
-        ['M', x - r + r, y - r + 4],
-        ['L', x, y + r - 4],
+        ["M", x - r, y],
+        ["a", r, r, 0, 1, 0, r * 2, 0],
+        ["a", r, r, 0, 1, 0, -r * 2, 0],
+        ["M", x - r + 4, y],
+        ["L", x - r + 2 * r - 4, y],
+        ["M", x - r + r, y - r + 4],
+        ["L", x, y + r - 4],
       ];
     };
 
     F6.registerCombo(
-      'cRect',
+      "cRect",
       {
         drawShape: function drawShape(cfg, group) {
           const self = this;
@@ -54,7 +54,7 @@ Page({
           // Get the shape's style, where the style.width and style.height correspond to the width and height in the figure of Illustration of Built-in Rect Combo
           const style = self.getShapeStyle(cfg);
           // Add a rect shape as the keyShape which is the same as the extended rect Combo
-          const rect = group.addShape('rect', {
+          const rect = group.addShape("rect", {
             attrs: {
               ...style,
               x: -style.width / 2 - (cfg.padding[3] - cfg.padding[1]) / 2,
@@ -63,13 +63,13 @@ Page({
               height: style.height,
             },
             draggable: true,
-            name: 'combo-keyShape',
+            name: "combo-keyShape",
           });
           // Add the circle on the right
-          group.addShape('marker', {
+          group.addShape("marker", {
             attrs: {
               ...style,
-              fill: '#fff',
+              fill: "#fff",
               opacity: 1,
               // cfg.style.width and cfg.style.heigth correspond to the innerWidth and innerHeight in the figure of Illustration of Built-in Rect Combo
               x: cfg.style.width / 2 + cfg.padding[1],
@@ -78,15 +78,17 @@ Page({
               symbol: collapseIcon,
             },
             draggable: true,
-            name: 'combo-marker-shape',
+            name: "combo-marker-shape",
           });
           return rect;
         },
         // Define the updating logic of the right circle
         afterUpdate: function afterUpdate(cfg, combo) {
-          const group = combo.get('group');
+          const group = combo.get("group");
           // Find the circle shape in the graphics group of the Combo by name
-          const marker = group.find((ele) => ele.get('name') === 'combo-marker-shape');
+          const marker = group.find(
+            (ele) => ele.get("name") === "combo-marker-shape",
+          );
           // Update the position of the right circle
           marker.attr({
             // cfg.style.width and cfg.style.heigth correspond to the innerWidth and innerHeight in the figure of Illustration of Built-in Rect Combo
@@ -98,7 +100,7 @@ Page({
           });
         },
       },
-      'rect',
+      "rect",
     );
     this.setData({
       width: windowWidth,
@@ -148,20 +150,20 @@ Page({
       // Configure the combos globally
       defaultCombo: {
         // The type of the combos. You can also assign type in the data of combos
-        type: 'cRect',
+        type: "cRect",
         // ... Other global configurations for combos
       },
       modes: {
-        default: ['drag-combo', 'drag-node', 'drag-canvas'],
+        default: ["drag-combo", "drag-node", "drag-canvas"],
       },
     });
 
     // collapse/expand when click the marker
-    this.graph.on('combo:tap', (e) => {
-      if (e.target.get('name') === 'combo-marker-shape') {
+    this.graph.on("combo:tap", (e) => {
+      if (e.target.get("name") === "combo-marker-shape") {
         // graph.collapseExpandCombo(e.item.getModel().id);
         this.graph.collapseExpandCombo(e.item);
-        if (this.graph.get('layout')) this.graph.layout();
+        if (this.graph.get("layout")) this.graph.layout();
         else this.graph.refreshPositions();
       }
     });

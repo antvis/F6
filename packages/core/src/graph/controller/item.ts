@@ -1,8 +1,16 @@
-import { IGroup } from '@antv/g-base';
-import { clone, deepMix, each, isArray, isObject, isString, upperFirst } from '@antv/util';
-import Edge from '../../item/edge';
-import Node from '../../item/node';
-import Combo from '../../item/combo';
+import { IGroup } from "@antv/g-base";
+import {
+  clone,
+  deepMix,
+  each,
+  isArray,
+  isObject,
+  isString,
+  upperFirst,
+} from "@antv/util";
+import Edge from "../../item/edge";
+import Node from "../../item/node";
+import Combo from "../../item/combo";
 import {
   EdgeConfig,
   Item,
@@ -12,18 +20,23 @@ import {
   NodeMap,
   ComboTree,
   ComboConfig,
-} from '../../types';
-import { IAbstractGraph } from '../../interface/graph';
-import { IEdge, INode, ICombo } from '../../interface/item';
-import { traverseTreeUp, traverseTree, getComboBBox, shouldRefreshEdge } from '../../util/graphic';
+} from "../../types";
+import { IAbstractGraph } from "../../interface/graph";
+import { IEdge, INode, ICombo } from "../../interface/item";
+import {
+  traverseTreeUp,
+  traverseTree,
+  getComboBBox,
+  shouldRefreshEdge,
+} from "../../util/graphic";
 
-const NODE = 'node';
-const EDGE = 'edge';
-const VEDGE = 'vedge';
-const COMBO = 'combo';
-const CFG_PREFIX = 'default';
-const MAPPER_SUFFIX = 'Mapper';
-const STATE_SUFFIX = 'stateStyles';
+const NODE = "node";
+const EDGE = "edge";
+const VEDGE = "vedge";
+const COMBO = "combo";
+const CFG_PREFIX = "default";
+const MAPPER_SUFFIX = "Mapper";
+const STATE_SUFFIX = "stateStyles";
 
 type Id = string | Item | undefined;
 
@@ -48,7 +61,7 @@ export default class ItemController {
   public addItem<T extends Item>(type: ITEM_TYPE, model: ModelConfig) {
     const { graph } = this;
     const vType = type === VEDGE ? EDGE : type;
-    const parent: IGroup = graph.get(`${vType}Group`) || graph.get('group');
+    const parent: IGroup = graph.get(`${vType}Group`) || graph.get("group");
     const upperType = upperFirst(vType);
 
     let item: Item | null = null;
@@ -94,7 +107,7 @@ export default class ItemController {
       });
     }
 
-    graph.emit('beforeadditem', { type, model });
+    graph.emit("beforeadditem", { type, model });
 
     if (type === EDGE || type === VEDGE) {
       let source: Id;
@@ -110,15 +123,17 @@ export default class ItemController {
       }
 
       if (!source || !target) {
-        console.warn(`The source or target node of edge ${model.id} does not exist!`);
+        console.warn(
+          `The source or target node of edge ${model.id} does not exist!`,
+        );
         return;
       }
 
-      if ((source as Item).getType && (source as Item).getType() === 'combo') {
+      if ((source as Item).getType && (source as Item).getType() === "combo") {
         model.isComboEdge = true;
         // graph.updateCombo(source as ICombo);
       }
-      if ((target as Item).getType && (target as Item).getType() === 'combo') {
+      if ((target as Item).getType && (target as Item).getType() === "combo") {
         model.isComboEdge = true;
         // graph.updateCombo(target as ICombo);
       }
@@ -128,7 +143,7 @@ export default class ItemController {
         source,
         target,
         styles,
-        linkCenter: graph.get('linkCenter'),
+        linkCenter: graph.get("linkCenter"),
         group: parent.addGroup(),
       });
     } else if (type === NODE) {
@@ -173,8 +188,8 @@ export default class ItemController {
 
     if (item) {
       graph.get(`${type}s`).push(item);
-      graph.get('itemMap')[item.get('id')] = item;
-      graph.emit('afteradditem', { item, model });
+      graph.get("itemMap")[item.get("id")] = item;
+      graph.emit("afteradditem", { item, model });
       // eslint-disable-next-line consistent-return
       return item as T;
     }
@@ -188,7 +203,10 @@ export default class ItemController {
    * @returns
    * @memberof ItemController
    */
-  public updateItem(item: Item | string, cfg: EdgeConfig | Partial<NodeConfig>) {
+  public updateItem(
+    item: Item | string,
+    cfg: EdgeConfig | Partial<NodeConfig>,
+  ) {
     const { graph } = this;
 
     if (isString(item)) {
@@ -200,7 +218,7 @@ export default class ItemController {
     }
 
     // 更新的 item 的类型
-    let type = '';
+    let type = "";
     if (item.getType) type = item.getType();
 
     const mapper = graph.get(type + MAPPER_SUFFIX);
@@ -215,7 +233,7 @@ export default class ItemController {
       const newModel: ModelConfig = deepMix({}, model, mappedModel, cfg);
 
       if (mappedModel[STATE_SUFFIX]) {
-        item.set('styles', newModel[STATE_SUFFIX]);
+        item.set("styles", newModel[STATE_SUFFIX]);
         delete newModel[STATE_SUFFIX];
       }
 
@@ -234,7 +252,7 @@ export default class ItemController {
     }
 
     // emit beforeupdateitem 事件
-    graph.emit('beforeupdateitem', { item, cfg });
+    graph.emit("beforeupdateitem", { item, cfg });
 
     if (type === EDGE) {
       // 若是边要更新source || target, 为了不影响示例内部model，并且重新计算startPoint和endPoint，手动设置
@@ -266,8 +284,8 @@ export default class ItemController {
           edge.refresh();
         });
       else if (refreshEdge && type === COMBO) {
-        const shapeFactory = item.get('shapeFactory');
-        const shapeType = (model.type as string) || 'circle';
+        const shapeFactory = item.get("shapeFactory");
+        const shapeType = (model.type as string) || "circle";
         const comboAnimate =
           model.animate === undefined || cfg.animate === undefined
             ? shapeFactory[shapeType]?.options?.animate
@@ -288,7 +306,7 @@ export default class ItemController {
         }
       }
     }
-    graph.emit('afterupdateitem', { item, cfg });
+    graph.emit("afterupdateitem", { item, cfg });
   }
 
   /**
@@ -311,16 +329,18 @@ export default class ItemController {
     const model = combo.getModel();
     const comboBBox = getComboBBox(model.collapsed ? [] : children, graph);
 
-    combo.set('bbox', comboBBox);
+    combo.set("bbox", comboBBox);
     combo.update({
       x: comboBBox.x,
       y: comboBBox.y,
     });
 
-    const shapeFactory = combo.get('shapeFactory');
-    const shapeType = (model.type as string) || 'circle';
+    const shapeFactory = combo.get("shapeFactory");
+    const shapeType = (model.type as string) || "circle";
     const comboAnimate =
-      model.animate === undefined ? shapeFactory[shapeType]?.options?.animate : model.animate;
+      model.animate === undefined
+        ? shapeFactory[shapeType]?.options?.animate
+        : model.animate;
     if (comboAnimate) {
       setTimeout(() => {
         if (!combo || (combo as ICombo).destroyed) return;
@@ -339,15 +359,15 @@ export default class ItemController {
     for (let i = 0; i < combEdges.length; i++) {
       const edge = combEdges[i];
       if (edge && !edge.destroyed) {
-        const edgeSF = edge.get('shapeFactory');
+        const edgeSF = edge.get("shapeFactory");
         const edgeCfg = edge.getShapeCfg(edge.getModel());
         const edgeGroup = edge.getContainer();
         edgeGroup.clear();
         const keyShape = edgeSF.draw(edgeCfg.type, edgeCfg, edgeGroup);
-        edge.set('keyShape', keyShape);
-        keyShape.set('isKeyShape', true);
-        keyShape.set('draggable', true);
-        edge.setOriginStyle()
+        edge.set("keyShape", keyShape);
+        keyShape.set("isKeyShape", true);
+        keyShape.set("draggable", true);
+        edge.setOriginStyle();
       }
     }
   }
@@ -409,9 +429,9 @@ export default class ItemController {
     }
 
     const itemModel = clone(item.getModel());
-    graph.emit('beforeremoveitem', { item: itemModel });
+    graph.emit("beforeremoveitem", { item: itemModel });
 
-    let type = '';
+    let type = "";
     if (item.getType) type = item.getType();
     const items = graph.get(`${type}s`);
     const index = items.indexOf(item);
@@ -422,12 +442,12 @@ export default class ItemController {
       if (vindex > -1) vitems.splice(vindex, 1);
     }
 
-    const itemId: string = item.get('id');
-    const itemMap: NodeMap = graph.get('itemMap');
+    const itemId: string = item.get("id");
+    const itemMap: NodeMap = graph.get("itemMap");
     delete itemMap[itemId];
 
-    const comboTrees = graph.get('comboTrees');
-    const id = item.get('id');
+    const comboTrees = graph.get("comboTrees");
+    const id = item.get("id");
     if (type === NODE) {
       const comboId = item.getModel().comboId as string;
       if (comboTrees && comboId) {
@@ -485,7 +505,7 @@ export default class ItemController {
     }
 
     item.destroy();
-    graph.emit('afterremoveitem', { item: itemModel });
+    graph.emit("afterremoveitem", { item: itemModel });
   }
 
   /**
@@ -497,7 +517,11 @@ export default class ItemController {
    * @returns {void}
    * @memberof ItemController
    */
-  public setItemState(item: Item, state: string, value: string | boolean): void {
+  public setItemState(
+    item: Item,
+    state: string,
+    value: string | boolean,
+  ): void {
     const { graph } = this;
 
     let stateName = state;
@@ -514,12 +538,20 @@ export default class ItemController {
       return;
     }
 
-    graph.emit('beforeitemstatechange', { item, state: stateName, enabled: value });
+    graph.emit("beforeitemstatechange", {
+      item,
+      state: stateName,
+      enabled: value,
+    });
 
     item.setState(state, value);
 
     graph.autoPaint();
-    graph.emit('afteritemstatechange', { item, state: stateName, enabled: value });
+    graph.emit("afteritemstatechange", {
+      item,
+      state: stateName,
+      enabled: value,
+    });
   }
 
   /**
@@ -548,18 +580,21 @@ export default class ItemController {
    * @param {string[]} states 状态名称集合
    * @memberof ItemController
    */
-  public clearItemStates(item: Item | string, states?: string | string[]): void {
+  public clearItemStates(
+    item: Item | string,
+    states?: string | string[],
+  ): void {
     const { graph } = this;
 
     if (isString(item)) {
       item = graph.findById(item);
     }
 
-    graph.emit('beforeitemstatesclear', { item, states });
+    graph.emit("beforeitemstatesclear", { item, states });
 
     item.clearStates(states);
 
-    graph.emit('afteritemstatesclear', { item, states });
+    graph.emit("afteritemstatesclear", { item, states });
   }
 
   /**
@@ -575,12 +610,12 @@ export default class ItemController {
       item = graph.findById(item);
     }
 
-    graph.emit('beforeitemrefresh', { item });
+    graph.emit("beforeitemrefresh", { item });
 
     // 调用 Item 的 refresh 方法，实现刷新功能
     item.refresh();
 
-    graph.emit('afteritemrefresh', { item });
+    graph.emit("afteritemrefresh", { item });
   }
 
   /**
@@ -603,12 +638,12 @@ export default class ItemController {
           }
         });
         if (comboModel) {
-          this.addItem('combo', comboModel);
+          this.addItem("combo", comboModel);
         }
         return true;
       });
     });
-    const comboGroup = graph.get('comboGroup');
+    const comboGroup = graph.get("comboGroup");
     if (comboGroup) comboGroup.sort();
   }
 
@@ -627,11 +662,11 @@ export default class ItemController {
     }
 
     if (!item) {
-      console.warn('The item to be shown or hidden does not exist!');
+      console.warn("The item to be shown or hidden does not exist!");
       return;
     }
 
-    graph.emit('beforeitemvisibilitychange', { item, visible });
+    graph.emit("beforeitemvisibilitychange", { item, visible });
 
     item.changeVisibility(visible);
 
@@ -640,15 +675,18 @@ export default class ItemController {
       each(edges, (edge: IEdge) => {
         // 若隐藏节点，则将与之关联的边也隐藏
         // 若显示节点，则将与之关联的边也显示，但是需要判断边两端的节点都是可见的
-        if (visible && !(edge.get('source').isVisible() && edge.get('target').isVisible())) {
+        if (
+          visible &&
+          !(edge.get("source").isVisible() && edge.get("target").isVisible())
+        ) {
           return;
         }
 
         this.changeItemVisibility(edge, visible);
       });
     } else if (item.getType && item.getType() === COMBO) {
-      const comboTrees = graph.get('comboTrees');
-      const id = item.get('id');
+      const comboTrees = graph.get("comboTrees");
+      const id = item.get("id");
       let children = [];
       let found = false; // flag the terminate the forEach
       (comboTrees || []).forEach((ctree) => {
@@ -674,13 +712,16 @@ export default class ItemController {
       each(edges, (edge: IEdge) => {
         // 若隐藏 combo，则将与 combo 本身关联的边也隐藏
         // 若显示 combo，则将与 combo 本身关联的边也显示，但是需要判断边两端的节点都是可见的
-        if (visible && !(edge.get('source').isVisible() && edge.get('target').isVisible())) {
+        if (
+          visible &&
+          !(edge.get("source").isVisible() && edge.get("target").isVisible())
+        ) {
           return;
         }
         this.changeItemVisibility(edge, visible);
       });
     }
-    graph.emit('afteritemvisibilitychange', { item, visible });
+    graph.emit("afteritemvisibilitychange", { item, visible });
     return item;
   }
 

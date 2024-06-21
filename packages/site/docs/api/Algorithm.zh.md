@@ -29,26 +29,26 @@ order: 15
 **用法**
 
 ```javascript
-import F6, { Algorithm } from '@antv/g6';
+import F6, { Algorithm } from "@antv/g6";
 const graph = new F6.Graph({
-  container: 'container',
+  container: "container",
   width: 500,
   height: 500,
 });
 
 const graphData = {
   nodes: [
-    { id: 'A', cluster: 'nc1' },
-    { id: 'B', cluster: 'nc1' },
-    { id: 'C', cluster: 'nc2' },
-    { id: 'D', cluster: 'nc1' },
-    { id: 'E', cluster: 'nc3' },
+    { id: "A", cluster: "nc1" },
+    { id: "B", cluster: "nc1" },
+    { id: "C", cluster: "nc2" },
+    { id: "D", cluster: "nc1" },
+    { id: "E", cluster: "nc3" },
   ],
   edges: [
-    { source: 'A', target: 'B', cluster: 'ec1' },
-    { source: 'B', target: 'C', cluster: 'ec2' },
-    { source: 'A', target: 'D', cluster: 'ec1' },
-    { source: 'A', target: 'E', cluster: 'ec2' },
+    { source: "A", target: "B", cluster: "ec1" },
+    { source: "B", target: "C", cluster: "ec2" },
+    { source: "A", target: "D", cluster: "ec1" },
+    { source: "A", target: "E", cluster: "ec2" },
   ],
 };
 
@@ -58,13 +58,13 @@ graph.render();
 const { GADDI } = Algorithm;
 const patternData = {
   nodes: [
-    { id: 'pn1', cluster: 'nc1' },
-    { id: 'pn2', cluster: 'nc1' },
-    { id: 'pn3', cluster: 'nc3' },
+    { id: "pn1", cluster: "nc1" },
+    { id: "pn2", cluster: "nc1" },
+    { id: "pn3", cluster: "nc3" },
   ],
   edges: [
-    { source: 'pn1', target: 'pn2', cluster: 'ec1' },
-    { source: 'pn1', target: 'pn3', cluster: 'ec2' },
+    { source: "pn1", target: "pn2", cluster: "ec1" },
+    { source: "pn1", target: "pn3", cluster: "ec2" },
   ],
 };
 const resultMatches = GADDI(
@@ -73,8 +73,8 @@ const resultMatches = GADDI(
   true,
   undefined,
   undefined,
-  'cluster',
-  'cluster',
+  "cluster",
+  "cluster",
 );
 
 console.log(resultMatches);
@@ -101,11 +101,11 @@ console.log(resultMatches);
 
 **参数**
 
-| 名称 | 类型 | 是否必选 | 描述 |
-| --- | --- | --- | --- |
-| graphData | GraphData | true | 图数据，满足 F6 [数据格式](/zh/docs/manual/getting-started#step-2-数据准备)。注意，4.1 以前的版本该参数请传入图实例 |
-| startNodeId | string | true | 开始访问的节点的 ID |
-| callbacks | IAlgorithmCallbacks | false | 遍历的回调函数 |
+| 名称        | 类型                | 是否必选 | 描述                                                                                                                |
+| ----------- | ------------------- | -------- | ------------------------------------------------------------------------------------------------------------------- |
+| graphData   | GraphData           | true     | 图数据，满足 F6 [数据格式](/zh/docs/manual/getting-started#step-2-数据准备)。注意，4.1 以前的版本该参数请传入图实例 |
+| startNodeId | string              | true     | 开始访问的节点的 ID                                                                                                 |
+| callbacks   | IAlgorithmCallbacks | false    | 遍历的回调函数                                                                                                      |
 
 **用法**
 
@@ -201,11 +201,11 @@ depthFirstSearch(data, 'A', {
 
 **参数**
 
-| 名称 | 类型 | 是否必选 | 描述 |
-| --- | --- | --- | --- |
-| graphData | GraphData | true | 图数据，满足 F6 [数据格式](/zh/docs/manual/getting-started#step-2-数据准备)。注意，4.1 以前的版本该参数请传入图实例 |
-| startNodeId | string | true | 开始访问的节点的 ID |
-| originalCallbacks | IAlgorithmCallbacks | false | 遍历的回调函数 |
+| 名称              | 类型                | 是否必选 | 描述                                                                                                                |
+| ----------------- | ------------------- | -------- | ------------------------------------------------------------------------------------------------------------------- |
+| graphData         | GraphData           | true     | 图数据，满足 F6 [数据格式](/zh/docs/manual/getting-started#step-2-数据准备)。注意，4.1 以前的版本该参数请传入图实例 |
+| startNodeId       | string              | true     | 开始访问的节点的 ID                                                                                                 |
+| originalCallbacks | IAlgorithmCallbacks | false    | 遍历的回调函数                                                                                                      |
 
 **用法**
 
@@ -299,12 +299,12 @@ breadthFirstSearch(data, 'A', {
 
 **参数**
 
-| 名称 | 类型 | 是否必选 | 描述 |
-| --- | --- | --- | --- |
-| data | GraphData | true | 图数据 |
-| directed | Boolean | false | 是否是有向图，默认为 false |
-| weightPropertyName | String | false | 边权重的属名称，默认为 `'weight'，若数据中没有权重，则默认每条边权重为 1 |
-| maxIteration | Number | false | 最大迭代次数，默认为 1000 |
+| 名称               | 类型      | 是否必选 | 描述                                                                     |
+| ------------------ | --------- | -------- | ------------------------------------------------------------------------ |
+| data               | GraphData | true     | 图数据                                                                   |
+| directed           | Boolean   | false    | 是否是有向图，默认为 false                                               |
+| weightPropertyName | String    | false    | 边权重的属名称，默认为 `'weight'，若数据中没有权重，则默认每条边权重为 1 |
+| maxIteration       | Number    | false    | 最大迭代次数，默认为 1000                                                |
 
 **返回值**
 
@@ -344,30 +344,30 @@ interface ClusterData {
 **用法**
 
 ```javascript
-import F6, { Algorithm } from '@antv/g6';
+import F6, { Algorithm } from "@antv/g6";
 const graph = new F6.Graph({
-  container: 'container',
+  container: "container",
   width: 500,
   height: 500,
 });
 
 const data = {
   nodes: [
-    { id: 'A' },
-    { id: 'B' },
-    { id: 'C' },
-    { id: 'D' },
-    { id: 'E' },
-    { id: 'F' },
-    { id: 'G' },
+    { id: "A" },
+    { id: "B" },
+    { id: "C" },
+    { id: "D" },
+    { id: "E" },
+    { id: "F" },
+    { id: "G" },
   ],
   edges: [
-    { source: 'A', target: 'B' },
-    { source: 'B', target: 'C' },
-    { source: 'A', target: 'C' },
-    { source: 'D', arget: 'A' },
-    { source: 'D', target: 'E' },
-    { source: 'E', target: 'F' },
+    { source: "A", target: "B" },
+    { source: "B", target: "C" },
+    { source: "A", target: "C" },
+    { source: "D", arget: "A" },
+    { source: "D", target: "E" },
+    { source: "E", target: "F" },
   ],
 };
 
@@ -388,12 +388,12 @@ LOUVAIN 自动聚类算法。优势：根据节点间的紧密程度计算，较
 
 **参数**
 
-| 名称 | 类型 | 是否必选 | 描述 |
-| --- | --- | --- | --- |
-| data | GraphData | true | 图数据 |
-| directed | Boolean | false | 是否是有向图，默认为 false |
-| weightPropertyName | String | false | 边权重的属名称，默认为 `'weight'，若数据中没有权重，则默认每条边权重为 1 |
-| threshold | Number | false | 停止迭代的阈值，默认为 0.0001 |
+| 名称               | 类型      | 是否必选 | 描述                                                                     |
+| ------------------ | --------- | -------- | ------------------------------------------------------------------------ |
+| data               | GraphData | true     | 图数据                                                                   |
+| directed           | Boolean   | false    | 是否是有向图，默认为 false                                               |
+| weightPropertyName | String    | false    | 边权重的属名称，默认为 `'weight'，若数据中没有权重，则默认每条边权重为 1 |
+| threshold          | Number    | false    | 停止迭代的阈值，默认为 0.0001                                            |
 
 **返回值**
 
@@ -434,30 +434,30 @@ interface ClusterData {
 **用法**
 
 ```javascript
-import F6, { Algorithm } from '@antv/g6';
+import F6, { Algorithm } from "@antv/g6";
 const graph = new F6.Graph({
-  container: 'container',
+  container: "container",
   width: 500,
   height: 500,
 });
 
 const data = {
   nodes: [
-    { id: 'A' },
-    { id: 'B' },
-    { id: 'C' },
-    { id: 'D' },
-    { id: 'E' },
-    { id: 'F' },
-    { id: 'G' },
+    { id: "A" },
+    { id: "B" },
+    { id: "C" },
+    { id: "D" },
+    { id: "E" },
+    { id: "F" },
+    { id: "G" },
   ],
   edges: [
-    { source: 'A', target: 'B' },
-    { source: 'B', target: 'C' },
-    { source: 'A', target: 'C' },
-    { source: 'D', arget: 'A' },
-    { source: 'D', target: 'E' },
-    { source: 'E', target: 'F' },
+    { source: "A", target: "B" },
+    { source: "B", target: "C" },
+    { source: "A", target: "C" },
+    { source: "D", arget: "A" },
+    { source: "D", target: "E" },
+    { source: "E", target: "F" },
   ],
 };
 
@@ -482,9 +482,9 @@ let result = louvain(data);
 
 **参数**
 
-| 名称 | 类型 | 是否必选 | 描述 |
-| --- | --- | --- | --- |
-| graphData | GraphData | true | 图数据，满足 F6 [数据格式](/zh/docs/manual/getting-started#step-2-数据准备)。注意，4.1 以前的版本该参数请传入图实例 |
+| 名称      | 类型      | 是否必选 | 描述                                                                                                                |
+| --------- | --------- | -------- | ------------------------------------------------------------------------------------------------------------------- |
+| graphData | GraphData | true     | 图数据，满足 F6 [数据格式](/zh/docs/manual/getting-started#step-2-数据准备)。注意，4.1 以前的版本该参数请传入图实例 |
 
 **返回值**
 
@@ -493,30 +493,30 @@ let result = louvain(data);
 **用法**
 
 ```javascript
-import F6, { Algorithm } from '@antv/g6';
+import F6, { Algorithm } from "@antv/g6";
 const graph = new F6.Graph({
-  container: 'container',
+  container: "container",
   width: 500,
   height: 500,
 });
 
 const data = {
   nodes: [
-    { id: 'A' },
-    { id: 'B' },
-    { id: 'C' },
-    { id: 'D' },
-    { id: 'E' },
-    { id: 'F' },
-    { id: 'G' },
+    { id: "A" },
+    { id: "B" },
+    { id: "C" },
+    { id: "D" },
+    { id: "E" },
+    { id: "F" },
+    { id: "G" },
   ],
   edges: [
-    { source: 'A', target: 'B' },
-    { source: 'B', target: 'C' },
-    { source: 'A', target: 'C' },
-    { source: 'D', arget: 'A' },
-    { source: 'D', target: 'E' },
-    { source: 'E', target: 'F' },
+    { source: "A", target: "B" },
+    { source: "B", target: "C" },
+    { source: "A", target: "C" },
+    { source: "D", arget: "A" },
+    { source: "D", target: "E" },
+    { source: "E", target: "F" },
   ],
 };
 
@@ -530,8 +530,8 @@ let result = detectDirectedCycle(data);
 
 // 当数据中加入 F->D 这条边后，图中有一个环
 data.edges.push({
-  source: 'F',
-  target: 'D',
+  source: "F",
+  target: "D",
 });
 
 graph.changeData(data);
@@ -559,12 +559,12 @@ result = detectDirectedCycle(data);
 
 **参数**
 
-| 名称 | 类型 | 是否必选 | 描述 |
-| --- | --- | --- | --- |
-| graphData | GraphData | true | 图数据，满足 F6 [数据格式](/zh/docs/manual/getting-started#step-2-数据准备)。注意，4.1 以前的版本该参数请传入图实例 |
-| directed | boolean | false | 是否考虑边的方向性，若不指定，则取图的 `directed` 属性 ｜ |
-| nodeIds | string[] | false | 需包含或排除的节点 ID 的数组，若不指定，则返回图中所有的圈 ｜ |
-| include | boolean | false | 若为 `true`, 则返回包含参数 `nodeIds` 中指定的节点的圈，否则，返回所有不包含 `nodeIds` 中指定的节点的圈。默认为 `true` ｜ |
+| 名称      | 类型      | 是否必选 | 描述                                                                                                                      |
+| --------- | --------- | -------- | ------------------------------------------------------------------------------------------------------------------------- |
+| graphData | GraphData | true     | 图数据，满足 F6 [数据格式](/zh/docs/manual/getting-started#step-2-数据准备)。注意，4.1 以前的版本该参数请传入图实例       |
+| directed  | boolean   | false    | 是否考虑边的方向性，若不指定，则取图的 `directed` 属性 ｜                                                                 |
+| nodeIds   | string[]  | false    | 需包含或排除的节点 ID 的数组，若不指定，则返回图中所有的圈 ｜                                                             |
+| include   | boolean   | false    | 若为 `true`, 则返回包含参数 `nodeIds` 中指定的节点的圈，否则，返回所有不包含 `nodeIds` 中指定的节点的圈。默认为 `true` ｜ |
 
 **返回值**
 
@@ -580,10 +580,10 @@ const { detectAllCycles } = Algorithm;
 const allCycles = detectAllCycles(data, true);
 
 // 检测有向图中包含节点 B 的所有简单环
-const allCycleIncludeB = detectAllCycles(data, true, ['B']);
+const allCycleIncludeB = detectAllCycles(data, true, ["B"]);
 
 // 检测无向图中所有不包含节点 B 的所有基本环
-const allCycleExcludeB = detectAllCycles(data, false, ['B'], false);
+const allCycleExcludeB = detectAllCycles(data, false, ["B"], false);
 ```
 
 ### findShortestPath(graphData, start, end, directed, weightPropertyName)
@@ -592,13 +592,13 @@ const allCycleExcludeB = detectAllCycles(data, false, ['B'], false);
 
 **参数**
 
-| 名称 | 类型 | 是否必选 | 描述 |
-| --- | --- | --- | --- |
-| graphData | GraphData | true | 图数据，满足 F6 [数据格式](/zh/docs/manual/getting-started#step-2-数据准备)。注意，4.1 以前的版本该参数请传入图实例 |
-| start | INode / string | true | F6 Node 实例或 ID，路径起始点 ｜ |
-| end | INode / string | true | F6 Node 实例或 ID，路径终点 ｜ |
-| directed | boolean | false | 是否考虑边的方向性，若不指定，则取图的 `directed` 属性 ｜ |
-| weightPropertyName | string | false | 边的权重属性字段名，若不指定，则认为所有边权重相同 ｜ |
+| 名称               | 类型           | 是否必选 | 描述                                                                                                                |
+| ------------------ | -------------- | -------- | ------------------------------------------------------------------------------------------------------------------- |
+| graphData          | GraphData      | true     | 图数据，满足 F6 [数据格式](/zh/docs/manual/getting-started#step-2-数据准备)。注意，4.1 以前的版本该参数请传入图实例 |
+| start              | INode / string | true     | F6 Node 实例或 ID，路径起始点 ｜                                                                                    |
+| end                | INode / string | true     | F6 Node 实例或 ID，路径终点 ｜                                                                                      |
+| directed           | boolean        | false    | 是否考虑边的方向性，若不指定，则取图的 `directed` 属性 ｜                                                           |
+| weightPropertyName | string         | false    | 边的权重属性字段名，若不指定，则认为所有边权重相同 ｜                                                               |
 
 **返回值**
 
@@ -620,76 +620,76 @@ const allCycleExcludeB = detectAllCycles(data, false, ['B'], false);
 const data = {
   nodes: [
     {
-      id: 'A',
-      label: 'A',
+      id: "A",
+      label: "A",
     },
     {
-      id: 'B',
-      label: 'B',
+      id: "B",
+      label: "B",
     },
     {
-      id: 'C',
-      label: 'C',
+      id: "C",
+      label: "C",
     },
     {
-      id: 'D',
-      label: 'D',
+      id: "D",
+      label: "D",
     },
     {
-      id: 'E',
-      label: 'E',
+      id: "E",
+      label: "E",
     },
     {
-      id: 'F',
-      label: 'F',
+      id: "F",
+      label: "F",
     },
     {
-      id: 'G',
-      label: 'G',
+      id: "G",
+      label: "G",
     },
     {
-      id: 'H',
-      label: 'H',
+      id: "H",
+      label: "H",
     },
   ],
   edges: [
     {
-      source: 'A',
-      target: 'B',
+      source: "A",
+      target: "B",
     },
     {
-      source: 'B',
-      target: 'C',
+      source: "B",
+      target: "C",
     },
     {
-      source: 'C',
-      target: 'G',
+      source: "C",
+      target: "G",
     },
     {
-      source: 'A',
-      target: 'D',
+      source: "A",
+      target: "D",
     },
     {
-      source: 'A',
-      target: 'E',
+      source: "A",
+      target: "E",
     },
     {
-      source: 'E',
-      target: 'F',
+      source: "E",
+      target: "F",
     },
     {
-      source: 'F',
-      target: 'D',
+      source: "F",
+      target: "D",
     },
     {
-      source: 'D',
-      target: 'E',
+      source: "D",
+      target: "E",
     },
   ],
 };
 
 const graph = new F6.Graph({
-  container: 'container',
+  container: "container",
   width: 500,
   height: 500,
 });
@@ -698,7 +698,7 @@ graph.render();
 
 const { findShortestPath } = Algorithm;
 // 不考虑边的方向性，查找节点 A 和 节点 C 之间的最短路径
-const { length, path, allPath } = findShortestPath(data, 'A', 'C');
+const { length, path, allPath } = findShortestPath(data, "A", "C");
 console.log(length, path);
 // 期望输出：2, ['A', 'B', 'C']
 ```
@@ -709,12 +709,12 @@ console.log(length, path);
 
 **参数**
 
-| 名称 | 类型 | 是否必选 | 描述 |
-| --- | --- | --- | --- |
-| graphData | GraphData | true | 图数据，满足 F6 [数据格式](/zh/docs/manual/getting-started#step-2-数据准备)。注意，4.1 以前的版本该参数请传入图实例 |
-| start | INode / string | true | F6 Node 实例或 ID，路径起始点 ｜ |
-| end | INode / string | true | F6 Node 实例或 ID，路径终点 ｜ |
-| directed | boolean | false | 是否考虑边的方向性，若不指定，则取图的 `directed` 属性 ｜ |
+| 名称      | 类型           | 是否必选 | 描述                                                                                                                |
+| --------- | -------------- | -------- | ------------------------------------------------------------------------------------------------------------------- |
+| graphData | GraphData      | true     | 图数据，满足 F6 [数据格式](/zh/docs/manual/getting-started#step-2-数据准备)。注意，4.1 以前的版本该参数请传入图实例 |
+| start     | INode / string | true     | F6 Node 实例或 ID，路径起始点 ｜                                                                                    |
+| end       | INode / string | true     | F6 Node 实例或 ID，路径终点 ｜                                                                                      |
+| directed  | boolean        | false    | 是否考虑边的方向性，若不指定，则取图的 `directed` 属性 ｜                                                           |
 
 **返回值**
 
@@ -727,76 +727,76 @@ console.log(length, path);
 const data = {
   nodes: [
     {
-      id: 'A',
-      label: 'A',
+      id: "A",
+      label: "A",
     },
     {
-      id: 'B',
-      label: 'B',
+      id: "B",
+      label: "B",
     },
     {
-      id: 'C',
-      label: 'C',
+      id: "C",
+      label: "C",
     },
     {
-      id: 'D',
-      label: 'D',
+      id: "D",
+      label: "D",
     },
     {
-      id: 'E',
-      label: 'E',
+      id: "E",
+      label: "E",
     },
     {
-      id: 'F',
-      label: 'F',
+      id: "F",
+      label: "F",
     },
     {
-      id: 'G',
-      label: 'G',
+      id: "G",
+      label: "G",
     },
     {
-      id: 'H',
-      label: 'H',
+      id: "H",
+      label: "H",
     },
   ],
   edges: [
     {
-      source: 'A',
-      target: 'B',
+      source: "A",
+      target: "B",
     },
     {
-      source: 'B',
-      target: 'C',
+      source: "B",
+      target: "C",
     },
     {
-      source: 'C',
-      target: 'G',
+      source: "C",
+      target: "G",
     },
     {
-      source: 'A',
-      target: 'D',
+      source: "A",
+      target: "D",
     },
     {
-      source: 'A',
-      target: 'E',
+      source: "A",
+      target: "E",
     },
     {
-      source: 'E',
-      target: 'F',
+      source: "E",
+      target: "F",
     },
     {
-      source: 'F',
-      target: 'D',
+      source: "F",
+      target: "D",
     },
     {
-      source: 'D',
-      target: 'E',
+      source: "D",
+      target: "E",
     },
   ],
 };
 
 const graph = new F6.Graph({
-  container: 'container',
+  container: "container",
   width: 500,
   height: 500,
 });
@@ -804,7 +804,7 @@ graph.data(data);
 graph.render();
 
 const { findAllPath } = Algorithm;
-const allPath = findAllPath(data, 'A', 'E');
+const allPath = findAllPath(data, "A", "E");
 console.log(allPath);
 // 期望输出值：[['A', 'D', 'F', 'E'], ['A', 'D', 'E'], ['A', 'E']]
 ```
@@ -819,10 +819,10 @@ console.log(allPath);
 
   **参数**
 
-| 名称 | 类型 | 是否必选 | 描述 |
-| --- | --- | --- | --- |
-| graphData | GraphData | true | 图数据，满足 F6 [数据格式](/zh/docs/manual/getting-started#step-2-数据准备)。注意，4.1 以前的版本该参数请传入图实例 |
-| directed | boolean | false | 是否考虑边的方向性，若不指定，则取图的 `directed` 属性 ｜ |
+| 名称      | 类型      | 是否必选 | 描述                                                                                                                |
+| --------- | --------- | -------- | ------------------------------------------------------------------------------------------------------------------- |
+| graphData | GraphData | true     | 图数据，满足 F6 [数据格式](/zh/docs/manual/getting-started#step-2-数据准备)。注意，4.1 以前的版本该参数请传入图实例 |
+| directed  | boolean   | false    | 是否考虑边的方向性，若不指定，则取图的 `directed` 属性 ｜                                                           |
 
 **返回值**
 
@@ -835,71 +835,71 @@ console.log(allPath);
 const data = {
   nodes: [
     {
-      id: 'A',
+      id: "A",
     },
     {
-      id: 'B',
+      id: "B",
     },
     {
-      id: 'C',
+      id: "C",
     },
     {
-      id: 'D',
+      id: "D",
     },
     {
-      id: 'E',
+      id: "E",
     },
     {
-      id: 'F',
+      id: "F",
     },
     {
-      id: 'G',
+      id: "G",
     },
     {
-      id: 'H',
+      id: "H",
     },
   ],
   edges: [
     {
-      source: 'A',
-      target: 'B',
+      source: "A",
+      target: "B",
     },
     {
-      source: 'B',
-      target: 'C',
+      source: "B",
+      target: "C",
     },
     {
-      source: 'A',
-      target: 'C',
+      source: "A",
+      target: "C",
     },
     {
-      source: 'D',
-      target: 'A',
+      source: "D",
+      target: "A",
     },
     {
-      source: 'D',
-      target: 'E',
+      source: "D",
+      target: "E",
     },
     {
-      source: 'E',
-      target: 'F',
+      source: "E",
+      target: "F",
     },
     {
-      source: 'F',
-      target: 'D',
+      source: "F",
+      target: "D",
     },
     {
-      source: 'G',
-      target: 'H',
+      source: "G",
+      target: "H",
     },
     {
-      source: 'H',
-      target: 'G',
+      source: "H",
+      target: "G",
     },
   ],
 };
 const graph = new F6.Graph({
-  container: 'container',
+  container: "container",
   width: 500,
   height: 400,
 });
@@ -909,14 +909,14 @@ graph.render();
 // 图中的连通分量
 const components = getConnectedComponents(data, false);
 components.forEach((component) => {
-  console.log(component.map((node) => node.get('id')));
+  console.log(component.map((node) => node.get("id")));
 });
 // 期望输出结果：['A', 'B', 'C', 'D', 'E', 'F'], ['G', 'H']
 
 // 有向图中的强连通分量
 const components2 = getConnectedComponents(data, true);
 components2.forEach((component) => {
-  console.log(component.map((node) => node.get('id')));
+  console.log(component.map((node) => node.get("id")));
 });
 // 期望输出结果：['A'], ['B'], ['C'], ['D', 'E', 'F'], ['G', 'H']
 ```
@@ -931,11 +931,11 @@ PageRank 可以用来度量网络中节点的重要性，最初用于标识网�
 
   **参数**
 
-| 名称 | 类型 | 是否必选 | 描述 |
-| --- | --- | --- | --- |
-| graphData | GraphData | true | 图数据，满足 F6 [数据格式](/zh/docs/manual/getting-started#step-2-数据准备)。注意，4.1 以前的版本该参数请传入图实例 |
-| epsilon | number | false | 判断 PageRank 得分是否稳定的精度值，默认 0.000001 ｜ |
-| linkProb | number | false | 阻尼系数（dumping factor），指任意时刻，用户访问到某节点后继续访问该节点指向的节点的概率，默认 0.85。 ｜ |
+| 名称      | 类型      | 是否必选 | 描述                                                                                                                |
+| --------- | --------- | -------- | ------------------------------------------------------------------------------------------------------------------- |
+| graphData | GraphData | true     | 图数据，满足 F6 [数据格式](/zh/docs/manual/getting-started#step-2-数据准备)。注意，4.1 以前的版本该参数请传入图实例 |
+| epsilon   | number    | false    | 判断 PageRank 得分是否稳定的精度值，默认 0.000001 ｜                                                                |
+| linkProb  | number    | false    | 阻尼系数（dumping factor），指任意时刻，用户访问到某节点后继续访问该节点指向的节点的概率，默认 0.85。 ｜            |
 
 **返回值**
 

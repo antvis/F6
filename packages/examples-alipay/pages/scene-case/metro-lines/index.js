@@ -1,6 +1,6 @@
-import F6 from '@antv/f6';
-import { wrapContext } from '../../../common/utils/context';
-import { nodes, edges, data } from './data';
+import F6 from "@antv/f6";
+import { wrapContext } from "../../../common/utils/context";
+import { nodes, edges, data } from "./data";
 /**
  * metroLines
  */
@@ -8,7 +8,7 @@ import { nodes, edges, data } from './data';
 Page({
   canvas: null,
   ctx: null,
-  renderer: '', // mini、mini-native等，F6需要，标记环境
+  renderer: "", // mini、mini-native等，F6需要，标记环境
   isCanvasInit: false, // canvas是否准备好了
   graph: null,
 
@@ -24,16 +24,16 @@ Page({
     const { pixelRatio } = my.getSystemInfoSync();
 
     my.setBackgroundColor({
-      backgroundColorTop: '#000000',
-      backgroundColorBottom: '#000000',
+      backgroundColorTop: "#000000",
+      backgroundColorBottom: "#000000",
     });
     // custom the node
     F6.registerNode(
-      'breath-node',
+      "breath-node",
       {
         afterDraw(cfg, group) {
           const r = cfg.size / 2;
-          const back1 = group.addShape('circle', {
+          const back1 = group.addShape("circle", {
             zIndex: -3,
             attrs: {
               x: 0,
@@ -42,9 +42,9 @@ Page({
               fill: cfg.color || (cfg.style && cfg.style.fill),
               opacity: 0.6,
             },
-            name: 'back1-shape',
+            name: "back1-shape",
           });
-          const back2 = group.addShape('circle', {
+          const back2 = group.addShape("circle", {
             zIndex: -2,
             attrs: {
               x: 0,
@@ -54,9 +54,9 @@ Page({
               // 为了显示清晰，随意设置了颜色
               opacity: 0.6,
             },
-            name: 'back2-shape',
+            name: "back2-shape",
           });
-          const back3 = group.addShape('circle', {
+          const back3 = group.addShape("circle", {
             zIndex: -1,
             attrs: {
               x: 0,
@@ -65,7 +65,7 @@ Page({
               fill: cfg.color,
               opacity: 0.6,
             },
-            name: 'back3-shape',
+            name: "back3-shape",
           });
           group.sort(); // 排序，根据zIndex 排序
           const delayBase = Math.random() * 2000;
@@ -78,7 +78,7 @@ Page({
             {
               repeat: true, // 循环
               duration: 3000,
-              easing: 'easeCubic',
+              easing: "easeCubic",
               delay: delayBase, // 无延迟
             },
           );
@@ -91,7 +91,7 @@ Page({
             {
               repeat: true, // 循环
               duration: 3000,
-              easing: 'easeCubic',
+              easing: "easeCubic",
               delay: delayBase + 1000, // 1 秒延迟
             },
           );
@@ -104,21 +104,21 @@ Page({
             {
               repeat: true, // 循环
               duration: 3000,
-              easing: 'easeCubic',
+              easing: "easeCubic",
               delay: delayBase + 2000, // 2 秒延迟
             },
           );
         },
       },
-      'circle',
+      "circle",
     );
 
     // custom the edge
     F6.registerEdge(
-      'running-polyline',
+      "running-polyline",
       {
         afterDraw(cfg, group) {
-          const shape = group.get('children')[0];
+          const shape = group.get("children")[0];
           const length = shape.getTotalLength();
           let circleCount = Math.ceil(length / 20);
           circleCount = circleCount === 0 ? 1 : circleCount;
@@ -126,16 +126,16 @@ Page({
           const _loop = function _loop(i) {
             const delay = Math.random() * 1000;
             const start = shape.getPoint(i / circleCount);
-            const circle = group.addShape('circle', {
+            const circle = group.addShape("circle", {
               attrs: {
                 x: start.x,
                 y: start.y,
                 r: 0.8,
-                fill: '#A0F3AF',
-                shadowColor: '#fff',
+                fill: "#A0F3AF",
+                shadowColor: "#fff",
                 shadowBlur: 30,
               },
-              name: 'circle-shape',
+              name: "circle-shape",
             });
             circle.animate(
               (ratio) => {
@@ -152,7 +152,7 @@ Page({
               {
                 repeat: true,
                 duration: 10 * length,
-                easing: 'easeCubic',
+                easing: "easeCubic",
                 delay,
               },
             );
@@ -163,7 +163,7 @@ Page({
           }
         },
       },
-      'polyline',
+      "polyline",
     );
 
     this.setData({
@@ -201,16 +201,16 @@ Page({
       let maxX = -99999999999999999;
       let minY = 99999999999999999;
       let maxY = -99999999999999999;
-      nodes_.forEach(function(node) {
+      nodes_.forEach(function (node) {
         if (node.x > maxX) maxX = node.x;
         if (node.x < minX) minX = node.x;
         if (node.y > maxY) maxY = node.y;
         if (node.y < minY) minY = node.y;
       });
 
-      edges_.forEach(function(edge) {
+      edges_.forEach(function (edge) {
         const { controlPoints } = edge;
-        controlPoints.forEach(function(cp) {
+        controlPoints.forEach(function (cp) {
           if (cp.x > maxX) maxX = cp.x;
           if (cp.x < minX) minX = cp.x;
           if (cp.y > maxY) maxY = cp.y;
@@ -220,15 +220,15 @@ Page({
 
       const xScale = maxX - minX;
       const yScale = maxY - minY;
-      nodes_.forEach(function(node) {
+      nodes_.forEach(function (node) {
         node.orix = node.x;
         node.oriy = node.y;
         node.x = ((node.x - minX) / xScale) * size;
         node.y = ((node.y - minY) / yScale) * size;
       });
-      edges_.forEach(function(edge) {
+      edges_.forEach(function (edge) {
         const { controlPoints } = edge;
-        controlPoints.forEach(function(cp) {
+        controlPoints.forEach(function (cp) {
           cp.x = ((cp.x - minX) / xScale) * size;
           cp.y = ((cp.y - minY) / yScale) * size;
         });
@@ -248,7 +248,7 @@ Page({
       modes: {
         default: [
           {
-            type: 'edge-tooltip',
+            type: "edge-tooltip",
             formatText: function formatText(model) {
               const text = model.class;
               return text;
@@ -257,17 +257,17 @@ Page({
         ],
       },
       defaultNode: {
-        type: 'breath-node',
+        type: "breath-node",
         size: 3,
         style: {
           lineWidth: 0,
-          fill: 'rgb(240, 223, 83)',
+          fill: "rgb(240, 223, 83)",
         },
       },
       defaultEdge: {
-        type: 'running-polyline',
+        type: "running-polyline",
         size: 1,
-        color: 'rgb(14,142,63)',
+        color: "rgb(14,142,63)",
         style: {
           opacity: 0.8,
           lineAppendWidth: 3,

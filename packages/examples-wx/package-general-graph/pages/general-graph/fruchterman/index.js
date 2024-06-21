@@ -1,7 +1,7 @@
-import F6 from '@antv/f6-wx';
+import F6 from "@antv/f6-wx";
 
-import getData from './data';
-import fruchtermanLayout from '@antv/f6-wx/extends/layout/fruchtermanLayout';
+import getData from "./data";
+import fruchtermanLayout from "@antv/f6-wx/extends/layout/fruchtermanLayout";
 /**
  * fruchterman
  */
@@ -9,7 +9,7 @@ import fruchtermanLayout from '@antv/f6-wx/extends/layout/fruchtermanLayout';
 Page({
   canvas: null,
   ctx: null,
-  renderer: '', // mini、mini-native等，F6需要，标记环境
+  renderer: "", // mini、mini-native等，F6需要，标记环境
   isCanvasInit: false, // canvas是否准备好了
   graph: null,
 
@@ -22,7 +22,7 @@ Page({
 
   onLoad() {
     // 注册布局
-    F6.registerLayout('fruchterman', fruchtermanLayout);
+    F6.registerLayout("fruchterman", fruchtermanLayout);
 
     // 同步获取window的宽高
     const { windowWidth, windowHeight, pixelRatio } = wx.getSystemInfoSync();
@@ -70,10 +70,10 @@ Page({
       pixelRatio,
       fitView: true,
       modes: {
-        default: ['drag-canvas', 'drag-node'],
+        default: ["drag-canvas", "drag-node"],
       },
       layout: {
-        type: 'fruchterman',
+        type: "fruchterman",
         gravity: 5,
         speed: 5,
         // for rendering after each iteration

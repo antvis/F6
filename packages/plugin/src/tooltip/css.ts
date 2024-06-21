@@ -1,4 +1,4 @@
-export function appendCss(cssString = '') {
+export function appendCss(cssString = "") {
   return `
     text {
       opacity: 1

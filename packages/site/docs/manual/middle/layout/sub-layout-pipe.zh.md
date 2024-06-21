@@ -46,14 +46,14 @@ const graph = new F6.Graph({
     pipes: [
       {
         // 该子图所使用的布局类型
-        type: 'circular',
+        type: "circular",
         // 根据节点的某个字段判断是否属于该子图
-        nodesFilter: (node) => node.subGraphId === '1',
+        nodesFilter: (node) => node.subGraphId === "1",
         // ... 可配置该 circular 布局的参数，详见各布局文档
       },
       {
-        type: 'grid',
-        nodesFilter: (node) => node.subGraphId === '2',
+        type: "grid",
+        nodesFilter: (node) => node.subGraphId === "2",
         // 该 grid 布局的其他参数
         begin: [100, 0],
       },

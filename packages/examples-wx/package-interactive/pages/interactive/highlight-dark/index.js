@@ -1,7 +1,7 @@
-import F6 from '@antv/f6-wx';
+import F6 from "@antv/f6-wx";
 
-import data from './data';
-import force from '@antv/f6-wx/extends/layout/forceLayout';
+import data from "./data";
+import force from "@antv/f6-wx/extends/layout/forceLayout";
 
 /**
  * highlight-dark:自定义高亮
@@ -10,7 +10,7 @@ import force from '@antv/f6-wx/extends/layout/forceLayout';
 Page({
   canvas: null,
   ctx: null,
-  renderer: '', // mini、mini-native等，F6需要，标记环境
+  renderer: "", // mini、mini-native等，F6需要，标记环境
   isCanvasInit: false, // canvas是否准备好了
   graph: null,
 
@@ -25,7 +25,7 @@ Page({
     // 同步获取window的宽高
     const { windowWidth, windowHeight, pixelRatio } = wx.getSystemInfoSync();
 
-    F6.registerLayout('force', force);
+    F6.registerLayout("force", force);
 
     this.setData({
       width: windowWidth,
@@ -95,24 +95,24 @@ Page({
       fitViewPadding: 50,
       // plugins: [tooltip],
       layout: {
-        type: 'force',
+        type: "force",
         edgeStrength: 0.7,
       },
       modes: {
-        default: ['drag-canvas'],
+        default: ["drag-canvas"],
       },
       defaultNode: {
         size: [10, 10],
         style: {
           lineWidth: 2,
-          fill: '#DEE9FF',
-          stroke: '#5B8FF9',
+          fill: "#DEE9FF",
+          stroke: "#5B8FF9",
         },
       },
       defaultEdge: {
         size: 1,
         style: {
-          stroke: '#e2e2e2',
+          stroke: "#e2e2e2",
           lineAppendWidth: 2,
         },
       },
@@ -126,7 +126,7 @@ Page({
       },
       edgeStateStyles: {
         highlight: {
-          stroke: '#999',
+          stroke: "#999",
         },
       },
     });
@@ -144,35 +144,35 @@ Page({
       this.graph.setAutoPaint(true);
     }
 
-    this.graph.on('node:mouseenter', function (e) {
+    this.graph.on("node:mouseenter", function (e) {
       const { item } = e;
       this.graph.setAutoPaint(false);
       this.graph.getNodes().forEach(function (node) {
         this.graph.clearItemStates(node);
-        this.graph.setItemState(node, 'dark', true);
+        this.graph.setItemState(node, "dark", true);
       });
-      this.graph.setItemState(item, 'dark', false);
-      this.graph.setItemState(item, 'highlight', true);
+      this.graph.setItemState(item, "dark", false);
+      this.graph.setItemState(item, "highlight", true);
       this.graph.getEdges().forEach(function (edge) {
         if (edge.getSource() === item) {
-          this.graph.setItemState(edge.getTarget(), 'dark', false);
-          this.graph.setItemState(edge.getTarget(), 'highlight', true);
-          this.graph.setItemState(edge, 'highlight', true);
+          this.graph.setItemState(edge.getTarget(), "dark", false);
+          this.graph.setItemState(edge.getTarget(), "highlight", true);
+          this.graph.setItemState(edge, "highlight", true);
           edge.toFront();
         } else if (edge.getTarget() === item) {
-          this.graph.setItemState(edge.getSource(), 'dark', false);
-          this.graph.setItemState(edge.getSource(), 'highlight', true);
-          this.graph.setItemState(edge, 'highlight', true);
+          this.graph.setItemState(edge.getSource(), "dark", false);
+          this.graph.setItemState(edge.getSource(), "highlight", true);
+          this.graph.setItemState(edge, "highlight", true);
           edge.toFront();
         } else {
-          this.graph.setItemState(edge, 'highlight', false);
+          this.graph.setItemState(edge, "highlight", false);
         }
       });
       this.graph.paint();
       this.graph.setAutoPaint(true);
     });
-    this.graph.on('node:mouseleave', clearAllStats);
-    this.graph.on('canvas:tap', clearAllStats);
+    this.graph.on("node:mouseleave", clearAllStats);
+    this.graph.on("canvas:tap", clearAllStats);
 
     this.graph.data({
       nodes: data.nodes,

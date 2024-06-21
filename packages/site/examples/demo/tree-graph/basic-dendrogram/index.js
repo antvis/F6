@@ -11,21 +11,28 @@ const graph = new F6.TreeGraph({
   pixelRatio,
   fitView: true,
   modes: {
-    default: [{
-      type: "collapse-expand",
-      onChange: function onChange(item, collapsed) {
-        const model = item.getModel();
-        model.collapsed = collapsed;
-        return true;
-      }
-    }, "drag-canvas", "zoom-canvas"]
+    default: [
+      {
+        type: "collapse-expand",
+        onChange: function onChange(item, collapsed) {
+          const model = item.getModel();
+          model.collapsed = collapsed;
+          return true;
+        },
+      },
+      "drag-canvas",
+      "zoom-canvas",
+    ],
   },
   defaultNode: {
     size: 26,
-    anchorPoints: [[0, 0.5], [1, 0.5]]
+    anchorPoints: [
+      [0, 0.5],
+      [1, 0.5],
+    ],
   },
   defaultEdge: {
-    type: "cubic-horizontal"
+    type: "cubic-horizontal",
   },
   layout: {
     type: "dendrogram",
@@ -46,16 +53,16 @@ const graph = new F6.TreeGraph({
     },
     getHGap: function getHGap() {
       return 100;
-    }
-  }
+    },
+  },
 });
 graph.node(function (node) {
   return {
     label: node.id,
     labelCfg: {
       offset: 5,
-      position: node.children && node.children.length > 0 ? "left" : "right"
-    }
+      position: node.children && node.children.length > 0 ? "left" : "right",
+    },
   };
 });
 graph.data(data);

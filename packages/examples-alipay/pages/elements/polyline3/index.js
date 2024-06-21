@@ -1,6 +1,6 @@
-import F6 from '@antv/f6';
-import { wrapContext } from '../../../common/utils/context';
-import data from './data';
+import F6 from "@antv/f6";
+import { wrapContext } from "../../../common/utils/context";
+import data from "./data";
 /**
  * polyline3
  */
@@ -8,7 +8,7 @@ import data from './data';
 Page({
   canvas: null,
   ctx: null,
-  renderer: '', // mini、mini-native等，F6需要，标记环境
+  renderer: "", // mini、mini-native等，F6需要，标记环境
   isCanvasInit: false, // canvas是否准备好了
   graph: null,
 
@@ -69,10 +69,10 @@ Page({
       linkCenter: true,
       modes: {
         // behavior
-        default: ['drag-node'],
+        default: ["drag-node"],
       },
       defaultEdge: {
-        type: 'polyline',
+        type: "polyline",
         /* you can configure the global edge style as following lines */
         // style: {
         //   stroke: '#F6BD16',
@@ -97,11 +97,11 @@ Page({
     this.graph.fitView();
 
     // 监听
-    this.graph.on('edge:tap', (evt) => {
+    this.graph.on("edge:tap", (evt) => {
       const { item } = evt;
-      this.graph.setItemState(item, 'selected', true);
+      this.graph.setItemState(item, "selected", true);
     });
-    this.graph.on('canvas:tap', () => {
+    this.graph.on("canvas:tap", () => {
       this.graph.getEdges().forEach((edge) => {
         this.graph.clearItemStates(edge);
       });

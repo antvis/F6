@@ -1,5 +1,5 @@
-import getAngle from './get-angle';
-import { PROPS_CLIENT_XY } from './input-consts';
+import getAngle from "./get-angle";
+import { PROPS_CLIENT_XY } from "./input-consts";
 
 /**
  * @private

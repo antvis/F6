@@ -1,6 +1,6 @@
-import F6 from '@antv/f6-wx';
+import F6 from "@antv/f6-wx";
 
-import data from './data';
+import data from "./data";
 /**
  * rect-with-combo
  */
@@ -8,7 +8,7 @@ import data from './data';
 Page({
   canvas: null,
   ctx: null,
-  renderer: '', // mini、mini-native等，F6需要，标记环境
+  renderer: "", // mini、mini-native等，F6需要，标记环境
   isCanvasInit: false, // canvas是否准备好了
   graph: null,
 
@@ -71,10 +71,15 @@ Page({
       // Set groupByTypes to false to get rendering result with reasonable visual zIndex for combos
       groupByTypes: false,
       modes: {
-        default: ['drag-canvas', 'drag-node', 'drag-combo', 'collapse-expand-combo'],
+        default: [
+          "drag-canvas",
+          "drag-node",
+          "drag-combo",
+          "collapse-expand-combo",
+        ],
       },
       defaultCombo: {
-        type: 'rect',
+        type: "rect",
         size: [50, 50],
         /* style for the keyShape */
         // style: {
@@ -84,7 +89,7 @@ Page({
           /* label's offset to the keyShape */
           // refY: 10,
           /* label's position, options: center, top, bottom, left, right */
-          position: 'top',
+          position: "top",
           /* label's style */
           // style: {
           //   fontSize: 18,
@@ -105,21 +110,21 @@ Page({
     this.graph.fitView();
 
     // 监听
-    this.graph.on('edge:mouseenter', (evt) => {
+    this.graph.on("edge:mouseenter", (evt) => {
       const { item } = evt;
-      this.graph.setItemState(item, 'active', true);
+      this.graph.setItemState(item, "active", true);
     });
 
-    this.graph.on('edge:mouseleave', (evt) => {
+    this.graph.on("edge:mouseleave", (evt) => {
       const { item } = evt;
-      this.graph.setItemState(item, 'active', false);
+      this.graph.setItemState(item, "active", false);
     });
 
-    this.graph.on('edge:tap', (evt) => {
+    this.graph.on("edge:tap", (evt) => {
       const { item } = evt;
-      this.graph.setItemState(item, 'selected', true);
+      this.graph.setItemState(item, "selected", true);
     });
-    this.graph.on('canvas:tap', () => {
+    this.graph.on("canvas:tap", () => {
       this.graph.getEdges().forEach((edge) => {
         this.graph.clearItemStates(edge);
       });

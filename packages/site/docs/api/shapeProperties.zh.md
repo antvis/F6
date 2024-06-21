@@ -6,17 +6,17 @@ order: 8
 图形是组成图上一个元素（节点/边）的基本单位。节点/边的 `style` 属性即对应了各自 keyShape（关键图形）的图形属性。节点或边上标签 `labelCfg` 中的 `style` 属性对应了 text 图形的图形属性。除一些[通用属性](#通用属性)外，不同图形有各自的特殊属性。
 
 ```javascript
-group.addShape('rect', {
+group.addShape("rect", {
   attrs: {
-    fill: 'red',
+    fill: "red",
     shadowOffsetX: 10,
     shadowOffsetY: 10,
-    shadowColor: 'blue',
+    shadowColor: "blue",
     shadowBlur: 10,
     opacity: 0.8,
   },
   // must be assigned in F6. it can be any value you want
-  name: 'rect-shape',
+  name: "rect-shape",
 });
 ```
 
@@ -115,15 +115,15 @@ F6 支持以下图形：
 ## 圆图形 Circle
 
 ```javascript
-group.addShape('circle', {
+group.addShape("circle", {
   attrs: {
     x: 100,
     y: 100,
     r: 50,
-    fill: 'blue',
+    fill: "blue",
   },
   // must be assigned in F6. it can be any value you want
-  name: 'circle-shape',
+  name: "circle-shape",
 });
 ```
 
@@ -148,16 +148,16 @@ group.addShape('circle', {
 ## 椭圆图形 Ellipse
 
 ```javascript
-group.addShape('ellipse', {
+group.addShape("ellipse", {
   attrs: {
     x: 100,
     y: 100,
     rx: 50,
     ry: 50,
-    fill: 'blue',
+    fill: "blue",
   },
   // must be assigned in F6. it can be any value you want
-  name: 'ellipse-shape',
+  name: "ellipse-shape",
 });
 ```
 
@@ -188,14 +188,14 @@ group.addShape('ellipse', {
 ## 图片图形 Image
 
 ```javascript
-group.addShape('image', {
+group.addShape("image", {
   attrs: {
     x: 0,
     y: 0,
-    img: 'https://g.alicdn.com/cm-design/arms-trace/1.0.155/styles/armsTrace/images/TAIR.png',
+    img: "https://g.alicdn.com/cm-design/arms-trace/1.0.155/styles/armsTrace/images/TAIR.png",
   },
   // must be assigned in F6. it can be any value you want
-  name: 'image-shape',
+  name: "image-shape",
 });
 ```
 
@@ -233,29 +233,29 @@ group.addShape('image', {
 
 ```javascript
 // 使用内置 symbol
-group.addShape('marker', {
+group.addShape("marker", {
   attrs: {
     x: 10,
     y: 10,
     r: 10,
-    symbol: 'triangle-down',
+    symbol: "triangle-down",
   },
   // must be assigned in F6. it can be any value you want
-  name: 'marker-shape',
+  name: "marker-shape",
 });
 
 // 使用路径自定义 symbol
-group.addShape('marker', {
+group.addShape("marker", {
   attrs: {
     x: 10,
     y: 10,
     r: 10,
     symbol: function (x, y, r) {
-      return [['M', x, y], ['L', x + r, y + r], ['L', x + r * 2, y], ['Z']];
+      return [["M", x, y], ["L", x + r, y + r], ["L", x + r * 2, y], ["Z"]];
     },
   },
   // must be assigned in F6. it can be any value you want
-  name: 'marker-shape',
+  name: "marker-shape",
 });
 ```
 
@@ -288,7 +288,7 @@ group.addShape('marker', {
 ### points
 
 ```javascript
-group.addShape('polygon', {
+group.addShape("polygon", {
   attrs: {
     points: [
       [30, 30],
@@ -296,10 +296,10 @@ group.addShape('polygon', {
       [30, 50],
       [60, 100],
     ],
-    fill: 'red',
+    fill: "red",
   },
   // must be assigned in F6. it can be any value you want
-  name: 'polygon-shape',
+  name: "polygon-shape",
 });
 ```
 
@@ -312,17 +312,17 @@ group.addShape('polygon', {
 ## 矩形图形 Rect
 
 ```javascript
-group.addShape('rect', {
+group.addShape("rect", {
   attrs: {
     x: 150,
     y: 150,
     width: 150,
     height: 150,
-    stroke: 'black',
+    stroke: "black",
     radius: [2, 4],
   },
   // must be assigned in F6. it can be any value you want
-  name: 'rect-shape',
+  name: "rect-shape",
 });
 ```
 
@@ -361,30 +361,30 @@ group.addShape('rect', {
 <span style="background-color: rgb(251, 233, 231); color: rgb(139, 53, 56)"><strong>⚠️ 注意:</strong></span> 当边太细交互不易命中时，请设置 **lineAppendWidth** 属性值。
 
 ```javascript
-group.addShape('path', {
+group.addShape("path", {
   attrs: {
     startArrow: {
       // 自定义箭头指向(0, 0)，尾部朝向 x 轴正方向的 path
-      path: 'M 0,0 L 20,10 L 20,-10 Z',
+      path: "M 0,0 L 20,10 L 20,-10 Z",
       // 箭头的偏移量，负值代表向 x 轴正方向移动
       // d: -10,
     },
     endArrow: {
       // 自定义箭头指向(0, 0)，尾部朝向 x 轴正方向的 path
-      path: 'M 0,0 L 20,10 L 20,-10 Z',
+      path: "M 0,0 L 20,10 L 20,-10 Z",
       // 箭头的偏移量，负值代表向 x 轴正方向移动
       // d: -10,
     },
     path: [
-      ['M', 100, 100],
-      ['L', 200, 200],
+      ["M", 100, 100],
+      ["L", 200, 200],
     ],
-    stroke: '#000',
+    stroke: "#000",
     lineWidth: 8,
     lineAppendWidth: 5,
   },
   // must be assigned in F6. it can be any value you want
-  name: 'path-shape',
+  name: "path-shape",
 });
 ```
 
@@ -445,18 +445,18 @@ group.addShape('path', {
 ## 文本 Text
 
 ```javascript
-group.addShape('text', {
+group.addShape("text", {
   attrs: {
-    text: 'test text',
-    fill: 'red',
+    text: "test text",
+    fill: "red",
     fontWeight: 400,
     shadowOffsetX: 10,
     shadowOffsetY: 10,
-    shadowColor: 'blue',
+    shadowColor: "blue",
     shadowBlur: 10,
   },
   // must be assigned in F6. it can be any value you wantPath
-  name: 'text-shape',
+  name: "text-shape",
 });
 ```
 
@@ -524,7 +524,7 @@ group.addShape('text', {
 - 使用 `'dom'` 进行自定义的节点或边，不支持 F6 的交互事件，请使用原生 DOM 的交互事件。
 
 ```javascript
-group.addShape('dom', {
+group.addShape("dom", {
   attrs: {
     width: cfg.size[0],
     height: cfg.size[1],
@@ -536,12 +536,14 @@ group.addShape('dom', {
       <div style="height: 100%; width: 33%; background-color: #CDDDFD">
         <img alt="img" style="line-height: 100%; padding-top: 6px; padding-left: 8px;" src="https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*Q_FQT6nwEC8AAAAAAAAAAABkARQnAQ" width="20" height="20" />  
       </div>
-      <span style="margin:auto; padding:auto; color: #5B8FF9">${cfg.label}</span>
+      <span style="margin:auto; padding:auto; color: #5B8FF9">${
+        cfg.label
+      }</span>
     </div>
       `,
   },
   // must be assigned in F6. it can be any value you want
-  name: 'dom-shape',
+  name: "dom-shape",
   draggable: true,
 });
 ```

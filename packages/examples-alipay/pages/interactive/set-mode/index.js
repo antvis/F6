@@ -1,17 +1,17 @@
-import F6 from '@antv/f6';
-import { wrapContext } from '../../../common/utils/context';
-import data from './data';
+import F6 from "@antv/f6";
+import { wrapContext } from "../../../common/utils/context";
+import data from "./data";
 
 /**
  * setMode
  */
 let modeNum = 0; // 用来标记选择的模式
-const modeList = ['默认模式', '添加节点模式', '添加边模式'];
+const modeList = ["默认模式", "添加节点模式", "添加边模式"];
 
 Page({
   canvas: null,
   ctx: null,
-  renderer: '', // mini、mini-native等，F6需要，标记环境
+  renderer: "", // mini、mini-native等，F6需要，标记环境
   isCanvasInit: false, // canvas是否准备好了
   graph: null,
 
@@ -20,14 +20,14 @@ Page({
     height: 600,
     pixelRatio: 2,
     forceMini: false,
-    currentMode: '请选择模式',
+    currentMode: "请选择模式",
   },
 
   // 选项框
   openOne() {
     my.optionsSelect({
-      title: '模式选择',
-      optionsOne: ['默认模式', '添加节点模式', '添加边模式'],
+      title: "模式选择",
+      optionsOne: ["默认模式", "添加节点模式", "添加边模式"],
       selectedOneIndex: 0, // 默认选项的索引下标
       success: (res) => {
         // my.alert({
@@ -39,16 +39,16 @@ Page({
         });
         switch (modeNum) {
           case 0:
-            this.graph.setMode('default');
-            console.log('default');
+            this.graph.setMode("default");
+            console.log("default");
             break;
           case 1:
-            this.graph.setMode('addNode');
-            console.log('addNode');
+            this.graph.setMode("addNode");
+            console.log("addNode");
             break;
           case 2:
-            this.graph.setMode('addEdge');
-            console.log('addEdge');
+            this.graph.setMode("addEdge");
+            console.log("addEdge");
             break;
         }
       },
@@ -62,12 +62,12 @@ Page({
     // 注册自定义节点
     let addedCount = 0;
     // Register a custom behavior: add a node when user click the blank part of canvas
-    F6.registerBehavior('click-add-node', {
+    F6.registerBehavior("click-add-node", {
       // Set the events and the corresponding responsing function for this behavior
       getEvents() {
         // The event is canvas:click, the responsing function is onClick
         return {
-          'canvas:tap': 'onClick',
+          "canvas:tap": "onClick",
         };
       },
       // Click event
@@ -75,7 +75,7 @@ Page({
         const self = this;
         const { graph } = self;
         // Add a new node
-        graph.addItem('node', {
+        graph.addItem("node", {
           x: ev.canvasX,
           y: ev.canvasY,
           id: `node-${addedCount}`, // Generate the unique id
@@ -84,13 +84,13 @@ Page({
       },
     });
     // Register a custom behavior: click two end nodes to add an edge
-    F6.registerBehavior('click-add-edge', {
+    F6.registerBehavior("click-add-edge", {
       // Set the events and the corresponding responsing function for this behavior
       getEvents() {
         return {
-          'node:tap': 'onClick', // The event is canvas:click, the responsing function is onClick
-          'canvas:panmove': 'onMousemove', // The event is mousemove, the responsing function is onMousemove
-          'edge:tap': 'onEdgeClick', // The event is edge:click, the responsing function is onEdgeClick
+          "node:tap": "onClick", // The event is canvas:click, the responsing function is onClick
+          "canvas:panmove": "onMousemove", // The event is mousemove, the responsing function is onMousemove
+          "edge:tap": "onEdgeClick", // The event is edge:click, the responsing function is onEdgeClick
         };
       },
       // The responsing function for node:click defined in getEvents
@@ -110,7 +110,7 @@ Page({
           self.addingEdge = false;
         } else {
           // Add anew edge, the end node is the current node user clicks
-          self.edge = graph.addItem('edge', {
+          self.edge = graph.addItem("edge", {
             source: model.id,
             target: model.id,
           });
@@ -185,19 +185,19 @@ Page({
       // The sets of behavior modes
       modes: {
         // Defualt mode
-        default: ['drag-node', 'click-select'],
+        default: ["drag-node", "click-select"],
         // Adding node mode
-        addNode: ['click-add-node', 'click-select'],
+        addNode: ["click-add-node", "click-select"],
         // Adding edge mode
-        addEdge: ['click-add-edge', 'click-select'],
+        addEdge: ["click-add-edge", "click-select"],
       },
       // The node styles in different states
       nodeStateStyles: {
         // The node styles in selected state
         selected: {
-          stroke: '#666',
+          stroke: "#666",
           lineWidth: 2,
-          fill: 'steelblue',
+          fill: "steelblue",
         },
       },
     });

@@ -4,8 +4,8 @@
  * orthogonal: 线必须沿着竖直或水平方向（4个方向）
  * octolinearRouter: 线沿着竖直、水平、对角线方向（8个方向）
  */
-import { INode, Item, Util } from '@antv/f6-core';
-import { deepMix } from '@antv/util';
+import { INode, Item, Util } from "@antv/f6-core";
+import { deepMix } from "@antv/util";
 import {
   getExpandedBBox,
   getExpandedBBoxPoint,
@@ -13,7 +13,7 @@ import {
   getPolylinePoints,
   simplifyPolyline,
   isSegmentCrossingBBox,
-} from './polyline-util';
+} from "./polyline-util";
 
 export interface RouterCfg {
   offset?: number; // 连线和点的间距
@@ -53,7 +53,9 @@ const simplePolyline = (
   endNode: INode,
   cfg: RouterCfg,
 ) => {
-  return simplifyPolyline(getPolylinePoints(start, end, startNode, endNode, cfg.offset));
+  return simplifyPolyline(
+    getPolylinePoints(start, end, startNode, endNode, cfg.offset),
+  );
 };
 // getPolylinePoints
 
@@ -108,8 +110,16 @@ const getObstacleMap = (items: Item[], gridSize: number, offset: number) => {
     // create-edge 时，当边类型为 polyline 时 endNode 为 null
     if (!item) return;
     const bbox = getExpandedBBox(item.getBBox(), offset);
-    for (let x = pos2GridIx(bbox.minX, gridSize); x <= pos2GridIx(bbox.maxX, gridSize); x += 1) {
-      for (let y = pos2GridIx(bbox.minY, gridSize); y <= pos2GridIx(bbox.maxY, gridSize); y += 1) {
+    for (
+      let x = pos2GridIx(bbox.minX, gridSize);
+      x <= pos2GridIx(bbox.maxX, gridSize);
+      x += 1
+    ) {
+      for (
+        let y = pos2GridIx(bbox.minY, gridSize);
+        y <= pos2GridIx(bbox.maxY, gridSize);
+        y += 1
+      ) {
         map[`${x}|||${y}`] = true;
       }
     }
@@ -138,7 +148,9 @@ const getDirectionAngle = (p1: PolyPoint, p2: PolyPoint) => {
  */
 const getAngleDiff = (angle1: number, angle2: number) => {
   const directionChange = Math.abs(angle1 - angle2);
-  return directionChange > Math.PI ? 2 * Math.PI - directionChange : directionChange;
+  return directionChange > Math.PI
+    ? 2 * Math.PI - directionChange
+    : directionChange;
   // return directionChange > 180 ? 360 - directionChange : directionChange;
 };
 
@@ -230,7 +242,10 @@ const getBoxPoints = (
         const boundLine = bounds[i];
         const insterctP = Util.getLineIntersect(
           point,
-          { x: point.x + dir.stepX * expandBBox.width, y: point.y + dir.stepY * expandBBox.height },
+          {
+            x: point.x + dir.stepX * expandBBox.width,
+            y: point.y + dir.stepY * expandBBox.height,
+          },
           boundLine[0],
           boundLine[1],
         ) as PolyPoint;
@@ -324,7 +339,12 @@ const getControlPoints = (
       y: preY,
       id: preId,
     };
-    const directionChange = getDirectionChange(prePoint, point, cameFrom, scaleStartPoint);
+    const directionChange = getDirectionChange(
+      prePoint,
+      point,
+      cameFrom,
+      scaleStartPoint,
+    );
     if (directionChange) {
       // if (prePoint.x === point.x && prePoint.y === point.y)
       //   controlPoints.unshift({
@@ -360,8 +380,10 @@ const getControlPoints = (
   //   controlPoints[0].y = startPoint.y;
   // }
 
-  controlPoints[0].x = firstPoint.x === scaleStartPoint.x ? startPoint.x : controlPoints[0].x;
-  controlPoints[0].y = firstPoint.y === scaleStartPoint.y ? startPoint.y : controlPoints[0].y;
+  controlPoints[0].x =
+    firstPoint.x === scaleStartPoint.x ? startPoint.x : controlPoints[0].x;
+  controlPoints[0].y =
+    firstPoint.y === scaleStartPoint.y ? startPoint.y : controlPoints[0].y;
   controlPoints.unshift(startPoint);
   return controlPoints;
 };
@@ -377,7 +399,11 @@ export const pathFinder = (
   const cfg: RouterCfg = deepMix(defaultCfg, routerCfg);
   cfg.obstacles = cfg.obstacles || [];
   const gridSize = cfg.gridSize;
-  const map = getObstacleMap(cfg.obstacles.concat([startNode, endNode]), gridSize, cfg.offset);
+  const map = getObstacleMap(
+    cfg.obstacles.concat([startNode, endNode]),
+    gridSize,
+    cfg.offset,
+  );
 
   const scaleStartPoint = {
     x: pos2GridIx(startPoint.x, gridSize),
@@ -390,8 +416,20 @@ export const pathFinder = (
 
   startPoint.id = `${scaleStartPoint.x}|||${scaleStartPoint.y}`;
   endPoint.id = `${scaleEndPoint.x}|||${scaleEndPoint.y}`;
-  const startPoints = getBoxPoints(scaleStartPoint, startPoint, startNode, scaleEndPoint, cfg);
-  const endPoints = getBoxPoints(scaleEndPoint, endPoint, endNode, scaleStartPoint, cfg);
+  const startPoints = getBoxPoints(
+    scaleStartPoint,
+    startPoint,
+    startNode,
+    scaleEndPoint,
+    cfg,
+  );
+  const endPoints = getBoxPoints(
+    scaleEndPoint,
+    endPoint,
+    endNode,
+    scaleStartPoint,
+    cfg,
+  );
   startPoints.forEach((point) => {
     delete map[point.id];
   });
@@ -429,7 +467,13 @@ export const pathFinder = (
   }
   let remainLoops = cfg.maximumLoops;
   const penalties = cfg.penalties;
-  let current, curCost, direction, neighbor, neighborCost, costFromStart, directionChange;
+  let current,
+    curCost,
+    direction,
+    neighbor,
+    neighborCost,
+    costFromStart,
+    directionChange;
   while (Object.keys(openSet).length > 0 && remainLoops > 0) {
     current = undefined;
     curCost = Infinity;
@@ -445,7 +489,11 @@ export const pathFinder = (
     if (!current) break;
 
     // 如果 fScore 最小的点就是终点
-    if (endPoints.findIndex((point) => point.x === current.x && point.y === current.y) > -1) {
+    if (
+      endPoints.findIndex(
+        (point) => point.x === current.x && point.y === current.y,
+      ) > -1
+    ) {
       return getControlPoints(
         current,
         cameFrom,
@@ -473,7 +521,12 @@ export const pathFinder = (
       };
 
       if (closedSet[neighbor.id]) continue;
-      directionChange = getDirectionChange(current, neighbor, cameFrom, scaleStartPoint);
+      directionChange = getDirectionChange(
+        current,
+        neighbor,
+        cameFrom,
+        scaleStartPoint,
+      );
       if (directionChange > cfg.maxAllowedDirectionChange) continue;
       if (map[neighbor.id]) continue; // 如果交叉则跳过
 
@@ -483,7 +536,9 @@ export const pathFinder = (
       }
       neighborCost =
         cfg.distFunc(current, neighbor) +
-        (isNaN(penalties[directionChange]) ? gridSize : penalties[directionChange]);
+        (isNaN(penalties[directionChange])
+          ? gridSize
+          : penalties[directionChange]);
       costFromStart = gScore[current.id] + neighborCost;
       if (gScore[neighbor.id] && costFromStart >= gScore[neighbor.id]) {
         continue;
@@ -491,7 +546,8 @@ export const pathFinder = (
 
       cameFrom[neighbor.id] = current;
       gScore[neighbor.id] = costFromStart;
-      fScore[neighbor.id] = costFromStart + estimateCost(neighbor, endPoints, cfg.distFunc);
+      fScore[neighbor.id] =
+        costFromStart + estimateCost(neighbor, endPoints, cfg.distFunc);
     }
 
     remainLoops -= 1;

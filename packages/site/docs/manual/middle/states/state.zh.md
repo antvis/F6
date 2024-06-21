@@ -49,7 +49,7 @@ F6 中默认处理的是交互状态。
 示例：
 
 ```javascript
-graph.setItemState(item, 'stateName', true);
+graph.setItemState(item, "stateName", true);
 ```
 
 #### 多值状态
@@ -65,7 +65,7 @@ graph.setItemState(item, 'stateName', true);
 示例：
 
 ```javascript
-graph.setItemState(item, 'stateName', 'stateValue');
+graph.setItemState(item, "stateName", "stateValue");
 ```
 
 ### 调用的时机
@@ -77,14 +77,14 @@ graph.setItemState(item, 'stateName', 'stateValue');
 在回调函数中使定义的交互状态 hover 生效。
 
 ```javascript
-graph.on('node:tap', (evt) => {
+graph.on("node:tap", (evt) => {
   const { item } = evt;
-  graph.setItemState(item, 'tap', true);
+  graph.setItemState(item, "tap", true);
 });
 
-graph.on('node:dbltap', (evt) => {
+graph.on("node:dbltap", (evt) => {
   const { item } = evt;
-  graph.setItemState(item, 'tap', false);
+  graph.setItemState(item, "tap", false);
 });
 ```
 
@@ -93,10 +93,10 @@ graph.on('node:dbltap', (evt) => {
 在自定义 Behavior 中使定义的交互状态 selected 生效。
 
 ```javascript
-F6.registerBehavior('nodeClick', {
+F6.registerBehavior("nodeClick", {
   getEvents() {
     return {
-      'node:tap': 'onTap',
+      "node:tap": "onTap",
     };
   },
   onTap(e) {
@@ -106,7 +106,7 @@ F6.registerBehavior('nodeClick', {
     }
     const { item } = e;
     const graph = this.graph;
-    graph.setItemState(item, 'selected', true);
+    graph.setItemState(item, "selected", true);
   },
 });
 ```
@@ -211,7 +211,7 @@ const graph = new F6.Graph({
 const data = {
   nodes: [
     {
-      id: 'node1',
+      id: "node1",
       styles: {
         // 默认样式
       },
@@ -221,7 +221,7 @@ const data = {
       // ...
     },
     {
-      id: 'node2',
+      id: "node2",
       styles: {
         // 默认样式
       },
@@ -234,8 +234,8 @@ const data = {
   ],
   edges: [
     {
-      source: 'node1',
-      target: 'node2',
+      source: "node1",
+      target: "node2",
       styles: {
         // 默认样式
       },
@@ -276,10 +276,10 @@ F6.registerNode('customShape', {
 graph.updateItem(item, {
   // 修改默认样式
   style: {
-    stroke: 'green',
+    stroke: "green",
     // 修改 name 为 'node-label' 的子图形的默认样式
-    'node-label': {
-      stroke: 'yellow',
+    "node-label": {
+      stroke: "yellow",
     },
   },
   stateStyles: {
@@ -287,8 +287,8 @@ graph.updateItem(item, {
     hover: {
       opacity: 0.1,
       // 修改 name 为 'node-label' 的子图形 hover 状态下的样式
-      'node-text': {
-        stroke: 'blue',
+      "node-text": {
+        stroke: "blue",
       },
     },
   },
@@ -305,14 +305,14 @@ graph.updateItem(item, {
 建议使用 `graph.clearItemStates` 来取消 `graph.setItemState` 设置的状态。`graph.clearItemStates` 支持一次取消单个或多个状态。
 
 ```javascript
-graph.setItemState(item, 'bodyState', 'health');
-graph.setItemState(item, 'selected', true);
-graph.setItemState(item, 'active', true);
+graph.setItemState(item, "bodyState", "health");
+graph.setItemState(item, "selected", true);
+graph.setItemState(item, "active", true);
 // 取消单个状态
-graph.clearItemStates(item, 'selected');
-graph.clearItemStates(item, ['selected']);
+graph.clearItemStates(item, "selected");
+graph.clearItemStates(item, ["selected"]);
 // 取消多个状态
-graph.clearItemStates(item, ['bodyState:health', 'selected', 'active']);
+graph.clearItemStates(item, ["bodyState:health", "selected", "active"]);
 ```
 
 ## 状态优先级
@@ -321,12 +321,12 @@ graph.clearItemStates(item, ['bodyState:health', 'selected', 'active']);
 
 ```javascript
 // 设置节点处于 active 状态
-graph.setItemState(item, 'active', true);
+graph.setItemState(item, "active", true);
 // 鼠标 hover
-const hasActived = item.hasState('active');
+const hasActived = item.hasState("active");
 // 当节点没有 active 时才设置 hover 状态
 if (!hasActived) {
-  graph.setItemState(item, 'hover', true);
+  graph.setItemState(item, "hover", true);
 }
 ```
 

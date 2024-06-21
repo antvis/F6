@@ -3,37 +3,45 @@
  * @description 自定义边中有大量逻辑同自定义节点重复，虽然可以提取成为 mixin ，但是考虑到代码的可读性，还是单独实现。
  */
 
-import { IGroup, IShape, IElement, Point } from '@antv/g-base';
-import { deepMix, mix, each, isNil, isNumber, isArray } from '@antv/util';
-import { ILabelConfig, ShapeOptions } from '../interface/shape';
-import { EdgeConfig, EdgeData, IPoint, LabelStyle, ShapeStyle, Item, ModelConfig } from '../types';
-import { getLabelPosition, getLoopCfgs } from '../util/graphic';
-import { distance, getCircleCenterByPoints } from '../util/math';
-import { getControlPoint, getSpline } from '../util/path';
-import Global from '../global';
-import Shape from './shape';
-import { shapeBase, CLS_LABEL_BG_SUFFIX } from './shapeBase';
+import { IGroup, IShape, IElement, Point } from "@antv/g-base";
+import { deepMix, mix, each, isNil, isNumber, isArray } from "@antv/util";
+import { ILabelConfig, ShapeOptions } from "../interface/shape";
+import {
+  EdgeConfig,
+  EdgeData,
+  IPoint,
+  LabelStyle,
+  ShapeStyle,
+  Item,
+  ModelConfig,
+} from "../types";
+import { getLabelPosition, getLoopCfgs } from "../util/graphic";
+import { distance, getCircleCenterByPoints } from "../util/math";
+import { getControlPoint, getSpline } from "../util/path";
+import Global from "../global";
+import Shape from "./shape";
+import { shapeBase, CLS_LABEL_BG_SUFFIX } from "./shapeBase";
 
-const CLS_SHAPE = 'edge-shape';
+const CLS_SHAPE = "edge-shape";
 
 // start,end 倒置，center 不变
 function revertAlign(labelPosition: string): string {
   let textAlign = labelPosition;
-  if (labelPosition === 'start') {
-    textAlign = 'end';
-  } else if (labelPosition === 'end') {
-    textAlign = 'start';
+  if (labelPosition === "start") {
+    textAlign = "end";
+  } else if (labelPosition === "end") {
+    textAlign = "start";
   }
   return textAlign;
 }
 
 const singleEdge: ShapeOptions = {
-  itemType: 'edge',
+  itemType: "edge",
   /**
    * 文本的位置
    * @type {String}
    */
-  labelPosition: 'center', // start, end, center
+  labelPosition: "center", // start, end, center
   /**
    * 文本的 x 偏移
    * @type {Number}
@@ -79,9 +87,9 @@ const singleEdge: ShapeOptions = {
     const path: Array<Array<string | number>> = [];
     each(points, (point: Point, index: number) => {
       if (index === 0) {
-        path.push(['M', point.x, point.y]);
+        path.push(["M", point.x, point.y]);
       } else {
-        path.push(['L', point.x, point.y]);
+        path.push(["L", point.x, point.y]);
       }
     });
     return path;
@@ -125,7 +133,8 @@ const singleEdge: ShapeOptions = {
       stroke: cfg.color,
     };
     const shape =
-      group.find((element) => element.get('className') === 'edge-shape') || item.getKeyShape();
+      group.find((element) => element.get("className") === "edge-shape") ||
+      item.getKeyShape();
 
     const { size } = cfg;
     cfg = this.getPathPoints!(cfg);
@@ -147,16 +156,21 @@ const singleEdge: ShapeOptions = {
     const target = cfg.targetNode;
     let routeCfg: { [key: string]: unknown } = { radius: previousStyle.radius };
     if (!controlPoints) {
-      routeCfg = { source, target, offset: previousStyle.offset, radius: previousStyle.radius };
+      routeCfg = {
+        source,
+        target,
+        offset: previousStyle.offset,
+        radius: previousStyle.radius,
+      };
     }
     if (currentAttr.endArrow && previousStyle.endArrow === false) {
       cfg.style.endArrow = {
-        path: '',
+        path: "",
       };
     }
     if (currentAttr.startArrow && previousStyle.startArrow === false) {
       cfg.style.startArrow = {
-        path: '',
+        path: "",
       };
     }
     const path = (this as any).getPath(points, routeCfg);
@@ -174,17 +188,22 @@ const singleEdge: ShapeOptions = {
       shape.attr(style);
     }
   },
-  getLabelStyleByPosition(cfg: EdgeConfig, labelCfg: ILabelConfig, group?: IGroup): LabelStyle {
+  getLabelStyleByPosition(
+    cfg: EdgeConfig,
+    labelCfg: ILabelConfig,
+    group?: IGroup,
+  ): LabelStyle {
     const labelPosition = labelCfg.position || this.labelPosition; // 文本的位置用户可以传入
     const style: LabelStyle = {};
 
-    const pathShape = group && group.find((element) => element.get('className') === CLS_SHAPE);
+    const pathShape =
+      group && group.find((element) => element.get("className") === CLS_SHAPE);
 
     // 不对 pathShape 进行判空，如果线不存在，说明有问题了
     let pointPercent;
-    if (labelPosition === 'start') {
+    if (labelPosition === "start") {
       pointPercent = 0;
-    } else if (labelPosition === 'end') {
+    } else if (labelPosition === "end") {
       pointPercent = 1;
     } else {
       pointPercent = 0.5;
@@ -193,7 +212,10 @@ const singleEdge: ShapeOptions = {
     const offsetX = labelCfg.refX || (this.refX as number);
     const offsetY = labelCfg.refY || (this.refY as number);
     // 如果两个节点重叠，线就变成了一个点，这时候label的位置，就是这个点 + 绝对偏移
-    if (cfg.startPoint!.x === cfg.endPoint!.x && cfg.startPoint!.y === cfg.endPoint!.y) {
+    if (
+      cfg.startPoint!.x === cfg.endPoint!.x &&
+      cfg.startPoint!.y === cfg.endPoint!.y
+    ) {
       style.x = cfg.startPoint!.x + offsetX;
       style.y = cfg.startPoint!.y + offsetY;
       style.text = cfg.label as string;
@@ -213,7 +235,10 @@ const singleEdge: ShapeOptions = {
     style.x = offsetStyle.x;
     style.y = offsetStyle.y;
     style.rotate = offsetStyle.rotate;
-    style.textAlign = this._getTextAlign!(labelPosition as string, offsetStyle.angle as number);
+    style.textAlign = this._getTextAlign!(
+      labelPosition as string,
+      offsetStyle.angle as number,
+    );
     style.text = cfg.label as string;
     return style;
   },
@@ -247,13 +272,14 @@ const singleEdge: ShapeOptions = {
     if (isNil(labelCfg.autoRotate)) autoRotate = this.labelAutoRotate;
     else autoRotate = labelCfg.autoRotate;
 
-    const pathShape = group && group.find((element) => element.get('className') === CLS_SHAPE);
+    const pathShape =
+      group && group.find((element) => element.get("className") === CLS_SHAPE);
 
     // 不对 pathShape 进行判空，如果线不存在，说明有问题了
     let pointPercent;
-    if (labelPosition === 'start') {
+    if (labelPosition === "start") {
       pointPercent = 0;
-    } else if (labelPosition === 'end') {
+    } else if (labelPosition === "end") {
       pointPercent = 1;
     } else {
       pointPercent = 0.5;
@@ -262,7 +288,10 @@ const singleEdge: ShapeOptions = {
     const offsetX = labelCfg.refX || (this.refX as number);
     const offsetY = labelCfg.refY || (this.refY as number);
     // // 如果两个节点重叠，线就变成了一个点，这时候label的位置，就是这个点 + 绝对偏移
-    if (cfg.startPoint!.x === cfg.endPoint!.x && cfg.startPoint!.y === cfg.endPoint!.y) {
+    if (
+      cfg.startPoint!.x === cfg.endPoint!.x &&
+      cfg.startPoint!.y === cfg.endPoint!.y
+    ) {
       style.x = cfg.startPoint!.x + offsetX - backgroundWidth / 2;
       style.y = cfg.startPoint!.y + offsetY - backgroundHeight / 2;
       return style;
@@ -297,12 +326,12 @@ const singleEdge: ShapeOptions = {
   },
   // 获取文本对齐方式
   _getTextAlign(labelPosition: string, angle: number): string {
-    let textAlign = 'center';
+    let textAlign = "center";
     if (!angle) {
       return labelPosition;
     }
     angle = angle % (Math.PI * 2); // 取模
-    if (labelPosition !== 'center') {
+    if (labelPosition !== "center") {
       if (
         (angle >= 0 && angle <= Math.PI / 2) ||
         (angle >= (3 / 2) * Math.PI && angle < 2 * Math.PI)
@@ -339,7 +368,7 @@ const singleEdge: ShapeOptions = {
    */
   drawShape(cfg: EdgeConfig, group: IGroup): IShape {
     const shapeStyle = this.getShapeStyle!(cfg);
-    const shape = group.addShape('path', {
+    const shape = group.addShape("path", {
       className: CLS_SHAPE,
       name: CLS_SHAPE,
       attrs: shapeStyle,
@@ -349,11 +378,15 @@ const singleEdge: ShapeOptions = {
   drawLabel(cfg: EdgeConfig, group: IGroup): IShape {
     const { labelCfg: defaultLabelCfg } = this.options as ModelConfig;
     let defaultFontFamily;
-    if (typeof window !== 'undefined' && typeof window.getComputedStyle !== 'undefined')
+    if (
+      typeof window !== "undefined" &&
+      typeof window.getComputedStyle !== "undefined"
+    )
       defaultFontFamily =
-        window.getComputedStyle(document.body, null).getPropertyValue('font-family') ||
-        'Arial, sans-serif';
-    else defaultFontFamily = 'Arial, sans-serif';
+        window
+          .getComputedStyle(document.body, null)
+          .getPropertyValue("font-family") || "Arial, sans-serif";
+    else defaultFontFamily = "Arial, sans-serif";
 
     const labelCfg = deepMix(
       {
@@ -365,9 +398,9 @@ const singleEdge: ShapeOptions = {
     const labelStyle = this.getLabelStyle!(cfg, labelCfg, group);
     const rotate = labelStyle.rotate;
     delete labelStyle.rotate;
-    const label = group.addShape('text', {
+    const label = group.addShape("text", {
       attrs: labelStyle,
-      name: 'text-shape',
+      name: "text-shape",
     });
     if (rotate) {
       label.rotateAtStart(rotate);
@@ -376,7 +409,7 @@ const singleEdge: ShapeOptions = {
     if (labelStyle.background) {
       const rect = this.drawLabelBg(cfg, group, label);
       const labelBgClassname = this.itemType + CLS_LABEL_BG_SUFFIX;
-      rect.set('classname', labelBgClassname);
+      rect.set("classname", labelBgClassname);
       label.toFront();
     }
     return label;
@@ -389,41 +422,44 @@ const singleEdge: ShapeOptions = {
 
     const style = this.getLabelBgStyleByPosition(label, cfg, labelCfg, group);
     delete style.rotate;
-    const rect = group.addShape('rect', { name: 'text-bg-shape', attrs: style });
+    const rect = group.addShape("rect", {
+      name: "text-bg-shape",
+      attrs: style,
+    });
     if (rotate) rect.rotateAtStart(rotate);
     return rect;
   },
 };
 
 const singleEdgeDef = { ...shapeBase, ...singleEdge };
-Shape.registerEdge('single-edge', singleEdgeDef);
+Shape.registerEdge("single-edge", singleEdgeDef);
 
 // 直线, 不支持控制点
 Shape.registerEdge(
-  'line',
+  "line",
   {
     // 控制点不生效
     getControlPoints() {
       return undefined;
     },
   },
-  'single-edge',
+  "single-edge",
 );
 
 // 直线
 Shape.registerEdge(
-  'spline',
+  "spline",
   {
     getPath(points: Point[]): Array<Array<string | number>> {
       const path = getSpline(points);
       return path;
     },
   },
-  'single-edge',
+  "single-edge",
 );
 
 Shape.registerEdge(
-  'arc',
+  "arc",
   {
     curveOffset: 20,
     clockwise: 1,
@@ -489,13 +525,13 @@ Shape.registerEdge(
     },
     getPath(points: Point[]): Array<Array<string | number>> {
       const path: Array<Array<string | number>> = [];
-      path.push(['M', points[0].x, points[0].y]);
+      path.push(["M", points[0].x, points[0].y]);
       // 控制点与端点共线
       if (points.length === 2) {
-        path.push(['L', points[1].x, points[1].y]);
+        path.push(["L", points[1].x, points[1].y]);
       } else {
         path.push([
-          'A',
+          "A",
           points[1].x,
           points[1].y,
           0,
@@ -508,11 +544,11 @@ Shape.registerEdge(
       return path;
     },
   },
-  'single-edge',
+  "single-edge",
 );
 
 Shape.registerEdge(
-  'quadratic',
+  "quadratic",
   {
     curvePosition: 0.5, // 弯曲的默认位置
     curveOffset: -20, // 弯曲度，沿着 startPoint, endPoint 的垂直向量（顺时针）方向，距离线的距离，距离越大越弯曲
@@ -521,7 +557,8 @@ Shape.registerEdge(
       if (!controlPoints || !controlPoints.length) {
         const { startPoint, endPoint } = cfg;
         if (cfg.curveOffset === undefined) cfg.curveOffset = this.curveOffset;
-        if (cfg.curvePosition === undefined) cfg.curvePosition = this.curvePosition;
+        if (cfg.curvePosition === undefined)
+          cfg.curvePosition = this.curvePosition;
         if (isArray(this.curveOffset)) cfg.curveOffset = cfg.curveOffset[0];
         if (isArray(this.curvePosition)) cfg.curvePosition = cfg.curveOffset[0];
         const innerPoint = getControlPoint(
@@ -536,24 +573,26 @@ Shape.registerEdge(
     },
     getPath(points: Point[]): Array<Array<string | number>> {
       const path = [];
-      path.push(['M', points[0].x, points[0].y]);
-      path.push(['Q', points[1].x, points[1].y, points[2].x, points[2].y]);
+      path.push(["M", points[0].x, points[0].y]);
+      path.push(["Q", points[1].x, points[1].y, points[2].x, points[2].y]);
       return path;
     },
   },
-  'single-edge',
+  "single-edge",
 );
 
 Shape.registerEdge(
-  'cubic',
+  "cubic",
   {
     curvePosition: [1 / 2, 1 / 2],
     curveOffset: [-20, 20],
     getControlPoints(cfg: EdgeConfig): IPoint[] {
       let { controlPoints } = cfg; // 指定 controlPoints
       if (cfg.curveOffset === undefined) cfg.curveOffset = this.curveOffset;
-      if (cfg.curvePosition === undefined) cfg.curvePosition = this.curvePosition;
-      if (isNumber(cfg.curveOffset)) cfg.curveOffset = [cfg.curveOffset, -cfg.curveOffset];
+      if (cfg.curvePosition === undefined)
+        cfg.curvePosition = this.curvePosition;
+      if (isNumber(cfg.curveOffset))
+        cfg.curveOffset = [cfg.curveOffset, -cfg.curveOffset];
       if (isNumber(cfg.curvePosition))
         cfg.curvePosition = [cfg.curvePosition, 1 - cfg.curvePosition];
       if (!controlPoints || !controlPoints.length || controlPoints.length < 2) {
@@ -576,9 +615,9 @@ Shape.registerEdge(
     },
     getPath(points: Point[]): Array<Array<string | number>> {
       const path = [];
-      path.push(['M', points[0].x, points[0].y]);
+      path.push(["M", points[0].x, points[0].y]);
       path.push([
-        'C',
+        "C",
         points[1].x,
         points[1].y,
         points[2].x,
@@ -589,22 +628,25 @@ Shape.registerEdge(
       return path;
     },
   },
-  'single-edge',
+  "single-edge",
 );
 
 // 垂直方向的三阶贝塞尔曲线，不再考虑用户外部传入的控制点
 Shape.registerEdge(
-  'cubic-vertical',
+  "cubic-vertical",
   {
     curvePosition: [1 / 2, 1 / 2],
     minCurveOffset: [0, 0],
     curveOffset: undefined,
     getControlPoints(cfg: EdgeConfig): IPoint[] {
       const { startPoint, endPoint } = cfg;
-      if (cfg.curvePosition === undefined) cfg.curvePosition = this.curvePosition;
+      if (cfg.curvePosition === undefined)
+        cfg.curvePosition = this.curvePosition;
       if (cfg.curveOffset === undefined) cfg.curveOffset = this.curveOffset;
-      if (cfg.minCurveOffset === undefined) cfg.minCurveOffset = this.minCurveOffset;
-      if (isNumber(cfg.curveOffset)) cfg.curveOffset = [cfg.curveOffset, -cfg.curveOffset];
+      if (cfg.minCurveOffset === undefined)
+        cfg.minCurveOffset = this.minCurveOffset;
+      if (isNumber(cfg.curveOffset))
+        cfg.curveOffset = [cfg.curveOffset, -cfg.curveOffset];
       if (isNumber(cfg.minCurveOffset))
         cfg.minCurveOffset = [cfg.minCurveOffset, -cfg.minCurveOffset];
       if (isNumber(cfg.curvePosition))
@@ -620,31 +662,38 @@ Shape.registerEdge(
 
       const innerPoint1 = {
         x: startPoint!.x,
-        y: startPoint!.y + yDist * (this as any).curvePosition[0] + curveOffset[0],
+        y:
+          startPoint!.y +
+          yDist * (this as any).curvePosition[0] +
+          curveOffset[0],
       };
       const innerPoint2 = {
         x: endPoint!.x,
-        y: endPoint!.y - yDist * (this as any).curvePosition[1] + curveOffset[1],
+        y:
+          endPoint!.y - yDist * (this as any).curvePosition[1] + curveOffset[1],
       };
       return [innerPoint1, innerPoint2];
     },
   },
-  'cubic',
+  "cubic",
 );
 
 // 水平方向的三阶贝塞尔曲线，不再考虑用户外部传入的控制点
 Shape.registerEdge(
-  'cubic-horizontal',
+  "cubic-horizontal",
   {
     curvePosition: [1 / 2, 1 / 2],
     minCurveOffset: [0, 0],
     curveOffset: undefined,
     getControlPoints(cfg: EdgeConfig): IPoint[] {
       const { startPoint, endPoint } = cfg;
-      if (cfg.curvePosition === undefined) cfg.curvePosition = this.curvePosition;
+      if (cfg.curvePosition === undefined)
+        cfg.curvePosition = this.curvePosition;
       if (cfg.curveOffset === undefined) cfg.curveOffset = this.curveOffset;
-      if (cfg.minCurveOffset === undefined) cfg.minCurveOffset = this.minCurveOffset;
-      if (isNumber(cfg.curveOffset)) cfg.curveOffset = [cfg.curveOffset, -cfg.curveOffset];
+      if (cfg.minCurveOffset === undefined)
+        cfg.minCurveOffset = this.minCurveOffset;
+      if (isNumber(cfg.curveOffset))
+        cfg.curveOffset = [cfg.curveOffset, -cfg.curveOffset];
       if (isNumber(cfg.minCurveOffset))
         cfg.minCurveOffset = [cfg.minCurveOffset, -cfg.minCurveOffset];
       if (isNumber(cfg.curvePosition))
@@ -659,22 +708,26 @@ Shape.registerEdge(
       }
 
       const innerPoint1 = {
-        x: startPoint!.x + xDist * (this as any).curvePosition[0] + curveOffset[0],
+        x:
+          startPoint!.x +
+          xDist * (this as any).curvePosition[0] +
+          curveOffset[0],
         y: startPoint!.y,
       };
       const innerPoint2 = {
-        x: endPoint!.x - xDist * (this as any).curvePosition[1] + curveOffset[1],
+        x:
+          endPoint!.x - xDist * (this as any).curvePosition[1] + curveOffset[1],
         y: endPoint!.y,
       };
       const controlPoints = [innerPoint1, innerPoint2];
       return controlPoints;
     },
   },
-  'cubic',
+  "cubic",
 );
 
 Shape.registerEdge(
-  'loop',
+  "loop",
   {
     getPathPoints(cfg: ModelConfig): EdgeData {
       return getLoopCfgs(cfg as EdgeData);
@@ -689,5 +742,5 @@ Shape.registerEdge(
       cfg.controlPoints = undefined;
     },
   },
-  'cubic',
+  "cubic",
 );

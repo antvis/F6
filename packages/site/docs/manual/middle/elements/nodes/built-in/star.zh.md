@@ -52,16 +52,16 @@ const data = {
 
 star 节点支持 [节点通用配置](/zh/docs/manual/middle/elements/nodes/defaultNode#节点的通用属性)，下表对部分属性进行解释：
 
-| 名称 | 含义 | 类型 | 备注 |
-| --- | --- | --- | --- | --- |
-| size | 五角星的大小 | number | Array | size 表示外环的大小 |
-| **innerR** | **五角星内环大小** | **Number** | **默认为 size \* 3 / 8** |
-| style | 五角星的默认样式 | Object | Canvas 支持的属性 |
-| label | 标签文本内容 | String |  |
-| labelCfg | 标签文本配置项 | Object |  |
-| stateStyles | 各状态下的样式 | Object | 详见[配置状态样式](/zh/docs/manual/middle/states/state#配置-state-样式) |
-| linkPoints | **视觉上的**五个锚点 | Object | 默认不显示，应与 [anchorPoints](/zh/docs/manual/middle/elements/nodes/anchorpoint) 配合使用。二者区别请看 [linkPoints](#linkpoints) |
-| icon | 五角星上 icon 配置 | Object | 默认不显示 icon |
+| 名称        | 含义                 | 类型       | 备注                                                                                                                                |
+| ----------- | -------------------- | ---------- | ----------------------------------------------------------------------------------------------------------------------------------- | ------------------- |
+| size        | 五角星的大小         | number     | Array                                                                                                                               | size 表示外环的大小 |
+| **innerR**  | **五角星内环大小**   | **Number** | **默认为 size \* 3 / 8**                                                                                                            |
+| style       | 五角星的默认样式     | Object     | Canvas 支持的属性                                                                                                                   |
+| label       | 标签文本内容         | String     |                                                                                                                                     |
+| labelCfg    | 标签文本配置项       | Object     |                                                                                                                                     |
+| stateStyles | 各状态下的样式       | Object     | 详见[配置状态样式](/zh/docs/manual/middle/states/state#配置-state-样式)                                                             |
+| linkPoints  | **视觉上的**五个锚点 | Object     | 默认不显示，应与 [anchorPoints](/zh/docs/manual/middle/elements/nodes/anchorpoint) 配合使用。二者区别请看 [linkPoints](#linkpoints) |
+| icon        | 五角星上 icon 配置   | Object     | 默认不显示 icon                                                                                                                     |
 
 ### 样式属性 style
 
@@ -110,7 +110,7 @@ const graph = new F6.Graph({
     // ... 节点其他属性
     labelCfg: {
       style: {
-        fill: '#9254de',
+        fill: "#9254de",
         fontSize: 18,
       },
     },
@@ -154,7 +154,7 @@ const graph = new F6.Graph({
       leftBottom: true,
       rightBottom: true,
       size: 5,
-      fill: '#fff',
+      fill: "#fff",
     },
   },
 });
@@ -165,13 +165,13 @@ const graph = new F6.Graph({
 
 Object 类型。通过配置 `icon`，可以在圆上显示小图标。
 
-| 名称   | 含义          | 类型    | 备注                 |
-| ------ | ------------- | ------- | -------------------- |
-| show   | 是否显示 icon | Boolean | 默认为 false，不显示 |
-| width  | icon 的宽度   | Number  | 默认为 16            |
-| height | icon 的高度   | Number  | 默认为 16            |
-| img    | icon 的地址或 base64   | String  | 若配置则表示使用图片作为 icon  |
-| text    | icon 的 iconfont | String | 若配置则表示使用 iconfont 作为 icon |
+| 名称   | 含义                 | 类型    | 备注                                |
+| ------ | -------------------- | ------- | ----------------------------------- |
+| show   | 是否显示 icon        | Boolean | 默认为 false，不显示                |
+| width  | icon 的宽度          | Number  | 默认为 16                           |
+| height | icon 的高度          | Number  | 默认为 16                           |
+| img    | icon 的地址或 base64 | String  | 若配置则表示使用图片作为 icon       |
+| text   | icon 的 iconfont     | String  | 若配置则表示使用 iconfont 作为 icon |
 
 基于上面 [样式属性 style](#样式属性-style) 中的代码，下面代码在 `defaultNode` 中增加了 `icon`  配置项进行图标的配置，使之达到如下图效果。<br /><img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*cJ_tRITTWCoAAAAAAAAAAABkARQnAQ' width=100 alt='img'/>
 

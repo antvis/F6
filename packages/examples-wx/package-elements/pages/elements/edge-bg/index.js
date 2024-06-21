@@ -1,6 +1,6 @@
-import F6 from '@antv/f6-wx';
+import F6 from "@antv/f6-wx";
 
-import data from './data';
+import data from "./data";
 /**
  * edge-bg
  */
@@ -8,7 +8,7 @@ import data from './data';
 Page({
   canvas: null,
   ctx: null,
-  renderer: '', // mini、mini-native等，F6需要，标记环境
+  renderer: "", // mini、mini-native等，F6需要，标记环境
   isCanvasInit: false, // canvas是否准备好了
   graph: null,
 
@@ -67,20 +67,20 @@ Page({
       // translate the graph to align the canvas's center, support by v3.5.1
       fitCenter: true,
       defaultNode: {
-        type: 'circle',
+        type: "circle",
         labelCfg: {
-          position: 'bottom',
+          position: "bottom",
         },
       },
       defaultEdge: {
         labelCfg: {
           autoRotate: true,
           style: {
-            fill: '#1890ff',
+            fill: "#1890ff",
             fontSize: 14,
             background: {
-              fill: '#ffffff',
-              stroke: '#9EC9FF',
+              fill: "#ffffff",
+              stroke: "#9EC9FF",
               padding: [2, 2, 2, 2],
               radius: 2,
             },
@@ -88,7 +88,7 @@ Page({
         },
       },
       modes: {
-        default: ['drag-canvas', 'drag-node'],
+        default: ["drag-canvas", "drag-node"],
       },
       nodeStateStyles: {
         // style configurations for hover state

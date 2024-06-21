@@ -3,19 +3,19 @@
  * @author xuzhi.mxz@antfin.com
  */
 
-import { get } from '@antv/util';
-import { getTextSize } from '../util/graphic';
+import { get } from "@antv/util";
+import { getTextSize } from "../util/graphic";
 
 /**
  * 一种更宽松的JSON 解析，如果遇到不符合规范的字段会直接转为字符串
  * @param text json 内容
  */
 function looseJSONParse(text) {
-  if (typeof text !== 'string') {
+  if (typeof text !== "string") {
     return text;
   }
   const safeParse = (str) => {
-    if (typeof str !== 'string') {
+    if (typeof str !== "string") {
       return str;
     }
     try {
@@ -25,18 +25,19 @@ function looseJSONParse(text) {
     }
   };
   const firstAttempt = safeParse(text);
-  if (typeof firstAttempt !== 'string') {
+  if (typeof firstAttempt !== "string") {
     return firstAttempt;
   }
   const tail = (arr) => arr[arr.length - 1];
   const str = text.trim();
   const objectStack = [];
   const syntaxStack = [];
-  const isLastPair = (...syntaxes) => syntaxes.some((syntax) => tail(syntaxStack) === syntax);
+  const isLastPair = (...syntaxes) =>
+    syntaxes.some((syntax) => tail(syntaxStack) === syntax);
   const getValueStore = () => tail(objectStack);
   let rst = null;
   let i = 0;
-  let temp = '';
+  let temp = "";
 
   while (i < str.length) {
     const nowChar = str[i];
@@ -47,10 +48,10 @@ function looseJSONParse(text) {
       continue;
     }
 
-    const isLastTranslate = str[i - 1] === '\\';
-    const isInObject = isLastPair('}');
-    const isInArray = isLastPair(']');
-    const isWaitingValue = isLastPair(',');
+    const isLastTranslate = str[i - 1] === "\\";
+    const isInObject = isLastPair("}");
+    const isInArray = isLastPair("]");
+    const isWaitingValue = isLastPair(",");
     const tempArr = getValueStore();
 
     if (isInString) {
@@ -59,31 +60,31 @@ function looseJSONParse(text) {
         const value = safeParse(temp);
         tempArr.push(value);
         rst = value;
-        temp = '';
+        temp = "";
       } else {
         temp += nowChar;
       }
-    } else if (isInArray && nowChar === ',') {
+    } else if (isInArray && nowChar === ",") {
       if (temp) {
         tempArr.push(safeParse(temp));
-        temp = '';
+        temp = "";
       }
-    } else if (isInObject && nowChar === ':') {
-      syntaxStack.push(',');
+    } else if (isInObject && nowChar === ":") {
+      syntaxStack.push(",");
       if (temp) {
         tempArr.push(temp);
-        temp = '';
+        temp = "";
       }
-    } else if (isWaitingValue && nowChar === ',') {
+    } else if (isWaitingValue && nowChar === ",") {
       if (temp) {
         tempArr.push(safeParse(temp));
-        temp = '';
+        temp = "";
       }
       syntaxStack.pop();
-    } else if (nowChar === '}' && (isInObject || isWaitingValue)) {
+    } else if (nowChar === "}" && (isInObject || isWaitingValue)) {
       if (temp) {
         tempArr.push(safeParse(temp));
-        temp = '';
+        temp = "";
       }
       if (isWaitingValue) {
         syntaxStack.pop();
@@ -98,10 +99,10 @@ function looseJSONParse(text) {
       }
       syntaxStack.pop();
       rst = obj;
-    } else if (nowChar === ']' && isInArray) {
+    } else if (nowChar === "]" && isInArray) {
       if (temp) {
         tempArr.push(safeParse(temp));
-        temp = '';
+        temp = "";
       }
       objectStack.pop();
       if (objectStack.length) {
@@ -109,12 +110,12 @@ function looseJSONParse(text) {
       }
       syntaxStack.pop();
       rst = tempArr;
-    } else if (nowChar === '{') {
+    } else if (nowChar === "{") {
       objectStack.push([]);
-      syntaxStack.push('}');
-    } else if (nowChar === '[') {
+      syntaxStack.push("}");
+    } else if (nowChar === "[") {
       objectStack.push([]);
-      syntaxStack.push(']');
+      syntaxStack.push("]");
     } else if (nowChar === '"') {
       syntaxStack.push('"');
     } else if (nowChar === "'") {
@@ -144,7 +145,7 @@ interface NodeInstructure {
 }
 
 const keyConvert = (str) =>
-  str.split('-').reduce((a, b) => a + b.charAt(0).toUpperCase() + b.slice(1));
+  str.split("-").reduce((a, b) => a + b.charAt(0).toUpperCase() + b.slice(1));
 
 /**
  * 简单的一个{{}}模板渲染，不包含任何复杂语法
@@ -154,20 +155,20 @@ export const xmlDataRenderer = (xml: string) => (data) => {
   const len = xml.length;
   const arr = [];
   let i = 0;
-  let tmp = '';
+  let tmp = "";
   while (i < len) {
-    if (xml[i] === '{' && xml[i + 1] === '{') {
+    if (xml[i] === "{" && xml[i + 1] === "{") {
       arr.push(tmp);
-      tmp = '';
+      tmp = "";
       i += 2;
-    } else if (xml[i] === '}' && xml[i + 1] === '}') {
+    } else if (xml[i] === "}" && xml[i + 1] === "}") {
       if (arr.length) {
         const last = arr.pop();
-        tmp = get(data, tmp, last.endsWith('=') ? `"{${tmp}}"` : tmp);
+        tmp = get(data, tmp, last.endsWith("=") ? `"{${tmp}}"` : tmp);
         arr.push(last + tmp);
       }
       i += 2;
-      tmp = '';
+      tmp = "";
     } else {
       tmp += xml[i];
       i += 1;
@@ -176,8 +177,10 @@ export const xmlDataRenderer = (xml: string) => (data) => {
 
   arr.push(tmp);
   return arr
-    .map((e, index) => (arr[index - 1] && arr[index - 1].endsWith('=') ? `"{${e}}"` : e))
-    .join('');
+    .map((e, index) =>
+      arr[index - 1] && arr[index - 1].endsWith("=") ? `"{${e}}"` : e,
+    )
+    .join("");
 };
 
 /**
@@ -186,20 +189,22 @@ export const xmlDataRenderer = (xml: string) => (data) => {
  */
 export function parseXML(xml: HTMLElement, cfg) {
   let attrs = {} as { [key: string]: any };
-  const keys = (xml.getAttributeNames && xml.getAttributeNames()) || ([] as string[]);
+  const keys =
+    (xml.getAttributeNames && xml.getAttributeNames()) || ([] as string[]);
   const children =
-    xml.children && Array.from(xml.children).map((e) => parseXML(e as HTMLElement, cfg));
+    xml.children &&
+    Array.from(xml.children).map((e) => parseXML(e as HTMLElement, cfg));
   const rst = {} as { [key: string]: any } & NodeInstructure;
-  const tagName = xml.tagName ? xml.tagName.toLowerCase() : 'group';
+  const tagName = xml.tagName ? xml.tagName.toLowerCase() : "group";
 
-  if (tagName === 'text') {
+  if (tagName === "text") {
     attrs.text = xml.innerText;
   }
 
   rst.type = tagName;
 
-  if (tagName === 'img') {
-    rst.type = 'image';
+  if (tagName === "img") {
+    rst.type = "image";
   }
 
   Array.from(keys).forEach((k) => {
@@ -207,7 +212,7 @@ export function parseXML(xml: HTMLElement, cfg) {
     const val = xml.getAttribute(k);
 
     try {
-      if (key === 'style' || key === 'attrs') {
+      if (key === "style" || key === "attrs") {
         const style = looseJSONParse(val);
         attrs = {
           ...attrs,
@@ -217,7 +222,7 @@ export function parseXML(xml: HTMLElement, cfg) {
         rst[key] = looseJSONParse(val);
       }
     } catch (e) {
-      if (key === 'style') {
+      if (key === "style") {
         throw e;
       }
       rst[key] = val;
@@ -226,7 +231,7 @@ export function parseXML(xml: HTMLElement, cfg) {
 
   rst.attrs = attrs;
 
-  if (cfg && cfg.style && rst.name && typeof cfg.style[rst.name] === 'object') {
+  if (cfg && cfg.style && rst.name && typeof cfg.style[rst.name] === "object") {
     rst.attrs = {
       ...rst.attrs,
       ...cfg.style[rst.name],
@@ -265,14 +270,14 @@ export function getBBox(
 
   let shapeHeight, shapeWidth;
   switch (node.type) {
-    case 'maker':
-    case 'circle':
+    case "maker":
+    case "circle":
       if (attrs.r) {
         shapeWidth = 2 * attrs.r;
         shapeHeight = 2 * attrs.r;
       }
       break;
-    case 'text':
+    case "text":
       if (attrs.text) {
         shapeWidth = getTextSize(attrs.text, attrs.fontSize || 12)[0];
         shapeHeight = 16;
@@ -281,7 +286,7 @@ export function getBBox(
         bbox.width = shapeWidth;
         node.attrs = {
           fontSize: 12,
-          fill: '#000',
+          fill: "#000",
           ...attrs,
         };
       }
@@ -317,7 +322,10 @@ export function getBBox(
  * @param target
  * @param lastOffset
  */
-export function generateTarget(target: NodeInstructure, lastOffset = { x: 0, y: 0 }) {
+export function generateTarget(
+  target: NodeInstructure,
+  lastOffset = { x: 0, y: 0 },
+) {
   const defaultBbox = {
     x: 0,
     y: 0,
@@ -336,11 +344,11 @@ export function generateTarget(target: NodeInstructure, lastOffset = { x: 0, y: 
     }
 
     for (let index = 0; index < target.children.length; index++) {
-      target.children[index].attrs.key = `${attrs.key || 'root'} -${index} `;
+      target.children[index].attrs.key = `${attrs.key || "root"} -${index} `;
       const node = generateTarget(target.children[index], offset);
       if (node.bbox) {
         const { bbox } = node;
-        if (node.attrs.next === 'inline') {
+        if (node.attrs.next === "inline") {
           offset.x += node.bbox.width;
         } else {
           offset.y += node.bbox.height;
@@ -371,7 +379,10 @@ export function generateTarget(target: NodeInstructure, lastOffset = { x: 0, y: 
  * @param nowTarget
  * @param formerTarget
  */
-export function compareTwoTarget(nowTarget: NodeInstructure, formerTarget: NodeInstructure) {
+export function compareTwoTarget(
+  nowTarget: NodeInstructure,
+  formerTarget: NodeInstructure,
+) {
   const { type } = nowTarget || {};
   const { key } = formerTarget?.attrs || {};
 
@@ -381,7 +392,7 @@ export function compareTwoTarget(nowTarget: NodeInstructure, formerTarget: NodeI
 
   if (!nowTarget && formerTarget) {
     return {
-      action: 'delete',
+      action: "delete",
       val: formerTarget,
       type,
       key,
@@ -389,21 +400,24 @@ export function compareTwoTarget(nowTarget: NodeInstructure, formerTarget: NodeI
   }
   if (nowTarget && !formerTarget) {
     return {
-      action: 'add',
+      action: "add",
       val: nowTarget,
       type,
     };
   }
   if (!nowTarget && !formerTarget) {
     return {
-      action: 'same',
+      action: "same",
       type,
     };
   }
   const children = [];
 
   if (nowTarget.children?.length > 0 || formerTarget.children?.length > 0) {
-    const length = Math.max(nowTarget.children?.length, formerTarget.children?.length);
+    const length = Math.max(
+      nowTarget.children?.length,
+      formerTarget.children?.length,
+    );
     const formerChilren = formerTarget.children || [];
     const nowChilren = nowTarget.children || [];
 
@@ -417,7 +431,7 @@ export function compareTwoTarget(nowTarget: NodeInstructure, formerTarget: NodeI
 
   if (formerTarget.type !== nowTarget.type) {
     return {
-      action: 'restructure',
+      action: "restructure",
       nowTarget,
       formerTarget,
       key,
@@ -427,11 +441,14 @@ export function compareTwoTarget(nowTarget: NodeInstructure, formerTarget: NodeI
 
   if (
     formerKeys
-      .filter((e) => e !== 'children')
-      .some((e) => nowTarget.attrs[e] !== formerTarget.attrs[e] || !nowKeys.includes(e))
+      .filter((e) => e !== "children")
+      .some(
+        (e) =>
+          nowTarget.attrs[e] !== formerTarget.attrs[e] || !nowKeys.includes(e),
+      )
   ) {
     return {
-      action: 'change',
+      action: "change",
       val: nowTarget,
       children,
       type,
@@ -440,7 +457,7 @@ export function compareTwoTarget(nowTarget: NodeInstructure, formerTarget: NodeI
   }
 
   return {
-    action: 'same',
+    action: "same",
     children,
     type,
     key,
@@ -454,10 +471,10 @@ export function compareTwoTarget(nowTarget: NodeInstructure, formerTarget: NodeI
 export function createNodeFromXML(gen: string | ((node: any) => string)) {
   const structures = {};
   const compileXML = (cfg) => {
-    const rawStr = typeof gen === 'function' ? gen(cfg) : gen;
+    const rawStr = typeof gen === "function" ? gen(cfg) : gen;
     const target = xmlDataRenderer(rawStr)(cfg);
     // TODO 这里需要一个patch #16
-    const xmlParser = document.createElement('div');
+    const xmlParser = document.createElement("div");
     xmlParser.innerHTML = target;
     const xml = xmlParser.children[0] as HTMLElement;
     const result = generateTarget(parseXML(xml, cfg));
@@ -473,7 +490,7 @@ export function createNodeFromXML(gen: string | ((node: any) => string)) {
       let keyshape = group;
       const renderTarget = (target) => {
         const { attrs = {}, bbox, type, children, ...rest } = target;
-        if (target.type !== 'group') {
+        if (target.type !== "group") {
           const shape = group.addShape(target.type, {
             attrs,
             origin: {
@@ -504,12 +521,12 @@ export function createNodeFromXML(gen: string | ((node: any) => string)) {
         structures[cfg.id] = [];
       }
       const container = node.getContainer();
-      const children = container.get('children');
+      const children = container.get("children");
       const newTarget = compileXML(cfg);
       const lastTarget = structures[cfg.id].pop();
       const diffResult = compareTwoTarget(newTarget, lastTarget);
       const addShape = (shape) => {
-        if (shape.type !== 'group') {
+        if (shape.type !== "group") {
           container.addShape(shape.type, { attrs: shape.attrs });
         }
         if (shape.children?.length) {
@@ -517,7 +534,9 @@ export function createNodeFromXML(gen: string | ((node: any) => string)) {
         }
       };
       const delShape = (shape) => {
-        const targetShape = children.find((e) => e.attrs.key === shape.attrs.key);
+        const targetShape = children.find(
+          (e) => e.attrs.key === shape.attrs.key,
+        );
         if (targetShape) {
           container.removeChild(targetShape);
         }
@@ -527,22 +546,24 @@ export function createNodeFromXML(gen: string | ((node: any) => string)) {
       };
       const updateTarget = (target) => {
         const { key } = target;
-        if (target.type !== 'group') {
+        if (target.type !== "group") {
           const targetShape = children.find((e) => e.attrs.key === key);
           switch (target.action) {
-            case 'change':
+            case "change":
               if (targetShape) {
-                const originAttr = target.val.keyshape ? node.getOriginStyle() : {};
+                const originAttr = target.val.keyshape
+                  ? node.getOriginStyle()
+                  : {};
                 targetShape.attr({ ...originAttr, ...target.val.attrs });
               }
               break;
-            case 'add':
+            case "add":
               addShape(target.val);
               break;
-            case 'delete':
+            case "delete":
               delShape(target.val);
               break;
-            case 'restructure':
+            case "restructure":
               delShape(target.formerTarget);
               addShape(target.nowTarget);
               break;

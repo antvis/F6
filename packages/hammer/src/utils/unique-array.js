@@ -1,4 +1,4 @@
-import inArray from './in-array';
+import inArray from "./in-array";
 
 /**
  * @private

@@ -9,14 +9,14 @@
 export default function deprecate(method, name, message) {
   let deprecationMessage = `DEPRECATED METHOD: ${name}\n${message} AT \n`;
   return function () {
-    let e = new Error('get-stack-trace');
+    let e = new Error("get-stack-trace");
     let stack =
       e && e.stack
         ? e.stack
-            .replace(/^[^\(]+?[\n$]/gm, '')
-            .replace(/^\s+at\s+/gm, '')
-            .replace(/^Object.<anonymous>\s*\(/gm, '{anonymous}()@')
-        : 'Unknown Stack Trace';
+            .replace(/^[^\(]+?[\n$]/gm, "")
+            .replace(/^\s+at\s+/gm, "")
+            .replace(/^Object.<anonymous>\s*\(/gm, "{anonymous}()@")
+        : "Unknown Stack Trace";
 
     let log = console.warn;
     if (log) {

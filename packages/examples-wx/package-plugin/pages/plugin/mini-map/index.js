@@ -1,6 +1,6 @@
-import F6 from '@antv/f6-wx';
-import data from './data';
-import { MiniMap } from '@antv/f6-plugin/f6Plugin';
+import F6 from "@antv/f6-wx";
+import data from "./data";
+import { MiniMap } from "@antv/f6-plugin/f6Plugin";
 
 Page({
   data: {
@@ -30,7 +30,7 @@ Page({
    */
   handleInit(event) {
     const { ctx, canvas, renderer } = event.detail;
-    console.log( ctx, canvas, renderer)
+    console.log(ctx, canvas, renderer);
     const miniMap = new MiniMap({
       className: "custom-container",
       viewportClassName: "custom-viewport",
@@ -44,11 +44,11 @@ Page({
           .custom-viewport {
             border:1 solid blue;
           }
-        `
-      }
+        `;
+      },
     });
     const { width, height, pixelRatio } = this.data;
-    console.log('------->', ctx, canvas, renderer);
+    console.log("------->", ctx, canvas, renderer);
     this.graph = new F6.Graph({
       container: canvas,
       context: ctx,
@@ -61,7 +61,7 @@ Page({
         size: 30,
       },
       modes: {
-        default: ['drag-canvas', 'zoom-canvas', 'drag-node'],
+        default: ["drag-canvas", "zoom-canvas", "drag-node"],
       },
       plugins: [miniMap],
     });
@@ -69,7 +69,7 @@ Page({
     this.graph.render();
 
     // 目前在使用plugin时,需要关闭局部刷新
-    this.graph.get('canvas').set('localRefresh', false);
+    this.graph.get("canvas").set("localRefresh", false);
   },
 
   /**

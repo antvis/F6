@@ -1,3 +1,3 @@
-import { ComboForceLayout } from '@antv/layout/lib/layout/comboForce';
+import { ComboForceLayout } from "@antv/layout/lib/layout/comboForce";
 
 export default ComboForceLayout;

@@ -1,10 +1,10 @@
-import F6 from '@antv/f6-wx';
+import F6 from "@antv/f6-wx";
 
 const fittingString = (str, maxWidth, fontSize) => {
   let currentWidth = 0;
   let res = str;
-  const pattern = new RegExp('[\u4E00-\u9FA5]+'); // distinguish the Chinese charactors and letters
-  str.split('').forEach((letter, i) => {
+  const pattern = new RegExp("[\u4E00-\u9FA5]+"); // distinguish the Chinese charactors and letters
+  str.split("").forEach((letter, i) => {
     if (currentWidth > maxWidth) return;
     if (pattern.test(letter)) {
       // Chinese charactors
@@ -26,10 +26,14 @@ const data = {
     {
       x: 100,
       y: 100,
-      label: fittingString('Break the line if it is too long', 80, globalFontSize),
-      id: 'node1',
+      label: fittingString(
+        "Break the line if it is too long",
+        80,
+        globalFontSize,
+      ),
+      id: "node1",
       labelCfg: {
-        position: 'bottom',
+        position: "bottom",
       },
       anchorPoints: [
         [0, 0.5],
@@ -39,10 +43,14 @@ const data = {
     {
       x: 300,
       y: 100,
-      label: fittingString('Break the line if it is too long', 80, globalFontSize),
-      id: 'node2',
+      label: fittingString(
+        "Break the line if it is too long",
+        80,
+        globalFontSize,
+      ),
+      id: "node2",
       labelCfg: {
-        position: 'bottom',
+        position: "bottom",
       },
       anchorPoints: [
         [0, 0.5],
@@ -52,9 +60,13 @@ const data = {
   ],
   edges: [
     {
-      source: 'node1',
-      target: 'node2',
-      label: fittingString('Break the line if it is too long', 100, globalFontSize),
+      source: "node1",
+      target: "node2",
+      label: fittingString(
+        "Break the line if it is too long",
+        100,
+        globalFontSize,
+      ),
       labelCfg: {
         refY: 20,
       },
