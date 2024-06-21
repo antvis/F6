@@ -25,7 +25,8 @@
   "license": "MIT",
   "author": "https://github.com/orgs/antvis/people",
   "scripts": {
-    "site:build": "npm run site:clean && GATSBY=true gatsby build --prefix-paths",
+    "build": "npm run site:clean && GATSBY=true gatsby build --prefix-paths",
+    "site:build": "npm run build",
     "site:clean": "gatsby clean",
     "site:develop": "GATSBY=true gatsby develop --open",
     "site:deploy-github": "npm run site:build && gh-pages -d public",
@@ -36,7 +37,7 @@
   "dependencies": {
     "@ant-design/icons": "^4.0.6",
     "@antv/chart-node-g6": "^0.0.3",
-    "@antv/f6": "^0.0.15",
+    "@antv/f6": "*",
     "@antv/g6": "4.2.7",
     "@antv/gatsby-theme-antv": "1.1.15",
     "@antv/util": "^2.0.9",
