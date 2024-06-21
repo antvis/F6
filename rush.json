@@ -26,9 +26,9 @@
    * Specify one of: "pnpmVersion", "npmVersion", or "yarnVersion".  See the Rush documentation
    * for details about these alternatives.
    */
-  // "pnpmVersion": "8.15.8",
+  "pnpmVersion": "8.15.8",
 
-  "npmVersion": "6.14.15",
+  //"npmVersion": "6.14.15",
   // "yarnVersion": "1.9.4",
 
   /**
@@ -439,5 +439,5 @@
       "projectFolder": "packages/f6-rax"
     }
   ],
-  "ensureConsistentVersions": true
+  "ensureConsistentVersions": false
 }
