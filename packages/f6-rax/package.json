@@ -31,7 +31,7 @@
     "prepublishOnly": "npm run build"
   },
   "dependencies": {
-    "@antv/f6": "^0.0.15",
+    "@antv/f6": "^0.0.16",
     "@antv/f6-alipay": "^0.0.7",
     "@uni/element": "^1.0.9",
     "@uni/system-info": "^1.0.8",
