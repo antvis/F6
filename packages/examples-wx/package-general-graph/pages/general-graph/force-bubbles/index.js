@@ -1,7 +1,7 @@
-import F6 from '@antv/f6-wx';
+import F6 from "@antv/f6-wx";
 
-import getData from './data';
-import force from '@antv/f6-wx/extends/layout/forceLayout';
+import getData from "./data";
+import force from "@antv/f6-wx/extends/layout/forceLayout";
 
 /**
  * 力导向气泡图
@@ -10,7 +10,7 @@ import force from '@antv/f6-wx/extends/layout/forceLayout';
 Page({
   canvas: null,
   ctx: null,
-  renderer: '', // mini、mini-native等，F6需要，标记环境
+  renderer: "", // mini、mini-native等，F6需要，标记环境
   isCanvasInit: false, // canvas是否准备好了
   graph: null,
 
@@ -22,7 +22,7 @@ Page({
   },
 
   onLoad() {
-    F6.registerLayout('force', force);
+    F6.registerLayout("force", force);
     // 同步获取window的宽高
     const { windowWidth, windowHeight, pixelRatio } = wx.getSystemInfoSync();
 
@@ -69,14 +69,14 @@ Page({
       pixelRatio,
       fitView: true,
       layout: {
-        type: 'force',
+        type: "force",
         nodeStrength: 30,
         collideStrength: 0.7,
         alphaDecay: 0.01,
         preventOverlap: true,
       },
       modes: {
-        default: ['drag-node'],
+        default: ["drag-node"],
       },
       defaultNode: {
         size: [10, 10],
@@ -98,28 +98,28 @@ Page({
     }
 
     const colors = [
-      '#BDD2FD',
-      '#BDEFDB',
-      '#C2C8D5',
-      '#FBE5A2',
-      '#F6C3B7',
-      '#B6E3F5',
-      '#D3C6EA',
-      '#FFD8B8',
-      '#AAD8D8',
-      '#FFD6E7',
+      "#BDD2FD",
+      "#BDEFDB",
+      "#C2C8D5",
+      "#FBE5A2",
+      "#F6C3B7",
+      "#B6E3F5",
+      "#D3C6EA",
+      "#FFD8B8",
+      "#AAD8D8",
+      "#FFD6E7",
     ];
     const strokes = [
-      '#5B8FF9',
-      '#5AD8A6',
-      '#5D7092',
-      '#F6BD16',
-      '#E8684A',
-      '#6DC8EC',
-      '#9270CA',
-      '#FF9D4D',
-      '#269A99',
-      '#FF99C3',
+      "#5B8FF9",
+      "#5AD8A6",
+      "#5D7092",
+      "#F6BD16",
+      "#E8684A",
+      "#6DC8EC",
+      "#9270CA",
+      "#FF9D4D",
+      "#269A99",
+      "#FF99C3",
     ];
 
     const { nodes } = data;
@@ -150,7 +150,7 @@ Page({
     });
     const nodeSizeRange = [10, 30];
     const nodeSizeDataRange = [minNodeValue, maxNodeValue];
-    scaleNodeProp(nodes, 'size', 'value', nodeSizeDataRange, nodeSizeRange);
+    scaleNodeProp(nodes, "size", "value", nodeSizeDataRange, nodeSizeRange);
 
     nodes.forEach((node) => {
       node.oriSize = node.size;
@@ -158,24 +158,24 @@ Page({
     });
 
     function refreshDragedNodePosition(e) {
-      const model = e.item.get('model');
+      const model = e.item.get("model");
       model.fx = e.x;
       model.fy = e.y;
     }
 
     // 监听
-    this.graph.on('node:dragstart', function (e) {
+    this.graph.on("node:dragstart", function (e) {
       this.graph.layout();
       refreshDragedNodePosition(e);
     });
-    this.graph.on('node:drag', (e) => {
+    this.graph.on("node:drag", (e) => {
       refreshDragedNodePosition(e);
     });
-    this.graph.on('node:dragend', (e) => {
-      e.item.get('model').fx = null;
-      e.item.get('model').fy = null;
+    this.graph.on("node:dragend", (e) => {
+      e.item.get("model").fx = null;
+      e.item.get("model").fy = null;
     });
-    this.graph.on('node:click', function (e) {
+    this.graph.on("node:click", function (e) {
       const node = e.item;
       const states = node.getStates();
       let clicked = false;
@@ -183,13 +183,13 @@ Page({
       let size = 200;
       let labelText = `NODE: ${model.id}\n${model.description}`;
       states.forEach((state) => {
-        if (state === 'click') {
+        if (state === "click") {
           clicked = true;
           size = model.oriSize;
           labelText = model.oriLabel;
         }
       });
-      this.graph.setItemState(node, 'click', !clicked);
+      this.graph.setItemState(node, "click", !clicked);
       this.graph.updateItem(node, {
         size,
         label: labelText,
@@ -201,23 +201,33 @@ Page({
     this.graph.render();
     this.graph.fitView();
 
-    function scaleNodeProp(elements, propName, refPropName, dataRange, outRange) {
+    function scaleNodeProp(
+      elements,
+      propName,
+      refPropName,
+      dataRange,
+      outRange,
+    ) {
       const outLength = outRange[1] - outRange[0];
       const dataLength = dataRange[1] - dataRange[0];
       elements.forEach((n) => {
-        if (propName.split('.')[0] === 'style') {
+        if (propName.split(".")[0] === "style") {
           if (n.style) {
-            n.style[propName.split('.')[1]] =
-              ((n[refPropName] - dataRange[0]) * outLength) / dataLength + outRange[0];
+            n.style[propName.split(".")[1]] =
+              ((n[refPropName] - dataRange[0]) * outLength) / dataLength +
+              outRange[0];
           } else {
             n.style = _defineProperty(
               {},
-              propName.split('.')[1],
-              ((n[refPropName] - dataRange[0]) * outLength) / dataLength + outRange[0],
+              propName.split(".")[1],
+              ((n[refPropName] - dataRange[0]) * outLength) / dataLength +
+                outRange[0],
             );
           }
         } else {
-          n[propName] = ((n[refPropName] - dataRange[0]) * outLength) / dataLength + outRange[0];
+          n[propName] =
+            ((n[refPropName] - dataRange[0]) * outLength) / dataLength +
+            outRange[0];
         }
       });
     }

@@ -1,10 +1,10 @@
-import { G6Event, IG6GraphEvent, EdgeConfig } from '@antv/f6-core';
-import { IGraph } from '../interface/graph';
+import { G6Event, IG6GraphEvent, EdgeConfig } from "@antv/f6-core";
+import { IGraph } from "../interface/graph";
 
-const DEFAULT_TRIGGER = 'tap';
-const ALLOW_EVENTS = ['tap', 'drag'];
+const DEFAULT_TRIGGER = "tap";
+const ALLOW_EVENTS = ["tap", "drag"];
 const DEFAULT_KEY = undefined;
-const ALLOW_KEYS = ['shift', 'ctrl', 'control', 'alt', 'meta', undefined];
+const ALLOW_KEYS = ["shift", "ctrl", "control", "alt", "meta", undefined];
 
 export default {
   getDefaultCfg(): object {
@@ -20,7 +20,9 @@ export default {
     if (!(ALLOW_EVENTS.indexOf(self.trigger.toLowerCase()) > -1)) {
       self.trigger = DEFAULT_TRIGGER;
       // eslint-disable-next-line no-console
-      console.warn("Behavior create-edge 的 trigger 参数不合法，请输入 'click'，'drag'");
+      console.warn(
+        "Behavior create-edge 的 trigger 参数不合法，请输入 'click'，'drag'",
+      );
     }
     if (self.key && ALLOW_KEYS.indexOf(self.key.toLowerCase()) === -1) {
       self.trigger = DEFAULT_KEY;
@@ -30,27 +32,27 @@ export default {
       );
     }
     let events;
-    if (self.trigger === 'drag') {
+    if (self.trigger === "drag") {
       events = {
-        'node:dragstart': 'onClick',
-        'combo:dragstart': 'onClick',
-        drag: 'updateEndPoint',
-        'node:drop': 'onClick',
-        'combo:drop': 'onClick',
-        dragend: 'onDragEnd',
+        "node:dragstart": "onClick",
+        "combo:dragstart": "onClick",
+        drag: "updateEndPoint",
+        "node:drop": "onClick",
+        "combo:drop": "onClick",
+        dragend: "onDragEnd",
       };
-    } else if (self.trigger === 'click') {
+    } else if (self.trigger === "click") {
       events = {
-        'node:tap': 'onClick', // The event is node:click, the responsing function is onClick
-        mousemove: 'updateEndPoint', // The event is mousemove, the responsing function is onMousemove
-        'edge:tap': 'cancelCreating', // The event is edge:click, the responsing function is onEdgeClick
-        'canvas:tap': 'cancelCreating',
-        'combo:tap': 'onClick',
+        "node:tap": "onClick", // The event is node:click, the responsing function is onClick
+        mousemove: "updateEndPoint", // The event is mousemove, the responsing function is onMousemove
+        "edge:tap": "cancelCreating", // The event is edge:click, the responsing function is onEdgeClick
+        "canvas:tap": "cancelCreating",
+        "combo:tap": "onClick",
       };
     }
     if (self.key) {
-      events.keydown = 'onKeyDown';
-      events.keyup = 'onKeyUp';
+      events.keydown = "onKeyDown";
+      events.keyup = "onKeyUp";
     }
     return events;
   },
@@ -58,7 +60,7 @@ export default {
     const self = this;
     if (self.key && !self.keydown) return;
     const { item } = ev;
-    if (!item || item.getID() === self.source || item.getType() !== 'node')
+    if (!item || item.getID() === self.source || item.getType() !== "node")
       self.cancelCreating({
         item: self.edge,
         x: ev.x,
@@ -79,19 +81,19 @@ export default {
         target: model.id,
       };
       if (self.source === model.id) {
-        updateCfg.type = 'loop';
+        updateCfg.type = "loop";
       }
 
-      graph.emit('beforecreateedge', {});
+      graph.emit("beforecreateedge", {});
 
       graph.updateItem(self.edge, updateCfg);
 
-      graph.emit('aftercreateedge', {
+      graph.emit("aftercreateedge", {
         edge: self.edge,
       });
 
       // 暂时将该边的 capture 恢复为 true
-      self.edge.getKeyShape().set('capture', true);
+      self.edge.getKeyShape().set("capture", true);
 
       self.edge = null;
       self.addingEdge = false;
@@ -99,7 +101,7 @@ export default {
       // 如果边的起点没有指定，则根据起点创建新边
       if (!self.shouldBegin.call(self, ev)) return;
       self.edge = graph.addItem(
-        'edge',
+        "edge",
         {
           source: model.id,
           target: model.id,
@@ -110,7 +112,7 @@ export default {
       self.source = model.id;
       self.addingEdge = true;
       // 暂时将该边的 capture 设置为 false，这样可以拾取到后面的元素
-      self.edge.getKeyShape().set('capture', false);
+      self.edge.getKeyShape().set("capture", false);
     }
   },
   // 边的起点已经确定，边的末端跟随鼠标移动
@@ -141,7 +143,12 @@ export default {
     if (self.key && !self.keydown) return;
     const graph: IGraph = self.graph;
     const currentEdge = ev.item;
-    if (self.addingEdge && ev.target && ev.target.isCanvas && ev.target.isCanvas()) {
+    if (
+      self.addingEdge &&
+      ev.target &&
+      ev.target.isCanvas &&
+      ev.target.isCanvas()
+    ) {
       graph.removeItem(self.edge, false);
       self.edge = null;
       self.addingEdge = false;
@@ -150,7 +157,7 @@ export default {
     if (self.addingEdge && self.edge === currentEdge) {
       let cancelEdge = true;
       // !graph.get('groupByTypes') 将会导致选中终点时实际上边在最上层，节点无法响应 click 事件
-      if (!graph.get('groupByTypes')) {
+      if (!graph.get("groupByTypes")) {
         // 此时需要判断点击的位置是否在节点范围内，若在，则指定终点。否则取消增加边
         const { x, y } = ev;
         const nodes = graph.getNodes();
@@ -179,12 +186,12 @@ export default {
               return;
             }
 
-            graph.emit('beforecreateedge', {});
+            graph.emit("beforecreateedge", {});
 
             graph.updateItem(self.edge, {
               target: model.id,
             });
-            graph.emit('aftercreateedge', {
+            graph.emit("aftercreateedge", {
               edge: self.edge,
             });
             cancelEdge = false;

@@ -11,7 +11,7 @@ const graph = new F6.Graph({
   fitViewPadding: 60,
   fitCenter: true,
   modes: {
-    default: ["drag-canvas", "drag-node"]
+    default: ["drag-canvas", "drag-node"],
   },
   defaultNode: {
     type: "image",
@@ -21,10 +21,10 @@ const graph = new F6.Graph({
       type: "circle",
       r: 30,
       style: {
-        lineWidth: 1
-      }
-    }
-  }
+        lineWidth: 1,
+      },
+    },
+  },
 });
 graph.data(data);
 graph.render();

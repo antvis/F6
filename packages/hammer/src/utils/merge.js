@@ -1,5 +1,5 @@
-import deprecate from './deprecate';
-import extend from './extend';
+import deprecate from "./deprecate";
+import extend from "./extend";
 /**
  * @private
  * merge the values from src in the dest.
@@ -12,8 +12,8 @@ const merge = deprecate(
   (dest, src) => {
     return extend(dest, src, true);
   },
-  'merge',
-  'Use `assign`.',
+  "merge",
+  "Use `assign`.",
 );
 
 export default merge;

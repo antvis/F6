@@ -11,32 +11,30 @@ const graph = new F6.Graph({
   fitViewPadding: 60,
   fitCenter: true,
   modes: {
-    default: ["drag-node"]
+    default: ["drag-node"],
   },
   defaultEdge: {
     type: "loop",
     style: {
       endArrow: {
         path: "M 0,0 L 20,10 L 20,-10 Z",
-        fill: "#eee"
-      }
+        fill: "#eee",
+      },
     },
     loopCfg: {
-      position: "top"
-    }
-  }
+      position: "top",
+    },
+  },
 });
 graph.data(data);
 graph.render();
 graph.fitView();
-graph.on("edge:tap", evt => {
-  const {
-    item
-  } = evt;
+graph.on("edge:tap", (evt) => {
+  const { item } = evt;
   graph.setItemState(item, "selected", true);
 });
 graph.on("canvas:tap", () => {
-  graph.getEdges().forEach(edge => {
+  graph.getEdges().forEach((edge) => {
     graph.clearItemStates(edge);
   });
 });

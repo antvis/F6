@@ -1,7 +1,7 @@
-import F6 from '@antv/f6';
-import { wrapContext } from '../../../common/utils/context';
-import data from './data';
-import forceAtlas2 from '@antv/f6/dist/extends/layout/forceAtlas2Layout';
+import F6 from "@antv/f6";
+import { wrapContext } from "../../../common/utils/context";
+import data from "./data";
+import forceAtlas2 from "@antv/f6/dist/extends/layout/forceAtlas2Layout";
 
 /**
  * 基本 Force Atlas 2
@@ -10,7 +10,7 @@ import forceAtlas2 from '@antv/f6/dist/extends/layout/forceAtlas2Layout';
 Page({
   canvas: null,
   ctx: null,
-  renderer: '', // mini、mini-native等，F6需要，标记环境
+  renderer: "", // mini、mini-native等，F6需要，标记环境
   isCanvasInit: false, // canvas是否准备好了
   graph: null,
 
@@ -22,7 +22,7 @@ Page({
   },
 
   onLoad() {
-    F6.registerLayout('forceAtlas2', forceAtlas2);
+    F6.registerLayout("forceAtlas2", forceAtlas2);
     // 同步获取window的宽高
     const { windowWidth, windowHeight, pixelRatio } = my.getSystemInfoSync();
 
@@ -68,10 +68,10 @@ Page({
       pixelRatio,
       fitView: true,
       modes: {
-        default: ['zoom-canvas', 'drag-canvas', 'drag-node'],
+        default: ["zoom-canvas", "drag-canvas", "drag-node"],
       },
       layout: {
-        type: 'forceAtlas2',
+        type: "forceAtlas2",
         preventOverlap: true,
         kr: 10,
         center: [250, 250],
@@ -84,7 +84,7 @@ Page({
     data.nodes.forEach((node) => {
       node.x = Math.random() * 1;
     });
-    this.graph.on('afterlayout', () => {
+    this.graph.on("afterlayout", () => {
       this.graph.fitView();
     });
 

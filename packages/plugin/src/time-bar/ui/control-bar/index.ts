@@ -1,18 +1,22 @@
-import { createSegmentNode } from '@antv/f6-ui';
-import { dispatch } from '../../dispatcher';
-import { ControllerCfg } from '../../type/control-bar';
+import { createSegmentNode } from "@antv/f6-ui";
+import { dispatch } from "../../dispatcher";
+import { ControllerCfg } from "../../type/control-bar";
 import {
   CONTROL_NEXT,
   CONTROL_PREV,
   DEFAULT_CONTROLLER_CONFIG,
   SPEED_CHANGE,
-} from '../../utils/const';
-import createControlBtn from './control-btn';
-import createPlayBtn from './play-btn';
-import { deepMix } from '@antv/util';
+} from "../../utils/const";
+import createControlBtn from "./control-btn";
+import createPlayBtn from "./play-btn";
+import { deepMix } from "@antv/util";
 
 function createControlbar(option: ControllerCfg) {
-  const mixOption: ControllerCfg = deepMix({}, DEFAULT_CONTROLLER_CONFIG, option);
+  const mixOption: ControllerCfg = deepMix(
+    {},
+    DEFAULT_CONTROLLER_CONFIG,
+    option,
+  );
   const {
     wrapperWidth,
     contentWidth,
@@ -42,7 +46,7 @@ function createControlbar(option: ControllerCfg) {
       justify-content: center;
       align-items: center;
       background: ${fill};
-      ${stroke ? `border: 1 solid ${stroke};` : ''}
+      ${stroke ? `border: 1 solid ${stroke};` : ""}
     }
     .content{
       display: flex;
@@ -55,19 +59,19 @@ function createControlbar(option: ControllerCfg) {
     }
 `;
   const uiTree = createSegmentNode(html, css);
-  const nextBtn = createControlBtn('next', nextBtnStyle);
-  const prevBtn = createControlBtn('prev', preBtnStyle);
+  const nextBtn = createControlBtn("next", nextBtnStyle);
+  const prevBtn = createControlBtn("prev", preBtnStyle);
   const playBtn = createPlayBtn(playBtnStyle);
 
   dispatch(SPEED_CHANGE, speed);
 
-  nextBtn.on('tap', () => {
+  nextBtn.on("tap", () => {
     dispatch(CONTROL_NEXT);
   });
-  prevBtn.on('tap', () => {
+  prevBtn.on("tap", () => {
     dispatch(CONTROL_PREV);
   });
-  uiTree.query('.content').appendChild(prevBtn, playBtn, nextBtn);
+  uiTree.query(".content").appendChild(prevBtn, playBtn, nextBtn);
 
   return uiTree;
 }

@@ -1,6 +1,6 @@
-import F6 from '@antv/f6-wx';
+import F6 from "@antv/f6-wx";
 
-import data from './data';
+import data from "./data";
 /**
  * point-chart：使用G自定义的点线图节点
  */
@@ -8,7 +8,7 @@ import data from './data';
 Page({
   canvas: null,
   ctx: null,
-  renderer: '', // mini、mini-native等，F6需要，标记环境
+  renderer: "", // mini、mini-native等，F6需要，标记环境
   isCanvasInit: false, // canvas是否准备好了
   graph: null,
 
@@ -23,7 +23,7 @@ Page({
     // 同步获取window的宽高
     const { windowWidth, windowHeight, pixelRatio } = wx.getSystemInfoSync();
 
-    F6.registerNode('justPoints', {
+    F6.registerNode("justPoints", {
       draw(cfg, group) {
         const baseR = 30;
         let nowAngle = 0;
@@ -32,15 +32,15 @@ Page({
         let refR = baseR;
         const refInc = 10;
         for (let i = 0; i < 5; i++) {
-          group.addShape('circle', {
+          group.addShape("circle", {
             attrs: {
               x: 0,
               y: 0,
               r: (refR += refInc),
-              stroke: '#5ad8a6',
+              stroke: "#5ad8a6",
               lineDash: [4, 4],
             },
-            name: 'circle-shape',
+            name: "circle-shape",
           });
         }
         const everyIncAngle = (2 * Math.PI * (360 / 5 / 5)) / 360;
@@ -65,7 +65,7 @@ Page({
           // add marks
           postions.forEach((pos, index) => {
             if (index !== 5) {
-              group.addShape('circle', {
+              group.addShape("circle", {
                 attrs: {
                   x: pos[0],
                   y: pos[1],
@@ -73,7 +73,7 @@ Page({
                   lineWidth: 2,
                   stroke: cat.color,
                 },
-                name: 'circle-marker-shape',
+                name: "circle-marker-shape",
               });
             }
           });
@@ -86,43 +86,43 @@ Page({
           const xPos = r * Math.cos(nowAngle2);
           const yPos = r * Math.sin(nowAngle2);
 
-          group.addShape('path', {
+          group.addShape("path", {
             attrs: {
               path: [
-                ['M', 0, 0],
-                ['L', xPos, yPos],
+                ["M", 0, 0],
+                ["L", xPos, yPos],
               ],
               lineDash: [4, 4],
-              stroke: '#5ad8a6',
+              stroke: "#5ad8a6",
             },
-            name: 'path-shape',
+            name: "path-shape",
           });
           nowAngle2 += everyIncAngleCat;
         }
         // add a circle with the same color with the background color
-        group.addShape('circle', {
+        group.addShape("circle", {
           attrs: {
             x: 0,
             y: 0,
             r: baseR,
             fill: cfg.centerColor,
-            stroke: 'darkgray',
+            stroke: "darkgray",
           },
-          name: 'circle-shape',
+          name: "circle-shape",
         });
 
         if (cfg.label) {
-          group.addShape('text', {
+          group.addShape("text", {
             attrs: {
               x: 0,
               y: 0,
-              textAlign: 'center',
-              textBaseline: 'middle',
+              textAlign: "center",
+              textBaseline: "middle",
               text: cfg.label,
-              fill: '#fff',
-              fontStyle: 'bold',
+              fill: "#fff",
+              fontStyle: "bold",
             },
-            name: 'text-shape',
+            name: "text-shape",
           });
         }
         return group;

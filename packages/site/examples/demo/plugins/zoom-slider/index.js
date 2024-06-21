@@ -13,12 +13,12 @@ const graph = new F6.Graph({
   linkCenter: true,
   renderer,
   defaultNode: {
-    size: 30
+    size: 30,
   },
   modes: {
-    default: ["drag-canvas", "zoom-canvas", "drag-node"]
+    default: ["drag-canvas", "zoom-canvas", "drag-node"],
   },
-  plugins: [zoomSlider]
+  plugins: [zoomSlider],
 });
 graph.data(data);
 graph.render();

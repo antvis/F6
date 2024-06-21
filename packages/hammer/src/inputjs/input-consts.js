@@ -1,7 +1,7 @@
-const INPUT_TYPE_TOUCH = 'touch';
-const INPUT_TYPE_PEN = 'pen';
-const INPUT_TYPE_MOUSE = 'mouse';
-const INPUT_TYPE_KINECT = 'kinect';
+const INPUT_TYPE_TOUCH = "touch";
+const INPUT_TYPE_PEN = "pen";
+const INPUT_TYPE_MOUSE = "mouse";
+const INPUT_TYPE_KINECT = "kinect";
 
 const COMPUTE_INTERVAL = 25;
 
@@ -20,8 +20,8 @@ const DIRECTION_HORIZONTAL = DIRECTION_LEFT | DIRECTION_RIGHT;
 const DIRECTION_VERTICAL = DIRECTION_UP | DIRECTION_DOWN;
 const DIRECTION_ALL = DIRECTION_HORIZONTAL | DIRECTION_VERTICAL;
 
-const PROPS_XY = ['x', 'y'];
-const PROPS_CLIENT_XY = ['clientX', 'clientY'];
+const PROPS_XY = ["x", "y"];
+const PROPS_CLIENT_XY = ["clientX", "clientY"];
 
 export {
   INPUT_TYPE_KINECT,

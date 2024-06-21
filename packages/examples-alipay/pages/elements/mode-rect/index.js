@@ -1,6 +1,6 @@
-import F6 from '@antv/f6';
-import { wrapContext } from '../../../common/utils/context';
-import data from './data';
+import F6 from "@antv/f6";
+import { wrapContext } from "../../../common/utils/context";
+import data from "./data";
 /**
  * modeRect
  */
@@ -8,7 +8,7 @@ import data from './data';
 Page({
   canvas: null,
   ctx: null,
-  renderer: '', // mini、mini-native等，F6需要，标记环境
+  renderer: "", // mini、mini-native等，F6需要，标记环境
   isCanvasInit: false, // canvas是否准备好了
   graph: null,
 
@@ -64,22 +64,22 @@ Page({
       height,
       pixelRatio,
       fitView: true,
-      
+
       fitCenter: true,
       defaultNode: {
-        type: 'modelRect',
+        type: "modelRect",
         size: [270, 80],
         style: {
           radius: 5,
-          stroke: '#69c0ff',
-          fill: '#ffffff',
+          stroke: "#69c0ff",
+          fill: "#ffffff",
           lineWidth: 1,
           fillOpacity: 1,
         },
         // label configurations
         labelCfg: {
           style: {
-            fill: '#595959',
+            fill: "#595959",
             fontSize: 14,
           },
           offset: 30,
@@ -88,7 +88,7 @@ Page({
         preRect: {
           show: true,
           width: 4,
-          fill: '#40a9ff',
+          fill: "#40a9ff",
           radius: 2,
         },
         // configurations for the four linkpoints
@@ -100,8 +100,8 @@ Page({
           // the size of the linkpoints' circle
           size: 10,
           lineWidth: 1,
-          fill: '#72CC4A',
-          stroke: '#72CC4A',
+          fill: "#72CC4A",
+          stroke: "#72CC4A",
         },
         // configurations for the icon
         logoIcon: {
@@ -110,8 +110,7 @@ Page({
           x: 0,
           y: 0,
           // the image url for the icon, string type
-          img:
-            'https://gw.alipayobjects.com/zos/basement_prod/4f81893c-1806-4de4-aff3-9a6b266bc8a2.svg',
+          img: "https://gw.alipayobjects.com/zos/basement_prod/4f81893c-1806-4de4-aff3-9a6b266bc8a2.svg",
           width: 16,
           height: 16,
           // adjust the offset along x-axis for the icon
@@ -124,8 +123,7 @@ Page({
           x: 0,
           y: 0,
           // the image url for the icon, string type
-          img:
-            'https://gw.alipayobjects.com/zos/basement_prod/300a2523-67e0-4cbf-9d4a-67c077b40395.svg',
+          img: "https://gw.alipayobjects.com/zos/basement_prod/300a2523-67e0-4cbf-9d4a-67c077b40395.svg",
           width: 16,
           height: 16,
           // adjust hte offset along x-axis for the icon
@@ -133,13 +131,13 @@ Page({
         },
       },
       modes: {
-        default: ['drag-canvas', 'drag-node'],
+        default: ["drag-canvas", "drag-node"],
       },
       nodeStateStyles: {
         hover: {
           lineWidth: 2,
-          stroke: '#1890ff',
-          fill: '#e6f7ff',
+          stroke: "#1890ff",
+          fill: "#e6f7ff",
         },
       },
     });
@@ -149,9 +147,9 @@ Page({
     this.graph.fitView();
 
     // 监听
-    this.graph.on('node:tap', (evt) => {
+    this.graph.on("node:tap", (evt) => {
       const { item } = evt;
-      this.graph.setItemState(item, 'hover', true);
+      this.graph.setItemState(item, "hover", true);
     });
 
     // this.graph.on('canvas:tap', (evt) => {

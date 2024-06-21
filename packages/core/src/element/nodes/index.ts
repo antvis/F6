@@ -1,3 +1,3 @@
-import './simple-circle';
-import './simple-rect';
-import './image';
+import "./simple-circle";
+import "./simple-rect";
+import "./image";

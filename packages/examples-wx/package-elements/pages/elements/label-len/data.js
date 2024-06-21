@@ -1,14 +1,14 @@
-import F6 from '@antv/f6-wx';
+import F6 from "@antv/f6-wx";
 
 const globalFontSize = 12;
 
 const fittingString = (str, maxWidth, fontSize) => {
-  const ellipsis = '...';
+  const ellipsis = "...";
   const ellipsisLength = F6.Util.getTextSize(ellipsis, fontSize)[0];
   let currentWidth = 0;
   let res = str;
-  const pattern = new RegExp('[\u4E00-\u9FA5]+'); // distinguish the Chinese charactors and letters
-  str.split('').forEach((letter, i) => {
+  const pattern = new RegExp("[\u4E00-\u9FA5]+"); // distinguish the Chinese charactors and letters
+  str.split("").forEach((letter, i) => {
     if (currentWidth > maxWidth - ellipsisLength) return;
     if (pattern.test(letter)) {
       // Chinese charactors
@@ -30,8 +30,8 @@ const data = {
       x: 100,
       y: 100,
       size: 40,
-      label: 'This label is too long to be displayed',
-      id: 'node1',
+      label: "This label is too long to be displayed",
+      id: "node1",
       anchorPoints: [
         [0, 0.5],
         [1, 0.5],
@@ -41,8 +41,8 @@ const data = {
       x: 300,
       y: 100,
       size: 80,
-      label: 'This label is also too long to be displayed',
-      id: 'node2',
+      label: "This label is also too long to be displayed",
+      id: "node2",
       anchorPoints: [
         [0, 0.5],
         [1, 0.5],
@@ -51,9 +51,9 @@ const data = {
   ],
   edges: [
     {
-      source: 'node1',
-      target: 'node2',
-      label: 'This label is too long to be displayed',
+      source: "node1",
+      target: "node2",
+      label: "This label is too long to be displayed",
       labelCfg: {
         refY: 20,
         style: {

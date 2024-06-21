@@ -13,7 +13,7 @@ order: 3
 
 ```javascript
 // 实例化布局
-const subgraphLayout = new F6.Layout['force']({
+const subgraphLayout = new F6.Layout["force"]({
   center: [500, 450],
 });
 

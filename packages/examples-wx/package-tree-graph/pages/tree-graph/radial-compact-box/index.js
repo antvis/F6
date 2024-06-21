@@ -1,7 +1,7 @@
-import F6 from '@antv/f6-wx';
-import TreeGraph from '@antv/f6-wx/extends/graph/treeGraph';
+import F6 from "@antv/f6-wx";
+import TreeGraph from "@antv/f6-wx/extends/graph/treeGraph";
 
-import data_ from './data';
+import data_ from "./data";
 
 /**
  * 紧凑辐射树
@@ -10,7 +10,7 @@ import data_ from './data';
 Page({
   canvas: null,
   ctx: null,
-  renderer: '', // mini、mini-native等，F6需要，标记环境
+  renderer: "", // mini、mini-native等，F6需要，标记环境
   isCanvasInit: false, // canvas是否准备好了
   graph: null,
 
@@ -23,7 +23,7 @@ Page({
 
   onLoad() {
     // 注册自定义树，节点等
-    F6.registerGraph('TreeGraph', TreeGraph);
+    F6.registerGraph("TreeGraph", TreeGraph);
 
     // 同步获取window的宽高
     const { windowWidth, windowHeight, pixelRatio } = wx.getSystemInfoSync();
@@ -73,23 +73,23 @@ Page({
       modes: {
         default: [
           {
-            type: 'collapse-expand',
+            type: "collapse-expand",
             onChange: function onChange(item, collapsed) {
-              const data = item.get('model');
+              const data = item.get("model");
               data.collapsed = collapsed;
               return true;
             },
           },
-          'drag-canvas',
-          'zoom-canvas',
+          "drag-canvas",
+          "zoom-canvas",
         ],
       },
       defaultNode: {
         size: 26,
       },
       layout: {
-        type: 'compactBox',
-        direction: 'RL',
+        type: "compactBox",
+        direction: "RL",
         getId: function getId(d) {
           return d.id;
         },

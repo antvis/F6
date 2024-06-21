@@ -1,15 +1,15 @@
-import Graph from '../implement-graph';
-import '../../../src/element/node';
-import '../../../src/element/nodes';
-import '../../../src/element/edge';
-import '../../../src/element/combo';
-import '../../../src/element/combos';
+import Graph from "../implement-graph";
+import "../../../src/element/node";
+import "../../../src/element/nodes";
+import "../../../src/element/edge";
+import "../../../src/element/combo";
+import "../../../src/element/combos";
 
-const div = document.createElement('div');
-div.id = 'graph-spec';
+const div = document.createElement("div");
+div.id = "graph-spec";
 document.body.appendChild(div);
 
-describe('node: hide by assigning visibile in data', () => {
+describe("node: hide by assigning visibile in data", () => {
   const cfg = {
     container: div,
     width: 500,
@@ -19,14 +19,14 @@ describe('node: hide by assigning visibile in data', () => {
   const data = {
     nodes: [
       {
-        id: 'node',
+        id: "node",
         x: 100,
         y: 100,
         visible: false,
       },
     ],
   };
-  it('node: hide by data and update', () => {
+  it("node: hide by data and update", () => {
     graph.data(data);
     graph.render();
 
@@ -37,7 +37,7 @@ describe('node: hide by assigning visibile in data', () => {
     });
     expect(node.isVisible()).toEqual(true);
   });
-  it('node: hide by data and show by graph', () => {
+  it("node: hide by data and show by graph", () => {
     data.nodes[0].visible = false;
     graph.data(data);
     graph.render();
@@ -50,7 +50,7 @@ describe('node: hide by assigning visibile in data', () => {
   });
 });
 
-describe('edge: hide by assigning visibile in data', () => {
+describe("edge: hide by assigning visibile in data", () => {
   const cfg = {
     container: div,
     width: 500,
@@ -59,27 +59,27 @@ describe('edge: hide by assigning visibile in data', () => {
   const data = {
     nodes: [
       {
-        id: '1',
+        id: "1",
         x: 100,
         y: 100,
       },
       {
-        id: '2',
+        id: "2",
         x: 100,
         y: 200,
       },
     ],
     edges: [
       {
-        id: 'e12',
-        source: '1',
-        target: '2',
+        id: "e12",
+        source: "1",
+        target: "2",
         visible: false,
       },
     ],
   };
   const graph = new Graph(cfg);
-  it('edge: hide by data and update', () => {
+  it("edge: hide by data and update", () => {
     graph.data(data);
     graph.render();
 
@@ -90,7 +90,7 @@ describe('edge: hide by assigning visibile in data', () => {
     });
     expect(edge.isVisible()).toEqual(true);
   });
-  it('edge: hide by data and show by graph', () => {
+  it("edge: hide by data and show by graph", () => {
     data.edges[0].visible = false;
     graph.data(data);
     graph.render();
@@ -103,7 +103,7 @@ describe('edge: hide by assigning visibile in data', () => {
   });
 });
 
-describe('combo: hide by assigning visibile in data', () => {
+describe("combo: hide by assigning visibile in data", () => {
   const cfg = {
     container: div,
     width: 500,
@@ -112,33 +112,33 @@ describe('combo: hide by assigning visibile in data', () => {
   const data = {
     nodes: [
       {
-        id: '1',
+        id: "1",
         x: 100,
         y: 100,
-        comboId: 'c1',
+        comboId: "c1",
       },
       {
-        id: '2',
+        id: "2",
         x: 100,
         y: 200,
       },
     ],
     edges: [
       {
-        id: 'e12',
-        source: '1',
-        target: '2',
+        id: "e12",
+        source: "1",
+        target: "2",
       },
     ],
     combos: [
       {
-        id: 'c1',
+        id: "c1",
         visible: false,
       },
     ],
   };
   const graph = new Graph(cfg);
-  it('combo: hide by data and update', () => {
+  it("combo: hide by data and update", () => {
     graph.data(data);
     graph.render();
 
@@ -149,7 +149,7 @@ describe('combo: hide by assigning visibile in data', () => {
     });
     expect(combo.isVisible()).toEqual(true);
   });
-  it('combo: hide by data and show by graph', () => {
+  it("combo: hide by data and show by graph", () => {
     data.combos[0].visible = false;
     graph.data(data);
     graph.render();

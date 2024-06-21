@@ -9,12 +9,12 @@ const focusNode = data.nodes[22];
 focusNode.style = {
   stroke: "#00419F",
   fill: "#729FFC",
-  lineWidth: 2
+  lineWidth: 2,
 };
 data.nodes[2].style = {
   stroke: "#00419F",
   fill: "#729FFC",
-  lineWidth: 2
+  lineWidth: 2,
 };
 const graph = new F6.Graph({
   width,
@@ -28,22 +28,23 @@ const graph = new F6.Graph({
     unitRadius: this.mainUnitRadius,
     linkDistance: 100,
     preventOverlap: true,
-    nodeSize: 20
+    nodeSize: 20,
   },
   animate: true,
   modes: {
-    default: ["drag-node", "click-select", "click-add-node", "drag-canvas"]
+    default: ["drag-node", "click-select", "click-add-node", "drag-canvas"],
   },
   defaultNode: {
-    size: 20
-  }
+    size: 20,
+  },
 });
-graph.on("node:tap", ev => {
+graph.on("node:tap", (ev) => {
   const itemModel = ev.item.getModel();
   const nodes = graph.getNodes();
   const edges = graph.getEdges();
   let newData;
-  if (itemModel.id === "2") newData = data2_m;else return;
+  if (itemModel.id === "2") newData = data2_m;
+  else return;
   const newNodeModels = newData.nodes;
   const newEdgeModels = [];
   newData.edges.forEach(function (e) {
@@ -59,11 +60,11 @@ graph.on("node:tap", ev => {
   const allNodeModels = [];
   const allEdgeModels = [];
   const nodeMap = new Map();
-  nodes.forEach(n => {
+  nodes.forEach((n) => {
     const nModel = n.getModel();
     nodeMap.set(nModel.id, n);
   });
-  newNodeModels.forEach(nodeModel => {
+  newNodeModels.forEach((nodeModel) => {
     if (nodeMap.get(nodeModel.id) === undefined) {
       nodeModel.x = itemModel.x;
       nodeModel.y = itemModel.y;
@@ -84,10 +85,10 @@ graph.on("node:tap", ev => {
       edgeMap.set(`${em.source},${em.target}`, oldEdgeNum + i);
     }
   });
-  edges.forEach(e => {
+  edges.forEach((e) => {
     allEdgeModels.push(e.getModel());
   });
-  nodes.forEach(n => {
+  nodes.forEach((n) => {
     allNodeModels.push(n.getModel());
   });
   const maxDegree = 4;
@@ -97,8 +98,8 @@ graph.on("node:tap", ev => {
   const vy = itemModel.y - focusNode.y;
   const vlength = Math.sqrt(vx * vx + vy * vy);
   const ideallength = unitRadius * maxDegree + this.mainUnitRadius * oMaxDegree;
-  itemModel.x = ideallength * vx / vlength + focusNode.x;
-  itemModel.y = ideallength * vy / vlength + focusNode.y;
+  itemModel.x = (ideallength * vx) / vlength + focusNode.x;
+  itemModel.y = (ideallength * vy) / vlength + focusNode.y;
   const Radial = F6.layout.radial;
   const subRadialLayout = new Radial({
     center: [itemModel.x, itemModel.y],
@@ -106,17 +107,17 @@ graph.on("node:tap", ev => {
     focusNode: "2",
     unitRadius,
     linkDistance: 180,
-    preventOverlap: true
+    preventOverlap: true,
   });
   subRadialLayout.init({
     nodes: newNodeModels,
-    edges: newEdgeModels
+    edges: newEdgeModels,
   });
   subRadialLayout.execute();
   graph.positionsAnimate();
   graph.data({
     nodes: allNodeModels,
-    edges: allEdgeModels
+    edges: allEdgeModels,
   });
 });
 graph.data({
@@ -124,7 +125,7 @@ graph.data({
   edges: data.edges.map((edge, i) => {
     edge.id = `edge${i}`;
     return Object.assign({}, edge);
-  })
+  }),
 });
 graph.render();
 graph.fitView();

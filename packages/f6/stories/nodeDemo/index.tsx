@@ -1,9 +1,9 @@
-import React, { useEffect } from 'react';
-import F6 from '../../src';
-import TreeGraph from '../../src/extends/graph/treeGraph';
-import data from './data';
-import equityCompanyNode from './node';
-import equityCompanyNodeF6UI from './uiNode';
+import React, { useEffect } from "react";
+import F6 from "../../src";
+import TreeGraph from "../../src/extends/graph/treeGraph";
+import data from "./data";
+import equityCompanyNode from "./node";
+import equityCompanyNodeF6UI from "./uiNode";
 
 export default () => {
   const ref = React.useRef(null);
@@ -14,9 +14,17 @@ export default () => {
   useEffect(() => {
     if (!graph) {
       // debugger
-      F6.registerNode('EQUITY_GRAPH_NODE_TYPE_COMPANY', equityCompanyNode, 'rect');
-      F6.registerNode('EQUITY_GRAPH_NODE_TYPE_COMPANY_F6UI', equityCompanyNodeF6UI, 'rect');
-      F6.registerGraph('TreeGraph', TreeGraph);
+      F6.registerNode(
+        "EQUITY_GRAPH_NODE_TYPE_COMPANY",
+        equityCompanyNode,
+        "rect",
+      );
+      F6.registerNode(
+        "EQUITY_GRAPH_NODE_TYPE_COMPANY_F6UI",
+        equityCompanyNodeF6UI,
+        "rect",
+      );
+      F6.registerGraph("TreeGraph", TreeGraph);
       graph = new F6.TreeGraph({
         container: ref.current,
         width,
@@ -24,19 +32,19 @@ export default () => {
         fitView: true,
         linkCenter: true,
         defaultNode: {
-          type: 'rect',
+          type: "rect",
           maxTextCount: 20,
           size: [242, 106],
           style: {
             radius: 0,
-            fill: '#FFFFFF',
-            stroke: '#91D5FF',
+            fill: "#FFFFFF",
+            stroke: "#91D5FF",
           },
           labelCfg: {
             style: {
-              fill: '#333333',
+              fill: "#333333",
               fontSize: 20,
-              textAlign: 'center',
+              textAlign: "center",
             },
           },
           anchorPoints: [
@@ -45,14 +53,11 @@ export default () => {
           ],
         },
         modes: {
-          default: [
-            'drag-node',
-            'zoom-canvas',
-          ],
+          default: ["drag-node", "zoom-canvas"],
         },
-        layout:  {
-          type: 'compactBox',
-          direction: 'V',
+        layout: {
+          type: "compactBox",
+          direction: "V",
           getId: function getId(d) {
             return d.id;
           },
@@ -70,26 +75,26 @@ export default () => {
           },
           getSide: function getSide(node) {
             switch (node.data.side) {
-              case 'up':
-                return 'left';
-              case 'down':
-                return 'right';
+              case "up":
+                return "left";
+              case "down":
+                return "right";
               default:
-                return 'left';
+                return "left";
             }
           },
         },
         defaultEdge: {
-          color: '#999',
+          color: "#999",
           style: {
-            stroke: '#C5C5C5',
+            stroke: "#C5C5C5",
           },
           labelCfg: {
             style: {
-              fill: '#000',
+              fill: "#000",
               fontSize: 20,
-              textAlign: 'left',
-              fontStyle: 'Italic',
+              textAlign: "left",
+              fontStyle: "Italic",
             },
           },
         },
@@ -97,8 +102,7 @@ export default () => {
       graph.data(data);
       graph.render();
     }
-
   }, []);
 
-  return <div ref={ref} ></div>;
-}
+  return <div ref={ref}></div>;
+};

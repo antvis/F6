@@ -12,21 +12,19 @@ const graph = new F6.Graph({
   defaultNode: {
     style: {
       fill: "#DEE9FF",
-      stroke: "#5B8FF9"
-    }
+      stroke: "#5B8FF9",
+    },
   },
   defaultEdge: {
     style: {
-      stroke: "#b5b5b5"
-    }
-  }
+      stroke: "#b5b5b5",
+    },
+  },
 });
 graph.data(data);
 graph.render();
 graph.fitView();
-graph.on("node:tap", event => {
-  const {
-    item
-  } = event;
+graph.on("node:tap", (event) => {
+  const { item } = event;
   graph.focusItem(item);
 });

@@ -12,7 +12,7 @@ const graph = new F6.Graph({
   pixelRatio,
   fitView: true,
   modes: {
-    default: ["drag-canvas", "drag-node"]
+    default: ["drag-canvas", "drag-node"],
   },
   layout: {
     type: "fruchterman",
@@ -20,12 +20,12 @@ const graph = new F6.Graph({
     speed: 5,
     tick: () => {
       graph.refreshPositions();
-    }
+    },
   },
   animate: true,
   defaultNode: {
-    size: 30
-  }
+    size: 30,
+  },
 });
 graph.data(data);
 graph.render();

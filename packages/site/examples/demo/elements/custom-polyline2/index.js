@@ -6,32 +6,33 @@ const pixelRatio = 2;
 F6.registerEdge("line-arrow", {
   options: {
     style: {
-      stroke: "#ccc"
-    }
+      stroke: "#ccc",
+    },
   },
   draw: function draw(cfg, group) {
-    const {
-      startPoint
-    } = cfg;
-    const {
-      endPoint
-    } = cfg;
-    const stroke = cfg.style && cfg.style.stroke || this.options.style.stroke;
-    const startArrow = cfg.style && cfg.style.startArrow || undefined;
-    const endArrow = cfg.style && cfg.style.endArrow || undefined;
+    const { startPoint } = cfg;
+    const { endPoint } = cfg;
+    const stroke = (cfg.style && cfg.style.stroke) || this.options.style.stroke;
+    const startArrow = (cfg.style && cfg.style.startArrow) || undefined;
+    const endArrow = (cfg.style && cfg.style.endArrow) || undefined;
     const keyShape = group.addShape("path", {
       attrs: {
-        path: [["M", startPoint.x, startPoint.y], ["L", endPoint.x / 3 + 2 / 3 * startPoint.x, startPoint.y], ["L", endPoint.x / 3 + 2 / 3 * startPoint.x, endPoint.y], ["L", endPoint.x, endPoint.y]],
+        path: [
+          ["M", startPoint.x, startPoint.y],
+          ["L", endPoint.x / 3 + (2 / 3) * startPoint.x, startPoint.y],
+          ["L", endPoint.x / 3 + (2 / 3) * startPoint.x, endPoint.y],
+          ["L", endPoint.x, endPoint.y],
+        ],
         stroke,
         lineWidth: 1,
         startArrow,
-        endArrow
+        endArrow,
       },
       className: "edge-shape",
-      name: "edge-shape"
+      name: "edge-shape",
     });
     return keyShape;
-  }
+  },
 });
 const graph = new F6.Graph({
   width,
@@ -41,21 +42,21 @@ const graph = new F6.Graph({
   fitViewPadding: 60,
   fitCenter: true,
   modes: {
-    default: ["drag-node", "drag-canvas"]
+    default: ["drag-node", "drag-canvas"],
   },
   defaultNode: {
     type: "circle",
     style: {
       fill: "#DEE9FF",
-      stroke: "#5B8FF9"
+      stroke: "#5B8FF9",
     },
     linkPoints: {
       left: true,
       right: true,
       fill: "#fff",
       stroke: "#1890FF",
-      size: 3
-    }
+      size: 3,
+    },
   },
   defaultEdge: {
     type: "line-arrow",
@@ -63,14 +64,14 @@ const graph = new F6.Graph({
       stroke: "#F6BD16",
       startArrow: {
         path: "M 0,0 L 12,6 L 9,0 L 12,-6 Z",
-        fill: "#F6BD16"
+        fill: "#F6BD16",
       },
       endArrow: {
         path: "M 0,0 L 12,6 L 9,0 L 12,-6 Z",
-        fill: "#F6BD16"
-      }
-    }
-  }
+        fill: "#F6BD16",
+      },
+    },
+  },
 });
 graph.data(data);
 graph.render();

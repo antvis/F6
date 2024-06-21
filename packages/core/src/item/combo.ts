@@ -1,20 +1,20 @@
-import { IGroup } from '@antv/g-base';
-import { ICombo, INode, IItemBaseConfig } from '../interface/item';
-import Node from './node';
-import { ComboConfig, IBBox, IShapeBase, ModelConfig } from '../types';
-import Global from '../global';
-import { getBBox } from '../util/graphic';
-import { isNumber } from '@antv/util';
+import { IGroup } from "@antv/g-base";
+import { ICombo, INode, IItemBaseConfig } from "../interface/item";
+import Node from "./node";
+import { ComboConfig, IBBox, IShapeBase, ModelConfig } from "../types";
+import Global from "../global";
+import { getBBox } from "../util/graphic";
+import { isNumber } from "@antv/util";
 
-const CACHE_BBOX = 'bboxCache';
-const CACHE_CANVAS_BBOX = 'bboxCanvasCache';
-const CACHE_SIZE = 'sizeCache';
-const CACHE_ANCHOR_POINTS = 'anchorPointsCache';
+const CACHE_BBOX = "bboxCache";
+const CACHE_CANVAS_BBOX = "bboxCanvasCache";
+const CACHE_SIZE = "sizeCache";
+const CACHE_ANCHOR_POINTS = "anchorPointsCache";
 
 export default class Combo extends Node implements ICombo {
   public getDefaultCfg() {
     return {
-      type: 'combo',
+      type: "combo",
       nodes: [],
       edges: [],
       combos: [],
@@ -22,13 +22,15 @@ export default class Combo extends Node implements ICombo {
   }
 
   public getShapeCfg(model: ModelConfig): ModelConfig {
-    const styles = this.get('styles');
-    const bbox = this.get('bbox');
+    const styles = this.get("styles");
+    const bbox = this.get("bbox");
     if (styles && bbox) {
       // merge graph的item样式与数据模型中的样式
       const newModel = model;
       const size = {
-        r: Math.hypot(bbox.height, bbox.width) / 2 || Global.defaultCombo.size[0] / 2,
+        r:
+          Math.hypot(bbox.height, bbox.width) / 2 ||
+          Global.defaultCombo.size[0] / 2,
         width: bbox.width || Global.defaultCombo.size[0],
         height: bbox.height || Global.defaultCombo.size[1],
       };
@@ -40,8 +42,8 @@ export default class Combo extends Node implements ICombo {
         size.height += padding * 2;
       } else {
         size.r += padding[0];
-        size.width += (padding[1] + padding[3]) || padding[1] * 2;
-        size.height += (padding[0] + padding[2]) || padding[0] * 2;
+        size.width += padding[1] + padding[3] || padding[1] * 2;
+        size.height += padding[0] + padding[2] || padding[0] * 2;
       }
       this.set(CACHE_SIZE, size);
       return newModel;
@@ -54,8 +56,8 @@ export default class Combo extends Node implements ICombo {
    */
   public calculateCanvasBBox(): IBBox {
     if (this.destroyed) return;
-    const keyShape: IShapeBase = this.get('keyShape');
-    const group: IGroup = this.get('group');
+    const keyShape: IShapeBase = this.get("keyShape");
+    const group: IGroup = this.get("group");
     // 因为 group 可能会移动，所以必须通过父元素计算才能计算出正确的包围盒
     const bbox = getBBox(keyShape, group);
     bbox.centerX = (bbox.minX + bbox.maxX) / 2;
@@ -69,8 +71,8 @@ export default class Combo extends Node implements ICombo {
     if (cacheSize) {
       cacheSize.width = Math.max(cacheSize.width, bbox.width);
       cacheSize.height = Math.max(cacheSize.height, bbox.height);
-      const type: string = keyShape.get('type');
-      if (type === 'circle') {
+      const type: string = keyShape.get("type");
+      if (type === "circle") {
         bbox.width = cacheSize.r * 2;
         bbox.height = cacheSize.r * 2;
       } else {
@@ -109,7 +111,7 @@ export default class Combo extends Node implements ICombo {
    */
   getNodes(): INode[] {
     const self = this;
-    return self.get('nodes');
+    return self.get("nodes");
   }
 
   /**
@@ -117,7 +119,7 @@ export default class Combo extends Node implements ICombo {
    */
   getCombos(): ICombo[] {
     const self = this;
-    return self.get('combos');
+    return self.get("combos");
   }
 
   /**
@@ -129,14 +131,16 @@ export default class Combo extends Node implements ICombo {
     const self = this;
     const itemType = item.getType();
     switch (itemType) {
-      case 'node':
+      case "node":
         self.addNode(item);
         break;
-      case 'combo':
+      case "combo":
         self.addCombo(item as ICombo);
         break;
       default:
-        console.warn('Only node or combo items are allowed to be added into a combo');
+        console.warn(
+          "Only node or combo items are allowed to be added into a combo",
+        );
         return false;
     }
     return true;
@@ -149,7 +153,7 @@ export default class Combo extends Node implements ICombo {
    */
   addCombo(combo: ICombo): boolean {
     const self = this;
-    self.get('combos').push(combo);
+    self.get("combos").push(combo);
     return true;
   }
 
@@ -160,7 +164,7 @@ export default class Combo extends Node implements ICombo {
    */
   addNode(node: string | INode): boolean {
     const self = this;
-    self.get('nodes').push(node);
+    self.get("nodes").push(node);
     return true;
   }
 
@@ -173,14 +177,16 @@ export default class Combo extends Node implements ICombo {
     const self = this;
     const itemType = item.getType();
     switch (itemType) {
-      case 'node':
+      case "node":
         self.removeNode(item);
         break;
-      case 'combo':
+      case "combo":
         self.removeCombo(item as ICombo);
         break;
       default:
-        console.warn('Only node or combo items are allowed to be added into a combo');
+        console.warn(
+          "Only node or combo items are allowed to be added into a combo",
+        );
         return false;
     }
     return true;
@@ -240,14 +246,14 @@ export default class Combo extends Node implements ICombo {
 
   public destroy() {
     if (!this.destroyed) {
-      const animate = this.get('animate');
-      const group: IGroup = this.get('group');
+      const animate = this.get("animate");
+      const group: IGroup = this.get("group");
       if (animate) {
         group.stopAnimate();
       }
       this.clearCache();
       this.set(CACHE_SIZE, null);
-      this.set('bbox', null);
+      this.set("bbox", null);
       group.remove();
       (this._cfg as IItemBaseConfig | null) = null;
       this.destroyed = true;

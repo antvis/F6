@@ -21,44 +21,46 @@ const graph = new F6.Graph({
   layout: {
     type: "force",
     preventOverlap: true,
-    linkDistance: d => {
+    linkDistance: (d) => {
       if (d.source.id === "node0") {
         return 100;
       }
 
       return 30;
     },
-    nodeStrength: d => {
+    nodeStrength: (d) => {
       if (d.isLeaf) {
         return -50;
       }
 
       return -10;
     },
-    edgeStrength: d => {
-      if (d.source.id === "node1" || d.source.id === "node2" || d.source.id === "node3") {
+    edgeStrength: (d) => {
+      if (
+        d.source.id === "node1" ||
+        d.source.id === "node2" ||
+        d.source.id === "node3"
+      ) {
         return 0.7;
       }
 
       return 0.1;
-    }
+    },
   },
   defaultNode: {
-    color: "#5B8FF9"
+    color: "#5B8FF9",
   },
   modes: {
-    default: ["drag-canvas"]
-  }
+    default: ["drag-canvas"],
+  },
 });
-const {
-  nodes
-} = data;
+const { nodes } = data;
 graph.data({
   nodes,
   edges: data.edges.map(function (edge, i) {
     edge.id = `edge${i}`;
     return Object.assign({}, edge);
-  })
+  }),
 });
 graph.on("node:dragstart", function (e) {
   graph.layout();

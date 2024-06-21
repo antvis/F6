@@ -57,10 +57,10 @@ F6.registerBehavior('behaviorName', {
 
 ## 参数
 
-| 名称 | 类型 | 是否必选 | 描述 |
-| --- | --- | --- | --- |
-| behaviorName | String | true | 自定义 Behavior 的名称。 |
-| behavior | BehaviorOption | true | 自定义 behavior 时的配置项，配置项中包括的方法及作用具体请参考：[Behavior API](/zh/docs/api/Behavior)。 |
+| 名称         | 类型           | 是否必选 | 描述                                                                                                    |
+| ------------ | -------------- | -------- | ------------------------------------------------------------------------------------------------------- |
+| behaviorName | String         | true     | 自定义 Behavior 的名称。                                                                                |
+| behavior     | BehaviorOption | true     | 自定义 behavior 时的配置项，配置项中包括的方法及作用具体请参考：[Behavior API](/zh/docs/api/Behavior)。 |
 
 ### BehaviorOption.getEvents()
 
@@ -116,12 +116,12 @@ F6.registerBehavior('behaviorName', {
 **用法**
 
 ```javascript
-F6.registerBehavior('behaviorName', {
+F6.registerBehavior("behaviorName", {
   getEvents() {
     return {
-      'node:tap': 'onNodeTap',
-      'edge:tap': 'onEdgeTap',
-      mousemove: 'onMouseMove',
+      "node:tap": "onNodeTap",
+      "edge:tap": "onEdgeTap",
+      mousemove: "onMouseMove",
     };
   },
   onNodeTap(evt) {

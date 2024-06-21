@@ -1,6 +1,6 @@
-import { clone, each, wrapBehavior } from '@antv/util';
-import { BehaviorOption } from '../types';
-import behaviorOption from './behaviorOption';
+import { clone, each, wrapBehavior } from "@antv/util";
+import { BehaviorOption } from "../types";
+import behaviorOption from "./behaviorOption";
 
 export default class Behavior {
   // 所有自定义的 Behavior 的实例
@@ -21,7 +21,7 @@ export default class Behavior {
     Object.assign(prototype, behavior);
 
     // eslint-disable-next-line func-names
-    const base = function(cfg: any) {
+    const base = function (cfg: any) {
       Object.assign(this, this.getDefaultCfg(), cfg);
 
       const events = this.getEvents();

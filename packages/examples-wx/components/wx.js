@@ -3,7 +3,7 @@ Component({
   properties: {
     style: {
       type: String,
-      value: '',
+      value: "",
     },
     width: {
       type: Number,
@@ -35,7 +35,7 @@ Component({
 
     const query = wx.createSelectorQuery().in(this);
     query
-      .select('#g6-canvas')
+      .select("#g6-canvas")
       .fields({
         node: true,
         size: true,
@@ -50,13 +50,13 @@ Component({
           left: canvas._left,
           top: canvas._top,
         };
-        _this.ctx = canvas.getContext('2d');
+        _this.ctx = canvas.getContext("2d");
 
-        _this.triggerEvent('onInit', {
+        _this.triggerEvent("onInit", {
           ctx: _this.ctx,
           rect: _this.rect,
           canvas,
-          renderer: 'mini-native',
+          renderer: "mini-native",
         });
         // _this.data.onInit(_this.ctx, _this.rect, canvas, 'mini-native');
       });
@@ -76,7 +76,7 @@ Component({
         modifyEvent(e.changedTouches[i], this.data.pixelRatio);
       }
 
-      this.triggerEvent('onTouchEvent', e);
+      this.triggerEvent("onTouchEvent", e);
     },
   },
 });

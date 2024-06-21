@@ -1,7 +1,7 @@
-import { each, isString } from '@antv/util';
-import { Item, States } from '../../types';
-import { IAbstractGraph } from '../../interface/graph';
-import { INode } from '../../interface/item';
+import { each, isString } from "@antv/util";
+import { Item, States } from "../../types";
+import { IAbstractGraph } from "../../interface/graph";
+import { INode } from "../../interface/item";
 
 interface CachedStates {
   enabled: States;
@@ -44,7 +44,11 @@ export default class StateController {
    * @returns
    * @memberof State
    */
-  private static checkCache(item: Item, state: string, cache: { [key: string]: any }) {
+  private static checkCache(
+    item: Item,
+    state: string,
+    cache: { [key: string]: any },
+  ) {
     if (!cache[state]) {
       return;
     }
@@ -131,12 +135,14 @@ export default class StateController {
    * @memberof State
    */
   public updateGraphStates() {
-    const states = this.graph.get('states') as States;
+    const states = this.graph.get("states") as States;
     const { cachedStates } = this;
 
     each(cachedStates.disabled, (val, key) => {
       if (states[key]) {
-        states[key] = states[key].filter((item) => val.indexOf(item) < 0 && !val.destroyed);
+        states[key] = states[key].filter(
+          (item) => val.indexOf(item) < 0 && !val.destroyed,
+        );
       }
     });
 
@@ -147,12 +153,12 @@ export default class StateController {
         const map: { [key: string]: boolean } = {};
         states[key].forEach((item) => {
           if (!item.destroyed) {
-            map[item.get('id')] = true;
+            map[item.get("id")] = true;
           }
         });
         val.forEach((item: Item) => {
           if (!item.destroyed) {
-            const id = item.get('id');
+            const id = item.get("id");
             if (!map[id]) {
               map[id] = true;
               states[key].push(item as INode);
@@ -162,7 +168,7 @@ export default class StateController {
       }
     });
 
-    this.graph.emit('graphstatechange', { states });
+    this.graph.emit("graphstatechange", { states });
     this.cachedStates = {
       enabled: {},
       disabled: {},

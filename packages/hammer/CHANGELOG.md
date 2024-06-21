@@ -3,16 +3,20 @@
 ### 2.0.8, 2016-04-22
 
 ##### Manager
+
 - Added check to ensure that the required parameters are present ([#908](https://github.com/hammerjs/hammer.js/issues/908), [085d3a8](https://github.com/hammer.js/hammerjs/commit/085d3a87eab8674c45e9d3a14c4ca44ad7b97e26))
 - Fixed restoration of Hammer.defaults.cssProps on destory ([#904theregttr5ki](https://github.com/hammerjs/hammer.js/issues/904), [7d0e60f](https://github.com/hammer.js/hammerjs/commit/7d0e60f6743517db3c05a38e966fb9fb5052fa03))
 
 ##### Input
+
 - Fixed de-duping of mouse events on mouse touch combo devices ([#917](https://github.com/hammer.js/hammer.js/issues/917), [#863](https://github.com/hammerjs/hammer.js/issues/863), [bfeb89a](https://github.com/hammerjs/hammerjs/commit/bfeb89a77f778c527f771150d1e9687bd318ce8d))
 
 ##### Touch-action
+
 - Added support map for specific values of touch-action ([#952](https://github.com/hammer.js/hammer.js/issues/952), [fbe9fd7](https://github.com/hammerjs/hammer.js/commit/fbe9fd775fe8cb3d43faa9428bfa56b61b16edc7))
 
 ### 2.0.6, 2015-12-23
+
 - Add Assign method and deprecate merge and extend ([#895](https://github.com/hammerjs/hammer.js/pull/895)[fc01eae](https://github.com/hammerjs/hammer.js/commit/fc01eaea678acc430c664eb374555fbe3d403bdd))
 - Expose Hammer on window or self if either is defined to avoid issues when AMD is present but not used. ( [356f795](https://github.com/hammerjs/hammer.js/commit/356f7955b01f3679c29d6c45931679256b45036e))
 - Add support for PointerEvent instead of MSPointerEvent if supported. ([#754](https://github.com/hammerjs/hammer.js/issues/754), [439c7a6](https://github.com/hammerjs/hammer.js/commit/439c7a6c46978ab387b4b8289399e904d1c49535))
@@ -37,30 +41,35 @@
 - Fixed detection when element has no style attribute ( [5ca6d8c](https://github.com/hammerjs/hammer.js/commit/5ca6d8cbead02c71929a8073e95ddf98e11c0e06))
 
 ### 2.0.4, 2014-09-28
+
 - Fix IE pointer issue. [#665](https://github.com/hammerjs/hammer.js/pull/665)
 - Fix multi-touch at different elements. [#668](https://github.com/hammerjs/hammer.js/pull/668)
 - Added experimental [single-user Touch input handler](src/input/singletouch.js). This to improve performance/ux when only a single user has to be supported. Plans are to release 2.1 with this as default, and a settings to enable the multi-user handler.
 
 ### 2.0.3, 2014-09-10
-- Manager.set improvements. 
-- Fix requireFailure() call in Manager.options.recognizers. 
+
+- Manager.set improvements.
+- Fix requireFailure() call in Manager.options.recognizers.
 - Make DIRECTION_ALL for pan and swipe gestures less blocking.
 - Fix Swipe recognizer threshold option.
 - Expose the Input classes.
 - Added the option `inputClass` to set the used input handler.
 
 ### 2.0.2, 2014-07-26
+
 - Improved mouse and pointer-events input, now able to move outside the window.
 - Added the export name (`Hammer`) as an argument to the wrapper.
-- Add the option *experimental* `inputTarget` to change the element that receives the events.
+- Add the option _experimental_ `inputTarget` to change the element that receives the events.
 - Improved performance when only one touch being active.
 - Fixed the jumping deltaXY bug when going from single to multi-touch.
 - Improved velocity calculations.
 
 ### 2.0.1, 2014-07-15
+
 - Fix issue when no document.body is available
 - Added pressup event for the press recognizer
 - Removed alternative for Object.create
 
 ### 2.0.0, 2014-07-11
+
 - Full rewrite of the library.

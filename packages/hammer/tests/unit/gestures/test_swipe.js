@@ -5,7 +5,7 @@ var el;
 var hammer;
 var swipeCount = 0;
 
-QUnit.module('Swipe Gesture', {
+QUnit.module("Swipe Gesture", {
   beforeEach: function () {
     el = utils.createHitArea();
     hammer = new Hammer(el, { recognizers: [] });
@@ -16,12 +16,12 @@ QUnit.module('Swipe Gesture', {
   },
 });
 
-QUnit.test('swipe can be recognized', function (assert) {
+QUnit.test("swipe can be recognized", function (assert) {
   assert.expect(1);
   var done = assert.async();
   var swipe = new Hammer.Swipe({ threshold: 1 });
   hammer.add(swipe);
-  hammer.on('swipe', function () {
+  hammer.on("swipe", function () {
     assert.ok(true);
     done();
   });

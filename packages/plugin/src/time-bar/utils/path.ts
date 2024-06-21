@@ -1,6 +1,6 @@
-import * as pathUtil from '@antv/path-util';
-import { Category, Linear } from '@antv/scale';
-import { map, each, isEqual, head, isArray } from '@antv/util';
+import * as pathUtil from "@antv/path-util";
+import { Category, Linear } from "@antv/scale";
+import { map, each, isEqual, head, isArray } from "@antv/util";
 
 type Point = [number, number];
 
@@ -10,7 +10,7 @@ type Point = [number, number];
  */
 function pointsToPath(points: Point[]): any[][] {
   return map(points, (p: Point, idx: number) => {
-    const command = idx === 0 ? 'M' : 'L';
+    const command = idx === 0 ? "M" : "L";
     const [x, y] = p;
     return [command, x, y];
   });
@@ -45,7 +45,7 @@ export function getSmoothLinePath(points: Point[]): any[][] {
 
   const path = pathUtil.catmullRom2Bezier(data, false);
   const [x, y] = head(points);
-  path.unshift(['M', x, y]);
+  path.unshift(["M", x, y]);
 
   return path;
 }
@@ -73,13 +73,21 @@ export function dataToPath(
   });
 
   const points = map(data, (v: number, idx: number) => {
-    return [x.scale(idx) * width, height - y.scale(v) * height] as [number, number];
+    return [x.scale(idx) * width, height - y.scale(v) * height] as [
+      number,
+      number,
+    ];
   });
 
   return smooth ? getSmoothLinePath(points) : getLinePath(points);
 }
 
-export function dataToRectPath(data: number[], width: number, height: number, barWidth: number = 5): any[][] {
+export function dataToRectPath(
+  data: number[],
+  width: number,
+  height: number,
+  barWidth: number = 5,
+): any[][] {
   // 利用 scale 来获取 y 上的映射
   const y = new Linear({
     values: data,
@@ -90,7 +98,10 @@ export function dataToRectPath(data: number[], width: number, height: number, ba
   });
 
   const points = map(data, (v: number, idx: number) => {
-    return [x.scale(idx) * width, height - y.scale(v) * height] as [number, number];
+    return [x.scale(idx) * width, height - y.scale(v) * height] as [
+      number,
+      number,
+    ];
   });
 
   const rectPoints = [];
@@ -140,9 +151,9 @@ export function linePathToAreaPath(
 
   const lineYPx = getAreaLineY(data, height);
 
-  areaPath.push(['L', width, lineYPx]);
-  areaPath.push(['L', 0, lineYPx]);
-  areaPath.push(['Z']);
+  areaPath.push(["L", width, lineYPx]);
+  areaPath.push(["L", 0, lineYPx]);
+  areaPath.push(["Z"]);
 
   return areaPath;
 }
@@ -199,17 +210,20 @@ export function getRectPoints(pointInfo): { x: number; y: number }[] {
  * @param isClosed path 是否需要闭合
  * @returns 返回矩形的 path
  */
-export function getRectPath(points: { x: number; y: number }[], isClosed: boolean = true) {
+export function getRectPath(
+  points: { x: number; y: number }[],
+  isClosed: boolean = true,
+) {
   const path = [];
   const firstPoint = points[0];
-  path.push(['M', firstPoint.x, firstPoint.y]);
+  path.push(["M", firstPoint.x, firstPoint.y]);
   for (let i = 1, len = points.length; i < len; i++) {
-    path.push(['L', points[i].x, points[i].y]);
+    path.push(["L", points[i].x, points[i].y]);
   }
   // 对于 shape="line" path 不应该闭合，否则会造成 lineCap 绘图属性失效
   if (isClosed) {
-    path.push(['L', firstPoint.x, firstPoint.y]); // 需要闭合
-    path.push(['z']);
+    path.push(["L", firstPoint.x, firstPoint.y]); // 需要闭合
+    path.push(["z"]);
   }
   return path;
 }

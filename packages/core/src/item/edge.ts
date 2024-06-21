@@ -1,18 +1,24 @@
-import { isString, isPlainObject, isNil, mix } from '@antv/util';
-import { IEdge, INode, ICombo } from '../interface/item';
-import { EdgeConfig, IPoint, NodeConfig, SourceTarget, Indexable } from '../types';
-import Item from './item';
-import Node from './node';
+import { isString, isPlainObject, isNil, mix } from "@antv/util";
+import { IEdge, INode, ICombo } from "../interface/item";
+import {
+  EdgeConfig,
+  IPoint,
+  NodeConfig,
+  SourceTarget,
+  Indexable,
+} from "../types";
+import Item from "./item";
+import Node from "./node";
 
-const END_MAP: Indexable<string> = { source: 'start', target: 'end' };
-const ITEM_NAME_SUFFIX = 'Node'; // 端点的后缀，如 sourceNode, targetNode
-const POINT_NAME_SUFFIX = 'Point'; // 起点或者结束点的后缀，如 startPoint, endPoint
-const ANCHOR_NAME_SUFFIX = 'Anchor';
+const END_MAP: Indexable<string> = { source: "start", target: "end" };
+const ITEM_NAME_SUFFIX = "Node"; // 端点的后缀，如 sourceNode, targetNode
+const POINT_NAME_SUFFIX = "Point"; // 起点或者结束点的后缀，如 startPoint, endPoint
+const ANCHOR_NAME_SUFFIX = "Anchor";
 
 export default class Edge extends Item implements IEdge {
   protected getDefaultCfg() {
     return {
-      type: 'edge',
+      type: "edge",
       sourceNode: null,
       targetNode: null,
       startPoint: null,
@@ -47,7 +53,11 @@ export default class Edge extends Item implements IEdge {
    * @param model 边的数据模型
    * @param controlPoints 控制点
    */
-  private getLinkPoint(name: SourceTarget, model: EdgeConfig, controlPoints: IPoint[]): IPoint {
+  private getLinkPoint(
+    name: SourceTarget,
+    model: EdgeConfig,
+    controlPoints: IPoint[],
+  ): IPoint {
     const pointName = END_MAP[name] + POINT_NAME_SUFFIX;
     const itemName = name + ITEM_NAME_SUFFIX;
     let point = this.get(pointName);
@@ -74,12 +84,15 @@ export default class Edge extends Item implements IEdge {
    * @param name
    * @param controlPoints
    */
-  private getPrePoint(name: SourceTarget, controlPoints: IPoint[]): NodeConfig | IPoint {
+  private getPrePoint(
+    name: SourceTarget,
+    controlPoints: IPoint[],
+  ): NodeConfig | IPoint {
     if (controlPoints && controlPoints.length) {
-      const index = name === 'source' ? 0 : controlPoints.length - 1;
+      const index = name === "source" ? 0 : controlPoints.length - 1;
       return controlPoints[index];
     }
-    const oppositeName = name === 'source' ? 'target' : 'source'; // 取另一个节点的位置
+    const oppositeName = name === "source" ? "target" : "source"; // 取另一个节点的位置
     return this.getEndPoint(oppositeName);
   }
 
@@ -93,7 +106,7 @@ export default class Edge extends Item implements IEdge {
     const item = this.get(itemName);
     // 如果有端点，直接使用 model
     if (item) {
-      return item.get('model');
+      return item.get("model");
     } // 否则直接使用点
     return this.get(pointName);
   }
@@ -103,9 +116,9 @@ export default class Edge extends Item implements IEdge {
    * @param model
    */
   private getControlPointsByCenter(model: EdgeConfig) {
-    const sourcePoint = this.getEndPoint('source');
-    const targetPoint = this.getEndPoint('target');
-    const shapeFactory = this.get('shapeFactory');
+    const sourcePoint = this.getEndPoint("source");
+    const targetPoint = this.getEndPoint("target");
+    const shapeFactory = this.get("shapeFactory");
     const type = model.type;
     return shapeFactory.getControlPoints(type, {
       startPoint: sourcePoint,
@@ -131,26 +144,27 @@ export default class Edge extends Item implements IEdge {
   protected init() {
     super.init();
     // 初始化两个端点
-    this.setSource(this.get('source'));
-    this.setTarget(this.get('target'));
+    this.setSource(this.get("source"));
+    this.setTarget(this.get("target"));
   }
 
   public getShapeCfg(model: EdgeConfig): EdgeConfig {
     const self = this;
-    const linkCenter: boolean = self.get('linkCenter'); // 如果连接到中心，忽视锚点、忽视控制点
+    const linkCenter: boolean = self.get("linkCenter"); // 如果连接到中心，忽视锚点、忽视控制点
 
     const cfg = super.getShapeCfg(model) as EdgeConfig;
 
     if (linkCenter) {
-      cfg.startPoint = self.getEndCenter('source');
-      cfg.endPoint = self.getEndCenter('target');
+      cfg.startPoint = self.getEndCenter("source");
+      cfg.endPoint = self.getEndCenter("target");
     } else {
-      const controlPoints = cfg.controlPoints || self.getControlPointsByCenter(cfg);
-      cfg.startPoint = self.getLinkPoint('source', model, controlPoints);
-      cfg.endPoint = self.getLinkPoint('target', model, controlPoints);
+      const controlPoints =
+        cfg.controlPoints || self.getControlPointsByCenter(cfg);
+      cfg.startPoint = self.getLinkPoint("source", model, controlPoints);
+      cfg.endPoint = self.getLinkPoint("target", model, controlPoints);
     }
-    cfg.sourceNode = self.get('sourceNode');
-    cfg.targetNode = self.get('targetNode');
+    cfg.sourceNode = self.get("sourceNode");
+    cfg.targetNode = self.get("targetNode");
 
     return cfg;
   }
@@ -159,7 +173,7 @@ export default class Edge extends Item implements IEdge {
    * 获取边的数据模型
    */
   public getModel(): EdgeConfig {
-    const out: EdgeConfig = this.get('model');
+    const out: EdgeConfig = this.get("model");
     const sourceItem = this.get(`source${ITEM_NAME_SUFFIX}`);
     const targetItem = this.get(`target${ITEM_NAME_SUFFIX}`);
     if (sourceItem) {
@@ -186,21 +200,21 @@ export default class Edge extends Item implements IEdge {
   }
 
   public setSource(source: INode | ICombo) {
-    this.setEnd('source', source);
-    this.set('source', source);
+    this.setEnd("source", source);
+    this.set("source", source);
   }
 
   public setTarget(target: INode | ICombo) {
-    this.setEnd('target', target);
-    this.set('target', target);
+    this.setEnd("target", target);
+    this.set("target", target);
   }
 
   public getSource(): INode | ICombo {
-    return this.get('source');
+    return this.get("source");
   }
 
   public getTarget(): INode | ICombo {
-    return this.get('target');
+    return this.get("target");
   }
 
   public updatePosition() {
@@ -212,12 +226,13 @@ export default class Edge extends Item implements IEdge {
    * @param {object} cfg 待更新数据
    */
   public update(cfg: EdgeConfig, onlyMove: boolean = false) {
-    const model: EdgeConfig = this.get('model');
+    const model: EdgeConfig = this.get("model");
     const oriVisible = model.visible;
     const cfgVisible = cfg.visible;
-    if (oriVisible !== cfgVisible && cfgVisible !== undefined) this.changeVisibility(cfgVisible);
+    if (oriVisible !== cfgVisible && cfgVisible !== undefined)
+      this.changeVisibility(cfgVisible);
 
-    const styles = this.get('styles');
+    const styles = this.get("styles");
     if (cfg.stateStyles) {
       // 更新 item 时更新 this.get('styles') 中的值
       const { stateStyles } = cfg;

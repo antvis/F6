@@ -5,8 +5,8 @@
   "titleBarColor": "#262833",
   "usingComponents": {
     "block-list": "../../common/components/block-list/block-list",
-    "list":"mini-ali-ui/es/list/index",
-    "list-item":"mini-ali-ui/es/list/list-item/index",
+    "list": "mini-ali-ui/es/list/index",
+    "list-item": "mini-ali-ui/es/list/list-item/index",
     "collapse": "mini-ali-ui/es/collapse/index",
     "collapse-item": "mini-ali-ui/es/collapse/collapse-item/index"
   }

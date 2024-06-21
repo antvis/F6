@@ -4,9 +4,9 @@ import {
   compareTwoTarget,
   xmlDataRenderer,
   createNodeFromXML,
-} from '../../../../src/element/xml';
-import G6 from '../../../../src';
-import Graph from '../../implement-graph';
+} from "../../../../src/element/xml";
+import G6 from "../../../../src";
+import Graph from "../../implement-graph";
 
 const testXML = `
 <group>
@@ -36,26 +36,26 @@ const testXMLNode = (cfg) => `
     fill: '#F6BD16',
     stroke: 'green',
   }}/>`
-      : ''
+      : ""
   }
 </rect>
 <group>
 `;
 
-const div = document.createElement('div');
-div.id = 'graph-spec';
+const div = document.createElement("div");
+div.id = "graph-spec";
 document.body.appendChild(div);
 
-describe('xml node test', () => {
-  describe('registerTest', () => {
-    it('register test', () => {
-      G6.registerNode('test', testXMLNode);
+describe("xml node test", () => {
+  describe("registerTest", () => {
+    it("register test", () => {
+      G6.registerNode("test", testXMLNode);
       const graph = new Graph({
         container: div,
         width: 500,
         height: 500,
         defaultNode: {
-          type: 'test',
+          type: "test",
           style: {
             lineWidth: 4,
           },
@@ -63,7 +63,7 @@ describe('xml node test', () => {
         nodeStateStyles: {
           test: {
             title: {
-              fill: '#eee',
+              fill: "#eee",
             },
           },
         },
@@ -71,8 +71,8 @@ describe('xml node test', () => {
       const data = {
         nodes: [
           {
-            id: 'node',
-            label: 'test',
+            id: "node",
+            label: "test",
             x: 100,
             y: 100,
           },
@@ -83,17 +83,17 @@ describe('xml node test', () => {
 
       const nodes = graph.getNodes();
       const node = nodes[0];
-      const group = node.get('group');
+      const group = node.get("group");
       expect(group.getCount()).toEqual(3);
       const keyShape = node.getKeyShape();
-      expect(keyShape.attr('fill')).toEqual('#1890ff');
-      expect(keyShape.attr('lineWidth')).toEqual(4);
-      expect(keyShape.get('name')).toBe('test');
-      graph.setItemState(node, 'test', true);
+      expect(keyShape.attr("fill")).toEqual("#1890ff");
+      expect(keyShape.attr("lineWidth")).toEqual(4);
+      expect(keyShape.get("name")).toBe("test");
+      graph.setItemState(node, "test", true);
       const afterNode = graph.getNodes()[0];
-      const afterGroup = afterNode.get('group');
-      expect(afterGroup.get('children')[1].attr('fill')).toBe('#eee');
-      graph.updateItem('node', { name: 1 });
+      const afterGroup = afterNode.get("group");
+      expect(afterGroup.get("children")[1].attr("fill")).toBe("#eee");
+      graph.updateItem("node", { name: 1 });
       expect(group.getCount()).toEqual(4);
 
       graph.destroy();
@@ -101,22 +101,22 @@ describe('xml node test', () => {
     });
   });
 
-  describe('parse test', () => {
-    it('xml to object', () => {
-      const xmlText = xmlDataRenderer(testXML)({ id: 'node' });
-      const xmlParser = document.createElement('div');
+  describe("parse test", () => {
+    it("xml to object", () => {
+      const xmlText = xmlDataRenderer(testXML)({ id: "node" });
+      const xmlParser = document.createElement("div");
       xmlParser.innerHTML = xmlText;
       const xml = xmlParser.children[0] as HTMLElement;
       const obj = parseXML(xml, {});
-      expect(obj.type).toBe('group');
-      expect(obj.children[0].type).toBe('rect');
-      expect(obj.children[0].attrs.stroke).toBe('#1890ff');
-      expect(obj.children[0].children[0].attrs.text).toBe('node');
+      expect(obj.type).toBe("group");
+      expect(obj.children[0].type).toBe("rect");
+      expect(obj.children[0].attrs.stroke).toBe("#1890ff");
+      expect(obj.children[0].children[0].attrs.text).toBe("node");
     });
 
-    it('object generate target', () => {
-      const xmlText = xmlDataRenderer(testXML)({ id: 'node' });
-      const xmlParser = document.createElement('div');
+    it("object generate target", () => {
+      const xmlText = xmlDataRenderer(testXML)({ id: "node" });
+      const xmlParser = document.createElement("div");
       xmlParser.innerHTML = xmlText;
       const xml = xmlParser.children[0] as HTMLElement;
       const target = generateTarget(parseXML(xml, {}));
@@ -128,56 +128,56 @@ describe('xml node test', () => {
     });
   });
 
-  describe('compare test', () => {
-    const xmlText = xmlDataRenderer(testXML)({ id: 'node' });
-    const xmlParser = document.createElement('div');
+  describe("compare test", () => {
+    const xmlText = xmlDataRenderer(testXML)({ id: "node" });
+    const xmlParser = document.createElement("div");
     xmlParser.innerHTML = xmlText;
     const xml = xmlParser.children[0] as HTMLElement;
     const target = generateTarget(parseXML(xml, {}));
 
-    it('compare same', () => {
+    it("compare same", () => {
       const result = compareTwoTarget(target, target);
-      expect(result.action).toBe('same');
+      expect(result.action).toBe("same");
     });
 
-    it('compare add', () => {
+    it("compare add", () => {
       const result = compareTwoTarget(target, null);
-      expect(result.action).toBe('add');
+      expect(result.action).toBe("add");
     });
 
-    it('compare delete', () => {
+    it("compare delete", () => {
       const result = compareTwoTarget(null, target);
-      expect(result.action).toBe('delete');
+      expect(result.action).toBe("delete");
     });
 
-    it('compare restructure', () => {
+    it("compare restructure", () => {
       const result = compareTwoTarget(target.children[0], target);
-      expect(result.action).toBe('restructure');
+      expect(result.action).toBe("restructure");
     });
 
-    it('null compare', () => {
+    it("null compare", () => {
       const result = compareTwoTarget(null, null);
-      expect(result.action).toBe('same');
+      expect(result.action).toBe("same");
     });
 
-    it('compare children', () => {
+    it("compare children", () => {
       const result1 = compareTwoTarget(
         { ...target },
         { ...target, children: target.children.slice(0, 1) },
       );
-      expect(result1.action).toBe('same');
-      expect(result1.children[1].action).toBe('add');
+      expect(result1.action).toBe("same");
+      expect(result1.children[1].action).toBe("add");
 
       const result2 = compareTwoTarget(
         { ...target, children: target.children.slice(0, 1) },
         { ...target },
       );
-      expect(result2.action).toBe('same');
-      expect(result2.children[1].action).toBe('delete');
+      expect(result2.action).toBe("same");
+      expect(result2.children[1].action).toBe("delete");
     });
   });
 
-  describe('node create from xml', () => {
+  describe("node create from xml", () => {
     const descs = (cfg) => `
     <rect style={{
       width: 100, height: 20, fill: '#1890ff', stroke: '#1890ff', radius: [6, 6, 0, 0]
@@ -211,7 +211,7 @@ describe('xml node test', () => {
           <text style={{ fill: yellow, marginLeft: 4, fontWeight: bold }}>2222</text>            
     </rect>
   `;
-    it('generate object', () => {
+    it("generate object", () => {
       const result = createNodeFromXML(descs);
       expect(result.draw).not.toBeUndefined();
       expect(result.update).not.toBeUndefined();
@@ -219,8 +219,8 @@ describe('xml node test', () => {
     });
   });
 
-  describe('xml node state', () => {
-    G6.registerNode('xml-node', (cfg) => {
+  describe("xml node state", () => {
+    G6.registerNode("xml-node", (cfg) => {
       return `
         <group>
           <circle keyshape='true' style={{
@@ -253,27 +253,27 @@ describe('xml node test', () => {
     const data = {
       nodes: [
         {
-          id: 'node1',
-          label: 'node1',
+          id: "node1",
+          label: "node1",
           x: 100,
           y: 100,
         },
       ],
     };
-    it('node state', () => {
+    it("node state", () => {
       const graph = new Graph({
-        container: 'graph-spec',
+        container: "graph-spec",
         width: 500,
         height: 500,
         modes: {
-          default: ['drag-node', 'zoom-canvas'],
+          default: ["drag-node", "zoom-canvas"],
         },
         defaultNode: {
-          type: 'xml-node',
+          type: "xml-node",
           size: 50,
           style: {
-            stroke: 'blue',
-            fill: '#ccc',
+            stroke: "blue",
+            fill: "#ccc",
           },
         },
         nodeStateStyles: {
@@ -281,8 +281,8 @@ describe('xml node test', () => {
             // fill: 'red',
             // stroke: 'green',
             // lineWidth: 3,
-            'icon-circle': {
-              fill: '#456dc5',
+            "icon-circle": {
+              fill: "#456dc5",
             },
           },
         },
@@ -291,12 +291,12 @@ describe('xml node test', () => {
       graph.data(data);
       graph.render();
 
-      graph.on('icon-circle:mouseenter', (evt) => {
-        graph.setItemState(evt.item, 'hover', true);
+      graph.on("icon-circle:mouseenter", (evt) => {
+        graph.setItemState(evt.item, "hover", true);
       });
 
-      graph.on('icon-circle:mouseleave', (evt) => {
-        graph.setItemState(evt.item, 'hover', false);
+      graph.on("icon-circle:mouseleave", (evt) => {
+        graph.setItemState(evt.item, "hover", false);
       });
     });
   });

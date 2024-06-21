@@ -1,23 +1,23 @@
-import F6 from '@antv/f6';
-import { wrapContext } from '../../../common/utils/context';
-import { nodes, edges } from './data';
+import F6 from "@antv/f6";
+import { wrapContext } from "../../../common/utils/context";
+import { nodes, edges } from "./data";
 
 /**
  * stateChange_hover
  */
 
 F6.registerNode(
-  'leaf-node',
+  "leaf-node",
   {
     afterDraw(cfg, group) {
-      group.addShape('circle', {
+      group.addShape("circle", {
         attrs: {
           x: 0,
           y: 0,
           r: 5,
-          fill: cfg.color || '#5B8FF9',
+          fill: cfg.color || "#5B8FF9",
         },
-        name: 'circle-shape',
+        name: "circle-shape",
       });
     },
     getAnchorPoints() {
@@ -27,35 +27,35 @@ F6.registerNode(
       ];
     },
   },
-  'circle',
+  "circle",
 );
 
 F6.registerNode(
-  'center-node',
+  "center-node",
   {
     afterDraw(cfg, group) {
       const r = cfg.size / 2;
-      group.addShape('circle', {
+      group.addShape("circle", {
         zIndex: -3,
         attrs: {
           x: 0,
           y: 0,
           r: r + 10,
-          fill: 'gray',
+          fill: "gray",
           opacity: 0.4,
         },
-        name: 'circle-shape1',
+        name: "circle-shape1",
       });
-      group.addShape('circle', {
+      group.addShape("circle", {
         zIndex: -2,
         attrs: {
           x: 0,
           y: 0,
           r: r + 20,
-          fill: 'gray',
+          fill: "gray",
           opacity: 0.2,
         },
-        name: 'circle-shape2',
+        name: "circle-shape2",
       });
       group.sort();
     },
@@ -66,18 +66,18 @@ F6.registerNode(
       ];
     },
   },
-  'circle',
+  "circle",
 );
 
 // lineDash array
 const lineDash = [4, 2, 1, 2];
 
 F6.registerEdge(
-  'can-running',
+  "can-running",
   {
     setState(name, value, item) {
-      const shape = item.get('keyShape');
-      if (name === 'running') {
+      const shape = item.get("keyShape");
+      if (name === "running") {
         if (value) {
           let index = 0;
           shape.animate(
@@ -100,18 +100,18 @@ F6.registerEdge(
           );
         } else {
           shape.stopAnimate();
-          shape.attr('lineDash', null);
+          shape.attr("lineDash", null);
         }
       }
     },
   },
-  'cubic-horizontal',
+  "cubic-horizontal",
 );
 
 Page({
   canvas: null,
   ctx: null,
-  renderer: '', // mini、mini-native等，F6需要，标记环境
+  renderer: "", // mini、mini-native等，F6需要，标记环境
   isCanvasInit: false, // canvas是否准备好了
   graph: null,
 
@@ -132,13 +132,13 @@ Page({
       pixelRatio,
       defaultNode: {
         style: {
-          fill: '#DEE9FF',
-          stroke: '#5B8FF9',
+          fill: "#DEE9FF",
+          stroke: "#5B8FF9",
         },
       },
       defaultEdge: {
         style: {
-          stroke: '#b5b5b5',
+          stroke: "#b5b5b5",
         },
       },
     });
@@ -180,13 +180,13 @@ Page({
       fitView: true,
       defaultNode: {
         style: {
-          fill: '#DEE9FF',
-          stroke: '#5B8FF9',
+          fill: "#DEE9FF",
+          stroke: "#5B8FF9",
         },
       },
       defaultEdge: {
         style: {
-          stroke: '#b5b5b5',
+          stroke: "#b5b5b5",
         },
       },
     });
@@ -195,10 +195,10 @@ Page({
     this.graph.render();
     this.graph.fitView();
 
-    this.graph.on('node:tap', (ev) => {
+    this.graph.on("node:tap", (ev) => {
       const node = ev.item;
       const edges_ = node.getEdges();
-      edges_.forEach((edge) => this.graph.setItemState(edge, 'running', true));
+      edges_.forEach((edge) => this.graph.setItemState(edge, "running", true));
     });
     // this.graph.on('node:dbltap', (ev) => {
     //   console.log('点击了')

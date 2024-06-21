@@ -3,7 +3,7 @@ import {
   STATE_ENDED,
   STATE_CHANGED,
   STATE_BEGAN,
-} from './recognizer-consts';
+} from "./recognizer-consts";
 
 /**
  * @private
@@ -13,13 +13,13 @@ import {
  */
 export default function stateStr(state) {
   if (state & STATE_CANCELLED) {
-    return 'cancel';
+    return "cancel";
   } else if (state & STATE_ENDED) {
-    return 'end';
+    return "end";
   } else if (state & STATE_CHANGED) {
-    return 'move';
+    return "move";
   } else if (state & STATE_BEGAN) {
-    return 'start';
+    return "start";
   }
-  return '';
+  return "";
 }

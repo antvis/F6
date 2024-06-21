@@ -1,20 +1,20 @@
 export default {
   nodes: [
     {
-      id: '4',
+      id: "4",
       x: 150,
       y: 100,
     },
     {
-      id: '5',
+      id: "5",
       x: 350,
       y: 250,
     },
   ],
   edges: [
     {
-      source: '4',
-      target: '5',
+      source: "4",
+      target: "5",
       // assign the control points to control the bending positions
       controlPoints: [
         {

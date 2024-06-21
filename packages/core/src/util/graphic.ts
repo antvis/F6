@@ -1,6 +1,6 @@
-import { IGroup, BBox } from '@antv/g-base';
-import { vec2 } from '@antv/matrix-util';
-import Global from '../global';
+import { IGroup, BBox } from "@antv/g-base";
+import { vec2 } from "@antv/matrix-util";
+import Global from "../global";
 import {
   EdgeData,
   IBBox,
@@ -10,11 +10,11 @@ import {
   NodeConfig,
   ComboTree,
   ComboConfig,
-} from '../types';
-import { applyMatrix } from './math';
-import letterAspectRatio from './letterAspectRatio';
-import { isString, clone, isNumber, isObject } from '@antv/util';
-import { IAbstractGraph } from '../interface/graph';
+} from "../types";
+import { applyMatrix } from "./math";
+import letterAspectRatio from "./letterAspectRatio";
+import { isString, clone, isNumber, isObject } from "@antv/util";
+import { IAbstractGraph } from "../interface/graph";
 
 const { PI, sin, cos } = Math;
 
@@ -63,7 +63,7 @@ export const getBBox = (element: IShapeBase, group: IGroup): IBBox => {
  */
 export const getLoopCfgs = (cfg: EdgeData): EdgeData => {
   const item = cfg.sourceNode || cfg.targetNode;
-  const container: IGroup = item.get('group');
+  const container: IGroup = item.get("group");
   let containerMatrix = container.getMatrix();
   if (!containerMatrix) containerMatrix = [1, 0, 0, 0, 1, 0, 0, 0, 1];
 
@@ -91,11 +91,11 @@ export const getLoopCfgs = (cfg: EdgeData): EdgeData => {
   // 如果定义了锚点的，直接用锚点坐标，否则，根据自环的 cfg 计算
   if (startPoint[0] === endPoint[0] && startPoint[1] === endPoint[1]) {
     switch (position) {
-      case 'top':
+      case "top":
         startPoint = [center[0] - sinDeltaStart, center[1] - cosDeltaStart];
         endPoint = [center[0] + sinDeltaEnd, center[1] - cosDeltaEnd];
         break;
-      case 'top-right':
+      case "top-right":
         rstart = bbox.height / 2;
         rend = bbox.width / 2;
         sinDeltaStart = rstart * SELF_LINK_SIN;
@@ -105,7 +105,7 @@ export const getLoopCfgs = (cfg: EdgeData): EdgeData => {
         startPoint = [center[0] + sinDeltaStart, center[1] - cosDeltaStart];
         endPoint = [center[0] + cosDeltaEnd, center[1] - sinDeltaEnd];
         break;
-      case 'right':
+      case "right":
         rstart = bbox.width / 2;
         rend = bbox.width / 2;
         sinDeltaStart = rstart * SELF_LINK_SIN;
@@ -115,7 +115,7 @@ export const getLoopCfgs = (cfg: EdgeData): EdgeData => {
         startPoint = [center[0] + cosDeltaStart, center[1] - sinDeltaStart];
         endPoint = [center[0] + cosDeltaEnd, center[1] + sinDeltaEnd];
         break;
-      case 'bottom-right':
+      case "bottom-right":
         rstart = bbox.width / 2;
         rend = bbox.height / 2;
         sinDeltaStart = rstart * SELF_LINK_SIN;
@@ -125,7 +125,7 @@ export const getLoopCfgs = (cfg: EdgeData): EdgeData => {
         startPoint = [center[0] + cosDeltaStart, center[1] + sinDeltaStart];
         endPoint = [center[0] + sinDeltaEnd, center[1] + cosDeltaEnd];
         break;
-      case 'bottom':
+      case "bottom":
         rstart = bbox.height / 2;
         rend = bbox.height / 2;
         sinDeltaStart = rstart * SELF_LINK_SIN;
@@ -135,7 +135,7 @@ export const getLoopCfgs = (cfg: EdgeData): EdgeData => {
         startPoint = [center[0] + sinDeltaStart, center[1] + cosDeltaStart];
         endPoint = [center[0] - sinDeltaEnd, center[1] + cosDeltaEnd];
         break;
-      case 'bottom-left':
+      case "bottom-left":
         rstart = bbox.height / 2;
         rend = bbox.width / 2;
         sinDeltaStart = rstart * SELF_LINK_SIN;
@@ -145,7 +145,7 @@ export const getLoopCfgs = (cfg: EdgeData): EdgeData => {
         startPoint = [center[0] - sinDeltaStart, center[1] + cosDeltaStart];
         endPoint = [center[0] - cosDeltaEnd, center[1] + sinDeltaEnd];
         break;
-      case 'left':
+      case "left":
         rstart = bbox.width / 2;
         rend = bbox.width / 2;
         sinDeltaStart = rstart * SELF_LINK_SIN;
@@ -155,7 +155,7 @@ export const getLoopCfgs = (cfg: EdgeData): EdgeData => {
         startPoint = [center[0] - cosDeltaStart, center[1] + sinDeltaStart];
         endPoint = [center[0] - cosDeltaEnd, center[1] - sinDeltaEnd];
         break;
-      case 'top-left':
+      case "top-left":
         rstart = bbox.width / 2;
         rend = bbox.height / 2;
         sinDeltaStart = rstart * SELF_LINK_SIN;
@@ -192,11 +192,17 @@ export const getLoopCfgs = (cfg: EdgeData): EdgeData => {
   }
 
   const startExtendVec = vec2.scale([0, 0], startVec, scaleRateStart);
-  const controlPoint1 = [center[0] + startExtendVec[0], center[1] + startExtendVec[1]];
+  const controlPoint1 = [
+    center[0] + startExtendVec[0],
+    center[1] + startExtendVec[1],
+  ];
   const endVec: vec2 = [endPoint[0] - center[0], endPoint[1] - center[1]];
 
   const endExtendVec = vec2.scale([0, 0], endVec, scaleRateEnd);
-  const controlPoint2 = [center[0] + endExtendVec[0], center[1] + endExtendVec[1]];
+  const controlPoint2 = [
+    center[0] + endExtendVec[0],
+    center[1] + endExtendVec[1],
+  ];
 
   cfg.startPoint = { x: startPoint[0], y: startPoint[1] };
   cfg.endPoint = { x: endPoint[0], y: endPoint[1] };
@@ -246,7 +252,10 @@ export const getLabelPosition = (
     vector.push([offsetPoint.x, offsetPoint.y]);
   }
 
-  let rad: number = Math.atan2(vector[1][1] - vector[0][1], vector[1][0] - vector[0][0]);
+  let rad: number = Math.atan2(
+    vector[1][1] - vector[0][1],
+    vector[1][0] - vector[0][0],
+  );
 
   if (rad < 0) {
     rad += PI * 2;
@@ -289,7 +298,10 @@ export const getLabelPosition = (
  * depth first traverse, from root to leaves, children in inverse order
  *  if the fn returns false, terminate the traverse
  */
-const traverse = <T extends { children?: T[] }>(data: T, fn: (param: T) => boolean) => {
+const traverse = <T extends { children?: T[] }>(
+  data: T,
+  fn: (param: T) => boolean,
+) => {
   if (fn(data) === false) {
     return false;
   }
@@ -306,7 +318,10 @@ const traverse = <T extends { children?: T[] }>(data: T, fn: (param: T) => boole
  * depth first traverse, from leaves to root, children in inverse order
  *  if the fn returns false, terminate the traverse
  */
-const traverseUp = <T extends { children?: T[] }>(data: T, fn: (param: T) => boolean) => {
+const traverseUp = <T extends { children?: T[] }>(
+  data: T,
+  fn: (param: T) => boolean,
+) => {
   if (data && data.children) {
     for (let i = data.children.length - 1; i >= 0; i--) {
       if (!traverseUp(data.children[i], fn)) return;
@@ -323,8 +338,11 @@ const traverseUp = <T extends { children?: T[] }>(data: T, fn: (param: T) => boo
  * depth first traverse, from root to leaves, children in inverse order
  *  if the fn returns false, terminate the traverse
  */
-export const traverseTree = <T extends { children?: T[] }>(data: T, fn: (param: T) => boolean) => {
-  if (typeof fn !== 'function') {
+export const traverseTree = <T extends { children?: T[] }>(
+  data: T,
+  fn: (param: T) => boolean,
+) => {
+  if (typeof fn !== "function") {
     return;
   }
   traverse(data, fn);
@@ -338,7 +356,7 @@ export const traverseTreeUp = <T extends { children?: T[] }>(
   data: T,
   fn: (param: T) => boolean,
 ) => {
-  if (typeof fn !== 'function') {
+  if (typeof fn !== "function") {
     return;
   }
   traverseUp(data, fn);
@@ -362,8 +380,8 @@ export const getLetterWidth = (letter, fontSize) => {
  */
 export const getTextSize = (text: string, fontSize: number) => {
   let width = 0;
-  const pattern = new RegExp('[\u{4E00}-\u{9FA5}]+');
-  text.split('').forEach((letter) => {
+  const pattern = new RegExp("[\u{4E00}-\u{9FA5}]+");
+  text.split("").forEach((letter) => {
     if (pattern.test(letter)) {
       // 中文字符
       width += fontSize;
@@ -380,7 +398,10 @@ export const getTextSize = (text: string, fontSize: number) => {
  * @param nodes the nodes array
  * @return the tree
  */
-export const plainCombosToTrees = (array: ComboConfig[], nodes?: NodeConfig[]) => {
+export const plainCombosToTrees = (
+  array: ComboConfig[],
+  nodes?: NodeConfig[],
+) => {
   const result: ComboTree[] = [];
   const addedMap = {};
   const modelMap = {};
@@ -390,10 +411,12 @@ export const plainCombosToTrees = (array: ComboConfig[], nodes?: NodeConfig[]) =
 
   array.forEach((d, i) => {
     const cd = clone(d);
-    cd.itemType = 'combo';
+    cd.itemType = "combo";
     cd.children = undefined;
     if (cd.parentId === cd.id) {
-      console.warn(`The parentId for combo ${cd.id} can not be the same as the combo's id`);
+      console.warn(
+        `The parentId for combo ${cd.id} can not be the same as the combo's id`,
+      );
       delete cd.parentId;
     } else if (cd.parentId && !modelMap[cd.parentId]) {
       console.warn(`The parent combo for combo ${cd.id} does not exist!`);
@@ -454,7 +477,7 @@ export const plainCombosToTrees = (array: ComboConfig[], nodes?: NodeConfig[]) =
       };
       if (combo.children) combo.children.push(cnode);
       else combo.children = [cnode];
-      cnode.itemType = 'node';
+      cnode.itemType = "node";
       addedMap[node.id] = cnode;
     }
   });
@@ -466,13 +489,13 @@ export const plainCombosToTrees = (array: ComboConfig[], nodes?: NodeConfig[]) =
     traverse<ComboTree>(tree, (child) => {
       let parent;
       const itemType = addedMap[child.id].itemType;
-      if (itemType === 'node') {
+      if (itemType === "node") {
         parent = addedMap[child.comboId as string];
       } else {
         parent = addedMap[child.parentId];
       }
       if (parent) {
-        if (itemType === 'node') child.depth = maxDepth + 1;
+        if (itemType === "node") child.depth = maxDepth + 1;
         else child.depth = maxDepth + 10;
       } else {
         child.depth = maxDepth + 10;
@@ -501,12 +524,12 @@ export const reconstructTree = (
     },
   };
   let foundSubTree = false;
-  let oldParentId = 'root';
+  let oldParentId = "root";
   (trees || []).forEach((tree) => {
     if (foundSubTree) return;
     if (tree.id === subtreeId) {
       subtree = tree;
-      if (tree.itemType === 'combo') {
+      if (tree.itemType === "combo") {
         subtree.parentId = newParentId;
       } else {
         subtree.comboId = newParentId;
@@ -519,12 +542,13 @@ export const reconstructTree = (
         children: child.children,
       };
       // store the old parent id to delete the subtree from the old parent's children in next recursion
-      brothers = comboChildsMap[child.parentId || child.comboId || 'root'].children;
+      brothers =
+        comboChildsMap[child.parentId || child.comboId || "root"].children;
       if (child && (child.removed || subtreeId === child.id) && brothers) {
-        oldParentId = child.parentId || child.comboId || 'root';
+        oldParentId = child.parentId || child.comboId || "root";
         subtree = child;
         // re-assign the parentId or comboId for the moved subtree
-        if (child.itemType === 'combo') {
+        if (child.itemType === "combo") {
           subtree.parentId = newParentId;
         } else {
           subtree.comboId = newParentId;
@@ -544,7 +568,7 @@ export const reconstructTree = (
   if (!foundSubTree) {
     subtree = {
       id: subtreeId,
-      itemType: 'node',
+      itemType: "node",
       comboId: newParentId,
     };
 
@@ -568,21 +592,21 @@ export const reconstructTree = (
             if (child.children) child.children.push(subtree);
             else child.children = [subtree];
             newParentDepth = child.depth;
-            if (subtree.itemType === 'node') subtree.depth = newParentDepth + 2;
+            if (subtree.itemType === "node") subtree.depth = newParentDepth + 2;
             else subtree.depth = newParentDepth + 1;
             return false; // terminate
           }
           return true;
         });
       });
-    } else if ((!newParentId || !found) && subtree.itemType !== 'node') {
+    } else if ((!newParentId || !found) && subtree.itemType !== "node") {
       // if the newParentId is undefined or it is not found in the tree, add the subTree to the root
       trees.push(subtree);
     }
     // update the depth of the subtree and its children from the subtree
     let currentDepth = subtree.depth;
     traverseTree<ComboTree>(subtree, (child: any) => {
-      if (child.itemType === 'node') currentDepth += 2;
+      if (child.itemType === "node") currentDepth += 2;
       else currentDepth += 1;
       child.depth = currentDepth;
       return true;
@@ -591,7 +615,10 @@ export const reconstructTree = (
   return trees;
 };
 
-export const getComboBBox = (children: ComboTree[], graph: IAbstractGraph): BBox => {
+export const getComboBBox = (
+  children: ComboTree[],
+  graph: IAbstractGraph,
+): BBox => {
   const comboBBox = {
     minX: Infinity,
     minY: Infinity,
@@ -612,12 +639,16 @@ export const getComboBBox = (children: ComboTree[], graph: IAbstractGraph): BBox
   children.forEach((child) => {
     const childItem = graph.findById(child.id);
     if (!childItem || !childItem.isVisible()) return; // ignore hidden children
-    childItem.set('bboxCanvasCache', undefined);
+    childItem.set("bboxCanvasCache", undefined);
     const childBBox = childItem.getCanvasBBox();
-    if (childBBox.x && comboBBox.minX > childBBox.minX) comboBBox.minX = childBBox.minX;
-    if (childBBox.y && comboBBox.minY > childBBox.minY) comboBBox.minY = childBBox.minY;
-    if (childBBox.x && comboBBox.maxX < childBBox.maxX) comboBBox.maxX = childBBox.maxX;
-    if (childBBox.y && comboBBox.maxY < childBBox.maxY) comboBBox.maxY = childBBox.maxY;
+    if (childBBox.x && comboBBox.minX > childBBox.minX)
+      comboBBox.minX = childBBox.minX;
+    if (childBBox.y && comboBBox.minY > childBBox.minY)
+      comboBBox.minY = childBBox.minY;
+    if (childBBox.x && comboBBox.maxX < childBBox.maxX)
+      comboBBox.maxX = childBBox.maxX;
+    if (childBBox.y && comboBBox.maxY < childBBox.maxY)
+      comboBBox.maxY = childBBox.maxY;
   });
   comboBBox.x = (comboBBox.minX + comboBBox.maxX) / 2;
   comboBBox.y = (comboBBox.minY + comboBBox.maxY) / 2;
@@ -637,7 +668,12 @@ export const getComboBBox = (children: ComboTree[], graph: IAbstractGraph): BBox
 };
 
 export const shouldRefreshEdge = (cfg) => {
-  let refreshEdge = isNumber(cfg.x) || isNumber(cfg.y) || cfg.type || cfg.anchorPoints || cfg.size;
+  let refreshEdge =
+    isNumber(cfg.x) ||
+    isNumber(cfg.y) ||
+    cfg.type ||
+    cfg.anchorPoints ||
+    cfg.size;
   if (cfg.style)
     refreshEdge =
       refreshEdge ||
@@ -657,7 +693,7 @@ export const cloneBesidesImg = (obj) => {
       const clonedObj2 = {};
       Object.keys(obj2).forEach((key2) => {
         const v = obj2[key2];
-        if (key2 === 'img' && !isString(v)) return;
+        if (key2 === "img" && !isString(v)) return;
         clonedObj2[key2] = clone(v);
       });
       clonedObj[key1] = clonedObj2;

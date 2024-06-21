@@ -1,3 +1,3 @@
-import { RandomLayout } from '@antv/layout/lib/layout/random';
+import { RandomLayout } from "@antv/layout/lib/layout/random";
 
 export default RandomLayout;

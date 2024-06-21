@@ -17,18 +17,18 @@ order: 0
 const data = {
   nodes: [
     {
-      id: 'node1',
-      label: 'node1',
+      id: "node1",
+      label: "node1",
     },
     {
-      id: 'node2',
-      label: 'node2',
+      id: "node2",
+      label: "node2",
     },
   ],
   edges: [
     {
-      source: 'node1',
-      target: 'node2',
+      source: "node1",
+      target: "node2",
     },
   ],
 };
@@ -78,18 +78,18 @@ graph.save();
 const data = {
   nodes: [
     {
-      id: 'node1',
-      label: 'node1',
+      id: "node1",
+      label: "node1",
     },
     {
-      id: 'node2',
-      label: 'node2',
+      id: "node2",
+      label: "node2",
     },
   ],
   edges: [
     {
-      source: 'node1',
-      target: 'node2',
+      source: "node1",
+      target: "node2",
     },
   ],
 };
@@ -104,10 +104,10 @@ graph.read(data);
 
 **参数**
 
-| 名称 | 类型 | 是否必选 | 描述 |
-| --- | --- | --- | --- |
-| data | Object | false | 图数据，是一个包括 nodes 和 edges 的对象。若不指定该参数，则使用当前数据重新渲染 |
-| stack | boolean | false | 操作是否入 undo & redo 栈，当实例化 Graph 时设置 enableStack 为 true 时，默认情况下会自动入栈，入栈以后，就支持 undo & redo 操作，如果不需要，则设置该参数为 false 即可 |
+| 名称  | 类型    | 是否必选 | 描述                                                                                                                                                                    |
+| ----- | ------- | -------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| data  | Object  | false    | 图数据，是一个包括 nodes 和 edges 的对象。若不指定该参数，则使用当前数据重新渲染                                                                                        |
+| stack | boolean | false    | 操作是否入 undo & redo 栈，当实例化 Graph 时设置 enableStack 为 true 时，默认情况下会自动入栈，入栈以后，就支持 undo & redo 操作，如果不需要，则设置该参数为 false 即可 |
 
 **用法**
 
@@ -115,18 +115,18 @@ graph.read(data);
 const data = {
   nodes: [
     {
-      id: 'node1',
-      label: 'node1',
+      id: "node1",
+      label: "node1",
     },
     {
-      id: 'node2',
-      label: 'node2',
+      id: "node2",
+      label: "node2",
     },
   ],
   edges: [
     {
-      source: 'node1',
-      target: 'node2',
+      source: "node1",
+      target: "node2",
     },
   ],
 };

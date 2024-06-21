@@ -1,6 +1,13 @@
-import { isString, isPlainObject } from '@antv/util';
-import { GraphData, TreeGraphData, NodeConfig, EdgeConfig, ComboConfig, ITEM_TYPE } from '../types';
-import { traverseTree } from './graphic';
+import { isString, isPlainObject } from "@antv/util";
+import {
+  GraphData,
+  TreeGraphData,
+  NodeConfig,
+  EdgeConfig,
+  ComboConfig,
+  ITEM_TYPE,
+} from "../types";
+import { traverseTree } from "./graphic";
 
 /**
  * 验证关系图或树图数据的合法性，必须符合以下规则才会渲染图：
@@ -13,7 +20,7 @@ import { traverseTree } from './graphic';
 export const dataValidation = (data?: GraphData | TreeGraphData): boolean => {
   // 1. 必须传入数据
   if (!data) {
-    console.error('G6 Error Tips: the data must be defined');
+    console.error("G6 Error Tips: the data must be defined");
     return false;
   }
 
@@ -32,12 +39,14 @@ export const dataValidation = (data?: GraphData | TreeGraphData): boolean => {
     return validated;
   }
 
-  const nonNode = ((nodes as NodeConfig[]) || []).find((node) => !isString(node.id));
+  const nonNode = ((nodes as NodeConfig[]) || []).find(
+    (node) => !isString(node.id),
+  );
   if (nonNode) {
     console.warn(
       `G6 Warning Tips: missing 'id' property, or %c${nonNode.id}%c is not a string.`,
-      'font-size: 20px; color: red;',
-      '',
+      "font-size: 20px; color: red;",
+      "",
     );
     return false;
   }
@@ -52,10 +61,10 @@ export const dataValidation = (data?: GraphData | TreeGraphData): boolean => {
   if (nonEdges) {
     console.warn(
       `G6 Warning Tips: The source %c${nonEdges.source}%c or the target %c${nonEdges.target}%c of the edge do not exist in the nodes or combos.`,
-      'font-size: 20px; color: red;',
-      '',
-      'font-size: 20px; color: red;',
-      '',
+      "font-size: 20px; color: red;",
+      "",
+      "font-size: 20px; color: red;",
+      "",
     );
     return false;
   }
@@ -72,20 +81,22 @@ export const singleDataValidation = (
   type: ITEM_TYPE,
   data: NodeConfig | EdgeConfig | ComboConfig,
 ): boolean => {
-  if (type === 'node' || type === 'combo') {
+  if (type === "node" || type === "combo") {
     // 必须有 id 字段，且id必须为字符串类型
     if (data.id && !isString(data.id)) {
       console.warn(
         `G6 Warning Tips: missing 'id' property, or the 'id' %c${data.id}%c is not a string.`,
-        'font-size: 20px; color: red;',
-        '',
+        "font-size: 20px; color: red;",
+        "",
       );
       return false;
     }
-  } else if (type === 'edge') {
+  } else if (type === "edge") {
     // 必须有 source 和 target 字段
     if (!(data as EdgeConfig).source || !(data as EdgeConfig).target) {
-      console.warn(`G6 Warning Tips: missing 'source' or 'target' for the edge.`);
+      console.warn(
+        `G6 Warning Tips: missing 'source' or 'target' for the edge.`,
+      );
       return false;
     }
   }

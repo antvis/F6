@@ -1,6 +1,6 @@
-import { isString, isNumber, isNil, isArray } from '@antv/util';
-import { G6GraphEvent } from '../interface/behavior';
-import { IG6GraphEvent, Padding, Matrix, Item } from '../types';
+import { isString, isNumber, isNil, isArray } from "@antv/util";
+import { G6GraphEvent } from "../interface/behavior";
+import { IG6GraphEvent, Padding, Matrix, Item } from "../types";
 
 export const uniqueId = (type: string): string => {
   return `${type}-${Math.random()}${Date.now()}`;
@@ -132,21 +132,21 @@ export const calculationItemsBBox = (items: Item[]) => {
 export const processParallelEdges = (
   edges,
   offsetDiff = 15,
-  multiEdgeType: string = 'quadratic',
+  multiEdgeType: string = "quadratic",
   singleEdgeType: string = undefined,
-  loopEdgeType: string = undefined
+  loopEdgeType: string = undefined,
 ) => {
   const len = edges.length;
   const cod = offsetDiff * 2;
   const loopPosition = [
-    'top',
-    'top-right',
-    'right',
-    'bottom-right',
-    'bottom',
-    'bottom-left',
-    'left',
-    'top-left',
+    "top",
+    "top-right",
+    "right",
+    "bottom-right",
+    "bottom",
+    "bottom-left",
+    "left",
+    "top-left",
   ];
   const edgeMap = {};
   const tags = [];
@@ -204,7 +204,8 @@ export const processParallelEdges = (
       }
       current.type = multiEdgeType;
       const sign =
-        (k % 2 === 0 ? 1 : -1) * (reverses[`${current.source}|${current.target}|${k}`] ? -1 : 1);
+        (k % 2 === 0 ? 1 : -1) *
+        (reverses[`${current.source}|${current.target}|${k}`] ? -1 : 1);
       if (length % 2 === 1) {
         current.curveOffset = sign * Math.ceil(k / 2) * cod;
       } else {

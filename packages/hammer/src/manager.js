@@ -1,18 +1,18 @@
-import assign from './utils/assign';
-import Hammer from './hammer';
-import TouchAction from './touchactionjs/touchaction-constructor';
-import createInputInstance from './inputjs/create-input-instance';
-import each from './utils/each';
-import inArray from './utils/in-array';
-import invokeArrayArg from './utils/invoke-array-arg';
-import splitStr from './utils/split-str';
-import Recognizer from './recognizerjs/recognizer-constructor';
+import assign from "./utils/assign";
+import Hammer from "./hammer";
+import TouchAction from "./touchactionjs/touchaction-constructor";
+import createInputInstance from "./inputjs/create-input-instance";
+import each from "./utils/each";
+import inArray from "./utils/in-array";
+import invokeArrayArg from "./utils/invoke-array-arg";
+import splitStr from "./utils/split-str";
+import Recognizer from "./recognizerjs/recognizer-constructor";
 import {
   STATE_BEGAN,
   STATE_ENDED,
   STATE_CHANGED,
   STATE_RECOGNIZED,
-} from './recognizerjs/recognizer-consts';
+} from "./recognizerjs/recognizer-consts";
 
 const STOP = 1;
 const FORCED_STOP = 2;
@@ -79,8 +79,8 @@ export default class Manager {
    * add event filters
    */
   addFilter(filter) {
-    if (typeof filter !== 'function') {
-      throw new Error('filter must be a function');
+    if (typeof filter !== "function") {
+      throw new Error("filter must be a function");
     }
     this.filters.push(filter);
   }
@@ -179,7 +179,7 @@ export default class Manager {
    * @returns {Recognizer|Manager}
    */
   add(recognizer) {
-    if (invokeArrayArg(recognizer, 'add', this)) {
+    if (invokeArrayArg(recognizer, "add", this)) {
       return this;
     }
 
@@ -203,7 +203,7 @@ export default class Manager {
    * @returns {Manager}
    */
   remove(recognizer) {
-    if (invokeArrayArg(recognizer, 'remove', this)) {
+    if (invokeArrayArg(recognizer, "remove", this)) {
       return this;
     }
 
@@ -294,7 +294,7 @@ export default class Manager {
     //  i++;
     //}
     //
-    if (!event.startsWith('origin_input')) {
+    if (!event.startsWith("origin_input")) {
       data.type = event;
       data.preventDefault = function () {
         data.srcEvent.preventDefault && data.srcEvent.preventDefault();

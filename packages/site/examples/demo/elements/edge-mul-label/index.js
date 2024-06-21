@@ -6,25 +6,24 @@ const pixelRatio = 2;
 F6.registerEdge("multipleLabelsEdge", {
   options: {
     style: {
-      stroke: "#000"
-    }
+      stroke: "#000",
+    },
   },
   labelAutoRotate: true,
 
   draw(cfg, group) {
-    const {
-      startPoint
-    } = cfg;
-    const {
-      endPoint
-    } = cfg;
-    const stroke = cfg.style && cfg.style.stroke || this.options.style.stroke;
+    const { startPoint } = cfg;
+    const { endPoint } = cfg;
+    const stroke = (cfg.style && cfg.style.stroke) || this.options.style.stroke;
     const shape = group.addShape("path", {
       attrs: {
         stroke,
-        path: [["M", startPoint.x, startPoint.y], ["L", endPoint.x, endPoint.y]]
+        path: [
+          ["M", startPoint.x, startPoint.y],
+          ["L", endPoint.x, endPoint.y],
+        ],
       },
-      name: "path-shape"
+      name: "path-shape",
     });
 
     if (cfg.label && cfg.label.length) {
@@ -35,9 +34,9 @@ F6.registerEdge("multipleLabelsEdge", {
           textAlign: "start",
           textBaseline: "middle",
           x: startPoint.x,
-          y: startPoint.y - 10
+          y: startPoint.y - 10,
         },
-        name: "left-text-shape"
+        name: "left-text-shape",
       });
 
       if (cfg.label.length > 1) {
@@ -48,16 +47,15 @@ F6.registerEdge("multipleLabelsEdge", {
             textAlign: "end",
             textBaseline: "middle",
             x: endPoint.x,
-            y: endPoint.y - 10
+            y: endPoint.y - 10,
           },
-          name: "right-text-shape"
+          name: "right-text-shape",
         });
       }
     }
 
     return shape;
-  }
-
+  },
 });
 const graph = new F6.Graph({
   width,
@@ -67,28 +65,32 @@ const graph = new F6.Graph({
   fitViewPadding: 60,
   fitCenter: true,
   modes: {
-    default: [{
-      type: "drag-node",
-      delegate: false
-    }, "drag-canvas", {
-      type: "zoom-canvas",
-      sensitivity: 0.5
-    }]
+    default: [
+      {
+        type: "drag-node",
+        delegate: false,
+      },
+      "drag-canvas",
+      {
+        type: "zoom-canvas",
+        sensitivity: 0.5,
+      },
+    ],
   },
   defaultNode: {
     type: "circle",
     size: [50],
     linkPoints: {
       left: true,
-      right: true
-    }
+      right: true,
+    },
   },
   defaultEdge: {
     type: "multipleLabelsEdge",
     style: {
-      stroke: "#F6BD16"
-    }
-  }
+      stroke: "#F6BD16",
+    },
+  },
 });
 graph.data(data);
 graph.render();

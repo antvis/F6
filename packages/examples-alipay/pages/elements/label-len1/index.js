@@ -1,6 +1,6 @@
-import F6 from '@antv/f6';
-import { wrapContext } from '../../../common/utils/context';
-import data from './data';
+import F6 from "@antv/f6";
+import { wrapContext } from "../../../common/utils/context";
+import data from "./data";
 /**
  * labelLen1
  */
@@ -8,7 +8,7 @@ import data from './data';
 Page({
   canvas: null,
   ctx: null,
-  renderer: '', // mini、mini-native等，F6需要，标记环境
+  renderer: "", // mini、mini-native等，F6需要，标记环境
   isCanvasInit: false, // canvas是否准备好了
   graph: null,
 
@@ -67,14 +67,14 @@ Page({
       // translate the graph to align the canvas's center, support by v3.5.1
       fitCenter: true,
       defaultNode: {
-        type: 'rect',
+        type: "rect",
         style: {
-          fill: '#DEE9FF',
-          stroke: '#5B8FF9',
+          fill: "#DEE9FF",
+          stroke: "#5B8FF9",
         },
       },
       defaultEdge: {
-        color: '#F6BD16',
+        color: "#F6BD16",
       },
     });
     this.graph.data(data);

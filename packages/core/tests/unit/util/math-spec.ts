@@ -25,25 +25,25 @@ import {
   pointLineSquareDist,
   isPointsOverlap,
   pointRectSquareDist,
-} from '../../../src/util/math';
-import Graph from '../implement-graph';
-import { Canvas } from '@antv/g-canvas';
+} from "../../../src/util/math";
+import Graph from "../implement-graph";
+import { Canvas } from "@antv/g-canvas";
 
 const equal = (a: number, b: number): boolean => Math.abs(a - b) < 0.0001;
 
-const div = document.createElement('div');
-div.id = 'base-spec';
+const div = document.createElement("div");
+div.id = "base-spec";
 document.body.appendChild(div);
 const graph = new Graph({
   container: div,
   width: 800,
   height: 600,
 });
-graph.addItem('node', { x: 0, y: 0 });
-graph.addItem('node', { x: 100, y: 100 });
+graph.addItem("node", { x: 0, y: 0 });
+graph.addItem("node", { x: 100, y: 100 });
 
-describe('math util test', () => {
-  it('intersect with ellipse, rx = ry', () => {
+describe("math util test", () => {
+  it("intersect with ellipse, rx = ry", () => {
     const ellipse = {
       x: 0,
       y: 0,
@@ -68,7 +68,7 @@ describe('math util test', () => {
     expect(equal(p5.y, Math.sqrt(2) / 2)).toEqual(true);
   });
 
-  it('intersect with ellipse, rx != ry', () => {
+  it("intersect with ellipse, rx != ry", () => {
     const arr = [
       { x: 12, y: 0 },
       { x: 12, y: 12 },
@@ -104,7 +104,7 @@ describe('math util test', () => {
     });
   });
 
-  it('getCircleIntersectByPoint', () => {
+  it("getCircleIntersectByPoint", () => {
     const circle = {
       x: 0,
       y: 0,
@@ -125,7 +125,7 @@ describe('math util test', () => {
     expect(p).toEqual({ x: 4.160251471689219, y: 2.773500981126145 });
   });
 
-  it('getRectIntersectByPoint', () => {
+  it("getRectIntersectByPoint", () => {
     const rect = {
       x: 0,
       y: 0,
@@ -142,7 +142,7 @@ describe('math util test', () => {
     expect(p).toEqual({ x: 13, y: 10 });
   });
 
-  it('getCircleCenterByPoints', () => {
+  it("getCircleCenterByPoints", () => {
     const p1 = {
       x: 10,
       y: 5,
@@ -160,7 +160,7 @@ describe('math util test', () => {
     expect(p).toEqual({ x: 15.346153846153847, y: 5.346153846153846 });
   });
 
-  it('distance', () => {
+  it("distance", () => {
     const p1 = {
       x: 10,
       y: 5,
@@ -174,7 +174,7 @@ describe('math util test', () => {
     expect(dis).toEqual(7.0710678118654755);
   });
 
-  it('applyMatrix with null matrix', () => {
+  it("applyMatrix with null matrix", () => {
     const point = {
       x: 10,
       y: 15,
@@ -184,7 +184,7 @@ describe('math util test', () => {
     expect(p).toEqual({ x: 10, y: 15 });
   });
 
-  it('applyMatrix tag = 0', () => {
+  it("applyMatrix tag = 0", () => {
     const point = {
       x: 10,
       y: 15,
@@ -195,7 +195,7 @@ describe('math util test', () => {
     expect(p).toEqual({ x: 30, y: 10 });
   });
 
-  it('applyMatrix tag = 1', () => {
+  it("applyMatrix tag = 1", () => {
     const point = {
       x: 10,
       y: 15,
@@ -206,7 +206,7 @@ describe('math util test', () => {
     expect(p).toEqual({ x: 32, y: 14 });
   });
 
-  it('invertMatrix with null matrix', () => {
+  it("invertMatrix with null matrix", () => {
     const point = {
       x: 30,
       y: 10,
@@ -216,7 +216,7 @@ describe('math util test', () => {
     expect(p).toEqual({ x: 30, y: 10 });
   });
 
-  it('invertMatrix tag = 0', () => {
+  it("invertMatrix tag = 0", () => {
     const point = {
       x: 30,
       y: 10,
@@ -227,7 +227,7 @@ describe('math util test', () => {
     expect(p).toEqual({ x: 10, y: 15 });
   });
 
-  it('invertMatrix tag = 1', () => {
+  it("invertMatrix tag = 1", () => {
     const point = {
       x: 32,
       y: 14,
@@ -238,7 +238,7 @@ describe('math util test', () => {
     expect(p).toEqual({ x: 10, y: 15 });
   });
 
-  it('scaleMatrix', () => {
+  it("scaleMatrix", () => {
     const matrix = [
       [1, 2, 3],
       [2, 3, 4],
@@ -250,26 +250,26 @@ describe('math util test', () => {
     expect(scales[2][2]).toEqual(0.5);
   });
 
-  it('getAdjMatrix', () => {
+  it("getAdjMatrix", () => {
     const data = {
       nodes: [
         {
-          id: 'node1',
-          label: 'node1',
+          id: "node1",
+          label: "node1",
         },
         {
-          id: 'node2',
-          label: 'node2',
+          id: "node2",
+          label: "node2",
         },
       ],
       edges: [
         {
-          source: 'node1',
-          target: 'node2',
+          source: "node1",
+          target: "node2",
         },
         {
-          source: 'node1',
-          target: 'node1',
+          source: "node1",
+          target: "node1",
         },
       ],
     };
@@ -283,35 +283,35 @@ describe('math util test', () => {
     expect(directedMatrix[1]).toEqual([]);
   });
 
-  it('getAdjMatrix without nodes', () => {
+  it("getAdjMatrix without nodes", () => {
     const data = {
       edges: [
         {
-          source: 'node1',
-          target: 'node2',
+          source: "node1",
+          target: "node2",
         },
         {
-          source: 'node1',
-          target: 'node1',
+          source: "node1",
+          target: "node1",
         },
       ],
     };
 
     expect(() => {
       getAdjMatrix(data, false);
-    }).toThrowError('invalid nodes data!');
+    }).toThrowError("invalid nodes data!");
   });
 
-  it('getAdjMatrix without edges', () => {
+  it("getAdjMatrix without edges", () => {
     const data1 = {
       nodes: [
         {
-          id: 'node1',
-          label: 'node1',
+          id: "node1",
+          label: "node1",
         },
         {
-          id: 'node2',
-          label: 'node2',
+          id: "node2",
+          label: "node2",
         },
       ],
     };
@@ -321,7 +321,7 @@ describe('math util test', () => {
     expect(directedMatrix[1]).toEqual([]);
   });
 
-  it('floydWarshall', () => {
+  it("floydWarshall", () => {
     const matrix = [
       [1, 1, 2],
       [1, 0, 1],
@@ -333,12 +333,12 @@ describe('math util test', () => {
     expect(result[1]).toEqual([1, 0, 1]);
     expect(result[2]).toEqual([1, 2, 0]);
   });
-  it('scale and rotate', () => {
-    const div = document.createElement('div');
-    div.id = 'edge-shape';
+  it("scale and rotate", () => {
+    const div = document.createElement("div");
+    div.id = "edge-shape";
     document.body.appendChild(div);
     const canvas = new Canvas({
-      container: 'edge-shape',
+      container: "edge-shape",
       width: 600,
       height: 600,
     });
@@ -367,7 +367,7 @@ describe('math util test', () => {
     expect(group2Matrix[4]).toBe(-0.9899924966004454);
   });
 
-  it('getLineIntersect', () => {
+  it("getLineIntersect", () => {
     const intersect = getLineIntersect(
       { x: 0, y: 0 },
       { x: 100, y: 100 },
@@ -378,7 +378,7 @@ describe('math util test', () => {
     expect(intersect.y).toBe(50);
   });
 
-  it('translate', () => {
+  it("translate", () => {
     const group = graph.getGroup();
     expect(group.getMatrix()).toEqual(null);
     translate(group, { x: 10, y: 10 });
@@ -388,7 +388,7 @@ describe('math util test', () => {
     expect(matrix[7]).toEqual(10);
   });
 
-  it('move', () => {
+  it("move", () => {
     const group = graph.getGroup();
     move(group, { x: 100, y: 100 });
     const matrix = group.getMatrix();
@@ -397,7 +397,7 @@ describe('math util test', () => {
     expect(matrix[7]).toEqual(110.5);
   });
 
-  it('isPointInPolygon', () => {
+  it("isPointInPolygon", () => {
     expect(
       isPointInPolygon(
         [
@@ -434,13 +434,13 @@ describe('math util test', () => {
     ).toEqual(false);
   });
 
-  it('intersectBBox', () => {
+  it("intersectBBox", () => {
     const nodes = graph.getNodes();
     expect(intersectBBox(nodes[0].getBBox(), nodes[1].getBBox())).toBe(false);
     expect(intersectBBox(nodes[0].getBBox(), nodes[0].getBBox())).toBe(true);
   });
 
-  it('isPolygonsIntersect', () => {
+  it("isPolygonsIntersect", () => {
     expect(
       isPolygonsIntersect(
         [
@@ -475,11 +475,14 @@ describe('math util test', () => {
     ).toEqual(false);
   });
 
-  it('getBBoxBoundLine', () => {
-    const topLine = getBBoxBoundLine(graph.getNodes()[0].getBBox(), 'top');
-    const leftLine = getBBoxBoundLine(graph.getNodes()[0].getBBox(), 'left');
-    const bottomLine = getBBoxBoundLine(graph.getNodes()[0].getBBox(), 'bottom');
-    const rightLine = getBBoxBoundLine(graph.getNodes()[0].getBBox(), 'right');
+  it("getBBoxBoundLine", () => {
+    const topLine = getBBoxBoundLine(graph.getNodes()[0].getBBox(), "top");
+    const leftLine = getBBoxBoundLine(graph.getNodes()[0].getBBox(), "left");
+    const bottomLine = getBBoxBoundLine(
+      graph.getNodes()[0].getBBox(),
+      "bottom",
+    );
+    const rightLine = getBBoxBoundLine(graph.getNodes()[0].getBBox(), "right");
     expect(topLine[0]).toEqual(-10.5);
     expect(topLine[2]).toEqual(10.5);
     expect(leftLine[0]).toEqual(-10.5);
@@ -490,7 +493,7 @@ describe('math util test', () => {
     expect(rightLine[2]).toEqual(10.5);
   });
 
-  it('itemIntersectByLine', () => {
+  it("itemIntersectByLine", () => {
     const node = graph.getNodes()[0];
     const line: any = { x1: 0, y1: 0, x2: 100, y2: 100 };
     const result = itemIntersectByLine(node, line);
@@ -503,7 +506,7 @@ describe('math util test', () => {
     expect(result[1]).toEqual(2);
   });
 
-  it('fractionToLine', () => {
+  it("fractionToLine", () => {
     const node = graph.getNodes()[0];
     const line: any = { x1: 220, y1: 100, x2: 100, y2: 100 };
     const res = fractionToLine(node, line);
@@ -513,7 +516,7 @@ describe('math util test', () => {
     expect(res2).toBe(0.395);
   });
 
-  it('getPointsCenter', () => {
+  it("getPointsCenter", () => {
     [
       [0, 0],
       [100, 0],
@@ -530,20 +533,25 @@ describe('math util test', () => {
     ).toEqual({ x: 50, y: 50 });
   });
 
-  it('squareDist', () => {
+  it("squareDist", () => {
     expect(squareDist({ x: 0, y: 0 }, { x: 100, y: 100 })).toBe(20000);
   });
 
-  it('pointLineSquareDist', () => {
-    const dist = pointLineSquareDist({ x: 0, y: 0 }, { x1: 100, y1: 0, x2: 100, y2: 100 } as any);
+  it("pointLineSquareDist", () => {
+    const dist = pointLineSquareDist({ x: 0, y: 0 }, {
+      x1: 100,
+      y1: 0,
+      x2: 100,
+      y2: 100,
+    } as any);
     expect(dist).toBe(10000);
   });
 
-  it('isPointsOverlap', () => {
+  it("isPointsOverlap", () => {
     expect(isPointsOverlap({ x: 0, y: 0 }, { x: 0.0001, y: 0 })).toBe(true);
     expect(isPointsOverlap({ x: 0, y: 0 }, { x: 10, y: 0 })).toBe(false);
   });
-  it('pointRectSquareDist', () => {
+  it("pointRectSquareDist", () => {
     const rect = { x: 0, y: 0, width: 10, height: 10 };
     expect(pointRectSquareDist({ x: 0, y: 0 }, rect)).toBe(0);
     expect(pointRectSquareDist({ x: 5, y: 15 }, rect)).toBe(25);

@@ -1,13 +1,13 @@
-import { IGroup, IShape } from '@antv/g-base';
-import { Item, ComboConfig, ShapeStyle } from '../../types';
-import Global from '../../global';
-import Shape from '../shape';
-import { ShapeOptions } from '../../interface/shape';
-import { isNumber, clone, mix, isArray } from '@antv/util';
+import { IGroup, IShape } from "@antv/g-base";
+import { Item, ComboConfig, ShapeStyle } from "../../types";
+import Global from "../../global";
+import Shape from "../shape";
+import { ShapeOptions } from "../../interface/shape";
+import { isNumber, clone, mix, isArray } from "@antv/util";
 
 // 圆形 Combo
 Shape.registerCombo(
-  'circle',
+  "circle",
   {
     // 自定义节点时的配置
     options: {
@@ -31,17 +31,17 @@ Shape.registerCombo(
         ...Global.comboStateStyles,
       },
     },
-    shapeType: 'circle',
+    shapeType: "circle",
     // 文本位置
-    labelPosition: 'top',
+    labelPosition: "top",
     drawShape(cfg: ComboConfig, group: IGroup): IShape {
       const style = this.getShapeStyle!(cfg);
       delete style.height;
       delete style.width;
-      const keyShape: IShape = group.addShape('circle', {
+      const keyShape: IShape = group.addShape("circle", {
         attrs: style,
-        className: 'circle-combo',
-        name: 'circle-combo',
+        className: "circle-combo",
+        name: "circle-combo",
         draggable: true,
       });
 
@@ -67,7 +67,8 @@ Shape.registerCombo(
         r = isNumber(cfg.fixSize) ? cfg.fixSize : cfg.fixSize[0];
       } else {
         const size = (this as ShapeOptions).getSize!(cfg);
-        if (!isNumber(style.r) || isNaN(style.r)) r = size[0] / 2 || Global.defaultCombo.style.r;
+        if (!isNumber(style.r) || isNaN(style.r))
+          r = size[0] / 2 || Global.defaultCombo.style.r;
         else r = Math.max(style.r, size[0] / 2) || size[0] / 2;
       }
 
@@ -96,7 +97,7 @@ Shape.registerCombo(
       }
       cfgStyle.r = r + padding;
 
-      const itemCacheSize = item.get('sizeCache');
+      const itemCacheSize = item.get("sizeCache");
       if (itemCacheSize) {
         itemCacheSize.r = cfgStyle.r;
       }
@@ -106,7 +107,7 @@ Shape.registerCombo(
         stroke: cfg.color,
       };
       // 与 getShapeStyle 不同在于，update 时需要获取到当前的 style 进行融合。即新传入的配置项中没有涉及的属性，保留当前的配置。
-      const keyShape = item.get('keyShape');
+      const keyShape = item.get("keyShape");
       const style = mix({}, keyShape.attr(), strokeStyle, cfgStyle);
 
       if (cfg.style) cfg.style.r = r;
@@ -117,5 +118,5 @@ Shape.registerCombo(
       (this as any).updateShape(cfg, item, style, true);
     },
   },
-  'single-combo',
+  "single-combo",
 );

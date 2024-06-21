@@ -1,11 +1,11 @@
-import { AbstractCanvas } from '@antv/g-base';
-import { Point, IGroup } from '@antv/g-base';
-import { isNumber, isString } from '@antv/util';
-import { modifyCSS } from '@antv/dom-util';
-import { Item, Matrix, Padding, GraphAnimateConfig, IEdge } from '../../types';
-import { formatPadding } from '../../util/base';
-import { applyMatrix, invertMatrix } from '../../util/math';
-import { IAbstractGraph } from '../../interface/graph';
+import { AbstractCanvas } from "@antv/g-base";
+import { Point, IGroup } from "@antv/g-base";
+import { isNumber, isString } from "@antv/util";
+import { modifyCSS } from "@antv/dom-util";
+import { Item, Matrix, Padding, GraphAnimateConfig, IEdge } from "../../types";
+import { formatPadding } from "../../util/base";
+import { applyMatrix, invertMatrix } from "../../util/math";
+import { IAbstractGraph } from "../../interface/graph";
 
 export default class ViewController {
   private graph: IAbstractGraph;
@@ -21,8 +21,8 @@ export default class ViewController {
   private getViewCenter(): Point {
     const padding = this.getFormatPadding();
     const { graph } = this;
-    const width: number = this.graph.get('width');
-    const height: number = graph.get('height');
+    const width: number = this.graph.get("width");
+    const height: number = graph.get("height");
     return {
       x: (width - padding[1] - padding[3]) / 2 + padding[3],
       y: (height - padding[0] - padding[2]) / 2 + padding[0],
@@ -31,7 +31,7 @@ export default class ViewController {
 
   public fitCenter() {
     const { graph } = this;
-    const group: IGroup = graph.get('group');
+    const group: IGroup = graph.get("group");
     group.resetMatrix();
     const bbox = group.getCanvasBBox();
     if (bbox.width === 0 || bbox.height === 0) return;
@@ -48,9 +48,9 @@ export default class ViewController {
   public fitView() {
     const { graph } = this;
     const padding = this.getFormatPadding();
-    const width: number = graph.get('width');
-    const height: number = graph.get('height');
-    const group: IGroup = graph.get('group');
+    const width: number = graph.get("width");
+    const height: number = graph.get("height");
+    const group: IGroup = graph.get("group");
     group.resetMatrix();
     const bbox = group.getCanvasBBox();
 
@@ -73,14 +73,18 @@ export default class ViewController {
   }
 
   public getFormatPadding(): number[] {
-    const padding = this.graph.get('fitViewPadding') as Padding;
+    const padding = this.graph.get("fitViewPadding") as Padding;
     return formatPadding(padding);
   }
 
-  public focusPoint(point: Point, animate?: boolean, animateCfg?: GraphAnimateConfig) {
+  public focusPoint(
+    point: Point,
+    animate?: boolean,
+    animateCfg?: GraphAnimateConfig,
+  ) {
     const viewCenter = this.getViewCenter();
     const modelCenter = this.getPointByCanvas(viewCenter.x, viewCenter.y);
-    let viewportMatrix: Matrix = this.graph.get('group').getMatrix();
+    let viewportMatrix: Matrix = this.graph.get("group").getMatrix();
     if (!viewportMatrix) viewportMatrix = [1, 0, 0, 0, 1, 0, 0, 0, 1];
     if (animate) {
       const dx = (modelCenter.x - point.x) * viewportMatrix[0];
@@ -90,7 +94,7 @@ export default class ViewController {
       let newX = 0;
       let newY = 0;
       // 动画每次平移一点，直到目标位置
-      this.graph.get('canvas').animate(
+      this.graph.get("canvas").animate(
         (ratio) => {
           newX = dx * ratio;
           newY = dy * ratio;
@@ -116,7 +120,7 @@ export default class ViewController {
    * @param canvasY canvas y 坐标
    */
   public getPointByCanvas(canvasX: number, canvasY: number): Point {
-    let viewportMatrix: Matrix = this.graph.get('group').getMatrix();
+    let viewportMatrix: Matrix = this.graph.get("group").getMatrix();
     if (!viewportMatrix) {
       viewportMatrix = [1, 0, 0, 0, 1, 0, 0, 0, 1];
     }
@@ -130,7 +134,7 @@ export default class ViewController {
    * @param clientY 页面 y 坐标
    */
   public getPointByClient(clientX: number, clientY: number): Point {
-    const canvas: AbstractCanvas = this.graph.get('canvas');
+    const canvas: AbstractCanvas = this.graph.get("canvas");
     const canvasPoint: Point = canvas.getPointByClient(clientX, clientY);
     return this.getPointByCanvas(canvasPoint.x, canvasPoint.y);
   }
@@ -141,7 +145,7 @@ export default class ViewController {
    * @param y 视口 y 坐标
    */
   public getClientByPoint(x: number, y: number): Point {
-    const canvas: AbstractCanvas = this.graph.get('canvas');
+    const canvas: AbstractCanvas = this.graph.get("canvas");
     const canvasPoint = this.getCanvasByPoint(x, y);
     const point = canvas.getClientByPoint(canvasPoint.x, canvasPoint.y);
 
@@ -154,7 +158,7 @@ export default class ViewController {
    * @param y 视口 y 坐标
    */
   public getCanvasByPoint(x: number, y: number): Point {
-    let viewportMatrix: Matrix = this.graph.get('group').getMatrix();
+    let viewportMatrix: Matrix = this.graph.get("group").getMatrix();
     if (!viewportMatrix) {
       viewportMatrix = [1, 0, 0, 0, 1, 0, 0, 0, 1];
     }
@@ -167,7 +171,11 @@ export default class ViewController {
    * @param {boolean} animate 是否带有动画地移动
    * @param {GraphAnimateConfig} animateCfg 若带有动画，动画的配置项
    */
-  public focus(item: string | Item, animate?: boolean, animateCfg?: GraphAnimateConfig) {
+  public focus(
+    item: string | Item,
+    animate?: boolean,
+    animateCfg?: GraphAnimateConfig,
+  ) {
     if (isString(item)) {
       item = this.graph.findById(item);
     }
@@ -175,9 +183,15 @@ export default class ViewController {
     if (item) {
       let x = 0,
         y = 0;
-      if (item.getType && item.getType() === 'edge') {
-        const sourceMatrix: IGroup = (item as IEdge).getSource().get('group').getMatrix();
-        const targetMatrix: IGroup = (item as IEdge).getTarget().get('group').getMatrix();
+      if (item.getType && item.getType() === "edge") {
+        const sourceMatrix: IGroup = (item as IEdge)
+          .getSource()
+          .get("group")
+          .getMatrix();
+        const targetMatrix: IGroup = (item as IEdge)
+          .getTarget()
+          .get("group")
+          .getMatrix();
         if (sourceMatrix && targetMatrix) {
           x = (sourceMatrix[6] + targetMatrix[6]) / 2;
           y = (sourceMatrix[7] + targetMatrix[7]) / 2;
@@ -186,7 +200,7 @@ export default class ViewController {
           y = sourceMatrix ? sourceMatrix[7] : targetMatrix[7];
         }
       } else {
-        const group: IGroup = item.get('group');
+        const group: IGroup = item.get("group");
         let matrix: Matrix = group.getMatrix();
         if (!matrix) matrix = [1, 0, 0, 0, 1, 0, 0, 0, 1];
         x = matrix[6];
@@ -205,23 +219,25 @@ export default class ViewController {
   public changeSize(width: number, height: number) {
     const { graph } = this;
     if (!isNumber(width) || !isNumber(height)) {
-      throw Error('invalid canvas width & height, please make sure width & height type is number');
+      throw Error(
+        "invalid canvas width & height, please make sure width & height type is number",
+      );
     }
 
     graph.set({ width, height });
-    const canvas: AbstractCanvas = graph.get('canvas');
+    const canvas: AbstractCanvas = graph.get("canvas");
     canvas.changeSize(width, height);
 
     // change the size of grid plugin if it exists on graph
-    const plugins = graph.get('plugins');
+    const plugins = graph.get("plugins");
     plugins.forEach((plugin) => {
-      if (plugin.get('gridContainer')) {
-        const minZoom = graph.get('minZoom');
-        modifyCSS(plugin.get('container'), {
+      if (plugin.get("gridContainer")) {
+        const minZoom = graph.get("minZoom");
+        modifyCSS(plugin.get("container"), {
           width: `${width}px`,
           height: `${height}px`,
         });
-        modifyCSS(plugin.get('gridContainer'), {
+        modifyCSS(plugin.get("gridContainer"), {
           width: `${width / minZoom}px`,
           height: `${height / minZoom}px`,
           left: 0,

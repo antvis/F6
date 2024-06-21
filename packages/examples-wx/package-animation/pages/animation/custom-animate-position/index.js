@@ -1,4 +1,4 @@
-import F6 from '@antv/f6-wx';
+import F6 from "@antv/f6-wx";
 
 /**
  * customAnimate#position
@@ -10,7 +10,7 @@ const radius = Math.PI;
 Page({
   canvas: null,
   ctx: null,
-  renderer: '', // mini、mini-native等，F6需要，标记环境
+  renderer: "", // mini、mini-native等，F6需要，标记环境
   isCanvasInit: false, // canvas是否准备好了
   graph: null,
 
@@ -86,30 +86,30 @@ Page({
     });
 
     // 加入两个节点
-    const node1 = this.graph.addItem('node', {
-      id: 'node1',
+    const node1 = this.graph.addItem("node", {
+      id: "node1",
       x: 100,
       y: 100,
-      type: 'circle',
-      style: { fill: '#5B8FF9', lineWidth: 0 },
+      type: "circle",
+      style: { fill: "#5B8FF9", lineWidth: 0 },
     });
-    const node2 = this.graph.addItem('node', {
-      id: 'node2',
+    const node2 = this.graph.addItem("node", {
+      id: "node2",
       x: 200,
       y: 100,
-      type: 'circle',
-      style: { fill: '#5AD8A6', lineWidth: 0 },
+      type: "circle",
+      style: { fill: "#5AD8A6", lineWidth: 0 },
     });
 
     // 循环动画
     let count = 0;
     setInterval(() => {
       if (count % 2 === 0) {
-        node1.get('model').x = 200;
-        node2.get('model').x = 100;
+        node1.get("model").x = 200;
+        node2.get("model").x = 100;
       } else {
-        node1.get('model').x = 100;
-        node2.get('model').x = 200;
+        node1.get("model").x = 100;
+        node2.get("model").x = 200;
       }
       count++;
       this.graph.refresh();

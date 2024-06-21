@@ -1,5 +1,5 @@
-import { ShapeCfg } from '@antv/g-base';
-import UINode from './base';
+import { ShapeCfg } from "@antv/g-base";
+import UINode from "./base";
 export default class UIDivNode extends UINode {
   backgroudNode = null;
 
@@ -22,14 +22,14 @@ export default class UIDivNode extends UINode {
     const style = styleNode.style;
 
     // zIndex
-    typeof style.zIndex === 'number' && gNode.setZIndex(style.zIndex);
+    typeof style.zIndex === "number" && gNode.setZIndex(style.zIndex);
 
     // 绘制background
-    backgroudNode.addShape('rect', {
+    backgroudNode.addShape("rect", {
       attrs: {
         x: 0, // line绘制的时候是沿着两边扩
         y: 0,
-        fill: style.backgroundColor || '#fff',
+        fill: style.backgroundColor || "#fff",
         fillOpacity: style.backgroundOpacity,
         opacity: style.opacity,
         width: this.width,
@@ -45,11 +45,11 @@ export default class UIDivNode extends UINode {
         shadowOffsetX: style.shadowOffsetX || 0,
         shadowOffsetY: style.shadowOffsetY || 0,
       },
-      capture: style.pointerEvents === 'none' ? false : true,
+      capture: style.pointerEvents === "none" ? false : true,
     });
 
     if (style.backgroundImage) {
-      backgroudNode.addShape('image', {
+      backgroudNode.addShape("image", {
         attrs: {
           x: 0, // line绘制的时候是沿着两边扩
           y: 0,
@@ -71,7 +71,8 @@ export default class UIDivNode extends UINode {
         width: this.width - (style.borderWidth || 0),
         height: this.height - (style.borderWidth || 0),
         radius: [
-          (style.borderTopLeftRadius || 0) * ((this.width - (style.borderWidth || 0)) / this.width),
+          (style.borderTopLeftRadius || 0) *
+            ((this.width - (style.borderWidth || 0)) / this.width),
           (style.borderTopRightRadius || 0) *
             ((this.width - (style.borderWidth || 0)) / this.width),
           (style.borderBottomLeftRadius || 0) *
@@ -82,15 +83,15 @@ export default class UIDivNode extends UINode {
       },
       capture: false,
     };
-    if (style.borderStyle === 'dashed') {
+    if (style.borderStyle === "dashed") {
       border.attrs.lineDash = style.lineDash || [2, 2];
     }
 
-    backgroudNode.addShape('rect', border);
+    backgroudNode.addShape("rect", border);
 
-    if (style.overflow === 'hidden') {
+    if (style.overflow === "hidden") {
       gNode.setClip({
-        type: 'rect',
+        type: "rect",
         attrs: {
           width: this.width,
           height: this.height,

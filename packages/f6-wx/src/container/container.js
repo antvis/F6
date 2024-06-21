@@ -3,7 +3,7 @@ Component({
   properties: {
     style: {
       type: String,
-      value: '',
+      value: "",
     },
     width: {
       type: Number,
@@ -40,13 +40,13 @@ Component({
   ready() {
     const query = wx.createSelectorQuery().in(this);
     query
-      .select('#g6-canvas')
+      .select("#g6-canvas")
       .fields({
         node: true,
         size: true,
       })
       .exec((ret) => {
-        console.log('ret', ret);
+        console.log("ret", ret);
         const { node: canvas } = ret[0];
         const finalPixelRatio = this.data.finalPixelRatio;
         canvas.width = this.data.width * finalPixelRatio;
@@ -57,9 +57,9 @@ Component({
           left: canvas._left,
           top: canvas._top,
         };
-        console.log('rect', this.rect);
-        this.ctx = canvas.getContext('2d');
-        this.data.onInit(this.ctx, this.rect, canvas, 'mini-native');
+        console.log("rect", this.rect);
+        this.ctx = canvas.getContext("2d");
+        this.data.onInit(this.ctx, this.rect, canvas, "mini-native");
       });
   },
   methods: {

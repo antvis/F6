@@ -1,4 +1,4 @@
-import { processDisplayData } from './util';
+import { processDisplayData } from "./util";
 
 import {
   treeGraphContainer,
@@ -10,12 +10,18 @@ import {
   classicCace,
   newsMapVisualize,
   plugins,
-} from './data';
+} from "./data";
 
 const processed_treeGraphContainer = processDisplayData(treeGraphContainer);
-const processed_generalGraphContainer = processDisplayData(generalGraphContainer);
-const processed_basicElementContainer = processDisplayData(basicElementContainer);
-const processed_basicInteractiveContainer = processDisplayData(basicInteractiveContainer);
+const processed_generalGraphContainer = processDisplayData(
+  generalGraphContainer,
+);
+const processed_basicElementContainer = processDisplayData(
+  basicElementContainer,
+);
+const processed_basicInteractiveContainer = processDisplayData(
+  basicInteractiveContainer,
+);
 const processed_aminationContainer = processDisplayData(aminationContainer);
 const processed_customizeTree = processDisplayData(customizeTree);
 const processed_classicCace = processDisplayData(classicCace);

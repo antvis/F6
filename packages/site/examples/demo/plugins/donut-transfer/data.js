@@ -1,8 +1,8 @@
 const data = {
   nodes: [
     {
-      id: 'person A',
-      label: 'person A',
+      id: "person A",
+      label: "person A",
       // the attributes for drawing donut
       donutAttrs: {
         income: 10,
@@ -11,8 +11,8 @@ const data = {
       },
     },
     {
-      id: 'person B',
-      label: 'person B',
+      id: "person B",
+      label: "person B",
       donutAttrs: {
         income: 20,
         outcome: 10,
@@ -20,8 +20,8 @@ const data = {
       },
     },
     {
-      id: 'person C',
-      label: 'person C',
+      id: "person C",
+      label: "person C",
       donutAttrs: {
         income: 200,
         outcome: 20,
@@ -29,8 +29,8 @@ const data = {
       },
     },
     {
-      id: 'person D',
-      label: 'person D',
+      id: "person D",
+      label: "person D",
       donutAttrs: {
         income: 50,
         outcome: 10,
@@ -38,8 +38,8 @@ const data = {
       },
     },
     {
-      id: 'person E',
-      label: 'person E',
+      id: "person E",
+      label: "person E",
       donutAttrs: {
         income: 80,
         outcome: 40,
@@ -47,8 +47,8 @@ const data = {
       },
     },
     {
-      id: 'person F',
-      label: 'person F',
+      id: "person F",
+      label: "person F",
       donutAttrs: {
         income: 90,
         outcome: 110,
@@ -57,12 +57,12 @@ const data = {
     },
   ],
   edges: [
-    { source: 'person C', target: 'person F', size: 10 },
-    { source: 'person B', target: 'person A', size: 5 },
-    { source: 'person D', target: 'person E', size: 20 },
-    { source: 'person D', target: 'person C', size: 5 },
-    { source: 'person B', target: 'person C', size: 10 },
-    { source: 'person A', target: 'person C', size: 5 },
+    { source: "person C", target: "person F", size: 10 },
+    { source: "person B", target: "person A", size: 5 },
+    { source: "person D", target: "person E", size: 20 },
+    { source: "person D", target: "person C", size: 5 },
+    { source: "person B", target: "person C", size: 10 },
+    { source: "person A", target: "person C", size: 5 },
   ],
 };
 
@@ -71,9 +71,9 @@ data.edges.forEach((edge) => {
 });
 
 const colors = {
-  income: '#61DDAA',
-  outcome: '#F08BB4',
-  unknown: '#65789B',
+  income: "#61DDAA",
+  outcome: "#F08BB4",
+  unknown: "#65789B",
 };
 
 data.nodes.forEach((node) => {
@@ -88,27 +88,27 @@ data.nodes.forEach((node) => {
 const legendData = {
   nodes: [
     {
-      id: 'income',
-      label: 'Income',
+      id: "income",
+      label: "Income",
       order: 0,
       style: {
-        fill: '#61DDAA',
+        fill: "#61DDAA",
       },
     },
     {
-      id: 'outcome',
-      label: 'Outcome',
+      id: "outcome",
+      label: "Outcome",
       order: 2,
       style: {
-        fill: '#F08BB4',
+        fill: "#F08BB4",
       },
     },
     {
-      id: 'unknown',
-      label: 'Unknown',
+      id: "unknown",
+      label: "Unknown",
       order: 2,
       style: {
-        fill: '#65789B',
+        fill: "#65789B",
       },
     },
   ],

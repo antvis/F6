@@ -88,10 +88,10 @@ const elements: {
 
 **参数**
 
-| 名称 | 类型 | 是否必选 | 描述 |
-| --- | --- | --- | --- |
-| node | string / INode | true | 节点 ID 或节点实例 |
-| type | 'source' / 'target' / undefined | false | 邻居类型， 'source' 只获取当前节点的源节点，'target' 只获取当前节点指向的目标节点， 若不指定则返回所有类型的邻居 |
+| 名称 | 类型                            | 是否必选 | 描述                                                                                                             |
+| ---- | ------------------------------- | -------- | ---------------------------------------------------------------------------------------------------------------- |
+| node | string / INode                  | true     | 节点 ID 或节点实例                                                                                               |
+| type | 'source' / 'target' / undefined | false    | 邻居类型， 'source' 只获取当前节点的源节点，'target' 只获取当前节点指向的目标节点， 若不指定则返回所有类型的邻居 |
 
 **返回值**
 
@@ -101,7 +101,7 @@ const elements: {
 **用法**
 
 ```javascript
-const neighbors = graph.getNeighbors('node1', 'source');
+const neighbors = graph.getNeighbors("node1", "source");
 ```
 
 ### graph.find(type, fn)
@@ -123,8 +123,8 @@ const neighbors = graph.getNeighbors('node1', 'source');
 **用法**
 
 ```javascript
-const findNode = graph.find('node', (node) => {
-  return node.get('model').x === 100;
+const findNode = graph.find("node", (node) => {
+  return node.get("model").x === 100;
 });
 ```
 
@@ -146,7 +146,7 @@ const findNode = graph.find('node', (node) => {
 **用法**
 
 ```javascript
-const node = graph.findById('node');
+const node = graph.findById("node");
 ```
 
 ### graph.findAll(type, fn)
@@ -168,8 +168,8 @@ const node = graph.findById('node');
 **用法**
 
 ```javascript
-const nodes = graph.findAll('node', (node) => {
-  return node.get('model').x;
+const nodes = graph.findAll("node", (node) => {
+  return node.get("model").x;
 });
 ```
 
@@ -193,5 +193,5 @@ const nodes = graph.findAll('node', (node) => {
 
 ```javascript
 // 查询所有选中的元素
-const nodes = graph.findAllByState('node', 'selected');
+const nodes = graph.findAllByState("node", "selected");
 ```

@@ -1,6 +1,6 @@
-import F6 from '@antv/f6-wx';
+import F6 from "@antv/f6-wx";
 
-import data from './data';
+import data from "./data";
 
 /**
  * custom-bi-graph
@@ -9,7 +9,7 @@ import data from './data';
 Page({
   canvas: null,
   ctx: null,
-  renderer: '', // mini、mini-native等，F6需要，标记环境
+  renderer: "", // mini、mini-native等，F6需要，标记环境
   isCanvasInit: false, // canvas是否准备好了
   graph: null,
 
@@ -22,17 +22,17 @@ Page({
 
   onLoad() {
     // 注册布局
-    F6.registerLayout('bigraphLayout', {
+    F6.registerLayout("bigraphLayout", {
       execute() {
         const self = this;
         const center = self.center || [0, 0];
         const biSep = self.biSep || 100;
         const nodeSep = self.nodeSep || 20;
         const nodeSize = self.nodeSize || 20;
-        const direction = self.direction || 'horizontal';
+        const direction = self.direction || "horizontal";
         let part1Pos = 0;
         let part2Pos = 0;
-        if (direction === 'horizontal') {
+        if (direction === "horizontal") {
           part1Pos = center[0] - biSep / 2;
           part2Pos = center[0] + biSep / 2;
         }
@@ -43,7 +43,7 @@ Page({
         const part2NodeMap = new Map();
         // separate the nodes and init the positions
         nodes.forEach((node, i) => {
-          if (node.cluster === 'part1') {
+          if (node.cluster === "part1") {
             part1Nodes.push(node);
             part1NodeMap.set(node.id, i);
           } else {
@@ -96,14 +96,16 @@ Page({
 
         // place the nodes
         const hLength =
-          part1Nodes.length > part2Nodes.length ? part1Nodes.length : part2Nodes.length;
+          part1Nodes.length > part2Nodes.length
+            ? part1Nodes.length
+            : part2Nodes.length;
         const height = hLength * (nodeSep + nodeSize);
         let begin = center[1] - height / 2;
-        if (direction === 'vertical') {
+        if (direction === "vertical") {
           begin = center[0] - height / 2;
         }
         part1Nodes.forEach((p1n, i) => {
-          if (direction === 'horizontal') {
+          if (direction === "horizontal") {
             p1n.x = part1Pos;
             p1n.y = begin + i * (nodeSep + nodeSize);
           } else {
@@ -112,7 +114,7 @@ Page({
           }
         });
         part2Nodes.forEach((p2n, i) => {
-          if (direction === 'horizontal') {
+          if (direction === "horizontal") {
             p2n.x = part2Pos;
             p2n.y = begin + i * (nodeSep + nodeSize);
           } else {
@@ -167,7 +169,7 @@ Page({
       pixelRatio,
       fitView: true,
       layout: {
-        type: 'bigraphLayout',
+        type: "bigraphLayout",
         biSep: 300,
         nodeSep: 20,
         nodeSize: 20,
@@ -176,16 +178,16 @@ Page({
       defaultNode: {
         size: 20,
         style: {
-          fill: '#C6E5FF',
-          stroke: '#5B8FF9',
+          fill: "#C6E5FF",
+          stroke: "#5B8FF9",
         },
       },
       defaultEdge: {
         size: 1,
-        color: '#e2e2e2',
+        color: "#e2e2e2",
       },
       modes: {
-        default: ['drag-canvas'],
+        default: ["drag-canvas"],
       },
     });
 

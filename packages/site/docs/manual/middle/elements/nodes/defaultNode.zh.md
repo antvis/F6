@@ -11,33 +11,33 @@ F6 的内置节点包括 circle，rect，ellipse，diamond，triangle，star，i
 
 下面表格中显示了内置的各类节点，同时对一些特殊的字段进行了说明：
 
-| 名称 | 描述 | 默认示例 |
-| --- | --- | --- |
-| circle | 圆形：<br />- `size` 是单个数字，表示直径<br />- 圆心位置对应节点的位置<br />- `color` 字段默认在描边上生效<br />- 标签文本默认在节点中央<br />- 更多字段见 [Circle](/zh/docs/manual/middle/elements/nodes/built-in/circle) 节点教程<br /> | <img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*H9TrTIiUEegAAAAAAAAAAABkARQnAQ' width=50 alt='img'/> |
-| rect | 矩形：<br />- `size` 是数组，例如：[100, 50]<br />- 矩形的中心位置是节点的位置，而不是左上角<br />- `color` 字段默认在描边上生效<br />- 标签文本默认在节点中央<br />- 更多字段见 [Rect](/zh/docs/manual/middle/elements/nodes/built-in/rect) 节点教程<br /> | <img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*SrlHQ5dcCoMAAAAAAAAAAABkARQnAQ' width=50 alt='img'/> |
-| ellipse | 椭圆：<br />- `size` 是数组，表示椭圆的长轴直径和短轴直径<br />- 椭圆的圆心是节点的位置<br />- `color` 字段默认在描边上生效<br />- 标签文本默认在节点中央<br />- 更多字段见 [Ellipse](/zh/docs/manual/middle/elements/nodes/built-in/ellipse) 节点教程<br /> | <img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*RjdlRbuocDIAAAAAAAAAAABkARQnAQ' width=50 alt='img'/> |
-| diamond | 菱形：<br />- `size` 是数组，表示菱形的宽和高<br />- 菱形的中心位置是节点的位置<br />- `color` 字段默认在描边上生效<br />- 标签文本默认在节点中央<br />- 更多字段见 [Diamond](/zh/docs/manual/middle/elements/nodes/built-in/diamond) 节点教程<br /> | <img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*EjiPRJacFTEAAAAAAAAAAABkARQnAQ' width=50 alt='img'/> |
-| triangle | 三角形：<br />- `size` 是数组，表示三角形的底和高<br />- 三角形的中心位置是节点的位置<br />- `color` 字段默认在描边上生效<br />- 标签文本默认在节点下方<br />- 更多字段见 [Triangle](/zh/docs/manual/middle/elements/nodes/built-in/triangle) 节点教程<br /> | <img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*_HqXTadbhzAAAAAAAAAAAABkARQnAQ' width=50 alt='img'/> |
-| star | 星形：<br />- `size` 是单个数字，表示星形的大小<br />- 星星的中心位置是节点的位置<br />- `color` 字段默认在描边上生效<br />- 标签文本默认在节点中央<br />- 更多字段见 [Star](/zh/docs/manual/middle/elements/nodes/built-in/star) 节点教程<br /> | <img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*_euwQpARvhMAAAAAAAAAAABkARQnAQ' width=50 alt='img'/> |
-| image | 图片：<br />- `size` 是数组，表示图片的宽和高<br />- 图片的中心位置是节点位置<br />- `img` 图片的路径，也可以在 `style` 里面设置<br />- `color` 字段不生效<br />- 标签文本默认在节点下方<br />- 更多字段见 [Image](/zh/docs/manual/middle/elements/nodes/built-in/image) 节点教程<br /> | <img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*gtNxQY2RvMwAAAAAAAAAAABkARQnAQ' width=50 alt='img'/> |
+| 名称      | 描述                                                                                                                                                                                                                                                                                                                                 | 默认示例                                                                                                                                                                                                                                            |
+| --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| circle    | 圆形：<br />- `size` 是单个数字，表示直径<br />- 圆心位置对应节点的位置<br />- `color` 字段默认在描边上生效<br />- 标签文本默认在节点中央<br />- 更多字段见 [Circle](/zh/docs/manual/middle/elements/nodes/built-in/circle) 节点教程<br />                                                                                           | <img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*H9TrTIiUEegAAAAAAAAAAABkARQnAQ' width=50 alt='img'/>                                                                                                                               |
+| rect      | 矩形：<br />- `size` 是数组，例如：[100, 50]<br />- 矩形的中心位置是节点的位置，而不是左上角<br />- `color` 字段默认在描边上生效<br />- 标签文本默认在节点中央<br />- 更多字段见 [Rect](/zh/docs/manual/middle/elements/nodes/built-in/rect) 节点教程<br />                                                                          | <img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*SrlHQ5dcCoMAAAAAAAAAAABkARQnAQ' width=50 alt='img'/>                                                                                                                               |
+| ellipse   | 椭圆：<br />- `size` 是数组，表示椭圆的长轴直径和短轴直径<br />- 椭圆的圆心是节点的位置<br />- `color` 字段默认在描边上生效<br />- 标签文本默认在节点中央<br />- 更多字段见 [Ellipse](/zh/docs/manual/middle/elements/nodes/built-in/ellipse) 节点教程<br />                                                                         | <img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*RjdlRbuocDIAAAAAAAAAAABkARQnAQ' width=50 alt='img'/>                                                                                                                               |
+| diamond   | 菱形：<br />- `size` 是数组，表示菱形的宽和高<br />- 菱形的中心位置是节点的位置<br />- `color` 字段默认在描边上生效<br />- 标签文本默认在节点中央<br />- 更多字段见 [Diamond](/zh/docs/manual/middle/elements/nodes/built-in/diamond) 节点教程<br />                                                                                 | <img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*EjiPRJacFTEAAAAAAAAAAABkARQnAQ' width=50 alt='img'/>                                                                                                                               |
+| triangle  | 三角形：<br />- `size` 是数组，表示三角形的底和高<br />- 三角形的中心位置是节点的位置<br />- `color` 字段默认在描边上生效<br />- 标签文本默认在节点下方<br />- 更多字段见 [Triangle](/zh/docs/manual/middle/elements/nodes/built-in/triangle) 节点教程<br />                                                                         | <img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*_HqXTadbhzAAAAAAAAAAAABkARQnAQ' width=50 alt='img'/>                                                                                                                               |
+| star      | 星形：<br />- `size` 是单个数字，表示星形的大小<br />- 星星的中心位置是节点的位置<br />- `color` 字段默认在描边上生效<br />- 标签文本默认在节点中央<br />- 更多字段见 [Star](/zh/docs/manual/middle/elements/nodes/built-in/star) 节点教程<br />                                                                                     | <img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*_euwQpARvhMAAAAAAAAAAABkARQnAQ' width=50 alt='img'/>                                                                                                                               |
+| image     | 图片：<br />- `size` 是数组，表示图片的宽和高<br />- 图片的中心位置是节点位置<br />- `img` 图片的路径，也可以在 `style` 里面设置<br />- `color` 字段不生效<br />- 标签文本默认在节点下方<br />- 更多字段见 [Image](/zh/docs/manual/middle/elements/nodes/built-in/image) 节点教程<br />                                              | <img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*gtNxQY2RvMwAAAAAAAAAAABkARQnAQ' width=50 alt='img'/>                                                                                                                               |
 | modelRect | 卡片：<br />- `size` 是数组，表示卡片的宽和高<br />- 卡片的中心位置是节点的位置<br />- `color` 字段默认在描边上生效<br />- 标签文本默认在节点中央<br />- 若有  `description` 字段则显示在标签文本下方显示  `description` 内容<br />- 更多字段见 [ModelRect](/zh/docs/manual/middle/elements/nodes/built-in/modelRect) 节点教程<br /> | <img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*MqR9QKfimxUAAAAAAAAAAABkARQnAQ' width=100 alt='img'/><br /> <img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*9HKrSKtmNGQAAAAAAAAAAABkARQnAQ' width=100 alt='img'/> |
-| donut | 圆形：<br />- `size` 是单个数字，表示直径<br />- 圆心位置对应节点的位置<br />- `color` 字段默认在描边上生效<br />- 标签文本默认在节点中央<br />- 必须指定合法的 `donutAttrs` 字段<br />- 更多字段见 [Donut](/zh/docs/manual/middle/elements/nodes/built-in/donut) 节点教程<br /> | <img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*NRJ7RpkMPNsAAAAAAAAAAAAAARQnAQ' width=50 alt='img'/> |
+| donut     | 圆形：<br />- `size` 是单个数字，表示直径<br />- 圆心位置对应节点的位置<br />- `color` 字段默认在描边上生效<br />- 标签文本默认在节点中央<br />- 必须指定合法的 `donutAttrs` 字段<br />- 更多字段见 [Donut](/zh/docs/manual/middle/elements/nodes/built-in/donut) 节点教程<br />                                                     | <img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*NRJ7RpkMPNsAAAAAAAAAAAAAARQnAQ' width=50 alt='img'/>                                                                                                                               |
 
 ## 节点的通用属性
 
 所有内置的节点支持的通用属性：
 
-| 名称 | 是否必须 | 类型 | 备注 |
-| --- | --- | --- | --- |
-| id | true | String | 节点唯一 ID，**必须**是唯一的 string |
-| x | false | Number | x 坐标 |
-| y | false | Number | y 坐标 |
-| type | false | String | 指定节点类型，内置节点类型名称或自定义节点的名称。默认为 `'circle'` |
-| size | false | Number / Array | 节点的大小 |
-| anchorPoints | false | Array | 指定边连入节点的连接点的位置（相对于该节点而言），可以为空。例如: `[0, 0]`，代表节点左上角的锚点，`[1, 1]`,代表节点右下角的锚点 |
-| style | false | Object | 节点的样式属性。 |
-| label | false | String | 文本文字 |
-| labelCfg | false | Object | 文本配置项 |
+| 名称         | 是否必须 | 类型           | 备注                                                                                                                            |
+| ------------ | -------- | -------------- | ------------------------------------------------------------------------------------------------------------------------------- |
+| id           | true     | String         | 节点唯一 ID，**必须**是唯一的 string                                                                                            |
+| x            | false    | Number         | x 坐标                                                                                                                          |
+| y            | false    | Number         | y 坐标                                                                                                                          |
+| type         | false    | String         | 指定节点类型，内置节点类型名称或自定义节点的名称。默认为 `'circle'`                                                             |
+| size         | false    | Number / Array | 节点的大小                                                                                                                      |
+| anchorPoints | false    | Array          | 指定边连入节点的连接点的位置（相对于该节点而言），可以为空。例如: `[0, 0]`，代表节点左上角的锚点，`[1, 1]`,代表节点右下角的锚点 |
+| style        | false    | Object         | 节点的样式属性。                                                                                                                |
+| label        | false    | String         | 文本文字                                                                                                                        |
+| labelCfg     | false    | Object         | 文本配置项                                                                                                                      |
 
 ### 样式属性 style
 
@@ -79,23 +79,23 @@ const graph = new F6.Graph({
 
 `label` String 类型。标签文本的文字内容。<br />`labelCfg` Object 类型。配置标签文本。下面是 `labelCfg` 对象中的常用配置项：
 
-| 名称 | 是否必须 | 类型 | 备注 |
-| --- | --- | --- | --- |
-| position | false | String | 文本相对于节点的位置，目前支持的位置有：`'center'`，`'top'`，`'left'`，`'right'`，`'bottom'`。默认为 `'center'`。modelRect 节点不支持该属性 |
-| offset | false | Number | 文本的偏移，`position` 为 `'bottom'` 时，文本的上方偏移量；`position` 为 `'left'` 时，文本的右方偏移量；以此类推在其他 `position` 时的情况。modelRect 节点的 `offset` 为左边距 |
-| style | false | Object | 标签的样式属性。 |
+| 名称     | 是否必须 | 类型   | 备注                                                                                                                                                                           |
+| -------- | -------- | ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| position | false    | String | 文本相对于节点的位置，目前支持的位置有：`'center'`，`'top'`，`'left'`，`'right'`，`'bottom'`。默认为 `'center'`。modelRect 节点不支持该属性                                    |
+| offset   | false    | Number | 文本的偏移，`position` 为 `'bottom'` 时，文本的上方偏移量；`position` 为 `'left'` 时，文本的右方偏移量；以此类推在其他 `position` 时的情况。modelRect 节点的 `offset` 为左边距 |
+| style    | false    | Object | 标签的样式属性。                                                                                                                                                               |
 
 上表中的标签的样式属性 `style` 的常用配置项如下：
 
-| 名称 | 是否必须 | 类型 | 备注 |
-| --- | --- | --- | --- |
-| fill | false | String | 文本颜色 |
-| stroke | false | String | 文本描边颜色 |
-| lineWidth | false | Number | 文本描边粗细 |
-| opacity | false | Number | 文本透明度 |
-| fontFamily | false | String | 文本字体 |
-| fontSize | false | Number | 文本字体大小 |
-| ... 节点标签与边标签样式属性相同，统一整理在 [Text 图形 API](/zh/docs/api/shapeProperties/#文本-text) |  |  |  |
+| 名称                                                                                                  | 是否必须 | 类型   | 备注         |
+| ----------------------------------------------------------------------------------------------------- | -------- | ------ | ------------ |
+| fill                                                                                                  | false    | String | 文本颜色     |
+| stroke                                                                                                | false    | String | 文本描边颜色 |
+| lineWidth                                                                                             | false    | Number | 文本描边粗细 |
+| opacity                                                                                               | false    | Number | 文本透明度   |
+| fontFamily                                                                                            | false    | String | 文本字体     |
+| fontSize                                                                                              | false    | Number | 文本字体大小 |
+| ... 节点标签与边标签样式属性相同，统一整理在 [Text 图形 API](/zh/docs/api/shapeProperties/#文本-text) |          |        |              |
 
 下面代码演示在实例化图时全局配置方法中配置  `label` 和  `labelCfg`。
 
@@ -191,9 +191,9 @@ const data = {
 graph.node((node) => {
   return {
     id: node.id,
-    type: 'rect',
+    type: "rect",
     style: {
-      fill: 'blue',
+      fill: "blue",
     },
   };
 });

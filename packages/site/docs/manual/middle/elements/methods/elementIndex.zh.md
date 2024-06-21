@@ -93,9 +93,9 @@ graph.render();
 
 ### 参数描述
 
-| 名称 | 类型 | 默认值 | 描述 |
-| --- | --- | --- | --- |
-| groupByTypes | Boolean | true | 各种元素是否在一个分组内，决定节点和边的层级问题，默认情况下所有的节点在一个分组中，所有的边在一个分组中，当这个参数为 `false` 时，节点和边的层级根据生成的顺序确定。 |
+| 名称         | 类型    | 默认值 | 描述                                                                                                                                                                  |
+| ------------ | ------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| groupByTypes | Boolean | true   | 各种元素是否在一个分组内，决定节点和边的层级问题，默认情况下所有的节点在一个分组中，所有的边在一个分组中，当这个参数为 `false` 时，节点和边的层级根据生成的顺序确定。 |
 
 ### 使用方式
 
@@ -152,11 +152,11 @@ graph.paint();
 ### 函数描述
 
 ```javascript
-graph.on('node:tap', (ev) => {
+graph.on("node:tap", (ev) => {
   // ...
 });
 
-graph.on('node:dbltap', (ev) => {
+graph.on("node:dbltap", (ev) => {
   // ...
 });
 ```
@@ -164,7 +164,7 @@ graph.on('node:dbltap', (ev) => {
 ### 使用方法
 
 ```javascript
-graph.on('edge:tap', (ev) => {
+graph.on("edge:tap", (ev) => {
   const edge = ev.item;
   // 该边的起始点
   const source = edge.getSource();
@@ -178,7 +178,7 @@ graph.on('edge:tap', (ev) => {
   graph.paint();
 });
 
-graph.on('edge:dbltap', (ev) => {
+graph.on("edge:dbltap", (ev) => {
   // 获得图上所有边实例
   const edges = graph.getEdges();
   // 遍历边，将所有边的层级放置在后方，以恢复原样

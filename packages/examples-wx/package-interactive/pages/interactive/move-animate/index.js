@@ -1,6 +1,6 @@
-import F6 from '@antv/f6-wx';
+import F6 from "@antv/f6-wx";
 
-import data from './data';
+import data from "./data";
 
 /**
  * move-animate
@@ -9,7 +9,7 @@ import data from './data';
 Page({
   canvas: null,
   ctx: null,
-  renderer: '', // mini、mini-native等，F6需要，标记环境
+  renderer: "", // mini、mini-native等，F6需要，标记环境
   isCanvasInit: false, // canvas是否准备好了
   graph: null,
 
@@ -68,13 +68,13 @@ Page({
       fitViewPadding: 60,
       defaultNode: {
         style: {
-          fill: '#DEE9FF',
-          stroke: '#5B8FF9',
+          fill: "#DEE9FF",
+          stroke: "#5B8FF9",
         },
       },
       defaultEdge: {
         style: {
-          stroke: '#b5b5b5',
+          stroke: "#b5b5b5",
         },
       },
       // The global configuration for graph animation also takes effect on the focusItem
@@ -94,13 +94,13 @@ Page({
       // animately move the graph to focus on the item.
       // the second parameter controlls whether move with animation, the third parameter is the animate configuration
       this.graph.focusItem(item, true, {
-        easing: 'easeCubic',
+        easing: "easeCubic",
         duration: 500,
       });
     }
 
     // listen to the node click event
-    this.graph.on('node:tap', handleNodeClick);
+    this.graph.on("node:tap", handleNodeClick);
   },
 
   onUnload() {

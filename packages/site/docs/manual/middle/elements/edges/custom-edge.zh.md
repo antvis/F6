@@ -31,22 +31,22 @@ F6 除了提供丰富的 [内置边](/zh/docs/manual/middle/elements/edges/defau
 ### 自定义边
 
 ```javascript
-F6.registerEdge('hvh', {
+F6.registerEdge("hvh", {
   draw(cfg, group) {
     const startPoint = cfg.startPoint;
     const endPoint = cfg.endPoint;
-    const shape = group.addShape('path', {
+    const shape = group.addShape("path", {
       attrs: {
-        stroke: '#333',
+        stroke: "#333",
         path: [
-          ['M', startPoint.x, startPoint.y],
-          ['L', endPoint.x / 3 + (2 / 3) * startPoint.x, startPoint.y], // 三分之一处
-          ['L', endPoint.x / 3 + (2 / 3) * startPoint.x, endPoint.y], // 三分之二处
-          ['L', endPoint.x, endPoint.y],
+          ["M", startPoint.x, startPoint.y],
+          ["L", endPoint.x / 3 + (2 / 3) * startPoint.x, startPoint.y], // 三分之一处
+          ["L", endPoint.x / 3 + (2 / 3) * startPoint.x, endPoint.y], // 三分之二处
+          ["L", endPoint.x, endPoint.y],
         ],
       },
       // must be assigned in F6. it can be any value you want
-      name: 'path-shape',
+      name: "path-shape",
     });
     return shape;
   },
@@ -64,7 +64,7 @@ F6.registerEdge('hvh', {
 const data = {
   nodes: [
     {
-      id: 'node1',
+      id: "node1",
       x: 100,
       y: 200,
       anchorPoints: [
@@ -73,7 +73,7 @@ const data = {
       ],
     },
     {
-      id: 'node2',
+      id: "node2",
       x: 200,
       y: 100,
       anchorPoints: [
@@ -82,7 +82,7 @@ const data = {
       ],
     },
     {
-      id: 'node3',
+      id: "node3",
       x: 200,
       y: 300,
       anchorPoints: [
@@ -93,16 +93,16 @@ const data = {
   ],
   edges: [
     {
-      id: 'edge1',
-      target: 'node2',
-      source: 'node1',
-      type: 'hvh',
+      id: "edge1",
+      target: "node2",
+      source: "node1",
+      type: "hvh",
     },
     {
-      id: 'edge2',
-      target: 'node3',
-      source: 'node1',
-      type: 'hvh',
+      id: "edge2",
+      target: "node3",
+      source: "node1",
+      type: "hvh",
     },
   ],
 };
@@ -116,10 +116,10 @@ const data = {
 
 ```javascript
 F6.registerEdge(
-  'line-growth',
+  "line-growth",
   {
     afterDraw(cfg, group) {
-      const shape = group.get('children')[0];
+      const shape = group.get("children")[0];
       const length = shape.getTotalLength();
       shape.animate(
         (ratio) => {
@@ -136,7 +136,7 @@ F6.registerEdge(
       );
     },
   },
-  'cubic',
+  "cubic",
 );
 ```
 
@@ -150,19 +150,19 @@ F6.registerEdge(
 
 ```javascript
 F6.registerEdge(
-  'mid-point-edge',
+  "mid-point-edge",
   {
     afterDraw(cfg, group) {
       // 获取图形组中的第一个图形，在这里就是边的路径图形
-      const shape = group.get('children')[0];
+      const shape = group.get("children")[0];
       // 获取路径图形的中点坐标
       const midPoint = shape.getPoint(0.5);
       // 在中点增加一个矩形，注意矩形的原点在其左上角
-      group.addShape('rect', {
+      group.addShape("rect", {
         attrs: {
           width: 10,
           height: 10,
-          fill: '#f00',
+          fill: "#f00",
           // x 和 y 分别减去 width / 2 与 height / 2，使矩形中心在 midPoint 上
           x: midPoint.x - 5,
           y: midPoint.y - 5,
@@ -171,7 +171,7 @@ F6.registerEdge(
     },
     update: undefined,
   },
-  'cubic',
+  "cubic",
 );
 ```
 
@@ -195,45 +195,45 @@ F6.registerEdge(
 ```javascript
 // 基于 line 扩展出新的边
 F6.registerEdge(
-  'custom-edge',
+  "custom-edge",
   {
     // 响应状态变化
     setState(name, value, item) {
       const group = item.getContainer();
-      const shape = group.get('children')[0]; // 顺序根据 draw 时确定
-      if (name === 'active') {
+      const shape = group.get("children")[0]; // 顺序根据 draw 时确定
+      if (name === "active") {
         if (value) {
-          shape.attr('stroke', 'red');
+          shape.attr("stroke", "red");
         } else {
-          shape.attr('stroke', '#333');
+          shape.attr("stroke", "#333");
         }
       }
-      if (name === 'selected') {
+      if (name === "selected") {
         if (value) {
-          shape.attr('lineWidth', 3);
+          shape.attr("lineWidth", 3);
         } else {
-          shape.attr('lineWidth', 2);
+          shape.attr("lineWidth", 2);
         }
       }
     },
   },
-  'line',
+  "line",
 );
 
 // 点击时选中，再点击时取消
-graph.on('edge:tap', (ev) => {
+graph.on("edge:tap", (ev) => {
   const edge = ev.item;
-  graph.setItemState(edge, 'selected', !edge.hasState('selected')); // 切换选中
+  graph.setItemState(edge, "selected", !edge.hasState("selected")); // 切换选中
 });
 
-graph.on('edge:tap', (ev) => {
+graph.on("edge:tap", (ev) => {
   const edge = ev.item;
-  graph.setItemState(edge, 'active', true);
+  graph.setItemState(edge, "active", true);
 });
 
-graph.on('edge:dbltap', (ev) => {
+graph.on("edge:dbltap", (ev) => {
   const edge = ev.item;
-  graph.setItemState(edge, 'active', false);
+  graph.setItemState(edge, "active", false);
 });
 ```
 
@@ -266,11 +266,11 @@ const graph = new Graph({
     style: {
       endArrow: {
         // 自定义箭头指向(0, 0)，尾部朝向 x 轴正方向的 path
-        path: 'M 0,0 L 20,10 L 20,-10 Z',
+        path: "M 0,0 L 20,10 L 20,-10 Z",
         // 箭头的偏移量，负值代表向 x 轴正方向移动
         // d: -10,
-        fill: '#333',
-        stroke: '#666',
+        fill: "#333",
+        stroke: "#666",
         opacity: 0.8,
         // ...
       },
@@ -284,22 +284,22 @@ const graph = new Graph({
 ```javascript
 const data = {
   nodes: [
-    { id: 'node1' },
-    { id: 'node2' },
+    { id: "node1" },
+    { id: "node2" },
     // ... 其他节点
   ],
   edges: [
     {
-      source: 'node1',
-      target: 'node2',
+      source: "node1",
+      target: "node2",
       style: {
         endArrow: {
           // 自定义箭头指向(0, 0)，尾部朝向 x 轴正方向的 path
-          path: 'M 0,0 L 20,10 L 20,-10 Z',
+          path: "M 0,0 L 20,10 L 20,-10 Z",
           // 箭头的偏移量，负值代表向 x 轴正方向移动
           // d: -10,
-          fill: '#333',
-          stroke: '#666',
+          fill: "#333",
+          stroke: "#666",
           opacity: 0.8,
           // ...
         },
@@ -314,40 +314,40 @@ const data = {
 
 ```javascript
 // 使用方法二：自定义边，并带有自定义箭头
-F6.registerEdge('line-arrow', {
+F6.registerEdge("line-arrow", {
   draw(cfg, group) {
     const { startPoint, endPoint } = cfg;
-    const keyShape = group.addShape('path', {
+    const keyShape = group.addShape("path", {
       attrs: {
         path: [
-          ['M', startPoint.x, startPoint.y],
-          ['L', endPoint.x, endPoint.y],
+          ["M", startPoint.x, startPoint.y],
+          ["L", endPoint.x, endPoint.y],
         ],
-        stroke: 'steelblue',
+        stroke: "steelblue",
         lineWidth: 3,
         startArrow: {
           // 自定义箭头指向(0, 0)，尾部朝向 x 轴正方向的 path
-          path: 'M 0,0 L 20,10 L 20,-10 Z',
+          path: "M 0,0 L 20,10 L 20,-10 Z",
           // 箭头的偏移量，负值代表向 x 轴正方向移动
           // d: -10,
-          fill: '#333',
-          stroke: '#666',
+          fill: "#333",
+          stroke: "#666",
           opacity: 0.8,
           // ...
         },
         endArrow: {
           // 自定义箭头指向(0, 0)，尾部朝向 x 轴正方向的 path
-          path: 'M 0,0 L 20,10 L 20,-10 Z',
+          path: "M 0,0 L 20,10 L 20,-10 Z",
           // 箭头的偏移量，负值代表向 x 轴正方向移动
           // d: -10,
-          fill: '#333',
-          stroke: '#666',
+          fill: "#333",
+          stroke: "#666",
           opacity: 0.8,
           // ...
         },
       },
       // must be assigned in F6. it can be any value you want
-      name: 'path-shape',
+      name: "path-shape",
     });
     return keyShape;
   },

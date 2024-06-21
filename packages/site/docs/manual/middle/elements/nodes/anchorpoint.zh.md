@@ -15,8 +15,8 @@ order: 3
 const data = {
   nodes: [
     {
-      id: 'node1',
-      label: 'node1',
+      id: "node1",
+      label: "node1",
       x: 100,
       y: 200,
       // 该节点可选的连接点集合，该点有两个可选的连接点
@@ -24,11 +24,11 @@ const data = {
         [0, 1],
         [0.5, 1],
       ],
-      type: 'rect',
+      type: "rect",
     },
     {
-      id: 'node2',
-      label: 'node2',
+      id: "node2",
+      label: "node2",
       x: 300,
       y: 400,
       // 该节点可选的连接点集合，该点有两个可选的连接点
@@ -36,13 +36,13 @@ const data = {
         [0.5, 0],
         [1, 0.5],
       ],
-      type: 'rect',
+      type: "rect",
     },
   ],
   edges: [
     {
-      source: 'node1',
-      target: 'node2',
+      source: "node1",
+      target: "node2",
       // 该边连入 source 点的第 0 个 anchorPoint，
       sourceAnchor: 0,
       // 该边连入 target 点的第 0 个 anchorPoint，
@@ -52,8 +52,8 @@ const data = {
       },
     },
     {
-      source: 'node2',
-      target: 'node1',
+      source: "node2",
+      target: "node1",
       // 该边连入 source 点的第 1 个 anchorPoint，
       sourceAnchor: 1,
       // 该边连入 source 点的第 1 个 anchorPoint，

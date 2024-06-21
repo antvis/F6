@@ -1,5 +1,5 @@
-import { IPoint, TreeGraphData, Util } from '@antv/f6-core';
-import { isNumber } from '@antv/util';
+import { IPoint, TreeGraphData, Util } from "@antv/f6-core";
+import { isNumber } from "@antv/util";
 
 const { traverseTree } = Util;
 
@@ -226,7 +226,8 @@ export const attributesToTextureData = (
   items.forEach((item) => {
     attributeNames.forEach((name, i) => {
       if (attributteStringMap[item[name]] === undefined) {
-        attributteStringMap[item[name]] = Object.keys(attributteStringMap).length;
+        attributteStringMap[item[name]] =
+          Object.keys(attributteStringMap).length;
       }
       dataArray.push(attributteStringMap[item[name]]);
       // insure each node's attributes take inter number of grids
@@ -283,7 +284,7 @@ export const radialLayout = (
   layout?: string,
 ): TreeGraphDataWithPosition => {
   // 布局方式有 H / V / LR / RL / TB / BT
-  const VERTICAL_LAYOUTS: string[] = ['V', 'TB', 'BT'];
+  const VERTICAL_LAYOUTS: string[] = ["V", "TB", "BT"];
   const min: IPoint = {
     x: Infinity,
     y: Infinity,
@@ -294,12 +295,12 @@ export const radialLayout = (
     y: -Infinity,
   };
   // 默认布局是垂直布局TB，此时x对应rad，y对应r
-  let rScale: 'x' | 'y' = 'x';
-  let radScale: 'x' | 'y' = 'y';
+  let rScale: "x" | "y" = "x";
+  let radScale: "x" | "y" = "y";
   if (layout && VERTICAL_LAYOUTS.indexOf(layout) >= 0) {
     // 若是水平布局，y对应rad，x对应r
-    radScale = 'x';
-    rScale = 'y';
+    radScale = "x";
+    rScale = "y";
   }
   let count = 0;
   traverseTree(data, (node: TreeGraphDataWithPosition) => {
@@ -325,8 +326,10 @@ export const radialLayout = (
   }
 
   traverseTree(data, (node) => {
-    const radial = ((node[radScale] - min[radScale]) / radDiff) * (Math.PI * 2 - avgRad) + avgRad;
-    const r = Math.abs(rScale === 'x' ? node.x - data.x : node.y - data.y);
+    const radial =
+      ((node[radScale] - min[radScale]) / radDiff) * (Math.PI * 2 - avgRad) +
+      avgRad;
+    const r = Math.abs(rScale === "x" ? node.x - data.x : node.y - data.y);
     node.x = r * Math.cos(radial);
     node.y = r * Math.sin(radial);
     return true;

@@ -14,12 +14,12 @@ const graph = new F6.Graph({
     size: 15,
     style: {
       fill: "#DEE9FF",
-      stroke: "#5B8FF9"
-    }
+      stroke: "#5B8FF9",
+    },
   },
   modes: {
-    default: ["drag-node"]
-  }
+    default: ["drag-node"],
+  },
 });
 graph.data(data);
 graph.render();

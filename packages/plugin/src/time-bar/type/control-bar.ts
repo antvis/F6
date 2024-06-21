@@ -1,4 +1,4 @@
-import { ShapeStyle } from '@antv/f6-core';
+import { ShapeStyle } from "@antv/f6-core";
 
 export type ControllerCfg = Partial<{
   readonly wrapperWidth: number;

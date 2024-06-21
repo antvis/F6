@@ -1,4 +1,4 @@
-import assign from './assign';
+import assign from "./assign";
 /**
  * @private
  * simple class inheritance

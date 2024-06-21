@@ -1,4 +1,4 @@
-import Base, { IPluginBaseConfig } from '../base';
+import Base, { IPluginBaseConfig } from "../base";
 import {
   IEdge,
   IAbstractGraph as IGraph,
@@ -6,8 +6,8 @@ import {
   NodeConfig,
   NodeConfigMap,
   EdgeConfig,
-} from '@antv/f6-core';
-import { Point } from '@antv/g-base';
+} from "@antv/f6-core";
+import { Point } from "@antv/g-base";
 
 interface BundlingConfig extends IPluginBaseConfig {
   edgeBundles?: IEdge[];
@@ -82,20 +82,20 @@ export default class Bundling extends Base {
   }
 
   public init() {
-    const graph: IGraph = this.get('graph');
-    const onTick = this.get('onTick');
+    const graph: IGraph = this.get("graph");
+    const onTick = this.get("onTick");
     const tick = () => {
       if (onTick) {
         onTick();
       }
       graph.refreshPositions();
     };
-    this.set('tick', tick);
+    this.set("tick", tick);
   }
 
   public bundling(data: GraphData): void {
     const self = this;
-    self.set('data', data);
+    self.set("data", data);
 
     // 如果正在布局，忽略布局请求
     if (self.isTicking()) {
@@ -108,30 +108,38 @@ export default class Bundling extends Base {
     let error = false;
 
     nodes.forEach((node) => {
-      if (node.x === null || !node.y === null || node.x === undefined || !node.y === undefined) {
+      if (
+        node.x === null ||
+        !node.y === null ||
+        node.x === undefined ||
+        !node.y === undefined
+      ) {
         error = true;
       }
       nodeIdMap[node.id] = node;
     });
 
-    if (error) throw new Error('please layout the graph or assign x and y for nodes first');
-    self.set('nodeIdMap', nodeIdMap);
+    if (error)
+      throw new Error(
+        "please layout the graph or assign x and y for nodes first",
+      );
+    self.set("nodeIdMap", nodeIdMap);
 
     // subdivide each edges
-    let divisions: number = self.get('divisions');
-    const divRate: number = self.get('divRate');
+    let divisions: number = self.get("divisions");
+    const divRate: number = self.get("divRate");
     let edgePoints: Point[][] = self.divideEdges(divisions);
-    self.set('edgePoints', edgePoints);
+    self.set("edgePoints", edgePoints);
 
     // compute the bundles
     const edgeBundles = self.getEdgeBundles();
-    self.set('edgeBundles', edgeBundles);
+    self.set("edgeBundles", edgeBundles);
 
     // iterations
-    const C: number = self.get('cycles');
-    let iterations: number = self.get('iterations');
-    const iterRate: number = self.get('iterRate');
-    let lambda: number = self.get('lambda');
+    const C: number = self.get("cycles");
+    let iterations: number = self.get("iterations");
+    const iterRate: number = self.get("iterRate");
+    let lambda: number = self.get("lambda");
 
     for (let i = 0; i < C; i++) {
       for (let j = 0; j < iterations; j++) {
@@ -141,7 +149,12 @@ export default class Bundling extends Base {
           const source = nodeIdMap[e.source as string];
           const target = nodeIdMap[e.target as string];
 
-          forces[k] = self.getEdgeForces({ source, target }, k, divisions, lambda);
+          forces[k] = self.getEdgeForces(
+            { source, target },
+            k,
+            divisions,
+            lambda,
+          );
 
           for (let p = 0; p < divisions + 1; p++) {
             edgePoints[k][p].x += forces[k][p].x;
@@ -155,17 +168,17 @@ export default class Bundling extends Base {
       divisions *= divRate;
       iterations *= iterRate;
       edgePoints = self.divideEdges(divisions);
-      self.set('edgePoints', edgePoints);
+      self.set("edgePoints", edgePoints);
     }
 
     // change the edges according to edgePoints
     edges.forEach((e, i) => {
       if (e.source === e.target) return;
-      e.type = 'polyline';
+      e.type = "polyline";
       e.controlPoints = edgePoints[i].slice(1, edgePoints[i].length - 1);
     });
 
-    const graph = self.get('graph');
+    const graph = self.get("graph");
     graph.refresh();
   }
 
@@ -173,11 +186,11 @@ export default class Bundling extends Base {
     const self = this;
     const { data } = cfg;
     if (data) {
-      self.set('data', data);
+      self.set("data", data);
     }
 
-    if (self.get('ticking')) {
-      self.set('ticking', false);
+    if (self.get("ticking")) {
+      self.set("ticking", false);
     }
 
     Object.keys(cfg).forEach((key) => {
@@ -185,9 +198,9 @@ export default class Bundling extends Base {
     });
 
     if (cfg.onTick) {
-      const graph = this.get('graph');
+      const graph = this.get("graph");
 
-      self.set('tick', () => {
+      self.set("tick", () => {
         cfg.onTick!();
         graph.refresh();
       });
@@ -198,9 +211,9 @@ export default class Bundling extends Base {
 
   public divideEdges(divisions: number): Point[][] {
     const self = this;
-    const edges: EdgeConfig[] = self.get('data').edges;
-    const nodeIdMap: NodeConfigMap = self.get('nodeIdMap');
-    let edgePoints = self.get('edgePoints');
+    const edges: EdgeConfig[] = self.get("data").edges;
+    const nodeIdMap: NodeConfigMap = self.get("nodeIdMap");
+    let edgePoints = self.get("edgePoints");
 
     if (!edgePoints || edgePoints === undefined) edgePoints = [];
 
@@ -222,9 +235,15 @@ export default class Bundling extends Base {
       } else {
         let edgeLength = 0;
 
-        if (!edgePoints[i] || (Array.isArray(edgePoints[i]) && edgePoints[i].length === 0)) {
+        if (
+          !edgePoints[i] ||
+          (Array.isArray(edgePoints[i]) && edgePoints[i].length === 0)
+        ) {
           // it is a straight line
-          edgeLength = getEucliDis({ x: source.x!, y: source.y! }, { x: target.x!, y: target.y! });
+          edgeLength = getEucliDis(
+            { x: source.x!, y: source.y! },
+            { x: target.x!, y: target.y! },
+          );
         } else {
           edgeLength = self.getEdgeLength(edgePoints[i]);
         }
@@ -241,7 +260,10 @@ export default class Bundling extends Base {
 
           while (oriDivisionLength > currentDivisonLength) {
             const ratio = currentDivisonLength / oriDivisionLength;
-            const edgePoint = { x: edgePoints[i][j - 1].x, y: edgePoints[i][j - 1].y };
+            const edgePoint = {
+              x: edgePoints[i][j - 1].x,
+              y: edgePoints[i][j - 1].y,
+            };
             edgePoint.x += ratio * (ep.x - edgePoints[i][j - 1].x);
             edgePoint.y += ratio * (ep.y - edgePoints[i][j - 1].y);
 
@@ -275,12 +297,12 @@ export default class Bundling extends Base {
 
   public getEdgeBundles(): number[] {
     const self = this;
-    const data: GraphData = self.get('data');
+    const data: GraphData = self.get("data");
     const edges = data.edges || [];
 
-    const bundleThreshold: number = self.get('bundleThreshold');
-    const nodeIdMap: NodeConfigMap = self.get('nodeIdMap');
-    let edgeBundles = self.get('edgeBundles');
+    const bundleThreshold: number = self.get("bundleThreshold");
+    const nodeIdMap: NodeConfigMap = self.get("nodeIdMap");
+    let edgeBundles = self.get("edgeBundles");
 
     if (!edgeBundles) edgeBundles = [];
 
@@ -359,14 +381,19 @@ export default class Bundling extends Base {
   }
 
   protected getAngleScore(ei: VectorPosition, ej: VectorPosition): number {
-    const dotProduct = getDotProduct({ x: ei.vx, y: ei.vy }, { x: ej.vx, y: ej.vy });
+    const dotProduct = getDotProduct(
+      { x: ei.vx, y: ei.vy },
+      { x: ej.vx, y: ej.vy },
+    );
     return dotProduct / (ei.length * ej.length);
   }
 
   protected getScaleScore(ei: VectorPosition, ej: VectorPosition): number {
     const aLength = (ei.length + ej.length) / 2;
     const score =
-      2 / (aLength / Math.min(ei.length, ej.length) + Math.max(ei.length, ej.length) / aLength);
+      2 /
+      (aLength / Math.min(ei.length, ej.length) +
+        Math.max(ei.length, ej.length) / aLength);
     return score;
   }
 
@@ -409,10 +436,15 @@ export default class Bundling extends Base {
     return Math.max(0, 1 - (2 * getEucliDis(pMid, iMid)) / getEucliDis(ps, pt));
   }
 
-  protected getEdgeForces(e: any, eidx: number, divisions: number, lambda: number): Point[] {
+  protected getEdgeForces(
+    e: any,
+    eidx: number,
+    divisions: number,
+    lambda: number,
+  ): Point[] {
     const self = this;
-    const edgePoints = self.get('edgePoints');
-    const K = self.get('K');
+    const edgePoints = self.get("edgePoints");
+    const K = self.get("K");
 
     const kp = K / (getEucliDis(e.source, e.target) * (divisions + 1));
     const edgePointForces = [{ x: 0, y: 0 }];
@@ -421,7 +453,11 @@ export default class Bundling extends Base {
       const force = { x: 0, y: 0 };
 
       const spring = self.getSpringForce(
-        { pre: edgePoints[eidx][i - 1], cur: edgePoints[eidx][i], next: edgePoints[eidx][i + 1] },
+        {
+          pre: edgePoints[eidx][i - 1],
+          cur: edgePoints[eidx][i],
+          next: edgePoints[eidx][i + 1],
+        },
         kp,
       );
 
@@ -447,9 +483,9 @@ export default class Bundling extends Base {
 
   protected getElectrostaticForce(pidx: number, eidx: number): Point {
     const self = this;
-    const eps = self.get('eps');
-    const edgeBundles = self.get('edgeBundles');
-    const edgePoints = self.get('edgePoints');
+    const eps = self.get("eps");
+    const edgeBundles = self.get("edgeBundles");
+    const edgePoints = self.get("edgePoints");
     const edgeBundle = edgeBundles[eidx];
     const resForce = { x: 0, y: 0 };
 
@@ -460,7 +496,10 @@ export default class Bundling extends Base {
       };
 
       if (Math.abs(force.x) > eps || Math.abs(force.y) > eps) {
-        const length = getEucliDis(edgePoints[eb][pidx], edgePoints[eidx][pidx]);
+        const length = getEucliDis(
+          edgePoints[eb][pidx],
+          edgePoints[eidx][pidx],
+        );
 
         const diff = 1 / length;
         resForce.x += force.x * diff;
@@ -472,15 +511,15 @@ export default class Bundling extends Base {
   }
 
   public isTicking(): boolean {
-    return this.get('ticking');
+    return this.get("ticking");
   }
 
   public getSimulation() {
-    return this.get('forceSimulation');
+    return this.get("forceSimulation");
   }
 
   public destroy() {
-    if (this.get('ticking')) {
+    if (this.get("ticking")) {
       this.getSimulation().stop();
     }
     super.destroy();

@@ -7,7 +7,7 @@ redirect_from:
 
 <img src="https://gw.alipayobjects.com/mdn/rms_5c3b4a/afts/img/A*KV1pSIPeJPAAAAAAAAAAAAAAARQnAQ" height="250" alt="f6 banner" />
 
-[![](https://img.shields.io/travis/antvis/f6.svg)](https://travis-ci.org/antvis/f6) [![Coverage Status](https://coveralls.io/repos/github/antvis/F6/badge.svg)](https://coveralls.io/github/antvis/F6) ![](https://img.shields.io/badge/language-javascript-red.svg) ![](https://img.shields.io/badge/license-MIT-000000.svg) [![npm package](https://img.shields.io/npm/v/@antv/f6.svg)](https://www.npmjs.com/package/@antv/f6) [![NPM downloads](https://img.shields.io/npm/dm/@antv/f6.svg)](https://npmjs.org/package/@antv/f6) [![Percentage of issues still open](https://isitmaintained.com/badge/open/antvis/f6.svg)](https://isitmaintained.com/project/antvis/f6 'Percentage of issues still open')
+[![](https://img.shields.io/travis/antvis/f6.svg)](https://travis-ci.org/antvis/f6) [![Coverage Status](https://coveralls.io/repos/github/antvis/F6/badge.svg)](https://coveralls.io/github/antvis/F6) ![](https://img.shields.io/badge/language-javascript-red.svg) ![](https://img.shields.io/badge/license-MIT-000000.svg) [![npm package](https://img.shields.io/npm/v/@antv/f6.svg)](https://www.npmjs.com/package/@antv/f6) [![NPM downloads](https://img.shields.io/npm/dm/@antv/f6.svg)](https://npmjs.org/package/@antv/f6) [![Percentage of issues still open](https://isitmaintained.com/badge/open/antvis/f6.svg)](https://isitmaintained.com/project/antvis/f6 "Percentage of issues still open")
 
 ## 欢迎扫码体验
 

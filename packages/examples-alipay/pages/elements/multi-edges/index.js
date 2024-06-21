@@ -1,6 +1,6 @@
-import F6 from '@antv/f6';
-import { wrapContext } from '../../../common/utils/context';
-import data from './data';
+import F6 from "@antv/f6";
+import { wrapContext } from "../../../common/utils/context";
+import data from "./data";
 /**
  * multiEdges
  */
@@ -10,7 +10,7 @@ F6.Util.processParallelEdges(data.edges);
 Page({
   canvas: null,
   ctx: null,
-  renderer: '', // mini、mini-native等，F6需要，标记环境
+  renderer: "", // mini、mini-native等，F6需要，标记环境
   isCanvasInit: false, // canvas是否准备好了
   graph: null,
 
@@ -71,28 +71,28 @@ Page({
       // the edges are linked to the center of source and target ndoes
       linkCenter: true,
       defaultNode: {
-        type: 'circle',
+        type: "circle",
         size: [40],
-        color: '#5B8FF9',
+        color: "#5B8FF9",
         style: {
-          fill: '#9EC9FF',
+          fill: "#9EC9FF",
           lineWidth: 3,
         },
         labelCfg: {
           style: {
-            fill: '#000',
+            fill: "#000",
             fontSize: 14,
           },
         },
       },
       defaultEdge: {
-        type: 'quadratic',
+        type: "quadratic",
         labelCfg: {
           autoRotate: true,
         },
       },
       modes: {
-        default: ['drag-canvas', 'drag-node'],
+        default: ["drag-canvas", "drag-node"],
       },
       nodeStateStyles: {
         // style configurations for hover state

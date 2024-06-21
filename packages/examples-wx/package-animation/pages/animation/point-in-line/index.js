@@ -1,29 +1,29 @@
-import F6 from '@antv/f6-wx';
+import F6 from "@antv/f6-wx";
 
-import data from './data';
+import data from "./data";
 
 /**
  * point-in-line
  */
 
 F6.registerEdge(
-  'circle-running',
+  "circle-running",
   {
     afterDraw(cfg, group) {
       // get the first shape in the group, it is the edge's path here=
-      const shape = group.get('children')[0];
+      const shape = group.get("children")[0];
       // the start position of the edge's path
       const startPoint = shape.getPoint(0);
 
       // add red circle shape
-      const circle = group.addShape('circle', {
+      const circle = group.addShape("circle", {
         attrs: {
           x: startPoint.x,
           y: startPoint.y,
-          fill: '#1890ff',
+          fill: "#1890ff",
           r: 3,
         },
-        name: 'circle-shape',
+        name: "circle-shape",
       });
 
       // animation for the red circle
@@ -45,13 +45,13 @@ F6.registerEdge(
       );
     },
   },
-  'cubic', // extend the built-in edge 'cubic'
+  "cubic", // extend the built-in edge 'cubic'
 );
 
 Page({
   canvas: null,
   ctx: null,
-  renderer: '', // mini、mini-native等，F6需要，标记环境
+  renderer: "", // mini、mini-native等，F6需要，标记环境
   isCanvasInit: false, // canvas是否准备好了
   graph: null,
 
@@ -108,10 +108,10 @@ Page({
       pixelRatio,
       fitView: true,
       defaultEdge: {
-        type: 'circle-running',
+        type: "circle-running",
         style: {
           lineWidth: 2,
-          stroke: '#bae7ff',
+          stroke: "#bae7ff",
         },
       },
     });

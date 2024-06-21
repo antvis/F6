@@ -1,6 +1,6 @@
-import F6 from '@antv/f6-wx';
+import F6 from "@antv/f6-wx";
 
-import data from './data';
+import data from "./data";
 
 /**
  * canvas-two-fingers
@@ -40,7 +40,7 @@ import data from './data';
 Page({
   canvas: null,
   ctx: null,
-  renderer: '', // mini、mini-native等，F6需要，标记环境
+  renderer: "", // mini、mini-native等，F6需要，标记环境
   isCanvasInit: false, // canvas是否准备好了
   graph: null,
 
@@ -49,7 +49,7 @@ Page({
     height: 600,
     pixelRatio: 1,
     forceMini: false,
-    currentMode: '请选择模式',
+    currentMode: "请选择模式",
   },
   onLoad() {
     // 同步获取window的宽高
@@ -87,7 +87,7 @@ Page({
 
   updateChart() {
     const { width, height, pixelRatio, currentMode } = this.data;
-    console.log(currentMode, '111');
+    console.log(currentMode, "111");
     // 创建F6实例
     this.graph = new F6.Graph({
       context: this.ctx,
@@ -98,14 +98,14 @@ Page({
       fitView: true,
       fitViewPadding: 60,
       modes: {
-        default: ['double-finger-drag-canvas'],
+        default: ["double-finger-drag-canvas"],
       },
       layout: {
-        type: 'force',
+        type: "force",
       },
     });
 
-    this.graph.get('canvas').set('localRefresh', false);
+    this.graph.get("canvas").set("localRefresh", false);
 
     this.graph.data(data);
     this.graph.render();

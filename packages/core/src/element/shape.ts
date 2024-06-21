@@ -1,8 +1,8 @@
-import { IGroup, IShape } from '@antv/g-base';
-import { upperFirst } from '@antv/util';
-import { ShapeOptions, ShapeDefine } from '../interface/shape';
-import { IPoint, Item, ModelConfig, NodeConfig, EdgeConfig } from '../types';
-import { createNodeFromXML } from './xml';
+import { IGroup, IShape } from "@antv/g-base";
+import { upperFirst } from "@antv/util";
+import { ShapeOptions, ShapeDefine } from "../interface/shape";
+import { IPoint, Item, ModelConfig, NodeConfig, EdgeConfig } from "../types";
+import { createNodeFromXML } from "./xml";
 
 const cache: {
   [key: string]: string;
@@ -25,7 +25,7 @@ export const ShapeFactoryBase = {
    * 默认的形状，当没有指定/匹配 shapeType 时，使用默认的
    * @type {String}
    */
-  defaultShapeType: 'defaultType',
+  defaultShapeType: "defaultType",
   /**
    * 形状的 className，用于搜索
    * @type {String}
@@ -38,7 +38,8 @@ export const ShapeFactoryBase = {
    */
   getShape(type?: string): ShapeOptions {
     const self = this as any;
-    const shape = self[type!] || self[self.defaultShapeType] || self['simple-circle'];
+    const shape =
+      self[type!] || self[self.defaultShapeType] || self["simple-circle"];
     return shape;
   },
   /**
@@ -191,25 +192,33 @@ export default class Shape {
     const shapeFactory = Shape.Node;
     let shapeObj;
 
-    if (typeof nodeDefinition === 'string' || typeof nodeDefinition === 'function') {
+    if (
+      typeof nodeDefinition === "string" ||
+      typeof nodeDefinition === "function"
+    ) {
       const autoNodeDefinition = createNodeFromXML(nodeDefinition);
-      shapeObj = { ...shapeFactory.getShape('single-node'), ...autoNodeDefinition };
+      shapeObj = {
+        ...shapeFactory.getShape("single-node"),
+        ...autoNodeDefinition,
+      };
     } else if (nodeDefinition.jsx) {
       const { jsx } = nodeDefinition;
       const autoNodeDefinition = createNodeFromXML(jsx);
       shapeObj = {
-        ...shapeFactory.getShape('single-node'),
+        ...shapeFactory.getShape("single-node"),
         ...autoNodeDefinition,
         ...nodeDefinition,
       };
     } else {
       shapeFactory.getShape(extendShapeType);
-      const extendShape = extendShapeType ? shapeFactory.getShape(extendShapeType) : ShapeFramework;
+      const extendShape = extendShapeType
+        ? shapeFactory.getShape(extendShapeType)
+        : ShapeFramework;
       shapeObj = { ...extendShape, ...nodeDefinition };
     }
 
     shapeObj.type = shapeType;
-    shapeObj.itemType = 'node';
+    shapeObj.itemType = "node";
     shapeFactory[shapeType] = shapeObj;
     return shapeObj;
   }
@@ -220,10 +229,12 @@ export default class Shape {
     extendShapeType?: string,
   ) {
     const shapeFactory = Shape.Edge;
-    const extendShape = extendShapeType ? shapeFactory.getShape(extendShapeType) : ShapeFramework;
+    const extendShape = extendShapeType
+      ? shapeFactory.getShape(extendShapeType)
+      : ShapeFramework;
     const shapeObj = { ...extendShape, ...edgeDefinition };
     shapeObj.type = shapeType;
-    shapeObj.itemType = 'edge';
+    shapeObj.itemType = "edge";
     shapeFactory[shapeType] = shapeObj;
     return shapeObj;
   }
@@ -234,27 +245,29 @@ export default class Shape {
     extendShapeType?: string,
   ) {
     const shapeFactory = Shape.Combo;
-    const extendShape = extendShapeType ? shapeFactory.getShape(extendShapeType) : ShapeFramework;
+    const extendShape = extendShapeType
+      ? shapeFactory.getShape(extendShapeType)
+      : ShapeFramework;
 
     const shapeObj = { ...extendShape, ...comboDefinition };
     shapeObj.type = shapeType;
-    shapeObj.itemType = 'combo';
+    shapeObj.itemType = "combo";
     shapeFactory[shapeType] = shapeObj;
     return shapeObj;
   }
 }
 
 // 注册 Node 的工厂方法
-Shape.registerFactory('node', {
-  defaultShapeType: 'circle',
+Shape.registerFactory("node", {
+  defaultShapeType: "circle",
 });
 
 // 注册 Edge 的工厂方法
-Shape.registerFactory('edge', {
-  defaultShapeType: 'line',
+Shape.registerFactory("edge", {
+  defaultShapeType: "line",
 });
 
 // 注册 Combo 的工厂方法
-Shape.registerFactory('combo', {
-  defaultShapeType: 'circle',
+Shape.registerFactory("combo", {
+  defaultShapeType: "circle",
 });

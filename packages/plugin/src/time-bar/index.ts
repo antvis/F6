@@ -1,12 +1,12 @@
-import { createSimpleTimeBarUI, createTickUI, createTrendUI } from './ui';
-import PluginBase, { IPluginBaseConfig } from '../base';
-import { throttle } from '@antv/util';
-import { IAbstractGraph, TimeBarType } from '@antv/f6-core';
-import { subscribe, unsubscribeAll } from './dispatcher';
-import { SLIDER_END, SLIDER_START } from './utils/const';
-import { SliderOption, SliderTick, TrendConfig } from './type/slider';
-import { TimeBarTickOption } from './type/tick';
-import { ControllerCfg } from './type/control-bar';
+import { createSimpleTimeBarUI, createTickUI, createTrendUI } from "./ui";
+import PluginBase, { IPluginBaseConfig } from "../base";
+import { throttle } from "@antv/util";
+import { IAbstractGraph, TimeBarType } from "@antv/f6-core";
+import { subscribe, unsubscribeAll } from "./dispatcher";
+import { SLIDER_END, SLIDER_START } from "./utils/const";
+import { SliderOption, SliderTick, TrendConfig } from "./type/slider";
+import { TimeBarTickOption } from "./type/tick";
+import { ControllerCfg } from "./type/control-bar";
 
 interface TimeBarConfig extends IPluginBaseConfig {
   // position size
@@ -31,7 +31,11 @@ interface TimeBarConfig extends IPluginBaseConfig {
   // 若为 false，则仅过滤节点以及两端节点都被过滤出去的边
   readonly filterEdge?: boolean;
 
-  rangeChange?: (graph: IAbstractGraph, minValue: string, maxValue: string) => void;
+  rangeChange?: (
+    graph: IAbstractGraph,
+    minValue: string,
+    maxValue: string,
+  ) => void;
 }
 export default class TimeBar extends PluginBase {
   private cacheGraphData;
@@ -42,9 +46,9 @@ export default class TimeBar extends PluginBase {
 
   public getDefaultCfgs(): TimeBarConfig {
     return {
-      className: 'f6-component-timebar',
+      className: "f6-component-timebar",
       padding: 10,
-      type: 'trend',
+      type: "trend",
       data: [],
       trend: {
         smooth: true,
@@ -73,13 +77,13 @@ export default class TimeBar extends PluginBase {
 
   filterData(evt) {
     const { value } = evt;
-    let trendData = this.get('data');
+    let trendData = this.get("data");
     if (!trendData || trendData.length === 0) {
-      console.warn('请配置 TimeBar 组件的数据');
+      console.warn("请配置 TimeBar 组件的数据");
       return;
     }
-    const rangeChange = this.get('rangeChange');
-    const graph = this.get('graph');
+    const rangeChange = this.get("rangeChange");
+    const graph = this.get("graph");
 
     let min = Math.round(trendData.length * value[0]);
     let max = Math.round(trendData.length * value[1]);
@@ -87,8 +91,12 @@ export default class TimeBar extends PluginBase {
     min = min >= trendData.length ? trendData.length - 1 : min;
 
     const tickLabelFormatter = this._cfgs.tick?.tickLabelFormatter;
-    const minText = tickLabelFormatter ? tickLabelFormatter(trendData[min]) : trendData[min].date;
-    const maxText = tickLabelFormatter ? tickLabelFormatter(trendData[max]) : trendData[max].date;
+    const minText = tickLabelFormatter
+      ? tickLabelFormatter(trendData[min])
+      : trendData[min].date;
+    const maxText = tickLabelFormatter
+      ? tickLabelFormatter(trendData[max])
+      : trendData[max].date;
 
     if (rangeChange) {
       rangeChange(graph, minText, maxText);
@@ -98,12 +106,13 @@ export default class TimeBar extends PluginBase {
         !this.cacheGraphData ||
         (this.cacheGraphData.nodes && this.cacheGraphData.nodes.length === 0)
       ) {
-        this.cacheGraphData = graph.get('data'); // graph.save() as GraphData;
+        this.cacheGraphData = graph.get("data"); // graph.save() as GraphData;
       }
 
       // 过滤不在 min 和 max 范围内的节点
       const filterData = this.cacheGraphData.nodes.filter(
-        (d: any) => d.date >= trendData[min].date && d.date <= trendData[max].date,
+        (d: any) =>
+          d.date >= trendData[min].date && d.date <= trendData[max].date,
       );
 
       const nodeIds = filterData.map((node) => node.id);
@@ -112,12 +121,15 @@ export default class TimeBar extends PluginBase {
       if (this.cacheGraphData.edges) {
         // 过滤 source 或 target 不在 min 和 max 范围内的边
         fileterEdges = this.cacheGraphData.edges.filter(
-          (edge) => nodeIds.includes(edge.source) && nodeIds.includes(edge.target),
+          (edge) =>
+            nodeIds.includes(edge.source) && nodeIds.includes(edge.target),
         );
 
-        if (this.get('filterEdge')) {
+        if (this.get("filterEdge")) {
           fileterEdges = fileterEdges.filter(
-            (edge) => edge.date >= trendData[min].date && edge.date <= trendData[max].date,
+            (edge) =>
+              edge.date >= trendData[min].date &&
+              edge.date <= trendData[max].date,
           );
         }
       }
@@ -130,13 +142,22 @@ export default class TimeBar extends PluginBase {
   }
 
   private render() {
-    const { data, width, padding, type, trend, slider, controllerCfg, tick, sliderTick } =
-      this._cfgs;
-    const graph = this.get('graph');
-    const group = graph.get('uiGroup');
+    const {
+      data,
+      width,
+      padding,
+      type,
+      trend,
+      slider,
+      controllerCfg,
+      tick,
+      sliderTick,
+    } = this._cfgs;
+    const graph = this.get("graph");
+    const group = graph.get("uiGroup");
     let timebar = null;
     switch (type) {
-      case 'trend':
+      case "trend":
         timebar = createTrendUI({
           group,
           width,
@@ -149,7 +170,7 @@ export default class TimeBar extends PluginBase {
         });
         break;
 
-      case 'tick':
+      case "tick":
         timebar = createTickUI({
           group,
           width,
@@ -159,7 +180,7 @@ export default class TimeBar extends PluginBase {
           controllerCfg,
         });
         break;
-      case 'simple':
+      case "simple":
         timebar = createSimpleTimeBarUI({
           group,
           width,
@@ -172,13 +193,13 @@ export default class TimeBar extends PluginBase {
         break;
     }
     // 移动到左下角
-    const graphHeight = graph.get('height');
+    const graphHeight = graph.get("height");
     group.translate(0, graphHeight - timebar.height);
   }
 
   private initEvent() {
     subscribe(
-      'RANGE_CHANGE',
+      "RANGE_CHANGE",
       throttle(this.filterData.bind(this), 200, {
         trailing: true,
         leading: true,

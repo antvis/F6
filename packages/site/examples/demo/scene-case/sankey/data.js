@@ -1,96 +1,96 @@
 const colorArr = [
-  '#5B8FF9',
-  '#5AD8A6',
-  '#5D7092',
-  '#F6BD16',
-  '#6F5EF9',
-  '#6DC8EC',
-  '#D3EEF9',
-  '#DECFEA',
-  '#FFE0C7',
-  '#1E9493',
-  '#BBDEDE',
-  '#FF99C3',
-  '#FFE0ED',
-  '#CDDDFD',
-  '#CDF3E4',
-  '#CED4DE',
-  '#FCEBB9',
-  '#D3CEFD',
-  '#945FB9',
-  '#FF9845',
+  "#5B8FF9",
+  "#5AD8A6",
+  "#5D7092",
+  "#F6BD16",
+  "#6F5EF9",
+  "#6DC8EC",
+  "#D3EEF9",
+  "#DECFEA",
+  "#FFE0C7",
+  "#1E9493",
+  "#BBDEDE",
+  "#FF99C3",
+  "#FFE0ED",
+  "#CDDDFD",
+  "#CDF3E4",
+  "#CED4DE",
+  "#FCEBB9",
+  "#D3CEFD",
+  "#945FB9",
+  "#FF9845",
 ];
 
 const rawData = [
   {
-    label: 'A',
-    id: 'A',
+    label: "A",
+    id: "A",
     to: [
       {
-        target: 'C',
+        target: "C",
         value: 200,
       },
     ],
   },
   {
-    label: 'B',
-    id: 'B',
+    label: "B",
+    id: "B",
     to: [
       {
-        target: 'C',
+        target: "C",
         value: 400,
       },
     ],
   },
   {
-    label: 'C',
-    id: 'C',
+    label: "C",
+    id: "C",
     to: [
       {
-        target: 'D',
+        target: "D",
         value: 300,
       },
       {
-        target: 'E',
+        target: "E",
         value: 300,
       },
     ],
   },
   {
-    label: 'D',
-    id: 'D',
+    label: "D",
+    id: "D",
     to: [
       {
-        target: 'F',
+        target: "F",
         value: 100,
       },
       {
-        target: 'G',
+        target: "G",
         value: 200,
       },
     ],
   },
   {
-    label: 'E',
-    id: 'E',
+    label: "E",
+    id: "E",
     to: [
       {
-        target: 'F',
+        target: "F",
         value: 200,
       },
       {
-        target: 'G',
+        target: "G",
         value: 100,
       },
     ],
   },
   {
-    label: 'F',
-    id: 'F',
+    label: "F",
+    id: "F",
   },
   {
-    label: 'G',
-    id: 'G',
+    label: "G",
+    id: "G",
   },
 ];
 

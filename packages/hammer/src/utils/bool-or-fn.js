@@ -1,4 +1,4 @@
-import { TYPE_FUNCTION } from './utils-consts';
+import { TYPE_FUNCTION } from "./utils-consts";
 
 /**
  * @private

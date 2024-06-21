@@ -15,17 +15,17 @@ F6.registerNode("justPoints", {
         attrs: {
           x: 0,
           y: 0,
-          r: refR += refInc,
+          r: (refR += refInc),
           stroke: "#5ad8a6",
-          lineDash: [4, 4]
+          lineDash: [4, 4],
         },
-        name: "circle-shape"
+        name: "circle-shape",
       });
     }
 
-    const everyIncAngle = 2 * Math.PI * (360 / 5 / 5) / 360;
+    const everyIncAngle = (2 * Math.PI * (360 / 5 / 5)) / 360;
     nowAngle += everyIncAngle / 2;
-    cfg.details.forEach(cat => {
+    cfg.details.forEach((cat) => {
       const postions = [];
       cat.values.forEach((item, index) => {
         const r = baseR + item;
@@ -49,15 +49,15 @@ F6.registerNode("justPoints", {
               y: pos[1],
               r: 3,
               lineWidth: 2,
-              stroke: cat.color
+              stroke: cat.color,
             },
-            name: "circle-marker-shape"
+            name: "circle-marker-shape",
           });
         }
       });
     });
     let nowAngle2 = 0;
-    const everyIncAngleCat = 2 * Math.PI * (360 / 5) / 360;
+    const everyIncAngleCat = (2 * Math.PI * (360 / 5)) / 360;
 
     for (let i = 0; i < 5; i++) {
       const r = 30 + 50;
@@ -65,11 +65,14 @@ F6.registerNode("justPoints", {
       const yPos = r * Math.sin(nowAngle2);
       group.addShape("path", {
         attrs: {
-          path: [["M", 0, 0], ["L", xPos, yPos]],
+          path: [
+            ["M", 0, 0],
+            ["L", xPos, yPos],
+          ],
           lineDash: [4, 4],
-          stroke: "#5ad8a6"
+          stroke: "#5ad8a6",
         },
-        name: "path-shape"
+        name: "path-shape",
       });
       nowAngle2 += everyIncAngleCat;
     }
@@ -80,9 +83,9 @@ F6.registerNode("justPoints", {
         y: 0,
         r: baseR,
         fill: cfg.centerColor,
-        stroke: "darkgray"
+        stroke: "darkgray",
       },
-      name: "circle-shape"
+      name: "circle-shape",
     });
 
     if (cfg.label) {
@@ -94,22 +97,21 @@ F6.registerNode("justPoints", {
           textBaseline: "middle",
           text: cfg.label,
           fill: "#fff",
-          fontStyle: "bold"
+          fontStyle: "bold",
         },
-        name: "text-shape"
+        name: "text-shape",
       });
     }
 
     return group;
-  }
-
+  },
 });
 const graph = new F6.Graph({
   width,
   height,
   pixelRatio,
   fitView: true,
-  fitCenter: true
+  fitCenter: true,
 });
 graph.data(data);
 graph.render();

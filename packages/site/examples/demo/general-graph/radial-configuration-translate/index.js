@@ -11,24 +11,24 @@ const graph = new F6.Graph({
   pixelRatio,
   fitView: true,
   modes: {
-    default: ["drag-canvas", "drag-node"]
+    default: ["drag-canvas", "drag-node"],
   },
   layout: {
     type: "radial",
-    unitRadius: 50
+    unitRadius: 50,
   },
   animate: true,
   defaultNode: {
-    size: 20
+    size: 20,
   },
   defaultEdge: {
     style: {
       endArrow: {
         path: "M 0,0 L 8,4 L 8,-4 Z",
-        fill: "#e2e2e2"
-      }
-    }
-  }
+        fill: "#e2e2e2",
+      },
+    },
+  },
 });
 const me = this;
 graph.data(data);
@@ -42,45 +42,50 @@ setInterval(function () {
 function layoutConfigTranslation() {
   setTimeout(function () {
     me.setData({
-      description: "Radial layout, focusNode =  = 0, unitRadius = 50, preventOverlap: true"
+      description:
+        "Radial layout, focusNode =  = 0, unitRadius = 50, preventOverlap: true",
     });
     me.graph.updateLayout({
       preventOverlap: true,
-      nodeSize: 20
+      nodeSize: 20,
     });
   }, 1000);
   setTimeout(function () {
     me.setData({
-      description: "Radial layout, focusNode =  = 0, unitRadius = 80, preventOverlap: true"
+      description:
+        "Radial layout, focusNode =  = 0, unitRadius = 80, preventOverlap: true",
     });
     me.graph.updateLayout({
-      unitRadius: 80
+      unitRadius: 80,
     });
   }, 2500);
   setTimeout(function () {
     me.setData({
-      description: "Radial layout, focusNode =  = 10, unitRadius = 80, preventOverlap: true"
+      description:
+        "Radial layout, focusNode =  = 10, unitRadius = 80, preventOverlap: true",
     });
     me.graph.updateLayout({
-      focusNode: "10"
+      focusNode: "10",
     });
   }, 4000);
   setTimeout(function () {
     me.setData({
-      description: "Radial layout, focusNode =  = 20, unitRadius = 80, preventOverlap: true"
+      description:
+        "Radial layout, focusNode =  = 20, unitRadius = 80, preventOverlap: true",
     });
     me.graph.updateLayout({
-      focusNode: "20"
+      focusNode: "20",
     });
   }, 5500);
   setTimeout(function () {
     me.setData({
-      description: "Radial layout, focusNode =  = 0, unitRadius = 50, preventOverlap: false"
+      description:
+        "Radial layout, focusNode =  = 0, unitRadius = 50, preventOverlap: false",
     });
     me.graph.updateLayout({
       focusNode: "0",
       preventOverlap: false,
-      unitRadius: 50
+      unitRadius: 50,
     });
   }, 5500);
 }

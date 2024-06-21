@@ -1,7 +1,7 @@
-import F6 from '@antv/f6';
-import { wrapContext } from '../../../common/utils/context';
-import data from './data';
-import force from '@antv/f6/dist/extends/layout/forceLayout';
+import F6 from "@antv/f6";
+import { wrapContext } from "../../../common/utils/context";
+import data from "./data";
+import force from "@antv/f6/dist/extends/layout/forceLayout";
 
 /**
  * activateRelations:内置的高亮节点
@@ -10,7 +10,7 @@ import force from '@antv/f6/dist/extends/layout/forceLayout';
 Page({
   canvas: null,
   ctx: null,
-  renderer: '', // mini、mini-native等，F6需要，标记环境
+  renderer: "", // mini、mini-native等，F6需要，标记环境
   isCanvasInit: false, // canvas是否准备好了
   graph: null,
 
@@ -25,7 +25,7 @@ Page({
     // 同步获取window的宽高
     const { windowWidth, windowHeight, pixelRatio } = my.getSystemInfoSync();
 
-    F6.registerLayout('force', force);
+    F6.registerLayout("force", force);
 
     this.setData({
       width: windowWidth,
@@ -64,20 +64,22 @@ Page({
       fixToNode: [1, 0.5],
       // the types of items that allow the tooltip show up
       // 允许出现 tooltip 的 item 类型
-      itemTypes: ['node', 'edge'],
+      itemTypes: ["node", "edge"],
       // custom the tooltip's content
       // 自定义 tooltip 内容
       getContent: (e) => {
-        const outDiv = document.createElement('div');
-        outDiv.style.width = 'fit-content';
-        outDiv.style.height = 'fit-content';
+        const outDiv = document.createElement("div");
+        outDiv.style.width = "fit-content";
+        outDiv.style.height = "fit-content";
         const model = e.item.getModel();
-        if (e.item.getType() === 'node') {
+        if (e.item.getType() === "node") {
           outDiv.innerHTML = `${model.name}`;
         } else {
           const source = e.item.getSource();
           const target = e.item.getTarget();
-          outDiv.innerHTML = `来源：${source.getModel().name}<br/>去向：${target.getModel().name}`;
+          outDiv.innerHTML = `来源：${source.getModel().name}<br/>去向：${
+            target.getModel().name
+          }`;
         }
         return outDiv;
       },
@@ -94,12 +96,12 @@ Page({
       fitView: true,
       fitViewPadding: 50,
       layout: {
-        type: 'force',
+        type: "force",
         edgeStrength: 0.7,
       },
       plugins: [tooltip],
       modes: {
-        default: ['drag-canvas', 'activate-relations'],
+        default: ["drag-canvas", "activate-relations"],
       },
       defaultNode: {
         size: [10, 10],
@@ -113,7 +115,7 @@ Page({
       defaultEdge: {
         /* style for the keyShape */
         style: {
-          stroke: '#aaa',
+          stroke: "#aaa",
           lineAppendWidth: 2,
           opacity: 0.3,
         },

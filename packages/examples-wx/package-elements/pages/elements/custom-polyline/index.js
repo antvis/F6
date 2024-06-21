@@ -1,6 +1,6 @@
-import F6 from '@antv/f6-wx';
+import F6 from "@antv/f6-wx";
 
-import data from './data';
+import data from "./data";
 /**
  * custom-polyline
  */
@@ -8,7 +8,7 @@ import data from './data';
 Page({
   canvas: null,
   ctx: null,
-  renderer: '', // mini、mini-native等，F6需要，标记环境
+  renderer: "", // mini、mini-native等，F6需要，标记环境
   isCanvasInit: false, // canvas是否准备好了
   graph: null,
 
@@ -25,16 +25,16 @@ Page({
 
     // 注册边
     F6.registerEdge(
-      'line-arrow',
+      "line-arrow",
       {
         getPath(points) {
           const startPoint = points[0];
           const endPoint = points[1];
           return [
-            ['M', startPoint.x, startPoint.y],
-            ['L', endPoint.x / 3 + (2 / 3) * startPoint.x, startPoint.y],
-            ['L', endPoint.x / 3 + (2 / 3) * startPoint.x, endPoint.y],
-            ['L', endPoint.x, endPoint.y],
+            ["M", startPoint.x, startPoint.y],
+            ["L", endPoint.x / 3 + (2 / 3) * startPoint.x, startPoint.y],
+            ["L", endPoint.x / 3 + (2 / 3) * startPoint.x, endPoint.y],
+            ["L", endPoint.x, endPoint.y],
           ];
         },
         getShapeStyle(cfg) {
@@ -53,7 +53,7 @@ Page({
             {},
             F6.Global.defaultEdge.style,
             {
-              stroke: '#BBB',
+              stroke: "#BBB",
               lineWidth: 1,
               path,
             },
@@ -62,7 +62,7 @@ Page({
           return style;
         },
       },
-      'line',
+      "line",
     );
 
     this.setData({
@@ -110,33 +110,33 @@ Page({
       fitCenter: true,
       modes: {
         // behavior
-        default: ['drag-node', 'drag-canvas'],
+        default: ["drag-node", "drag-canvas"],
       },
       defaultNode: {
-        type: 'circle',
+        type: "circle",
         style: {
-          fill: '#DEE9FF',
-          stroke: '#5B8FF9',
+          fill: "#DEE9FF",
+          stroke: "#5B8FF9",
         },
         linkPoints: {
           left: true,
           right: true,
-          fill: '#fff',
-          stroke: '#1890FF',
+          fill: "#fff",
+          stroke: "#1890FF",
           size: 3,
         },
       },
       defaultEdge: {
-        type: 'line-arrow',
+        type: "line-arrow",
         style: {
-          stroke: '#F6BD16',
+          stroke: "#F6BD16",
           startArrow: {
-            path: 'M 0,0 L 12,6 L 9,0 L 12,-6 Z',
-            fill: '#F6BD16',
+            path: "M 0,0 L 12,6 L 9,0 L 12,-6 Z",
+            fill: "#F6BD16",
           },
           endArrow: {
-            path: 'M 0,0 L 12,6 L 9,0 L 12,-6 Z',
-            fill: '#F6BD16',
+            path: "M 0,0 L 12,6 L 9,0 L 12,-6 Z",
+            fill: "#F6BD16",
           },
         },
       },

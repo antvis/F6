@@ -1,5 +1,5 @@
-import { Point, IGroup } from '@antv/g-base';
-import { mix, each, isArray, isString } from '@antv/util';
+import { Point, IGroup } from "@antv/g-base";
+import { mix, each, isArray, isString } from "@antv/util";
 import {
   registerEdge,
   ShapeStyle,
@@ -8,13 +8,16 @@ import {
   INode,
   Util,
   BaseGlobal as Global,
-} from '@antv/f6-core';
-import { getPathWithBorderRadiusByPolyline, getPolylinePoints } from './polyline-util';
-import { RouterCfg, pathFinder } from './router';
+} from "@antv/f6-core";
+import {
+  getPathWithBorderRadiusByPolyline,
+  getPolylinePoints,
+} from "./polyline-util";
+import { RouterCfg, pathFinder } from "./router";
 
 // 折线
 registerEdge(
-  'polyline',
+  "polyline",
   {
     options: {
       color: Global.defaultEdge.color,
@@ -44,15 +47,15 @@ registerEdge(
         ...Global.edgeStateStyles,
       },
     },
-    shapeType: 'polyline',
+    shapeType: "polyline",
     // 文本位置
-    labelPosition: 'center',
+    labelPosition: "center",
     drawShape(cfg: EdgeConfig, group: IGroup) {
       const shapeStyle = (this as any).getShapeStyle(cfg);
       if (shapeStyle.radius === 0) delete shapeStyle.radius;
-      const keyShape = group.addShape('path', {
-        className: 'edge-shape',
-        name: 'edge-shape',
+      const keyShape = group.addShape("path", {
+        className: "edge-shape",
+        name: "edge-shape",
         attrs: shapeStyle,
       });
       return keyShape;
@@ -86,18 +89,37 @@ registerEdge(
       const routeCfg = mix({}, defaultRouteCfg, cfg.routeCfg);
       routeCfg.offset = style.offset;
 
-      let path = (this as any).getPath(points, source, target, radius, routeCfg);
-      if ((isArray(path) && path.length <= 1) || (isString(path) && path.indexOf('L') === -1)) {
-        path = 'M0 0, L0 0';
+      let path = (this as any).getPath(
+        points,
+        source,
+        target,
+        radius,
+        routeCfg,
+      );
+      if (
+        (isArray(path) && path.length <= 1) ||
+        (isString(path) && path.indexOf("L") === -1)
+      ) {
+        path = "M0 0, L0 0";
       }
-      if (isNaN(startPoint.x) || isNaN(startPoint.y) || isNaN(endPoint.x) || isNaN(endPoint.y)) {
-        path = 'M0 0, L0 0';
+      if (
+        isNaN(startPoint.x) ||
+        isNaN(startPoint.y) ||
+        isNaN(endPoint.x) ||
+        isNaN(endPoint.y)
+      ) {
+        path = "M0 0, L0 0";
       }
 
-      const attrs: ShapeStyle = mix({}, Global.defaultEdge.style as ShapeStyle, style, {
-        lineWidth: cfg.size,
-        path,
-      } as ShapeStyle);
+      const attrs: ShapeStyle = mix(
+        {},
+        Global.defaultEdge.style as ShapeStyle,
+        style,
+        {
+          lineWidth: cfg.size,
+          path,
+        } as ShapeStyle,
+      );
       return attrs;
     },
     updateShapeStyle(cfg: EdgeConfig, item: Item) {
@@ -107,7 +129,8 @@ registerEdge(
         stroke: cfg.color,
       };
       const shape =
-        group.find((element) => element.get('className') === 'edge-shape') || item.getKeyShape();
+        group.find((element) => element.get("className") === "edge-shape") ||
+        item.getKeyShape();
 
       const { size } = cfg;
       cfg = this.getPathPoints!(cfg);
@@ -131,21 +154,35 @@ registerEdge(
       const routeCfg = mix({}, defaultRouteCfg, cfg.routeCfg);
       routeCfg.offset = previousStyle.offset;
 
-      let path = (this as any).getPath(points, source, target, radius, routeCfg);
-      if ((isArray(path) && path.length <= 1) || (isString(path) && path.indexOf('L') === -1)) {
-        path = 'M0 0, L0 0';
+      let path = (this as any).getPath(
+        points,
+        source,
+        target,
+        radius,
+        routeCfg,
+      );
+      if (
+        (isArray(path) && path.length <= 1) ||
+        (isString(path) && path.indexOf("L") === -1)
+      ) {
+        path = "M0 0, L0 0";
       }
-      if (isNaN(startPoint.x) || isNaN(startPoint.y) || isNaN(endPoint.x) || isNaN(endPoint.y)) {
-        path = 'M0 0, L0 0';
+      if (
+        isNaN(startPoint.x) ||
+        isNaN(startPoint.y) ||
+        isNaN(endPoint.x) ||
+        isNaN(endPoint.y)
+      ) {
+        path = "M0 0, L0 0";
       }
       if (currentAttr.endArrow && previousStyle.endArrow === false) {
         cfg.style.endArrow = {
-          path: '',
+          path: "",
         };
       }
       if (currentAttr.startArrow && previousStyle.startArrow === false) {
         cfg.style.startArrow = {
-          path: '',
+          path: "",
         };
       }
       const style = mix(
@@ -179,9 +216,9 @@ registerEdge(
         const pathArray: Array<Array<string | number>> = [];
         each(points, (point, index) => {
           if (index === 0) {
-            pathArray.push(['M', point.x, point.y]);
+            pathArray.push(["M", point.x, point.y]);
           } else {
-            pathArray.push(['L', point.x, point.y]);
+            pathArray.push(["L", point.x, point.y]);
           }
         });
         return pathArray;
@@ -189,10 +226,22 @@ registerEdge(
 
       // 未指定控制点
       const polylinePoints = simple
-        ? getPolylinePoints(points[points.length - 1], points[0], target, source, offset)
-        : pathFinder(points[0], points[points.length - 1], source, target, routeCfg);
+        ? getPolylinePoints(
+            points[points.length - 1],
+            points[0],
+            target,
+            source,
+            offset,
+          )
+        : pathFinder(
+            points[0],
+            points[points.length - 1],
+            source,
+            target,
+            routeCfg,
+          );
 
-      if (!polylinePoints || !polylinePoints.length) return 'M0 0, L0 0';
+      if (!polylinePoints || !polylinePoints.length) return "M0 0, L0 0";
 
       if (radius) {
         const res = getPathWithBorderRadiusByPolyline(polylinePoints, radius);
@@ -203,5 +252,5 @@ registerEdge(
       return res;
     },
   },
-  'single-edge',
+  "single-edge",
 );

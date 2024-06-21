@@ -1,3 +1,3 @@
-import { GridLayout } from '@antv/layout/lib/layout/grid';
+import { GridLayout } from "@antv/layout/lib/layout/grid";
 
 export default GridLayout;

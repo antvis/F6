@@ -39,10 +39,10 @@ graph.refresh();
 const item = e.item;
 const graph = this.graph;
 
-const autoPaint = graph.get('autoPaint');
+const autoPaint = graph.get("autoPaint");
 graph.setAutoPaint(false);
 
-graph.setItemState(item, 'selected', true);
+graph.setItemState(item, "selected", true);
 
 graph.paint();
 graph.setAutoPaint(autoPaint);
@@ -64,10 +64,10 @@ graph.setAutoPaint(autoPaint);
 const item = e.item;
 const graph = this.graph;
 
-const autoPaint = graph.get('autoPaint');
+const autoPaint = graph.get("autoPaint");
 graph.setAutoPaint(false);
 
-graph.setItemState(item, 'selected', true);
+graph.setItemState(item, "selected", true);
 
 graph.paint();
 graph.setAutoPaint(autoPaint);

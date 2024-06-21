@@ -1,7 +1,7 @@
-import F6 from '@antv/f6';
-import { wrapContext } from '../../../common/utils/context';
-import data from './data';
-import { Menu } from '@antv/f6-plugin';
+import F6 from "@antv/f6";
+import { wrapContext } from "../../../common/utils/context";
+import data from "./data";
+import { Menu } from "@antv/f6-plugin";
 
 /**
  * basicArcDiagram
@@ -9,7 +9,7 @@ import { Menu } from '@antv/f6-plugin';
 Page({
   canvas: null,
   ctx: null,
-  renderer: '', // mini、mini-native等，F6需要，标记环境
+  renderer: "", // mini、mini-native等，F6需要，标记环境
   isCanvasInit: false, // canvas是否准备好了
   graph: null,
 
@@ -60,7 +60,7 @@ Page({
       getContent(evt) {
         let header;
         if (evt.target && evt.target.isCanvas && evt.target.isCanvas()) {
-          header = 'Canvas ContextMenu';
+          header = "Canvas ContextMenu";
         } else if (evt.item) {
           const itemType = evt.item.getType();
           header = `${itemType.toUpperCase()} ContextMenu`;
@@ -104,7 +104,7 @@ Page({
       offsetY: 0,
       // the types of items that allow the menu show up
       // 在哪些类型的元素上响应
-      itemTypes: ['node', 'edge', 'canvas'],
+      itemTypes: ["node", "edge", "canvas"],
     });
 
     // 创建F6实例
@@ -121,28 +121,28 @@ Page({
       plugins: [contextMenu],
       defaultNode: {
         size: [80, 40],
-        type: 'rect',
+        type: "rect",
         style: {
-          fill: '#DEE9FF',
-          stroke: '#5B8FF9',
+          fill: "#DEE9FF",
+          stroke: "#5B8FF9",
         },
       },
       defaultEdge: {
         style: {
-          stroke: '#b5b5b5',
+          stroke: "#b5b5b5",
           lineAppendWidth: 3, // Enlarge the range the edge to be hitted
         },
         labelCfg: {
           autoRotate: true,
           style: {
             // A white stroke with width 5 helps show the label more clearly avoiding the interference of the overlapped edge
-            stroke: 'white',
+            stroke: "white",
             lineWidth: 5,
           },
         },
       },
       modes: {
-        default: ['drag-node'],
+        default: ["drag-node"],
       },
     });
 

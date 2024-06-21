@@ -15,12 +15,8 @@ const graph = new F6.Graph({
 
     onFrame(node, ratio, toAttrs, fromAttrs) {
       const current = radius * ratio;
-      let {
-        x
-      } = fromAttrs;
-      let {
-        y
-      } = fromAttrs;
+      let { x } = fromAttrs;
+      let { y } = fromAttrs;
 
       if (fromAttrs.x > toAttrs.x) {
         x = x - r + r * Math.cos(current);
@@ -32,11 +28,10 @@ const graph = new F6.Graph({
 
       return {
         x,
-        y
+        y,
       };
-    }
-
-  }
+    },
+  },
 });
 const node1 = graph.addItem("node", {
   id: "node1",
@@ -45,8 +40,8 @@ const node1 = graph.addItem("node", {
   type: "circle",
   style: {
     fill: "#5B8FF9",
-    lineWidth: 0
-  }
+    lineWidth: 0,
+  },
 });
 const node2 = graph.addItem("node", {
   id: "node2",
@@ -55,8 +50,8 @@ const node2 = graph.addItem("node", {
   type: "circle",
   style: {
     fill: "#5AD8A6",
-    lineWidth: 0
-  }
+    lineWidth: 0,
+  },
 });
 let count = 0;
 setInterval(() => {

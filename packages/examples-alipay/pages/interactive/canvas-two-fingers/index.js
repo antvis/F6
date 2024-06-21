@@ -1,22 +1,22 @@
-import F6 from '@antv/f6';
-import { wrapContext } from '../../../common/utils/context';
-import data from './data';
+import F6 from "@antv/f6";
+import { wrapContext } from "../../../common/utils/context";
+import data from "./data";
 
 /**
  * canvasTwoFingers
  */
 
 // 注册行为
-F6.registerBehavior('double-finger-drag-canvas', {
+F6.registerBehavior("double-finger-drag-canvas", {
   getEvents: function getEvents() {
     return {
-      'canvas:drag': 'onWheel',
+      "canvas:drag": "onWheel",
     };
   },
 
   onWheel: function onWheel(ev) {
     if (ev.ctrlKey) {
-      const canvas = this.graph.get('canvas'); // 这里显示graph找不到
+      const canvas = this.graph.get("canvas"); // 这里显示graph找不到
       const point = canvas.getPointByClient(ev.clientX, ev.clientY);
       let ratio = this.graph.getZoom();
       if (ev.wheelDelta > 0) {
@@ -40,7 +40,7 @@ F6.registerBehavior('double-finger-drag-canvas', {
 Page({
   canvas: null,
   ctx: null,
-  renderer: '', // mini、mini-native等，F6需要，标记环境
+  renderer: "", // mini、mini-native等，F6需要，标记环境
   isCanvasInit: false, // canvas是否准备好了
   graph: null,
 
@@ -49,7 +49,7 @@ Page({
     height: 600,
     pixelRatio: 2,
     forceMini: false,
-    currentMode: '请选择模式',
+    currentMode: "请选择模式",
   },
   onLoad() {
     // 同步获取window的宽高
@@ -97,14 +97,14 @@ Page({
       fitView: true,
       fitViewPadding: 60,
       modes: {
-        default: ['double-finger-drag-canvas'],
+        default: ["double-finger-drag-canvas"],
       },
       layout: {
-        type: 'force',
+        type: "force",
       },
     });
 
-    this.graph.get('canvas').set('localRefresh', false);
+    this.graph.get("canvas").set("localRefresh", false);
 
     this.graph.data(data);
     this.graph.render();

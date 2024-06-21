@@ -6,15 +6,25 @@ const height = 600;
 const pixelRatio = 2;
 const fisheye = new Fisheye({
   r: 200,
-  trigger: "drag"
+  trigger: "drag",
 });
-const colors = ["#8FE9FF", "#87EAEF", "#FFC9E3", "#A7C2FF", "#FFA1E3", "#FFE269", "#BFCFEE", "#FFA0C5", "#D5FF86"];
-data.nodes.forEach(node => {
+const colors = [
+  "#8FE9FF",
+  "#87EAEF",
+  "#FFC9E3",
+  "#A7C2FF",
+  "#FFA1E3",
+  "#FFE269",
+  "#BFCFEE",
+  "#FFA0C5",
+  "#D5FF86",
+];
+data.nodes.forEach((node) => {
   node.label = node.id;
   node.size = Math.random() * 30 + 10;
   node.style = {
     fill: colors[Math.floor(Math.random() * 9)],
-    lineWidth: 0
+    lineWidth: 0,
   };
 });
 const graph = new F6.Graph({
@@ -23,9 +33,9 @@ const graph = new F6.Graph({
   height,
   fitView: true,
   modes: {
-    default: ["drag-canvas", "zoom-canvas", "drag-node"]
+    default: ["drag-canvas", "zoom-canvas", "drag-node"],
   },
-  plugins: [fisheye]
+  plugins: [fisheye],
 });
 graph.data(data);
 graph.render();

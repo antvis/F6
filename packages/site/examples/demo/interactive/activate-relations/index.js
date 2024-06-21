@@ -10,7 +10,7 @@ const tooltip = new F6.Tooltip({
   offsetY: 10,
   fixToNode: [1, 0.5],
   itemTypes: ["node", "edge"],
-  getContent: e => {
+  getContent: (e) => {
     const outDiv = document.createElement("div");
     outDiv.style.width = "fit-content";
     outDiv.style.height = "fit-content";
@@ -21,11 +21,13 @@ const tooltip = new F6.Tooltip({
     } else {
       const source = e.item.getSource();
       const target = e.item.getTarget();
-      outDiv.innerHTML = `来源：${source.getModel().name}<br/>去向：${target.getModel().name}`;
+      outDiv.innerHTML = `来源：${source.getModel().name}<br/>去向：${
+        target.getModel().name
+      }`;
     }
 
     return outDiv;
-  }
+  },
 });
 const graph = new F6.Graph({
   width,
@@ -35,22 +37,22 @@ const graph = new F6.Graph({
   fitViewPadding: 50,
   layout: {
     type: "force",
-    edgeStrength: 0.7
+    edgeStrength: 0.7,
   },
   plugins: [tooltip],
   modes: {
-    default: ["drag-canvas", "activate-relations"]
+    default: ["drag-canvas", "activate-relations"],
   },
   defaultNode: {
-    size: [10, 10]
+    size: [10, 10],
   },
   defaultEdge: {
     style: {
       stroke: "#aaa",
       lineAppendWidth: 2,
-      opacity: 0.3
-    }
-  }
+      opacity: 0.3,
+    },
+  },
 });
 graph.data(data);
 graph.render();

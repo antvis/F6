@@ -1,23 +1,23 @@
 App({
   globalData: {},
   async onLaunch() {
-    console.log('app onLaunch');
+    console.log("app onLaunch");
     /**
      * RPC 调用示例
      */
     my.call(
-      'rpc',
+      "rpc",
       {
-        operationType: 'alipay.xx',
+        operationType: "alipay.xx",
         requestData: [{}],
         headers: {},
       },
-      function(result) {
+      function (result) {
         console.log(result);
       },
     );
   },
   onShow() {
-    console.log('app onShow');
+    console.log("app onShow");
   },
 });

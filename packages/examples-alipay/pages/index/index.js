@@ -10,28 +10,28 @@ import {
   plugins,
   hot,
   tabs,
-} from '../../common/utils/data';
+} from "../../common/utils/data";
 
 // 这个是基础组件tab的标题
 const basicComponentList = [
   {
-    type: '树图',
+    type: "树图",
     list: treeGraphContainer,
   },
   {
-    type: '一般图',
+    type: "一般图",
     list: generalGraphContainer,
   },
   {
-    type: '元素',
+    type: "元素",
     list: basicElementContainer,
   },
   {
-    type: '交互',
+    type: "交互",
     list: basicInteractiveContainer,
   },
   {
-    type: '动画',
+    type: "动画",
     list: aminationContainer,
   },
 ];
@@ -39,19 +39,19 @@ const basicComponentList = [
 // 这里控制拓展组件的盒子个数
 const extComponentList = [
   {
-    type: '自定义树',
+    type: "自定义树",
     list: customizeTree,
   },
   {
-    type: '经典案例',
+    type: "经典案例",
     list: classicCace,
   },
   {
-    type: '新闻图可视化',
+    type: "新闻图可视化",
     list: newsMapVisualize,
   },
   {
-    type: '分析组件',
+    type: "分析组件",
     list: plugins,
   },
 ];
@@ -59,7 +59,7 @@ const extComponentList = [
 Page({
   data: {
     showInfoObj: {}, // 控制各个框框的气泡显示
-    nut: '/images/icon/nut.png', // 下拉框的项目符号
+    nut: "/images/icon/nut.png", // 下拉框的项目符号
     top: 0,
     hot, // 控制搜索框下面的热词
     tabs, // 控制tab栏的文字显示
@@ -84,11 +84,11 @@ Page({
 
     if (scrollTop > 80) {
       my.setNavigationBar({
-        title: 'F6官方示例',
+        title: "F6官方示例",
       });
     } else {
       my.setNavigationBar({
-        title: ' ',
+        title: " ",
       });
     }
 
@@ -105,9 +105,9 @@ Page({
   },
   onSearchBarTap() {
     // 点击搜索框的回调
-    console.log('点击了搜索框');
+    console.log("点击了搜索框");
     my.navigateTo({
-      url: '../search/search',
+      url: "../search/search",
     });
   },
   onTabBarTap(e) {
@@ -115,7 +115,7 @@ Page({
     this.setData({
       activeTab: index,
     });
-    console.log('activeTab', this.data.activeTab);
+    console.log("activeTab", this.data.activeTab);
   },
   onLoad() {
     my.getSystemInfo({
@@ -132,10 +132,10 @@ Page({
   goDevCenter() {
     // 开发者中心的按钮，后续可以去掉
     my.navigateToMiniProgram({
-      appId: '2018082061148052',
-      path: 'pages/discover/discover',
+      appId: "2018082061148052",
+      path: "pages/discover/discover",
       extraData: {
-        from: 'miniDemo',
+        from: "miniDemo",
       },
     });
   },
@@ -148,6 +148,6 @@ Page({
 
   // 检查点击是否成功
   onChange(e) {
-    console.log('collapse change', e);
+    console.log("collapse change", e);
   },
 });

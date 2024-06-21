@@ -10,7 +10,7 @@ const tooltip = new F6.Tooltip({
   offsetY: 10,
   fixToNode: [1, 0.5],
   itemTypes: ["node", "edge"],
-  getContent: e => {
+  getContent: (e) => {
     const outDiv = document.createElement("div");
     outDiv.style.width = "fit-content";
     outDiv.style.height = "fit-content";
@@ -21,11 +21,13 @@ const tooltip = new F6.Tooltip({
     } else {
       const source = e.item.getSource();
       const target = e.item.getTarget();
-      outDiv.innerHTML = `来源：${source.getModel().name}<br/>去向：${target.getModel().name}`;
+      outDiv.innerHTML = `来源：${source.getModel().name}<br/>去向：${
+        target.getModel().name
+      }`;
     }
 
     return outDiv;
-  }
+  },
 });
 const graph = new F6.Graph({
   width,
@@ -36,39 +38,39 @@ const graph = new F6.Graph({
   plugins: [tooltip],
   layout: {
     type: "force",
-    edgeStrength: 0.7
+    edgeStrength: 0.7,
   },
   modes: {
-    default: ["drag-canvas"]
+    default: ["drag-canvas"],
   },
   defaultNode: {
     size: [10, 10],
     style: {
       lineWidth: 2,
       fill: "#DEE9FF",
-      stroke: "#5B8FF9"
-    }
+      stroke: "#5B8FF9",
+    },
   },
   defaultEdge: {
     size: 1,
     style: {
       stroke: "#e2e2e2",
-      lineAppendWidth: 2
-    }
+      lineAppendWidth: 2,
+    },
   },
   nodeStateStyles: {
     highlight: {
-      opacity: 1
+      opacity: 1,
     },
     dark: {
-      opacity: 0.2
-    }
+      opacity: 0.2,
+    },
   },
   edgeStateStyles: {
     highlight: {
-      stroke: "#999"
-    }
-  }
+      stroke: "#999",
+    },
+  },
 });
 
 function clearAllStats() {
@@ -84,9 +86,7 @@ function clearAllStats() {
 }
 
 graph.on("node:mouseenter", function (e) {
-  const {
-    item
-  } = e;
+  const { item } = e;
   graph.setAutoPaint(false);
   graph.getNodes().forEach(function (node) {
     graph.clearItemStates(node);
@@ -119,7 +119,7 @@ graph.data({
   edges: data.edges.map(function (edge, i) {
     edge.id = `edge${i}`;
     return Object.assign({}, edge);
-  })
+  }),
 });
 graph.render();
 graph.fitView();

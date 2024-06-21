@@ -1,7 +1,7 @@
-import F6 from '@antv/f6-wx';
+import F6 from "@antv/f6-wx";
 
-import getData from './data';
-import force from '@antv/f6-wx/extends/layout/forceLayout';
+import getData from "./data";
+import force from "@antv/f6-wx/extends/layout/forceLayout";
 
 /**
  * 力导向布局防止节点重叠
@@ -10,7 +10,7 @@ import force from '@antv/f6-wx/extends/layout/forceLayout';
 Page({
   canvas: null,
   ctx: null,
-  renderer: '', // mini、mini-native等，F6需要，标记环境
+  renderer: "", // mini、mini-native等，F6需要，标记环境
   isCanvasInit: false, // canvas是否准备好了
   graph: null,
 
@@ -22,7 +22,7 @@ Page({
   },
 
   onLoad() {
-    F6.registerLayout('force', force);
+    F6.registerLayout("force", force);
     // 同步获取window的宽高
     const { windowWidth, windowHeight, pixelRatio } = wx.getSystemInfoSync();
 
@@ -69,16 +69,16 @@ Page({
       pixelRatio,
       fitView: true,
       layout: {
-        type: 'force',
+        type: "force",
         preventOverlap: true,
       },
       modes: {
-        default: ['drag-canvas'],
+        default: ["drag-canvas"],
       },
     });
 
     function refreshDragedNodePosition(e) {
-      const model = e.item.get('model');
+      const model = e.item.get("model");
       model.fx = e.x;
       model.fy = e.y;
     }
@@ -97,18 +97,18 @@ Page({
     });
     this.graph.render();
 
-    this.graph.on('node:dragstart', function (e) {
+    this.graph.on("node:dragstart", function (e) {
       this.graph.layout();
       refreshDragedNodePosition(e);
     });
-    this.graph.on('node:drag', function (e) {
-      const forceLayout = this.graph.get('layoutController').layoutMethods[0];
+    this.graph.on("node:drag", function (e) {
+      const forceLayout = this.graph.get("layoutController").layoutMethods[0];
       forceLayout.execute();
       refreshDragedNodePosition(e);
     });
-    this.graph.on('node:dragend', (e) => {
-      e.item.get('model').fx = null;
-      e.item.get('model').fy = null;
+    this.graph.on("node:dragend", (e) => {
+      e.item.get("model").fx = null;
+      e.item.get("model").fy = null;
     });
 
     this.graph.render();

@@ -1,12 +1,12 @@
-import { IGroup, IShape } from '@antv/g-base';
-import { mix } from '@antv/util';
-import { Item, NodeConfig, ShapeStyle } from '../../types';
-import Global from '../../global';
-import Shape from '../shape';
-import { ShapeOptions } from '../../interface/shape';
+import { IGroup, IShape } from "@antv/g-base";
+import { mix } from "@antv/util";
+import { Item, NodeConfig, ShapeStyle } from "../../types";
+import Global from "../../global";
+import Shape from "../shape";
+import { ShapeOptions } from "../../interface/shape";
 
 Shape.registerNode(
-  'simple-rect',
+  "simple-rect",
   {
     // 自定义节点时的配置
     options: {
@@ -34,12 +34,12 @@ Shape.registerNode(
         ...Global.nodeStateStyles,
       },
     },
-    shapeType: 'simple-rect',
-    labelPosition: 'center',
+    shapeType: "simple-rect",
+    labelPosition: "center",
     drawShape(cfg: NodeConfig, group: IGroup): IShape {
       const style = this.getShapeStyle!(cfg);
 
-      const keyShape = group.addShape('rect', {
+      const keyShape = group.addShape("rect", {
         attrs: style,
         className: `${this.type}-keyShape`,
         name: `${this.type}-keyShape`,
@@ -77,10 +77,10 @@ Shape.registerNode(
       // 这里不传 cfg 参数是因为 cfg.style 需要最后覆盖样式
       const { style: defaultStyle } = this.getOptions({}) as NodeConfig;
       const size = (this as ShapeOptions).getSize!(cfg);
-      const keyShape = item.get('keyShape');
+      const keyShape = item.get("keyShape");
       if (!cfg.size) {
-        size[0] = keyShape.attr('width') || defaultStyle.width;
-        size[1] = keyShape.attr('height') || defaultStyle.height;
+        size[0] = keyShape.attr("width") || defaultStyle.width;
+        size[1] = keyShape.attr("height") || defaultStyle.height;
       }
       // 下面这些属性需要覆盖默认样式与目前样式，但若在 cfg 中有指定则应该被 cfg 的相应配置覆盖。
       const strokeStyle = {
@@ -97,5 +97,5 @@ Shape.registerNode(
       (this as any).updateShape(cfg, item, style, false);
     },
   },
-  'single-node',
+  "single-node",
 );

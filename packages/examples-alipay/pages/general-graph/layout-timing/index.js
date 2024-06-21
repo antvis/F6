@@ -1,7 +1,7 @@
-import F6 from '@antv/f6';
-import { wrapContext } from '../../../common/utils/context';
-import data from './data';
-import force from '@antv/f6/dist/extends/layout/forceLayout';
+import F6 from "@antv/f6";
+import { wrapContext } from "../../../common/utils/context";
+import data from "./data";
+import force from "@antv/f6/dist/extends/layout/forceLayout";
 
 /**
  * layoutTiming
@@ -12,7 +12,7 @@ let currentPage = null;
 Page({
   canvas: null,
   ctx: null,
-  renderer: '', // mini、mini-native等，F6需要，标记环境
+  renderer: "", // mini、mini-native等，F6需要，标记环境
   isCanvasInit: false, // canvas是否准备好了
   graph: null,
 
@@ -21,11 +21,11 @@ Page({
     height: 600,
     pixelRatio: 2,
     forceMini: false,
-    message: '',
+    message: "",
   },
 
   onLoad() {
-    F6.registerLayout('force', force);
+    F6.registerLayout("force", force);
     // 同步获取window的宽高
     const { windowWidth, windowHeight, pixelRatio } = my.getSystemInfoSync();
     // 获取文本框
@@ -73,26 +73,26 @@ Page({
       fitView: true,
       fitViewPadding: 40,
       layout: {
-        type: 'force',
+        type: "force",
         preventOverlap: true,
         nodeSize: 20,
       },
       modes: {
-        default: ['drag-node'],
+        default: ["drag-node"],
       },
     });
 
     // 监听
-    this.graph.on('beforelayout', function() {
+    this.graph.on("beforelayout", function () {
       currentPage.setData({
         message:
-          'Doing force-directed layout... the text will be changed after the layout being done.',
+          "Doing force-directed layout... the text will be changed after the layout being done.",
       });
     });
 
-    this.graph.on('afterlayout', function() {
+    this.graph.on("afterlayout", function () {
       currentPage.setData({
-        message: 'Done!',
+        message: "Done!",
       });
     });
 

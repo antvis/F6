@@ -1,4 +1,8 @@
-import { traverseTree, traverseTreeUp, getTextSize } from '../../../src/util/graphic';
+import {
+  traverseTree,
+  traverseTreeUp,
+  getTextSize,
+} from "../../../src/util/graphic";
 
 interface TreeNode {
   id: string;
@@ -6,20 +10,20 @@ interface TreeNode {
   children?: TreeNode[];
 }
 
-describe('graphic unit test', () => {
-  it('traverseTree', () => {
+describe("graphic unit test", () => {
+  it("traverseTree", () => {
     const data: TreeNode = {
-      id: 'root',
+      id: "root",
       children: [
         {
-          id: 'subroot1',
-          label: 'xxx',
+          id: "subroot1",
+          label: "xxx",
         },
         {
-          id: 'subroot2',
+          id: "subroot2",
           children: [
             {
-              id: 'yyy',
+              id: "yyy",
             },
           ],
         },
@@ -31,35 +35,35 @@ describe('graphic unit test', () => {
       return true;
     });
 
-    expect(trees[0].id).toBe('root');
+    expect(trees[0].id).toBe("root");
     expect(trees[0].children.length).toBe(2);
-    expect(trees[1].id).toBe('subroot2');
+    expect(trees[1].id).toBe("subroot2");
     expect(trees[1].label).toBe(undefined);
-    expect(trees[2].id).toBe('yyy');
-    expect(trees[3].id).toBe('subroot1');
+    expect(trees[2].id).toBe("yyy");
+    expect(trees[3].id).toBe("subroot1");
   });
 
-  it('traverseTree end with returning false', () => {
+  it("traverseTree end with returning false", () => {
     const data: TreeNode = {
-      id: 'root',
+      id: "root",
       children: [
         {
-          id: 'A',
-          label: 'A',
+          id: "A",
+          label: "A",
           children: [
             {
-              id: 'A1',
+              id: "A1",
             },
           ],
         },
         {
-          id: 'B',
+          id: "B",
           children: [
             {
-              id: 'B1',
+              id: "B1",
             },
             {
-              id: 'B2',
+              id: "B2",
             },
           ],
         },
@@ -68,7 +72,7 @@ describe('graphic unit test', () => {
     let trees = [];
     traverseTree(data, (node) => {
       trees.push(node);
-      if (node.id === 'A') return false;
+      if (node.id === "A") return false;
       return true;
     });
     expect(trees.length).toBe(5);
@@ -76,17 +80,17 @@ describe('graphic unit test', () => {
     trees = [];
     traverseTreeUp(data, (node) => {
       trees.push(node);
-      if (node.id === 'B') return false;
+      if (node.id === "B") return false;
       return true;
     });
     expect(trees.length).toBe(3);
   });
 
-  it('getTextSize', () => {
-    let result = getTextSize('abc', 12);
+  it("getTextSize", () => {
+    let result = getTextSize("abc", 12);
     expect(result).toEqual([20.303961181640624, 12]);
 
-    result = getTextSize('体验技术', 14);
+    result = getTextSize("体验技术", 14);
     expect(result).toEqual([56, 14]);
   });
 });

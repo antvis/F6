@@ -6,11 +6,11 @@ import {
   getClosedSpline,
   roundedHull,
   paddedHull,
-} from '../../../src/util/path';
-import { vec2 } from '@antv/matrix-util';
+} from "../../../src/util/path";
+import { vec2 } from "@antv/matrix-util";
 
-describe('Path Util Test', () => {
-  it('getSpline', () => {
+describe("Path Util Test", () => {
+  it("getSpline", () => {
     const points = [
       {
         x: 10,
@@ -31,13 +31,13 @@ describe('Path Util Test', () => {
     expect(splinePath.length).toEqual(3);
     const first = splinePath[0];
     expect(first.length).toEqual(3);
-    expect(first[0]).toEqual('M');
+    expect(first[0]).toEqual("M");
     expect(first[1]).toEqual(10);
     expect(first[2]).toEqual(12);
 
     const second = splinePath[1];
     expect(second.length).toEqual(7);
-    expect(second[0]).toEqual('C');
+    expect(second[0]).toEqual("C");
     expect(second[1]).toEqual(10);
     expect(second[2]).toEqual(12);
     expect(second[5]).toEqual(5);
@@ -48,7 +48,7 @@ describe('Path Util Test', () => {
     expect(three[6]).toEqual(7);
   });
 
-  it('getSpline thorw new error', () => {
+  it("getSpline thorw new error", () => {
     const points = [
       {
         x: 10,
@@ -61,7 +61,7 @@ describe('Path Util Test', () => {
     );
   });
 
-  it('getControlPoint horizontal', () => {
+  it("getControlPoint horizontal", () => {
     const start = { x: 0, y: 0 };
     const end = { x: 100, y: 0 };
 
@@ -74,7 +74,7 @@ describe('Path Util Test', () => {
     expect(points).toEqual({ x: 20, y: -2 });
   });
 
-  it('getControlPoint vertical', () => {
+  it("getControlPoint vertical", () => {
     const start = { x: 0, y: 0 };
     const end = { x: 0, y: 100 };
 
@@ -85,7 +85,7 @@ describe('Path Util Test', () => {
     expect(point2).toEqual({ x: 2, y: 20 });
   });
 
-  it('getControlPoint 45', () => {
+  it("getControlPoint 45", () => {
     const start = { x: 0, y: 0 };
     const end = { x: 100, y: 100 };
     const point = getControlPoint(start, end, 0.5, 10);
@@ -94,7 +94,7 @@ describe('Path Util Test', () => {
     expect(point.y).toEqual(50 + (sqrt2 * 10) / 2);
   });
 
-  it('getControlPoint 135', () => {
+  it("getControlPoint 135", () => {
     const start = { x: 100, y: 100 };
     const end = { x: 0, y: 0 };
     const point = getControlPoint(start, end, 0.5, 10);
@@ -103,7 +103,7 @@ describe('Path Util Test', () => {
     expect(point.y).toEqual(50 - (sqrt2 * 10) / 2);
   });
 
-  it('getControlPoint percent is 0', () => {
+  it("getControlPoint percent is 0", () => {
     const start = { x: 100, y: 100 };
     const end = { x: 50, y: 20 };
     const point = getControlPoint(start, end);
@@ -111,12 +111,12 @@ describe('Path Util Test', () => {
     expect(point.y).toEqual(100);
   });
 
-  it('pointsToPolygon points.length = 0', () => {
+  it("pointsToPolygon points.length = 0", () => {
     const polygonPoint = pointsToPolygon([]);
-    expect(polygonPoint).toEqual('');
+    expect(polygonPoint).toEqual("");
   });
 
-  it('pointsToPolygon z = false', () => {
+  it("pointsToPolygon z = false", () => {
     const points = [
       {
         x: 1,
@@ -129,10 +129,10 @@ describe('Path Util Test', () => {
     ];
 
     const polygonPoint = pointsToPolygon(points, false);
-    expect(polygonPoint).toEqual('M1 2L5 5');
+    expect(polygonPoint).toEqual("M1 2L5 5");
   });
 
-  it('pointsToPolygon z = true', () => {
+  it("pointsToPolygon z = true", () => {
     const points = [
       {
         x: 1,
@@ -145,27 +145,27 @@ describe('Path Util Test', () => {
     ];
 
     const polygonPoint = pointsToPolygon(points, true);
-    expect(polygonPoint).toEqual('M1 2L5 5Z');
+    expect(polygonPoint).toEqual("M1 2L5 5Z");
   });
 
-  it('pointsToPolygon substitute', () => {
+  it("pointsToPolygon substitute", () => {
     const points = [
       {
         x: 1,
         y: 2,
       },
-      '',
+      "",
     ];
 
     const polygonPoint = pointsToPolygon(points, true);
-    expect(polygonPoint).toEqual('M1 2L{x} {y}Z');
+    expect(polygonPoint).toEqual("M1 2L{x} {y}Z");
   });
 
-  it('pathToPoints', () => {
+  it("pathToPoints", () => {
     const path = [
-      ['M', 0, 0],
-      ['L', 10, 10],
-      ['L', 100, 40],
+      ["M", 0, 0],
+      ["L", 10, 10],
+      ["L", 100, 40],
     ];
     const points = pathToPoints(path);
     expect(points[0][0]).toBe(0);
@@ -173,42 +173,44 @@ describe('Path Util Test', () => {
     expect(points[2][0]).toBe(100);
   });
 
-  it('getClosedSpline', () => {
+  it("getClosedSpline", () => {
     const points = [
       { x: 0, y: 0 },
       { x: 10, y: 10 },
       { x: 100, y: 40 },
     ];
     const res = getClosedSpline(points);
-    expect(res[0][0]).toBe('M');
+    expect(res[0][0]).toBe("M");
     expect(res[0][1]).toBe(100);
     expect(res[0][2]).toBe(40);
-    expect(res[1][0]).toBe('C');
+    expect(res[1][0]).toBe("C");
     expect(res[1][3]).toBe(15);
     expect(res[1][4]).toBe(5);
-    expect(res[2][0]).toBe('C');
+    expect(res[2][0]).toBe("C");
     expect(res[2][1]).toBe(-15);
     expect(res[2][2]).toBe(-5);
-    expect(res[4][0]).toBe('C');
+    expect(res[4][0]).toBe("C");
     expect(res[4][3]).toBe(15);
     expect(res[4][4]).toBe(5);
   });
 
-  it('roundedHull', () => {
+  it("roundedHull", () => {
     const points: vec2[] = [
       [0, 0],
       [10, 10],
       [100, 40],
     ];
     const res = roundedHull(points, 10);
-    const splits = res.split(' ');
-    expect(splits[0]).toEqual('M');
-    expect(splits[1]).toEqual('96.83772233983161,49.48683298050514');
-    expect(splits[2]).toEqual('A');
-    expect(splits[3]).toEqual('10,10,0,0,0,103.71390676354103,30.715233091147407');
+    const splits = res.split(" ");
+    expect(splits[0]).toEqual("M");
+    expect(splits[1]).toEqual("96.83772233983161,49.48683298050514");
+    expect(splits[2]).toEqual("A");
+    expect(splits[3]).toEqual(
+      "10,10,0,0,0,103.71390676354103,30.715233091147407",
+    );
   });
 
-  it('paddedHull', () => {
+  it("paddedHull", () => {
     const points: vec2[] = [
       [0, 0],
       [10, 10],

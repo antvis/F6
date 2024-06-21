@@ -1,6 +1,6 @@
-import F6 from '@antv/f6-wx';
+import F6 from "@antv/f6-wx";
 
-import data from './data';
+import data from "./data";
 
 /**
  * setMode
@@ -11,7 +11,7 @@ import data from './data';
 Page({
   canvas: null,
   ctx: null,
-  renderer: '', // mini、mini-native等，F6需要，标记环境
+  renderer: "", // mini、mini-native等，F6需要，标记环境
   isCanvasInit: false, // canvas是否准备好了
   graph: null,
 
@@ -20,12 +20,12 @@ Page({
     height: 600,
     pixelRatio: 1,
     forceMini: false,
-    currentMode: '请选择模式',
+    currentMode: "请选择模式",
     showDialog: false,
     groups: [
-      { text: '示例菜单', value: 1 },
-      { text: '示例菜单', value: 2 },
-      { text: '负向菜单', type: 'warn', value: 3 },
+      { text: "示例菜单", value: 1 },
+      { text: "示例菜单", value: 2 },
+      { text: "负向菜单", type: "warn", value: 3 },
     ],
   },
 
@@ -43,12 +43,12 @@ Page({
     // 注册自定义节点
     let addedCount = 0;
     // Register a custom behavior: add a node when user click the blank part of canvas
-    F6.registerBehavior('click-add-node', {
+    F6.registerBehavior("click-add-node", {
       // Set the events and the corresponding responsing function for this behavior
       getEvents() {
         // The event is canvas:click, the responsing function is onClick
         return {
-          'canvas:click': 'onClick',
+          "canvas:click": "onClick",
         };
       },
       // Click event
@@ -56,7 +56,7 @@ Page({
         const self = this;
         const { graph } = self;
         // Add a new node
-        graph.addItem('node', {
+        graph.addItem("node", {
           x: ev.canvasX,
           y: ev.canvasY,
           id: `node-${addedCount}`, // Generate the unique id
@@ -65,13 +65,13 @@ Page({
       },
     });
     // Register a custom behavior: click two end nodes to add an edge
-    F6.registerBehavior('click-add-edge', {
+    F6.registerBehavior("click-add-edge", {
       // Set the events and the corresponding responsing function for this behavior
       getEvents() {
         return {
-          'node:click': 'onClick', // The event is canvas:click, the responsing function is onClick
-          mousemove: 'onMousemove', // The event is mousemove, the responsing function is onMousemove
-          'edge:click': 'onEdgeClick', // The event is edge:click, the responsing function is onEdgeClick
+          "node:click": "onClick", // The event is canvas:click, the responsing function is onClick
+          mousemove: "onMousemove", // The event is mousemove, the responsing function is onMousemove
+          "edge:click": "onEdgeClick", // The event is edge:click, the responsing function is onEdgeClick
         };
       },
       // The responsing function for node:click defined in getEvents
@@ -91,7 +91,7 @@ Page({
           self.addingEdge = false;
         } else {
           // Add anew edge, the end node is the current node user clicks
-          self.edge = graph.addItem('edge', {
+          self.edge = graph.addItem("edge", {
             source: model.id,
             target: model.id,
           });
@@ -166,19 +166,19 @@ Page({
       // The sets of behavior modes
       modes: {
         // Defualt mode
-        default: ['drag-node', 'click-select'],
+        default: ["drag-node", "click-select"],
         // Adding node mode
-        addNode: ['click-add-node', 'click-select'],
+        addNode: ["click-add-node", "click-select"],
         // Adding edge mode
-        addEdge: ['click-add-edge', 'click-select'],
+        addEdge: ["click-add-edge", "click-select"],
       },
       // The node styles in different states
       nodeStateStyles: {
         // The node styles in selected state
         selected: {
-          stroke: '#666',
+          stroke: "#666",
           lineWidth: 2,
-          fill: 'steelblue',
+          fill: "steelblue",
         },
       },
     });

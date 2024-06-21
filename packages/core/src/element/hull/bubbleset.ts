@@ -1,4 +1,4 @@
-import { IPoint, IBBox, Item, BubblesetCfg } from '../../types';
+import { IPoint, IBBox, Item, BubblesetCfg } from "../../types";
 import {
   squareDist,
   pointLineSquareDist,
@@ -9,7 +9,7 @@ import {
   pointRectSquareDist,
   Line,
   isPointInPolygon,
-} from '../../util/math';
+} from "../../util/math";
 
 const defaultOps = {
   maxRoutingIterations: 100, // number of times to run the algorithm to refine the path finding in difficult areas
@@ -79,7 +79,7 @@ function MarchingSquares(contour, potentialArea, threshold) {
       // assign the move direction according to state of the square
       switch (state) {
         case -1:
-          console.warn('Marched out of bounds');
+          console.warn("Marched out of bounds");
           return true;
         case 0:
         case 3:
@@ -143,10 +143,16 @@ function MarchingSquares(contour, potentialArea, threshold) {
  * Space partition & assign value to each cell
  * @param points
  */
-const initGridCells = (width: number, height: number, pixelGroupSize: number) => {
+const initGridCells = (
+  width: number,
+  height: number,
+  pixelGroupSize: number,
+) => {
   const scaleWidth = Math.ceil(width / pixelGroupSize);
   const scaleHeight = Math.ceil(height / pixelGroupSize);
-  const gridCells = new Float32Array(Math.max(0, scaleWidth * scaleHeight)).fill(0);
+  const gridCells = new Float32Array(
+    Math.max(0, scaleWidth * scaleHeight),
+  ).fill(0);
   return {
     cells: gridCells,
     width: scaleWidth,
@@ -160,15 +166,27 @@ const initGridCells = (width: number, height: number, pixelGroupSize: number) =>
  * @param item
  * @param visited
  */
-const pickBestNeighbor = (item: Item, visited: Item[], nonMembers: Item[]): Item | null => {
+const pickBestNeighbor = (
+  item: Item,
+  visited: Item[],
+  nonMembers: Item[],
+): Item | null => {
   let closestNeighbour = null;
   let minCost = Number.POSITIVE_INFINITY;
 
   visited.forEach((neighbourItem) => {
     const itemP = { x: item.getModel().x, y: item.getModel().y };
-    const neighbourItemP = { x: neighbourItem.getModel().x, y: neighbourItem.getModel().y };
+    const neighbourItemP = {
+      x: neighbourItem.getModel().x,
+      y: neighbourItem.getModel().y,
+    };
     const dist = squareDist(itemP, neighbourItemP);
-    const directLine = new Line(itemP.x, itemP.y, neighbourItemP.x, neighbourItemP.y);
+    const directLine = new Line(
+      itemP.x,
+      itemP.y,
+      neighbourItemP.x,
+      neighbourItemP.y,
+    );
     const numberObstacles = nonMembers.reduce((count, _item) => {
       if (fractionToLine(_item, directLine) > 0) {
         return count + 1;
@@ -256,31 +274,50 @@ const computeRoute = (
       const line = linesToCheck.pop();
       const closestItem = getIntersectItem(nonMembers, line);
       if (closestItem) {
-        const [intersections, countIntersections] = itemIntersectByLine(closestItem, line);
+        const [intersections, countIntersections] = itemIntersectByLine(
+          closestItem,
+          line,
+        );
         // if line passes through item
         if (countIntersections === 2) {
           const testReroute = (isFirst: boolean) => {
             let tempMorphBuffer = morphBuffer;
-            let virtualNode = rerouteLine(closestItem, tempMorphBuffer, intersections, isFirst);
+            let virtualNode = rerouteLine(
+              closestItem,
+              tempMorphBuffer,
+              intersections,
+              isFirst,
+            );
             // test the virtualNode already exists
             let exist =
-              pointExists(virtualNode, linesToCheck) || pointExists(virtualNode, checkedLines);
+              pointExists(virtualNode, linesToCheck) ||
+              pointExists(virtualNode, checkedLines);
             let pointInside = isPointInNonMembers(virtualNode, nonMembers);
 
             while (!exist && pointInside && tempMorphBuffer >= 1) {
               // try a smaller buffer
               tempMorphBuffer /= 1.5;
-              virtualNode = rerouteLine(closestItem, tempMorphBuffer, intersections, isFirst);
+              virtualNode = rerouteLine(
+                closestItem,
+                tempMorphBuffer,
+                intersections,
+                isFirst,
+              );
               exist =
-                pointExists(virtualNode, linesToCheck) || pointExists(virtualNode, checkedLines);
+                pointExists(virtualNode, linesToCheck) ||
+                pointExists(virtualNode, checkedLines);
               pointInside = isPointInNonMembers(virtualNode, nonMembers);
             }
 
             // 第二次route时不要求pointInside
             if (virtualNode && !exist && (!isFirst || !pointInside)) {
               // add 2 rerouted lines to check
-              linesToCheck.push(new Line(line.x1, line.y1, virtualNode.x, virtualNode.y));
-              linesToCheck.push(new Line(virtualNode.x, virtualNode.y, line.x2, line.y2));
+              linesToCheck.push(
+                new Line(line.x1, line.y1, virtualNode.x, virtualNode.y),
+              );
+              linesToCheck.push(
+                new Line(virtualNode.x, virtualNode.y, line.x2, line.y2),
+              );
               hasIntersection = true;
             }
           };
@@ -351,7 +388,12 @@ function getRoute(
     optimalNeighbor.getModel().x,
     optimalNeighbor.getModel().y,
   );
-  const checkedLines = computeRoute(directLine, nonMembers, maxRoutingIterations, morphBuffer);
+  const checkedLines = computeRoute(
+    directLine,
+    nonMembers,
+    maxRoutingIterations,
+    morphBuffer,
+  );
   const finalRoute = mergeLines(checkedLines);
   return finalRoute;
 }
@@ -363,7 +405,11 @@ function getRoute(
  * @param nonMembers
  * @param options
  */
-export const genBubbleSet = (members: Item[], nonMembers: Item[], ops?: BubblesetCfg) => {
+export const genBubbleSet = (
+  members: Item[],
+  nonMembers: Item[],
+  ops?: BubblesetCfg,
+) => {
   // eslint-disable-next-line no-redeclare
   const options = Object.assign(defaultOps, ops);
   const centroid = getPointsCenter(
@@ -405,11 +451,23 @@ export const genBubbleSet = (members: Item[], nonMembers: Item[], ops?: Bubblese
   // Use march squares to generate contour
   let contour = [];
   let hull = [];
-  for (let iterations = 0; iterations < options.maxMarchingIterations; iterations++) {
-    fillPotentialArea(members, nonMembers, virtualEdges, activeRegion, potentialArea, options);
+  for (
+    let iterations = 0;
+    iterations < options.maxMarchingIterations;
+    iterations++
+  ) {
+    fillPotentialArea(
+      members,
+      nonMembers,
+      virtualEdges,
+      activeRegion,
+      potentialArea,
+      options,
+    );
     contour = [];
     hull = [];
-    if (!new MarchingSquares(contour, potentialArea, options.threshold).march()) continue;
+    if (!new MarchingSquares(contour, potentialArea, options.threshold).march())
+      continue;
     const marchedPath = contour.map((point) => ({
       x: Math.round(point.x * options.pixelGroupSize + activeRegion.minX),
       y: Math.round(point.y * options.pixelGroupSize + activeRegion.minY),
@@ -434,7 +492,13 @@ export const genBubbleSet = (members: Item[], nonMembers: Item[], ops?: Bubblese
     const isContourValid = () => {
       for (const item of members) {
         const hullPoints = hull.map((point) => [point.x, point.y]);
-        if (!isPointInPolygon(hullPoints, item.getBBox().centerX, item.getBBox().centerY))
+        if (
+          !isPointInPolygon(
+            hullPoints,
+            item.getBBox().centerX,
+            item.getBBox().centerY,
+          )
+        )
           return false;
       }
       // 不强制要求所有nonMembers都没有包含在内
@@ -453,7 +517,10 @@ export const genBubbleSet = (members: Item[], nonMembers: Item[], ops?: Bubblese
     if (iterations <= options.maxMarchingIterations * 0.5) {
       options.memberInfluenceFactor *= 1.2;
       options.edgeInfluenceFactor *= 1.2;
-    } else if (options.nonMemberInfluenceFactor !== 0 && nonMembers.length > 0) {
+    } else if (
+      options.nonMemberInfluenceFactor !== 0 &&
+      nonMembers.length > 0
+    ) {
       // after half the iterations, start increasing positive energy and lowering the threshold
       options.nonMemberInfluenceFactor *= 0.8;
     } else {
@@ -468,7 +535,11 @@ export const genBubbleSet = (members: Item[], nonMembers: Item[], ops?: Bubblese
  * @param members
  * @param edges
  */
-function getActiveRregion(members: Item[], edges: Line[], offset: number): IBBox {
+function getActiveRregion(
+  members: Item[],
+  edges: Line[],
+  offset: number,
+): IBBox {
   const activeRegion = {
     minX: Number.POSITIVE_INFINITY,
     minY: Number.POSITIVE_INFINITY,
@@ -489,10 +560,14 @@ function getActiveRregion(members: Item[], edges: Line[], offset: number): IBBox
   });
 
   for (const bbox of bboxes) {
-    activeRegion.minX = (bbox.minX < activeRegion.minX ? bbox.minX : activeRegion.minX) - offset;
-    activeRegion.minY = (bbox.minY < activeRegion.minY ? bbox.minY : activeRegion.minY) - offset;
-    activeRegion.maxX = (bbox.maxX > activeRegion.maxX ? bbox.maxX : activeRegion.maxX) + offset;
-    activeRegion.maxY = (bbox.maxY > activeRegion.maxY ? bbox.maxY : activeRegion.maxY) + offset;
+    activeRegion.minX =
+      (bbox.minX < activeRegion.minX ? bbox.minX : activeRegion.minX) - offset;
+    activeRegion.minY =
+      (bbox.minY < activeRegion.minY ? bbox.minY : activeRegion.minY) - offset;
+    activeRegion.maxX =
+      (bbox.maxX > activeRegion.maxX ? bbox.maxX : activeRegion.maxX) + offset;
+    activeRegion.maxY =
+      (bbox.maxY > activeRegion.maxY ? bbox.maxY : activeRegion.maxY) + offset;
   }
   activeRegion.width = activeRegion.maxX - activeRegion.minX;
   activeRegion.height = activeRegion.maxY - activeRegion.minY;
@@ -519,8 +594,10 @@ function fillPotentialArea(
   }
 
   // using inverse a for numerical stability
-  const nodeInfA = (options.nodeR0 - options.nodeR1) * (options.nodeR0 - options.nodeR1);
-  const edgeInfA = (options.edgeR0 - options.edgeR1) * (options.edgeR0 - options.edgeR1);
+  const nodeInfA =
+    (options.nodeR0 - options.nodeR1) * (options.nodeR0 - options.nodeR1);
+  const edgeInfA =
+    (options.edgeR0 - options.edgeR1) * (options.edgeR0 - options.edgeR1);
 
   const getAffectedRegion = (bbox, thresholdR) => {
     const startX = Math.min(
@@ -543,22 +620,34 @@ function fillPotentialArea(
   };
   const addItemInfluence = (item: Item, influenceFactor: number) => {
     const bbox = item.getBBox();
-    const [startX, startY, endX, endY] = getAffectedRegion(bbox, options.nodeR1);
+    const [startX, startY, endX, endY] = getAffectedRegion(
+      bbox,
+      options.nodeR1,
+    );
     // calculate item influence for each cell
     for (let y = startY; y < endY; y += 1) {
       for (let x = startX; x < endX; x += 1) {
-        if (influenceFactor < 0 && potentialArea[x + y * potentialArea.width] <= 0) {
+        if (
+          influenceFactor < 0 &&
+          potentialArea[x + y * potentialArea.width] <= 0
+        ) {
           continue;
         }
         const tempX = gridIx2Pos(x, activeRegion.minX);
         const tempY = gridIx2Pos(y, activeRegion.minY);
         const distanceSq = pointRectSquareDist(
           { x: tempX, y: tempY },
-          { x: bbox.minX, y: bbox.minY, width: bbox.width, height: bbox.height },
+          {
+            x: bbox.minX,
+            y: bbox.minY,
+            width: bbox.width,
+            height: bbox.height,
+          },
         );
         if (distanceSq < options.nodeR1 ** 2) {
           const dr = Math.sqrt(distanceSq) - options.nodeR1;
-          potentialArea.cells[x + y * potentialArea.width] += influenceFactor * dr * dr;
+          potentialArea.cells[x + y * potentialArea.width] +=
+            influenceFactor * dr * dr;
         }
       }
     }
@@ -566,11 +655,17 @@ function fillPotentialArea(
 
   const addEdgeInfluence = (line: Line, influenceFactor: number) => {
     const bbox = line.getBBox();
-    const [startX, startY, endX, endY] = getAffectedRegion(bbox, options.edgeR1);
+    const [startX, startY, endX, endY] = getAffectedRegion(
+      bbox,
+      options.edgeR1,
+    );
     // for every point in active part of potentialArea, calculate distance to nearest point on line and add influence
     for (let y = startY; y < endY; y += 1) {
       for (let x = startX; x < endX; x += 1) {
-        if (influenceFactor < 0 && potentialArea.cells[x + y * potentialArea.width] <= 0) {
+        if (
+          influenceFactor < 0 &&
+          potentialArea.cells[x + y * potentialArea.width] <= 0
+        ) {
           continue;
         }
         const tempX = gridIx2Pos(x, activeRegion.minX);
@@ -579,7 +674,8 @@ function fillPotentialArea(
         // only influence if less than r1
         if (minDistanceSq < options.edgeR1 ** 2) {
           const mdr = Math.sqrt(minDistanceSq) - options.edgeR1;
-          potentialArea.cells[x + y * potentialArea.width] += influenceFactor * mdr * mdr;
+          potentialArea.cells[x + y * potentialArea.width] +=
+            influenceFactor * mdr * mdr;
         }
       }
     }
@@ -603,9 +699,15 @@ function fillPotentialArea(
   }
 }
 
-function rerouteLine(item, buffer: number, intersections: IPoint[], wrapNormal: boolean): IPoint {
+function rerouteLine(
+  item,
+  buffer: number,
+  intersections: IPoint[],
+  wrapNormal: boolean,
+): IPoint {
   const bbox = item.getBBox();
-  const [topIntersect, leftIntersect, bottomIntersect, rightIntersect] = intersections;
+  const [topIntersect, leftIntersect, bottomIntersect, rightIntersect] =
+    intersections;
   const cornerPos = {
     topLeft: { x: bbox.minX - buffer, y: bbox.minY - buffer },
     topRight: { x: bbox.maxX + buffer, y: bbox.minY - buffer },
@@ -615,14 +717,19 @@ function rerouteLine(item, buffer: number, intersections: IPoint[], wrapNormal: 
 
   const totalArea = bbox.height * bbox.width;
   function calcHalfArea(intersect1, intersect2) {
-    return bbox.width * ((intersect1.y - bbox.minY + (intersect2.y - bbox.minY)) * 0.5);
+    return (
+      bbox.width *
+      ((intersect1.y - bbox.minY + (intersect2.y - bbox.minY)) * 0.5)
+    );
   }
 
   // 根据线和boundingbox相交的情况，确定control point的位置
   if (leftIntersect) {
     // 相交区域有三角形
-    if (topIntersect) return wrapNormal ? cornerPos.topLeft : cornerPos.bottomRight;
-    if (bottomIntersect) return wrapNormal ? cornerPos.bottomLeft : cornerPos.topRight;
+    if (topIntersect)
+      return wrapNormal ? cornerPos.topLeft : cornerPos.bottomRight;
+    if (bottomIntersect)
+      return wrapNormal ? cornerPos.bottomLeft : cornerPos.topRight;
     // 相交区域分成上下两个梯形，比较面积
     const topArea = calcHalfArea(leftIntersect, rightIntersect);
     if (topArea < totalArea * 0.5) {
@@ -636,8 +743,10 @@ function rerouteLine(item, buffer: number, intersections: IPoint[], wrapNormal: 
   }
 
   if (rightIntersect) {
-    if (topIntersect) return wrapNormal ? cornerPos.topRight : cornerPos.bottomLeft;
-    if (bottomIntersect) return wrapNormal ? cornerPos.bottomRight : cornerPos.topLeft;
+    if (topIntersect)
+      return wrapNormal ? cornerPos.topRight : cornerPos.bottomLeft;
+    if (bottomIntersect)
+      return wrapNormal ? cornerPos.bottomRight : cornerPos.topLeft;
   }
 
   // 相交区域分成左右两个梯形

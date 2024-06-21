@@ -1,13 +1,13 @@
-import setTimeoutContext from '../utils/set-timeout-context';
-import Recognizer from '../recognizerjs/recognizer-constructor';
-import { TOUCH_ACTION_MANIPULATION } from '../touchactionjs/touchaction-Consts';
-import { INPUT_START, INPUT_END } from '../inputjs/input-consts';
+import setTimeoutContext from "../utils/set-timeout-context";
+import Recognizer from "../recognizerjs/recognizer-constructor";
+import { TOUCH_ACTION_MANIPULATION } from "../touchactionjs/touchaction-Consts";
+import { INPUT_START, INPUT_END } from "../inputjs/input-consts";
 import {
   STATE_RECOGNIZED,
   STATE_BEGAN,
   STATE_FAILED,
-} from '../recognizerjs/recognizer-consts';
-import getDistance from '../inputjs/get-distance';
+} from "../recognizerjs/recognizer-consts";
+import getDistance from "../inputjs/get-distance";
 
 /**
  * @private
@@ -125,7 +125,7 @@ export default class TapRecognizer extends Recognizer {
 }
 
 TapRecognizer.prototype.defaults = {
-  event: 'tap',
+  event: "tap",
   pointers: 1,
   taps: 1,
   interval: 300, // max time between the multi-tap taps

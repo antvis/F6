@@ -3,7 +3,7 @@ import {
   DIRECTION_RIGHT,
   DIRECTION_UP,
   DIRECTION_DOWN,
-} from '../inputjs/input-consts';
+} from "../inputjs/input-consts";
 
 /**
  * @private
@@ -13,13 +13,13 @@ import {
  */
 export default function directionStr(direction) {
   if (direction === DIRECTION_DOWN) {
-    return 'down';
+    return "down";
   } else if (direction === DIRECTION_UP) {
-    return 'up';
+    return "up";
   } else if (direction === DIRECTION_LEFT) {
-    return 'left';
+    return "left";
   } else if (direction === DIRECTION_RIGHT) {
-    return 'right';
+    return "right";
   }
-  return '';
+  return "";
 }

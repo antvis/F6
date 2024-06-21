@@ -1,16 +1,16 @@
-import F6 from '@antv/f6-wx';
+import F6 from "@antv/f6-wx";
 
-import data from './data';
+import data from "./data";
 
 /**
  * edge#lineGrowth
  */
 
 F6.registerEdge(
-  'line-growth',
+  "line-growth",
   {
     afterDraw(_, group) {
-      const shape = group.get('children')[0];
+      const shape = group.get("children")[0];
       const length = shape.getTotalLength();
       console.log(_);
       shape.animate(
@@ -30,13 +30,13 @@ F6.registerEdge(
       );
     },
   },
-  'cubic', // extend the built-in edge 'cubic'
+  "cubic", // extend the built-in edge 'cubic'
 );
 
 Page({
   canvas: null,
   ctx: null,
-  renderer: '', // mini、mini-native等，F6需要，标记环境
+  renderer: "", // mini、mini-native等，F6需要，标记环境
   isCanvasInit: false, // canvas是否准备好了
   graph: null,
 
@@ -93,10 +93,10 @@ Page({
       pixelRatio,
       fitView: true,
       defaultEdge: {
-        type: 'line-growth',
+        type: "line-growth",
         style: {
           lineWidth: 2,
-          stroke: '#bae7ff',
+          stroke: "#bae7ff",
         },
       },
     });

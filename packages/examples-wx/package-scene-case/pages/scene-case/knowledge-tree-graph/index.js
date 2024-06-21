@@ -1,7 +1,7 @@
-import F6 from '@antv/f6-wx';
+import F6 from "@antv/f6-wx";
 
-import TreeGraph from '@antv/f6-wx/extends/graph/treeGraph';
-import data from './data';
+import TreeGraph from "@antv/f6-wx/extends/graph/treeGraph";
+import data from "./data";
 
 /**
  * 知识图谱树
@@ -9,7 +9,7 @@ import data from './data';
 Page({
   canvas: null,
   ctx: null,
-  renderer: '', // mini、mini-native等，F6需要，标记环境
+  renderer: "", // mini、mini-native等，F6需要，标记环境
   isCanvasInit: false, // canvas是否准备好了
   graph: null,
 
@@ -22,7 +22,7 @@ Page({
 
   onLoad() {
     // 注册自定义树，节点等
-    F6.registerGraph('TreeGraph', TreeGraph);
+    F6.registerGraph("TreeGraph", TreeGraph);
 
     const minWidth = 60;
 
@@ -35,14 +35,19 @@ Page({
       nameMarginLeft: 4,
       rootPadding: 18,
     };
-    F6.registerNode('treeNode', {
+    F6.registerNode("treeNode", {
       draw: (cfg, group) => {
         const { label, collapsed, selected, children, depth } = cfg;
         const rootNode = depth === 0;
         const hasChildren = children && children.length !== 0;
 
-        const { childCountWidth, countMarginLeft, itemPadding, nameMarginLeft, rootPadding } =
-          BaseConfig;
+        const {
+          childCountWidth,
+          countMarginLeft,
+          itemPadding,
+          nameMarginLeft,
+          rootPadding,
+        } = BaseConfig;
 
         let width = 0;
         const height = 28;
@@ -50,17 +55,17 @@ Page({
         const y = -height / 2;
 
         // 名称文本
-        const text = group.addShape('text', {
+        const text = group.addShape("text", {
           attrs: {
             text: label,
             x: x * 2,
             y,
-            textAlign: 'left',
-            textBaseline: 'top',
-            fontFamily: 'PingFangSC-Regular',
+            textAlign: "left",
+            textBaseline: "top",
+            fontFamily: "PingFangSC-Regular",
           },
-          cursor: 'pointer',
-          name: 'name-text-shape',
+          cursor: "pointer",
+          name: "name-text-shape",
         });
         const textWidth = text.getBBox().width;
         width = textWidth + itemPadding + nameMarginLeft;
@@ -82,26 +87,26 @@ Page({
 
         // keyShape根节点选中样式
         if (rootNode && selected) {
-          keyShapeAttrs.fill = '#e8f7ff';
-          keyShapeAttrs.stroke = '#e8f7ff';
+          keyShapeAttrs.fill = "#e8f7ff";
+          keyShapeAttrs.stroke = "#e8f7ff";
         }
-        const keyShape = group.addShape('rect', {
+        const keyShape = group.addShape("rect", {
           attrs: keyShapeAttrs,
-          name: 'root-key-shape-rect-shape',
+          name: "root-key-shape-rect-shape",
         });
 
         if (!rootNode) {
           // 底部横线
-          group.addShape('path', {
+          group.addShape("path", {
             attrs: {
               path: [
-                ['M', x - 1, 0],
-                ['L', width, 0],
+                ["M", x - 1, 0],
+                ["L", width, 0],
               ],
-              stroke: '#AAB7C4',
+              stroke: "#AAB7C4",
               lineWidth: 1,
             },
-            name: 'node-path-shape',
+            name: "node-path-shape",
           });
         }
 
@@ -109,55 +114,55 @@ Page({
         const mainY = -height + 15;
 
         if (rootNode) {
-          group.addShape('rect', {
+          group.addShape("rect", {
             attrs: {
               x: mainX,
               y: mainY,
               width: width + 12,
               height,
               radius: 14,
-              fill: '#e8f7ff',
-              cursor: 'pointer',
+              fill: "#e8f7ff",
+              cursor: "pointer",
             },
-            name: 'main-shape',
+            name: "main-shape",
           });
         }
 
-        let nameColor = 'rgba(0, 0, 0, .65)';
+        let nameColor = "rgba(0, 0, 0, .65)";
         if (selected) {
-          nameColor = '#40A8FF';
+          nameColor = "#40A8FF";
         }
 
         // 名称
         if (rootNode) {
-          group.addShape('text', {
+          group.addShape("text", {
             attrs: {
               text: label,
               x: mainX + rootPadding,
               y: 1,
-              textAlign: 'left',
-              textBaseline: 'middle',
+              textAlign: "left",
+              textBaseline: "middle",
               fill: nameColor,
               fontSize: 12,
-              fontFamily: 'PingFangSC-Regular',
-              cursor: 'pointer',
+              fontFamily: "PingFangSC-Regular",
+              cursor: "pointer",
             },
-            name: 'root-text-shape',
+            name: "root-text-shape",
           });
         } else {
-          group.addShape('text', {
+          group.addShape("text", {
             attrs: {
               text: label,
               x: selected ? mainX + 6 + nameMarginLeft : mainX + 6,
               y: y - 5,
-              textAlign: 'start',
-              textBaseline: 'top',
+              textAlign: "start",
+              textBaseline: "top",
               fill: nameColor,
               fontSize: 12,
-              fontFamily: 'PingFangSC-Regular',
-              cursor: 'pointer',
+              fontFamily: "PingFangSC-Regular",
+              cursor: "pointer",
             },
-            name: 'not-root-text-shape',
+            name: "not-root-text-shape",
           });
         }
 
@@ -167,31 +172,31 @@ Page({
           const childCountX = width - childCountWidth;
           const childCountY = -childCountHeight / 2;
 
-          group.addShape('rect', {
+          group.addShape("rect", {
             attrs: {
               width: childCountWidth,
               height: 12,
-              stroke: collapsed ? '#1890ff' : '#5CDBD3',
-              fill: collapsed ? '#fff' : '#E6FFFB',
+              stroke: collapsed ? "#1890ff" : "#5CDBD3",
+              fill: collapsed ? "#fff" : "#E6FFFB",
               x: childCountX,
               y: childCountY,
               radius: 6,
-              cursor: 'pointer',
+              cursor: "pointer",
             },
-            name: 'child-count-rect-shape',
+            name: "child-count-rect-shape",
           });
-          group.addShape('text', {
+          group.addShape("text", {
             attrs: {
               text: `${children.length}`,
-              fill: 'rgba(0, 0, 0, .65)',
+              fill: "rgba(0, 0, 0, .65)",
               x: childCountX + childCountWidth / 2,
               y: childCountY + 12,
               fontSize: 10,
               width: childCountWidth,
-              textAlign: 'center',
-              cursor: 'pointer',
+              textAlign: "center",
+              cursor: "pointer",
             },
-            name: 'child-count-text-shape',
+            name: "child-count-text-shape",
           });
         }
 
@@ -199,15 +204,15 @@ Page({
       },
     });
 
-    F6.registerEdge('smooth', {
+    F6.registerEdge("smooth", {
       draw(cfg, group) {
         const { startPoint, endPoint } = cfg;
         const hgap = Math.abs(endPoint.x - startPoint.x);
 
         const path = [
-          ['M', startPoint.x, startPoint.y],
+          ["M", startPoint.x, startPoint.y],
           [
-            'C',
+            "C",
             startPoint.x + hgap / 4,
             startPoint.y,
             endPoint.x - hgap / 2,
@@ -217,12 +222,12 @@ Page({
           ],
         ];
 
-        const shape = group.addShape('path', {
+        const shape = group.addShape("path", {
           attrs: {
-            stroke: '#AAB7C4',
+            stroke: "#AAB7C4",
             path,
           },
-          name: 'smooth-path-shape',
+          name: "smooth-path-shape",
         });
         return shape;
       },
@@ -284,25 +289,25 @@ Page({
       modes: {
         default: [
           {
-            type: 'collapse-expand',
+            type: "collapse-expand",
           },
-          'drag-canvas',
-          'zoom-canvas',
+          "drag-canvas",
+          "zoom-canvas",
         ],
       },
       defaultNode: {
-        type: 'treeNode',
+        type: "treeNode",
         anchorPoints: [
           [0, 0.5],
           [1, 0.5],
         ],
       },
       defaultEdge: {
-        type: 'smooth',
+        type: "smooth",
       },
       layout: {
-        type: 'compactBox', // TODO：为什么这里找不到
-        direction: 'LR',
+        type: "compactBox", // TODO：为什么这里找不到
+        direction: "LR",
         getId: function getId(d) {
           return d.id;
         },
@@ -310,7 +315,10 @@ Page({
           return 16;
         },
         getWidth: function getWidth(d) {
-          const labelWidth = F6.Util.getTextSize(d.label, BaseConfig.nameFontSize)[0];
+          const labelWidth = F6.Util.getTextSize(
+            d.label,
+            BaseConfig.nameFontSize,
+          )[0];
           const width_ =
             BaseConfig.itemPadding +
             BaseConfig.nameMarginLeft +

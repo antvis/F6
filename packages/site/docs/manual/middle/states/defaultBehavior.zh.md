@@ -28,7 +28,7 @@ Behavior 是 F6 提供的定义图上交互事件的机制。它与[交互模式
 ```javascript
 const graph = new F6.Graph({
   modes: {
-    default: ['drag-combo'],
+    default: ["drag-combo"],
   },
 });
 ```
@@ -40,12 +40,12 @@ const graph = new F6.Graph({
   modes: {
     default: [
       {
-        type: 'drag-combo',
+        type: "drag-combo",
         enableDelegate: true,
-        activeState: 'actived',
+        activeState: "actived",
         shouldUpdate: (e) => {
           // 不允许 id 为 'combo1' 的 combo 被拖拽
-          if (e.item && e.item.getModel().id === 'combo1') return false;
+          if (e.item && e.item.getModel().id === "combo1") return false;
           return true;
         },
       },
@@ -53,7 +53,7 @@ const graph = new F6.Graph({
   },
   comboStateStyles: {
     actived: {
-      stroke: 'red',
+      stroke: "red",
       lineWidth: 3,
     },
   },
@@ -73,7 +73,7 @@ const graph = new F6.Graph({
 ```javascript
 const graph = new F6.Graph({
   modes: {
-    default: ['collapse-expand-combo'],
+    default: ["collapse-expand-combo"],
   },
 });
 ```
@@ -85,8 +85,8 @@ const graph = new F6.Graph({
   modes: {
     default: [
       {
-        type: 'collapse-expand-combo',
-        trigger: 'click',
+        type: "collapse-expand-combo",
+        trigger: "click",
         relayout: false, // 收缩展开后，不重新布局
       },
     ],
@@ -118,7 +118,7 @@ const graph = new F6.Graph({
 ```javascript
 const graph = new F6.Graph({
   modes: {
-    default: ['drag-canvas'],
+    default: ["drag-canvas"],
   },
 });
 ```
@@ -132,8 +132,8 @@ const graph = new F6.Graph({
   modes: {
     default: [
       {
-        type: 'drag-canvas',
-        direction: 'x',
+        type: "drag-canvas",
+        direction: "x",
       },
     ],
   },
@@ -185,7 +185,7 @@ const graph = new F6.Graph({
 ```javascript
 const graph = new F6.Graph({
   modes: {
-    default: ['drag-node'],
+    default: ["drag-node"],
   },
 });
 ```
@@ -199,11 +199,11 @@ const graph = new F6.Graph({
   modes: {
     default: [
       {
-        type: 'drag-node',
+        type: "drag-node",
         enableDelegate: true,
         shouldBegin: (e) => {
           // 不允许拖拽 id 为 'node1' 的节点
-          if (e.item && e.item.getModel().id === 'node1') return false;
+          if (e.item && e.item.getModel().id === "node1") return false;
         },
       },
     ],
@@ -232,12 +232,12 @@ const graph = new F6.Graph({
 ```javascript
 const graph = new F6.Graph({
   modes: {
-    default: ['click-select'],
+    default: ["click-select"],
   },
 });
 
 // 当 click-select 选中的元素集合发生变化时将会触发下面时机事件，e 中包含相关信息
-graph.on('nodeselectchange', (e) => {
+graph.on("nodeselectchange", (e) => {
   // 当前操作的 item
   console.log(e.target);
   // 当前操作后，所有被选中的 items 集合
@@ -256,19 +256,19 @@ const graph = new F6.Graph({
   modes: {
     default: [
       {
-        type: 'click-select',
+        type: "click-select",
         // 是否允许该 behavior 发生。若返回 false，被操作的 item 不会被选中，也不会触发 'nodeselectchange' 时机事件
         shouldBegin: (e) => {
           // 当点击的图形名为 'text-shape' 时，不允许该 behavior 发生
-          if (e.target.get('name') === 'text-shape') return false;
+          if (e.target.get("name") === "text-shape") return false;
           // 当点击的节点/边/ combo 的 id 为 'id1' 时，不允许该 behavior 发生
-          if (e.item.getModel().id === 'id1') return false;
+          if (e.item.getModel().id === "id1") return false;
           return true;
         },
         // 是否允许对该 behavior 发生状态响应。若返回 false，被操作的对象的状态及相关状态样式不会被更新，但是仍然会触发 'nodeselectchange' 时机事件
         shouldUpdate: (e) => {
           // 当点击的节点/边/ combo 的 id 为 'id2' 时，该 item 不会发生状态的改变
-          if (e.item.getModel().id === 'id2') return false;
+          if (e.item.getModel().id === "id2") return false;
           return true;
         },
       },
@@ -277,7 +277,7 @@ const graph = new F6.Graph({
 });
 
 // 当 click-select 选中的元素集合发生变化时将会触发下面时机事件，evt 中包含相关信息
-graph.on('nodeselectchange', (e) => {
+graph.on("nodeselectchange", (e) => {
   // 当前操作的 item
   console.log(e.target);
   // 当前操作后，所有被选中的 items 集合
@@ -351,11 +351,11 @@ const graph = new F6.Graph({
 ```javascript
 const graph = new F6.Graph({
   modes: {
-    default: ['activate-relations'],
+    default: ["activate-relations"],
   },
 });
 
-graph.on('afteractivaterelations', (e) => {
+graph.on("afteractivaterelations", (e) => {
   // 当前操作的节点 item
   console.log(e.item);
   // 当前操作是选中(`'activate'`)还是取消选中(`'deactivate'`)
@@ -372,14 +372,14 @@ const graph = new F6.Graph({
   modes: {
     default: [
       {
-        type: 'activate-relations',
+        type: "activate-relations",
         resetSelected: true,
       },
     ],
   },
 });
 
-graph.on('afteractivaterelations', (e) => {
+graph.on("afteractivaterelations", (e) => {
   // 当前操作的节点 item
   console.log(e.item);
   // 当前操作是选中(`'activate'`)还是取消选中(`'deactivate'`)
@@ -412,26 +412,26 @@ const graph = new F6.TreeGraph({
   modes: {
     default: [
       {
-        type: 'collapse-expand',
-        trigger: 'tap',
+        type: "collapse-expand",
+        trigger: "tap",
         onChange: (item, collapsed) => {
-          const data = item.get('model').data;
+          const data = item.get("model").data;
           data.collapsed = collapsed;
           return true;
         },
         shouldBegin: (e) => {
           // 若当前操作的节点 id 为 'node1'，则不发生 collapse-expand
-          if (e.item && e.item.getModel().id === 'node1') return false;
+          if (e.item && e.item.getModel().id === "node1") return false;
           return true;
         },
       },
-      'drag-canvas',
-      'zoom-canvas',
+      "drag-canvas",
+      "zoom-canvas",
     ],
   },
 });
 
-graph.on('itemcollapsed', (e) => {
+graph.on("itemcollapsed", (e) => {
   // 当前被操作的节点 item
   console.log(e.item);
   // 当前操作是收起（`true`）还是展开（`false`）
