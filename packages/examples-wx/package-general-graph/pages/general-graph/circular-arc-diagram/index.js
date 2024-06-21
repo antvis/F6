@@ -1,14 +1,14 @@
-import F6 from '@antv/f6-wx';
+import F6 from "@antv/f6-wx";
 
-import data from './data';
-import mds from '@antv/f6-wx/extends/layout/mdsLayout';
+import data from "./data";
+import mds from "@antv/f6-wx/extends/layout/mdsLayout";
 /**
  * 环形弧线图
  */
 Page({
   canvas: null,
   ctx: null,
-  renderer: '', // mini、mini-native等，F6需要，标记环境
+  renderer: "", // mini、mini-native等，F6需要，标记环境
   isCanvasInit: false, // canvas是否准备好了
   graph: null,
 
@@ -21,7 +21,7 @@ Page({
 
   onLoad() {
     // 注册布局
-    F6.registerLayout('mds', mds);
+    F6.registerLayout("mds", mds);
 
     // 同步获取window的宽高
     const { windowWidth, windowHeight, pixelRatio } = wx.getSystemInfoSync();
@@ -59,16 +59,16 @@ Page({
   updateChart() {
     const { width, height, pixelRatio } = this.data;
     const colors = [
-      'rgb(91, 143, 249)',
-      'rgb(90, 216, 166)',
-      'rgb(93, 112, 146)',
-      'rgb(246, 189, 22)',
-      'rgb(232, 104, 74)',
-      'rgb(109, 200, 236)',
-      'rgb(146, 112, 202)',
-      'rgb(255, 157, 77)',
-      'rgb(38, 154, 153)',
-      'rgb(227, 137, 163)',
+      "rgb(91, 143, 249)",
+      "rgb(90, 216, 166)",
+      "rgb(93, 112, 146)",
+      "rgb(246, 189, 22)",
+      "rgb(232, 104, 74)",
+      "rgb(109, 200, 236)",
+      "rgb(146, 112, 202)",
+      "rgb(255, 157, 77)",
+      "rgb(38, 154, 153)",
+      "rgb(227, 137, 163)",
     ];
 
     // 创建F6实例
@@ -83,7 +83,7 @@ Page({
       modes: {
         default: [
           {
-            type: 'edge-tooltip',
+            type: "edge-tooltip",
             formatText: function formatText(model) {
               const text = `source: ${model.sourceName}<br/> target: ${model.targetName}`;
               return text;
@@ -95,12 +95,12 @@ Page({
         style: {
           opacity: 0.8,
           lineWidth: 1,
-          stroke: '#999',
+          stroke: "#999",
         },
       },
       defaultEdge: {
         size: 1,
-        color: '#e2e2e2',
+        color: "#e2e2e2",
         style: {
           opacity: 0.6,
           lineAppendWidth: 3,
@@ -109,13 +109,13 @@ Page({
     });
 
     // 订阅
-    this.graph.on('edge:mouseenter', function (e) {
+    this.graph.on("edge:mouseenter", function (e) {
       const edge = e.item;
-      this.graph.setItemState(edge, 'hover', true);
+      this.graph.setItemState(edge, "hover", true);
     });
-    this.graph.on('edge:mouseleave', function (e) {
+    this.graph.on("edge:mouseleave", function (e) {
       const edge = e.item;
-      this.graph.setItemState(edge, 'hover', false);
+      this.graph.setItemState(edge, "hover", false);
     });
 
     // 处理数据
@@ -123,7 +123,9 @@ Page({
       const outLength = outRange[1] - outRange[0];
       const dataLength = dataRange[1] - dataRange[0];
       nodes.forEach((n) => {
-        n[propName] = ((n[refPropName] - dataRange[0]) * outLength) / dataLength + outRange[0];
+        n[propName] =
+          ((n[refPropName] - dataRange[0]) * outLength) / dataLength +
+          outRange[0];
       });
     }
 
@@ -158,16 +160,16 @@ Page({
       // label
       node.label = node.name;
       node.labelCfg = {
-        position: 'center',
+        position: "center",
         style: {
           rotate: angle,
-          rotateCenter: 'lefttop',
-          textAlign: 'start',
+          rotateCenter: "lefttop",
+          textAlign: "start",
         },
       };
     });
     edges.forEach((edge) => {
-      edge.type = 'quadratic';
+      edge.type = "quadratic";
       const source = nodeMap.get(edge.source);
       const target = nodeMap.get(edge.target);
       edge.controlPoints = [
@@ -190,7 +192,7 @@ Page({
     });
     const sizeRange = [3, 30];
     const sizeDataRange = [minValue, maxValue];
-    scaleNodeProp(nodes, 'size', 'value', sizeDataRange, sizeRange);
+    scaleNodeProp(nodes, "size", "value", sizeDataRange, sizeRange);
 
     this.graph.data(data);
     this.graph.render();

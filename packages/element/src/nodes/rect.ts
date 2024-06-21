@@ -1,5 +1,5 @@
-import { mix } from '@antv/util';
-import { IGroup, IShape } from '@antv/g-base';
+import { mix } from "@antv/util";
+import { IGroup, IShape } from "@antv/g-base";
 import {
   registerNode,
   Item,
@@ -7,10 +7,10 @@ import {
   ShapeStyle,
   ShapeOptions,
   BaseGlobal as Global,
-} from '@antv/f6-core';
+} from "@antv/f6-core";
 
 registerNode(
-  'rect',
+  "rect",
   {
     // 自定义节点时的配置
     options: {
@@ -45,7 +45,7 @@ registerNode(
         // 是否显示icon，值为 false 则不渲染icon
         show: false,
         // icon的地址，字符串类型
-        img: 'https://gw.alipayobjects.com/zos/bmw-prod/5d015065-8505-4e7a-baec-976f81e3c41d.svg',
+        img: "https://gw.alipayobjects.com/zos/bmw-prod/5d015065-8505-4e7a-baec-976f81e3c41d.svg",
         width: 20,
         height: 20,
       },
@@ -59,12 +59,12 @@ registerNode(
         ...Global.nodeStateStyles,
       },
     },
-    shapeType: 'rect',
-    labelPosition: 'center',
+    shapeType: "rect",
+    labelPosition: "center",
     drawShape(cfg: NodeConfig, group: IGroup): IShape {
       const style = this.getShapeStyle!(cfg);
 
-      const keyShape = group.addShape('rect', {
+      const keyShape = group.addShape("rect", {
         attrs: style,
         className: `${this.type}-keyShape`,
         name: `${this.type}-keyShape`,
@@ -82,67 +82,75 @@ registerNode(
     drawLinkPoints(cfg: NodeConfig, group: IGroup) {
       const { linkPoints = {} } = this.getOptions(cfg) as NodeConfig;
 
-      const { top, left, right, bottom, size: markSize, r: markR, ...markStyle } = linkPoints;
+      const {
+        top,
+        left,
+        right,
+        bottom,
+        size: markSize,
+        r: markR,
+        ...markStyle
+      } = linkPoints;
       const size = (this as ShapeOptions).getSize!(cfg);
       const width = size[0];
       const height = size[1];
 
       if (left) {
         // left circle
-        group.addShape('circle', {
+        group.addShape("circle", {
           attrs: {
             ...markStyle,
             x: -width / 2,
             y: 0,
             r: markSize / 2 || markR || 5,
           },
-          className: 'link-point-left',
-          name: 'link-point-left',
+          className: "link-point-left",
+          name: "link-point-left",
           isAnchorPoint: true,
         });
       }
 
       if (right) {
         // right circle
-        group.addShape('circle', {
+        group.addShape("circle", {
           attrs: {
             ...markStyle,
             x: width / 2,
             y: 0,
             r: markSize / 2 || markR || 5,
           },
-          className: 'link-point-right',
-          name: 'link-point-right',
+          className: "link-point-right",
+          name: "link-point-right",
           isAnchorPoint: true,
         });
       }
 
       if (top) {
         // top circle
-        group.addShape('circle', {
+        group.addShape("circle", {
           attrs: {
             ...markStyle,
             x: 0,
             y: -height / 2,
             r: markSize / 2 || markR || 5,
           },
-          className: 'link-point-top',
-          name: 'link-point-top',
+          className: "link-point-top",
+          name: "link-point-top",
           isAnchorPoint: true,
         });
       }
 
       if (bottom) {
         // bottom circle
-        group.addShape('circle', {
+        group.addShape("circle", {
           attrs: {
             ...markStyle,
             x: 0,
             y: height / 2,
             r: markSize / 2 || markR || 5,
           },
-          className: 'link-point-bottom',
-          name: 'link-point-bottom',
+          className: "link-point-bottom",
+          name: "link-point-bottom",
           isAnchorPoint: true,
         });
       }
@@ -176,10 +184,10 @@ registerNode(
       // 这里不传 cfg 参数是因为 cfg.style 需要最后覆盖样式
       const { style: defaultStyle } = this.getOptions({}) as NodeConfig;
       const size = (this as ShapeOptions).getSize!(cfg);
-      const keyShape = item.get('keyShape');
+      const keyShape = item.get("keyShape");
       if (!cfg.size) {
-        size[0] = keyShape.attr('width') || defaultStyle.width;
-        size[1] = keyShape.attr('height') || defaultStyle.height;
+        size[0] = keyShape.attr("width") || defaultStyle.width;
+        size[1] = keyShape.attr("height") || defaultStyle.height;
       }
       // 下面这些属性需要覆盖默认样式与目前样式，但若在 cfg 中有指定则应该被 cfg 的相应配置覆盖。
       const strokeStyle = {
@@ -197,5 +205,5 @@ registerNode(
       (this as any).updateLinkPoints(cfg, group);
     },
   },
-  'single-node',
+  "single-node",
 );

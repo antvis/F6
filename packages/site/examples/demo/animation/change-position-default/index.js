@@ -8,13 +8,13 @@ const graph = new F6.Graph({
   height,
   pixelRatio,
   fitView: true,
-  animate: true
+  animate: true,
 });
 graph.data(data);
 graph.render();
 graph.fitView();
 setInterval(() => {
-  data.nodes.forEach(node => {
+  data.nodes.forEach((node) => {
     node.x += Math.random() * 50 - 25;
     node.y += Math.random() * 50 - 25;
   });

@@ -12,14 +12,17 @@ const graph = new F6.TreeGraph({
   pixelRatio,
   fitView: true,
   modes: {
-    default: ["drag-canvas"]
+    default: ["drag-canvas"],
   },
   defaultNode: {
     size: 26,
-    anchorPoints: [[0, 0.5], [1, 0.5]]
+    anchorPoints: [
+      [0, 0.5],
+      [1, 0.5],
+    ],
   },
   defaultEdge: {
-    type: "cubic-horizontal"
+    type: "cubic-horizontal",
   },
   layout: {
     type: "indented",
@@ -31,11 +34,11 @@ const graph = new F6.TreeGraph({
     getWidth: () => {
       return 10;
     },
-    getSide: d => {
+    getSide: (d) => {
       if (d.id === "Regression" || d.id === "Classification") return "left";
       return "right";
-    }
-  }
+    },
+  },
 });
 let centerX = 0;
 graph.node(function (node) {
@@ -47,14 +50,15 @@ graph.node(function (node) {
 
   if (node.children && node.children.length > 0) {
     pos = "left";
-  } else if (node.x > centerX) pos = "right";else pos = "left";
+  } else if (node.x > centerX) pos = "right";
+  else pos = "left";
 
   return {
     label: node.id,
     labelCfg: {
       position: pos,
-      offset: 5
-    }
+      offset: 5,
+    },
   };
 });
 graph.data(data);

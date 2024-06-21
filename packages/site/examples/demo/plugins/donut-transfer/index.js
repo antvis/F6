@@ -19,8 +19,8 @@ const legend = new Legend({
   margin: 0,
   containerStyle: {
     fill: "#ccc",
-    lineWidth: 1
-  }
+    lineWidth: 1,
+  },
 });
 const graph = new F6.Graph({
   width,
@@ -30,47 +30,45 @@ const graph = new F6.Graph({
   fitCenter: false,
   plugins: [legend],
   modes: {
-    default: ["drag-canvas", "drag-node"]
+    default: ["drag-canvas", "drag-node"],
   },
   layout: {
     type: "radial",
     focusNode: "li",
     linkDistance: 200,
-    unitRadius: 200
+    unitRadius: 200,
   },
   defaultEdge: {
     style: {
-      endArrow: true
+      endArrow: true,
     },
     labelCfg: {
       autoRotate: true,
       style: {
         stroke: "#fff",
-        lineWidth: 5
-      }
-    }
+        lineWidth: 5,
+      },
+    },
   },
   defaultNode: {
     type: "donut",
     style: {
-      lineWidth: 0
+      lineWidth: 0,
     },
     labelCfg: {
-      position: "bottom"
-    }
-  }
+      position: "bottom",
+    },
+  },
 });
 graph.data(data);
 graph.render();
 graph.get("canvas").set("localRefresh", false);
-graph.on("node:tap", evt => {
-  const {
-    item
-  } = evt;
+graph.on("node:tap", (evt) => {
+  const { item } = evt;
   graph.setItemState(item, "selected", true);
 });
 graph.on("canvas:tap", () => {
-  graph.getNodes().forEach(node => {
+  graph.getNodes().forEach((node) => {
     graph.clearItemStates(node);
   });
 });

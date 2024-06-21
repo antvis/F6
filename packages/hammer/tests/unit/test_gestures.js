@@ -8,24 +8,24 @@ var el;
 var hammer;
 var events;
 var allGestureEvents = [
-  'tap doubletap press',
-  'pinch pinchin pinchout pinchstart pinchmove pinchend pinchcancel',
-  'rotate rotatestart rotatemove rotateend rotatecancel',
-  'pan panstart panmove panup pandown panleft panright panend pancancel',
-  'swipe swipeleft swiperight swipeup swipedown',
-].join(' ');
+  "tap doubletap press",
+  "pinch pinchin pinchout pinchstart pinchmove pinchend pinchcancel",
+  "rotate rotatestart rotatemove rotateend rotatecancel",
+  "pan panstart panmove panup pandown panleft panright panend pancancel",
+  "swipe swipeleft swiperight swipeup swipedown",
+].join(" ");
 
-QUnit.module('Gesture recognition', {
+QUnit.module("Gesture recognition", {
   beforeEach: function () {
     el = utils.createHitArea();
     hammer = new Hammer(el);
-    hammer.get('pinch').set({
+    hammer.get("pinch").set({
       // Some threshold, since the simulator doesnt stays at scale:1 when rotating
       enable: true,
       threshold: 0.1,
     });
 
-    hammer.get('rotate').set({ enable: true });
+    hammer.get("rotate").set({ enable: true });
 
     hammer.on(allGestureEvents, function (ev) {
       events[ev.type] = true;
@@ -38,7 +38,7 @@ QUnit.module('Gesture recognition', {
   },
 });
 
-QUnit.test('recognize pan', function (assert) {
+QUnit.test("recognize pan", function (assert) {
   var done = assert.async();
   assert.expect(1);
 
@@ -55,14 +55,14 @@ QUnit.test('recognize pan', function (assert) {
           panright: true,
           panend: true,
         },
-        'Pan events recognized',
+        "Pan events recognized",
       );
       done();
     },
   );
 });
 
-QUnit.test('recognize press', function (assert) {
+QUnit.test("recognize press", function (assert) {
   var done = assert.async();
   assert.expect(1);
 
@@ -75,11 +75,11 @@ QUnit.test('recognize press', function (assert) {
       });
       done();
     },
-    'only press was recognized',
+    "only press was recognized",
   );
 });
 
-QUnit.test('recognize swipe', function (assert) {
+QUnit.test("recognize swipe", function (assert) {
   var done = assert.async();
   assert.expect(1);
 
@@ -98,14 +98,14 @@ QUnit.test('recognize swipe', function (assert) {
           swipe: true,
           swiperight: true,
         },
-        'pan and swipe events were recognized',
+        "pan and swipe events were recognized",
       );
       done();
     },
   );
 });
 
-QUnit.test('recognize pinch', function (assert) {
+QUnit.test("recognize pinch", function (assert) {
   var done = assert.async();
   assert.expect(1);
 
@@ -119,13 +119,13 @@ QUnit.test('recognize pinch', function (assert) {
         pinchend: true,
         pinchin: true,
       },
-      'pinch events were recognized',
+      "pinch events were recognized",
     );
     done();
   });
 });
 
-QUnit.test('recognize children multitouch pinch', function (assert) {
+QUnit.test("recognize children multitouch pinch", function (assert) {
   var done = assert.async();
   assert.expect(1);
 
@@ -145,14 +145,14 @@ QUnit.test('recognize children multitouch pinch', function (assert) {
           pinchend: true,
           pinchin: true,
         },
-        'pinch events on child were recognized',
+        "pinch events on child were recognized",
       );
       done();
     },
   );
 });
 
-QUnit.test('recognize parent-child multitouch pinch', function (assert) {
+QUnit.test("recognize parent-child multitouch pinch", function (assert) {
   var done = assert.async();
   assert.expect(1);
 
@@ -171,14 +171,14 @@ QUnit.test('recognize parent-child multitouch pinch', function (assert) {
           pinchend: true,
           pinchin: true,
         },
-        'Pinch events on parent were recognized',
+        "Pinch events on parent were recognized",
       );
       done();
     },
   );
 });
 
-QUnit.test('recognize rotate', function (assert) {
+QUnit.test("recognize rotate", function (assert) {
   var done = assert.async();
   assert.expect(1);
 
@@ -191,13 +191,13 @@ QUnit.test('recognize rotate', function (assert) {
         rotatemove: true,
         rotateend: true,
       },
-      'Rotate events recognized',
+      "Rotate events recognized",
     );
     done();
   });
 });
 
-QUnit.test('recognize multitouch rotate', function (assert) {
+QUnit.test("recognize multitouch rotate", function (assert) {
   var done = assert.async();
   assert.expect(1);
 
@@ -215,14 +215,14 @@ QUnit.test('recognize multitouch rotate', function (assert) {
           rotatemove: true,
           rotateend: true,
         },
-        'Rotate events were recognized',
+        "Rotate events were recognized",
       );
       done();
     },
   );
 });
 
-QUnit.test('recognize rotate and pinch simultaneous', function (assert) {
+QUnit.test("recognize rotate and pinch simultaneous", function (assert) {
   var done = assert.async();
   assert.expect(1);
 
@@ -240,7 +240,7 @@ QUnit.test('recognize rotate and pinch simultaneous', function (assert) {
         pinchend: true,
         pinchout: true,
       },
-      'Rotate and pinch were recognized together',
+      "Rotate and pinch were recognized together",
     );
     done();
   });
@@ -256,26 +256,31 @@ QUnit.test(
       el,
       { duration: 250, deltaX: 0, deltaZ: 200 },
       function () {
-        assert.deepEqual(events, {}, 'No events were recognized');
+        assert.deepEqual(events, {}, "No events were recognized");
         done();
       },
     );
   },
 );
 
-QUnit.test("don't recognize press if duration is too short.", function (
-  assert,
-) {
-  var done = assert.async();
-  assert.expect(1);
+QUnit.test(
+  "don't recognize press if duration is too short.",
+  function (assert) {
+    var done = assert.async();
+    assert.expect(1);
 
-  Simulator.gestures.press(el, { duration: 240 });
+    Simulator.gestures.press(el, { duration: 240 });
 
-  setTimeout(function () {
-    assert.deepEqual(events, { tap: true }, 'Tap gesture has been recognized.');
-    done();
-  }, 275);
-});
+    setTimeout(function () {
+      assert.deepEqual(
+        events,
+        { tap: true },
+        "Tap gesture has been recognized.",
+      );
+      done();
+    }, 275);
+  },
+);
 
 QUnit.test("don't recognize tap if duration is too long.", function (assert) {
   var done = assert.async();
@@ -287,7 +292,7 @@ QUnit.test("don't recognize tap if duration is too long.", function (assert) {
     assert.deepEqual(
       events,
       { press: true },
-      'Press gesture has been recognized.',
+      "Press gesture has been recognized.",
     );
     done();
   }, 275);

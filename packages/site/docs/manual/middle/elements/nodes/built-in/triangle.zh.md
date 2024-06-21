@@ -54,20 +54,20 @@ const data = {
 
 triangle 节点支持 [节点通用配置](/zh/docs/manual/middle/elements/nodes/defaultNode#节点的通用属性)，下表对部分属性进行解释：
 
-| 名称 | 含义 | 类型 | 备注 |
-| --- | --- | --- | --- | --- |
-| size | 三角形的边长 | Number | Array | size 为数组时取第一个值 |
-| **direction** | **三角形的方向** | **String** | **可取值：`'up'`，`'down'`，`'left'`，`'right'`。默认为 `'up'`** |
-| style | 三角形默认样式 | Object | Canvas 支持的属性 |
-| label | 标签文本内容 | String |  |
-| labelCfg | 标签文本配置项 | Object |  |
-| stateStyles | 各状态下的样式 | Object | 详见[配置状态样式](/zh/docs/manual/middle/states/state#配置-state-样式) |
-| linkPoints | **视觉上的**三个锚点 | Object | 默认不显示，应与 [anchorPoints](/zh/docs/manual/middle/elements/nodes/anchorpoint) 配合使用。二者区别请看 [linkPoints](#linkpoints) |
-| icon | 三角形上 icon 配置 | Object | 默认不显示 icon |
+| 名称          | 含义                 | 类型       | 备注                                                                                                                                |
+| ------------- | -------------------- | ---------- | ----------------------------------------------------------------------------------------------------------------------------------- | ----------------------- |
+| size          | 三角形的边长         | Number     | Array                                                                                                                               | size 为数组时取第一个值 |
+| **direction** | **三角形的方向**     | **String** | **可取值：`'up'`，`'down'`，`'left'`，`'right'`。默认为 `'up'`**                                                                    |
+| style         | 三角形默认样式       | Object     | Canvas 支持的属性                                                                                                                   |
+| label         | 标签文本内容         | String     |                                                                                                                                     |
+| labelCfg      | 标签文本配置项       | Object     |                                                                                                                                     |
+| stateStyles   | 各状态下的样式       | Object     | 详见[配置状态样式](/zh/docs/manual/middle/states/state#配置-state-样式)                                                             |
+| linkPoints    | **视觉上的**三个锚点 | Object     | 默认不显示，应与 [anchorPoints](/zh/docs/manual/middle/elements/nodes/anchorpoint) 配合使用。二者区别请看 [linkPoints](#linkpoints) |
+| icon          | 三角形上 icon 配置   | Object     | 默认不显示 icon                                                                                                                     |
 
 ### 三角形方向 direction
 
-String 类型。可取值有：` '``up' `、`'down'`、`'left'`、`'right'`。默认为  ` '``up' `。通过设置 `direction`，可以修改三角形的方向。下面代码演示在实例化图时全局配置方法中配置 `direction`。
+String 类型。可取值有：`'``up'`、`'down'`、`'left'`、`'right'`。默认为  `'``up'`。通过设置 `direction`，可以修改三角形的方向。下面代码演示在实例化图时全局配置方法中配置 `direction`。
 
 ```javascript
 const graph = new F6.Graph({
@@ -135,9 +135,9 @@ const graph = new F6.Graph({
   defaultNode: {
     // ... 节点其他属性
     labelCfg: {
-      position: 'center',
+      position: "center",
       style: {
-        fill: '#9254de',
+        fill: "#9254de",
         fontSize: 18,
       },
     },
@@ -175,7 +175,7 @@ const graph = new F6.Graph({
       bottom: true,
       left: true,
       right: true,
-      fill: '#fff',
+      fill: "#fff",
       size: 5,
     },
   },
@@ -187,14 +187,14 @@ const graph = new F6.Graph({
 
 Object 类型。通过配置 `icon`，可以在圆上显示小图标。
 
-| 名称       | 含义              | 类型       | 备注                                          |
-| ---------- | ----------------- | ---------- | --------------------------------------------- |
-| show       | 是否显示 icon     | Boolean    | 默认为 false，不显示                          |
-| width      | icon 的宽度       | Number     | 默认为 16                                     |
-| height     | icon 的高度       | Number     | 默认为 16                                     |
-| img        | icon 的地址或 base64   | String     | 若配置则表示使用 iconfont 作为 icon                  |
-| text    | icon 的 iconfont | String | 若配置则表示使用 iconfont 作为 icon |
-| **offset** | **icon 的偏移量** | **Number** | **默认为 0，triangle 节点的 icon 特有的配置** |
+| 名称       | 含义                 | 类型       | 备注                                          |
+| ---------- | -------------------- | ---------- | --------------------------------------------- |
+| show       | 是否显示 icon        | Boolean    | 默认为 false，不显示                          |
+| width      | icon 的宽度          | Number     | 默认为 16                                     |
+| height     | icon 的高度          | Number     | 默认为 16                                     |
+| img        | icon 的地址或 base64 | String     | 若配置则表示使用 iconfont 作为 icon           |
+| text       | icon 的 iconfont     | String     | 若配置则表示使用 iconfont 作为 icon           |
+| **offset** | **icon 的偏移量**    | **Number** | **默认为 0，triangle 节点的 icon 特有的配置** |
 
 基于上面 [样式属性 style](#样式属性-style) 中的代码，下面代码在 `defaultNode` 中增加了 `icon`  配置项进行图标的配置，使之达到如下图效果。<br /><img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*2w62R5ZYtVAAAAAAAAAAAABkARQnAQ' width=100 alt='img'/>
 

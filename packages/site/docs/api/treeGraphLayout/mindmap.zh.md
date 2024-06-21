@@ -26,7 +26,7 @@ order: 4
 ```javascript
 (d) => {
   // d 是一个节点
-  if (d.id === 'testId') return 50;
+  if (d.id === "testId") return 50;
   return 100;
 };
 ```
@@ -40,7 +40,7 @@ order: 4
 ```javascript
 (d) => {
   // d 是一个节点
-  if (d.id === 'testId') return 50;
+  if (d.id === "testId") return 50;
   return 100;
 };
 ```
@@ -54,7 +54,7 @@ order: 4
 ```javascript
 (d) => {
   // d 是一个节点
-  if (d.id === 'testId') return 50;
+  if (d.id === "testId") return 50;
   return 100;
 };
 ```
@@ -68,7 +68,7 @@ order: 4
 ```javascript
 (d) => {
   // d 是一个节点
-  if (d.id === 'testId') return 50;
+  if (d.id === "testId") return 50;
   return 100;
 };
 ```
@@ -82,8 +82,8 @@ order: 4
 ```javascript
 (d) => {
   // d 是一个节点
-  if (d.id === 'test-child-id') return 'right';
-  return 'left';
+  if (d.id === "test-child-id") return "right";
+  return "left";
 };
 ```
 

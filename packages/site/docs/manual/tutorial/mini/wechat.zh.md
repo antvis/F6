@@ -79,8 +79,8 @@ found 0 vulnerabilities
 `pages/index/index.js`
 
 ```javascript
-import F6 from '@antv/f6-wx';
-import force from '@antv/f6-wx/extends/layout/forceLayout';
+import F6 from "@antv/f6-wx";
+import force from "@antv/f6-wx/extends/layout/forceLayout";
 
 /**
  * 基本力导向布局及节点拖拽
@@ -89,7 +89,7 @@ import force from '@antv/f6-wx/extends/layout/forceLayout';
 Page({
   canvas: null,
   ctx: null,
-  renderer: '', // mini、mini-native等，F6需要，标记环境
+  renderer: "", // mini、mini-native等，F6需要，标记环境
   graph: null,
 
   data: {
@@ -100,7 +100,7 @@ Page({
   },
 
   onLoad() {
-    F6.registerLayout('force', force);
+    F6.registerLayout("force", force);
     // 同步获取window的宽高
     const { windowWidth, windowHeight, pixelRatio } = wx.getSystemInfoSync();
 
@@ -138,41 +138,41 @@ Page({
     const { canvasWidth, canvasHeight, pixelRatio } = this.data;
     const data = {
       nodes: [
-        { id: 'node0', size: 50 },
-        { id: 'node1', size: 30 },
-        { id: 'node2', size: 30 },
-        { id: 'node3', size: 30 },
-        { id: 'node4', size: 30, isLeaf: true },
-        { id: 'node5', size: 30, isLeaf: true },
-        { id: 'node6', size: 15, isLeaf: true },
-        { id: 'node7', size: 15, isLeaf: true },
-        { id: 'node8', size: 15, isLeaf: true },
-        { id: 'node9', size: 15, isLeaf: true },
-        { id: 'node10', size: 15, isLeaf: true },
-        { id: 'node11', size: 15, isLeaf: true },
-        { id: 'node12', size: 15, isLeaf: true },
-        { id: 'node13', size: 15, isLeaf: true },
-        { id: 'node14', size: 15, isLeaf: true },
-        { id: 'node15', size: 15, isLeaf: true },
-        { id: 'node16', size: 15, isLeaf: true },
+        { id: "node0", size: 50 },
+        { id: "node1", size: 30 },
+        { id: "node2", size: 30 },
+        { id: "node3", size: 30 },
+        { id: "node4", size: 30, isLeaf: true },
+        { id: "node5", size: 30, isLeaf: true },
+        { id: "node6", size: 15, isLeaf: true },
+        { id: "node7", size: 15, isLeaf: true },
+        { id: "node8", size: 15, isLeaf: true },
+        { id: "node9", size: 15, isLeaf: true },
+        { id: "node10", size: 15, isLeaf: true },
+        { id: "node11", size: 15, isLeaf: true },
+        { id: "node12", size: 15, isLeaf: true },
+        { id: "node13", size: 15, isLeaf: true },
+        { id: "node14", size: 15, isLeaf: true },
+        { id: "node15", size: 15, isLeaf: true },
+        { id: "node16", size: 15, isLeaf: true },
       ],
       edges: [
-        { source: 'node0', target: 'node1', id: 'edge0' },
-        { source: 'node0', target: 'node2', id: 'edge1' },
-        { source: 'node0', target: 'node3', id: 'edge2' },
-        { source: 'node0', target: 'node4', id: 'edge3' },
-        { source: 'node0', target: 'node5', id: 'edge4' },
-        { source: 'node1', target: 'node6', id: 'edge5' },
-        { source: 'node1', target: 'node7', id: 'edge6' },
-        { source: 'node2', target: 'node8', id: 'edge7' },
-        { source: 'node2', target: 'node9', id: 'edge8' },
-        { source: 'node2', target: 'node10', id: 'edge9' },
-        { source: 'node2', target: 'node11', id: 'edge10' },
-        { source: 'node2', target: 'node12', id: 'edge11' },
-        { source: 'node2', target: 'node13', id: 'edge12' },
-        { source: 'node3', target: 'node14', id: 'edge13' },
-        { source: 'node3', target: 'node15', id: 'edge14' },
-        { source: 'node3', target: 'node16', id: 'edge15' },
+        { source: "node0", target: "node1", id: "edge0" },
+        { source: "node0", target: "node2", id: "edge1" },
+        { source: "node0", target: "node3", id: "edge2" },
+        { source: "node0", target: "node4", id: "edge3" },
+        { source: "node0", target: "node5", id: "edge4" },
+        { source: "node1", target: "node6", id: "edge5" },
+        { source: "node1", target: "node7", id: "edge6" },
+        { source: "node2", target: "node8", id: "edge7" },
+        { source: "node2", target: "node9", id: "edge8" },
+        { source: "node2", target: "node10", id: "edge9" },
+        { source: "node2", target: "node11", id: "edge10" },
+        { source: "node2", target: "node12", id: "edge11" },
+        { source: "node2", target: "node13", id: "edge12" },
+        { source: "node3", target: "node14", id: "edge13" },
+        { source: "node3", target: "node15", id: "edge14" },
+        { source: "node3", target: "node16", id: "edge15" },
       ],
     };
 
@@ -185,10 +185,10 @@ Page({
       height: canvasHeight,
       pixelRatio,
       modes: {
-        default: ['drag-canvas', 'drag-node', 'zoom-canvas'],
+        default: ["drag-canvas", "drag-node", "zoom-canvas"],
       },
       layout: {
-        type: 'force',
+        type: "force",
       },
       defaultNode: {
         size: 15,

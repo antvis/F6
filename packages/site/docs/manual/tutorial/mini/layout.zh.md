@@ -57,7 +57,7 @@ const graph = new F6.Graph({
   // ...                      // 其他配置项
   layout: {
     // Object，可选，布局的方法及其配置项，默认为 random 布局。
-    type: 'force', // 指定为力导向布局
+    type: "force", // 指定为力导向布局
     preventOverlap: true, // 防止节点重叠
     // nodeSize: 30        // 节点大小，用于算法中防止节点重叠时的碰撞检测。由于已经在上一节的元素配置中设置了每个节点的 size 属性，则不需要在此设置 nodeSize。
   },
@@ -74,7 +74,7 @@ const graph = new F6.Graph({
 const graph = new F6.Graph({
   // ...
   layout: {
-    type: 'force',
+    type: "force",
     preventOverlap: true,
     linkDistance: 100, // 指定边距离为100
   },

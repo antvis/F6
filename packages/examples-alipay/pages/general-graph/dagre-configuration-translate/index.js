@@ -1,7 +1,7 @@
-import F6 from '@antv/f6';
-import { wrapContext } from '../../../common/utils/context';
-import data from './data';
-import dagreLayout from '@antv/f6/dist/extends/layout/dagreLayout';
+import F6 from "@antv/f6";
+import { wrapContext } from "../../../common/utils/context";
+import data from "./data";
+import dagreLayout from "@antv/f6/dist/extends/layout/dagreLayout";
 
 /**
  * Dagre布局参数动态变化
@@ -10,7 +10,7 @@ import dagreLayout from '@antv/f6/dist/extends/layout/dagreLayout';
 Page({
   canvas: null,
   ctx: null,
-  renderer: '', // mini、mini-native等，F6需要，标记环境
+  renderer: "", // mini、mini-native等，F6需要，标记环境
   isCanvasInit: false, // canvas是否准备好了
   graph: null,
 
@@ -19,11 +19,11 @@ Page({
     height: 600,
     pixelRatio: 2,
     forceMini: false,
-    description: '',
+    description: "",
   },
 
   onLoad() {
-    F6.registerLayout('dagre', dagreLayout);
+    F6.registerLayout("dagre", dagreLayout);
 
     // 同步获取window的宽高
     const { windowWidth, windowHeight, pixelRatio } = my.getSystemInfoSync();
@@ -71,10 +71,10 @@ Page({
       fitView: true,
       fitViewPadding: 30,
       modes: {
-        default: ['drag-canvas', 'drag-node'],
+        default: ["drag-canvas", "drag-node"],
       },
       layout: {
-        type: 'dagre',
+        type: "dagre",
         nodeSize: [40, 20],
         nodesep: 1,
         ranksep: 1,
@@ -82,20 +82,20 @@ Page({
       animate: true,
       defaultNode: {
         size: [40, 20],
-        type: 'rect',
+        type: "rect",
         style: {
           lineWidth: 2,
-          stroke: '#5B8FF9',
-          fill: '#C6E5FF',
+          stroke: "#5B8FF9",
+          fill: "#C6E5FF",
         },
       },
       defaultEdge: {
         size: 1,
-        color: '#e2e2e2',
+        color: "#e2e2e2",
         style: {
           endArrow: {
-            path: 'M 0,0 L 8,4 L 8,-4 Z',
-            fill: '#e2e2e2',
+            path: "M 0,0 L 8,4 L 8,-4 Z",
+            fill: "#e2e2e2",
           },
         },
       },
@@ -109,61 +109,61 @@ Page({
     layoutConfigTranslation();
 
     function layoutConfigTranslation() {
-      setTimeout(function() {
+      setTimeout(function () {
         me.setData({
           description:
-            'Dagre layout, rank seperation: 10, node seperation in same level: 1, layout direction: Top->Bottom, alignment of nodes: DL',
+            "Dagre layout, rank seperation: 10, node seperation in same level: 1, layout direction: Top->Bottom, alignment of nodes: DL",
         });
         me.graph.updateLayout({
           ranksep: 10,
         });
       }, 1000);
 
-      setTimeout(function() {
+      setTimeout(function () {
         me.setData({
           description:
-            'Dagre layout, rank seperation: 10, node seperation in same level: 5, layout direction: Left->Right, alignment of nodes: DL',
+            "Dagre layout, rank seperation: 10, node seperation in same level: 5, layout direction: Left->Right, alignment of nodes: DL",
         });
         me.graph.updateLayout({
           nodesep: 5,
         });
       }, 2500);
 
-      setTimeout(function() {
+      setTimeout(function () {
         me.setData({
           description:
-            'Dagre layout, rank seperation: 10, node seperation in same level: 5, layout direction: Left->Right, alignment of nodes: UL',
+            "Dagre layout, rank seperation: 10, node seperation in same level: 5, layout direction: Left->Right, alignment of nodes: UL",
         });
         me.graph.updateLayout({
-          align: 'UL',
+          align: "UL",
         });
       }, 4000);
 
-      setTimeout(function() {
+      setTimeout(function () {
         me.setData({
           description:
-            'Dagre layout, rank seperation: 10, node seperation in same level: 5, layout direction: Left->Right, alignment of nodes: UR',
+            "Dagre layout, rank seperation: 10, node seperation in same level: 5, layout direction: Left->Right, alignment of nodes: UR",
         });
         me.graph.updateLayout({
-          align: 'UR',
+          align: "UR",
         });
       }, 5500);
 
-      setTimeout(function() {
+      setTimeout(function () {
         me.setData({
           description:
-            'Dagre layout, rank seperation: 10, node seperation in same level: 5, layout direction: Left->Right, alignment of nodes: Down Right, alignment of nodes: DL',
+            "Dagre layout, rank seperation: 10, node seperation in same level: 5, layout direction: Left->Right, alignment of nodes: Down Right, alignment of nodes: DL",
         });
         me.graph.updateLayout({
-          rankdir: 'LR',
-          align: 'DL',
+          rankdir: "LR",
+          align: "DL",
         });
       }, 7000);
 
-      setTimeout(function() {
+      setTimeout(function () {
         me.setData({
           description:
-            'Dagre layout, rank seperation: 30, node seperation in same level: 5, layout direction: Left->Right, alignment of nodes: Down Right, alignment of nodes: DL',
+            "Dagre layout, rank seperation: 30, node seperation in same level: 5, layout direction: Left->Right, alignment of nodes: Down Right, alignment of nodes: DL",
         });
         me.graph.updateLayout({
           ranksep: 30,

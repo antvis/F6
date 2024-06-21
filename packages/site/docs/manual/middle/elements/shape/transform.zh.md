@@ -14,18 +14,18 @@ F6 3.2 及以下版本中，实现变换可通过以下方式。
 例如画布上有以下的一个矩形实例。
 
 ```javascript
-const rect = group.addShape('rect', {
+const rect = group.addShape("rect", {
   attrs: {
     width: 100,
     height: 100,
     x: 100,
     y: 100,
-    fill: '#9EC9FF',
-    stroke: '#5B8FF9',
+    fill: "#9EC9FF",
+    stroke: "#5B8FF9",
     lineWidth: 3,
   },
   // must be assigned in F6 3.3 and later versions. it can be any value you want
-  name: 'rect-shape',
+  name: "rect-shape",
 });
 ```
 
@@ -35,9 +35,9 @@ const rect = group.addShape('rect', {
 
 ```javascript
 rect.transform([
-  ['t', 10, 10], // x 方向平移 10, y 方向平移 10
-  ['s', 1.2], // 缩放 1.2 倍
-  ['r', Math.PI / 4], // 旋转 45 度
+  ["t", 10, 10], // x 方向平移 10, y 方向平移 10
+  ["s", 1.2], // 缩放 1.2 倍
+  ["r", Math.PI / 4], // 旋转 45 度
 ]);
 ```
 
@@ -86,12 +86,12 @@ rect.transform([
 为了方面使用，我们提供了矩阵变换的工具方法：
 
 ```javascript
-import { transform } from '@antv/matrix-util';
+import { transform } from "@antv/matrix-util";
 // 3*3 矩阵变换，用于二维渲染
 transform(m, [
-  ['t', 100, 50], // translate (100, 50)
-  ['r', Math.PI], // rotate Math.PI
-  ['s', 2, 2], // scale 2 times at x-axis and y-axis
+  ["t", 100, 50], // translate (100, 50)
+  ["r", Math.PI], // rotate Math.PI
+  ["s", 2, 2], // scale 2 times at x-axis and y-axis
 ]);
 ```
 
@@ -100,21 +100,21 @@ transform(m, [
 以下方法实现了在自定义节点 example 中增加一个矩形，并将该矩形位移 `(100, 50)` 后，旋转 `Math.PI / 4`，最后在 x 方向放大 2 倍，并在 y 方向缩小 2 倍：
 
 ```javascript
-import { transform, mat3 } from '@antv/matrix-util';
-F6.registerNode('example', {
+import { transform, mat3 } from "@antv/matrix-util";
+F6.registerNode("example", {
   drawShape: (cfg, group) => {
-    const rect = group.addShape('rect', {
+    const rect = group.addShape("rect", {
       attrs: {
         width: 100,
         height: 100,
         x: 100,
         y: 100,
-        fill: '#9EC9FF',
-        stroke: '#5B8FF9',
+        fill: "#9EC9FF",
+        stroke: "#5B8FF9",
         lineWidth: 3,
       },
       // must be assigned in F6 3.3 and later versions. it can be any value you want
-      name: 'rect-shape',
+      name: "rect-shape",
       draggable: true,
     });
     const matrix = rect.getMatrix();
@@ -124,9 +124,9 @@ F6.registerNode('example', {
 
     // 3*3 矩阵变换，用于二维渲染
     const newMatrix = transform(matrix, [
-      ['t', 100, 50], // translate
-      ['r', Math.PI / 4], // rotate
-      ['s', 2, 0.5], // scale
+      ["t", 100, 50], // translate
+      ["r", Math.PI / 4], // rotate
+      ["s", 2, 0.5], // scale
     ]);
 
     rect.setMatrix(newMatrix);

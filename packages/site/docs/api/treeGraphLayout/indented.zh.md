@@ -32,7 +32,7 @@ order: 3
 ```javascript
 (d) => {
   // d 是一个节点
-  if (d.id === 'testId') return 50;
+  if (d.id === "testId") return 50;
   return 100;
 };
 ```
@@ -46,7 +46,7 @@ order: 3
 ```javascript
 (d) => {
   // d 是一个节点
-  if (d.id === 'testId') return 50;
+  if (d.id === "testId") return 50;
   return 100;
 };
 ```
@@ -60,8 +60,8 @@ order: 3
 ```javascript
 (d) => {
   // d 是一个节点
-  if (d.id === 'testId') return 'left';
-  return 'right';
+  if (d.id === "testId") return "left";
+  return "right";
 };
 ```
 

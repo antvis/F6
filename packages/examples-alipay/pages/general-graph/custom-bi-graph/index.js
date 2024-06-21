@@ -1,6 +1,6 @@
-import F6 from '@antv/f6';
-import { wrapContext } from '../../../common/utils/context';
-import data from './data';
+import F6 from "@antv/f6";
+import { wrapContext } from "../../../common/utils/context";
+import data from "./data";
 
 /**
  * customBiGraph
@@ -9,7 +9,7 @@ import data from './data';
 Page({
   canvas: null,
   ctx: null,
-  renderer: '', // mini、mini-native等，F6需要，标记环境
+  renderer: "", // mini、mini-native等，F6需要，标记环境
   isCanvasInit: false, // canvas是否准备好了
   graph: null,
 
@@ -22,17 +22,17 @@ Page({
 
   onLoad() {
     // 注册布局
-    F6.registerLayout('bigraphLayout', {
+    F6.registerLayout("bigraphLayout", {
       execute() {
         const self = this;
         const center = self.center || [0, 0];
         const biSep = self.biSep || 100;
         const nodeSep = self.nodeSep || 20;
         const nodeSize = self.nodeSize || 20;
-        const direction = self.direction || 'horizontal';
+        const direction = self.direction || "horizontal";
         let part1Pos = 0;
         let part2Pos = 0;
-        if (direction === 'horizontal') {
+        if (direction === "horizontal") {
           part1Pos = center[0] - biSep / 2;
           part2Pos = center[0] + biSep / 2;
         }
@@ -42,8 +42,8 @@ Page({
         const part1NodeMap = new Map();
         const part2NodeMap = new Map();
         // separate the nodes and init the positions
-        nodes.forEach(function(node, i) {
-          if (node.cluster === 'part1') {
+        nodes.forEach(function (node, i) {
+          if (node.cluster === "part1") {
             part1Nodes.push(node);
             part1NodeMap.set(node.id, i);
           } else {
@@ -53,10 +53,10 @@ Page({
         });
 
         // order the part1 node
-        part1Nodes.forEach(function(p1n) {
+        part1Nodes.forEach(function (p1n) {
           let index = 0;
           let adjCount = 0;
-          edges.forEach(function(edge) {
+          edges.forEach(function (edge) {
             const sourceId = edge.source;
             const targetId = edge.target;
             if (sourceId === p1n.id) {
@@ -70,13 +70,13 @@ Page({
           index /= adjCount;
           p1n.index = index;
         });
-        part1Nodes.sort(function(a, b) {
+        part1Nodes.sort(function (a, b) {
           return a.index - b.index;
         });
-        part2Nodes.forEach(function(p2n) {
+        part2Nodes.forEach(function (p2n) {
           let index = 0;
           let adjCount = 0;
-          edges.forEach(function(edge) {
+          edges.forEach(function (edge) {
             const sourceId = edge.source;
             const targetId = edge.target;
             if (sourceId === p2n.id) {
@@ -90,20 +90,22 @@ Page({
           index /= adjCount;
           p2n.index = index;
         });
-        part2Nodes.sort(function(a, b) {
+        part2Nodes.sort(function (a, b) {
           return a.index - b.index;
         });
 
         // place the nodes
         const hLength =
-          part1Nodes.length > part2Nodes.length ? part1Nodes.length : part2Nodes.length;
+          part1Nodes.length > part2Nodes.length
+            ? part1Nodes.length
+            : part2Nodes.length;
         const height = hLength * (nodeSep + nodeSize);
         let begin = center[1] - height / 2;
-        if (direction === 'vertical') {
+        if (direction === "vertical") {
           begin = center[0] - height / 2;
         }
-        part1Nodes.forEach(function(p1n, i) {
-          if (direction === 'horizontal') {
+        part1Nodes.forEach(function (p1n, i) {
+          if (direction === "horizontal") {
             p1n.x = part1Pos;
             p1n.y = begin + i * (nodeSep + nodeSize);
           } else {
@@ -111,8 +113,8 @@ Page({
             p1n.y = part1Pos;
           }
         });
-        part2Nodes.forEach(function(p2n, i) {
-          if (direction === 'horizontal') {
+        part2Nodes.forEach(function (p2n, i) {
+          if (direction === "horizontal") {
             p2n.x = part2Pos;
             p2n.y = begin + i * (nodeSep + nodeSize);
           } else {
@@ -167,7 +169,7 @@ Page({
       pixelRatio,
       fitView: true,
       layout: {
-        type: 'bigraphLayout',
+        type: "bigraphLayout",
         biSep: 300,
         nodeSep: 20,
         nodeSize: 20,
@@ -176,16 +178,16 @@ Page({
       defaultNode: {
         size: 20,
         style: {
-          fill: '#C6E5FF',
-          stroke: '#5B8FF9',
+          fill: "#C6E5FF",
+          stroke: "#5B8FF9",
         },
       },
       defaultEdge: {
         size: 1,
-        color: '#e2e2e2',
+        color: "#e2e2e2",
       },
       modes: {
-        default: ['drag-canvas'],
+        default: ["drag-canvas"],
       },
     });
 

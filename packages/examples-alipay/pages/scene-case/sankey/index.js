@@ -1,7 +1,7 @@
-import F6 from '@antv/f6';
-import { wrapContext } from '../../../common/utils/context';
-import result from './data';
-import dagreLayout from '@antv/f6/dist/extends/layout/dagreLayout';
+import F6 from "@antv/f6";
+import { wrapContext } from "../../../common/utils/context";
+import result from "./data";
+import dagreLayout from "@antv/f6/dist/extends/layout/dagreLayout";
 
 /**
  * sankey
@@ -10,7 +10,7 @@ import dagreLayout from '@antv/f6/dist/extends/layout/dagreLayout';
 Page({
   canvas: null,
   ctx: null,
-  renderer: '', // mini、mini-native等，F6需要，标记环境
+  renderer: "", // mini、mini-native等，F6需要，标记环境
   isCanvasInit: false, // canvas是否准备好了
   graph: null,
 
@@ -22,12 +22,12 @@ Page({
   },
 
   onLoad() {
-    F6.registerLayout('dagre', dagreLayout);
+    F6.registerLayout("dagre", dagreLayout);
     // 同步获取window的宽高
     const { windowWidth, windowHeight, pixelRatio } = my.getSystemInfoSync();
 
     F6.registerNode(
-      'dice-sankey-node',
+      "dice-sankey-node",
       {
         jsx: (cfg) => `
         <group>
@@ -39,10 +39,10 @@ Page({
           return [[0, 0]];
         },
       },
-      'single-node',
+      "single-node",
     );
 
-    F6.registerEdge('dice-sankey-edge', {
+    F6.registerEdge("dice-sankey-edge", {
       draw(cfg, group) {
         const { startPoint, endPoint, color } = cfg;
         const deltaY1 = Number(cfg.sourceIndex);
@@ -50,14 +50,14 @@ Page({
         const deltaY3 = Number(cfg.targetIndex);
         const deltaY4 = Number(cfg.targetIndex) + Number(cfg.value);
         const quaterX = (Math.abs(endPoint.x - startPoint.x) / 5) * 3;
-        return group.addShape('path', {
+        return group.addShape("path", {
           attrs: {
             fill: color,
             opacity: 0.6,
             path: [
-              ['M', startPoint.x, startPoint.y + deltaY1],
+              ["M", startPoint.x, startPoint.y + deltaY1],
               [
-                'C',
+                "C",
                 endPoint.x - quaterX,
                 startPoint.y + deltaY1,
                 startPoint.x + quaterX,
@@ -65,9 +65,9 @@ Page({
                 endPoint.x,
                 endPoint.y + deltaY3,
               ],
-              ['L', endPoint.x, endPoint.y + deltaY4],
+              ["L", endPoint.x, endPoint.y + deltaY4],
               [
-                'C',
+                "C",
                 startPoint.x + quaterX,
                 endPoint.y + deltaY4,
                 endPoint.x - quaterX,
@@ -75,8 +75,8 @@ Page({
                 startPoint.x,
                 startPoint.y + deltaY2,
               ],
-              ['L', startPoint.x, startPoint.y + deltaY1],
-              ['Z'],
+              ["L", startPoint.x, startPoint.y + deltaY1],
+              ["Z"],
             ],
           },
         });
@@ -124,19 +124,19 @@ Page({
       height,
       pixelRatio,
       defaultNode: {
-        type: 'dice-sankey-node',
+        type: "dice-sankey-node",
       },
       defaultEdge: {
-        type: 'dice-sankey-edge',
+        type: "dice-sankey-edge",
       },
       fitView: true,
       fitViewPadding: 60,
       layout: {
-        type: 'dagre',
-        rankdir: 'LR',
+        type: "dagre",
+        rankdir: "LR",
         nodesep: 10,
         ranksep: 130,
-        align: 'ul',
+        align: "ul",
       },
     });
 

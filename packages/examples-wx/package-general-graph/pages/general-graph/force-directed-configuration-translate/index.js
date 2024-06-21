@@ -1,7 +1,7 @@
-import F6 from '@antv/f6-wx';
+import F6 from "@antv/f6-wx";
 
-import getData from './data';
-import force from '@antv/f6-wx/extends/layout/forceLayout';
+import getData from "./data";
+import force from "@antv/f6-wx/extends/layout/forceLayout";
 
 /**
  * 力导向布局参数动态变化
@@ -9,7 +9,7 @@ import force from '@antv/f6-wx/extends/layout/forceLayout';
 Page({
   canvas: null,
   ctx: null,
-  renderer: '', // mini、mini-native等，F6需要，标记环境
+  renderer: "", // mini、mini-native等，F6需要，标记环境
   isCanvasInit: false, // canvas是否准备好了
   graph: null,
 
@@ -18,11 +18,11 @@ Page({
     height: 600,
     pixelRatio: 1,
     forceMini: false,
-    desc: '',
+    desc: "",
   },
 
   onLoad() {
-    F6.registerLayout('force', force);
+    F6.registerLayout("force", force);
     // 同步获取window的宽高
     const { windowWidth, windowHeight, pixelRatio } = wx.getSystemInfoSync();
     this.setData({
@@ -68,10 +68,10 @@ Page({
       pixelRatio,
       fitView: true,
       modes: {
-        default: ['drag-canvas', 'drag-node'],
+        default: ["drag-canvas", "drag-node"],
       },
       layout: {
-        type: 'force',
+        type: "force",
         linkDistance: 50,
         center: [width / 2, height / 2],
       },
@@ -92,7 +92,7 @@ Page({
     function layoutConfigTranslation() {
       setTimeout(() => {
         my.setData({
-          desc: 'Force layout, linkDistance = 100, preventOverlap: true',
+          desc: "Force layout, linkDistance = 100, preventOverlap: true",
         });
         my.graph.updateLayout({
           linkDistance: 100,
@@ -102,7 +102,7 @@ Page({
       }, 2500);
       setTimeout(() => {
         my.setData({
-          desc: 'Force layout, linkDistance = 50, preventOverlap: false',
+          desc: "Force layout, linkDistance = 50, preventOverlap: false",
         });
         my.graph.updateLayout({
           linkDistance: 50,

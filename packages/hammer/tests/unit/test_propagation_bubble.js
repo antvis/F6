@@ -7,12 +7,12 @@ var child;
 var hammerChild;
 var hammerParent;
 
-QUnit.module('Propagation (Tap in Child and Parent)', {
+QUnit.module("Propagation (Tap in Child and Parent)", {
   beforeEach: function () {
-    parent = document.createElement('div');
-    child = document.createElement('div');
+    parent = document.createElement("div");
+    child = document.createElement("div");
 
-    document.getElementById('qunit-fixture').appendChild(parent);
+    document.getElementById("qunit-fixture").appendChild(parent);
     parent.appendChild(child);
 
     hammerParent = new Hammer.Manager(parent);
@@ -28,39 +28,39 @@ QUnit.module('Propagation (Tap in Child and Parent)', {
 });
 
 QUnit.test(
-  'Tap on the child, fires also the tap event to the parent',
+  "Tap on the child, fires also the tap event to the parent",
   function (assert) {
     assert.expect(2);
 
-    hammerChild.on('tap', function () {
+    hammerChild.on("tap", function () {
       assert.ok(true);
     });
-    hammerParent.on('tap', function () {
+    hammerParent.on("tap", function () {
       assert.ok(true);
     });
 
-    utils.dispatchTouchEvent(child, 'start', 0, 10);
-    utils.dispatchTouchEvent(child, 'end', 0, 10);
+    utils.dispatchTouchEvent(child, "start", 0, 10);
+    utils.dispatchTouchEvent(child, "end", 0, 10);
   },
 );
 
 QUnit.test(
-  'When tap on the child and the child stops the input event propagation, the tap event does not get fired in the parent',
+  "When tap on the child and the child stops the input event propagation, the tap event does not get fired in the parent",
   function (assert) {
     assert.expect(1);
 
-    hammerChild.on('tap', function () {
+    hammerChild.on("tap", function () {
       assert.ok(true);
     });
-    hammerParent.on('tap', function () {
-      throw new Error('parent tap gesture should not be recognized');
+    hammerParent.on("tap", function () {
+      throw new Error("parent tap gesture should not be recognized");
     });
 
-    child.addEventListener('touchend', function (ev) {
+    child.addEventListener("touchend", function (ev) {
       ev.stopPropagation();
     });
 
-    utils.dispatchTouchEvent(child, 'start', 0, 10);
-    utils.dispatchTouchEvent(child, 'end', 0, 10);
+    utils.dispatchTouchEvent(child, "start", 0, 10);
+    utils.dispatchTouchEvent(child, "end", 0, 10);
   },
 );

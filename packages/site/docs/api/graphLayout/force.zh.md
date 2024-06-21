@@ -69,7 +69,7 @@ const graph = new F6.Graph({
 ```javascript
 (d) => {
   // d is a node
-  if (d.id === 'node1') {
+  if (d.id === "node1") {
     return 100;
   }
   return 10;

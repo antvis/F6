@@ -1,9 +1,13 @@
-import { IAbstractGraph, Item, ShapeStyle, TreeGraphData } from '@antv/f6-core';
-import { WaterMarkerConfig } from '../types';
+import { IAbstractGraph, Item, ShapeStyle, TreeGraphData } from "@antv/f6-core";
+import { WaterMarkerConfig } from "../types";
 
-import PluginBase from '../plugin/base';
+import PluginBase from "../plugin/base";
 
-export type DataUrlType = 'image/png' | 'image/jpeg' | 'image/webp' | 'image/bmp';
+export type DataUrlType =
+  | "image/png"
+  | "image/jpeg"
+  | "image/webp"
+  | "image/bmp";
 
 export interface IGraph extends IAbstractGraph {
   /**
@@ -15,7 +19,11 @@ export interface IGraph extends IAbstractGraph {
    * 画布导出图片
    * @param {String} name 图片的名称
    */
-  downloadImage: (name?: string, type?: DataUrlType, backgroundColor?: string) => void;
+  downloadImage: (
+    name?: string,
+    type?: DataUrlType,
+    backgroundColor?: string,
+  ) => void;
 
   /**
    * 导出包含全图的图片
@@ -58,7 +66,11 @@ export interface IGraph extends IAbstractGraph {
    * @param {string} imgURL 图片水印的url地址
    * @param {WaterMarkerConfig} config 文本水印的配置项
    */
-  setImageWaterMarker: (imgURL: string, config: WaterMarkerConfig, waterCanvas: any) => void;
+  setImageWaterMarker: (
+    imgURL: string,
+    config: WaterMarkerConfig,
+    waterCanvas: any,
+  ) => void;
 
   /**
    * 设置文本水印
@@ -95,7 +107,10 @@ export interface ITreeGraph extends IGraph {
    * @param {TreeGraphData | undefined} parent 从哪个节点开始寻找，为空时从根节点开始查找
    * @return {TreeGraphData} 对应源数据
    */
-  findDataById: (id: string, parent?: TreeGraphData | undefined) => TreeGraphData | null;
+  findDataById: (
+    id: string,
+    parent?: TreeGraphData | undefined,
+  ) => TreeGraphData | null;
 
   /**
    * 布局动画接口，用于数据更新时做节点位置更新的动画

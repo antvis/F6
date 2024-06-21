@@ -1,5 +1,5 @@
-import { ShapeStyle } from '@antv/f6-core';
-import { TimeBarData } from './time-bar';
+import { ShapeStyle } from "@antv/f6-core";
+import { TimeBarData } from "./time-bar";
 
 export interface TimeBarTickOption {
   // position size

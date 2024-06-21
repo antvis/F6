@@ -1,7 +1,7 @@
-import { createSegmentNode } from '@antv/f6-ui';
-import { SliderTick } from '../../type/slider';
-import { TimeBarData } from '../../type/time-bar';
-import { TICK_LABEL_STYLE, TICK_LINE_STYLE } from '../../utils/const';
+import { createSegmentNode } from "@antv/f6-ui";
+import { SliderTick } from "../../type/slider";
+import { TimeBarData } from "../../type/time-bar";
+import { TICK_LABEL_STYLE, TICK_LINE_STYLE } from "../../utils/const";
 
 export default function createTiker(
   data: TimeBarData[],
@@ -9,8 +9,16 @@ export default function createTiker(
   sliderTick: SliderTick,
 ) {
   const { width = 0 } = sliderTick;
-  const tickLabelStyle = Object.assign({}, TICK_LABEL_STYLE, sliderTick.textStyle);
-  const tickLineStyle = Object.assign({}, TICK_LINE_STYLE, sliderTick.lineStyle);
+  const tickLabelStyle = Object.assign(
+    {},
+    TICK_LABEL_STYLE,
+    sliderTick.textStyle,
+  );
+  const tickLineStyle = Object.assign(
+    {},
+    TICK_LINE_STYLE,
+    sliderTick.lineStyle,
+  );
 
   const count = Math.floor(tickLabelStyle.width / tickWidth);
   const html = `
@@ -23,11 +31,11 @@ export default function createTiker(
               ? `
           <shape class='line' type='rect' />
           <div class='text'>${cur.date}</div>`
-              : ''
+              : ""
           }
         </div> 
       `);
-    }, '')}
+    }, "")}
   </div>`;
 
   const css = `

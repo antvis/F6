@@ -41,9 +41,9 @@ const graph = new F6.Graph({
   height,
   nodeStateStyles: {
     hover: {
-      fill: 'red',
-      'keyShape-name': {
-        fill: 'red',
+      fill: "red",
+      "keyShape-name": {
+        fill: "red",
       },
     },
   },
@@ -68,7 +68,7 @@ graph.node((node) => {
 const data = {
   nodes: [
     {
-      id: 'node',
+      id: "node",
       stateStyles: {},
     },
   ],
@@ -88,11 +88,11 @@ const graph = new F6.Graph({
   height,
   nodeStateStyles: {
     selected: {
-      'sub-element': {
-        fill: 'green',
+      "sub-element": {
+        fill: "green",
       },
-      'text-element': {
-        stroke: 'red',
+      "text-element": {
+        stroke: "red",
       },
     },
   },
@@ -107,7 +107,7 @@ const graph = new F6.Graph({
 ```javascript
 // 执行下面语句以后，name 为 sub-element 和 name 为 text-element
 // 的元素填充色和描边色都会改变
-graph.setItemState(item, 'selected', true);
+graph.setItemState(item, "selected", true);
 ```
 
 另外，F6 也支持在使用 `updateItem` 更新节点或边的时候定义状态。
@@ -129,12 +129,12 @@ const graph = new F6.Graph({
   //...
   nodeStateStyles: {
     selected: {
-      fill: 'red',
+      fill: "red",
     },
   },
 });
 
-graph.setItemState(item, 'selected', true);
+graph.setItemState(item, "selected", true);
 ```
 
 #### 多值状态
@@ -147,16 +147,16 @@ const graph = new Graph({
   // 节点在不同状态下的样式
   nodeStateStyles: {
     // 实现 bodyState 的【多值】【互斥】
-    'bodyState:healthy': {
+    "bodyState:healthy": {
       // keyShape 该状态下的样式, 可以使用三种方式指定：
-      fill: 'green',
+      fill: "green",
     },
-    'bodyState:suspect': {},
-    'bodyState:ill': {},
+    "bodyState:suspect": {},
+    "bodyState:ill": {},
   },
 });
 
-graph.setItemState(item, 'bodyState', 'healthy');
+graph.setItemState(item, "bodyState", "healthy");
 ```
 
 #### 互斥状态
@@ -165,17 +165,17 @@ graph.setItemState(item, 'bodyState', 'healthy');
 
 ```javascript
 //【互斥】
-graph.setItemState(item, 'bodyState', 'healthy');
+graph.setItemState(item, "bodyState", "healthy");
 // 执行下面这句话 bodyState 将会被改变成 dead，
 // item.hasState('bodyState:healthy') 为 false
-graph.setItemState(item, 'bodyState', 'dead');
+graph.setItemState(item, "bodyState", "dead");
 ```
 
 执行上面的两句后， item 只会有 `bodyState` 状态的 `dead` 一个值，而二值状态不能解决这个问题。
 
 ```javascript
-graph.setItemState(item, 'select', true);
-graph.setItemState(item, 'active', true);
+graph.setItemState(item, "select", true);
+graph.setItemState(item, "active", true);
 ```
 
 执行上面的两句设置二值状态的语句后，item 具有 select 和 active 所有的属性值，不能满足互斥需求。
@@ -192,11 +192,11 @@ graph.setItemState(item, 'active', true);
 // 更新 item，除过更新 keyShape 外，还更新 name 值为 node-text 的图形
 graph.updateItem(item, {
   style: {
-    fill: 'green',
-    stroke: 'green',
+    fill: "green",
+    stroke: "green",
     opacity: 0.5,
-    'node-text': {
-      stroke: 'yellow',
+    "node-text": {
+      stroke: "yellow",
     },
   },
 });
@@ -209,21 +209,21 @@ graph.updateItem(item, {
 ```javascript
 graph.updateItem(item, {
   style: {
-    stroke: 'green',
-    'node-text': {
-      stroke: 'yellow',
+    stroke: "green",
+    "node-text": {
+      stroke: "yellow",
     },
   },
   stateStyles: {
     hover: {
       opacity: 0.1,
-      'node-text': {
-        stroke: 'blue',
+      "node-text": {
+        stroke: "blue",
       },
     },
   },
 });
-graph.setItemState(item, 'hover', true);
+graph.setItemState(item, "hover", true);
 ```
 
 使用 `updateItem` 更新状态的样式时，会存在两种情况：
@@ -236,16 +236,16 @@ graph.setItemState(item, 'hover', true);
 在 F6 中，我们建议使用 `graph.clearItemStates`  来取消 `graph.setItemState` 设置的状态，`graph.clearItemStates` 支持一次取消单个或多个状态。
 
 ```javascript
-graph.setItemState(item, 'bodyState', 'healthy');
-graph.setItemState(item, 'selected', true);
-graph.setItemState(item, 'active', true);
+graph.setItemState(item, "bodyState", "healthy");
+graph.setItemState(item, "selected", true);
+graph.setItemState(item, "active", true);
 
 // 取消单个状态
-graph.clearItemStates(item, 'selected');
-graph.clearItemStates(item, ['selected']);
+graph.clearItemStates(item, "selected");
+graph.clearItemStates(item, ["selected"]);
 
 // 取消多个状态
-graph.clearItemStates(item, ['bodyState:healthy', 'selected', 'active']);
+graph.clearItemStates(item, ["bodyState:healthy", "selected", "active"]);
 ```
 
 以上就是 F6 中状态的定义、设置和取消的全过程，很清晰明了，但总感觉缺少了点什么，没错，想必聪明的你已经发现了，缺少了更新子元素及和 `updateItem` 配合使用的方案。不要着急，接着放下看。
@@ -256,12 +256,12 @@ F6 中提供了 `hasState` 方法用于判断元素是否有某种状态。但�
 
 ```javascript
 // 设置节点处于 active 状态
-graph.setItemState(item, 'active', true);
+graph.setItemState(item, "active", true);
 
-const hasActived = item.hasState('active');
+const hasActived = item.hasState("active");
 
 // 当节点没有 active 时才设置 tap 状态
 if (!hasActived) {
-  graph.setItemState(item, 'tap', true);
+  graph.setItemState(item, "tap", true);
 }
 ```

@@ -13,11 +13,11 @@ const graph = new F6.Graph({
   fitView: true,
   layout: {
     type: "force",
-    preventOverlap: true
+    preventOverlap: true,
   },
   modes: {
-    default: ["drag-canvas"]
-  }
+    default: ["drag-canvas"],
+  },
 });
 
 function refreshDragedNodePosition(e) {
@@ -26,10 +26,8 @@ function refreshDragedNodePosition(e) {
   model.fy = e.y;
 }
 
-const {
-  nodes
-} = data;
-nodes.forEach(node => {
+const { nodes } = data;
+nodes.forEach((node) => {
   node.size = Math.random() * 30 + 5;
 });
 graph.data({
@@ -37,7 +35,7 @@ graph.data({
   edges: data.edges.map(function (edge, i) {
     edge.id = `edge${i}`;
     return Object.assign({}, edge);
-  })
+  }),
 });
 graph.render();
 graph.on("node:dragstart", function (e) {

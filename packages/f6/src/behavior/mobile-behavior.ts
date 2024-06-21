@@ -1,5 +1,5 @@
-import { each } from '@antv/util';
-import { IAbstractGraph, G6Event } from '@antv/f6-core';
+import { each } from "@antv/util";
+import { IAbstractGraph, G6Event } from "@antv/f6-core";
 
 export default {
   /**
@@ -7,8 +7,8 @@ export default {
    * @param graph Graph instance
    */
   bind(graph: IAbstractGraph) {
-    if (this.type === 'drag-canvas') {
-      graph.get('canvas').set('draggable', true);
+    if (this.type === "drag-canvas") {
+      graph.get("canvas").set("draggable", true);
     }
     const { events } = this;
     this.graph = graph;
@@ -19,8 +19,8 @@ export default {
 
   unbind(graph: IAbstractGraph) {
     const { events } = this;
-    if (this.type === 'drag-canvas') {
-      graph.get('canvas').set('draggable', false);
+    if (this.type === "drag-canvas") {
+      graph.get("canvas").set("draggable", false);
     }
     this.graph = null;
     each(events, (handler: () => void, event: G6Event) => {

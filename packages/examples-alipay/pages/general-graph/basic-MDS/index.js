@@ -1,7 +1,7 @@
-import F6 from '@antv/f6';
-import { wrapContext } from '../../../common/utils/context';
-import data from './data';
-import mds from '@antv/f6/dist/extends/layout/mdsLayout';
+import F6 from "@antv/f6";
+import { wrapContext } from "../../../common/utils/context";
+import data from "./data";
+import mds from "@antv/f6/dist/extends/layout/mdsLayout";
 /**
  * basicMDS
  */
@@ -9,7 +9,7 @@ import mds from '@antv/f6/dist/extends/layout/mdsLayout';
 Page({
   canvas: null,
   ctx: null,
-  renderer: '', // mini、mini-native等，F6需要，标记环境
+  renderer: "", // mini、mini-native等，F6需要，标记环境
   isCanvasInit: false, // canvas是否准备好了
   graph: null,
 
@@ -22,7 +22,7 @@ Page({
 
   onLoad() {
     // 注册布局
-    F6.registerLayout('mds', mds);
+    F6.registerLayout("mds", mds);
 
     // 同步获取window的宽高
     const { windowWidth, windowHeight, pixelRatio } = my.getSystemInfoSync();
@@ -69,10 +69,10 @@ Page({
       pixelRatio,
       fitView: true,
       modes: {
-        default: ['drag-node'],
+        default: ["drag-node"],
       },
       layout: {
-        type: 'mds',
+        type: "mds",
         linkDistance: 100,
       },
       animate: true,

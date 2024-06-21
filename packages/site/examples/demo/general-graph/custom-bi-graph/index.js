@@ -19,10 +19,7 @@ F6.registerLayout("bigraphLayout", {
       part2Pos = center[0] + biSep / 2;
     }
 
-    const {
-      nodes,
-      edges
-    } = self;
+    const { nodes, edges } = self;
     const part1Nodes = [];
     const part2Nodes = [];
     const part1NodeMap = new Map();
@@ -78,7 +75,10 @@ F6.registerLayout("bigraphLayout", {
     part2Nodes.sort(function (a, b) {
       return a.index - b.index;
     });
-    const hLength = part1Nodes.length > part2Nodes.length ? part1Nodes.length : part2Nodes.length;
+    const hLength =
+      part1Nodes.length > part2Nodes.length
+        ? part1Nodes.length
+        : part2Nodes.length;
     const height = hLength * (nodeSep + nodeSize);
     let begin = center[1] - height / 2;
 
@@ -104,8 +104,7 @@ F6.registerLayout("bigraphLayout", {
         p2n.y = part2Pos;
       }
     });
-  }
-
+  },
 });
 const graph = new F6.Graph({
   width,
@@ -116,23 +115,23 @@ const graph = new F6.Graph({
     type: "bigraphLayout",
     biSep: 300,
     nodeSep: 20,
-    nodeSize: 20
+    nodeSize: 20,
   },
   animate: true,
   defaultNode: {
     size: 20,
     style: {
       fill: "#C6E5FF",
-      stroke: "#5B8FF9"
-    }
+      stroke: "#5B8FF9",
+    },
   },
   defaultEdge: {
     size: 1,
-    color: "#e2e2e2"
+    color: "#e2e2e2",
   },
   modes: {
-    default: ["drag-canvas"]
-  }
+    default: ["drag-canvas"],
+  },
 });
 graph.data(data);
 graph.render();

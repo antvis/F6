@@ -1,9 +1,9 @@
-import React, { useEffect } from 'react';
-import DFSDemo from './dfs';
-import ShortestPathDemo from './shortestPath';
+import React, { useEffect } from "react";
+import DFSDemo from "./dfs";
+import ShortestPathDemo from "./shortestPath";
 
 export default {
-  title: 'Example/Algorithm',
+  title: "Example/Algorithm",
 };
 
 export const DFS = (args) => <DFSDemo {...args} />;

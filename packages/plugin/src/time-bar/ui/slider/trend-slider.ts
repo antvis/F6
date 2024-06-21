@@ -1,21 +1,21 @@
-import { createSegmentNode } from '@antv/f6-ui';
-import { SliderOption, TrendConfig } from '../../type/slider';
+import { createSegmentNode } from "@antv/f6-ui";
+import { SliderOption, TrendConfig } from "../../type/slider";
 import {
   BACKGROUND_STYLE,
   FOREGROUND_STYLE,
   TREND_HANDLER_STYLE,
   TEXT_STYLE,
   TREND_SLIDER_HEIHGT,
-} from '../../utils/const';
-import { dataToPath } from '../../utils/path';
+} from "../../utils/const";
+import { dataToPath } from "../../utils/path";
 
 export const TREND_LINE_STYLE = {
-  stroke: '#C5C5C5',
+  stroke: "#C5C5C5",
   strokeOpacity: 0.85,
 };
 
 export const AREA_STYLE = {
-  fill: '#CACED4',
+  fill: "#CACED4",
   opacity: 0.85,
 };
 
@@ -29,9 +29,21 @@ export default function createTrendSlider({
   const { width, height = TREND_SLIDER_HEIHGT } = slider;
   const { data: trendData = [], lineStyle, smooth = true } = trend;
 
-  const handlerStyle = Object.assign({}, TREND_HANDLER_STYLE, slider.handlerStyle);
-  const backgroundStyle = Object.assign({}, BACKGROUND_STYLE, slider.backgroundStyle);
-  const foregroundStyle = Object.assign({}, FOREGROUND_STYLE, slider.foregroundStyle);
+  const handlerStyle = Object.assign(
+    {},
+    TREND_HANDLER_STYLE,
+    slider.handlerStyle,
+  );
+  const backgroundStyle = Object.assign(
+    {},
+    BACKGROUND_STYLE,
+    slider.backgroundStyle,
+  );
+  const foregroundStyle = Object.assign(
+    {},
+    FOREGROUND_STYLE,
+    slider.foregroundStyle,
+  );
   const textStyle = Object.assign({}, TEXT_STYLE, slider.textStyle);
 
   const trendLineStyle = Object.assign({}, TREND_LINE_STYLE, lineStyle);
@@ -160,35 +172,38 @@ export default function createTrendSlider({
 
   const slideContainer = createSegmentNode(html, css);
   const path = dataToPath(trendData, width, height, smooth);
-  const slideTrendBg = slideContainer.query('.trend-bg');
-  slideTrendBg.setAttribute('path', path);
+  const slideTrendBg = slideContainer.query(".trend-bg");
+  slideTrendBg.setAttribute("path", path);
 
-  const leftControl = slideContainer.query('.left-control');
-  const rightControl = slideContainer.query('.right-control');
+  const leftControl = slideContainer.query(".left-control");
+  const rightControl = slideContainer.query(".right-control");
 
-  const leftControlText = leftControl.query('.text');
-  const rightControlText = rightControl.query('.text');
+  const leftControlText = leftControl.query(".text");
+  const rightControlText = rightControl.query(".text");
 
   leftControl.onLeftChange = (value) => {
     if (value < leftControlText.width) {
-      leftControlText.setStyle('marginLeft', 0);
+      leftControlText.setStyle("marginLeft", 0);
     } else {
-      leftControlText.setStyle('marginLeft', -leftControlText.width);
+      leftControlText.setStyle("marginLeft", -leftControlText.width);
     }
   };
 
   rightControl.onLeftChange = (value) => {
-    if (value > slideContainer.width - rightControl.width - rightControlText.width) {
-      rightControlText.setStyle('marginLeft', -rightControlText.width);
+    if (
+      value >
+      slideContainer.width - rightControl.width - rightControlText.width
+    ) {
+      rightControlText.setStyle("marginLeft", -rightControlText.width);
     } else {
-      rightControlText.setStyle('marginLeft', 0);
+      rightControlText.setStyle("marginLeft", 0);
     }
   };
 
   return {
     slideContainer: slideContainer,
-    leftControl: slideContainer.query('.left-control'),
-    rightControl: slideContainer.query('.right-control'),
-    slideInner: slideContainer.query('.slider-inner'),
+    leftControl: slideContainer.query(".left-control"),
+    rightControl: slideContainer.query(".right-control"),
+    slideInner: slideContainer.query(".slider-inner"),
   };
 }

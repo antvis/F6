@@ -1,5 +1,5 @@
-import F6 from '@antv/f6-wx';
-import { TimeBar } from '@antv/f6-plugin/f6Plugin';
+import F6 from "@antv/f6-wx";
+import { TimeBar } from "@antv/f6-plugin/f6Plugin";
 
 /**
  * basic-arc-diagram
@@ -7,7 +7,7 @@ import { TimeBar } from '@antv/f6-plugin/f6Plugin';
 Page({
   canvas: null,
   ctx: null,
-  renderer: '', // mini、mini-native等，F6需要，标记环境
+  renderer: "", // mini、mini-native等，F6需要，标记环境
   isCanvasInit: false, // canvas是否准备好了
   graph: null,
 
@@ -86,7 +86,7 @@ Page({
       y: 0,
       width,
       padding: 0,
-      type: 'simple',
+      type: "simple",
       data: timeBarData,
     });
 
@@ -99,7 +99,7 @@ Page({
       fitView: true,
       localRefresh: false,
       modes: {
-        default: ['drag-canvas', 'drag-node'],
+        default: ["drag-canvas", "drag-node"],
       },
       animate: false,
       defaultNode: {
@@ -107,7 +107,7 @@ Page({
       },
       plugins: [timebar],
     });
-    this.graph.get('canvas').set('localRefresh', false);
+    this.graph.get("canvas").set("localRefresh", false);
     this.graph.data(data);
     this.graph.render();
   },

@@ -5,14 +5,14 @@ var utils = {
    * @param name
    */
   triggerDomEvent: function (obj, name) {
-    var event = document.createEvent('Event');
+    var event = document.createEvent("Event");
     event.initEvent(name, true, true);
     obj.dispatchEvent(event);
   },
 
   createTouchEvent: function (name, x, y, identifier) {
-    var event = document.createEvent('Event');
-    event.initEvent('touch' + name, true, true);
+    var event = document.createEvent("Event");
+    event.initEvent("touch" + name, true, true);
 
     event.touches = event.targetTouches = [
       {
@@ -41,11 +41,11 @@ var utils = {
 
   createHitArea: function (parent) {
     if (parent == null) {
-      parent = document.getElementById('qunit-fixture');
+      parent = document.getElementById("qunit-fixture");
     }
-    var hitArea = document.createElement('div');
-    hitArea.style.background = '#eee';
-    hitArea.style.height = '300px';
+    var hitArea = document.createElement("div");
+    hitArea.style.background = "#eee";
+    hitArea.style.height = "300px";
 
     parent.appendChild(hitArea);
     return hitArea;

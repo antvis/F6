@@ -5,11 +5,18 @@
  * @LastEditTime: 2019-08-22 18:41:45
  * @Description: 拖动节点的Behavior
  */
-import { Point } from '@antv/g-base';
-import { deepMix, clone } from '@antv/util';
-import { G6Event, IG6GraphEvent, Item, NodeConfig, INode, ICombo } from '@antv/f6-core';
-import { IGraph } from '../interface/graph';
-import Global from '../global';
+import { Point } from "@antv/g-base";
+import { deepMix, clone } from "@antv/util";
+import {
+  G6Event,
+  IG6GraphEvent,
+  Item,
+  NodeConfig,
+  INode,
+  ICombo,
+} from "@antv/f6-core";
+import { IGraph } from "../interface/graph";
+import Global from "../global";
 
 export default {
   getDefaultCfg(): object {
@@ -21,20 +28,20 @@ export default {
       // 拖动节点过程中是否只改变 Combo 的大小，而不改变其结构
       onlyChangeComboSize: false,
       // 拖动过程中目标 combo 状态样式
-      comboActiveState: '',
-      selectedState: 'selected',
+      comboActiveState: "",
+      selectedState: "selected",
     };
   },
   getEvents(): { [key in G6Event]?: string } {
     return {
-      'node:dragstart': 'onDragStart',
-      'node:drag': 'onDrag',
-      'node:dragend': 'onDragEnd',
-      'combo:dragenter': 'onDragEnter',
-      'combo:dragleave': 'onDragLeave',
-      'combo:drop': 'onDropCombo',
-      'node:drop': 'onDropNode',
-      'canvas:drop': 'onDropCanvas',
+      "node:dragstart": "onDragStart",
+      "node:drag": "onDrag",
+      "node:dragend": "onDragEnd",
+      "combo:dragenter": "onDragEnter",
+      "combo:dragleave": "onDragLeave",
+      "combo:drop": "onDropCombo",
+      "node:drop": "onDropNode",
+      "canvas:drop": "onDropCanvas",
     };
   },
   validationCombo(item: ICombo) {
@@ -43,7 +50,7 @@ export default {
     }
 
     const type = item.getType();
-    if (type !== 'combo') {
+    if (type !== "combo") {
       return false;
     }
     return true;
@@ -65,7 +72,7 @@ export default {
     // 如果拖动的target 是linkPoints / anchorPoints 则不允许拖动
     const { target } = evt;
     if (target) {
-      const isAnchorPoint = target.get('isAnchorPoint');
+      const isAnchorPoint = target.get("isAnchorPoint");
       if (isAnchorPoint) {
         return;
       }
@@ -79,13 +86,13 @@ export default {
     this.targetCombo = null;
 
     // 获取所有选中的元素
-    const nodes = graph.findAllByState('node', this.selectedState);
+    const nodes = graph.findAllByState("node", this.selectedState);
 
-    const currentNodeId = item.get('id');
+    const currentNodeId = item.get("id");
 
     // 当前拖动的节点是否是选中的节点
     const dragNodes = nodes.filter((node) => {
-      const nodeId = node.get('id');
+      const nodeId = node.get("id");
       return currentNodeId === nodeId;
     });
 
@@ -107,7 +114,7 @@ export default {
     this.targets.forEach((t) => {
       beforeDragNodes.push(clone(t.getModel()));
     });
-    this.set('beforeDragNodes', beforeDragNodes);
+    this.set("beforeDragNodes", beforeDragNodes);
 
     this.origin = {
       x: evt.x,
@@ -131,7 +138,7 @@ export default {
       return;
     }
 
-    if (this.get('enableDelegate')) {
+    if (this.get("enableDelegate")) {
       this.updateDelegate(evt);
     } else {
       this.targets.map((target) => {
@@ -152,7 +159,7 @@ export default {
     const item = evt.item as INode;
     if (item) {
       const group = item.getContainer();
-      group.set('capture', true);
+      group.set("capture", true);
     }
 
     if (this.delegateRect) {
@@ -165,20 +172,20 @@ export default {
     const graph: IGraph = this.graph;
 
     // 拖动结束后，入栈
-    if (graph.get('enabledStack')) {
+    if (graph.get("enabledStack")) {
       const stackData = {
-        before: { nodes: this.get('beforeDragNodes'), edges: [], combos: [] },
+        before: { nodes: this.get("beforeDragNodes"), edges: [], combos: [] },
         after: { nodes: [], edges: [], combos: [] },
       };
 
       this.targets.forEach((target) => {
         stackData.after.nodes.push(target.getModel());
       });
-      graph.pushStack('update', clone(stackData));
+      graph.pushStack("update", clone(stackData));
     }
 
     // 拖动结束后emit事件，将当前操作的节点抛出去，目标节点为null
-    graph.emit('dragnodeend', {
+    graph.emit("dragnodeend", {
       items: this.targets,
       targetItem: null,
     });
@@ -223,7 +230,7 @@ export default {
     }
 
     // 将节点拖动到 combo 上面，emit事件抛出当前操作的节点及目标 combo
-    graph.emit('dragnodeend', {
+    graph.emit("dragnodeend", {
       items: this.targets,
       targetItem: this.targetCombo,
     });
@@ -282,7 +289,7 @@ export default {
     }
 
     // 将节点拖动到另外个节点上面，emit 事件抛出当前操作的节点及目标节点
-    graph.emit('dragnodeend', {
+    graph.emit("dragnodeend", {
       items: self.targets,
       targetItem: item,
     });
@@ -317,7 +324,7 @@ export default {
   updatePositions(evt: IG6GraphEvent) {
     if (!this.targets || this.targets.length === 0) return;
     // 当开启 delegate 时，拖动结束后需要更新所有已选中节点的位置
-    if (this.get('enableDelegate')) {
+    if (this.get("enableDelegate")) {
       this.targets.map((node) => this.update(node, evt));
     }
   },
@@ -328,8 +335,8 @@ export default {
    */
   update(item: Item, evt: IG6GraphEvent) {
     const { origin } = this;
-    const model: NodeConfig = item.get('model');
-    const nodeId: string = item.get('id');
+    const model: NodeConfig = item.get("model");
+    const nodeId: string = item.get("id");
     if (!this.point[nodeId]) {
       this.point[nodeId] = {
         x: model.x || 0,
@@ -342,7 +349,7 @@ export default {
 
     const pos: Point = { x, y };
 
-    if (this.get('updateEdge')) {
+    if (this.get("updateEdge")) {
       this.graph.updateItem(item, pos, false);
     } else {
       item.updatePosition(pos);
@@ -358,13 +365,20 @@ export default {
     const { graph } = this;
     if (!this.delegateRect) {
       // 拖动多个
-      const parent = this.graph.get('group');
+      const parent = this.graph.get("group");
       const attrs = deepMix({}, Global.delegateStyle, this.delegateStyle);
 
-      const { x: cx, y: cy, width, height, minX, minY } = this.calculationGroupPosition(e);
+      const {
+        x: cx,
+        y: cy,
+        width,
+        height,
+        minX,
+        minY,
+      } = this.calculationGroupPosition(e);
       this.originPoint = { x: cx, y: cy, width, height, minX, minY };
       // model上的x, y是相对于图形中心的，delegateShape是g实例，x,y是绝对坐标
-      this.delegateRect = parent.addShape('rect', {
+      this.delegateRect = parent.addShape("rect", {
         attrs: {
           width,
           height,
@@ -372,7 +386,7 @@ export default {
           y: cy,
           ...attrs,
         },
-        name: 'rect-delegate-shape',
+        name: "rect-delegate-shape",
       });
       // this.delegateRect.set('capture', false);
     } else {
@@ -392,7 +406,7 @@ export default {
   calculationGroupPosition(evt: IG6GraphEvent) {
     const { graph } = this;
 
-    const nodes = graph.findAllByState('node', this.selectedState);
+    const nodes = graph.findAllByState("node", this.selectedState);
     if (nodes.length === 0) {
       nodes.push(evt.item);
     }

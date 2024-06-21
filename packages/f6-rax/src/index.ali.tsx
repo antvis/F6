@@ -1,10 +1,10 @@
-import { createElement, useEffect, useRef } from 'rax';
-import View from 'rax-view';
-import F6 from '@antv/f6';
-import NativeCanvas from '@antv/f6-alipay/es/container/container';
-import force from '@antv/f6/dist/extends/layout/forceLayout';
-import { getInfoSync } from '@uni/system-info';
-import './index.css';
+import { createElement, useEffect, useRef } from "rax";
+import View from "rax-view";
+import F6 from "@antv/f6";
+import NativeCanvas from "@antv/f6-alipay/es/container/container";
+import force from "@antv/f6/dist/extends/layout/forceLayout";
+import { getInfoSync } from "@uni/system-info";
+import "./index.css";
 
 const miniF6 = (props) => {
   const {
@@ -25,23 +25,23 @@ const miniF6 = (props) => {
       window.getComputedStyle = undefined;
     }
 
-    F6.registerLayout('force', force);
+    F6.registerLayout("force", force);
 
     const chart = new F6.Graph({
       fitView: true,
       pixelRatio: pixelRatio,
       layout: {
-        type: 'force',
+        type: "force",
       },
       modes: {
-        default: ['drag-canvas', 'zoom-canvas', 'drag-node'],
+        default: ["drag-canvas", "zoom-canvas", "drag-node"],
       },
       ...config,
     });
     chart.data(data);
-    chart.get('canvas').set('localRefresh', false);
+    chart.get("canvas").set("localRefresh", false);
     chart.render();
-    chart.on('node:tap', handleClick);
+    chart.on("node:tap", handleClick);
     f6Chart.current = chart;
   };
 

@@ -1,6 +1,6 @@
-import F6 from '@antv/f6';
-import { wrapContext } from '../../../common/utils/context';
-import data from './data';
+import F6 from "@antv/f6";
+import { wrapContext } from "../../../common/utils/context";
+import data from "./data";
 
 /**
  * move
@@ -9,7 +9,7 @@ import data from './data';
 Page({
   canvas: null,
   ctx: null,
-  renderer: '', // mini、mini-native等，F6需要，标记环境
+  renderer: "", // mini、mini-native等，F6需要，标记环境
   isCanvasInit: false, // canvas是否准备好了
   graph: null,
 
@@ -68,13 +68,13 @@ Page({
       fitViewPadding: 60,
       defaultNode: {
         style: {
-          fill: '#DEE9FF',
-          stroke: '#5B8FF9',
+          fill: "#DEE9FF",
+          stroke: "#5B8FF9",
         },
       },
       defaultEdge: {
         style: {
-          stroke: '#b5b5b5',
+          stroke: "#b5b5b5",
         },
       },
     });
@@ -92,7 +92,7 @@ Page({
     // }
 
     // listen to the node click event
-    this.graph.on('node:tap', (event) => {
+    this.graph.on("node:tap", (event) => {
       const { item } = event;
       // animately move the graph to focus on the item.
       // the second parameter controlls whether move with animation, the third parameter is the animate configuration

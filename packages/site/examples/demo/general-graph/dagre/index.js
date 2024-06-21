@@ -11,14 +11,14 @@ const graph = new F6.Graph({
   pixelRatio,
   fitView: true,
   modes: {
-    default: ["drag-canvas", "drag-node"]
+    default: ["drag-canvas", "drag-node"],
   },
   layout: {
     type: "dagre",
     rankdir: "LR",
     align: "DL",
     nodesepFunc: () => 1,
-    ranksepFunc: () => 1
+    ranksepFunc: () => 1,
   },
   defaultNode: {
     size: [30, 20],
@@ -26,8 +26,8 @@ const graph = new F6.Graph({
     style: {
       lineWidth: 2,
       stroke: "#5B8FF9",
-      fill: "#C6E5FF"
-    }
+      fill: "#C6E5FF",
+    },
   },
   defaultEdge: {
     size: 1,
@@ -35,10 +35,10 @@ const graph = new F6.Graph({
     style: {
       endArrow: {
         path: "M 0,0 L 8,4 L 8,-4 Z",
-        fill: "#e2e2e2"
-      }
-    }
-  }
+        fill: "#e2e2e2",
+      },
+    },
+  },
 });
 graph.data(data);
 graph.render();

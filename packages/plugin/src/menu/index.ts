@@ -1,6 +1,6 @@
-import { IAbstractGraph as IGraph, IG6GraphEvent, Item } from '@antv/f6-core';
-import Base, { IPluginBaseConfig } from '../base';
-import { createUI } from '@antv/f6-ui';
+import { IAbstractGraph as IGraph, IG6GraphEvent, Item } from "@antv/f6-core";
+import Base, { IPluginBaseConfig } from "../base";
+import { createUI } from "@antv/f6-ui";
 
 interface MenuConfig extends IPluginBaseConfig {
   handleMenuClick?: (target: HTMLElement, item: Item) => void;
@@ -59,21 +59,21 @@ export default class Menu extends Base {
       onHide() {
         return true;
       },
-      itemTypes: ['node', 'edge', 'combo'],
+      itemTypes: ["node", "edge", "combo"],
     };
   }
 
   // class-methods-use-this
   public getEvents() {
     return {
-      press: 'onMenuShow',
+      press: "onMenuShow",
     };
   }
 
   public init() {
-    const graph: IGraph = this.get('graph');
+    const graph: IGraph = this.get("graph");
 
-    graph.on('tap', () => {
+    graph.on("tap", () => {
       this.onMenuHide();
     });
   }
@@ -82,28 +82,32 @@ export default class Menu extends Base {
     const self = this;
     e.preventDefault();
 
-    const itemTypes = this.get('itemTypes');
+    const itemTypes = this.get("itemTypes");
     if (!e.item) {
-      if (itemTypes.indexOf('canvas') === -1) {
+      if (itemTypes.indexOf("canvas") === -1) {
         self.onMenuHide();
         return;
       }
     } else {
-      if (e.item && e.item.getType && itemTypes.indexOf(e.item.getType()) === -1) {
+      if (
+        e.item &&
+        e.item.getType &&
+        itemTypes.indexOf(e.item.getType()) === -1
+      ) {
         self.onMenuHide();
         return;
       }
     }
 
-    const shouldBegin = this.get('shouldBegin');
+    const shouldBegin = this.get("shouldBegin");
     if (!shouldBegin(e)) return;
 
-    const className = this.get('className');
-    const graph: IGraph = this.get('graph');
-    const uiGroup = graph.get('uiGroup');
+    const className = this.get("className");
+    const graph: IGraph = this.get("graph");
+    const uiGroup = graph.get("uiGroup");
 
-    const getContent = this.get('getContent');
-    const getCss = this.get('getCss');
+    const getContent = this.get("getContent");
+    const getCss = this.get("getCss");
     const css = `
     root {
       display: flex;
@@ -114,29 +118,31 @@ export default class Menu extends Base {
       height: 12;
       opacity: 1;
     }
-    ${getCss?.() ?? ''}
+    ${getCss?.() ?? ""}
   `;
     const menuLiHtml = getContent(e, graph);
     const menu = createUI(
-      `<root class=${className || 'g6-component-contextmenu'}>${menuLiHtml}</root>`,
+      `<root class=${
+        className || "g6-component-contextmenu"
+      }>${menuLiHtml}</root>`,
       css,
       uiGroup,
     );
-    this.get('menu')?.remove();
-    this.set('menu', menu);
+    this.get("menu")?.remove();
+    this.set("menu", menu);
 
-    const handleMenuClick = this.get('handleMenuClick');
+    const handleMenuClick = this.get("handleMenuClick");
     if (handleMenuClick) {
       const handleMenuClickWrapper = (evt) => {
         evt.stopPropagation();
         handleMenuClick(evt.uiNode?.attributes, e.item, graph);
       };
-      this.set('handleMenuClickWrapper', handleMenuClickWrapper);
-      menu.on('tap', handleMenuClickWrapper);
+      this.set("handleMenuClickWrapper", handleMenuClickWrapper);
+      menu.on("tap", handleMenuClickWrapper);
     }
 
-    const width: number = graph.get('width');
-    const height: number = graph.get('height');
+    const width: number = graph.get("width");
+    const height: number = graph.get("height");
 
     const bbox = {
       width: menu.width,
@@ -145,8 +151,8 @@ export default class Menu extends Base {
       right: menu.right,
     };
 
-    const offsetX = this.get('offsetX') || 0;
-    const offsetY = this.get('offsetY') || 0;
+    const offsetX = this.get("offsetX") || 0;
+    const offsetY = this.get("offsetY") || 0;
 
     let x = e.canvasX + offsetX;
     let y = e.canvasY + offsetY;
@@ -159,17 +165,17 @@ export default class Menu extends Base {
       y = e.canvasY - bbox.height - offsetY;
     }
 
-    menu.setStyle('left', x);
-    menu.setStyle('top', y);
+    menu.setStyle("left", x);
+    menu.setStyle("top", y);
   }
 
   private onMenuHide() {
-    const menuDom = this.get('menu');
+    const menuDom = this.get("menu");
     menuDom?.remove();
   }
 
   public destroy() {
-    const menu = this.get('menu');
+    const menu = this.get("menu");
     menu?.remove();
   }
 }

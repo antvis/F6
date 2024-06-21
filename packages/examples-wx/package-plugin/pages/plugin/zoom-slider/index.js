@@ -1,6 +1,6 @@
-import { ZoomSlider } from '@antv/f6-plugin/f6Plugin';
-import data from './data';
-import F6 from '@antv/f6-wx';
+import { ZoomSlider } from "@antv/f6-plugin/f6Plugin";
+import data from "./data";
+import F6 from "@antv/f6-wx";
 
 Page({
   data: {
@@ -37,14 +37,14 @@ Page({
       width,
       height,
       pixelRatio,
-      fitView: 'center',
+      fitView: "center",
       linkCenter: true,
       renderer,
       defaultNode: {
         size: 30,
       },
       modes: {
-        default: ['drag-canvas', 'zoom-canvas', 'drag-node'],
+        default: ["drag-canvas", "zoom-canvas", "drag-node"],
       },
       plugins: [zoomSlider],
     });
@@ -52,7 +52,7 @@ Page({
     this.graph.render();
 
     // 目前在使用plugin时,需要关闭局部刷新
-    this.graph.get('canvas').set('localRefresh', false);
+    this.graph.get("canvas").set("localRefresh", false);
   },
 
   /**

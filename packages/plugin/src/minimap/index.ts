@@ -1,23 +1,23 @@
-import { Canvas as GCanvas, Group } from '@antv/g-mobile';
-import { Event as GraphEvent, Point } from '@antv/g-base';
-import { isNil, each, debounce } from '@antv/util';
-import { Matrix, ShapeStyle, IAbstractGraph as IGraph } from '@antv/f6-core';
-import { ext } from '@antv/matrix-util';
-import Base, { IPluginBaseConfig } from '../base';
+import { Canvas as GCanvas, Group } from "@antv/g-mobile";
+import { Event as GraphEvent, Point } from "@antv/g-base";
+import { isNil, each, debounce } from "@antv/util";
+import { Matrix, ShapeStyle, IAbstractGraph as IGraph } from "@antv/f6-core";
+import { ext } from "@antv/matrix-util";
+import Base, { IPluginBaseConfig } from "../base";
 
-import { createUI } from '@antv/f6-ui';
+import { createUI } from "@antv/f6-ui";
 
 const { max } = Math;
 const { transform } = ext;
 
-const DEFAULT_MODE = 'default';
-const KEYSHAPE_MODE = 'keyShape';
-const DELEGATE_MODE = 'delegate';
+const DEFAULT_MODE = "default";
+const KEYSHAPE_MODE = "keyShape";
+const DELEGATE_MODE = "delegate";
 
 interface MiniMapConfig extends IPluginBaseConfig {
   viewportClassName?: string;
   className?: string;
-  type?: 'default' | 'keyShape' | 'delegate';
+  type?: "default" | "keyShape" | "delegate";
   size?: number[];
   delegateStyle?: ShapeStyle;
   refresh?: boolean;
@@ -33,15 +33,15 @@ export default class MiniMap extends Base {
   public getDefaultCfgs(): MiniMapConfig {
     return {
       container: null,
-      className: '',
-      viewportClassName: '',
+      className: "",
+      viewportClassName: "",
       // Minimap 中默认展示和主图一样的内容，KeyShape 只展示节点和边的 key shape 部分，delegate表示展示自定义的rect，用户可自定义样式
-      type: 'default',
+      type: "default",
       padding: 50,
       size: [200, 120],
       delegateStyle: {
-        fill: '#40a9ff',
-        stroke: '#096dd9',
+        fill: "#40a9ff",
+        stroke: "#096dd9",
       },
       refresh: true,
     };
@@ -49,25 +49,25 @@ export default class MiniMap extends Base {
 
   public getEvents() {
     return {
-      beforepaint: 'updateViewport',
-      beforeanimate: 'disableRefresh',
-      afteranimate: 'enableRefresh',
-      viewportchange: 'disableOneRefresh',
+      beforepaint: "updateViewport",
+      beforeanimate: "disableRefresh",
+      afteranimate: "enableRefresh",
+      viewportchange: "disableOneRefresh",
     };
   }
 
   // 若是正在进行动画，不刷新缩略图
   protected disableRefresh() {
-    this.set('refresh', false);
+    this.set("refresh", false);
   }
 
   protected enableRefresh() {
-    this.set('refresh', true);
+    this.set("refresh", true);
     this.updateCanvas();
   }
 
   protected disableOneRefresh() {
-    this.set('viewportChange', true);
+    this.set("viewportChange", true);
   }
 
   private initViewport() {
@@ -76,7 +76,7 @@ export default class MiniMap extends Base {
     if (this.destroyed) return;
 
     // viewport 就是minimap的缩略图 拖拽方框  小程序模式下 不能使用createDom 使用createUi替代
-    const handleUI = this.get('container').query('.viewport');
+    const handleUI = this.get("container").query(".viewport");
 
     // 计算拖拽水平方向距离
     let x = 0;
@@ -96,21 +96,21 @@ export default class MiniMap extends Base {
     let zoom = 0;
 
     // 拖拽start事件
-    handleUI.on('panstart', (e: GraphEvent) => {
+    handleUI.on("panstart", (e: GraphEvent) => {
       cfgs.refresh = false;
 
       // 如果视口已经最大了，不需要拖拽
-      left = parseInt(handleUI.getStyle('left'), 10);
-      top = parseInt(handleUI.getStyle('top'), 10);
-      width = parseInt(handleUI.getStyle('width'), 10);
-      height = parseInt(handleUI.getStyle('height'), 10);
+      left = parseInt(handleUI.getStyle("left"), 10);
+      top = parseInt(handleUI.getStyle("top"), 10);
+      width = parseInt(handleUI.getStyle("width"), 10);
+      height = parseInt(handleUI.getStyle("height"), 10);
 
       if (width > size[0] || height > size[1]) {
         return;
       }
 
       zoom = graph!.getZoom();
-      ratio = this.get('ratio');
+      ratio = this.get("ratio");
 
       dragging = true;
 
@@ -119,7 +119,7 @@ export default class MiniMap extends Base {
     });
 
     handleUI.on(
-      'panmove',
+      "panmove",
       (e: GraphEvent) => {
         if (!dragging || isNil(e.x) || isNil(e.y)) {
           return;
@@ -151,7 +151,7 @@ export default class MiniMap extends Base {
     );
 
     handleUI.on(
-      'panend',
+      "panend",
       () => {
         dragging = false;
         cfgs.refresh = true;
@@ -159,7 +159,7 @@ export default class MiniMap extends Base {
       false,
     );
 
-    this.set('viewport', handleUI); // 这里viewport的 key 先保留，下面继续使用
+    this.set("viewport", handleUI); // 这里viewport的 key 先保留，下面继续使用
   }
 
   /**
@@ -167,16 +167,16 @@ export default class MiniMap extends Base {
    */
   private updateViewport() {
     if (this.destroyed) return;
-    const ratio: number = this.get('ratio');
-    const totaldx: number = this.get('totaldx');
-    const totaldy: number = this.get('totaldy');
-    const graph: IGraph = this.get('graph');
-    const size: number[] = this.get('size');
-    const graphWidth = graph.get('width');
-    const graphHeight = graph.get('height');
+    const ratio: number = this.get("ratio");
+    const totaldx: number = this.get("totaldx");
+    const totaldy: number = this.get("totaldy");
+    const graph: IGraph = this.get("graph");
+    const size: number[] = this.get("size");
+    const graphWidth = graph.get("width");
+    const graphHeight = graph.get("height");
     const topLeft: Point = graph.getPointByCanvas(0, 0);
     const bottomRight: Point = graph.getPointByCanvas(graphWidth, graphHeight);
-    const viewport = this.get('viewport');
+    const viewport = this.get("viewport");
 
     // viewport宽高,左上角点的计算
     let width = (bottomRight.x - topLeft.x) * ratio;
@@ -204,17 +204,17 @@ export default class MiniMap extends Base {
     }
 
     // 缓存目前缩放比，在移动 minimap 视窗时就不用再计算大图的移动量
-    this.set('ratio', ratio);
+    this.set("ratio", ratio);
 
     if (viewport) {
-      const borderWidth = viewport.getStyle('borderWidth');
+      const borderWidth = viewport.getStyle("borderWidth");
       if (Math.floor(width) >= borderWidth * 2) {
-        viewport.setStyle('left', left);
-        viewport.setStyle('width', width);
+        viewport.setStyle("left", left);
+        viewport.setStyle("width", width);
       }
       if (Math.floor(height) >= borderWidth * 2) {
-        viewport.setStyle('top', top);
-        viewport.setStyle('height', height);
+        viewport.setStyle("top", top);
+        viewport.setStyle("height", height);
       }
     }
   }
@@ -224,11 +224,11 @@ export default class MiniMap extends Base {
    */
   private updateGraphShapes() {
     const { graph } = this._cfgs;
-    const graphGroup = graph!.get('group');
+    const graphGroup = graph!.get("group");
     if (graphGroup.destroyed) return;
     const clonedGroup = graphGroup.clone();
 
-    const groupCanvas = this.get('groupCanvas');
+    const groupCanvas = this.get("groupCanvas");
 
     clonedGroup.resetMatrix();
 
@@ -242,7 +242,7 @@ export default class MiniMap extends Base {
   private updateKeyShapes() {
     const { graph } = this._cfgs;
 
-    const group = this.get('groupCanvas'); // canvas.get('children')[0] || canvas.addGroup();
+    const group = this.get("groupCanvas"); // canvas.get('children')[0] || canvas.addGroup();
 
     each(graph!.getEdges(), (edge) => {
       this.updateOneEdgeKeyShape(edge, group);
@@ -253,9 +253,9 @@ export default class MiniMap extends Base {
     const combos = graph!.getCombos();
     if (combos && combos.length) {
       const comboGroup =
-        group.find((e) => e.get('name') === 'comboGroup') ||
+        group.find((e) => e.get("name") === "comboGroup") ||
         group.addGroup({
-          name: 'comboGroup',
+          name: "comboGroup",
         });
       setTimeout(() => {
         if (this.destroyed) return;
@@ -276,12 +276,12 @@ export default class MiniMap extends Base {
    */
   private updateOneComboKeyShape(item, comboGroup) {
     if (this.destroyed) return;
-    const itemMap = this.get('itemMap') || {};
+    const itemMap = this.get("itemMap") || {};
 
     // 差量更新 minimap 上的一个节点，对应主图的 item
-    let mappedItem = itemMap[item.get('id')];
+    let mappedItem = itemMap[item.get("id")];
     const bbox = item.getBBox(); // 计算了节点父组矩阵的 bbox
-    const cKeyShape = item.get('keyShape').clone();
+    const cKeyShape = item.get("keyShape").clone();
     const keyShapeStyle = cKeyShape.attr();
     let attrs: any = {
       x: bbox.centerX,
@@ -293,8 +293,8 @@ export default class MiniMap extends Base {
     } else {
       attrs = Object.assign(keyShapeStyle, attrs);
     }
-    const shapeType = mappedItem.get('type');
-    if (shapeType === 'rect' || shapeType === 'image') {
+    const shapeType = mappedItem.get("type");
+    if (shapeType === "rect" || shapeType === "image") {
       attrs.x = bbox.minX;
       attrs.y = bbox.minY;
     }
@@ -303,9 +303,9 @@ export default class MiniMap extends Base {
     else mappedItem.show();
     mappedItem.exist = true;
     const zIndex = item.getModel().depth;
-    if (!isNaN(zIndex)) mappedItem.set('zIndex', zIndex);
-    itemMap[item.get('id')] = mappedItem;
-    this.set('itemMap', itemMap);
+    if (!isNaN(zIndex)) mappedItem.set("zIndex", zIndex);
+    itemMap[item.get("id")] = mappedItem;
+    this.set("itemMap", itemMap);
   }
 
   /**
@@ -313,12 +313,12 @@ export default class MiniMap extends Base {
    * @param item INode 实例
    */
   private updateOneNodeKeyShape(item, group) {
-    const itemMap = this.get('itemMap') || {};
+    const itemMap = this.get("itemMap") || {};
 
     // 差量更新 minimap 上的一个节点，对应主图的 item
-    let mappedItem = itemMap[item.get('id')];
+    let mappedItem = itemMap[item.get("id")];
     const bbox = item.getBBox(); // 计算了节点父组矩阵的 bbox
-    const cKeyShape = item.get('keyShape').clone();
+    const cKeyShape = item.get("keyShape").clone();
     const keyShapeStyle = cKeyShape.attr();
     let attrs: any = {
       x: bbox.centerX,
@@ -330,8 +330,8 @@ export default class MiniMap extends Base {
     } else {
       attrs = Object.assign(keyShapeStyle, attrs);
     }
-    const shapeType = mappedItem.get('type');
-    if (shapeType === 'rect' || shapeType === 'image') {
+    const shapeType = mappedItem.get("type");
+    if (shapeType === "rect" || shapeType === "image") {
       attrs.x = bbox.minX;
       attrs.y = bbox.minY;
     }
@@ -340,9 +340,9 @@ export default class MiniMap extends Base {
     else mappedItem.show();
     mappedItem.exist = true;
     const zIndex = item.getModel().depth;
-    if (!isNaN(zIndex)) mappedItem.set('zIndex', zIndex);
-    itemMap[item.get('id')] = mappedItem;
-    this.set('itemMap', itemMap);
+    if (!isNaN(zIndex)) mappedItem.set("zIndex", zIndex);
+    itemMap[item.get("id")] = mappedItem;
+    this.set("itemMap", itemMap);
   }
 
   /**
@@ -351,7 +351,7 @@ export default class MiniMap extends Base {
   private updateDelegateShapes() {
     const { graph } = this._cfgs;
 
-    const group = this.get('groupCanvas');
+    const group = this.get("groupCanvas");
 
     // 差量更新 minimap 上的节点和边
     each(graph!.getEdges(), (edge) => {
@@ -363,9 +363,9 @@ export default class MiniMap extends Base {
     const combos = graph!.getCombos();
     if (combos && combos.length) {
       const comboGroup =
-        group.find((e) => e.get('name') === 'comboGroup') ||
+        group.find((e) => e.get("name") === "comboGroup") ||
         group.addGroup({
-          name: 'comboGroup',
+          name: "comboGroup",
         });
       setTimeout(() => {
         if (this.destroyed) return;
@@ -381,7 +381,7 @@ export default class MiniMap extends Base {
   }
 
   private clearDestroyedShapes() {
-    const itemMap = this.get('itemMap') || {};
+    const itemMap = this.get("itemMap") || {};
     const keys = Object.keys(itemMap);
     if (!keys || keys.length === 0) return;
     for (let i = keys.length - 1; i >= 0; i--) {
@@ -400,21 +400,21 @@ export default class MiniMap extends Base {
    * @param item IEdge 实例
    */
   private updateOneEdgeKeyShape(item, group) {
-    const itemMap = this.get('itemMap') || {};
+    const itemMap = this.get("itemMap") || {};
     // 差量更新 minimap 上的一个节点，对应主图的 item
-    let mappedItem = itemMap[item.get('id')];
+    let mappedItem = itemMap[item.get("id")];
     if (mappedItem) {
-      const path = item.get('keyShape').attr('path');
-      mappedItem.attr('path', path);
+      const path = item.get("keyShape").attr("path");
+      mappedItem.attr("path", path);
     } else {
-      mappedItem = item.get('keyShape').clone();
+      mappedItem = item.get("keyShape").clone();
       group.add(mappedItem);
     }
     if (!item.isVisible()) mappedItem.hide();
     else mappedItem.show();
     mappedItem.exist = true;
-    itemMap[item.get('id')] = mappedItem;
-    this.set('itemMap', itemMap);
+    itemMap[item.get("id")] = mappedItem;
+    this.set("itemMap", itemMap);
   }
 
   /**
@@ -423,11 +423,11 @@ export default class MiniMap extends Base {
    * @param item INode 实例
    */
   private updateOneNodeDelegateShape(item, group) {
-    const delegateStyle = this.get('delegateStyle');
-    const itemMap = this.get('itemMap') || {};
+    const delegateStyle = this.get("delegateStyle");
+    const itemMap = this.get("itemMap") || {};
 
     // 差量更新 minimap 上的一个节点，对应主图的 item
-    let mappedItem = itemMap[item.get('id')];
+    let mappedItem = itemMap[item.get("id")];
     const bbox = item.getBBox(); // 计算了节点父组矩阵的 bbox
     if (mappedItem) {
       const attrs = {
@@ -438,7 +438,7 @@ export default class MiniMap extends Base {
       };
       mappedItem.attr(attrs);
     } else {
-      mappedItem = group.addShape('rect', {
+      mappedItem = group.addShape("rect", {
         attrs: {
           x: bbox.minX,
           y: bbox.minY,
@@ -446,14 +446,14 @@ export default class MiniMap extends Base {
           height: bbox.height,
           ...delegateStyle,
         },
-        name: 'minimap-node-shape',
+        name: "minimap-node-shape",
       });
     }
     if (!item.isVisible()) mappedItem.hide();
     else mappedItem.show();
     mappedItem.exist = true;
-    itemMap[item.get('id')] = mappedItem;
-    this.set('itemMap', itemMap);
+    itemMap[item.get("id")] = mappedItem;
+    this.set("itemMap", itemMap);
   }
 
   /**
@@ -472,12 +472,12 @@ export default class MiniMap extends Base {
   );
 
   public init() {
-    this.get('graph').on('afterupdateitem', this.handleUpdateCanvas);
-    this.get('graph').on('afteritemstatechange', this.handleUpdateCanvas);
-    this.get('graph').on('afteradditem', this.handleUpdateCanvas);
-    this.get('graph').on('afterremoveitem', this.handleUpdateCanvas);
-    this.get('graph').on('afterrender', this.handleUpdateCanvas);
-    this.get('graph').on('afterlayout', this.handleUpdateCanvas);
+    this.get("graph").on("afterupdateitem", this.handleUpdateCanvas);
+    this.get("graph").on("afteritemstatechange", this.handleUpdateCanvas);
+    this.get("graph").on("afteradditem", this.handleUpdateCanvas);
+    this.get("graph").on("afterremoveitem", this.handleUpdateCanvas);
+    this.get("graph").on("afterrender", this.handleUpdateCanvas);
+    this.get("graph").on("afterlayout", this.handleUpdateCanvas);
 
     setTimeout(() => {
       this.initContainer();
@@ -489,11 +489,11 @@ export default class MiniMap extends Base {
    */
   public initContainer() {
     const self = this;
-    const graph: IGraph = self.get('graph');
-    const size: number[] = self.get('size');
-    const className: string = self.get('className');
-    const viewportClassName: string = self.get('viewportClassName');
-    const getCss = self.get('getCss');
+    const graph: IGraph = self.get("graph");
+    const size: number[] = self.get("size");
+    const className: string = self.get("className");
+    const viewportClassName: string = self.get("viewportClassName");
+    const getCss = self.get("getCss");
 
     const containerHtml = `
     <div class='f6-minimap ${className}'>
@@ -527,19 +527,19 @@ export default class MiniMap extends Base {
         background: rgba(0,0,0,0);
         z-index: 1000;
       }
-      ${getCss?.() ?? ''}
+      ${getCss?.() ?? ""}
     `;
-    const uiGroup = graph.get('uiGroup');
+    const uiGroup = graph.get("uiGroup");
 
     const miniMapContainerUI = createUI(containerHtml, containerCss, uiGroup);
 
-    const background = miniMapContainerUI.query('.f6-minimap-container');
+    const background = miniMapContainerUI.query(".f6-minimap-container");
     const group = background.gNode;
     const canvasGroup = group.addGroup();
 
-    this.set('groupCanvas', canvasGroup);
+    this.set("groupCanvas", canvasGroup);
 
-    this.set('container', miniMapContainerUI);
+    this.set("container", miniMapContainerUI);
 
     self.updateCanvas();
     this.initViewport();
@@ -548,24 +548,24 @@ export default class MiniMap extends Base {
   public updateCanvas() {
     if (this.destroyed) return;
     // 如果是在动画，则不刷新视图
-    const isRefresh: boolean = this.get('refresh');
+    const isRefresh: boolean = this.get("refresh");
     if (!isRefresh) {
       return;
     }
-    const graph: IGraph = this.get('graph');
-    if (graph.get('destroyed')) {
+    const graph: IGraph = this.get("graph");
+    if (graph.get("destroyed")) {
       return;
     }
 
     // 如果是视口变换，也不刷新视图，但是需要重置视口大小和位置
-    if (this.get('viewportChange')) {
-      this.set('viewportChange', false);
+    if (this.get("viewportChange")) {
+      this.set("viewportChange", false);
       this.updateViewport();
     }
 
-    const size: number[] = this.get('size'); // 用户定义的 minimap size
-    const type: string = this.get('type'); // minimap 的类型
-    const padding: number = this.get('padding'); // 用户额定义的 minimap 的 padding
+    const size: number[] = this.get("size"); // 用户定义的 minimap size
+    const type: string = this.get("type"); // minimap 的类型
+    const padding: number = this.get("padding"); // 用户额定义的 minimap 的 padding
 
     switch (type) {
       case DEFAULT_MODE:
@@ -582,7 +582,7 @@ export default class MiniMap extends Base {
         break;
     }
 
-    const group = this.get('groupCanvas'); // canvas.get('children')[0];
+    const group = this.get("groupCanvas"); // canvas.get('children')[0];
     if (!group) return;
 
     group.resetMatrix();
@@ -590,7 +590,7 @@ export default class MiniMap extends Base {
     group.applyMatrix([1, 0, 0, 0, 1, 0, 0, 0, 1]);
     const bbox = group.getCanvasBBox();
 
-    const graphBBox = graph.get('group').getCanvasBBox(); // 主图的 bbox
+    const graphBBox = graph.get("group").getCanvasBBox(); // 主图的 bbox
     const graphZoom = graph.getZoom() || 1;
     let width = graphBBox.width / graphZoom;
     let height = graphBBox.height / graphZoom;
@@ -623,18 +623,18 @@ export default class MiniMap extends Base {
     const dy = (size[1] - (height - 2 * padding) * ratio) / 2;
 
     matrix = transform(matrix, [
-      ['t', minX, minY], // 平移到左上角
-      ['s', ratio, ratio], // 缩放到正好撑着 minimap
-      ['t', dx, dy], // 移动到画布中心
+      ["t", minX, minY], // 平移到左上角
+      ["s", ratio, ratio], // 缩放到正好撑着 minimap
+      ["t", dx, dy], // 移动到画布中心
     ]);
     group.setMatrix(matrix);
 
     // 更新minimap视口
-    this.set('ratio', ratio);
-    this.set('totaldx', dx + minX * ratio);
-    this.set('totaldy', dy + minY * ratio);
-    this.set('dx', dx);
-    this.set('dy', dy);
+    this.set("ratio", ratio);
+    this.set("totaldx", dx + minX * ratio);
+    this.set("totaldy", dy + minY * ratio);
+    this.set("dx", dx);
+    this.set("dy", dy);
     this.updateViewport();
   }
 
@@ -643,7 +643,7 @@ export default class MiniMap extends Base {
    * @return {GCanvas} G的canvas实例
    */
   public getCanvas(): GCanvas {
-    return this.get('canvas');
+    return this.get("canvas");
   }
 
   /**
@@ -651,7 +651,7 @@ export default class MiniMap extends Base {
    * @return {HTMLElement} 窗口的dom实例
    */
   public getViewport(): HTMLElement {
-    return this.get('viewport');
+    return this.get("viewport");
   }
 
   /**
@@ -659,10 +659,10 @@ export default class MiniMap extends Base {
    * @return {HTMLElement} dom
    */
   public getContainer(): HTMLElement {
-    return this.get('container');
+    return this.get("container");
   }
 
   public destroy() {
-    this.get('container')?.remove();
+    this.get("container")?.remove();
   }
 }

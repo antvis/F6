@@ -1,6 +1,6 @@
-import F6 from '@antv/f6';
-import { wrapContext } from '../../../common/utils/context';
-import data from './data';
+import F6 from "@antv/f6";
+import { wrapContext } from "../../../common/utils/context";
+import data from "./data";
 
 /**
  * combo_rect
@@ -9,7 +9,7 @@ import data from './data';
 Page({
   canvas: null,
   ctx: null,
-  renderer: '', // mini、mini-native等，F6需要，标记环境
+  renderer: "", // mini、mini-native等，F6需要，标记环境
   isCanvasInit: false, // canvas是否准备好了
   graph: null,
 
@@ -69,7 +69,7 @@ Page({
       // Set groupByTypes to false to get rendering result with reasonable visual zIndex for combos
       groupByTypes: false,
       defaultCombo: {
-        type: 'rect',
+        type: "rect",
         size: [40, 10], // The minimum size of the Combo
         padding: [30, 20, 10, 20],
         style: {
@@ -78,22 +78,22 @@ Page({
         labelCfg: {
           refY: 10,
           refX: 20,
-          position: 'bottom',
+          position: "bottom",
         },
       },
       comboStateStyles: {
         dragenter: {
           lineWidth: 4,
-          stroke: '#FE9797',
+          stroke: "#FE9797",
         },
       },
       modes: {
         default: [
-          'drag-canvas',
-          'drag-node',
-          'drag-combo',
-          'collapse-expand-combo',
-          'click-select',
+          "drag-canvas",
+          "drag-node",
+          "drag-combo",
+          "collapse-expand-combo",
+          "click-select",
         ],
       },
     });
@@ -102,22 +102,22 @@ Page({
     this.graph.fitView();
 
     // 监听
-    this.graph.on('combo:dragend', () => {
+    this.graph.on("combo:dragend", () => {
       this.graph.getCombos().forEach((combo) => {
-        this.graph.setItemState(combo, 'dragenter', false);
+        this.graph.setItemState(combo, "dragenter", false);
       });
     });
-    this.graph.on('node:dragend', () => {
+    this.graph.on("node:dragend", () => {
       this.graph.getCombos().forEach((combo) => {
-        this.graph.setItemState(combo, 'dragenter', false);
+        this.graph.setItemState(combo, "dragenter", false);
       });
     });
 
-    this.graph.on('combo:dragenter', (e) => {
-      this.graph.setItemState(e.item, 'dragenter', true);
+    this.graph.on("combo:dragenter", (e) => {
+      this.graph.setItemState(e.item, "dragenter", true);
     });
-    this.graph.on('combo:dragleave', (e) => {
-      this.graph.setItemState(e.item, 'dragenter', false);
+    this.graph.on("combo:dragleave", (e) => {
+      this.graph.setItemState(e.item, "dragenter", false);
     });
   },
 

@@ -2,25 +2,25 @@
  * @fileOverview common node shape
  * @author huangtonger@aliyun.com
  */
-import { IGroup, IShape, IElement } from '@antv/g-base';
-import { isArray, isNil, mix } from '@antv/util';
-import { ILabelConfig, ShapeOptions } from '../interface/shape';
-import { Item, LabelStyle, NodeConfig, ModelConfig } from '../types';
-import { formatPadding } from '../util/base';
-import Global from '../global';
-import Shape from './shape';
-import { shapeBase } from './shapeBase';
+import { IGroup, IShape, IElement } from "@antv/g-base";
+import { isArray, isNil, mix } from "@antv/util";
+import { ILabelConfig, ShapeOptions } from "../interface/shape";
+import { Item, LabelStyle, NodeConfig, ModelConfig } from "../types";
+import { formatPadding } from "../util/base";
+import Global from "../global";
+import Shape from "./shape";
+import { shapeBase } from "./shapeBase";
 
 const singleNode: ShapeOptions = {
-  itemType: 'node',
+  itemType: "node",
   // 单个图形的类型
-  shapeType: 'single-node',
+  shapeType: "single-node",
   /**
    * 文本相对图形的位置，默认以中心点
    * 位置包括： top, bottom, left, right, center
    * @type {String}
    */
-  labelPosition: 'center',
+  labelPosition: "center",
   /**
    * 文本相对偏移，当 labelPosition 不为 center 时有效
    * @type {Number}
@@ -33,7 +33,8 @@ const singleNode: ShapeOptions = {
    * @return {Array} 宽高
    */
   getSize(cfg: ModelConfig): number[] {
-    let size: number | number[] = cfg.size || this.getOptions({})!.size || Global.defaultNode.size;
+    let size: number | number[] =
+      cfg.size || this.getOptions({})!.size || Global.defaultNode.size;
 
     // size 是数组，但长度为1，则补长度为2
     if (isArray(size) && size.length === 1) {
@@ -51,7 +52,7 @@ const singleNode: ShapeOptions = {
     const labelPosition = labelCfg.position || this.labelPosition;
 
     // 默认的位置（最可能的情形），所以放在最上面
-    if (labelPosition === 'center') {
+    if (labelPosition === "center") {
       return { x: 0, y: 0, text: cfg!.label as string };
     }
 
@@ -68,32 +69,32 @@ const singleNode: ShapeOptions = {
 
     let style: any;
     switch (labelPosition) {
-      case 'top':
+      case "top":
         style = {
           x: 0,
           y: 0 - height / 2 - (offset as number),
-          textBaseline: 'bottom', // 文本在图形的上面
+          textBaseline: "bottom", // 文本在图形的上面
         };
         break;
-      case 'bottom':
+      case "bottom":
         style = {
           x: 0,
           y: height / 2 + (offset as number),
-          textBaseline: 'top',
+          textBaseline: "top",
         };
         break;
-      case 'left':
+      case "left":
         style = {
           x: 0 - width / 2 - (offset as number),
           y: 0,
-          textAlign: 'right',
+          textAlign: "right",
         };
         break;
       default:
         style = {
           x: width / 2 + (offset as number),
           y: 0,
-          textAlign: 'left',
+          textAlign: "left",
         };
         break;
     }
@@ -146,7 +147,7 @@ const singleNode: ShapeOptions = {
     const shape = group.addShape(shapeType, {
       attrs: style,
       draggable: true,
-      name: 'node-shape',
+      name: "node-shape",
     });
     return shape;
   },
@@ -157,12 +158,22 @@ const singleNode: ShapeOptions = {
    * @param {Group} group Item所在的group
    */
   updateLinkPoints(cfg: NodeConfig, group: IGroup) {
-    const { linkPoints: defaultLinkPoints } = this.getOptions(cfg) as ModelConfig;
+    const { linkPoints: defaultLinkPoints } = this.getOptions(
+      cfg,
+    ) as ModelConfig;
 
-    const markLeft = group.find((element) => element.get('className') === 'link-point-left');
-    const markRight = group.find((element) => element.get('className') === 'link-point-right');
-    const markTop = group.find((element) => element.get('className') === 'link-point-top');
-    const markBottom = group.find((element) => element.get('className') === 'link-point-bottom');
+    const markLeft = group.find(
+      (element) => element.get("className") === "link-point-left",
+    );
+    const markRight = group.find(
+      (element) => element.get("className") === "link-point-right",
+    );
+    const markTop = group.find(
+      (element) => element.get("className") === "link-point-top",
+    );
+    const markBottom = group.find(
+      (element) => element.get("className") === "link-point-bottom",
+    );
 
     let currentLinkPoints;
     if (markLeft) {
@@ -181,12 +192,21 @@ const singleNode: ShapeOptions = {
 
     const linkPoints = mix({}, currentLinkPoints, cfg.linkPoints);
 
-    const { fill: markFill, stroke: markStroke, lineWidth: borderWidth } = linkPoints;
+    const {
+      fill: markFill,
+      stroke: markStroke,
+      lineWidth: borderWidth,
+    } = linkPoints;
     let markSize = linkPoints.size / 2;
     if (!markSize) markSize = linkPoints.r;
     const { left, right, top, bottom } = cfg.linkPoints
       ? cfg.linkPoints
-      : { left: undefined, right: undefined, top: undefined, bottom: undefined };
+      : {
+          left: undefined,
+          right: undefined,
+          top: undefined,
+          bottom: undefined,
+        };
 
     const size = this.getSize!(cfg);
     const width = size[0];
@@ -209,14 +229,14 @@ const singleNode: ShapeOptions = {
         });
       }
     } else if (left) {
-      group.addShape('circle', {
+      group.addShape("circle", {
         attrs: {
           ...styles,
           x: -width / 2,
           y: 0,
         },
-        className: 'link-point-left',
-        name: 'link-point-left',
+        className: "link-point-left",
+        name: "link-point-left",
         isAnchorPoint: true,
       });
     }
@@ -231,14 +251,14 @@ const singleNode: ShapeOptions = {
         y: 0,
       });
     } else if (right) {
-      group.addShape('circle', {
+      group.addShape("circle", {
         attrs: {
           ...styles,
           x: width / 2,
           y: 0,
         },
-        className: 'link-point-right',
-        name: 'link-point-right',
+        className: "link-point-right",
+        name: "link-point-right",
         isAnchorPoint: true,
       });
     }
@@ -253,14 +273,14 @@ const singleNode: ShapeOptions = {
         y: -height / 2,
       });
     } else if (top) {
-      group.addShape('circle', {
+      group.addShape("circle", {
         attrs: {
           ...styles,
           x: 0,
           y: -height / 2,
         },
-        className: 'link-point-top',
-        name: 'link-point-top',
+        className: "link-point-top",
+        name: "link-point-top",
         isAnchorPoint: true,
       });
     }
@@ -276,20 +296,25 @@ const singleNode: ShapeOptions = {
         });
       }
     } else if (bottom) {
-      group.addShape('circle', {
+      group.addShape("circle", {
         attrs: {
           ...styles,
           x: 0,
           y: height / 2,
         },
-        className: 'link-point-bottom',
-        name: 'link-point-bottom',
+        className: "link-point-bottom",
+        name: "link-point-bottom",
         isAnchorPoint: true,
       });
     }
   },
-  updateShape(cfg: NodeConfig, item: Item, keyShapeStyle: object, hasIcon: boolean) {
-    const keyShape = item.get('keyShape');
+  updateShape(
+    cfg: NodeConfig,
+    item: Item,
+    keyShapeStyle: object,
+    hasIcon: boolean,
+  ) {
+    const keyShape = item.get("keyShape");
     keyShape.attr({
       ...keyShapeStyle,
     });
@@ -305,7 +330,9 @@ const singleNode: ShapeOptions = {
     const group = item.getContainer();
     const { icon } = this.getOptions(cfg) as NodeConfig;
     const { show } = cfg.icon ? cfg.icon : { show: undefined };
-    const iconShape = group.find((element) => element.get('className') === `${this.type}-icon`);
+    const iconShape = group.find(
+      (element) => element.get("className") === `${this.type}-icon`,
+    );
     if (iconShape) {
       // 若原先存在 icon
       if (show || show === undefined) {
@@ -324,7 +351,7 @@ const singleNode: ShapeOptions = {
     } else if (show) {
       // 如果原先不存在 icon，但传入了 show: true，则新增 icon
       const { width: w, height: h } = icon;
-      group.addShape('image', {
+      group.addShape("image", {
         attrs: {
           ...icon,
           x: -w! / 2,
@@ -334,7 +361,9 @@ const singleNode: ShapeOptions = {
         name: `${this.type}-icon`,
       });
       // to ensure the label is on the top of all the shapes
-      const labelShape = group.find((element) => element.get('className') === `node-label`);
+      const labelShape = group.find(
+        (element) => element.get("className") === `node-label`,
+      );
       if (labelShape) {
         labelShape.toFront();
       }
@@ -343,4 +372,4 @@ const singleNode: ShapeOptions = {
 };
 
 const singleNodeDef = { ...shapeBase, ...singleNode };
-Shape.registerNode('single-node', singleNodeDef);
+Shape.registerNode("single-node", singleNodeDef);

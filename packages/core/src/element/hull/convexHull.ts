@@ -1,4 +1,4 @@
-import { IPoint, Item } from '../../types';
+import { IPoint, Item } from "../../types";
 
 /**
  * Use cross product to judge the direction of the turn.
@@ -15,7 +15,10 @@ export const cross = (a: IPoint, b: IPoint, o: IPoint) => {
  * @return a list of vertices of the convex hull in counter-clockwise order,
  */
 export const genConvexHull = (items: Item[]) => {
-  const points: IPoint[] = items.map((item) => ({ x: item.getModel().x, y: item.getModel().y }));
+  const points: IPoint[] = items.map((item) => ({
+    x: item.getModel().x,
+    y: item.getModel().y,
+  }));
   points.sort((a, b) => {
     return a.x === b.x ? a.y - b.y : a.x - b.x;
   });

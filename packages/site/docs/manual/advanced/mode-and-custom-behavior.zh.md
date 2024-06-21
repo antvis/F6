@@ -28,7 +28,7 @@ order: 7
 下面 HTML 代码是本文的基础代码，后续功能将在这份代码中增量添加。下面代码定义了左上方的下拉菜单，以及后面将会用到图上的初始数据 `data`。
 
 ```html
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -48,26 +48,26 @@ order: 7
       const data = {
         nodes: [
           {
-            id: 'node1',
+            id: "node1",
             x: 100,
             y: 200,
           },
           {
-            id: 'node2',
+            id: "node2",
             x: 300,
             y: 200,
           },
           {
-            id: 'node3',
+            id: "node3",
             x: 300,
             y: 300,
           },
         ],
         edges: [
           {
-            id: 'edge1',
-            target: 'node2',
-            source: 'node1',
+            id: "edge1",
+            target: "node2",
+            source: "node1",
           },
         ],
       };
@@ -125,19 +125,19 @@ document.getElementById('selector').addEventListener('change', e => {
 let addedNodeCount = 0;
 
 // 封装点击添加节点的交互
-F6.registerBehavior('click-add-node', {
+F6.registerBehavior("click-add-node", {
   // 设定该自定义行为需要监听的事件及其响应函数
   getEvents() {
     // 监听的事件为 canvas:tap，响应函数是 onTap
     return {
-      'canvas:tap': 'onTap',
+      "canvas:tap": "onTap",
     };
   },
   // 点击事件
   onTap(ev) {
     const graph = this.graph;
     // 在图上新增一个节点
-    const node = this.graph.addItem('node', {
+    const node = this.graph.addItem("node", {
       x: ev.canvasX,
       y: ev.canvasY,
       id: `node-${addedNodeCount}`, // 生成唯一的 id
@@ -153,13 +153,13 @@ F6.registerBehavior('click-add-node', {
 
 ```javascript
 // 封装点击添加边的交互
-F6.registerBehavior('click-add-edge', {
+F6.registerBehavior("click-add-edge", {
   // 设定该自定义行为需要监听的事件及其响应函数
   getEvents() {
     return {
-      'node:tap': 'onTap', // 监听事件 node:tap，响应函数是 onTap
-      mousemove: 'onMousemove', // 监听事件 mousemove，响应函数是 onMousemove
-      'edge:tap': 'onEdgeTap', // 监听事件 edge:tap，响应函数是 onEdgeTap
+      "node:tap": "onTap", // 监听事件 node:tap，响应函数是 onTap
+      mousemove: "onMousemove", // 监听事件 mousemove，响应函数是 onMousemove
+      "edge:tap": "onEdgeTap", // 监听事件 edge:tap，响应函数是 onEdgeTap
     };
   },
   // getEvents 中定义的 'node:tap' 的响应函数
@@ -178,7 +178,7 @@ F6.registerBehavior('click-add-edge', {
       this.addingEdge = false;
     } else {
       // 在图上新增一条边，结束点是当前点击的节点的位置
-      this.edge = graph.addItem('edge', {
+      this.edge = graph.addItem("edge", {
         source: model.id,
         target: point,
       });

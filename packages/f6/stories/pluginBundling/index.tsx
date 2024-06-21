@@ -1,10 +1,10 @@
-import React, { useEffect } from 'react';
-import F6 from '../../src';
-import data from './data';
-import { Bundling } from '@antv/f6-plugin'
-import CircularLayout from '@antv/f6/dist/extends/layout/circularLayout'
+import React, { useEffect } from "react";
+import F6 from "../../src";
+import data from "./data";
+import { Bundling } from "@antv/f6-plugin";
+import CircularLayout from "@antv/f6/dist/extends/layout/circularLayout";
 
-F6.registerLayout('circular', CircularLayout);
+F6.registerLayout("circular", CircularLayout);
 
 export default () => {
   const ref = React.useRef(null);
@@ -13,7 +13,7 @@ export default () => {
   const edgeBundling = new Bundling({
     bundleThreshold: 0.1,
   });
-  
+
   let graph = null;
   useEffect(() => {
     if (!graph) {
@@ -23,7 +23,7 @@ export default () => {
         height,
         linkCenter: true,
         layout: {
-          type: 'circular',
+          type: "circular",
           center: [width / 2, height / 2],
           radius: height / 2.5,
           ordering: null,
@@ -31,11 +31,11 @@ export default () => {
         plugins: [edgeBundling],
         defaultNode: {
           size: [20, 20],
-          color: 'steelblue',
+          color: "steelblue",
         },
         defaultEdge: {
           size: 1,
-          color: '#999',
+          color: "#999",
         },
       });
       graph.data(data);
@@ -45,8 +45,7 @@ export default () => {
     setTimeout(() => {
       edgeBundling.bundling(data);
     }, 1000);
-    
   }, []);
 
-  return <div ref={ref} ></div>;
-}
+  return <div ref={ref}></div>;
+};

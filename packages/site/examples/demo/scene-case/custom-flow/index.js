@@ -9,113 +9,126 @@ F6.registerLayout("dagre", dagreLayout);
 const colorMap = {
   A: "#72CC4A",
   B: "#1A91FF",
-  C: "#FFAA15"
+  C: "#FFAA15",
 };
-F6.registerNode("round-rect", {
-  drawShape: function drawShape(cfg, group) {
-    const {
-      width
-    } = cfg.style;
-    const {
-      stroke
-    } = cfg.style;
-    const rect = group.addShape("rect", {
-      attrs: {
-        x: -width / 2,
-        y: -15,
-        width,
-        height: 30,
-        radius: 15,
-        stroke,
-        lineWidth: 1.2,
-        fillOpacity: 1
-      },
-      name: "rect-shape"
-    });
-    group.addShape("circle", {
-      attrs: {
-        x: -width / 2,
-        y: 0,
-        r: 3,
-        fill: stroke
-      },
-      name: "circle-shape"
-    });
-    group.addShape("circle", {
-      attrs: {
-        x: width / 2,
-        y: 0,
-        r: 3,
-        fill: stroke
-      },
-      name: "circle-shape2"
-    });
-    return rect;
-  },
-  getAnchorPoints: function getAnchorPoints() {
-    return [[0, 0.5], [1, 0.5]];
-  },
-  update: function update(cfg, item) {
-    const group = item.getContainer();
-    const children = group.get("children");
-    const node = children[0];
-    const circleLeft = children[1];
-    const circleRight = children[2];
-    const {
-      stroke
-    } = cfg.style;
+F6.registerNode(
+  "round-rect",
+  {
+    drawShape: function drawShape(cfg, group) {
+      const { width } = cfg.style;
+      const { stroke } = cfg.style;
+      const rect = group.addShape("rect", {
+        attrs: {
+          x: -width / 2,
+          y: -15,
+          width,
+          height: 30,
+          radius: 15,
+          stroke,
+          lineWidth: 1.2,
+          fillOpacity: 1,
+        },
+        name: "rect-shape",
+      });
+      group.addShape("circle", {
+        attrs: {
+          x: -width / 2,
+          y: 0,
+          r: 3,
+          fill: stroke,
+        },
+        name: "circle-shape",
+      });
+      group.addShape("circle", {
+        attrs: {
+          x: width / 2,
+          y: 0,
+          r: 3,
+          fill: stroke,
+        },
+        name: "circle-shape2",
+      });
+      return rect;
+    },
+    getAnchorPoints: function getAnchorPoints() {
+      return [
+        [0, 0.5],
+        [1, 0.5],
+      ];
+    },
+    update: function update(cfg, item) {
+      const group = item.getContainer();
+      const children = group.get("children");
+      const node = children[0];
+      const circleLeft = children[1];
+      const circleRight = children[2];
+      const { stroke } = cfg.style;
 
-    if (stroke) {
-      node.attr("stroke", stroke);
-      circleLeft.attr("fill", stroke);
-      circleRight.attr("fill", stroke);
-    }
-  }
-}, "single-node");
+      if (stroke) {
+        node.attr("stroke", stroke);
+        circleLeft.attr("fill", stroke);
+        circleRight.attr("fill", stroke);
+      }
+    },
+  },
+  "single-node",
+);
 F6.registerEdge("fund-polyline", {
   itemType: "edge",
   draw: function draw(cfg, group) {
-    const {
-      startPoint
-    } = cfg;
-    const {
-      endPoint
-    } = cfg;
-    const {
-      stroke
-    } = cfg.style;
+    const { startPoint } = cfg;
+    const { endPoint } = cfg;
+    const { stroke } = cfg.style;
     const Ydiff = endPoint.y - startPoint.y;
     const slope = Ydiff !== 0 ? Math.min(500 / Math.abs(Ydiff), 20) : 0;
     const cpOffset = slope > 15 ? 0 : 16;
     const offset = Ydiff < 0 ? cpOffset : -cpOffset;
     const line1EndPoint = {
       x: startPoint.x + slope,
-      y: endPoint.y + offset
+      y: endPoint.y + offset,
     };
     const line2StartPoint = {
       x: line1EndPoint.x + cpOffset,
-      y: endPoint.y
+      y: endPoint.y,
     };
     const controlPoint = {
-      x: (line1EndPoint.x - startPoint.x) * (endPoint.y - startPoint.y) / (line1EndPoint.y - startPoint.y) + startPoint.x,
-      y: endPoint.y
+      x:
+        ((line1EndPoint.x - startPoint.x) * (endPoint.y - startPoint.y)) /
+          (line1EndPoint.y - startPoint.y) +
+        startPoint.x,
+      y: endPoint.y,
     };
-    let path = [["M", startPoint.x, startPoint.y], ["L", line1EndPoint.x, line1EndPoint.y], ["Q", controlPoint.x, controlPoint.y, line2StartPoint.x, line2StartPoint.y], ["L", endPoint.x, endPoint.y]];
+    let path = [
+      ["M", startPoint.x, startPoint.y],
+      ["L", line1EndPoint.x, line1EndPoint.y],
+      [
+        "Q",
+        controlPoint.x,
+        controlPoint.y,
+        line2StartPoint.x,
+        line2StartPoint.y,
+      ],
+      ["L", endPoint.x, endPoint.y],
+    ];
 
     if (Math.abs(Ydiff) <= 5) {
-      path = [["M", startPoint.x, startPoint.y], ["L", endPoint.x, endPoint.y]];
+      path = [
+        ["M", startPoint.x, startPoint.y],
+        ["L", endPoint.x, endPoint.y],
+      ];
     }
 
-    const endArrow = cfg.style && cfg.style.endArrow ? cfg.style.endArrow : false;
+    const endArrow =
+      cfg.style && cfg.style.endArrow ? cfg.style.endArrow : false;
     if (isObject(endArrow)) endArrow.fill = stroke;
     const line = group.addShape("path", {
       attrs: {
         path,
         stroke: colorMap[cfg.data && cfg.data.type],
         lineWidth: 1.2,
-        endArrow
+        endArrow,
       },
-      name: "path-shape"
+      name: "path-shape",
     });
     const labelLeftOffset = 0;
     const labelTopOffset = 8;
@@ -127,9 +140,9 @@ F6.registerEdge("fund-polyline", {
         fontSize: 14,
         textAlign: "left",
         textBaseline: "middle",
-        fill: "#000000D9"
+        fill: "#000000D9",
       },
-      name: "text-shape-amount"
+      name: "text-shape-amount",
     });
     group.addShape("text", {
       attrs: {
@@ -139,9 +152,9 @@ F6.registerEdge("fund-polyline", {
         fontSize: 10,
         textAlign: "left",
         textBaseline: "middle",
-        fill: "#000000D9"
+        fill: "#000000D9",
       },
-      name: "text-shape-type"
+      name: "text-shape-type",
     });
     group.addShape("text", {
       attrs: {
@@ -152,12 +165,12 @@ F6.registerEdge("fund-polyline", {
         fontWeight: 300,
         textAlign: "left",
         textBaseline: "middle",
-        fill: "#000000D9"
+        fill: "#000000D9",
       },
-      name: "text-shape-date"
+      name: "text-shape-date",
     });
     return line;
-  }
+  },
 });
 const graph = new F6.Graph({
   width,
@@ -168,27 +181,27 @@ const graph = new F6.Graph({
     type: "dagre",
     rankdir: "LR",
     nodesep: 30,
-    ranksep: 100
+    ranksep: 100,
   },
   modes: {
-    default: ["drag-canvas"]
+    default: ["drag-canvas"],
   },
   defaultNode: {
     type: "round-rect",
     labelCfg: {
       style: {
         fill: "#000000A6",
-        fontSize: 10
-      }
+        fontSize: 10,
+      },
     },
     style: {
       stroke: "#72CC4A",
-      width: 150
-    }
+      width: 150,
+    },
   },
   defaultEdge: {
-    type: "fund-polyline"
-  }
+    type: "fund-polyline",
+  },
 });
 graph.data(data);
 graph.render();
@@ -199,8 +212,8 @@ edges.forEach(function (edge) {
   const targetNode = edge.getTarget();
   targetNode.update({
     style: {
-      stroke
-    }
+      stroke,
+    },
   });
 });
 graph.paint();

@@ -11,19 +11,19 @@ const graph = new F6.Graph({
   pixelRatio,
   fitView: true,
   modes: {
-    default: ["zoom-canvas", "drag-canvas", "drag-node"]
+    default: ["zoom-canvas", "drag-canvas", "drag-node"],
   },
   layout: {
     type: "forceAtlas2",
     preventOverlap: true,
     kr: 10,
-    center: [250, 250]
+    center: [250, 250],
   },
   defaultNode: {
-    size: 20
-  }
+    size: 20,
+  },
 });
-data.nodes.forEach(node => {
+data.nodes.forEach((node) => {
   node.x = Math.random() * 1;
 });
 graph.on("afterlayout", () => {

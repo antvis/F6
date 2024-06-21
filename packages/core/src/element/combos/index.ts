@@ -1,2 +1,2 @@
-import './circle';
-import './rect';
+import "./circle";
+import "./rect";

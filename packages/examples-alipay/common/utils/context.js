@@ -1,4 +1,4 @@
-import { measureText } from './common';
+import { measureText } from "./common";
 /**
  * 部分小程序context会缺少函数，补上
  */

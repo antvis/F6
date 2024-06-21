@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
   <head lang="en">
     <meta
@@ -28,15 +28,15 @@
     <script src="../../hammer.js"></script>
     <script>
       var program = [
-        ['pan', ['deltaX', 'deltaY']],
-        ['pinch', ['scale']],
-        ['tap', ['pos']],
-        ['swipe', ['deltaX', 'deltaY']],
-        ['pinch', ['pos', 'scale']],
-        ['pan', ['pos']],
-        ['rotate', ['pos', 'rotation']],
-        ['doubleTap', ['pos']],
-        ['pinchRotate', ['pos', 'scale', 'rotation']],
+        ["pan", ["deltaX", "deltaY"]],
+        ["pinch", ["scale"]],
+        ["tap", ["pos"]],
+        ["swipe", ["deltaX", "deltaY"]],
+        ["pinch", ["pos", "scale"]],
+        ["pan", ["pos"]],
+        ["rotate", ["pos", "rotation"]],
+        ["doubleTap", ["pos"]],
+        ["pinchRotate", ["pos", "scale", "rotation"]],
       ];
 
       function randomRange(min, max) {
@@ -50,14 +50,14 @@
       function gestureOption(name) {
         var max = el.offsetWidth * 0.9;
         switch (name) {
-          case 'deltaY':
-          case 'deltaX':
+          case "deltaY":
+          case "deltaX":
             return randomRangeInt(10, max * 0.5);
-          case 'pos':
+          case "pos":
             return [randomRangeInt(10, max), randomRangeInt(10, max)];
-          case 'scale':
+          case "scale":
             return randomRange(0.2, 2);
-          case 'rotation':
+          case "rotation":
             return randomRange(-180, 180);
         }
       }
@@ -72,7 +72,7 @@
               options[entry[1][i]] = gestureOption(entry[1][i]);
             }
             setTimeout(function () {
-              log.innerHTML = '';
+              log.innerHTML = "";
               Simulator.gestures[entry[0]](el, options, next);
             }, 1000);
           } else {
@@ -85,14 +85,14 @@
         walkProgram(startSimulator);
       }
 
-      var el = document.querySelector('#hit');
-      var log = document.querySelector('#log');
-      var debug = document.querySelector('#debug');
+      var el = document.querySelector("#hit");
+      var log = document.querySelector("#log");
+      var debug = document.querySelector("#debug");
 
       var mc = new Hammer(el);
-      mc.get('pinch').set({ enable: true, threshold: 0.1 });
-      mc.get('rotate').set({ enable: true });
-      mc.on('swipe pan multipan press pinch rotate tap doubletap', logGesture);
+      mc.get("pinch").set({ enable: true, threshold: 0.1 });
+      mc.get("rotate").set({ enable: true });
+      mc.on("swipe pan multipan press pinch rotate tap doubletap", logGesture);
 
       function logGesture(ev) {
         log.textContent = ev.toDirString();
@@ -104,14 +104,14 @@
           if (this.hasOwnProperty(key)) {
             var value = this[key];
             if (Array.isArray(value)) {
-              value = 'Array(' + value.length + '):' + value;
+              value = "Array(" + value.length + "):" + value;
             } else if (value instanceof HTMLElement) {
-              value = value + ' (' + value.outerHTML.substring(0, 50) + '...)';
+              value = value + " (" + value.outerHTML.substring(0, 50) + "...)";
             }
-            output.push(key + ': ' + value);
+            output.push(key + ": " + value);
           }
         }
-        return output.join('\n');
+        return output.join("\n");
       };
 
       startSimulator();

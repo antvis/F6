@@ -56,16 +56,16 @@ const data = {
 
 quadratic 边支持 [边通用配置项](/zh/docs/manual/middle/elements/edges/defaultEdge/#边的通用属性)，以下表格对部分常用配置项进行说明。对于 Object 类型的配置项将在后面有详细讲解：
 
-| 名称 | 含义 | 类型 | 备注 |
-| --- | --- | --- | --- |
-| color | 边的颜色 | String | 优先级低于 style 中的 stroke |
-| style | 边的样式 | Object | Canvas 支持的属性 |
-| label | 标签文本文字 | String |  |
-| labelCfg | 标签文本配置项 | Object |  |
-| controlPoints | 控制点数组 | Array | 不指定时将会使用默认的控制点：曲线中心附近。示例：`[{ x: 10, y: 20 }]` |
-| curveOffset | 控制点距离两端点连线的距离，可理解为控制边的弯曲程度 | Number / Number[] | cubic、horizontal、cubic-vertical、cubic-horizontal 等贝塞尔曲线特有 |
-| curvePosition | 控制点在两端点连线上的相对位置，范围 0 ～ 1 | Number / Number[] | cubic、horizontal、cubic-vertical、cubic-horizontal 等贝塞尔曲线特有 |
-| stateStyles | 各状态下的样式 | Object | 详见[配置状态样式](/zh/docs/manual/middle/states/state#配置-state-样式) |
+| 名称          | 含义                                                 | 类型              | 备注                                                                    |
+| ------------- | ---------------------------------------------------- | ----------------- | ----------------------------------------------------------------------- |
+| color         | 边的颜色                                             | String            | 优先级低于 style 中的 stroke                                            |
+| style         | 边的样式                                             | Object            | Canvas 支持的属性                                                       |
+| label         | 标签文本文字                                         | String            |                                                                         |
+| labelCfg      | 标签文本配置项                                       | Object            |                                                                         |
+| controlPoints | 控制点数组                                           | Array             | 不指定时将会使用默认的控制点：曲线中心附近。示例：`[{ x: 10, y: 20 }]`  |
+| curveOffset   | 控制点距离两端点连线的距离，可理解为控制边的弯曲程度 | Number / Number[] | cubic、horizontal、cubic-vertical、cubic-horizontal 等贝塞尔曲线特有    |
+| curvePosition | 控制点在两端点连线上的相对位置，范围 0 ～ 1          | Number / Number[] | cubic、horizontal、cubic-vertical、cubic-horizontal 等贝塞尔曲线特有    |
+| stateStyles   | 各状态下的样式                                       | Object            | 详见[配置状态样式](/zh/docs/manual/middle/states/state#配置-state-样式) |
 
 ### 样式属性  style
 

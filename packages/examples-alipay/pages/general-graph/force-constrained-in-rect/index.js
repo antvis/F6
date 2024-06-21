@@ -1,7 +1,7 @@
-import F6 from '@antv/f6';
-import { wrapContext } from '../../../common/utils/context';
-import getData from './data';
-import force from '@antv/f6/dist/extends/layout/forceLayout';
+import F6 from "@antv/f6";
+import { wrapContext } from "../../../common/utils/context";
+import getData from "./data";
+import force from "@antv/f6/dist/extends/layout/forceLayout";
 
 /**
  * 约束在范围内布局
@@ -10,7 +10,7 @@ import force from '@antv/f6/dist/extends/layout/forceLayout';
 Page({
   canvas: null,
   ctx: null,
-  renderer: '', // mini、mini-native等，F6需要，标记环境
+  renderer: "", // mini、mini-native等，F6需要，标记环境
   isCanvasInit: false, // canvas是否准备好了
   graph: null,
 
@@ -22,7 +22,7 @@ Page({
   },
 
   onLoad() {
-    F6.registerLayout('force', force);
+    F6.registerLayout("force", force);
     // 同步获取window的宽高
     const { windowWidth, windowHeight, pixelRatio } = my.getSystemInfoSync();
 
@@ -103,7 +103,7 @@ Page({
       pixelRatio,
       fitView: true,
       layout: {
-        type: 'force',
+        type: "force",
         onTick,
       },
       defaultNode: {
@@ -113,7 +113,7 @@ Page({
 
     this.graph.data({
       nodes: data.nodes,
-      edges: data.edges.map(function(edge, i) {
+      edges: data.edges.map(function (edge, i) {
         edge.id = `edge${i}`;
         return Object.assign({}, edge);
       }),

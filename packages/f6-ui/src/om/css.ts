@@ -18,7 +18,7 @@ function parse(css, options?) {
   function updatePosition(str) {
     var lines = str.match(/\n/g);
     if (lines) lineno += lines.length;
-    var i = str.lastIndexOf('\n');
+    var i = str.lastIndexOf("\n");
     column = ~i ? str.length - i : column + str.length;
   }
 
@@ -58,7 +58,9 @@ function parse(css, options?) {
   var errorsList = [];
 
   function error(msg) {
-    var err: any = new Error(options.source + ':' + lineno + ':' + column + ': ' + msg);
+    var err: any = new Error(
+      options.source + ":" + lineno + ":" + column + ": " + msg,
+    );
     err.reason = msg;
     err.filename = options.source;
     err.line = lineno;
@@ -80,7 +82,7 @@ function parse(css, options?) {
     var rulesList = rules();
 
     return {
-      type: 'stylesheet',
+      type: "stylesheet",
       stylesheet: {
         source: options.source,
         rules: rulesList,
@@ -114,7 +116,7 @@ function parse(css, options?) {
     var rules = [];
     whitespace();
     comments(rules);
-    while (css.length && css.charAt(0) != '}' && (node = atrule() || rule())) {
+    while (css.length && css.charAt(0) != "}" && (node = atrule() || rule())) {
       if (node !== false) {
         rules.push(node);
         comments(rules);
@@ -165,14 +167,18 @@ function parse(css, options?) {
 
   function comment() {
     var pos = position();
-    if ('/' != css.charAt(0) || '*' != css.charAt(1)) return;
+    if ("/" != css.charAt(0) || "*" != css.charAt(1)) return;
 
     var i = 2;
-    while ('' != css.charAt(i) && ('*' != css.charAt(i) || '/' != css.charAt(i + 1))) ++i;
+    while (
+      "" != css.charAt(i) &&
+      ("*" != css.charAt(i) || "/" != css.charAt(i + 1))
+    )
+      ++i;
     i += 2;
 
-    if ('' === css.charAt(i - 1)) {
-      return error('End of comment missing');
+    if ("" === css.charAt(i - 1)) {
+      return error("End of comment missing");
     }
 
     var str = css.slice(2, i - 2);
@@ -182,7 +188,7 @@ function parse(css, options?) {
     column += 2;
 
     return pos({
-      type: 'comment',
+      type: "comment",
       comment: str,
     });
   }
@@ -197,13 +203,13 @@ function parse(css, options?) {
     /* @fix Remove all comments from selectors
      * http://ostermiller.org/findcomment.html */
     return trim(m[0])
-      .replace(/\/\*([^*]|[\r\n]|(\*+([^*/]|[\r\n])))*\*\/+/g, '')
+      .replace(/\/\*([^*]|[\r\n]|(\*+([^*/]|[\r\n])))*\*\/+/g, "")
       .replace(/"(?:\\"|[^"])*"|'(?:\\'|[^'])*'/g, function (m) {
-        return m.replace(/,/g, '\u200C');
+        return m.replace(/,/g, "\u200C");
       })
       .split(/\s*(?![^(]*\)),\s*/)
       .map(function (s) {
-        return s.replace(/\u200C/g, ',');
+        return s.replace(/\u200C/g, ",");
       });
   }
 
@@ -226,9 +232,9 @@ function parse(css, options?) {
     var val = match(/^((?:'(?:\\'|.)*?'|"(?:\\"|.)*?"|\([^\)]*?\)|[^};])+)/);
 
     var ret = pos({
-      type: 'declaration',
-      property: prop.replace(commentre, ''),
-      value: val ? trim(val[0]).replace(commentre, '') : '',
+      type: "declaration",
+      property: prop.replace(commentre, ""),
+      value: val ? trim(val[0]).replace(commentre, "") : "",
     });
 
     // ;
@@ -277,7 +283,7 @@ function parse(css, options?) {
     if (!vals.length) return;
 
     return pos({
-      type: 'keyframe',
+      type: "keyframe",
       values: vals,
       declarations: declarations(),
     });
@@ -296,7 +302,7 @@ function parse(css, options?) {
 
     // identifier
     var m = match(/^([-\w]+)\s*/);
-    if (!m) return error('@keyframes missing name');
+    if (!m) return error("@keyframes missing name");
     var name = m[1];
 
     if (!open()) return error("@keyframes missing '{'");
@@ -311,7 +317,7 @@ function parse(css, options?) {
     if (!close()) return error("@keyframes missing '}'");
 
     return pos({
-      type: 'keyframes',
+      type: "keyframes",
       name: name,
       vendor: vendor,
       keyframes: frames,
@@ -336,7 +342,7 @@ function parse(css, options?) {
     if (!close()) return error("@supports missing '}'");
 
     return pos({
-      type: 'supports',
+      type: "supports",
       supports: supports,
       rules: style,
     });
@@ -359,7 +365,7 @@ function parse(css, options?) {
     if (!close()) return error("@host missing '}'");
 
     return pos({
-      type: 'host',
+      type: "host",
       rules: style,
     });
   }
@@ -382,7 +388,7 @@ function parse(css, options?) {
     if (!close()) return error("@media missing '}'");
 
     return pos({
-      type: 'media',
+      type: "media",
       media: media,
       rules: style,
     });
@@ -398,7 +404,7 @@ function parse(css, options?) {
     if (!m) return;
 
     return pos({
-      type: 'custom-media',
+      type: "custom-media",
       name: trim(m[1]),
       media: trim(m[2]),
     });
@@ -428,7 +434,7 @@ function parse(css, options?) {
     if (!close()) return error("@page missing '}'");
 
     return pos({
-      type: 'page',
+      type: "page",
       selectors: sel,
       declarations: decls,
     });
@@ -453,7 +459,7 @@ function parse(css, options?) {
     if (!close()) return error("@document missing '}'");
 
     return pos({
-      type: 'document',
+      type: "document",
       document: doc,
       vendor: vendor,
       rules: style,
@@ -482,7 +488,7 @@ function parse(css, options?) {
     if (!close()) return error("@font-face missing '}'");
 
     return pos({
-      type: 'font-face',
+      type: "font-face",
       declarations: decls,
     });
   }
@@ -491,26 +497,26 @@ function parse(css, options?) {
    * Parse import
    */
 
-  var atimport = _compileAtrule('import');
+  var atimport = _compileAtrule("import");
 
   /**
    * Parse charset
    */
 
-  var atcharset = _compileAtrule('charset');
+  var atcharset = _compileAtrule("charset");
 
   /**
    * Parse namespace
    */
 
-  var atnamespace = _compileAtrule('namespace');
+  var atnamespace = _compileAtrule("namespace");
 
   /**
    * Parse non-block at-rules
    */
 
   function _compileAtrule(name) {
-    var re = new RegExp('^@' + name + '\\s*([^;]+);');
+    var re = new RegExp("^@" + name + "\\s*([^;]+);");
     return function () {
       var pos = position();
       var m = match(re);
@@ -526,7 +532,7 @@ function parse(css, options?) {
    */
 
   function atrule() {
-    if (css[0] != '@') return;
+    if (css[0] != "@") return;
 
     return (
       atkeyframes() ||
@@ -551,11 +557,11 @@ function parse(css, options?) {
     var pos = position();
     var sel = selector();
 
-    if (!sel) return error('selector missing');
+    if (!sel) return error("selector missing");
     comments();
 
     return pos({
-      type: 'rule',
+      type: "rule",
       selectors: sel,
       declarations: declarations(),
     });
@@ -569,7 +575,7 @@ function parse(css, options?) {
  */
 
 function trim(str) {
-  return str ? str.replace(/^\s+|\s+$/g, '') : '';
+  return str ? str.replace(/^\s+|\s+$/g, "") : "";
 }
 
 /**
@@ -577,7 +583,7 @@ function trim(str) {
  */
 
 function addParent(obj, parent?) {
-  var isNode = obj && typeof obj.type === 'string';
+  var isNode = obj && typeof obj.type === "string";
   var childParent = isNode ? obj : parent;
 
   for (var k in obj) {
@@ -586,13 +592,13 @@ function addParent(obj, parent?) {
       value.forEach(function (v) {
         addParent(v, childParent);
       });
-    } else if (value && typeof value === 'object') {
+    } else if (value && typeof value === "object") {
       addParent(value, childParent);
     }
   }
 
   if (isNode) {
-    Object.defineProperty(obj, 'parent', {
+    Object.defineProperty(obj, "parent", {
       configurable: true,
       writable: true,
       enumerable: false,

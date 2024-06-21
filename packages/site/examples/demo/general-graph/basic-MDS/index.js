@@ -11,16 +11,16 @@ const graph = new F6.Graph({
   pixelRatio,
   fitView: true,
   modes: {
-    default: ["drag-node"]
+    default: ["drag-node"],
   },
   layout: {
     type: "mds",
-    linkDistance: 100
+    linkDistance: 100,
   },
   animate: true,
   defaultNode: {
-    size: 20
-  }
+    size: 20,
+  },
 });
 graph.data(data);
 graph.render();

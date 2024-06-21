@@ -1,6 +1,6 @@
-import F6 from '@antv/f6';
-import { wrapContext } from '../../../common/utils/context';
-import data from './data';
+import F6 from "@antv/f6";
+import { wrapContext } from "../../../common/utils/context";
+import data from "./data";
 /**
  * pieChart：使用G自定义的饼图节点
  */
@@ -8,7 +8,7 @@ import data from './data';
 Page({
   canvas: null,
   ctx: null,
-  renderer: '', // mini、mini-native等，F6需要，标记环境
+  renderer: "", // mini、mini-native等，F6需要，标记环境
   isCanvasInit: false, // canvas是否准备好了
   graph: null,
 
@@ -23,16 +23,19 @@ Page({
     // 同步获取window的宽高
     const { windowWidth, windowHeight, pixelRatio } = my.getSystemInfoSync();
 
-    const lightBlue = '#5b8ff9';
-    const lightOrange = '#5ad8a6';
+    const lightBlue = "#5b8ff9";
+    const lightOrange = "#5ad8a6";
 
     // register a pie chart node
-    F6.registerNode('pie-node', {
+    F6.registerNode("pie-node", {
       draw: (cfg, group) => {
         const radius = cfg.size / 2; // node radius
         const inPercentage = cfg.inDegree / cfg.degree; // the ratio of indegree to outdegree
         const inAngle = inPercentage * Math.PI * 2; // the anble for the indegree fan
-        const inArcEnd = [radius * Math.cos(inAngle), -radius * Math.sin(inAngle)]; // the end position for the in-degree fan
+        const inArcEnd = [
+          radius * Math.cos(inAngle),
+          -radius * Math.sin(inAngle),
+        ]; // the end position for the in-degree fan
         let isInBigArc = 0;
         let isOutBigArc = 1;
         if (inAngle > Math.PI) {
@@ -40,32 +43,32 @@ Page({
           isOutBigArc = 0;
         }
         // fan shape for the in degree
-        const fanIn = group.addShape('path', {
+        const fanIn = group.addShape("path", {
           attrs: {
             path: [
-              ['M', radius, 0],
-              ['A', radius, radius, 0, isInBigArc, 0, inArcEnd[0], inArcEnd[1]],
-              ['L', 0, 0],
-              ['Z'],
+              ["M", radius, 0],
+              ["A", radius, radius, 0, isInBigArc, 0, inArcEnd[0], inArcEnd[1]],
+              ["L", 0, 0],
+              ["Z"],
             ],
             lineWidth: 0,
             fill: lightOrange,
           },
-          name: 'in-fan-shape',
+          name: "in-fan-shape",
         });
         // draw the fan shape
-        group.addShape('path', {
+        group.addShape("path", {
           attrs: {
             path: [
-              ['M', inArcEnd[0], inArcEnd[1]],
-              ['A', radius, radius, 0, isOutBigArc, 0, radius, 0],
-              ['L', 0, 0],
-              ['Z'],
+              ["M", inArcEnd[0], inArcEnd[1]],
+              ["A", radius, radius, 0, isOutBigArc, 0, radius, 0],
+              ["L", 0, 0],
+              ["Z"],
             ],
             lineWidth: 0,
             fill: lightBlue,
           },
-          name: 'out-fan-shape',
+          name: "out-fan-shape",
         });
         // 返回 keyshape
         return fanIn;
@@ -115,7 +118,7 @@ Page({
       fitView: true,
       fitCenter: true,
       defaultNode: {
-        type: 'pie-node',
+        type: "pie-node",
       },
     });
     this.graph.data(data);

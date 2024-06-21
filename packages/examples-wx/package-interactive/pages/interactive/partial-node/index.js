@@ -1,6 +1,6 @@
-import F6 from '@antv/f6-wx';
+import F6 from "@antv/f6-wx";
 
-import data from './data';
+import data from "./data";
 
 /**
  * partial-node
@@ -9,7 +9,7 @@ import data from './data';
 Page({
   canvas: null,
   ctx: null,
-  renderer: '', // mini、mini-native等，F6需要，标记环境
+  renderer: "", // mini、mini-native等，F6需要，标记环境
   isCanvasInit: false, // canvas是否准备好了
   graph: null,
 
@@ -23,7 +23,7 @@ Page({
   onLoad() {
     // 注册自定义节点
     F6.registerNode(
-      'customNode',
+      "customNode",
       {
         // 绘制节点
         drawShape: function drawShape(cfg, group) {
@@ -35,23 +35,23 @@ Page({
           });
           const shape = group.addShape(shapeType, {
             attrs: style,
-            name: 'key-shape',
+            name: "key-shape",
           });
           // 绘制节点里面的小圆。点击这个小圆会显示tooltip
-          group.addShape('circle', {
+          group.addShape("circle", {
             attrs: {
               x: 0,
               y: -30,
               r: 10,
-              fill: '#096dd9',
-              cursor: 'pointer',
+              fill: "#096dd9",
+              cursor: "pointer",
             },
-            name: 'circle-shape',
+            name: "circle-shape",
           });
           return shape;
         },
       },
-      'circle',
+      "circle",
     );
     // 同步获取window的宽高
     const { windowWidth, windowHeight, pixelRatio } = wx.getSystemInfoSync();
@@ -101,15 +101,15 @@ Page({
       modes: {
         default: [
           {
-            type: 'drag-node',
+            type: "drag-node",
             delegate: false,
           },
         ],
       },
       defaultNode: {
         style: {
-          fill: '#DEE9FF',
-          stroke: '#5B8FF9',
+          fill: "#DEE9FF",
+          stroke: "#5B8FF9",
         },
         labelCfg: {
           style: {
@@ -119,12 +119,12 @@ Page({
       },
       defaultEdge: {
         style: {
-          stroke: '#e2e2e2',
+          stroke: "#e2e2e2",
         },
       },
       nodeStateStyles: {
         selected: {
-          stroke: 'red',
+          stroke: "red",
         },
       },
     });
@@ -134,18 +134,18 @@ Page({
     this.graph.fitView();
 
     // 节点上的点击事件
-    this.graph.on('node:tap', (event) => {
+    this.graph.on("node:tap", (event) => {
       const { item } = event;
-      this.graph.setItemState(item, 'selected', true);
+      this.graph.setItemState(item, "selected", true);
     });
 
-    this.graph.on('circle-shape:tap', (evt) => {
+    this.graph.on("circle-shape:tap", (evt) => {
       const { item } = evt;
       this.graph.updateItem(item, {
-        label: '点击了局部',
+        label: "点击了局部",
         labelCfg: {
           style: {
-            fill: '#003a8c',
+            fill: "#003a8c",
             fontSize: 16,
           },
         },

@@ -1,7 +1,7 @@
-import F6 from '@antv/f6';
-import TreeGraph from '@antv/f6/dist/extends/graph/treeGraph';
-import { wrapContext } from '../../../common/utils/context';
-import data from './data';
+import F6 from "@antv/f6";
+import TreeGraph from "@antv/f6/dist/extends/graph/treeGraph";
+import { wrapContext } from "../../../common/utils/context";
+import data from "./data";
 
 /**
  * addChild
@@ -10,7 +10,7 @@ import data from './data';
 Page({
   canvas: null,
   ctx: null,
-  renderer: '', // mini、mini-native等，F6需要，标记环境
+  renderer: "", // mini、mini-native等，F6需要，标记环境
   isCanvasInit: false, // canvas是否准备好了
   graph: null,
 
@@ -23,7 +23,7 @@ Page({
 
   onLoad() {
     // 注册自定义树，节点等
-    F6.registerGraph('TreeGraph', TreeGraph);
+    F6.registerGraph("TreeGraph", TreeGraph);
 
     // 同步获取window的宽高
     const { windowWidth, windowHeight, pixelRatio } = my.getSystemInfoSync();
@@ -69,12 +69,12 @@ Page({
       height,
       pixelRatio,
       modes: {
-        default: ['collapse-expand', 'drag-canvas'],
+        default: ["collapse-expand", "drag-canvas"],
       },
       fitView: true,
       layout: {
-        type: 'compactBox',
-        direction: 'LR',
+        type: "compactBox",
+        direction: "LR",
         defalutPosition: [],
         getId: function getId(d) {
           return d.id;
@@ -93,7 +93,7 @@ Page({
         },
       },
     });
-    this.graph.node(function(node) {
+    this.graph.node(function (node) {
       return {
         size: 16,
         anchorPoints: [
@@ -101,20 +101,21 @@ Page({
           [1, 0.5],
         ],
         style: {
-          fill: '#DEE9FF',
-          stroke: '#5B8FF9',
+          fill: "#DEE9FF",
+          stroke: "#5B8FF9",
         },
         label: node.id,
         labelCfg: {
-          position: node.children && node.children.length > 0 ? 'left' : 'right',
+          position:
+            node.children && node.children.length > 0 ? "left" : "right",
         },
       };
     });
 
-    this.graph.edge(function() {
+    this.graph.edge(function () {
       return {
-        type: 'cubic-horizontal',
-        color: '#A3B1BF',
+        type: "cubic-horizontal",
+        color: "#A3B1BF",
       };
     });
 
@@ -124,16 +125,16 @@ Page({
 
     let count = 0;
 
-    this.graph.on('node:tap', (evt) => {
+    this.graph.on("node:tap", (evt) => {
       const { item } = evt;
 
-      const nodeId = item.get('id');
+      const nodeId = item.get("id");
       const model = item.getModel();
       const { children } = model;
       if (!children || children.length === 0) {
         const childData = {
           id: `child-data-${count}`,
-          type: 'rect',
+          type: "rect",
           children: [
             {
               id: `x-${count}`,

@@ -21,19 +21,21 @@
 
 <script>
 export default {
-  name: 'f6-canvas',
+  name: "f6-canvas",
   computed: {
     styleCanvas() {
       return `width: ${this.$props.width}px; height: ${this.$props.height}px; ${this.$props.styles}`;
     },
     finalRatio() {
-      return this.$props.pixelRatio >= 1 ? Math.ceil(this.$props.pixelRatio) : 1;
+      return this.$props.pixelRatio >= 1
+        ? Math.ceil(this.$props.pixelRatio)
+        : 1;
     },
   },
   props: {
     styles: {
       type: String,
-      default: '',
+      default: "",
     },
     width: {
       type: Number,
@@ -72,24 +74,24 @@ export default {
     this.rect = null;
     this.ctx = null;
 
-    this.$emit('onInit', {
+    this.$emit("onInit", {
       ctx: this.ctx,
       rect: this.rect,
       container: container,
-      renderer: 'h5',
+      renderer: "h5",
     });
     // #endif
 
     // #ifdef MP-ALIPAY
     my.createSelectorQuery()
-      .select('#f6-canvas')
+      .select("#f6-canvas")
       .boundingClientRect()
       .exec((ret) => {
         my._createCanvas({
-          id: 'f6-canvas',
+          id: "f6-canvas",
           success: (canvas) => {
-            this.$emit('onInit', {
-              ctx: canvas.getContext('2d'),
+            this.$emit("onInit", {
+              ctx: canvas.getContext("2d"),
               rect: {
                 width: ret[0].width,
                 height: ret[0].height,
@@ -97,7 +99,7 @@ export default {
                 top: ret[0].top,
               },
               container: null,
-              renderer: 'mini-native',
+              renderer: "mini-native",
             });
           },
         });
@@ -107,13 +109,13 @@ export default {
     // #ifdef MP-WEIXIN
     const query = uni.createSelectorQuery().in(this);
     query
-      .select('#f6-canvas')
+      .select("#f6-canvas")
       .fields({
         node: true,
         size: true,
       })
       .exec((ret) => {
-        console.log('ret', ret);
+        console.log("ret", ret);
         var canvas = ret[0].node;
         canvas.width = this.$props.width * this.finalRatio;
         canvas.height = this.$props.height * this.finalRatio;
@@ -123,12 +125,12 @@ export default {
           left: canvas._left,
           top: canvas._top,
         };
-        this.ctx = canvas.getContext('2d');
-        this.$emit('onInit', {
+        this.ctx = canvas.getContext("2d");
+        this.$emit("onInit", {
           ctx: this.ctx,
           rect: this.rect,
           container: canvas,
-          renderer: 'mini-native',
+          renderer: "mini-native",
         });
       });
 
@@ -145,7 +147,7 @@ export default {
       for (i = 0; i < origin.changedTouches.length; i++) {
         modifyEvent(origin.changedTouches[i]);
       }
-      this.$emit('onTouchEvent', origin);
+      this.$emit("onTouchEvent", origin);
     },
   },
 };

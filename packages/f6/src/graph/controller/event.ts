@@ -1,7 +1,13 @@
-import { ICanvas, IGroup, IShape } from '@antv/g-base';
-import { each, wrapBehavior } from '@antv/util';
-import { AbstractEvent, IG6GraphEvent, Matrix, Item, Util } from '@antv/f6-core';
-import Graph from '../graph';
+import { ICanvas, IGroup, IShape } from "@antv/g-base";
+import { each, wrapBehavior } from "@antv/util";
+import {
+  AbstractEvent,
+  IG6GraphEvent,
+  Matrix,
+  Item,
+  Util,
+} from "@antv/f6-core";
+import Graph from "../graph";
 
 const { cloneEvent, isViewportChanged } = Util;
 
@@ -27,15 +33,15 @@ export default class EventController extends AbstractEvent {
   // 初始化 G6 中的事件
   protected initEvents() {
     const { graph, extendEvents = [] } = this;
-    const canvas: ICanvas = graph.get('canvas');
-    this.canvasHandler = wrapBehavior(this, 'onCanvasEvents') as Fun;
-    canvas.off('*').on('*', this.canvasHandler);
+    const canvas: ICanvas = graph.get("canvas");
+    this.canvasHandler = wrapBehavior(this, "onCanvasEvents") as Fun;
+    canvas.off("*").on("*", this.canvasHandler);
   }
 
   // 获取 shape 的 item 对象
   private static getItemRoot<T extends IShape>(shape: any): T {
-    while (shape && !shape.get('item')) {
-      shape = shape.get('parent');
+    while (shape && !shape.get("item")) {
+      shape = shape.get("parent");
     }
     return shape;
   }
@@ -46,7 +52,7 @@ export default class EventController extends AbstractEvent {
    */
   protected onCanvasEvents(evt: IG6GraphEvent) {
     const { graph } = this;
-    const canvas = graph.get('canvas');
+    const canvas = graph.get("canvas");
     const { target } = evt;
     const eventType = evt.type;
 
@@ -59,7 +65,7 @@ export default class EventController extends AbstractEvent {
     evt.canvasY = evt.y;
     let point = { x: evt.canvasX, y: evt.canvasY };
 
-    const group: IGroup = graph.get('group');
+    const group: IGroup = graph.get("group");
     let matrix: Matrix = group.getMatrix();
 
     if (!matrix) {
@@ -76,8 +82,8 @@ export default class EventController extends AbstractEvent {
     evt.currentTarget = graph;
 
     if (target === canvas) {
-      if (eventType === 'panmove') {
-        this.handleTouchMove(evt, 'canvas');
+      if (eventType === "panmove") {
+        this.handleTouchMove(evt, "canvas");
       }
       evt.target = canvas;
       evt.item = null;
@@ -93,7 +99,7 @@ export default class EventController extends AbstractEvent {
       return;
     }
 
-    const item = itemShape.get('item');
+    const item = itemShape.get("item");
     if (item.destroyed) {
       return;
     }
@@ -110,19 +116,19 @@ export default class EventController extends AbstractEvent {
     }
 
     graph.emit(eventType, evt);
-    if (evt.name && !evt.name.includes(':')) {
+    if (evt.name && !evt.name.includes(":")) {
       graph.emit(`${type}:${eventType}`, evt);
     } else {
       graph.emit(evt.name, evt);
     }
 
-    if (eventType === 'dragstart') {
+    if (eventType === "dragstart") {
       this.dragging = true;
     }
-    if (eventType === 'dragend') {
+    if (eventType === "dragend") {
       this.dragging = false;
     }
-    if (eventType === 'panmove') {
+    if (eventType === "panmove") {
       this.handleTouchMove(evt, type);
     }
   }
@@ -141,20 +147,24 @@ export default class EventController extends AbstractEvent {
    * @param eventType 事件类型
    * @param evt 事件句柄
    */
-  private emitCustomEvent(itemType: string, eventType: string, evt: IG6GraphEvent) {
+  private emitCustomEvent(
+    itemType: string,
+    eventType: string,
+    evt: IG6GraphEvent,
+  ) {
     evt.type = eventType;
     this.graph.emit(`${itemType}:${eventType}`, evt);
   }
 
   public destroy() {
     const { graph, canvasHandler, extendEvents } = this;
-    const canvas: ICanvas = graph.get('canvas');
+    const canvas: ICanvas = graph.get("canvas");
 
     // each(EVENTS, event => {
     //   canvas.off(event, canvasHandler);
     // });
 
-    canvas.off('*', canvasHandler);
+    canvas.off("*", canvasHandler);
 
     each(extendEvents, (event) => {
       event.remove();
@@ -174,7 +184,7 @@ export default class EventController extends AbstractEvent {
    */
   private handleTouchMove(evt: IG6GraphEvent, type: string) {
     const { graph, preItem } = this;
-    const canvas: ICanvas = graph.get('canvas');
+    const canvas: ICanvas = graph.get("canvas");
     const item = (evt.target as any) === canvas ? null : evt.item;
 
     evt = cloneEvent(evt) as IG6GraphEvent;
@@ -182,18 +192,18 @@ export default class EventController extends AbstractEvent {
     // 从前一个item直接移动到当前item，触发前一个item的leave事件
     if (preItem && preItem !== item && !preItem.destroyed) {
       evt.item = preItem;
-      this.emitCustomEvent(preItem.getType(), 'touchleave', evt);
+      this.emitCustomEvent(preItem.getType(), "touchleave", evt);
       if (this.dragging) {
-        this.emitCustomEvent(preItem.getType(), 'dragleave', evt);
+        this.emitCustomEvent(preItem.getType(), "dragleave", evt);
       }
     }
 
     // 从一个item或canvas移动到当前item，触发当前item的enter事件
     if (item && preItem !== item) {
       evt.item = item;
-      this.emitCustomEvent(type, 'touchenter', evt);
+      this.emitCustomEvent(type, "touchenter", evt);
       if (this.dragging) {
-        this.emitCustomEvent(type, 'dragenter', evt);
+        this.emitCustomEvent(type, "dragenter", evt);
       }
     }
 

@@ -7,10 +7,10 @@
  * @returns {Object} target
  */
 let assign;
-if (typeof Object.assign !== 'function') {
+if (typeof Object.assign !== "function") {
   assign = function assign(target) {
     if (target === undefined || target === null) {
-      throw new TypeError('Cannot convert undefined or null to object');
+      throw new TypeError("Cannot convert undefined or null to object");
     }
 
     let output = Object(target);

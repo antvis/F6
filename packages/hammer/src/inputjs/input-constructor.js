@@ -1,5 +1,5 @@
-import boolOrFn from '../utils/bool-or-fn';
-import { addManagerListeners } from '../utils/add-event-listeners';
+import boolOrFn from "../utils/bool-or-fn";
+import { addManagerListeners } from "../utils/add-event-listeners";
 
 /**
  * @private
@@ -36,13 +36,13 @@ export default class Input {
    * @private
    */
   init() {
-    addManagerListeners(this.manager, this.events || '', this.eventHandler);
+    addManagerListeners(this.manager, this.events || "", this.eventHandler);
   }
 
   /**
    * @private
    */
   destroy() {
-    removeManagerListeners(this.manager, this.events || '', this.eventHandler);
+    removeManagerListeners(this.manager, this.events || "", this.eventHandler);
   }
 }

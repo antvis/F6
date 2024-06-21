@@ -1,6 +1,6 @@
-import { ZoomSlider } from '@antv/f6-plugin';
-import data from './data';
-import F6 from '@antv/f6';
+import { ZoomSlider } from "@antv/f6-plugin";
+import data from "./data";
+import F6 from "@antv/f6";
 
 Page({
   data: {
@@ -30,7 +30,7 @@ Page({
   handleInit(ctx, rect, canvas, renderer) {
     const zoomSlider = new ZoomSlider();
     const { width, height, pixelRatio } = this.data;
-    console.log('------->', ctx, rect, canvas, renderer);
+    console.log("------->", ctx, rect, canvas, renderer);
     this.graph = new F6.Graph({
       context: ctx,
       width,
@@ -42,7 +42,7 @@ Page({
         size: 30,
       },
       modes: {
-        default: ['drag-canvas', 'zoom-canvas', 'drag-node'],
+        default: ["drag-canvas", "zoom-canvas", "drag-node"],
       },
       plugins: [zoomSlider],
     });
@@ -50,7 +50,7 @@ Page({
     this.graph.render();
 
     // 目前在使用plugin时,需要关闭局部刷新
-    this.graph.get('canvas').set('localRefresh', false);
+    this.graph.get("canvas").set("localRefresh", false);
   },
 
   /**

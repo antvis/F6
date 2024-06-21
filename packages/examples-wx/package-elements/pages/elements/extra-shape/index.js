@@ -1,28 +1,28 @@
-import F6 from '@antv/f6-wx';
+import F6 from "@antv/f6-wx";
 
-import data from './data';
+import data from "./data";
 /**
  * extraShapes
  */
 // 注册边
 F6.registerEdge(
-  'extra-shape-edge',
+  "extra-shape-edge",
   {
     afterDraw(cfg, group) {
       // get the first shape in the graphics group of this edge, it is the path of the edge here
       // 获取图形组中的第一个图形，在这里就是边的路径图形
-      const shape = group.get('children')[0];
+      const shape = group.get("children")[0];
       // get the coordinate of the mid point on the path
       // 获取路径图形的中点坐标
       const midPoint = shape.getPoint(0.5);
-      const rectColor = cfg.midPointColor || '#333';
+      const rectColor = cfg.midPointColor || "#333";
       // add a rect on the mid point of the path. note that the origin of a rect shape is on its lefttop
       // 在中点增加一个矩形，注意矩形的原点在其左上角
-      group.addShape('rect', {
+      group.addShape("rect", {
         attrs: {
           width: 10,
           height: 10,
-          fill: rectColor || '#333',
+          fill: rectColor || "#333",
           // x and y should be minus width / 2 and height / 2 respectively to translate the center of the rect to the midPoint
           // x 和 y 分别减去 width / 2 与 height / 2，使矩形中心在 midPoint 上
           x: midPoint.x - 5,
@@ -33,13 +33,13 @@ F6.registerEdge(
       // get the coordinate of the quatile on the path
       // 获取路径上的四分位点坐标
       const quatile = shape.getPoint(0.25);
-      const quatileColor = cfg.quatileColor || '#333';
+      const quatileColor = cfg.quatileColor || "#333";
       // add a circle on the quatile of the path
       // 在四分位点上放置一个圆形
-      group.addShape('circle', {
+      group.addShape("circle", {
         attrs: {
           r: 5,
-          fill: quatileColor || '#333',
+          fill: quatileColor || "#333",
           x: quatile.x,
           y: quatile.y,
         },
@@ -47,13 +47,13 @@ F6.registerEdge(
     },
     update: undefined,
   },
-  'cubic',
+  "cubic",
 );
 
 Page({
   canvas: null,
   ctx: null,
-  renderer: '', // mini、mini-native等，F6需要，标记环境
+  renderer: "", // mini、mini-native等，F6需要，标记环境
   isCanvasInit: false, // canvas是否准备好了
   graph: null,
 
@@ -112,12 +112,12 @@ Page({
       fitCenter: true,
       modes: {
         // behavior
-        default: ['drag-node', 'drag-canvas'],
+        default: ["drag-node", "drag-canvas"],
       },
       defaultEdge: {
-        type: 'extra-shape-edge',
+        type: "extra-shape-edge",
         style: {
-          stroke: '#F6BD16',
+          stroke: "#F6BD16",
         },
       },
     });

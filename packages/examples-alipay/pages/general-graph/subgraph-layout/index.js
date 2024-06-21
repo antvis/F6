@@ -1,7 +1,7 @@
-import F6 from '@antv/f6';
-import { wrapContext } from '../../../common/utils/context';
-import data from './data';
-import Force from '@antv/f6/dist/extends/layout/forceLayout';
+import F6 from "@antv/f6";
+import { wrapContext } from "../../../common/utils/context";
+import data from "./data";
+import Force from "@antv/f6/dist/extends/layout/forceLayout";
 
 /**
  * subgraphLayout
@@ -10,7 +10,7 @@ import Force from '@antv/f6/dist/extends/layout/forceLayout';
 Page({
   canvas: null,
   ctx: null,
-  renderer: '', // mini、mini-native等，F6需要，标记环境
+  renderer: "", // mini、mini-native等，F6需要，标记环境
   isCanvasInit: false, // canvas是否准备好了
   graph: null,
 
@@ -59,15 +59,15 @@ Page({
 
     const { nodes } = data;
 
-    nodes.forEach(function(node, i) {
+    nodes.forEach(function (node, i) {
       if (i <= 16 && i !== 12) {
         if (!node.style) {
           node.style = {
-            fill: '#F6C3B7',
-            stroke: '#E8684A',
+            fill: "#F6C3B7",
+            stroke: "#E8684A",
           };
         } else {
-          node.style.fill = 'lightsteelblue';
+          node.style.fill = "lightsteelblue";
         }
       }
     });
@@ -83,18 +83,18 @@ Page({
       fitView: true,
       fitViewPadding: 40,
       modes: {
-        default: ['drag-node'],
+        default: ["drag-node"],
       },
       defaultNode: {
         size: 20,
         style: {
-          fill: '#C6E5FF',
-          stroke: '#5B8FF9',
+          fill: "#C6E5FF",
+          stroke: "#5B8FF9",
         },
       },
       defaultEdge: {
         size: 1,
-        color: '#e2e2e2',
+        color: "#e2e2e2",
       },
     });
 
@@ -112,17 +112,20 @@ Page({
       nodes[0].fx = nodes[0].x;
       nodes[0].fy = nodes[0].y;
       // add the nodes which should be re-layout
-      nodes.forEach(function(node, i) {
+      nodes.forEach(function (node, i) {
         if (i <= 16 && i !== 12) {
           newNodes.push(node);
           newNodeMap.set(node.id, i);
         }
       });
       // add related edges
-      edges.forEach(function(edge) {
+      edges.forEach(function (edge) {
         const sourceId = edge.source;
         const targetId = edge.target;
-        if (newNodeMap.get(sourceId) !== undefined && newNodeMap.get(targetId) !== undefined) {
+        if (
+          newNodeMap.get(sourceId) !== undefined &&
+          newNodeMap.get(targetId) !== undefined
+        ) {
           newEdges.push(edge);
         }
       });

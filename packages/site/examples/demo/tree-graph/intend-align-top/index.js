@@ -19,10 +19,10 @@ F6.registerNode("card-node", {
         height: h,
         stroke: color,
         radius: r,
-        fill: "#fff"
+        fill: "#fff",
       },
       name: "main-box",
-      draggable: true
+      draggable: true,
     });
     group.addShape("rect", {
       attrs: {
@@ -31,10 +31,10 @@ F6.registerNode("card-node", {
         width: w,
         height: h / 2,
         fill: color,
-        radius: [r, r, 0, 0]
+        radius: [r, r, 0, 0],
       },
       name: "title-box",
-      draggable: true
+      draggable: true,
     });
     group.addShape("text", {
       attrs: {
@@ -43,23 +43,24 @@ F6.registerNode("card-node", {
         y: -h / 2 + 2,
         lineHeight: 20,
         text: cfg.id,
-        fill: "#fff"
+        fill: "#fff",
       },
-      name: "title"
+      name: "title",
     });
-    cfg.children && group.addShape("marker", {
-      attrs: {
-        x: w / 2,
-        y: 0,
-        r: 6,
-        cursor: "pointer",
-        symbol: F6.Marker.collapse,
-        stroke: "#666",
-        lineWidth: 1,
-        fill: "#fff"
-      },
-      name: "collapse-icon"
-    });
+    cfg.children &&
+      group.addShape("marker", {
+        attrs: {
+          x: w / 2,
+          y: 0,
+          r: 6,
+          cursor: "pointer",
+          symbol: F6.Marker.collapse,
+          stroke: "#666",
+          lineWidth: 1,
+          fill: "#fff",
+        },
+        name: "collapse-icon",
+      });
     group.addShape("text", {
       attrs: {
         textBaseline: "top",
@@ -67,21 +68,22 @@ F6.registerNode("card-node", {
         y: -h / 2 + 24,
         lineHeight: 20,
         text: "description",
-        fill: "rgba(0,0,0, 1)"
+        fill: "rgba(0,0,0, 1)",
       },
-      name: `description`
+      name: `description`,
     });
     return shape;
   },
 
   setState(name, value, item) {
     if (name === "collapsed") {
-      const marker = item.get("group").find(ele => ele.get("name") === "collapse-icon");
+      const marker = item
+        .get("group")
+        .find((ele) => ele.get("name") === "collapse-icon");
       const icon = value ? F6.Marker.expand : F6.Marker.collapse;
       marker.attr("symbol", icon);
     }
-  }
-
+  },
 });
 const graph = new F6.TreeGraph({
   width,
@@ -90,17 +92,17 @@ const graph = new F6.TreeGraph({
   pixelRatio,
   fitView: true,
   modes: {
-    default: ["drag-canvas"]
+    default: ["drag-canvas"],
   },
   defaultNode: {
     type: "card-node",
-    size: [100, 40]
+    size: [100, 40],
   },
   defaultEdge: {
     type: "cubic-horizontal",
     style: {
-      endArrow: true
-    }
+      endArrow: true,
+    },
   },
   layout: {
     type: "indented",
@@ -109,10 +111,10 @@ const graph = new F6.TreeGraph({
     indent: 200,
     getHeight: () => {
       return 60;
-    }
-  }
+    },
+  },
 });
-graph.on("node:tap", e => {
+graph.on("node:tap", (e) => {
   if (e.target.get("name") === "collapse-icon") {
     e.item.getModel().collapsed = !e.item.getModel().collapsed;
     graph.setItemState(e.item, "collapsed", e.item.getModel().collapsed);

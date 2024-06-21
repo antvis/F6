@@ -1,37 +1,35 @@
-import F6 from '../../../../f6';
+import F6 from "../../../../f6";
 
 const data = {
   nodes: [
     {
-      id: 'node0',
-      img:
-        'https://yyb.gtimg.com/aiplat/page/product/visionimgidy/img/demo6-16a47e5d31.jpg?max_age=31536000',
-      type: 'image',
+      id: "node0",
+      img: "https://yyb.gtimg.com/aiplat/page/product/visionimgidy/img/demo6-16a47e5d31.jpg?max_age=31536000",
+      type: "image",
       size: 200,
-      label: 'AntV Team',
+      label: "AntV Team",
       labelCfg: {
-        position: 'bottom',
+        position: "bottom",
       },
       // 裁剪图片配置
       clipCfg: {
         show: false,
-        type: 'circle',
+        type: "circle",
         r: 15,
       },
     },
     {
-      id: 'node1',
-      img:
-        'https://yyb.gtimg.com/aiplat/page/product/visionimgidy/img/demo6-16a47e5d31.jpg?max_age=31536000',
-      type: 'circle',
+      id: "node1",
+      img: "https://yyb.gtimg.com/aiplat/page/product/visionimgidy/img/demo6-16a47e5d31.jpg?max_age=31536000",
+      type: "circle",
       size: 200,
-      label: 'AntV Team',
+      label: "AntV Team",
       labelCfg: {
-        position: 'bottom',
+        position: "bottom",
       },
     },
   ],
-  edges: [{ source: 'node0', target: 'node1' }],
+  edges: [{ source: "node0", target: "node1" }],
 };
 
 Page({
@@ -60,12 +58,12 @@ Page({
         createImage: canvas && canvas.createImage,
       },
       defaultNode: {
-        type: 'image',
-        label: 'AntV Team',
+        type: "image",
+        label: "AntV Team",
         // 其他配置
       },
       modes: {
-        default: ['drag-canvas', 'drag-node', 'zoom-canvas'],
+        default: ["drag-canvas", "drag-node", "zoom-canvas"],
       },
     });
     const { nodes } = data;
@@ -78,14 +76,14 @@ Page({
     });
     this.graph.render();
 
-    this.graph.on('panstart', (e) => {
-      console.log('pan', e);
+    this.graph.on("panstart", (e) => {
+      console.log("pan", e);
     });
-    this.graph.on('panmove', (e) => {
-      console.log('pan move', e);
+    this.graph.on("panmove", (e) => {
+      console.log("pan move", e);
     });
-    this.graph.on('panend', (e) => {
-      console.log('pan end', e);
+    this.graph.on("panend", (e) => {
+      console.log("pan end", e);
     });
   },
   onTouch(e) {

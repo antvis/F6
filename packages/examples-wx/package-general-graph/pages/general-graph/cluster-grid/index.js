@@ -1,7 +1,7 @@
-import F6 from '@antv/f6-wx';
+import F6 from "@antv/f6-wx";
 
-import data from './data';
-import grid from '@antv/f6-wx/extends/layout/gridLayout';
+import data from "./data";
+import grid from "@antv/f6-wx/extends/layout/gridLayout";
 /**
  * 指定排序方式的网格布局
  */
@@ -9,7 +9,7 @@ import grid from '@antv/f6-wx/extends/layout/gridLayout';
 Page({
   canvas: null,
   ctx: null,
-  renderer: '', // mini、mini-native等，F6需要，标记环境
+  renderer: "", // mini、mini-native等，F6需要，标记环境
   isCanvasInit: false, // canvas是否准备好了
   graph: null,
 
@@ -22,7 +22,7 @@ Page({
 
   onLoad() {
     // 注册布局
-    F6.registerLayout('grid', grid);
+    F6.registerLayout("grid", grid);
 
     // 同步获取window的宽高
     const { windowWidth, windowHeight, pixelRatio } = wx.getSystemInfoSync();
@@ -69,14 +69,14 @@ Page({
       pixelRatio,
       fitView: true,
       modes: {
-        default: ['zoom-canvas', 'drag-canvas', 'drag-node'],
+        default: ["zoom-canvas", "drag-canvas", "drag-node"],
       },
       layout: {
-        type: 'grid',
+        type: "grid",
         begin: [20, 20],
         width: width - 20,
         height: height - 20,
-        sortBy: 'cluster',
+        sortBy: "cluster",
       },
       animate: true,
       defaultNode: {

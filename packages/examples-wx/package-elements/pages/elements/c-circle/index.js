@@ -1,6 +1,6 @@
-import F6 from '@antv/f6-wx';
+import F6 from "@antv/f6-wx";
 
-import data from './data';
+import data from "./data";
 /**
  * c-circle
  */
@@ -8,34 +8,34 @@ import data from './data';
 // The symbols for the marker inside the combo
 const collapseIcon = (x, y, r) => {
   return [
-    ['M', x - r, y],
-    ['a', r, r, 0, 1, 0, r * 2, 0],
-    ['a', r, r, 0, 1, 0, -r * 2, 0],
-    ['M', x - r + 4, y],
-    ['L', x - r + 2 * r - 4, y],
+    ["M", x - r, y],
+    ["a", r, r, 0, 1, 0, r * 2, 0],
+    ["a", r, r, 0, 1, 0, -r * 2, 0],
+    ["M", x - r + 4, y],
+    ["L", x - r + 2 * r - 4, y],
   ];
 };
 const expandIcon = (x, y, r) => {
   return [
-    ['M', x - r, y],
-    ['a', r, r, 0, 1, 0, r * 2, 0],
-    ['a', r, r, 0, 1, 0, -r * 2, 0],
-    ['M', x - r + 4, y],
-    ['L', x - r + 2 * r - 4, y],
-    ['M', x - r + r, y - r + 4],
-    ['L', x, y + r - 4],
+    ["M", x - r, y],
+    ["a", r, r, 0, 1, 0, r * 2, 0],
+    ["a", r, r, 0, 1, 0, -r * 2, 0],
+    ["M", x - r + 4, y],
+    ["L", x - r + 2 * r - 4, y],
+    ["M", x - r + r, y - r + 4],
+    ["L", x, y + r - 4],
   ];
 };
 
 F6.registerCombo(
-  'c-circle',
+  "c-circle",
   {
     drawShape: function draw(cfg, group) {
       const self = this;
       // Get the shape style, where the style.r corresponds to the R in the Illustration of Built-in Rect Combo
       const style = self.getShapeStyle(cfg);
       // Add a circle shape as keyShape which is the same as the extended 'circle' type Combo
-      const circle = group.addShape('circle', {
+      const circle = group.addShape("circle", {
         attrs: {
           ...style,
           x: 0,
@@ -43,13 +43,13 @@ F6.registerCombo(
           r: style.r,
         },
         draggable: true,
-        name: 'combo-keyShape',
+        name: "combo-keyShape",
       });
       // Add the marker on the bottom
-      group.addShape('marker', {
+      group.addShape("marker", {
         attrs: {
           ...style,
-          fill: '#fff',
+          fill: "#fff",
           opacity: 1,
           x: 0,
           y: style.r,
@@ -57,7 +57,7 @@ F6.registerCombo(
           symbol: collapseIcon,
         },
         draggable: true,
-        name: 'combo-marker-shape',
+        name: "combo-marker-shape",
       });
 
       return circle;
@@ -67,9 +67,11 @@ F6.registerCombo(
       const self = this;
       // Get the shape style, where the style.r corresponds to the R in the Illustration of Built-in Rect Combo
       const style = self.getShapeStyle(cfg);
-      const group = combo.get('group');
+      const group = combo.get("group");
       // Find the marker shape in the graphics group of the Combo
-      const marker = group.find((ele) => ele.get('name') === 'combo-marker-shape');
+      const marker = group.find(
+        (ele) => ele.get("name") === "combo-marker-shape",
+      );
       // Update the marker shape
       marker.attr({
         x: 0,
@@ -80,13 +82,13 @@ F6.registerCombo(
       });
     },
   },
-  'circle',
+  "circle",
 );
 
 Page({
   canvas: null,
   ctx: null,
-  renderer: '', // mini、mini-native等，F6需要，标记环境
+  renderer: "", // mini、mini-native等，F6需要，标记环境
   isCanvasInit: false, // canvas是否准备好了
   graph: null,
 
@@ -149,14 +151,14 @@ Page({
       // Configure the combos globally
       defaultCombo: {
         // The type of the combos. You can also assign type in the data of combos
-        type: 'c-circle',
+        type: "c-circle",
         labelCfg: {
           refY: 2,
         },
         // ... Other global configurations for combos
       },
       modes: {
-        default: ['drag-combo', 'drag-node', 'drag-canvas'],
+        default: ["drag-combo", "drag-node", "drag-canvas"],
       },
     });
     this.graph.data(data);
@@ -164,11 +166,11 @@ Page({
     this.graph.fitView();
 
     // collapse/expand when click the marker
-    this.graph.on('combo:tap', (e) => {
-      if (e.target.get('name') === 'combo-marker-shape') {
+    this.graph.on("combo:tap", (e) => {
+      if (e.target.get("name") === "combo-marker-shape") {
         // graph.collapseExpandCombo(e.item.getModel().id);
         this.graph.collapseExpandCombo(e.item);
-        if (this.graph.get('layout')) this.graph.layout();
+        if (this.graph.get("layout")) this.graph.layout();
         else this.graph.refreshPositions();
       }
     });

@@ -1,7 +1,7 @@
-import F6 from '@antv/f6';
-import data from './data';
-import { wrapContext } from '../../../common/utils/context';
-import { Fisheye } from '@antv/f6-plugin';
+import F6 from "@antv/f6";
+import data from "./data";
+import { wrapContext } from "../../../common/utils/context";
+import { Fisheye } from "@antv/f6-plugin";
 
 /**
  * basicArcDiagram
@@ -9,7 +9,7 @@ import { Fisheye } from '@antv/f6-plugin';
 Page({
   canvas: null,
   ctx: null,
-  renderer: '', // mini、mini-native等，F6需要，标记环境
+  renderer: "", // mini、mini-native等，F6需要，标记环境
   isCanvasInit: false, // canvas是否准备好了
   graph: null,
 
@@ -58,18 +58,18 @@ Page({
 
     const fisheye = new Fisheye({
       r: 200,
-      trigger: 'drag',
+      trigger: "drag",
     });
     const colors = [
-      '#8FE9FF',
-      '#87EAEF',
-      '#FFC9E3',
-      '#A7C2FF',
-      '#FFA1E3',
-      '#FFE269',
-      '#BFCFEE',
-      '#FFA0C5',
-      '#D5FF86',
+      "#8FE9FF",
+      "#87EAEF",
+      "#FFC9E3",
+      "#A7C2FF",
+      "#FFA1E3",
+      "#FFE269",
+      "#BFCFEE",
+      "#FFA0C5",
+      "#D5FF86",
     ];
 
     data.nodes.forEach((node) => {
@@ -90,7 +90,7 @@ Page({
       height,
       fitView: true,
       modes: {
-        default: ['drag-canvas', 'zoom-canvas', 'drag-node'],
+        default: ["drag-canvas", "zoom-canvas", "drag-node"],
       },
       plugins: [fisheye],
     });

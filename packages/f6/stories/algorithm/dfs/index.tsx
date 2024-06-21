@@ -1,8 +1,8 @@
-import React, { useEffect } from 'react';
-import F6, { Algorithm } from '@antv/f6';
-import dagreLayout from '@antv/f6/dist/extends/layout/dagreLayout';
+import React, { useEffect } from "react";
+import F6, { Algorithm } from "@antv/f6";
+import dagreLayout from "@antv/f6/dist/extends/layout/dagreLayout";
 
-import data from './data';
+import data from "./data";
 
 export default () => {
   const ref = React.useRef(null);
@@ -10,7 +10,7 @@ export default () => {
   const width = window.innerWidth - 32;
   let graph = null;
 
-  F6.registerLayout('dagre', dagreLayout);
+  F6.registerLayout("dagre", dagreLayout);
 
   useEffect(() => {
     if (!graph) {
@@ -22,10 +22,10 @@ export default () => {
         fitView: true,
         localRefresh: false,
         modes: {
-          default: ['drag-canvas', 'drag-node'],
+          default: ["drag-canvas", "drag-node"],
         },
         layout: {
-          type: 'dagre',
+          type: "dagre",
           sortByCombo: false,
           ranksep: 10,
           nodesep: 10,
@@ -37,8 +37,8 @@ export default () => {
         defaultEdge: {
           style: {
             endArrow: {
-              path: 'M 0,0 L 8,4 L 8,-4 Z',
-              fill: '#e2e2e2',
+              path: "M 0,0 L 8,4 L 8,-4 Z",
+              fill: "#e2e2e2",
             },
           },
         },
@@ -52,19 +52,19 @@ export default () => {
       const commands = [];
 
       graph.getNodes().forEach((node) => {
-        graph.setItemState(node, 'inactive', true);
+        graph.setItemState(node, "inactive", true);
       });
 
-      depthFirstSearch(data, 'A', {
+      depthFirstSearch(data, "A", {
         enter: ({ current: id }) => {
           commands.push({
-            action: 'enter',
+            action: "enter",
             id,
           });
         },
         leave: ({ current: id }) => {
           commands.push({
-            action: 'leave',
+            action: "leave",
             id,
           });
         },
@@ -74,14 +74,14 @@ export default () => {
         const command = commands.shift();
         if (command) {
           const pathNode = graph.findById(command.id);
-          if (command.action === 'enter') {
+          if (command.action === "enter") {
             pathNode.toFront();
             graph.clearItemStates(pathNode);
-            graph.setItemState(pathNode, 'highlight', true);
+            graph.setItemState(pathNode, "highlight", true);
           }
-          if (command.action === 'leave') {
+          if (command.action === "leave") {
             graph.clearItemStates(pathNode);
-            graph.setItemState(pathNode, 'inactive', true);
+            graph.setItemState(pathNode, "inactive", true);
           }
           setTimeout(loop, 1000);
         }

@@ -63,7 +63,7 @@ const graph = new F6.Graph({
 ```javascript
 (d) => {
   // d is a node
-  if (d.id === 'node1') {
+  if (d.id === "node1") {
     return 100;
   }
   return 10;
@@ -103,7 +103,7 @@ const graph = new F6.Graph({
 ```javascript
 (d, degree) => {
   // d is a node, degree is the degree of the node
-  if (d.clusterId === 'c1') return [100, 100, 10]; // x, y, strength
+  if (d.clusterId === "c1") return [100, 100, 10]; // x, y, strength
   if (degree === 0) return [250, 250, 15];
   return [180, 180, 5]; // x, y, strength
 };

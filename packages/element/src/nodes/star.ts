@@ -1,4 +1,4 @@
-import { IGroup, IShape } from '@antv/g-base';
+import { IGroup, IShape } from "@antv/g-base";
 import {
   registerNode,
   Item,
@@ -6,13 +6,13 @@ import {
   ShapeStyle,
   ShapeOptions,
   BaseGlobal as Global,
-} from '@antv/f6-core';
+} from "@antv/f6-core";
 
-import { mix } from '@antv/util';
+import { mix } from "@antv/util";
 
 // 五角星shape
 registerNode(
-  'star',
+  "star",
   {
     // 自定义节点时的配置
     options: {
@@ -45,7 +45,7 @@ registerNode(
         // 是否显示icon，值为 false 则不渲染icon
         show: false,
         // icon的地址，字符串类型
-        img: 'https://gw.alipayobjects.com/zos/bmw-prod/5d015065-8505-4e7a-baec-976f81e3c41d.svg',
+        img: "https://gw.alipayobjects.com/zos/bmw-prod/5d015065-8505-4e7a-baec-976f81e3c41d.svg",
         width: 20,
         height: 20,
       },
@@ -53,14 +53,14 @@ registerNode(
         ...Global.nodeStateStyles,
       },
     },
-    shapeType: 'star',
+    shapeType: "star",
     // 文本位置
-    labelPosition: 'center',
+    labelPosition: "center",
     drawShape(cfg: NodeConfig, group: IGroup): IShape {
       const { icon = {} } = this.getOptions(cfg) as NodeConfig;
       const style = this.getShapeStyle!(cfg);
 
-      const keyShape = group.addShape('path', {
+      const keyShape = group.addShape("path", {
         attrs: style,
         className: `${this.type}-keyShape`,
         name: `${this.type}-keyShape`,
@@ -70,15 +70,15 @@ registerNode(
       const { width: w, height: h, show, text } = icon;
       if (show) {
         if (text) {
-          group.addShape('text', {
+          group.addShape("text", {
             attrs: {
               x: 0,
               y: 0,
               fontSize: 12,
-              fill: '#000',
-              stroke: '#000',
-              textBaseline: 'middle',
-              textAlign: 'center',
+              fill: "#000",
+              stroke: "#000",
+              textBaseline: "middle",
+              textAlign: "center",
               ...icon,
             },
             className: `${this.type}-icon`,
@@ -86,7 +86,7 @@ registerNode(
             draggable: true,
           });
         } else {
-          group.addShape('image', {
+          group.addShape("image", {
             attrs: {
               x: -w! / 2,
               y: -h! / 2,
@@ -130,15 +130,15 @@ registerNode(
         const x1 = Math.cos(((18 + 72 * 0) / 180) * Math.PI) * outerR;
         const y1 = Math.sin(((18 + 72 * 0) / 180) * Math.PI) * outerR;
 
-        group.addShape('circle', {
+        group.addShape("circle", {
           attrs: {
             ...markStyle,
             x: x1,
             y: -y1,
             r: markSize / 2 || markR || 5,
           },
-          className: 'link-point-right',
-          name: 'link-point-right',
+          className: "link-point-right",
+          name: "link-point-right",
         });
       }
 
@@ -148,15 +148,15 @@ registerNode(
         const y1 = Math.sin(((18 + 72 * 1) / 180) * Math.PI) * outerR;
 
         // top circle
-        group.addShape('circle', {
+        group.addShape("circle", {
           attrs: {
             ...markStyle,
             x: x1,
             y: -y1,
             r: markSize / 2 || markR || 5,
           },
-          className: 'link-point-top',
-          name: 'link-point-top',
+          className: "link-point-top",
+          name: "link-point-top",
         });
       }
 
@@ -166,15 +166,15 @@ registerNode(
         const y1 = Math.sin(((18 + 72 * 2) / 180) * Math.PI) * outerR;
 
         // left circle
-        group.addShape('circle', {
+        group.addShape("circle", {
           attrs: {
             ...markStyle,
             x: x1,
             y: -y1,
             r: markSize / 2 || markR || 5,
           },
-          className: 'link-point-left',
-          name: 'link-point-left',
+          className: "link-point-left",
+          name: "link-point-left",
         });
       }
 
@@ -184,15 +184,15 @@ registerNode(
         const y1 = Math.sin(((18 + 72 * 3) / 180) * Math.PI) * outerR;
 
         // left bottom circle
-        group.addShape('circle', {
+        group.addShape("circle", {
           attrs: {
             ...markStyle,
             x: x1,
             y: -y1,
             r: markSize / 2 || markR || 5,
           },
-          className: 'link-point-left-bottom',
-          name: 'link-point-left-bottom',
+          className: "link-point-left-bottom",
+          name: "link-point-left-bottom",
         });
       }
 
@@ -202,15 +202,15 @@ registerNode(
         const y1 = Math.sin(((18 + 72 * 4) / 180) * Math.PI) * outerR;
 
         // left bottom circle
-        group.addShape('circle', {
+        group.addShape("circle", {
           attrs: {
             ...markStyle,
             x: x1,
             y: -y1,
             r: markSize / 2 || markR || 5,
           },
-          className: 'link-point-right-bottom',
-          name: 'link-point-right-bottom',
+          className: "link-point-right-bottom",
+          name: "link-point-right-bottom",
         });
       }
     },
@@ -227,14 +227,14 @@ registerNode(
         const y2 = Math.sin(((54 + 72 * i) / 180) * Math.PI) * innerR;
 
         if (i === 0) {
-          path.push(['M', x1, -y1]);
+          path.push(["M", x1, -y1]);
         } else {
-          path.push(['L', x1, -y1]);
+          path.push(["L", x1, -y1]);
         }
-        path.push(['L', x2, -y2]);
+        path.push(["L", x2, -y2]);
       }
 
-      path.push(['Z']);
+      path.push(["Z"]);
 
       return path;
     },
@@ -265,7 +265,7 @@ registerNode(
         path,
       };
       // 与 getShapeStyle 不同在于，update 时需要获取到当前的 style 进行融合。即新传入的配置项中没有涉及的属性，保留当前的配置。
-      const keyShape = item.get('keyShape');
+      const keyShape = item.get("keyShape");
       let style = mix({}, defaultStyle, keyShape.attr(), strokeStyle);
       style = mix(style, cfg.style);
 
@@ -279,26 +279,39 @@ registerNode(
      * @param {Group} group Item所在的group
      */
     updateLinkPoints(cfg: NodeConfig, group: IGroup) {
-      const { linkPoints: defaultLinkPoints } = this.getOptions({}) as NodeConfig;
-      const markLeft = group.find((element) => element.get('className') === 'link-point-left');
-      const markRight = group.find((element) => element.get('className') === 'link-point-right');
-      const markTop = group.find((element) => element.get('className') === 'link-point-top');
+      const { linkPoints: defaultLinkPoints } = this.getOptions(
+        {},
+      ) as NodeConfig;
+      const markLeft = group.find(
+        (element) => element.get("className") === "link-point-left",
+      );
+      const markRight = group.find(
+        (element) => element.get("className") === "link-point-right",
+      );
+      const markTop = group.find(
+        (element) => element.get("className") === "link-point-top",
+      );
       const markLeftBottom = group.find(
-        (element) => element.get('className') === 'link-point-left-bottom',
+        (element) => element.get("className") === "link-point-left-bottom",
       );
       const markRightBottom = group.find(
-        (element) => element.get('className') === 'link-point-right-bottom',
+        (element) => element.get("className") === "link-point-right-bottom",
       );
 
       let currentLinkPoints = defaultLinkPoints;
-      const existLinkPoint = markLeft || markRight || markTop || markLeftBottom || markRightBottom;
+      const existLinkPoint =
+        markLeft || markRight || markTop || markLeftBottom || markRightBottom;
       if (existLinkPoint) {
         currentLinkPoints = existLinkPoint.attr();
       }
 
       const linkPoints = mix({}, currentLinkPoints, cfg.linkPoints);
 
-      const { fill: markFill, stroke: markStroke, lineWidth: borderWidth } = linkPoints;
+      const {
+        fill: markFill,
+        stroke: markStroke,
+        lineWidth: borderWidth,
+      } = linkPoints;
       let markSize = linkPoints.size / 2;
       if (!markSize) markSize = linkPoints.r;
       const { left, right, top, leftBottom, rightBottom } = cfg.linkPoints
@@ -333,14 +346,14 @@ registerNode(
           });
         }
       } else if (right) {
-        group.addShape('circle', {
+        group.addShape("circle", {
           attrs: {
             ...styles,
             x,
             y: -y,
           },
-          className: 'link-point-right',
-          name: 'link-point-right',
+          className: "link-point-right",
+          name: "link-point-right",
           isAnchorPoint: true,
         });
       }
@@ -358,14 +371,14 @@ registerNode(
           });
         }
       } else if (top) {
-        group.addShape('circle', {
+        group.addShape("circle", {
           attrs: {
             ...styles,
             x,
             y: -y,
           },
-          className: 'link-point-top',
-          name: 'link-point-top',
+          className: "link-point-top",
+          name: "link-point-top",
           isAnchorPoint: true,
         });
       }
@@ -383,14 +396,14 @@ registerNode(
           });
         }
       } else if (left) {
-        group.addShape('circle', {
+        group.addShape("circle", {
           attrs: {
             ...styles,
             x,
             y: -y,
           },
-          className: 'link-point-left',
-          name: 'link-point-left',
+          className: "link-point-left",
+          name: "link-point-left",
           isAnchorPoint: true,
         });
       }
@@ -408,14 +421,14 @@ registerNode(
           });
         }
       } else if (leftBottom) {
-        group.addShape('circle', {
+        group.addShape("circle", {
           attrs: {
             ...styles,
             x,
             y: -y,
           },
-          className: 'link-point-left-bottom',
-          name: 'link-point-left-bottom',
+          className: "link-point-left-bottom",
+          name: "link-point-left-bottom",
           isAnchorPoint: true,
         });
       }
@@ -433,18 +446,18 @@ registerNode(
           });
         }
       } else if (rightBottom) {
-        group.addShape('circle', {
+        group.addShape("circle", {
           attrs: {
             ...styles,
             x,
             y: -y,
           },
-          className: 'link-point-right-bottom',
-          name: 'link-point-right-bottom',
+          className: "link-point-right-bottom",
+          name: "link-point-right-bottom",
           isAnchorPoint: true,
         });
       }
     },
   },
-  'single-node',
+  "single-node",
 );

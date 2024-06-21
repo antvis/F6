@@ -27,7 +27,7 @@ order: 15
 
 ```javascript
 const point = graph.getPointByClient(e.clientX, e.clientY);
-console.log('渲染坐标 x/y 分别为:', point.x, point.y);
+console.log("渲染坐标 x/y 分别为:", point.x, point.y);
 ```
 
 ### graph.getClientByPoint(x, y)
@@ -50,7 +50,7 @@ console.log('渲染坐标 x/y 分别为:', point.x, point.y);
 
 ```javascript
 const point = graph.getClientByPoint(100, 200);
-console.log('屏幕/页面x/y坐标分别为:', point.x, point.y);
+console.log("屏幕/页面x/y坐标分别为:", point.x, point.y);
 ```
 
 ### graph.getPointByCanvas(canvasX, canvasY)
@@ -73,7 +73,7 @@ console.log('屏幕/页面x/y坐标分别为:', point.x, point.y);
 
 ```javascript
 const point = graph.getPointByCanvas(100, 200);
-console.log('渲染坐标 x/y 分别为:', point.x, point.y);
+console.log("渲染坐标 x/y 分别为:", point.x, point.y);
 ```
 
 ### graph.getCanvasByPoint(x, y)
@@ -96,7 +96,7 @@ console.log('渲染坐标 x/y 分别为:', point.x, point.y);
 
 ```javascript
 const point = graph.getCanvasByPoint(100, 200);
-console.log('Canvas 画布的 x/y 坐标分别为:', point.x, point.y);
+console.log("Canvas 画布的 x/y 坐标分别为:", point.x, point.y);
 ```
 
 ### graph.getGraphCenterPoint()
@@ -116,7 +116,7 @@ console.log('Canvas 画布的 x/y 坐标分别为:', point.x, point.y);
 
 ```javascript
 const point = graph.getGraphCenterPoint();
-console.log('图内容中心的绘制坐标是', point.x, point.y);
+console.log("图内容中心的绘制坐标是", point.x, point.y);
 ```
 
 ### graph.getViewPortCenterPoint()
@@ -136,5 +136,5 @@ console.log('图内容中心的绘制坐标是', point.x, point.y);
 
 ```javascript
 const point = graph.getViewPortCenterPoint();
-console.log('视口中心的绘制坐标是', point.x, point.y);
+console.log("视口中心的绘制坐标是", point.x, point.y);
 ```

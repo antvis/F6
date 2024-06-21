@@ -12,26 +12,26 @@ const graph = new F6.Graph({
   pixelRatio,
   fitView: true,
   modes: {
-    default: ["drag-canvas", "drag-node"]
+    default: ["drag-canvas", "drag-node"],
   },
   layout: {
     type: "fruchterman",
     gravity: 10,
     speed: 5,
-    clustering: true
+    clustering: true,
   },
   animate: true,
   defaultNode: {
-    size: 20
+    size: 20,
   },
   defaultEdge: {
     style: {
       endArrow: {
         path: "M 0,0 L 8,4 L 8,-4 Z",
-        fill: "#e2e2e2"
-      }
-    }
-  }
+        fill: "#e2e2e2",
+      },
+    },
+  },
 });
 graph.data(data);
 graph.render();

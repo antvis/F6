@@ -1,13 +1,13 @@
-import { IGroup, IShape } from '@antv/g-base';
-import { deepMix } from '@antv/util';
-import { Item, NodeConfig, ShapeStyle } from '../../types';
-import Global from '../../global';
-import Shape from '../shape';
-import { ShapeOptions } from '../../interface/shape';
+import { IGroup, IShape } from "@antv/g-base";
+import { deepMix } from "@antv/util";
+import { Item, NodeConfig, ShapeStyle } from "../../types";
+import Global from "../../global";
+import Shape from "../shape";
+import { ShapeOptions } from "../../interface/shape";
 
 // 带有图标的圆，可用于拓扑图中
 Shape.registerNode(
-  'simple-circle',
+  "simple-circle",
   {
     // 自定义节点时的配置
     options: {
@@ -29,12 +29,12 @@ Shape.registerNode(
         ...Global.nodeStateStyles,
       },
     },
-    shapeType: 'simple-circle',
+    shapeType: "simple-circle",
     // 文本位置
-    labelPosition: 'center',
+    labelPosition: "center",
     drawShape(cfg: NodeConfig, group: IGroup): IShape {
       const style = this.getShapeStyle!(cfg);
-      const keyShape: IShape = group.addShape('circle', {
+      const keyShape: IShape = group.addShape("circle", {
         attrs: style,
         className: `${this.type}-keyShape`,
         draggable: true,
@@ -72,11 +72,11 @@ Shape.registerNode(
         r: size[0] / 2,
       };
       // 与 getShapeStyle 不同在于，update 时需要获取到当前的 style 进行融合。即新传入的配置项中没有涉及的属性，保留当前的配置。
-      const keyShape = item.get('keyShape');
+      const keyShape = item.get("keyShape");
       const style = deepMix({}, keyShape.attr(), strokeStyle, cfg.style);
 
       (this as any).updateShape(cfg, item, style, true);
     },
   },
-  'single-node',
+  "single-node",
 );

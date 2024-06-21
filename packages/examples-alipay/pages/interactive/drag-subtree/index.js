@@ -1,8 +1,8 @@
-import F6 from '@antv/f6';
-import TreeGraph from '@antv/f6/dist/extends/graph/treeGraph';
-import { wrapContext } from '../../../common/utils/context';
+import F6 from "@antv/f6";
+import TreeGraph from "@antv/f6/dist/extends/graph/treeGraph";
+import { wrapContext } from "../../../common/utils/context";
 
-import data_ from './data.js';
+import data_ from "./data.js";
 
 /**
  * dragSubtree:拖拽子树改变结构
@@ -11,7 +11,7 @@ import data_ from './data.js';
 Page({
   canvas: null,
   ctx: null, // 延迟获取的2d context
-  renderer: '', // mini、mini-native等，F6需要，标记环境
+  renderer: "", // mini、mini-native等，F6需要，标记环境
   isCanvasInit: false, // canvas是否准备好了
   graph: null,
 
@@ -20,12 +20,13 @@ Page({
     height: 600,
     pixelRatio: 2,
     forceMini: false,
-    discription: 'Move a subtree to a new parent by dragging the root node of the subtree.',
+    discription:
+      "Move a subtree to a new parent by dragging the root node of the subtree.",
   },
 
   onLoad() {
     // 注册自定义树，节点等
-    F6.registerGraph('TreeGraph', TreeGraph);
+    F6.registerGraph("TreeGraph", TreeGraph);
 
     // 同步获取window的宽高
     const { windowWidth, windowHeight, pixelRatio } = my.getSystemInfoSync();
@@ -73,10 +74,10 @@ Page({
       fitView: true,
       modes: {
         default: [
-          'drag-canvas',
-          'zoom-canvas',
+          "drag-canvas",
+          "zoom-canvas",
           {
-            type: 'drag-node',
+            type: "drag-node",
             enableDelegate: true,
           },
         ],
@@ -88,24 +89,24 @@ Page({
           [1, 0.5],
         ],
         style: {
-          fill: '#C6E5FF',
-          stroke: '#5B8FF9',
+          fill: "#C6E5FF",
+          stroke: "#5B8FF9",
         },
       },
       defaultEdge: {
-        type: 'cubic-horizontal',
+        type: "cubic-horizontal",
         style: {
-          stroke: '#A3B1BF',
+          stroke: "#A3B1BF",
         },
       },
       nodeStateStyles: {
         closest: {
-          fill: '#f00',
+          fill: "#f00",
         },
       },
       layout: {
-        type: 'compactBox',
-        direction: 'LR',
+        type: "compactBox",
+        direction: "LR",
         getId: function getId(d) {
           return d.id;
         },
@@ -129,40 +130,42 @@ Page({
         label: node.id,
         labelCfg: {
           offset: 10,
-          position: node.children && node.children.length > 0 ? 'left' : 'right',
+          position:
+            node.children && node.children.length > 0 ? "left" : "right",
         },
       };
     });
 
     let minDisNode;
-    this.graph.on('node:dragstart', () => {
+    this.graph.on("node:dragstart", () => {
       minDisNode = undefined;
     });
-    this.graph.on('node:drag', (e) => {
+    this.graph.on("node:drag", (e) => {
       minDisNode = undefined;
       const { item } = e;
       const model = item.getModel();
       const nodes = this.graph.getNodes();
       let minDis = Infinity;
       nodes.forEach((inode) => {
-        this.graph.setItemState(inode, 'closest', false);
+        this.graph.setItemState(inode, "closest", false);
         const node = inode.getModel();
         if (node.id === model.id) return;
-        const dis = (node.x - e.x) * (node.x - e.x) + (node.y - e.y) * (node.y - e.y);
+        const dis =
+          (node.x - e.x) * (node.x - e.x) + (node.y - e.y) * (node.y - e.y);
         if (dis < minDis) {
           minDis = dis;
           minDisNode = inode;
         }
       });
-      console.log('minDis', minDis, minDisNode);
-      if (minDis < 2000) this.graph.setItemState(minDisNode, 'closest', true);
+      console.log("minDis", minDis, minDisNode);
+      if (minDis < 2000) this.graph.setItemState(minDisNode, "closest", true);
       else minDisNode = undefined;
     });
 
-    this.graph.on('node:dragend', (e) => {
+    this.graph.on("node:dragend", (e) => {
       if (!minDisNode) {
         this.setData({
-          discription: 'Failed. No node close to the dragged node.',
+          discription: "Failed. No node close to the dragged node.",
         });
         return;
       }
@@ -172,14 +175,15 @@ Page({
       // if the minDisNode is a descent of the dragged node, return
       let isDescent = false;
       const minDisNodeId = minDisNode.getID();
-      console.log('dragend', minDisNodeId, isDescent, data, id);
+      console.log("dragend", minDisNodeId, isDescent, data, id);
 
       F6.Util.traverseTree(data, (d) => {
         if (d.id === minDisNodeId) isDescent = true;
       });
       if (isDescent) {
         this.setData({
-          discription: 'Failed. The target node is a descendant of the dragged node.',
+          discription:
+            "Failed. The target node is a descendant of the dragged node.",
         });
         return;
       }
@@ -194,7 +198,7 @@ Page({
         else newChildren = [data];
         me.graph.updateChildren(newChildren, minDisNodeId);
         me.setData({
-          discription: 'Success.',
+          discription: "Success.",
         });
       }, 600);
     });

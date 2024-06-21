@@ -1,4 +1,4 @@
-import bindFn from './bind-fn';
+import bindFn from "./bind-fn";
 
 /**
  * @private

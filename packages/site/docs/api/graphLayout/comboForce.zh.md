@@ -84,7 +84,7 @@ const graph = new F6.Graph({
 ```javascript
 (d) => {
   // d is a node
-  if (d.id === 'node1') {
+  if (d.id === "node1") {
     return 100;
   }
   return 10;
@@ -100,7 +100,7 @@ const graph = new F6.Graph({
 ```javascript
 (d) => {
   // d is a combo
-  if (d.id === 'combo1') {
+  if (d.id === "combo1") {
     return 100;
   }
   return 10;
@@ -116,7 +116,7 @@ const graph = new F6.Graph({
 ```javascript
 (d) => {
   // d is a combo
-  if (d.id === 'combo1') {
+  if (d.id === "combo1") {
     return 100;
   }
   return 10;

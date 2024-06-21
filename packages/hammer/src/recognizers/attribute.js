@@ -1,12 +1,12 @@
-import Recognizer from '../recognizerjs/recognizer-constructor';
+import Recognizer from "../recognizerjs/recognizer-constructor";
 import {
   STATE_BEGAN,
   STATE_CHANGED,
   STATE_CANCELLED,
   STATE_ENDED,
   STATE_FAILED,
-} from '../recognizerjs/recognizer-consts';
-import { INPUT_CANCEL, INPUT_END } from '../inputjs/input-consts';
+} from "../recognizerjs/recognizer-consts";
+import { INPUT_CANCEL, INPUT_END } from "../inputjs/input-consts";
 
 /**
  * @private

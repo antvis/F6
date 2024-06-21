@@ -1,16 +1,16 @@
-import { now } from '../utils/utils-consts';
-import { abs } from '../utils/utils-consts';
-import hasParent from '../utils/has-parent';
-import simpleCloneInputData from './simple-clone-input-data';
-import getCenter from './get-center';
-import getDistance from './get-distance';
-import getAngle from './get-angle';
-import getDirection from './get-direction';
-import computeDeltaXY from './compute-delta-xy';
-import getVelocity from './get-velocity';
-import getScale from './get-scale';
-import getRotation from './get-rotation';
-import computeIntervalInputData from './compute-interval-input-data';
+import { now } from "../utils/utils-consts";
+import { abs } from "../utils/utils-consts";
+import hasParent from "../utils/has-parent";
+import simpleCloneInputData from "./simple-clone-input-data";
+import getCenter from "./get-center";
+import getDistance from "./get-distance";
+import getAngle from "./get-angle";
+import getDirection from "./get-direction";
+import computeDeltaXY from "./compute-delta-xy";
+import getVelocity from "./get-velocity";
+import getScale from "./get-scale";
+import getRotation from "./get-rotation";
+import computeIntervalInputData from "./compute-interval-input-data";
 
 /**
  * @private
@@ -48,14 +48,22 @@ export default function computeInputData(manager, input) {
   computeDeltaXY(session, input);
   input.offsetDirection = getDirection(input.deltaX, input.deltaY);
 
-  let overallVelocity = getVelocity(input.deltaTime, input.deltaX, input.deltaY);
+  let overallVelocity = getVelocity(
+    input.deltaTime,
+    input.deltaX,
+    input.deltaY,
+  );
   input.overallVelocityX = overallVelocity.x;
   input.overallVelocityY = overallVelocity.y;
   input.overallVelocity =
-    abs(overallVelocity.x) > abs(overallVelocity.y) ? overallVelocity.x : overallVelocity.y;
+    abs(overallVelocity.x) > abs(overallVelocity.y)
+      ? overallVelocity.x
+      : overallVelocity.y;
 
   input.scale = firstMultiple ? getScale(firstMultiple.pointers, pointers) : 1;
-  input.rotation = firstMultiple ? getRotation(firstMultiple.pointers, pointers) : 0;
+  input.rotation = firstMultiple
+    ? getRotation(firstMultiple.pointers, pointers)
+    : 0;
 
   input.maxPointers = !session.prevInput
     ? input.pointers.length

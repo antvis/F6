@@ -1,5 +1,5 @@
-import each from './each';
-import splitStr from './split-str';
+import each from "./each";
+import splitStr from "./split-str";
 /**
  * @private
  * removeEventListener with multiple events at once

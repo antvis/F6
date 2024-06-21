@@ -1,6 +1,6 @@
-import AttrRecognizer from './attribute';
-import { TOUCH_ACTION_NONE } from '../touchactionjs/touchaction-Consts';
-import { STATE_BEGAN } from '../recognizerjs/recognizer-consts';
+import AttrRecognizer from "./attribute";
+import { TOUCH_ACTION_NONE } from "../touchactionjs/touchaction-Consts";
+import { STATE_BEGAN } from "../recognizerjs/recognizer-consts";
 
 /**
  * @private
@@ -28,7 +28,7 @@ export default class RotateRecognizer extends AttrRecognizer {
 }
 
 RotateRecognizer.prototype.defaults = {
-  event: 'rotate',
+  event: "rotate",
   threshold: 0,
   pointers: 2,
 };

@@ -43,14 +43,14 @@ const contextMenu = new Menu({
           }
         `;
   },
-  handleMenuClick: target => {
+  handleMenuClick: (target) => {
     my.alert({
-      title: `点击了: ${target.title}`
+      title: `点击了: ${target.title}`,
     });
   },
   offsetX: 0,
   offsetY: 0,
-  itemTypes: ["node", "edge", "canvas"]
+  itemTypes: ["node", "edge", "canvas"],
 });
 const graph = new F6.Graph({
   pixelRatio,
@@ -64,25 +64,25 @@ const graph = new F6.Graph({
     type: "rect",
     style: {
       fill: "#DEE9FF",
-      stroke: "#5B8FF9"
-    }
+      stroke: "#5B8FF9",
+    },
   },
   defaultEdge: {
     style: {
       stroke: "#b5b5b5",
-      lineAppendWidth: 3
+      lineAppendWidth: 3,
     },
     labelCfg: {
       autoRotate: true,
       style: {
         stroke: "white",
-        lineWidth: 5
-      }
-    }
+        lineWidth: 5,
+      },
+    },
   },
   modes: {
-    default: ["drag-node"]
-  }
+    default: ["drag-node"],
+  },
 });
 graph.data(data);
 graph.render();

@@ -1,8 +1,8 @@
-import F6 from '@antv/f6';
-import TreeGraph from '@antv/f6/dist/extends/graph/treeGraph';
-import { wrapContext } from '../../../common/utils/context';
+import F6 from "@antv/f6";
+import TreeGraph from "@antv/f6/dist/extends/graph/treeGraph";
+import { wrapContext } from "../../../common/utils/context";
 
-import data_ from './data';
+import data_ from "./data";
 
 /**
  * 自定义复杂树图样式
@@ -11,7 +11,7 @@ import data_ from './data';
 Page({
   canvas: null,
   ctx: null,
-  renderer: '', // mini、mini-native等，F6需要，标记环境
+  renderer: "", // mini、mini-native等，F6需要，标记环境
   isCanvasInit: false, // canvas是否准备好了
   graph: null,
 
@@ -24,33 +24,33 @@ Page({
 
   onLoad() {
     // 注册自定义树，节点等
-    F6.registerGraph('TreeGraph', TreeGraph);
+    F6.registerGraph("TreeGraph", TreeGraph);
     F6.registerNode(
-      'tree-node',
+      "tree-node",
       {
         drawShape: function drawShape(cfg, group) {
-          const rect = group.addShape('rect', {
+          const rect = group.addShape("rect", {
             attrs: {
-              fill: '#fff',
-              stroke: '#666',
+              fill: "#fff",
+              stroke: "#666",
               x: 0,
               y: 0,
               width: 1,
               height: 1,
             },
-            name: 'rect-shape',
+            name: "rect-shape",
           });
-          const content = cfg.name.replace(/(.{19})/g, '$1\n');
-          const text = group.addShape('text', {
+          const content = cfg.name.replace(/(.{19})/g, "$1\n");
+          const text = group.addShape("text", {
             attrs: {
               text: content,
               x: 0,
               y: 0,
-              textAlign: 'left',
-              textBaseline: 'middle',
-              fill: '#666',
+              textAlign: "left",
+              textBaseline: "middle",
+              fill: "#666",
             },
-            name: 'text-shape',
+            name: "text-shape",
           });
           const bbox = text.getBBox();
           const hasChildren = cfg.children && cfg.children.length > 0;
@@ -65,27 +65,30 @@ Page({
             y: 0,
           });
           if (hasChildren) {
-            group.addShape('marker', {
+            group.addShape("marker", {
               attrs: {
                 x: bbox.width / 2 + 12,
                 y: 0,
                 r: 6,
                 symbol: cfg.collapsed ? F6.Marker.expand : F6.Marker.collapse,
-                stroke: '#666',
+                stroke: "#666",
                 lineWidth: 2,
               },
-              name: 'collapse-icon',
+              name: "collapse-icon",
             });
           }
           return rect;
         },
         update: (cfg, item) => {
           const group = item.getContainer();
-          const icon = group.find((e) => e.get('name') === 'collapse-icon');
-          icon.attr('symbol', cfg.collapsed ? F6.Marker.expand : F6.Marker.collapse);
+          const icon = group.find((e) => e.get("name") === "collapse-icon");
+          icon.attr(
+            "symbol",
+            cfg.collapsed ? F6.Marker.expand : F6.Marker.collapse,
+          );
         },
       },
-      'single-node',
+      "single-node",
     );
 
     // 同步获取window的宽高
@@ -136,9 +139,9 @@ Page({
       modes: {
         default: [
           {
-            type: 'collapse-expand',
+            type: "collapse-expand",
             onChange: function onChange(item, collapsed) {
-              const data = item.get('model');
+              const data = item.get("model");
               this.graph.updateItem(item, {
                 collapsed,
               });
@@ -146,26 +149,26 @@ Page({
               return true;
             },
           },
-          'drag-canvas',
-          'zoom-canvas',
+          "drag-canvas",
+          "zoom-canvas",
         ],
       },
       defaultNode: {
-        type: 'tree-node',
+        type: "tree-node",
         anchorPoints: [
           [0, 0.5],
           [1, 0.5],
         ],
       },
       defaultEdge: {
-        type: 'cubic-horizontal',
+        type: "cubic-horizontal",
         style: {
-          stroke: '#A3B1BF',
+          stroke: "#A3B1BF",
         },
       },
       layout: {
-        type: 'compactBox',
-        direction: 'LR',
+        type: "compactBox",
+        direction: "LR",
         getId: function getId(d) {
           return d.id;
         },

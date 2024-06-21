@@ -35,25 +35,25 @@ comboItem.hide();
 
 ```javascript
 // 点击节点，隐藏该节点
-graph.on('node:tap', (ev) => {
+graph.on("node:tap", (ev) => {
   const node = ev.item;
-  console.log('before hide(), the nodevisible = ', node.get('visible'));
+  console.log("before hide(), the nodevisible = ", node.get("visible"));
   node.hide();
   graph.paint();
-  console.log('after hide(), the node visible = ', node.get('visible'));
+  console.log("after hide(), the node visible = ", node.get("visible"));
 });
 
 // 点击边，隐藏该边
-graph.on('edge:tap', (ev) => {
+graph.on("edge:tap", (ev) => {
   const edge = ev.item;
-  console.log('before hide(), the edge visible = ', edge.get('visible'));
+  console.log("before hide(), the edge visible = ", edge.get("visible"));
   edge.hide();
   graph.paint();
-  console.log('after hide(), the edge visible = ', edge.get('visible'));
+  console.log("after hide(), the edge visible = ", edge.get("visible"));
 });
 
 // 点击画布，显示所有节点和边
-graph.on('canvas:tap', (ev) => {
+graph.on("canvas:tap", (ev) => {
   const nodes = graph.getNodes();
   const edges = graph.getEdges();
   nodes.forEach((node) => {

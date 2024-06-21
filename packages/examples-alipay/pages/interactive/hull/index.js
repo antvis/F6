@@ -1,7 +1,7 @@
-import F6 from '@antv/f6';
-import { wrapContext } from '../../../common/utils/context';
-import data from './data';
-import force from '@antv/f6/dist/extends/layout/forceLayout';
+import F6 from "@antv/f6";
+import { wrapContext } from "../../../common/utils/context";
+import data from "./data";
+import force from "@antv/f6/dist/extends/layout/forceLayout";
 
 /**
  * hull:用轮廓包裹节点集合
@@ -10,7 +10,7 @@ import force from '@antv/f6/dist/extends/layout/forceLayout';
 Page({
   canvas: null,
   ctx: null,
-  renderer: '', // mini、mini-native等，F6需要，标记环境
+  renderer: "", // mini、mini-native等，F6需要，标记环境
   isCanvasInit: false, // canvas是否准备好了
   graph: null,
 
@@ -19,14 +19,14 @@ Page({
     height: 600,
     pixelRatio: 2,
     forceMini: false,
-    discription: 'Wait for the layout to complete...',
+    discription: "Wait for the layout to complete...",
   },
 
   onLoad() {
     // 同步获取window的宽高
     const { windowWidth, windowHeight, pixelRatio } = my.getSystemInfoSync();
 
-    F6.registerLayout('force', force);
+    F6.registerLayout("force", force);
 
     this.setData({
       width: windowWidth,
@@ -72,13 +72,13 @@ Page({
       fitView: true,
       fitViewPadding: 50,
       modes: {
-        default: ['drag-canvas', 'zoom-canvas', 'drag-node', 'lasso-select'],
+        default: ["drag-canvas", "zoom-canvas", "drag-node", "lasso-select"],
       },
       layout: {
-        type: 'force',
+        type: "force",
         preventOverlap: true,
         linkDistance: (d) => {
-          if (d.source.id === 'node0') {
+          if (d.source.id === "node0") {
             return 300;
           }
           return 60;
@@ -90,7 +90,11 @@ Page({
           return -10;
         },
         edgeStrength: (d) => {
-          if (d.source.id === 'node1' || d.source.id === 'node2' || d.source.id === 'node3') {
+          if (
+            d.source.id === "node1" ||
+            d.source.id === "node2" ||
+            d.source.id === "node3"
+          ) {
             return 0.7;
           }
           return 0.1;
@@ -100,46 +104,48 @@ Page({
 
     this.graph.data({
       nodes,
-      edges: data.edges.map(function(edge, i) {
+      edges: data.edges.map(function (edge, i) {
         edge.id = `edge${i}`;
         return Object.assign({}, edge);
       }),
     });
 
-    const centerNodes = this.graph.getNodes().filter((node) => !node.getModel().isLeaf);
+    const centerNodes = this.graph
+      .getNodes()
+      .filter((node) => !node.getModel().isLeaf);
 
-    this.graph.on('afterlayout', () => {
+    this.graph.on("afterlayout", () => {
       this.setData({
-        discription: '',
+        discription: "",
       });
       const hull1 = this.graph.createHull({
-        id: 'centerNode-hull',
-        type: 'bubble',
+        id: "centerNode-hull",
+        type: "bubble",
         members: centerNodes,
         padding: 10,
       });
 
       const hull2 = this.graph.createHull({
-        id: 'leafNode-hull1',
-        members: ['node6', 'node7'],
+        id: "leafNode-hull1",
+        members: ["node6", "node7"],
         padding: 10,
         style: {
-          fill: 'lightgreen',
-          stroke: 'green',
+          fill: "lightgreen",
+          stroke: "green",
         },
       });
 
       const hull3 = this.graph.createHull({
-        id: 'leafNode-hull2',
-        members: ['node8', 'node9', 'node10', 'node11', 'node12', 'node13'],
+        id: "leafNode-hull2",
+        members: ["node8", "node9", "node10", "node11", "node12", "node13"],
         padding: 10,
         style: {
-          fill: 'lightgreen',
-          stroke: 'green',
+          fill: "lightgreen",
+          stroke: "green",
         },
       });
 
-      this.graph.on('afterupdateitem', () => {
+      this.graph.on("afterupdateitem", () => {
         hull1.updateData(hull1.members);
         hull2.updateData(hull2.members);
         hull3.updateData(hull3.members);

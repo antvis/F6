@@ -1,7 +1,7 @@
-import F6 from '@antv/f6';
-import { wrapContext } from '../../../common/utils/context';
-import getData from './data';
-import force from '@antv/f6/dist/extends/layout/forceLayout';
+import F6 from "@antv/f6";
+import { wrapContext } from "../../../common/utils/context";
+import getData from "./data";
+import force from "@antv/f6/dist/extends/layout/forceLayout";
 
 /**
  * 基本力导向布局及节点拖拽
@@ -10,7 +10,7 @@ import force from '@antv/f6/dist/extends/layout/forceLayout';
 Page({
   canvas: null,
   ctx: null,
-  renderer: '', // mini、mini-native等，F6需要，标记环境
+  renderer: "", // mini、mini-native等，F6需要，标记环境
   isCanvasInit: false, // canvas是否准备好了
   graph: null,
 
@@ -22,7 +22,7 @@ Page({
   },
 
   onLoad() {
-    F6.registerLayout('force', force);
+    F6.registerLayout("force", force);
     // 同步获取window的宽高
     const { windowWidth, windowHeight, pixelRatio } = my.getSystemInfoSync();
 
@@ -68,7 +68,7 @@ Page({
       pixelRatio,
       fitView: true,
       layout: {
-        type: 'force',
+        type: "force",
       },
       defaultNode: {
         size: 15,
@@ -79,7 +79,7 @@ Page({
     // 注册数据
     this.graph.data({
       nodes: data.nodes,
-      edges: data.edges.map(function(edge, i) {
+      edges: data.edges.map(function (edge, i) {
         edge.id = `edge${i}`;
         return Object.assign({}, edge);
       }),
@@ -87,24 +87,24 @@ Page({
 
     // 更新位置用的函数
     function refreshDragedNodePosition(e) {
-      const model = e.item.get('model');
+      const model = e.item.get("model");
       model.fx = e.x;
       model.fy = e.y;
     }
 
     // 监听事件
-    this.graph.on('node:dragstart', function(e) {
+    this.graph.on("node:dragstart", function (e) {
       this.graph.layout();
       refreshDragedNodePosition(e);
     });
-    this.graph.on('node:drag', function(e) {
-      const forceLayout = this.graph.get('layoutController').layoutMethods[0];
+    this.graph.on("node:drag", function (e) {
+      const forceLayout = this.graph.get("layoutController").layoutMethods[0];
       forceLayout.execute();
       refreshDragedNodePosition(e);
     });
-    this.graph.on('node:dragend', function(e) {
-      e.item.get('model').fx = null;
-      e.item.get('model').fy = null;
+    this.graph.on("node:dragend", function (e) {
+      e.item.get("model").fx = null;
+      e.item.get("model").fy = null;
     });
 
     this.graph.render();

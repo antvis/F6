@@ -1,10 +1,10 @@
-import { createElement, useEffect, useRef } from 'rax';
-import View from 'rax-view';
-import F6 from '@antv/f6';
-import force from '@antv/f6/dist/extends/layout/forceLayout';
-import { getInfoSync } from '@uni/system-info';
-import { isWeb } from '@uni/env';
-import './index.css';
+import { createElement, useEffect, useRef } from "rax";
+import View from "rax-view";
+import F6 from "@antv/f6";
+import force from "@antv/f6/dist/extends/layout/forceLayout";
+import { getInfoSync } from "@uni/system-info";
+import { isWeb } from "@uni/env";
+import "./index.css";
 
 const F6Chart = (props) => {
   const { data, config, handleClick = () => {}, width, height } = props;
@@ -18,22 +18,22 @@ const F6Chart = (props) => {
       window.getComputedStyle = undefined;
     }
 
-    F6.registerLayout('force', force);
+    F6.registerLayout("force", force);
     const chart = new F6.Graph({
       fitView: true,
       pixelRatio: pixelRatio,
       layout: {
-        type: 'force',
+        type: "force",
       },
       modes: {
-        default: ['drag-canvas', 'zoom-canvas', 'drag-node'],
+        default: ["drag-canvas", "zoom-canvas", "drag-node"],
       },
       ...config,
     });
     chart.data(data);
-    chart.get('canvas').set('localRefresh', false);
+    chart.get("canvas").set("localRefresh", false);
     chart.render();
-    chart.on('node:tap', handleClick);
+    chart.on("node:tap", handleClick);
     f6Chart.current = chart;
   };
 
@@ -41,10 +41,10 @@ const F6Chart = (props) => {
     let query = { offsetWidth: 0, offsetHeight: 0 };
     // bug： 不加判断会影响小程序代码
     if (isWeb) {
-      query = document.getElementById('f6-rax-container');
+      query = document.getElementById("f6-rax-container");
     }
     renderChart({
-      container: 'f6-rax-container',
+      container: "f6-rax-container",
       width: width || query.offsetWidth,
       height: height || query.offsetHeight,
       ...config,

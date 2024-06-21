@@ -52,14 +52,14 @@ const data = {
 
 rect 节点支持 [节点通用配置](/zh/docs/manual/middle/elements/nodes/defaultNode#节点的通用属性)，下表对部分属性进行解释。对于 Object 类型的配置项将在后面有详细讲解：
 
-| 名称 | 含义 | 类型 | 备注 |
-| --- | --- | --- | --- | --- |
-| size | rect 的宽高 | Number | Array | `size` 为数组时：第一个值表示宽度，第二个表示高度；<br />`size` 为一个数值时：表示宽高相等 |
-| style | rect 默认样式 | Object | Canvas 支持的属性 |
-| label | 标签文本内容 | String |  |
-| labelCfg | 标签配置项 | Object |  |
-| stateStyles | 各状态下的样式 | Object | 只对 `keyShape` 起作用 |
-| linkPoints | **视觉上的**四个锚点 | Object | 默认不显示，应与 [anchorPoints](/zh/docs/manual/middle/elements/nodes/anchorpoint) 配合使用。二者区别请看 [linkPoints](#linkpoints) |
+| 名称        | 含义                 | 类型   | 备注                                                                                                                                |
+| ----------- | -------------------- | ------ | ----------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------ |
+| size        | rect 的宽高          | Number | Array                                                                                                                               | `size` 为数组时：第一个值表示宽度，第二个表示高度；<br />`size` 为一个数值时：表示宽高相等 |
+| style       | rect 默认样式        | Object | Canvas 支持的属性                                                                                                                   |
+| label       | 标签文本内容         | String |                                                                                                                                     |
+| labelCfg    | 标签配置项           | Object |                                                                                                                                     |
+| stateStyles | 各状态下的样式       | Object | 只对 `keyShape` 起作用                                                                                                              |
+| linkPoints  | **视觉上的**四个锚点 | Object | 默认不显示，应与 [anchorPoints](/zh/docs/manual/middle/elements/nodes/anchorpoint) 配合使用。二者区别请看 [linkPoints](#linkpoints) |
 
 ### 样式属性 style
 
@@ -119,10 +119,10 @@ const graph = new F6.Graph({
     // ... 其他配置
     labelCfg: {
       style: {
-        fill: '#9254de',
+        fill: "#9254de",
         fontSize: 18,
       },
-      position: 'bottom',
+      position: "bottom",
     },
   },
 });
@@ -162,7 +162,7 @@ const graph = new F6.Graph({
       left: true,
       right: true,
       size: 5,
-      fill: '#fff',
+      fill: "#fff",
     },
   },
 });

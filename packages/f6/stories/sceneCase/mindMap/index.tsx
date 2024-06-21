@@ -1,171 +1,171 @@
-import React, { useEffect } from 'react';
-import F6 from '../../../src';
-import TreeGraph from '../../../src/extends/graph/treeGraph';
-import data from './data';
+import React, { useEffect } from "react";
+import F6 from "../../../src";
+import TreeGraph from "../../../src/extends/graph/treeGraph";
+import data from "./data";
 
 const { Util } = F6;
 
-F6.registerGraph('TreeGraph', TreeGraph);
+F6.registerGraph("TreeGraph", TreeGraph);
 
 const colorArr = [
-  '#5B8FF9',
-  '#5AD8A6',
-  '#5D7092',
-  '#F6BD16',
-  '#6F5EF9',
-  '#6DC8EC',
-  '#D3EEF9',
-  '#DECFEA',
-  '#FFE0C7',
-  '#1E9493',
-  '#BBDEDE',
-  '#FF99C3',
-  '#FFE0ED',
-  '#CDDDFD',
-  '#CDF3E4',
-  '#CED4DE',
-  '#FCEBB9',
-  '#D3CEFD',
-  '#945FB9',
-  '#FF9845',
+  "#5B8FF9",
+  "#5AD8A6",
+  "#5D7092",
+  "#F6BD16",
+  "#6F5EF9",
+  "#6DC8EC",
+  "#D3EEF9",
+  "#DECFEA",
+  "#FFE0C7",
+  "#1E9493",
+  "#BBDEDE",
+  "#FF99C3",
+  "#FFE0ED",
+  "#CDDDFD",
+  "#CDF3E4",
+  "#CED4DE",
+  "#FCEBB9",
+  "#D3CEFD",
+  "#945FB9",
+  "#FF9845",
 ];
 
 const rawData = {
-  label: 'Modeling Methods',
-  id: '0',
+  label: "Modeling Methods",
+  id: "0",
   children: [
     {
-      label: 'Classification',
-      id: '0-1',
-      color: '#5AD8A6',
+      label: "Classification",
+      id: "0-1",
+      color: "#5AD8A6",
       children: [
         {
-          label: 'Logistic regression',
-          id: '0-1-1',
+          label: "Logistic regression",
+          id: "0-1-1",
         },
         {
-          label: 'Linear discriminant analysis',
-          id: '0-1-2',
+          label: "Linear discriminant analysis",
+          id: "0-1-2",
         },
         {
-          label: 'Rules',
-          id: '0-1-3',
+          label: "Rules",
+          id: "0-1-3",
         },
         {
-          label: 'Decision trees',
-          id: '0-1-4',
+          label: "Decision trees",
+          id: "0-1-4",
         },
         {
-          label: 'Naive Bayes',
-          id: '0-1-5',
+          label: "Naive Bayes",
+          id: "0-1-5",
         },
         {
-          label: 'K nearest neighbor',
-          id: '0-1-6',
+          label: "K nearest neighbor",
+          id: "0-1-6",
         },
         {
-          label: 'Probabilistic neural network',
-          id: '0-1-7',
+          label: "Probabilistic neural network",
+          id: "0-1-7",
         },
         {
-          label: 'Support vector machine',
-          id: '0-1-8',
+          label: "Support vector machine",
+          id: "0-1-8",
         },
       ],
     },
     {
-      label: 'Consensus',
-      id: '0-2',
-      color: '#F6BD16',
+      label: "Consensus",
+      id: "0-2",
+      color: "#F6BD16",
       children: [
         {
-          label: 'Models diversity',
-          id: '0-2-1',
+          label: "Models diversity",
+          id: "0-2-1",
           children: [
             {
-              label: 'Different initializations',
-              id: '0-2-1-1',
+              label: "Different initializations",
+              id: "0-2-1-1",
             },
             {
-              label: 'Different parameter choices',
-              id: '0-2-1-2',
+              label: "Different parameter choices",
+              id: "0-2-1-2",
             },
             {
-              label: 'Different architectures',
-              id: '0-2-1-3',
+              label: "Different architectures",
+              id: "0-2-1-3",
             },
             {
-              label: 'Different modeling methods',
-              id: '0-2-1-4',
+              label: "Different modeling methods",
+              id: "0-2-1-4",
             },
             {
-              label: 'Different training sets',
-              id: '0-2-1-5',
+              label: "Different training sets",
+              id: "0-2-1-5",
             },
             {
-              label: 'Different feature sets',
-              id: '0-2-1-6',
+              label: "Different feature sets",
+              id: "0-2-1-6",
             },
           ],
         },
         {
-          label: 'Methods',
-          id: '0-2-2',
+          label: "Methods",
+          id: "0-2-2",
           children: [
             {
-              label: 'Classifier selection',
-              id: '0-2-2-1',
+              label: "Classifier selection",
+              id: "0-2-2-1",
             },
             {
-              label: 'Classifier fusion',
-              id: '0-2-2-2',
+              label: "Classifier fusion",
+              id: "0-2-2-2",
             },
           ],
         },
         {
-          label: 'Common',
-          id: '0-2-3',
+          label: "Common",
+          id: "0-2-3",
           children: [
             {
-              label: 'Bagging',
-              id: '0-2-3-1',
+              label: "Bagging",
+              id: "0-2-3-1",
             },
             {
-              label: 'Boosting',
-              id: '0-2-3-2',
+              label: "Boosting",
+              id: "0-2-3-2",
             },
             {
-              label: 'AdaBoost',
-              id: '0-2-3-3',
+              label: "AdaBoost",
+              id: "0-2-3-3",
             },
           ],
         },
       ],
     },
     {
-      label: 'Regression',
-      id: '0-3',
-      color: '#269A99',
+      label: "Regression",
+      id: "0-3",
+      color: "#269A99",
       children: [
         {
-          label: 'Multiple linear regression',
-          id: '0-3-1',
+          label: "Multiple linear regression",
+          id: "0-3-1",
         },
         {
-          label: 'Partial least squares',
-          id: '0-3-2',
+          label: "Partial least squares",
+          id: "0-3-2",
         },
         {
-          label: 'Multi-layer feedforward neural network',
-          id: '0-3-3',
+          label: "Multi-layer feedforward neural network",
+          id: "0-3-3",
         },
         {
-          label: 'General regression neural network',
-          id: '0-3-4',
+          label: "General regression neural network",
+          id: "0-3-4",
         },
         {
-          label: 'Support vector regression',
-          id: '0-3-5',
+          label: "Support vector regression",
+          id: "0-3-5",
         },
       ],
     },
@@ -173,23 +173,25 @@ const rawData = {
 };
 
 F6.registerNode(
-  'dice-mind-map-root',
+  "dice-mind-map-root",
   {
     jsx: (cfg) => {
       debugger;
       const width = Util.getTextSize(cfg.label, 16)[0] + 24;
-      const stroke = cfg.style.stroke || '#096dd9';
+      const stroke = cfg.style.stroke || "#096dd9";
       const fill = cfg.style.fill;
 
       return `
       <group>
         <rect draggable="true" style={{width: ${width}, height: 42, stroke: ${stroke}, radius: 4}} keyshape>
-          <text style={{ fontSize: 16, marginLeft: 12, marginTop: 12 }}>${cfg.label}</text>
+          <text style={{ fontSize: 16, marginLeft: 12, marginTop: 12 }}>${
+            cfg.label
+          }</text>
           <text style={{ marginLeft: ${
             width - 16
           }, marginTop: -20, stroke: '#66ccff', fill: '#000', cursor: 'pointer', opacity: ${
-        cfg.hover ? 0.75 : 0
-      } }} action="add">+</text>
+            cfg.hover ? 0.75 : 0
+          } }} action="add">+</text>
         </rect>
       </group>
     `;
@@ -201,10 +203,10 @@ F6.registerNode(
       ];
     },
   },
-  'single-node',
+  "single-node",
 );
 F6.registerNode(
-  'dice-mind-map-sub',
+  "dice-mind-map-sub",
   {
     jsx: (cfg) => {
       const width = Util.getTextSize(cfg.label, 14)[0] + 24;
@@ -212,22 +214,26 @@ F6.registerNode(
 
       return `
       <group>
-        <rect draggable="true" style={{width: ${width + 24}, height: 22}} keyshape>
+        <rect draggable="true" style={{width: ${
+          width + 24
+        }, height: 22}} keyshape>
           <text draggable="true" style={{ fontSize: 14, marginLeft: 12, marginTop: 6 }}>${
             cfg.label
           }</text>
           <text style={{ marginLeft: ${
             width - 8
           }, marginTop: -10, stroke: ${color}, fill: '#000', cursor: 'pointer', opacity: ${
-        cfg.hover ? 0.75 : 0
-      }, next: 'inline' }} action="add">+</text>
+            cfg.hover ? 0.75 : 0
+          }, next: 'inline' }} action="add">+</text>
           <text style={{ marginLeft: ${
             width - 4
           }, marginTop: -10, stroke: ${color}, fill: '#000', cursor: 'pointer', opacity: ${
-        cfg.hover ? 0.75 : 0
-      }, next: 'inline' }} action="delete">-</text>
+            cfg.hover ? 0.75 : 0
+          }, next: 'inline' }} action="delete">-</text>
         </rect>
-        <rect style={{ fill: ${color}, width: ${width + 24}, height: 2, x: 0, y: 22 }} />
+        <rect style={{ fill: ${color}, width: ${
+          width + 24
+        }, height: 2, x: 0, y: 22 }} />
         
       </group>
     `;
@@ -239,10 +245,10 @@ F6.registerNode(
       ];
     },
   },
-  'single-node',
+  "single-node",
 );
 F6.registerNode(
-  'dice-mind-map-leaf',
+  "dice-mind-map-leaf",
   {
     jsx: (cfg) => {
       const width = Util.getTextSize(cfg.label, 12)[0] + 24;
@@ -250,20 +256,26 @@ F6.registerNode(
 
       return `
       <group>
-        <rect draggable="true" style={{width: ${width + 20}, height: 26, fill: 'transparent' }}>
-          <text style={{ fontSize: 12, marginLeft: 12, marginTop: 6 }}>${cfg.label}</text>
+        <rect draggable="true" style={{width: ${
+          width + 20
+        }, height: 26, fill: 'transparent' }}>
+          <text style={{ fontSize: 12, marginLeft: 12, marginTop: 6 }}>${
+            cfg.label
+          }</text>
               <text style={{ marginLeft: ${
                 width - 8
               }, marginTop: -10, stroke: ${color}, fill: '#000', cursor: 'pointer', opacity: ${
-        cfg.hover ? 0.75 : 0
-      }, next: 'inline' }} action="add">+</text>
+                cfg.hover ? 0.75 : 0
+              }, next: 'inline' }} action="add">+</text>
               <text style={{ marginLeft: ${
                 width - 4
               }, marginTop: -10, stroke: ${color}, fill: '#000', cursor: 'pointer', opacity: ${
-        cfg.hover ? 0.75 : 0
-      }, next: 'inline' }} action="delete">-</text>
+                cfg.hover ? 0.75 : 0
+              }, next: 'inline' }} action="delete">-</text>
         </rect>
-        <rect style={{ fill: ${color}, width: ${width + 24}, height: 2, x: 0, y: 32 }} />
+        <rect style={{ fill: ${color}, width: ${
+          width + 24
+        }, height: 2, x: 0, y: 32 }} />
         
       </group>
     `;
@@ -275,26 +287,26 @@ F6.registerNode(
       ];
     },
   },
-  'single-node',
+  "single-node",
 );
-F6.registerBehavior('dice-mindmap', {
+F6.registerBehavior("dice-mindmap", {
   getEvents() {
     return {
-      'node:tap': 'clickNode',
-      'node:dbltap': 'editNode',
+      "node:tap": "clickNode",
+      "node:dbltap": "editNode",
     };
   },
   clickNode(evt) {
     debugger;
-    const model = evt.item.get('model');
-    const name = evt.target.get('action');
+    const model = evt.item.get("model");
+    const name = evt.target.get("action");
     switch (name) {
-      case 'add':
+      case "add":
         const newId =
           model.id +
-          '-' +
+          "-" +
           (((model.children || []).reduce((a, b) => {
-            const num = Number(b.id.split('-').pop());
+            const num = Number(b.id.split("-").pop());
             return a < num ? num : a;
           }, 0) || 0) +
             1);
@@ -302,23 +314,28 @@ F6.registerBehavior('dice-mindmap', {
           children: (model.children || []).concat([
             {
               id: newId,
-              direction: newId.charCodeAt(newId.length - 1) % 2 === 0 ? 'right' : 'left',
-              label: 'New',
-              type: 'dice-mind-map-leaf',
-              color: model.color || colorArr[Math.floor(Math.random() * colorArr.length)],
+              direction:
+                newId.charCodeAt(newId.length - 1) % 2 === 0 ? "right" : "left",
+              label: "New",
+              type: "dice-mind-map-leaf",
+              color:
+                model.color ||
+                colorArr[Math.floor(Math.random() * colorArr.length)],
             },
           ]),
         });
         evt.currentTarget.layout(false);
         break;
-      case 'delete':
-        const parent = evt.item.get('parent');
+      case "delete":
+        const parent = evt.item.get("parent");
         evt.currentTarget.updateItem(parent, {
-          children: (parent.get('model').children || []).filter((e) => e.id !== model.id),
+          children: (parent.get("model").children || []).filter(
+            (e) => e.id !== model.id,
+          ),
         });
         evt.currentTarget.layout(false);
         break;
-      case 'edit':
+      case "edit":
         break;
       default:
         return;
@@ -326,29 +343,30 @@ F6.registerBehavior('dice-mindmap', {
   },
   editNode(evt) {
     const item = evt.item;
-    const model = item.get('model');
+    const model = item.get("model");
     const { x, y } = item.calculateBBox();
     const graph = evt.currentTarget;
     const realPosition = evt.currentTarget.getClientByPoint(x, y);
-    const el = document.createElement('div');
+    const el = document.createElement("div");
     const fontSizeMap = {
-      'dice-mind-map-root': 24,
-      'dice-mind-map-sub': 18,
-      'dice-mind-map-leaf': 16,
+      "dice-mind-map-root": 24,
+      "dice-mind-map-sub": 18,
+      "dice-mind-map-leaf": 16,
     };
-    el.style.fontSize = fontSizeMap[model.type] + 'px';
-    el.style.position = 'fixed';
-    el.style.top = realPosition.y + 'px';
-    el.style.left = realPosition.x + 'px';
-    el.style.paddingLeft = '12px';
-    el.style.transformOrigin = 'top left';
+    el.style.fontSize = fontSizeMap[model.type] + "px";
+    el.style.position = "fixed";
+    el.style.top = realPosition.y + "px";
+    el.style.left = realPosition.x + "px";
+    el.style.paddingLeft = "12px";
+    el.style.transformOrigin = "top left";
     el.style.transform = `scale(${evt.currentTarget.getZoom()})`;
-    const input = document.createElement('input');
-    input.style.border = 'none';
+    const input = document.createElement("input");
+    input.style.border = "none";
     input.value = model.label;
-    input.style.width = Util.getTextSize(model.label, fontSizeMap[model.type])[0] + 'px';
-    input.className = 'dice-input';
-    el.className = 'dice-input';
+    input.style.width =
+      Util.getTextSize(model.label, fontSizeMap[model.type])[0] + "px";
+    input.className = "dice-input";
+    el.className = "dice-input";
     el.appendChild(input);
     document.body.appendChild(el);
     const destroyEl = () => {
@@ -356,23 +374,27 @@ F6.registerBehavior('dice-mindmap', {
     };
     const clickEvt = (event) => {
       if (
-        !(event.target && event.target.className && event.target.className.includes('dice-input'))
+        !(
+          event.target &&
+          event.target.className &&
+          event.target.className.includes("dice-input")
+        )
       ) {
-        window.removeEventListener('mousedown', clickEvt);
-        window.removeEventListener('scroll', clickEvt);
+        window.removeEventListener("mousedown", clickEvt);
+        window.removeEventListener("scroll", clickEvt);
         graph.updateItem(item, {
           label: input.value,
         });
         graph.layout(false);
-        graph.off('wheelZoom', clickEvt);
+        graph.off("wheelZoom", clickEvt);
         destroyEl();
       }
     };
-    graph.on('wheelZoom', clickEvt);
-    window.addEventListener('mousedown', clickEvt);
-    window.addEventListener('scroll', clickEvt);
-    input.addEventListener('keyup', (event) => {
-      if (event.key === 'Enter') {
+    graph.on("wheelZoom", clickEvt);
+    window.addEventListener("mousedown", clickEvt);
+    window.addEventListener("scroll", clickEvt);
+    input.addEventListener("keyup", (event) => {
+      if (event.key === "Enter") {
         clickEvt({
           target: {},
         });
@@ -380,10 +402,10 @@ F6.registerBehavior('dice-mindmap', {
     });
   },
 });
-F6.registerBehavior('scroll-canvas', {
+F6.registerBehavior("scroll-canvas", {
   getEvents: function getEvents() {
     return {
-      wheel: 'onWheel',
+      wheel: "onWheel",
     };
   },
 
@@ -393,7 +415,7 @@ F6.registerBehavior('scroll-canvas', {
       return;
     }
     if (ev.ctrlKey) {
-      const canvas = graph.get('canvas');
+      const canvas = graph.get("canvas");
       const point = canvas.getPointByClient(ev.clientX, ev.clientY);
       let ratio = graph.getZoom();
       if (ev.wheelDelta > 0) {
@@ -421,13 +443,13 @@ const dataTransform = (data) => {
     };
     switch (level) {
       case 0:
-        data.type = 'dice-mind-map-root';
+        data.type = "dice-mind-map-root";
         break;
       case 1:
-        data.type = 'dice-mind-map-sub';
+        data.type = "dice-mind-map-sub";
         break;
       default:
-        data.type = 'dice-mind-map-leaf';
+        data.type = "dice-mind-map-leaf";
         break;
     }
 
@@ -439,12 +461,15 @@ const dataTransform = (data) => {
 
     if (level === 1 && !d.direction) {
       if (!d.direction) {
-        data.direction = d.id.charCodeAt(d.id.length - 1) % 2 === 0 ? 'right' : 'left';
+        data.direction =
+          d.id.charCodeAt(d.id.length - 1) % 2 === 0 ? "right" : "left";
       }
     }
 
     if (d.children) {
-      data.children = d.children.map((child) => changeData(child, level + 1, data.color));
+      data.children = d.children.map((child) =>
+        changeData(child, level + 1, data.color),
+      );
     }
     return data;
   };
@@ -468,8 +493,8 @@ export default () => {
         fitView: true,
         fitViewPadding: [10, 20],
         layout: {
-          type: 'mindmap',
-          direction: 'H',
+          type: "mindmap",
+          direction: "H",
           getHeight: () => {
             return 16;
           },
@@ -489,14 +514,14 @@ export default () => {
           },
         },
         defaultEdge: {
-          type: 'cubic-horizontal',
+          type: "cubic-horizontal",
           style: {
             lineWidth: 2,
           },
         },
         minZoom: 0.5,
         modes: {
-          default: ['drag-canvas', 'zoom-canvas', 'dice-mindmap'],
+          default: ["drag-canvas", "zoom-canvas", "dice-mindmap"],
         },
       });
       graph.data(dataTransform(rawData));

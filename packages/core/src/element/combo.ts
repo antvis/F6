@@ -2,24 +2,30 @@
  * @fileOverview common combo shape
  * @author shiwu.wyy@antfin.com
  */
-import { IGroup, IShape } from '@antv/g-base';
-import { isArray, isNil, clone } from '@antv/util';
-import { ILabelConfig, ShapeOptions } from '../interface/shape';
-import { Item, LabelStyle, NodeConfig, ModelConfig, ShapeStyle } from '../types';
-import Global from '../global';
-import Shape from './shape';
-import { shapeBase } from './shapeBase';
+import { IGroup, IShape } from "@antv/g-base";
+import { isArray, isNil, clone } from "@antv/util";
+import { ILabelConfig, ShapeOptions } from "../interface/shape";
+import {
+  Item,
+  LabelStyle,
+  NodeConfig,
+  ModelConfig,
+  ShapeStyle,
+} from "../types";
+import Global from "../global";
+import Shape from "./shape";
+import { shapeBase } from "./shapeBase";
 
 const singleCombo: ShapeOptions = {
-  itemType: 'combo',
+  itemType: "combo",
   // 单个图形的类型
-  shapeType: 'single-combo',
+  shapeType: "single-combo",
   /**
    * Combo 标题文本相对图形的位置，默认为 top
    * 位置包括： top, bottom, left, right, center
    * @type {String}
    */
-  labelPosition: 'top',
+  labelPosition: "top",
   /**
    * 标题文本相对偏移，当 labelPosition 不为 center 时有效
    * @type {Number}
@@ -50,7 +56,9 @@ const singleCombo: ShapeOptions = {
    * @return {Array} 宽高
    */
   getSize(cfg: ModelConfig): number[] {
-    let size: number | number[] = clone(cfg.size || this.options!.size || Global.defaultCombo.size);
+    let size: number | number[] = clone(
+      cfg.size || this.options!.size || Global.defaultCombo.size,
+    );
 
     // size 是数组，若长度为 1，则补长度为 2
     if (isArray(size) && size.length === 1) {
@@ -87,42 +95,42 @@ const singleCombo: ShapeOptions = {
 
     let style: any;
     switch (labelPosition) {
-      case 'top':
+      case "top":
         style = {
           x: 0,
           y: -dis - (refY as number),
-          textBaseline: 'bottom', // 文本在图形的上方
-          textAlign: 'center',
+          textBaseline: "bottom", // 文本在图形的上方
+          textAlign: "center",
         };
         break;
-      case 'bottom':
+      case "bottom":
         style = {
           x: 0,
           y: dis + (refY as number),
-          textBaseline: 'bottom',
-          textAlign: 'center',
+          textBaseline: "bottom",
+          textAlign: "center",
         };
         break;
-      case 'left':
+      case "left":
         style = {
           x: -dis + (refX as number),
           y: 0,
-          textAlign: 'left',
+          textAlign: "left",
         };
         break;
-      case 'center':
+      case "center":
         style = {
           x: 0,
           y: 0,
           text: cfg!.label,
-          textAlign: 'center',
+          textAlign: "center",
         };
         break;
       default:
         style = {
           x: dis + (refX as number),
           y: 0,
-          textAlign: 'right',
+          textAlign: "right",
         };
         break;
     }
@@ -135,17 +143,18 @@ const singleCombo: ShapeOptions = {
     const shape = group.addShape(shapeType, {
       attrs: style,
       draggable: true,
-      name: 'combo-shape',
+      name: "combo-shape",
     });
     return shape;
   },
   updateShape(cfg: NodeConfig, item: Item, keyShapeStyle: ShapeStyle) {
-    const keyShape = item.get('keyShape');
-    const animate = cfg.animate === undefined ? this.options.animate : cfg.animate;
+    const keyShape = item.get("keyShape");
+    const animate =
+      cfg.animate === undefined ? this.options.animate : cfg.animate;
     if (animate && keyShape.animate) {
       keyShape.animate(keyShapeStyle, {
         duration: 200,
-        easing: 'easeLinear',
+        easing: "easeLinear",
       });
     } else {
       keyShape.attr({
@@ -159,4 +168,4 @@ const singleCombo: ShapeOptions = {
 };
 
 const singleComboDef = { ...shapeBase, ...singleCombo };
-Shape.registerCombo('single-combo', singleComboDef);
+Shape.registerCombo("single-combo", singleComboDef);

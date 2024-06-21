@@ -1,7 +1,7 @@
-import React, { useEffect } from 'react';
-import { SnapLine } from '@antv/f6-plugin'
-import F6 from '../../src';
-import data from './data';
+import React, { useEffect } from "react";
+import { SnapLine } from "@antv/f6-plugin";
+import F6 from "../../src";
+import data from "./data";
 
 const snapLine = new SnapLine();
 
@@ -22,7 +22,7 @@ export default () => {
           size: 30,
         },
         modes: {
-          default: ['drag-canvas', 'zoom-canvas', 'drag-node'],
+          default: ["drag-canvas", "zoom-canvas", "drag-node"],
         },
         plugins: [snapLine],
       });
@@ -32,4 +32,4 @@ export default () => {
   }, []);
 
   return <div ref={ref}></div>;
-}
+};

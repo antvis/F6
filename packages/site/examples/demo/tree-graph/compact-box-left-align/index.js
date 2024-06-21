@@ -16,10 +16,10 @@ F6.registerNode("crect", {
         width,
         height: 20,
         lineWidth: 0,
-        opacity: 0
+        opacity: 0,
       },
       name: "rect-shape",
-      draggable: true
+      draggable: true,
     });
     const label = group.addShape("text", {
       attrs: {
@@ -27,30 +27,36 @@ F6.registerNode("crect", {
         fill: "#ccc",
         fontSize,
         x: 0,
-        y: 0
+        y: 0,
       },
       name: "label-shape",
-      draggable: true
+      draggable: true,
     });
     const bboxWidth = label.getBBox().width + 20;
     rect.attr({
-      width: bboxWidth
+      width: bboxWidth,
     });
     group.addShape("path", {
       attrs: {
         lineWidth: 1,
         fill: "#ccc",
         stroke: "#ccc",
-        path: [["M", 0, 0], ["L", bboxWidth, 0]]
+        path: [
+          ["M", 0, 0],
+          ["L", bboxWidth, 0],
+        ],
       },
       name: "path-shape",
-      draggable: true
+      draggable: true,
     });
     return rect;
   },
   getAnchorPoints: () => {
-    return [[0, 0.5], [1, 0.5]];
-  }
+    return [
+      [0, 0.5],
+      [1, 0.5],
+    ];
+  },
 });
 const graph = new F6.TreeGraph({
   width,
@@ -58,16 +64,16 @@ const graph = new F6.TreeGraph({
   pixelRatio,
   fitView: true,
   modes: {
-    default: ["collapse-expand", "drag-canvas", "zoom-canvas"]
+    default: ["collapse-expand", "drag-canvas", "zoom-canvas"],
   },
   defaultNode: {
-    type: "crect"
+    type: "crect",
   },
   defaultEdge: {
     type: "cubic-horizontal",
     style: {
-      stroke: "#A3B1BF"
-    }
+      stroke: "#A3B1BF",
+    },
   },
   layout: {
     type: "compactBox",
@@ -86,8 +92,8 @@ const graph = new F6.TreeGraph({
     },
     getWidth: function getWidth(d) {
       return F6.Util.getTextSize(d.id, fontSize)[0] + 20;
-    }
-  }
+    },
+  },
 });
 graph.data(data);
 graph.render();

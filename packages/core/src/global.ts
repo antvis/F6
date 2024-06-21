@@ -1,19 +1,19 @@
-const subjectColor = 'rgb(95, 149, 255)';
-const backColor = 'rgb(255, 255, 255)';
-const textColor = 'rgb(0, 0, 0)';
+const subjectColor = "rgb(95, 149, 255)";
+const backColor = "rgb(255, 255, 255)";
+const textColor = "rgb(0, 0, 0)";
 
-const activeFill = 'rgb(247, 250, 255)';
-const nodeMainFill = 'rgb(239, 244, 255)';
-const comboFill = 'rgb(253, 253, 253)';
-const disabledFill = 'rgb(250, 250, 250)';
+const activeFill = "rgb(247, 250, 255)";
+const nodeMainFill = "rgb(239, 244, 255)";
+const comboFill = "rgb(253, 253, 253)";
+const disabledFill = "rgb(250, 250, 250)";
 
-const edgeMainStroke = 'rgb(224, 224, 224)';
-const edgeInactiveStroke = 'rgb(234, 234, 234)';
-const edgeDisablesStroke = 'rgb(245, 245, 245)';
-const inactiveStroke = 'rgb(191, 213, 255)';
+const edgeMainStroke = "rgb(224, 224, 224)";
+const edgeInactiveStroke = "rgb(234, 234, 234)";
+const edgeDisablesStroke = "rgb(245, 245, 245)";
+const inactiveStroke = "rgb(191, 213, 255)";
 
-const highlightStroke = '#4572d9';
-const highlightFill = 'rgb(223, 234, 255)';
+const highlightStroke = "#4572d9";
+const highlightFill = "rgb(223, 234, 255)";
 
 const colorSet = {
   // for nodes
@@ -64,24 +64,24 @@ const colorSet = {
 };
 
 export default {
-  version: '0.0.2',
-  rootContainerClassName: 'root-container',
-  nodeContainerClassName: 'node-container',
-  edgeContainerClassName: 'edge-container',
-  comboContainerClassName: 'combo-container',
-  delegateContainerClassName: 'delegate-container',
-  defaultLoopPosition: 'top',
+  version: "0.0.2",
+  rootContainerClassName: "root-container",
+  nodeContainerClassName: "node-container",
+  edgeContainerClassName: "edge-container",
+  comboContainerClassName: "combo-container",
+  delegateContainerClassName: "delegate-container",
+  defaultLoopPosition: "top",
   nodeLabel: {
     style: {
-      fill: '#000',
+      fill: "#000",
       fontSize: 12,
-      textAlign: 'center',
-      textBaseline: 'middle',
+      textAlign: "center",
+      textBaseline: "middle",
     },
     offset: 4, // 节点的默认文本不居中时的偏移量
   },
   defaultNode: {
-    type: 'circle',
+    type: "circle",
     style: {
       lineWidth: 1,
       stroke: colorSet.mainStroke,
@@ -111,7 +111,7 @@ export default {
       lineWidth: 4,
       shadowColor: colorSet.selectedStroke,
       shadowBlur: 10,
-      'text-shape': {
+      "text-shape": {
         fontWeight: 500,
       },
     },
@@ -119,7 +119,7 @@ export default {
       fill: colorSet.highlightFill,
       stroke: colorSet.highlightStroke,
       lineWidth: 2,
-      'text-shape': {
+      "text-shape": {
         fontWeight: 500,
       },
     },
@@ -137,13 +137,13 @@ export default {
   edgeLabel: {
     style: {
       fill: textColor,
-      textAlign: 'center',
-      textBaseline: 'middle',
+      textAlign: "center",
+      textBaseline: "middle",
       fontSize: 12,
     },
   },
   defaultEdge: {
-    type: 'line',
+    type: "line",
     size: 1,
     style: {
       stroke: colorSet.edgeMainStroke,
@@ -162,14 +162,14 @@ export default {
       lineWidth: 2,
       shadowColor: colorSet.edgeSelectedStroke,
       shadowBlur: 10,
-      'text-shape': {
+      "text-shape": {
         fontWeight: 500,
       },
     },
     highlight: {
       stroke: colorSet.edgeHighlightStroke,
       lineWidth: 2,
-      'text-shape': {
+      "text-shape": {
         fontWeight: 500,
       },
     },
@@ -186,14 +186,14 @@ export default {
     style: {
       fill: textColor,
       // textAlign: 'center',
-      textBaseline: 'middle',
+      textBaseline: "middle",
       fontSize: 12,
     },
     refY: 10, // Combo 的默认文本不居中时的偏移量
     refX: 10, // Combo 的默认文本不居中时的偏移量
   },
   defaultCombo: {
-    type: 'circle',
+    type: "circle",
     style: {
       fill: colorSet.comboMainFill,
       lineWidth: 1,
@@ -219,7 +219,7 @@ export default {
       fill: colorSet.comboSelectedFill,
       shadowColor: colorSet.comboSelectedStroke,
       shadowBlur: 10,
-      'text-shape': {
+      "text-shape": {
         fontWeight: 500,
       },
     },
@@ -227,7 +227,7 @@ export default {
       stroke: colorSet.comboHighlightStroke,
       lineWidth: 2,
       fill: colorSet.comboHighlightFill,
-      'text-shape': {
+      "text-shape": {
         fontWeight: 500,
       },
     },
@@ -243,9 +243,9 @@ export default {
     },
   },
   delegateStyle: {
-    fill: '#F3F9FF',
+    fill: "#F3F9FF",
     fillOpacity: 0.5,
-    stroke: '#1890FF',
+    stroke: "#1890FF",
     strokeOpacity: 0.9,
     lineDash: [5, 5],
   },

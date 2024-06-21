@@ -73,14 +73,14 @@ labelCfg: {
 }
 ```
 
-| 名称 | 含义 | 类型 | 备注 |
-| --- | --- | --- | --- |
-| color | 边的颜色 | String | 优先级低于 `style` 中的 `stroke` |
+| 名称            | 含义                               | 类型       | 备注                                                                              |
+| --------------- | ---------------------------------- | ---------- | --------------------------------------------------------------------------------- |
+| color           | 边的颜色                           | String     | 优先级低于 `style` 中的 `stroke`                                                  |
 | **curveOffset** | **圆弧顶端距离两线中心位置的距离** | **Number** | **数值绝对值大小控制圆弧的大小，正负控制圆弧弯曲的方向，默认为 `20`。arc 边特有** |
-| style | 边的样式 | Object | Canvas 支持的属性 |
-| label | 标签文本文字 | String |  |
-| labelCfg | 标签文本配置项 | Object |  |
-| stateStyles | 各状态下的样式 | Object | 详见[配置状态样式](/zh/docs/manual/middle/states/state#配置-state-样式) |
+| style           | 边的样式                           | Object     | Canvas 支持的属性                                                                 |
+| label           | 标签文本文字                       | String     |                                                                                   |
+| labelCfg        | 标签文本配置项                     | Object     |                                                                                   |
+| stateStyles     | 各状态下的样式                     | Object     | 详见[配置状态样式](/zh/docs/manual/middle/states/state#配置-state-样式)           |
 
 ### 特殊属性：弧度  curveOffset
 
@@ -140,7 +140,7 @@ const graph = new F6.Graph({
   defaultEdge: {
     // ... 其他配置
     style: {
-      stroke: '#088',
+      stroke: "#088",
       lineWidth: 3,
     },
   },

@@ -4,11 +4,11 @@ import {
   INPUT_END,
   INPUT_CANCEL,
   INPUT_TYPE_TOUCH,
-} from '../inputjs/input-consts';
-import Input from '../inputjs/input-constructor';
-import toArray from '../utils/to-array';
-import hasParent from '../utils/has-parent';
-import uniqueArray from '../utils/unique-array';
+} from "../inputjs/input-consts";
+import Input from "../inputjs/input-constructor";
+import toArray from "../utils/to-array";
+import hasParent from "../utils/has-parent";
+import uniqueArray from "../utils/unique-array";
 
 const TOUCH_INPUT_MAP = {
   touchstart: INPUT_START,
@@ -17,7 +17,7 @@ const TOUCH_INPUT_MAP = {
   touchcancel: INPUT_CANCEL,
 };
 
-const TOUCH_TARGET_EVENTS = 'touchstart touchmove touchend touchcancel';
+const TOUCH_TARGET_EVENTS = "touchstart touchmove touchend touchcancel";
 
 /**
  * @private
@@ -110,7 +110,7 @@ function getTouches(ev, type) {
 
   return [
     // merge targetTouches with changedTargetTouches so it contains ALL touches, including 'end' and 'cancel'
-    uniqueArray(targetTouches.concat(changedTargetTouches), 'identifier', true),
+    uniqueArray(targetTouches.concat(changedTargetTouches), "identifier", true),
     changedTargetTouches,
   ];
 }

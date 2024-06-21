@@ -1,7 +1,7 @@
-import F6 from '@antv/f6-wx';
+import F6 from "@antv/f6-wx";
 
-import { data, data2_m } from './data';
-import radial from '@antv/f6-wx/extends/layout/radialLayout';
+import { data, data2_m } from "./data";
+import radial from "@antv/f6-wx/extends/layout/radialLayout";
 /**
  * 交互扩展节点的辐射布局
  */
@@ -9,7 +9,7 @@ import radial from '@antv/f6-wx/extends/layout/radialLayout';
 Page({
   canvas: null,
   ctx: null,
-  renderer: '', // mini、mini-native等，F6需要，标记环境
+  renderer: "", // mini、mini-native等，F6需要，标记环境
   isCanvasInit: false, // canvas是否准备好了
   graph: null,
   mainUnitRadius: 80,
@@ -23,7 +23,7 @@ Page({
 
   onLoad() {
     // 注册布局
-    F6.registerLayout('radial', radial);
+    F6.registerLayout("radial", radial);
     // 同步获取window的宽高
     const { windowWidth, windowHeight, pixelRatio } = wx.getSystemInfoSync();
 
@@ -61,14 +61,14 @@ Page({
     const { width, height, pixelRatio } = this.data;
     const focusNode = data.nodes[22];
     focusNode.style = {
-      stroke: '#00419F',
-      fill: '#729FFC',
+      stroke: "#00419F",
+      fill: "#729FFC",
       lineWidth: 2,
     };
 
     data.nodes[2].style = {
-      stroke: '#00419F',
-      fill: '#729FFC',
+      stroke: "#00419F",
+      fill: "#729FFC",
       lineWidth: 2,
     };
 
@@ -81,7 +81,7 @@ Page({
       pixelRatio,
       fitView: true,
       layout: {
-        type: 'radial',
+        type: "radial",
         maxIteration: 200,
         focusNode,
         unitRadius: this.mainUnitRadius,
@@ -91,19 +91,19 @@ Page({
       },
       animate: true,
       modes: {
-        default: ['drag-node', 'click-select', 'click-add-node', 'drag-canvas'],
+        default: ["drag-node", "click-select", "click-add-node", "drag-canvas"],
       },
       defaultNode: {
         size: 20,
       },
     });
 
-    this.graph.on('node:tap', (ev) => {
+    this.graph.on("node:tap", (ev) => {
       const itemModel = ev.item.getModel();
       const nodes = this.graph.getNodes();
       const edges = this.graph.getEdges();
       let newData;
-      if (itemModel.id === '2') newData = data2_m;
+      if (itemModel.id === "2") newData = data2_m;
       else return;
       const newNodeModels = newData.nodes;
       const newEdgeModels = [];
@@ -133,7 +133,7 @@ Page({
           // set the initial positions of the new nodes to the focus(clicked) node
           nodeModel.x = itemModel.x;
           nodeModel.y = itemModel.y;
-          this.graph.addItem('node', nodeModel);
+          this.graph.addItem("node", nodeModel);
         }
       });
 
@@ -147,7 +147,7 @@ Page({
       newEdgeModels.forEach(function (em, i) {
         const exist = edgeMap.get(`${em.source},${em.target}`);
         if (exist === undefined) {
-          this.graph.addItem('edge', em);
+          this.graph.addItem("edge", em);
           edgeMap.set(`${em.source},${em.target}`, oldEdgeNum + i);
         }
       });
@@ -168,7 +168,8 @@ Page({
       const vx = itemModel.x - focusNode.x;
       const vy = itemModel.y - focusNode.y;
       const vlength = Math.sqrt(vx * vx + vy * vy);
-      const ideallength = unitRadius * maxDegree + this.mainUnitRadius * oMaxDegree;
+      const ideallength =
+        unitRadius * maxDegree + this.mainUnitRadius * oMaxDegree;
       itemModel.x = (ideallength * vx) / vlength + focusNode.x;
       itemModel.y = (ideallength * vy) / vlength + focusNode.y;
 
@@ -176,7 +177,7 @@ Page({
       const subRadialLayout = new Radial({
         center: [itemModel.x, itemModel.y],
         maxIteration: 200,
-        focusNode: '2',
+        focusNode: "2",
         unitRadius,
         linkDistance: 180,
         preventOverlap: true,

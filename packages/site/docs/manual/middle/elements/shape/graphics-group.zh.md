@@ -40,7 +40,7 @@ order: 2
 const group = item.getContainer();
 
 // 等价于
-const group = item.get('group');
+const group = item.get("group");
 ```
 
 ### 实例方法
@@ -51,7 +51,7 @@ const group = item.get('group');
 
 ```javascript
 const subGroup = group.addGroup({
-  id: 'rect',
+  id: "rect",
 });
 ```
 
@@ -60,12 +60,12 @@ const subGroup = group.addGroup({
 向分组中添加新的图形。
 
 ```javascript
-const keyShape = group.addShape('rect', {
+const keyShape = group.addShape("rect", {
   attrs: {
-    stroke: 'red',
+    stroke: "red",
   },
   // must be assigned in F6. it can be any value you want
-  name: 'rect-shape',
+  name: "rect-shape",
 });
 ```
 

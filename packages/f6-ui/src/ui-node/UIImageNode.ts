@@ -1,4 +1,4 @@
-import UINode from './base';
+import UINode from "./base";
 
 export default class UIImageNode extends UINode {
   draw(parentGNode) {
@@ -10,10 +10,11 @@ export default class UIImageNode extends UINode {
       height: this.styleNode.layout.height || 0,
     };
 
-    const isCapture = this.styleNode.style.pointerEvents === 'none' ? false : true;
+    const isCapture =
+      this.styleNode.style.pointerEvents === "none" ? false : true;
     if (!this.gNode) {
-      this.gNode = parentGNode.addShape('image', {
-        type: 'image',
+      this.gNode = parentGNode.addShape("image", {
+        type: "image",
         attrs,
         capture: isCapture,
       });
@@ -23,17 +24,18 @@ export default class UIImageNode extends UINode {
 
     shape.resetMatrix();
 
-    shape.set('capture', isCapture);
+    shape.set("capture", isCapture);
 
     shape.attr(attrs);
     // zIndex
-    typeof this.styleNode.style.zIndex === 'number' && shape.setZIndex(this.styleNode.style.zIndex);
+    typeof this.styleNode.style.zIndex === "number" &&
+      shape.setZIndex(this.styleNode.style.zIndex);
 
     switch (this.styleNode.style.textAlign) {
-      case 'center':
+      case "center":
         shape.translate(this.styleNode.layout.width / 2);
         break;
-      case 'right':
+      case "right":
         shape.translate(this.styleNode.layout.width);
         break;
       default:

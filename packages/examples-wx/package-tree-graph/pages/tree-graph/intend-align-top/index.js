@@ -1,7 +1,7 @@
-import F6 from '@antv/f6-wx';
-import TreeGraph from '@antv/f6-wx/extends/graph/treeGraph';
+import F6 from "@antv/f6-wx";
+import TreeGraph from "@antv/f6-wx/extends/graph/treeGraph";
 
-import data from './data';
+import data from "./data";
 
 /**
  * 缩进树-顶部对齐
@@ -10,7 +10,7 @@ import data from './data';
 Page({
   canvas: null,
   ctx: null,
-  renderer: '', // mini、mini-native等，F6需要，标记环境
+  renderer: "", // mini、mini-native等，F6需要，标记环境
   isCanvasInit: false, // canvas是否准备好了
   graph: null,
 
@@ -23,14 +23,14 @@ Page({
 
   onLoad() {
     // 注册自定义树，节点等
-    F6.registerGraph('TreeGraph', TreeGraph);
-    F6.registerNode('card-node', {
+    F6.registerGraph("TreeGraph", TreeGraph);
+    F6.registerNode("card-node", {
       draw: function drawShape(cfg, group) {
         const r = 2;
-        const color = '#5B8FF9';
+        const color = "#5B8FF9";
         const w = cfg.size[0];
         const h = cfg.size[1];
-        const shape = group.addShape('rect', {
+        const shape = group.addShape("rect", {
           attrs: {
             x: -w / 2,
             y: -h / 2,
@@ -38,13 +38,13 @@ Page({
             height: h, // 60
             stroke: color,
             radius: r,
-            fill: '#fff',
+            fill: "#fff",
           },
-          name: 'main-box',
+          name: "main-box",
           draggable: true,
         });
 
-        group.addShape('rect', {
+        group.addShape("rect", {
           attrs: {
             x: -w / 2,
             y: -h / 2,
@@ -53,54 +53,56 @@ Page({
             fill: color,
             radius: [r, r, 0, 0],
           },
-          name: 'title-box',
+          name: "title-box",
           draggable: true,
         });
 
         // title text
-        group.addShape('text', {
+        group.addShape("text", {
           attrs: {
-            textBaseline: 'top',
+            textBaseline: "top",
             x: -w / 2 + 8,
             y: -h / 2 + 2,
             lineHeight: 20,
             text: cfg.id,
-            fill: '#fff',
+            fill: "#fff",
           },
-          name: 'title',
+          name: "title",
         });
         cfg.children &&
-          group.addShape('marker', {
+          group.addShape("marker", {
             attrs: {
               x: w / 2,
               y: 0,
               r: 6,
-              cursor: 'pointer',
+              cursor: "pointer",
               symbol: F6.Marker.collapse,
-              stroke: '#666',
+              stroke: "#666",
               lineWidth: 1,
-              fill: '#fff',
+              fill: "#fff",
             },
-            name: 'collapse-icon',
+            name: "collapse-icon",
           });
-        group.addShape('text', {
+        group.addShape("text", {
           attrs: {
-            textBaseline: 'top',
+            textBaseline: "top",
             x: -w / 2 + 8,
             y: -h / 2 + 24,
             lineHeight: 20,
-            text: 'description',
-            fill: 'rgba(0,0,0, 1)',
+            text: "description",
+            fill: "rgba(0,0,0, 1)",
           },
           name: `description`,
         });
         return shape;
       },
       setState(name, value, item) {
-        if (name === 'collapsed') {
-          const marker = item.get('group').find((ele) => ele.get('name') === 'collapse-icon');
+        if (name === "collapsed") {
+          const marker = item
+            .get("group")
+            .find((ele) => ele.get("name") === "collapse-icon");
           const icon = value ? F6.Marker.expand : F6.Marker.collapse;
-          marker.attr('symbol', icon);
+          marker.attr("symbol", icon);
         }
       },
     });
@@ -150,21 +152,21 @@ Page({
       pixelRatio,
       fitView: true,
       modes: {
-        default: ['drag-canvas'],
+        default: ["drag-canvas"],
       },
       defaultNode: {
-        type: 'card-node',
+        type: "card-node",
         size: [100, 40],
       },
       defaultEdge: {
-        type: 'cubic-horizontal',
+        type: "cubic-horizontal",
         style: {
           endArrow: true,
         },
       },
       layout: {
-        type: 'indented',
-        direction: 'LR',
+        type: "indented",
+        direction: "LR",
         dropCap: false,
         indent: 200,
         getHeight: () => {
@@ -172,10 +174,14 @@ Page({
         },
       },
     });
-    this.graph.on('node:tap', (e) => {
-      if (e.target.get('name') === 'collapse-icon') {
+    this.graph.on("node:tap", (e) => {
+      if (e.target.get("name") === "collapse-icon") {
         e.item.getModel().collapsed = !e.item.getModel().collapsed;
-        this.graph.setItemState(e.item, 'collapsed', e.item.getModel().collapsed);
+        this.graph.setItemState(
+          e.item,
+          "collapsed",
+          e.item.getModel().collapsed,
+        );
         this.graph.layout();
       }
     });

@@ -1,7 +1,7 @@
-import { G6Event, IG6GraphEvent } from '@antv/f6-core';
+import { G6Event, IG6GraphEvent } from "@antv/f6-core";
 
-const DEFAULT_TRIGGER = 'tap';
-const ALLOW_EVENTS = ['tap', 'dbltap'];
+const DEFAULT_TRIGGER = "tap";
+const ALLOW_EVENTS = ["tap", "dbltap"];
 export default {
   getDefaultCfg(): object {
     return {
@@ -20,19 +20,21 @@ export default {
     } else {
       trigger = DEFAULT_TRIGGER;
       // eslint-disable-next-line no-console
-      console.warn("Behavior collapse-expand 的 trigger 参数不合法，请输入 'click' 或 'dblclick'");
+      console.warn(
+        "Behavior collapse-expand 的 trigger 参数不合法，请输入 'click' 或 'dblclick'",
+      );
     }
     return {
-      [`node:${trigger}`]: 'onNodeTap',
+      [`node:${trigger}`]: "onNodeTap",
       // 支持移动端事件
-      touchstart: 'onNodeTap',
+      touchstart: "onNodeTap",
     };
   },
   onNodeTap(e: IG6GraphEvent) {
     const { item } = e;
 
     // 如果节点进行过更新，model 会进行 merge，直接改 model 就不能改布局，所以需要去改源数据
-    const sourceData = this.graph.findDataById(item.get('id'));
+    const sourceData = this.graph.findDataById(item.get("id"));
     if (!sourceData) {
       return;
     }
@@ -48,7 +50,7 @@ export default {
     }
     sourceData.collapsed = collapsed;
     item.getModel().collapsed = collapsed;
-    this.graph.emit('itemcollapsed', { item: e.item, collapsed });
+    this.graph.emit("itemcollapsed", { item: e.item, collapsed });
     if (!this.shouldUpdate(e, collapsed)) {
       return;
     }

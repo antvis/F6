@@ -1,4 +1,4 @@
-import { processSearchData } from './common';
+import { processSearchData } from "./common";
 import {
   treeGraphContainer,
   generalGraphContainer,
@@ -8,7 +8,7 @@ import {
   customizeTree,
   classicCace,
   newsMapVisualize,
-} from './data';
+} from "./data";
 
 const all_data = [
   ...treeGraphContainer,

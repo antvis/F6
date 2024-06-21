@@ -57,7 +57,7 @@ const graph = new F6.Graph({
 ```javascript
 (d) => {
   // d 是一个节点
-  if (d.id === 'testId') return 100;
+  if (d.id === "testId") return 100;
   return 10;
 };
 ```
@@ -71,7 +71,7 @@ const graph = new F6.Graph({
 ```javascript
 (d) => {
   // d 是一个节点
-  if (d.id === 'testId') return 100;
+  if (d.id === "testId") return 100;
   return 10;
 };
 ```

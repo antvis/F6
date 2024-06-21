@@ -11,37 +11,35 @@ const graph = new F6.Graph({
   fitViewPadding: 60,
   fitCenter: true,
   modes: {
-    default: ["drag-canvas", "drag-node"]
+    default: ["drag-canvas", "drag-node"],
   },
   defaultNode: {
     type: "triangle",
     size: [40],
     direction: "up",
     labelCfg: {
-      position: "bottom"
+      position: "bottom",
     },
     linkPoints: {
       top: true,
       right: true,
       bottom: true,
-      left: true
+      left: true,
     },
     icon: {
-      show: true
-    }
-  }
+      show: true,
+    },
+  },
 });
 graph.data(data);
 graph.render();
 graph.fitView();
-graph.on("node:tap", evt => {
-  const {
-    item
-  } = evt;
+graph.on("node:tap", (evt) => {
+  const { item } = evt;
   graph.setItemState(item, "selected", true);
 });
 graph.on("canvas:tap", () => {
-  graph.getNodes().forEach(node => {
+  graph.getNodes().forEach((node) => {
     graph.clearItemStates(node);
   });
 });

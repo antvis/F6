@@ -53,7 +53,7 @@ const elements = combo.getChildren();
 **用法**
 
 ```javascript
-const node = graph.findById('node1');
+const node = graph.findById("node1");
 
 // 如果返回结果为 true，则说明添加成功
 const result = combo.addChild(node);

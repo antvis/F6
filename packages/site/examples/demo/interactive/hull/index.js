@@ -12,48 +12,52 @@ const graph = new F6.Graph({
   fitView: true,
   fitViewPadding: 50,
   modes: {
-    default: ["drag-canvas", "zoom-canvas", "drag-node", "lasso-select"]
+    default: ["drag-canvas", "zoom-canvas", "drag-node", "lasso-select"],
   },
   layout: {
     type: "force",
     preventOverlap: true,
-    linkDistance: d => {
+    linkDistance: (d) => {
       if (d.source.id === "node0") {
         return 300;
       }
 
       return 60;
     },
-    nodeStrength: d => {
+    nodeStrength: (d) => {
       if (d.isLeaf) {
         return -50;
       }
 
       return -10;
     },
-    edgeStrength: d => {
-      if (d.source.id === "node1" || d.source.id === "node2" || d.source.id === "node3") {
+    edgeStrength: (d) => {
+      if (
+        d.source.id === "node1" ||
+        d.source.id === "node2" ||
+        d.source.id === "node3"
+      ) {
         return 0.7;
       }
 
       return 0.1;
-    }
-  }
+    },
+  },
 });
 graph.data({
   nodes,
   edges: data.edges.map(function (edge, i) {
     edge.id = `edge${i}`;
     return Object.assign({}, edge);
-  })
+  }),
 });
-const centerNodes = graph.getNodes().filter(node => !node.getModel().isLeaf);
+const centerNodes = graph.getNodes().filter((node) => !node.getModel().isLeaf);
 graph.on("afterlayout", () => {
   const hull1 = graph.createHull({
     id: "centerNode-hull",
     type: "bubble",
     members: centerNodes,
-    padding: 10
+    padding: 10,
   });
   const hull2 = graph.createHull({
     id: "leafNode-hull1",
@@ -61,8 +65,8 @@ graph.on("afterlayout", () => {
     padding: 10,
     style: {
       fill: "lightgreen",
-      stroke: "green"
-    }
+      stroke: "green",
+    },
   });
   const hull3 = graph.createHull({
     id: "leafNode-hull2",
@@ -70,8 +74,8 @@ graph.on("afterlayout", () => {
     padding: 10,
     style: {
       fill: "lightgreen",
-      stroke: "green"
-    }
+      stroke: "green",
+    },
   });
   graph.on("afterupdateitem", () => {
     hull1.updateData(hull1.members);
