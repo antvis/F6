@@ -105,7 +105,7 @@ const sizeRange = [1, 20];
 const degreeDataRange = [minDegree, maxDegree];
 // 将范围是 degreeDataRange 的 degree 属性映射到范围 sizeRange 上后，
 // 写入到 nodes 中元素的 ‘size’ 属性中
-scaleNodeProp(nodes, 'size', 'degree', degreeDataRange, sizeRange);
+scaleNodeProp(nodes, "size", "degree", degreeDataRange, sizeRange);
 ```
 
 `scaleNodeProp()` 方法将指定的节点属性 `refPropName` 根据给定数值范围 `outRange` 归一化，映射到另一个属性 `propName` 上：
@@ -123,7 +123,8 @@ function scaleNodeProp(nodes, propName, refPropName, dataRange, outRange) {
   const outLength = outRange[1] - outRange[0];
   const dataLength = dataRange[1] - dataRange[0];
   nodes.forEach((n) => {
-    n[propName] = ((n[refPropName] - dataRange[0]) * outLength) / dataLength + outRange[0];
+    n[propName] =
+      ((n[refPropName] - dataRange[0]) * outLength) / dataLength + outRange[0];
   });
 }
 ```
@@ -146,12 +147,12 @@ const edgeBundling = new Bundling({
 在第一步中，我们已经为节点大小 size 映射了每个节点的总度数。为了更详细展示每个城市飞出和飞入航班的比例，我们希望在每个节点上显示一个类似于饼图的效果。例如<img src='https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*stNMRLlBLMUAAAAAAAAAAABkARQnAQ' width=60 alt='img'/> ，桔红色扇形代表飞入该城市的航班比例，青色代表飞出该城市的航班比例。F6 内置的 circle 、rect 等节点形状不能满足这一需求，但 F6 提供了节点的扩展机制，通过下面的代码片段，可以在 F6 中注册一个自定义的节点：
 
 ```javascript
-const lightBlue = 'rgb(119, 243, 252)';
-const lightOrange = 'rgb(230, 100, 64)';
+const lightBlue = "rgb(119, 243, 252)";
+const lightOrange = "rgb(230, 100, 64)";
 
 // 注册自定义名为 pie-node 的节点类型
 F6.registerNode(
-  'pie-node',
+  "pie-node",
   {
     drawShape: (cfg, group) => {
       const radius = cfg.size / 2; // 节点半径
@@ -166,40 +167,40 @@ F6.registerNode(
         isOutBigArc = 1;
       }
       // 定义代表入度的扇形形状
-      const fanIn = group.addShape('path', {
+      const fanIn = group.addShape("path", {
         attrs: {
           path: [
-            ['M', radius, 0],
-            ['A', radius, radius, 0, isInBigArc, 0, inArcEnd[0], inArcEnd[1]],
-            ['L', 0, 0],
-            ['B'],
+            ["M", radius, 0],
+            ["A", radius, radius, 0, isInBigArc, 0, inArcEnd[0], inArcEnd[1]],
+            ["L", 0, 0],
+            ["B"],
           ],
           lineWidth: 0,
           fill: lightOrange,
         },
         // must be assigned in F6. it can be any value you want
-        name: 'in-fan-shape',
+        name: "in-fan-shape",
       });
       // 定义代表出度的扇形形状
-      const fanOut = group.addShape('path', {
+      const fanOut = group.addShape("path", {
         attrs: {
           path: [
-            ['M', inArcEnd[0], inArcEnd[1]],
-            ['A', radius, radius, 0, isOutBigArc, 0, radius, 0],
-            ['L', 0, 0],
-            ['B'],
+            ["M", inArcEnd[0], inArcEnd[1]],
+            ["A", radius, radius, 0, isOutBigArc, 0, radius, 0],
+            ["L", 0, 0],
+            ["B"],
           ],
           lineWidth: 0,
           fill: lightBlue,
         },
         // must be assigned in F6. it can be any value you want
-        name: 'out-fan-shape',
+        name: "out-fan-shape",
       });
       // 返回 keyshape
       return fanIn;
     },
   },
-  'single-node',
+  "single-node",
 );
 ```
 
@@ -244,8 +245,8 @@ const graph = new F6.Graph({
 这里出发端的颜色为 `llightBlue16`，结束端的颜色为 `llightOrange16`：
 
 ```javascript
-const llightBlue16 = '#C8FDFC';
-const llightOrange16 = '#FFAA86';
+const llightBlue16 = "#C8FDFC";
+const llightOrange16 = "#FFAA86";
 ```
 
 为了配合节点和边的颜色，这里将页面的 body 的颜色设置为黑色：

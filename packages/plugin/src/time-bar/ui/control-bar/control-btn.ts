@@ -1,10 +1,10 @@
-import { createSegmentNode } from '@antv/f6-ui';
+import { createSegmentNode } from "@antv/f6-ui";
 
 function createControlBtn(which, style) {
   const { height = 16, fill } = style;
   const len = height / 2;
-  let html = '';
-  if (which === 'next') {
+  let html = "";
+  if (which === "next") {
     html = `
       <shape  type='path' path='[
         ["M", 0, ${0 - len}],
@@ -19,7 +19,7 @@ function createControlBtn(which, style) {
     `;
   }
 
-  if (which === 'prev') {
+  if (which === "prev") {
     html = `
       <shape  type='path' path='[
         ["M", 0, ${0 - len}],

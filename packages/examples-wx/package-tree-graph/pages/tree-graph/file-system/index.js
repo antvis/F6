@@ -1,7 +1,7 @@
-import F6 from '@antv/f6-wx';
-import TreeGraph from '@antv/f6-wx/extends/graph/treeGraph';
+import F6 from "@antv/f6-wx";
+import TreeGraph from "@antv/f6-wx/extends/graph/treeGraph";
 
-import data from './data';
+import data from "./data";
 
 /**
  * 缩进树-文件系统
@@ -10,7 +10,7 @@ import data from './data';
 Page({
   canvas: null,
   ctx: null,
-  renderer: '', // mini、mini-native等，F6需要，标记环境
+  renderer: "", // mini、mini-native等，F6需要，标记环境
   isCanvasInit: false, // canvas是否准备好了
   graph: null,
 
@@ -23,7 +23,7 @@ Page({
 
   onLoad() {
     // 注册自定义树，节点等
-    F6.registerGraph('TreeGraph', TreeGraph);
+    F6.registerGraph("TreeGraph", TreeGraph);
 
     // 同步获取window的宽高
     const { windowWidth, windowHeight, pixelRatio } = wx.getSystemInfoSync();
@@ -62,61 +62,62 @@ Page({
     const { width, height, pixelRatio } = this.data;
 
     // registerNode
-    F6.registerNode('file-node', {
+    F6.registerNode("file-node", {
       draw: function draw(cfg, group) {
-        const keyShape = group.addShape('rect', {
+        const keyShape = group.addShape("rect", {
           attrs: {
             x: 10,
             y: -12,
-            fill: '#fff',
+            fill: "#fff",
             stroke: null,
           },
         });
         let isLeaf = false;
         if (cfg.collapsed) {
-          group.addShape('marker', {
+          group.addShape("marker", {
             attrs: {
-              symbol: 'triangle',
+              symbol: "triangle",
               x: 4,
               y: -2,
               r: 4,
-              fill: '#666',
+              fill: "#666",
             },
-            name: 'marker-shape',
+            name: "marker-shape",
           });
         } else if (cfg.children && cfg.children.length > 0) {
-          group.addShape('marker', {
+          group.addShape("marker", {
             attrs: {
-              symbol: 'triangle-down',
+              symbol: "triangle-down",
               x: 4,
               y: -2,
               r: 4,
-              fill: '#666',
+              fill: "#666",
             },
-            name: 'marker-shape',
+            name: "marker-shape",
           });
         } else {
           isLeaf = true;
         }
-        const shape = group.addShape('text', {
+        const shape = group.addShape("text", {
           attrs: {
             x: 15,
             y: 4,
             text: cfg.name,
-            fill: '#666',
+            fill: "#666",
             fontSize: 16,
-            textAlign: 'left',
+            textAlign: "left",
             fontFamily:
-              typeof window !== 'undefined'
-                ? window.getComputedStyle(document.body, null).getPropertyValue('font-family') ||
-                  'Arial, sans-serif'
-                : 'Arial, sans-serif',
+              typeof window !== "undefined"
+                ? window
+                    .getComputedStyle(document.body, null)
+                    .getPropertyValue("font-family") || "Arial, sans-serif"
+                : "Arial, sans-serif",
           },
-          name: 'text-shape',
+          name: "text-shape",
         });
         const bbox = shape.getBBox();
         let backRectW = bbox.width;
-        let backRectX = keyShape.attr('x');
+        let backRectX = keyShape.attr("x");
         if (!isLeaf) {
           backRectW += 8;
           backRectX -= 15;
@@ -132,7 +133,7 @@ Page({
 
     // registerEdge
     F6.registerEdge(
-      'step-line',
+      "step-line",
       {
         getControlPoints: function getControlPoints(cfg) {
           const { startPoint } = cfg;
@@ -147,7 +148,7 @@ Page({
           ];
         },
       },
-      'polyline',
+      "polyline",
     );
 
     // 创建F6实例
@@ -162,7 +163,7 @@ Page({
       modes: {
         default: [
           {
-            type: 'collapse-expand',
+            type: "collapse-expand",
             animate: false,
             onChange: function onChange(item, collapsed) {
               const model = item.getModel();
@@ -170,19 +171,19 @@ Page({
               return true;
             },
           },
-          'drag-canvas',
-          'zoom-canvas',
+          "drag-canvas",
+          "zoom-canvas",
         ],
       },
       defaultEdge: {
         style: {
-          stroke: '#A3B1BF',
+          stroke: "#A3B1BF",
         },
       },
       layout: {
-        type: 'indented',
+        type: "indented",
         isHorizontal: true,
-        direction: 'LR',
+        direction: "LR",
         indent: 30,
         getHeight: function getHeight() {
           return 16;
@@ -194,16 +195,16 @@ Page({
     });
     let centerX = 0;
     this.graph.node((node) => {
-      if (node.id === 'Modeling Methods') {
+      if (node.id === "Modeling Methods") {
         centerX = node.x;
       }
 
       // position的取值（由于ESlint禁止嵌套的三元表达，所以单独提取出来写）
       let position_value = null;
       if (node.children && node.children.length > 0) {
-        position_value = 'left';
-      } else if (node.x > centerX) position_value = 'right';
-      else position_value = 'left';
+        position_value = "left";
+      } else if (node.x > centerX) position_value = "right";
+      else position_value = "left";
 
       return {
         label: node.id,
@@ -216,14 +217,14 @@ Page({
 
     this.graph.node((node) => {
       return {
-        type: 'file-node',
+        type: "file-node",
         label: node.name,
       };
     });
 
     this.graph.edge(() => {
       return {
-        type: 'step-line',
+        type: "step-line",
       };
     });
     this.graph.data(data);

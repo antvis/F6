@@ -1,6 +1,6 @@
-import { each, mix } from '@antv/util';
-import { IAbstractGraph as IGraph, ShapeStyle, Util } from '@antv/f6-core';
-import Base, { IPluginBaseConfig } from '../base';
+import { each, mix } from "@antv/util";
+import { IAbstractGraph as IGraph, ShapeStyle, Util } from "@antv/f6-core";
+import Base, { IPluginBaseConfig } from "../base";
 
 const { pointLineDistance } = Util;
 
@@ -8,12 +8,12 @@ interface SnapLineConfig extends IPluginBaseConfig {
   // 辅助线的样式
   line?: ShapeStyle;
   // 辅助线类型，true 表示双向
-  itemAlignType?: boolean | 'horizontal' | 'vertical' | 'center';
+  itemAlignType?: boolean | "horizontal" | "vertical" | "center";
 }
 
 // 对齐线样式
 const alignLineStyle = {
-  stroke: '#FA8C16',
+  stroke: "#FA8C16",
   lineWidth: 1,
 };
 
@@ -29,7 +29,7 @@ export default class SnapLine extends Base {
        * item align type
        * @type {String|True|False}
        */
-      itemAlignType: 'center', // true || false || 'horizontal' || 'vertical' || 'center',
+      itemAlignType: "center", // true || false || 'horizontal' || 'vertical' || 'center',
 
       /**
        * tolerance to item force align
@@ -47,9 +47,9 @@ export default class SnapLine extends Base {
   // class-methods-use-this
   public getEvents() {
     return {
-      'node:dragstart': 'onDragStart',
-      'node:drag': 'onDrag',
-      'node:dragend': 'onDragEnd',
+      "node:dragstart": "onDragStart",
+      "node:drag": "onDrag",
+      "node:dragend": "onDragEnd",
     };
   }
 
@@ -60,7 +60,7 @@ export default class SnapLine extends Base {
   onDrag(e) {
     const { item } = e;
     // 计算辅助线位置,拖动过程中更新辅助线
-    const delegateShape = item.get('delegateShape') || item;
+    const delegateShape = item.get("delegateShape") || item;
 
     const bbox = delegateShape.getBBox();
     const model = item.getModel();
@@ -93,33 +93,81 @@ export default class SnapLine extends Base {
   initBoxLine() {
     const { horizontalLines, verticalLines, itemAlignType } = this._cfgs;
 
-    const graph: IGraph = this.get('graph');
+    const graph: IGraph = this.get("graph");
     const nodes = graph.getNodes();
-    nodes.forEach(item => {
+    nodes.forEach((item) => {
       const bbox = item.getBBox();
-      const nodeId = item.get('id');
+      const nodeId = item.get("id");
       // 设置水平方向辅助线
-      if (itemAlignType === true || itemAlignType === 'horizontal') {
+      if (itemAlignType === true || itemAlignType === "horizontal") {
         // tltr: top left top right
         // lcrc: left center right center
         // blbr: bottom left bottom right
-        horizontalLines[`${nodeId}tltr`] = [bbox.minX, bbox.minY, bbox.maxX, bbox.minY, item];
-        horizontalLines[`${nodeId}lcrc`] = [bbox.minX, bbox.centerY, bbox.maxX, bbox.centerY, item];
-        horizontalLines[`${nodeId}blbr`] = [bbox.minX, bbox.maxY, bbox.maxX, bbox.maxY, item];
-      } else if (itemAlignType === 'center') {
-        horizontalLines[`${nodeId}lcrc`] = [bbox.minX, bbox.centerY, bbox.maxX, bbox.centerY, item];
+        horizontalLines[`${nodeId}tltr`] = [
+          bbox.minX,
+          bbox.minY,
+          bbox.maxX,
+          bbox.minY,
+          item,
+        ];
+        horizontalLines[`${nodeId}lcrc`] = [
+          bbox.minX,
+          bbox.centerY,
+          bbox.maxX,
+          bbox.centerY,
+          item,
+        ];
+        horizontalLines[`${nodeId}blbr`] = [
+          bbox.minX,
+          bbox.maxY,
+          bbox.maxX,
+          bbox.maxY,
+          item,
+        ];
+      } else if (itemAlignType === "center") {
+        horizontalLines[`${nodeId}lcrc`] = [
+          bbox.minX,
+          bbox.centerY,
+          bbox.maxX,
+          bbox.centerY,
+          item,
+        ];
       }
 
       // 设置垂直方向辅助线
-      if (itemAlignType === true || itemAlignType === 'vertical') {
+      if (itemAlignType === true || itemAlignType === "vertical") {
         // tlbl: top left bottom left
         // tcbc: top center bottom center
         // trbr: top right bottom right
-        verticalLines[`${nodeId}tlbl`] = [bbox.minX, bbox.minY, bbox.minX, bbox.maxY, item];
-        verticalLines[`${nodeId}tcbc`] = [bbox.centerX, bbox.minY, bbox.centerX, bbox.maxY, item];
-        verticalLines[`${nodeId}trbr`] = [bbox.maxX, bbox.minY, bbox.maxX, bbox.maxY, item];
-      } else if (itemAlignType === 'center') {
-        verticalLines[`${nodeId}tcbc`] = [bbox.centerX, bbox.minY, bbox.centerX, bbox.maxY, item];
+        verticalLines[`${nodeId}tlbl`] = [
+          bbox.minX,
+          bbox.minY,
+          bbox.minX,
+          bbox.maxY,
+          item,
+        ];
+        verticalLines[`${nodeId}tcbc`] = [
+          bbox.centerX,
+          bbox.minY,
+          bbox.centerX,
+          bbox.maxY,
+          item,
+        ];
+        verticalLines[`${nodeId}trbr`] = [
+          bbox.maxX,
+          bbox.minY,
+          bbox.maxX,
+          bbox.maxY,
+          item,
+        ];
+      } else if (itemAlignType === "center") {
+        verticalLines[`${nodeId}tcbc`] = [
+          bbox.centerX,
+          bbox.minY,
+          bbox.centerX,
+          bbox.maxY,
+          item,
+        ];
       }
     });
   }
@@ -175,7 +223,7 @@ export default class SnapLine extends Base {
     let alignCfg = null;
     this.clearAlignLine();
 
-    each(horizontalLines, line => {
+    each(horizontalLines, (line) => {
       if (line[4].isVisible) {
         horizontalDis.push(this.getLineDisObject(line, tc));
         horizontalDis.push(this.getLineDisObject(line, cc));
@@ -183,7 +231,7 @@ export default class SnapLine extends Base {
       }
     });
 
-    each(verticalLines, line => {
+    each(verticalLines, (line) => {
       if (line[4].isVisible) {
         verticalDis.push(this.getLineDisObject(line, lc));
         verticalDis.push(this.getLineDisObject(line, cc));
@@ -199,9 +247,10 @@ export default class SnapLine extends Base {
     });
 
     if (horizontalDis.length !== 0 && horizontalDis[0].dis < tolerance) {
-      point.y = horizontalDis[0].line[1] - horizontalDis[0].point.y + originPoint.y;
+      point.y =
+        horizontalDis[0].line[1] - horizontalDis[0].point.y + originPoint.y;
       alignCfg = {
-        type: 'item',
+        type: "item",
         horizontals: [horizontalDis[0]],
       };
       for (let i = 1; i < 3; i++) {
@@ -214,7 +263,7 @@ export default class SnapLine extends Base {
       point.x = verticalDis[0].line[0] - verticalDis[0].point.x + originPoint.x;
       if (!alignCfg) {
         alignCfg = {
-          type: 'item',
+          type: "item",
           verticals: [verticalDis[0]],
         };
       } else {
@@ -241,12 +290,12 @@ export default class SnapLine extends Base {
   private addAlignLine(cfg) {
     const { bbox, type, horizontals, verticals } = cfg;
     const { line: lineStyle, alignLines } = this._cfgs;
-    const graph: IGraph = this.get('graph');
-    const group = graph.get('group');
+    const graph: IGraph = this.get("graph");
+    const group = graph.get("group");
 
-    if (type === 'item') {
+    if (type === "item") {
       if (horizontals) {
-        each(horizontals, horizontal => {
+        each(horizontals, (horizontal) => {
           const { line: refLine, point: refPoint } = horizontal;
           const lineCenterX = (refLine[0] + refLine[2]) / 2;
           let x1;
@@ -269,7 +318,7 @@ export default class SnapLine extends Base {
             lineStyle,
           );
 
-          const line = group.addShape('line', {
+          const line = group.addShape("line", {
             attrs: lineAttrs,
             capture: false,
           });
@@ -278,7 +327,7 @@ export default class SnapLine extends Base {
       }
 
       if (verticals) {
-        each(verticals, vertical => {
+        each(verticals, (vertical) => {
           const { line: refLine, point: refPoint } = vertical;
           const lineCenterY = (refLine[1] + refLine[3]) / 2;
           let y1;
@@ -301,7 +350,7 @@ export default class SnapLine extends Base {
             lineStyle,
           );
 
-          const line = group.addShape('line', {
+          const line = group.addShape("line", {
             attrs: lineAtts,
             capture: false,
           });
@@ -329,7 +378,7 @@ export default class SnapLine extends Base {
   }
 
   public getContainer(): HTMLDivElement {
-    return this.get('container');
+    return this.get("container");
   }
 
   /**
@@ -339,7 +388,7 @@ export default class SnapLine extends Base {
    */
   clearAlignLine() {
     const { alignLines } = this._cfgs;
-    each(alignLines, line => {
+    each(alignLines, (line) => {
       line.remove();
     });
     alignLines.length = 0;
@@ -353,10 +402,10 @@ export default class SnapLine extends Base {
   public destory() {
     const { horizontalLines, verticalLines } = this._cfgs;
 
-    const graph: IGraph = this.get('graph');
+    const graph: IGraph = this.get("graph");
     const nodes = graph.getNodes();
-    nodes.forEach(node => {
-      const itemId = node.get('id');
+    nodes.forEach((node) => {
+      const itemId = node.get("id");
       delete horizontalLines[`${itemId}tltr`];
       delete horizontalLines[`${itemId}lcrc`];
       delete horizontalLines[`${itemId}blbr`];

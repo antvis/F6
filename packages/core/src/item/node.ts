@@ -1,17 +1,17 @@
-import { each, isNil, mix } from '@antv/util';
-import { IEdge, INode } from '../interface/item';
-import { IPoint, IShapeBase, ModelConfig, NodeConfig } from '../types';
-import { getBBox } from '../util/graphic';
+import { each, isNil, mix } from "@antv/util";
+import { IEdge, INode } from "../interface/item";
+import { IPoint, IShapeBase, ModelConfig, NodeConfig } from "../types";
+import { getBBox } from "../util/graphic";
 import {
   distance,
   getCircleIntersectByPoint,
   getEllipseIntersectByPoint,
   getRectIntersectByPoint,
-} from '../util/math';
-import Item from './item';
+} from "../util/math";
+import Item from "./item";
 
-const CACHE_ANCHOR_POINTS = 'anchorPointsCache';
-const CACHE_BBOX = 'bboxCache';
+const CACHE_ANCHOR_POINTS = "anchorPointsCache";
+const CACHE_BBOX = "bboxCache";
 
 export default class Node extends Item implements INode {
   public getNearestPoint(points: IPoint[], curPoint: IPoint): IPoint {
@@ -33,7 +33,7 @@ export default class Node extends Item implements INode {
 
   public getDefaultCfg() {
     return {
-      type: 'node',
+      type: "node",
       edges: [],
     };
   }
@@ -42,7 +42,7 @@ export default class Node extends Item implements INode {
    * 获取从节点关联的所有边
    */
   public getEdges(): IEdge[] {
-    return this.get('edges');
+    return this.get("edges");
   }
 
   /**
@@ -50,7 +50,9 @@ export default class Node extends Item implements INode {
    */
   public getInEdges(): IEdge[] {
     const self = this;
-    return this.get('edges').filter((edge: IEdge) => edge.get('target') === self);
+    return this.get("edges").filter(
+      (edge: IEdge) => edge.get("target") === self,
+    );
   }
 
   /**
@@ -58,7 +60,9 @@ export default class Node extends Item implements INode {
    */
   public getOutEdges(): IEdge[] {
     const self = this;
-    return this.get('edges').filter((edge: IEdge) => edge.get('source') === self);
+    return this.get("edges").filter(
+      (edge: IEdge) => edge.get("source") === self,
+    );
   }
 
   /**
@@ -67,17 +71,17 @@ export default class Node extends Item implements INode {
    * @returns {INode[]}
    * @memberof Node
    */
-  public getNeighbors(type?: 'target' | 'source' | undefined): INode[] {
-    const edges = this.get('edges') as IEdge[];
+  public getNeighbors(type?: "target" | "source" | undefined): INode[] {
+    const edges = this.get("edges") as IEdge[];
 
-    if (type === 'target') {
+    if (type === "target") {
       // 当前节点为 source，它所指向的目标节点
       const neighhborsConverter = (edge: IEdge) => {
         return edge.getSource() === this;
       };
       return edges.filter(neighhborsConverter).map((edge) => edge.getTarget());
     }
-    if (type === 'source') {
+    if (type === "source") {
       // 当前节点为 target，它所指向的源节点
       const neighhborsConverter = (edge: IEdge) => {
         return edge.getTarget() === this;
@@ -106,13 +110,13 @@ export default class Node extends Item implements INode {
    * @param point
    */
   public getLinkPoint(point: IPoint): IPoint | null {
-    const keyShape: IShapeBase = this.get('keyShape');
-    const type: string = keyShape.get('type');
-    const itemType: string = this.get('type');
+    const keyShape: IShapeBase = this.get("keyShape");
+    const type: string = keyShape.get("type");
+    const itemType: string = this.get("type");
     let centerX;
     let centerY;
     const bbox = this.getBBox();
-    if (itemType === 'combo') {
+    if (itemType === "combo") {
       centerX = bbox.centerX || (bbox.maxX + bbox.minX) / 2;
       centerY = bbox.centerY || (bbox.maxY + bbox.minY) / 2;
     } else {
@@ -122,7 +126,7 @@ export default class Node extends Item implements INode {
     const anchorPoints = this.getAnchorPoints();
     let intersectPoint: IPoint | null;
     switch (type) {
-      case 'circle':
+      case "circle":
         intersectPoint = getCircleIntersectByPoint(
           {
             x: centerX!,
@@ -132,7 +136,7 @@ export default class Node extends Item implements INode {
           point,
         );
         break;
-      case 'ellipse':
+      case "ellipse":
         intersectPoint = getEllipseIntersectByPoint(
           {
             x: centerX!,
@@ -170,9 +174,9 @@ export default class Node extends Item implements INode {
     let anchorPoints: IPoint[] = this.get(CACHE_ANCHOR_POINTS);
     if (!anchorPoints) {
       anchorPoints = [];
-      const shapeFactory = this.get('shapeFactory');
+      const shapeFactory = this.get("shapeFactory");
       const bbox = this.getBBox();
-      const model: NodeConfig = this.get('model');
+      const model: NodeConfig = this.get("model");
       const shapeCfg = this.getShapeCfg(model);
       const type = model.type;
       const points = shapeFactory.getAnchorPoints(type, shapeCfg) || [];
@@ -195,25 +199,25 @@ export default class Node extends Item implements INode {
    * @param edge Edge instance
    */
   public addEdge(edge: IEdge) {
-    this.get('edges').push(edge);
+    this.get("edges").push(edge);
   }
 
   /**
    * 锁定节点
    */
   public lock() {
-    this.set('locked', true);
+    this.set("locked", true);
   }
 
   /**
    * 解锁锁定的节点
    */
   public unlock() {
-    this.set('locked', false);
+    this.set("locked", false);
   }
 
   public hasLocked(): boolean {
-    return this.get('locked');
+    return this.get("locked");
   }
 
   /**
@@ -249,6 +253,9 @@ export default class Node extends Item implements INode {
 
     // 仅有一个字段，包含 x 或者 包含 y
     // 两个字段，同时有 x，同时有 y
-    return (keys.length === 1 && (existX || existY)) || (keys.length === 2 && existX && existY);
+    return (
+      (keys.length === 1 && (existX || existY)) ||
+      (keys.length === 2 && existX && existY)
+    );
   }
 }

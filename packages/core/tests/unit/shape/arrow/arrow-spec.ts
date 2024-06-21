@@ -1,19 +1,19 @@
-import G6 from '../../../../src';
-import Graph from '../../implement-graph';
-import { GraphData } from '../../../../src';
+import G6 from "../../../../src";
+import Graph from "../../implement-graph";
+import { GraphData } from "../../../../src";
 
-const div = document.createElement('div');
-div.id = 'graph-spec';
+const div = document.createElement("div");
+div.id = "graph-spec";
 document.body.appendChild(div);
 
-describe('arrow test', () => {
+describe("arrow test", () => {
   const cfg = {
     container: div,
     width: 500,
     height: 500,
     linkCenter: true,
     defaultNode: {
-      type: 'circle',
+      type: "circle",
       style: {
         opacity: 0.3,
       },
@@ -23,22 +23,22 @@ describe('arrow test', () => {
   const data: GraphData = {
     nodes: [
       {
-        id: '1',
+        id: "1",
         x: 100,
         y: 100,
       },
       {
-        id: '2',
+        id: "2",
         x: 200,
         y: 200,
         size: 50,
-        type: 'circle',
+        type: "circle",
       },
     ],
     edges: [
       {
-        source: '1',
-        target: '2',
+        source: "1",
+        target: "2",
       },
     ],
   };
@@ -46,7 +46,7 @@ describe('arrow test', () => {
   graph.render();
 
   const edge = graph.getEdges()[0];
-  it('triangle arrow ', () => {
+  it("triangle arrow ", () => {
     graph.updateItem(edge, {
       style: {
         endArrow: {
@@ -58,7 +58,7 @@ describe('arrow test', () => {
     const arrow = G6.Arrow.triangle(10, 20, 25);
     expect(arrow).toEqual(`M 50,0 L 70,-5 L 70,5 Z`);
   });
-  it('vee arrow ', () => {
+  it("vee arrow ", () => {
     graph.updateItem(edge, {
       style: {
         endArrow: {
@@ -68,7 +68,7 @@ describe('arrow test', () => {
       },
     });
   });
-  it('circle arrow ', () => {
+  it("circle arrow ", () => {
     graph.updateItem(edge, {
       style: {
         endArrow: {
@@ -78,7 +78,7 @@ describe('arrow test', () => {
       },
     });
   });
-  it('diamond arrow ', () => {
+  it("diamond arrow ", () => {
     graph.updateItem(edge, {
       style: {
         endArrow: {
@@ -88,7 +88,7 @@ describe('arrow test', () => {
       },
     });
   });
-  it('rect arrow ', () => {
+  it("rect arrow ", () => {
     graph.updateItem(edge, {
       style: {
         endArrow: {
@@ -98,7 +98,7 @@ describe('arrow test', () => {
       },
     });
   });
-  it('triangle rect arrow ', () => {
+  it("triangle rect arrow ", () => {
     graph.updateItem(edge, {
       style: {
         endArrow: {

@@ -1,14 +1,19 @@
-import { IGroup } from '@antv/g-base';
-import { deepMix, isString } from '@antv/util';
-import { parsePathString } from '@antv/path-util';
-import { Item, BubblesetCfg, HullCfg } from '../types';
-import { pathToPoints, getClosedSpline, roundedHull, paddedHull } from '../util/path';
+import { IGroup } from "@antv/g-base";
+import { deepMix, isString } from "@antv/util";
+import { parsePathString } from "@antv/path-util";
+import { Item, BubblesetCfg, HullCfg } from "../types";
+import {
+  pathToPoints,
+  getClosedSpline,
+  roundedHull,
+  paddedHull,
+} from "../util/path";
 
-import { isPolygonsIntersect } from '../util/math';
-import { IAbstractGraph } from '../interface/graph';
+import { isPolygonsIntersect } from "../util/math";
+import { IAbstractGraph } from "../interface/graph";
 
-import { genConvexHull } from '../element/hull/convexHull';
-import { genBubbleSet } from '../element/hull/bubbleset';
+import { genConvexHull } from "../element/hull/convexHull";
+import { genBubbleSet } from "../element/hull/bubbleset";
 
 /**
  * 用于包裹内部的成员的轮廓。
@@ -42,7 +47,9 @@ export default class Hull {
     this.graph = graph;
     this.id = this.cfg.id;
     this.group = this.cfg.group;
-    this.members = this.cfg.members.map((item) => (isString(item) ? graph.findById(item) : item));
+    this.members = this.cfg.members.map((item) =>
+      isString(item) ? graph.findById(item) : item,
+    );
     this.nonMembers = this.cfg.nonMembers.map((item) =>
       isString(item) ? graph.findById(item) : item,
     );
@@ -55,13 +62,13 @@ export default class Hull {
 
   public getDefaultCfg(): HullCfg {
     return {
-      id: 'g6-hull',
-      type: 'round-convex', // 'round-convex' /'smooth-convex' / 'bubble'
+      id: "g6-hull",
+      type: "round-convex", // 'round-convex' /'smooth-convex' / 'bubble'
       members: [],
       nonMembers: [],
       style: {
-        fill: 'lightblue',
-        stroke: 'blue',
+        fill: "lightblue",
+        stroke: "blue",
         opacity: 0.2,
       },
       padding: 10,
@@ -69,8 +76,11 @@ export default class Hull {
   }
 
   setPadding() {
-    const nodeSize = this.members.length && this.members[0].getKeyShape().getCanvasBBox().width / 2;
-    this.padding = this.cfg.padding > 0 ? this.cfg.padding + nodeSize : 10 + nodeSize;
+    const nodeSize =
+      this.members.length &&
+      this.members[0].getKeyShape().getCanvasBBox().width / 2;
+    this.padding =
+      this.cfg.padding > 0 ? this.cfg.padding + nodeSize : 10 + nodeSize;
     this.cfg.bubbleCfg = {
       nodeR0: this.padding - nodeSize,
       nodeR1: this.padding - nodeSize,
@@ -81,20 +91,24 @@ export default class Hull {
   setType() {
     this.type = this.cfg.type;
     if (this.members.length < 3) {
-      this.type = 'round-convex';
+      this.type = "round-convex";
     }
-    if (this.type !== 'round-convex' && this.type !== 'smooth-convex' && this.type !== 'bubble') {
+    if (
+      this.type !== "round-convex" &&
+      this.type !== "smooth-convex" &&
+      this.type !== "bubble"
+    ) {
       console.warn(
-        'The hull type should be either round-convex, smooth-convex or bubble, round-convex is used by default.',
+        "The hull type should be either round-convex, smooth-convex or bubble, round-convex is used by default.",
       );
-      this.type = 'round-convex';
+      this.type = "round-convex";
     }
   }
 
   calcPath(members: Item[], nonMembers: Item[]) {
     let contour, path, hull;
     switch (this.type) {
-      case 'round-convex':
+      case "round-convex":
         contour = genConvexHull(members);
         hull = roundedHull(
           contour.map((p) => [p.x, p.y]),
@@ -102,7 +116,7 @@ export default class Hull {
         );
         path = parsePathString(hull);
         break;
-      case 'smooth-convex':
+      case "smooth-convex":
         contour = genConvexHull(members);
         if (contour.length === 2) {
           hull = roundedHull(
@@ -118,7 +132,7 @@ export default class Hull {
           path = getClosedSpline(hull);
         }
         break;
-      case 'bubble':
+      case "bubble":
         contour = genBubbleSet(members, nonMembers, this.cfg.bubbleCfg);
         path = contour.length >= 2 && getClosedSpline(contour);
         break;
@@ -128,7 +142,7 @@ export default class Hull {
   }
 
   render() {
-    this.group.addShape('path', {
+    this.group.addShape("path", {
       attrs: {
         path: this.path,
         ...this.cfg.style,
@@ -220,7 +234,7 @@ export default class Hull {
     this.render();
   }
 
-  public updateStyle(cfg: HullCfg['style']) {
+  public updateStyle(cfg: HullCfg["style"]) {
     const path = this.group.findById(this.id);
     path.attr({
       ...cfg,
@@ -265,8 +279,8 @@ export default class Hull {
     }
     let shapePoints;
     const shape = nodeItem.getKeyShape();
-    if (nodeItem.get('type') === 'path') {
-      shapePoints = pathToPoints(shape.attr('path'));
+    if (nodeItem.get("type") === "path") {
+      shapePoints = pathToPoints(shape.attr("path"));
     } else {
       const shapeBBox = shape.getCanvasBBox();
       shapePoints = [

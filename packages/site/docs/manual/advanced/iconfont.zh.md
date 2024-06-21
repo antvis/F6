@@ -33,7 +33,7 @@ PS: 本案文件目录为 '/static/icons'。
 
 ```html
 <style>
-  @import '/static/icons/iconfont.css';
+  @import "/static/icons/iconfont.css";
 </style>
 ```
 

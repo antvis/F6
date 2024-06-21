@@ -53,7 +53,7 @@ order: 4
 
 ```javascript
 F6.registerNode(
-  'rect-xml',
+  "rect-xml",
   (cfg) => `
   <rect style={{
     width: 100, height: 20, fill: '#1890ff', stroke: '#1890ff', radius: [6, 6, 0, 0]
@@ -115,7 +115,9 @@ const textXML = (cfg) => `
 		keyshape="true" 
 		cursor="move">
     <text style={{marginLeft: 10 ,fill: "red"}}>${FULL}</text>
-    <text style={{ marginTop: 5, marginLeft: 10, fill: '#333'}}>${cfg.metric}: </text>
+    <text style={{ marginTop: 5, marginLeft: 10, fill: '#333'}}>${
+      cfg.metric
+    }: </text>
     <text style={{
       marginTop: 1,
       marginLeft: ${cfg.cpuUsage * 0.8},
@@ -127,7 +129,7 @@ const textXML = (cfg) => `
 </group>
 `;
 
-F6.registerNode('test', {
+F6.registerNode("test", {
   jsx: textXML,
 });
 ```

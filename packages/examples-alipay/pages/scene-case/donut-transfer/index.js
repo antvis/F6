@@ -1,6 +1,6 @@
-import F6 from '@antv/f6';
-import { wrapContext } from '../../../common/utils/context';
-import { data, legendData } from './data';
+import F6 from "@antv/f6";
+import { wrapContext } from "../../../common/utils/context";
+import { data, legendData } from "./data";
 /**
  * donutTransfer
  */
@@ -8,7 +8,7 @@ import { data, legendData } from './data';
 Page({
   canvas: null,
   ctx: null,
-  renderer: '', // mini、mini-native等，F6需要，标记环境
+  renderer: "", // mini、mini-native等，F6需要，标记环境
   isCanvasInit: false, // canvas是否准备好了
   graph: null,
 
@@ -56,18 +56,18 @@ Page({
     const { width, height, pixelRatio } = this.data;
     const legend = new F6.Legend({
       data: legendData,
-      align: 'center',
-      layout: 'horizontal', // vertical
-      position: 'bottom-left',
+      align: "center",
+      layout: "horizontal", // vertical
+      position: "bottom-left",
       vertiSep: 12,
       horiSep: 24,
       offsetY: -24,
       padding: [4, 16, 8, 16],
       containerStyle: {
-        fill: '#ccc',
+        fill: "#ccc",
         lineWidth: 1,
       },
-      title: ' ',
+      title: " ",
       titleConfig: {
         offsetY: -8,
       },
@@ -85,11 +85,11 @@ Page({
       fitCenter: true,
       plugins: [legend], // 这里的plugin不知道能不能用
       modes: {
-        default: ['drag-canvas', 'drag-node'],
+        default: ["drag-canvas", "drag-node"],
       },
       layout: {
-        type: 'radial',
-        focusNode: 'li',
+        type: "radial",
+        focusNode: "li",
         linkDistance: 200,
         unitRadius: 200,
       },
@@ -100,18 +100,18 @@ Page({
         labelCfg: {
           autoRotate: true,
           style: {
-            stroke: '#fff',
+            stroke: "#fff",
             lineWidth: 5,
           },
         },
       },
       defaultNode: {
-        type: 'donut',
+        type: "donut",
         style: {
           lineWidth: 0,
         },
         labelCfg: {
-          position: 'bottom',
+          position: "bottom",
         },
       },
     });
@@ -120,11 +120,11 @@ Page({
     this.graph.render();
     // this.graph.fitView();
 
-    this.graph.on('node:tap', (evt) => {
+    this.graph.on("node:tap", (evt) => {
       const { item } = evt;
-      this.graph.setItemState(item, 'selected', true);
+      this.graph.setItemState(item, "selected", true);
     });
-    this.graph.on('canvas:tap', () => {
+    this.graph.on("canvas:tap", () => {
       this.graph.getNodes().forEach((node) => {
         this.graph.clearItemStates(node);
       });

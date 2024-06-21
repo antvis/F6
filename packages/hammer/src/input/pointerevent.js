@@ -7,9 +7,9 @@ import {
   INPUT_TYPE_MOUSE,
   INPUT_TYPE_PEN,
   INPUT_TYPE_KINECT,
-} from '../inputjs/input-consts';
-import Input from '../inputjs/input-constructor';
-import inArray from '../utils/in-array';
+} from "../inputjs/input-consts";
+import Input from "../inputjs/input-constructor";
+import inArray from "../utils/in-array";
 
 const POINTER_INPUT_MAP = {
   pointerdown: INPUT_START,
@@ -27,8 +27,8 @@ const IE10_POINTER_TYPE_ENUM = {
   5: INPUT_TYPE_KINECT, // see https://twitter.com/jacobrossi/status/480596438489890816
 };
 
-let POINTER_ELEMENT_EVENTS = 'pointerdown';
-let POINTER_WINDOW_EVENTS = 'pointermove pointerup pointercancel';
+let POINTER_ELEMENT_EVENTS = "pointerdown";
+let POINTER_WINDOW_EVENTS = "pointermove pointerup pointercancel";
 
 /**
  * @private
@@ -55,14 +55,14 @@ export default class PointerEventInput extends Input {
     let { store } = this;
     let removePointer = false;
 
-    let eventTypeNormalized = ev.type.toLowerCase().replace('ms', '');
+    let eventTypeNormalized = ev.type.toLowerCase().replace("ms", "");
     let eventType = POINTER_INPUT_MAP[eventTypeNormalized];
     let pointerType = IE10_POINTER_TYPE_ENUM[ev.pointerType] || ev.pointerType;
 
     let isTouch = pointerType === INPUT_TYPE_TOUCH;
 
     // get index of the event in the store
-    let storeIndex = inArray(store, ev.pointerId, 'pointerId');
+    let storeIndex = inArray(store, ev.pointerId, "pointerId");
 
     // start and mouse must be down
     if (eventType & INPUT_START && (ev.button === 0 || isTouch)) {

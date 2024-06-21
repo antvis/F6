@@ -10,7 +10,7 @@ const graph = new F6.Graph({
   // ...                      // 其他配置项
   layout: {
     // Object，可选，布局的方法及其配置项，默认为 random 布局。
-    type: 'fruchterman',
+    type: "fruchterman",
     workerEnabled: true, // 开启 Web-Worker
     // ...                 // 其他配置
   },

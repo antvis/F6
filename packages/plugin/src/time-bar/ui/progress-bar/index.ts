@@ -1,4 +1,8 @@
-import { createSimpleProgressBar, createTrendProgressBar } from './trend';
-import createTickProgressBar from './tick';
+import { createSimpleProgressBar, createTrendProgressBar } from "./trend";
+import createTickProgressBar from "./tick";
 
-export { createSimpleProgressBar, createTickProgressBar, createTrendProgressBar };
+export {
+  createSimpleProgressBar,
+  createTickProgressBar,
+  createTrendProgressBar,
+};

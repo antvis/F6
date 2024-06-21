@@ -1,7 +1,7 @@
-import React, { useEffect } from 'react';
-import { ZoomSlider } from '@antv/f6-plugin';
-import F6 from '../../src';
-import data from './data';
+import React, { useEffect } from "react";
+import { ZoomSlider } from "@antv/f6-plugin";
+import F6 from "../../src";
+import data from "./data";
 
 const zoomSlider = new ZoomSlider();
 
@@ -22,7 +22,7 @@ export default () => {
           size: 30,
         },
         modes: {
-          default: ['drag-canvas', 'zoom-canvas', 'drag-node'],
+          default: ["drag-canvas", "zoom-canvas", "drag-node"],
         },
         plugins: [zoomSlider],
       });
@@ -34,12 +34,12 @@ export default () => {
       console.log(e);
     };
 
-    ref.current.addEventListener('wheel', handleZoom);
+    ref.current.addEventListener("wheel", handleZoom);
 
     return () => {
-      ref.current.removeEventListener('wheel', handleZoom)
+      ref.current.removeEventListener("wheel", handleZoom);
     };
   }, []);
 
-  return <div ref={ref} ></div>;
-}
+  return <div ref={ref}></div>;
+};

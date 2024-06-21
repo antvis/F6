@@ -1,6 +1,6 @@
-import F6 from '@antv/f6-wx';
+import F6 from "@antv/f6-wx";
 
-import data from './data';
+import data from "./data";
 /**
  * polyline2
  */
@@ -8,7 +8,7 @@ import data from './data';
 Page({
   canvas: null,
   ctx: null,
-  renderer: '', // mini、mini-native等，F6需要，标记环境
+  renderer: "", // mini、mini-native等，F6需要，标记环境
   isCanvasInit: false, // canvas是否准备好了
   graph: null,
 
@@ -67,11 +67,11 @@ Page({
       fitViewPadding: 60,
       fitCenter: true,
       modes: {
-        default: ['drag-canvas'],
+        default: ["drag-canvas"],
       },
 
       defaultEdge: {
-        type: 'polyline',
+        type: "polyline",
         /* configure the bending radius and min distance to the end nodes */
         style: {
           radius: 10,
@@ -100,21 +100,21 @@ Page({
     this.graph.fitView();
 
     // 监听
-    this.graph.on('edge:mouseenter', (evt) => {
+    this.graph.on("edge:mouseenter", (evt) => {
       const { item } = evt;
-      this.graph.setItemState(item, 'active', true);
+      this.graph.setItemState(item, "active", true);
     });
 
-    this.graph.on('edge:mouseleave', (evt) => {
+    this.graph.on("edge:mouseleave", (evt) => {
       const { item } = evt;
-      this.graph.setItemState(item, 'active', false);
+      this.graph.setItemState(item, "active", false);
     });
 
-    this.graph.on('edge:tap', (evt) => {
+    this.graph.on("edge:tap", (evt) => {
       const { item } = evt;
-      this.graph.setItemState(item, 'selected', true);
+      this.graph.setItemState(item, "selected", true);
     });
-    this.graph.on('canvas:tap', () => {
+    this.graph.on("canvas:tap", () => {
       this.graph.getEdges().forEach((edge) => {
         this.graph.clearItemStates(edge);
       });

@@ -1,1 +1,1 @@
-import '@antv/f6-element';
+import "@antv/f6-element";

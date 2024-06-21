@@ -1,7 +1,7 @@
 // @ts-nocheck
-import { Point } from '@antv/g-base';
-import Hierarchy from '@antv/hierarchy';
-import { each, isString } from '@antv/util';
+import { Point } from "@antv/g-base";
+import Hierarchy from "@antv/hierarchy";
+import { each, isString } from "@antv/util";
 import {
   GraphData,
   Item,
@@ -9,8 +9,8 @@ import {
   ShapeStyle,
   TreeGraphData,
   GraphOptions,
-} from '@antv/f6-core';
-import { ITreeGraph } from '../../../interface/graph';
+} from "@antv/f6-core";
+import { ITreeGraph } from "../../../interface/graph";
 // import { makeExtender } from '../../../util/extender';
 
 const treeGraph = (G6: { Graph?: any; Util?: any }): ITreeGraph => {
@@ -25,26 +25,26 @@ const treeGraph = (G6: { Graph?: any; Util?: any }): ITreeGraph => {
       this.layoutAnimating = false;
 
       // 用于缓存动画结束后需要删除的节点
-      this.set('removeList', []);
-      this.set('layoutMethod', this.getLayout());
+      this.set("removeList", []);
+      this.set("layoutMethod", this.getLayout());
     }
 
     /**
      * 通过 Layout 配置获取布局配置
      */
     private getLayout() {
-      const layout = this.get('layout');
+      const layout = this.get("layout");
       if (!layout) {
         return null;
       }
-      if (typeof layout === 'function') {
+      if (typeof layout === "function") {
         return layout;
       }
       if (!layout.type) {
-        layout.type = 'dendrogram';
+        layout.type = "dendrogram";
       }
       if (!layout.direction) {
-        layout.direction = 'TB';
+        layout.direction = "TB";
       }
       if (layout.radial) {
         return (data: any) => {
@@ -101,33 +101,33 @@ const treeGraph = (G6: { Graph?: any; Util?: any }): ITreeGraph => {
         model.depth = treeData.depth;
       }
 
-      const node = self.addItem('node', model!, false);
+      const node = self.addItem("node", model!, false);
       if (parent) {
-        node.set('parent', parent);
+        node.set("parent", parent);
         if (animate) {
-          const origin = parent.get('originAttrs');
+          const origin = parent.get("originAttrs");
           if (origin) {
-            node.set('originAttrs', origin);
+            node.set("originAttrs", origin);
           } else {
             const parentModel = parent.getModel();
-            node.set('originAttrs', {
+            node.set("originAttrs", {
               x: parentModel.x,
               y: parentModel.y,
             });
           }
         }
-        const childrenList = parent.get('children');
+        const childrenList = parent.get("children");
         if (!childrenList) {
-          parent.set('children', [node]);
+          parent.set("children", [node]);
         } else {
           childrenList.push(node);
         }
         self.addItem(
-          'edge',
+          "edge",
           {
             source: parent,
             target: node,
-            id: `${parent.get('id')}:${node.get('id')}`,
+            id: `${parent.get("id")}:${node.get("id")}`,
           },
           false,
         );
@@ -136,7 +136,7 @@ const treeGraph = (G6: { Graph?: any; Util?: any }): ITreeGraph => {
       each(treeData.children || [], (child) => {
         self.innerAddChild(child, node, animate);
       });
-      self.emit('afteraddchild', { item: node, parent });
+      self.emit("afteraddchild", { item: node, parent });
       return node;
     }
 
@@ -146,7 +146,11 @@ const treeGraph = (G6: { Graph?: any; Util?: any }): ITreeGraph => {
      * @param parent
      * @param animate
      */
-    private innerUpdateChild(data: TreeGraphData, parent: Item | undefined, animate: boolean) {
+    private innerUpdateChild(
+      data: TreeGraphData,
+      parent: Item | undefined,
+      animate: boolean,
+    ) {
       const self = this;
       const current = self.findById(data.id);
 
@@ -162,7 +166,7 @@ const treeGraph = (G6: { Graph?: any; Util?: any }): ITreeGraph => {
       });
 
       // 用现在节点的children实例来删除移除的子节点
-      const children = current.get('children');
+      const children = current.get("children");
       if (children) {
         const len = children.length;
         if (len > 0) {
@@ -187,19 +191,19 @@ const treeGraph = (G6: { Graph?: any; Util?: any }): ITreeGraph => {
       }
       let oriX: number;
       let oriY: number;
-      if (current.get('originAttrs')) {
-        oriX = current.get('originAttrs').x;
-        oriY = current.get('originAttrs').y;
+      if (current.get("originAttrs")) {
+        oriX = current.get("originAttrs").x;
+        oriY = current.get("originAttrs").y;
       }
       const model = current.getModel();
       if (animate) {
         // 如果有动画，先缓存节点运动再更新节点
-        current.set('originAttrs', {
+        current.set("originAttrs", {
           x: model.x,
           y: model.y,
         });
       }
-      current.set('model', data.data);
+      current.set("model", data.data);
       if (oriX !== data.x || oriY !== data.y) {
         current.updatePosition({ x: data.x, y: data.y });
       }
@@ -219,15 +223,15 @@ const treeGraph = (G6: { Graph?: any; Util?: any }): ITreeGraph => {
         return;
       }
 
-      each(node.get('children'), (child) => {
+      each(node.get("children"), (child) => {
         self.innerRemoveChild(child.getModel().id, to, animate);
       });
 
       if (animate) {
         const model = node.getModel();
-        node.set('to', to);
-        node.set('originAttrs', { x: model.x, y: model.y });
-        self.get('removeList').push(node);
+        node.set("to", to);
+        node.set("originAttrs", { x: model.x, y: model.y });
+        self.get("removeList").push(node);
       } else {
         self.removeItem(node);
       }
@@ -248,7 +252,7 @@ const treeGraph = (G6: { Graph?: any; Util?: any }): ITreeGraph => {
         self.data(data);
         self.render();
       } else {
-        self.layout(this.get('fitView'));
+        self.layout(this.get("fitView"));
       }
     }
 
@@ -260,7 +264,7 @@ const treeGraph = (G6: { Graph?: any; Util?: any }): ITreeGraph => {
     public changeLayout(layout: any) {
       // eslint-disable-next-line no-console
       console.warn(
-        'Please call updateLayout instead of changeLayout. changeLayout will be discarded soon',
+        "Please call updateLayout instead of changeLayout. changeLayout will be discarded soon",
       );
       const self = this;
       self.updateLayout(layout);
@@ -274,11 +278,11 @@ const treeGraph = (G6: { Graph?: any; Util?: any }): ITreeGraph => {
       const self = this;
       if (!layout) {
         // eslint-disable-next-line no-console
-        console.warn('layout cannot be null');
+        console.warn("layout cannot be null");
         return;
       }
-      self.set('layout', layout);
-      self.set('layoutMethod', self.getLayout());
+      self.set("layout", layout);
+      self.set("layoutMethod", self.getLayout());
       self.layout();
     }
 
@@ -290,7 +294,7 @@ const treeGraph = (G6: { Graph?: any; Util?: any }): ITreeGraph => {
     public refreshLayout(fitView?: boolean) {
       // eslint-disable-next-line no-console
       console.warn(
-        'Please call layout instead of refreshLayout. refreshLayout will be discarded soon',
+        "Please call layout instead of refreshLayout. refreshLayout will be discarded soon",
       );
       const self = this;
       self.layout(fitView);
@@ -302,19 +306,19 @@ const treeGraph = (G6: { Graph?: any; Util?: any }): ITreeGraph => {
      */
     public layout(fitView?: boolean) {
       const self = this;
-      const data: TreeGraphData = self.get('data');
-      const layoutMethod = self.get('layoutMethod');
-      const layoutData = layoutMethod(data, self.get('layout'));
+      const data: TreeGraphData = self.get("data");
+      const layoutMethod = self.get("layoutMethod");
+      const layoutData = layoutMethod(data, self.get("layout"));
 
-      const animate: boolean = self.get('animate');
+      const animate: boolean = self.get("animate");
 
-      self.emit('beforerefreshlayout', { data, layoutData });
-      self.emit('beforelayout');
+      self.emit("beforerefreshlayout", { data, layoutData });
+      self.emit("beforelayout");
 
       self.innerUpdateChild(layoutData, undefined, animate);
 
       if (fitView) {
-        const viewController = self.get('viewController');
+        const viewController = self.get("viewController");
         viewController.fitView();
       }
 
@@ -325,8 +329,8 @@ const treeGraph = (G6: { Graph?: any; Util?: any }): ITreeGraph => {
       } else {
         self.layoutAnimate(layoutData);
       }
-      self.emit('afterrefreshlayout', { data, layoutData });
-      self.emit('afterlayout');
+      self.emit("afterrefreshlayout", { data, layoutData });
+      self.emit("afterlayout");
     }
 
     /**
@@ -336,10 +340,10 @@ const treeGraph = (G6: { Graph?: any; Util?: any }): ITreeGraph => {
      */
     public addChild(data: TreeGraphData, parent: string | Item): void {
       const self = this;
-      self.emit('beforeaddchild', { model: data, parent });
+      self.emit("beforeaddchild", { model: data, parent });
       // 将数据添加到源数据中，走changeData方法
       if (!isString(parent)) {
-        parent = parent.get('id') as string;
+        parent = parent.get("id") as string;
       }
 
       const parentData = self.findDataById(parent);
@@ -363,7 +367,9 @@ const treeGraph = (G6: { Graph?: any; Util?: any }): ITreeGraph => {
 
       // 如果没有父节点或找不到该节点，是全量的更新，直接重置data
       if (!parentId || !self.findById(parentId)) {
-        console.warn(`Update children failed! There is no node with id '${parentId}'`);
+        console.warn(
+          `Update children failed! There is no node with id '${parentId}'`,
+        );
         return;
       }
 
@@ -419,9 +425,9 @@ const treeGraph = (G6: { Graph?: any; Util?: any }): ITreeGraph => {
         return;
       }
 
-      const parent = node.get('parent');
+      const parent = node.get("parent");
       if (parent && !parent.destroyed) {
-        const parentNode = self.findDataById(parent.get('id'));
+        const parentNode = self.findDataById(parent.get("id"));
         const siblings = (parentNode && parentNode.children) || [];
         const model: NodeConfig = node.getModel() as NodeConfig;
 
@@ -437,11 +443,14 @@ const treeGraph = (G6: { Graph?: any; Util?: any }): ITreeGraph => {
      * @param {TreeGraphData | undefined} parent 从哪个节点开始寻找，为空时从根节点开始查找
      * @return {TreeGraphData} 对应源数据
      */
-    public findDataById(id: string, parent?: TreeGraphData | undefined): TreeGraphData | null {
+    public findDataById(
+      id: string,
+      parent?: TreeGraphData | undefined,
+    ): TreeGraphData | null {
       const self = this;
 
       if (!parent) {
-        parent = self.get('data') as TreeGraphData;
+        parent = self.get("data") as TreeGraphData;
       }
 
       if (id === parent.id) {
@@ -479,37 +488,37 @@ const treeGraph = (G6: { Graph?: any; Util?: any }): ITreeGraph => {
       ) => unknown,
     ): void {
       const self = this;
-      const animateCfg = this.get('animateCfg');
-      self.emit('beforeanimate', { data });
+      const animateCfg = this.get("animateCfg");
+      self.emit("beforeanimate", { data });
       // 如果边中没有指定锚点，但是本身有锚点控制，在动画过程中保持锚点不变
       self.getEdges().forEach((edge) => {
-        const model = edge.get('model');
+        const model = edge.get("model");
         if (!model.sourceAnchor) {
-          model.sourceAnchor = edge.get('sourceAnchorIndex');
+          model.sourceAnchor = edge.get("sourceAnchorIndex");
         }
       });
 
-      this.get('canvas').animate(
+      this.get("canvas").animate(
         (ratio: number) => {
           traverseTree<TreeGraphData>(data, (child) => {
             const node = self.findById(child.id);
 
             // 只有当存在node的时候才执行
             if (node) {
-              let origin = node.get('originAttrs');
-              const model = node.get('model');
+              let origin = node.get("originAttrs");
+              const model = node.get("model");
 
               if (!origin) {
                 origin = {
                   x: model.x,
                   y: model.y,
                 };
-                node.set('originAttrs', origin);
+                node.set("originAttrs", origin);
               }
 
               if (onFrame) {
                 const attrs = onFrame(node, ratio, origin, data);
-                node.set('model', Object.assign(model, attrs));
+                node.set("model", Object.assign(model, attrs));
               } else {
                 model.x = origin.x + (child.x! - origin.x) * ratio;
                 model.y = origin.y + (child.y! - origin.y) * ratio;
@@ -518,10 +527,10 @@ const treeGraph = (G6: { Graph?: any; Util?: any }): ITreeGraph => {
             return true;
           });
 
-          each(self.get('removeList'), (node) => {
+          each(self.get("removeList"), (node) => {
             const model = node.getModel();
-            const from = node.get('originAttrs');
-            const to = node.get('to');
+            const from = node.get("originAttrs");
+            const to = node.get("to");
             model.x = from.x + (to.x - from.x) * ratio;
             model.y = from.y + (to.y - from.y) * ratio;
           });
@@ -533,20 +542,20 @@ const treeGraph = (G6: { Graph?: any; Util?: any }): ITreeGraph => {
           easing: animateCfg.ease,
           callback: () => {
             each(self.getNodes(), (node) => {
-              node.set('originAttrs', null);
+              node.set("originAttrs", null);
             });
 
-            each(self.get('removeList'), (node) => {
+            each(self.get("removeList"), (node) => {
               self.removeItem(node);
             });
 
-            self.set('removeList', []);
+            self.set("removeList", []);
 
             if (animateCfg.callback) {
               animateCfg.callback();
             }
 
-            self.emit('afteranimate', { data });
+            self.emit("afteranimate", { data });
           },
           delay: animateCfg.delay,
         },
@@ -557,8 +566,8 @@ const treeGraph = (G6: { Graph?: any; Util?: any }): ITreeGraph => {
      * 立即停止布局动画
      */
     public stopLayoutAnimate(): void {
-      this.get('canvas').stopAnimate();
-      this.emit('layoutanimateend', { data: this.get('data') });
+      this.get("canvas").stopAnimate();
+      this.emit("layoutanimateend", { data: this.get("data") });
       this.layoutAnimating = false;
     }
 
@@ -575,19 +584,19 @@ const treeGraph = (G6: { Graph?: any; Util?: any }): ITreeGraph => {
      */
     public render(): void {
       const self = this;
-      const data: TreeGraphData = self.get('data');
+      const data: TreeGraphData = self.get("data");
 
       if (!data) {
-        throw new Error('data must be defined first');
+        throw new Error("data must be defined first");
       }
 
       self.clear();
 
-      self.emit('beforerender');
+      self.emit("beforerender");
 
-      self.layout(this.get('fitView'));
+      self.layout(this.get("fitView"));
 
-      self.emit('afterrender');
+      self.emit("afterrender");
     }
 
     /**
@@ -595,7 +604,7 @@ const treeGraph = (G6: { Graph?: any; Util?: any }): ITreeGraph => {
      * @return {object} data
      */
     public save(): TreeGraphData | GraphData {
-      return this.get('data');
+      return this.get("data");
     }
   }
 

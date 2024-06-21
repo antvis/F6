@@ -16,23 +16,23 @@ order: 9
 
 这里对 `handler` 的参数 `evt` 中 `item` 和 `target` 参数进行解释：
 
-| 名称 | 类型 | 是否必选 | 描述 |
-| --- | --- | --- | --- |
-| item | string | true | 被操作的 item |
-| target | Function | true | 被操作的具体[图形](/zh/docs/manual/middle/elements/shape-keyshape) |
+| 名称   | 类型     | 是否必选 | 描述                                                               |
+| ------ | -------- | -------- | ------------------------------------------------------------------ |
+| item   | string   | true     | 被操作的 item                                                      |
+| target | Function | true     | 被操作的具体[图形](/zh/docs/manual/middle/elements/shape-keyshape) |
 
 **用法**
 
 ```javascript
 // 为图上的所有节点绑定点击监听
-graph.on('node:tap', (evt) => {
+graph.on("node:tap", (evt) => {
   const item = evt.item; // 被操作的节点 item
   const target = evt.target; // 被操作的具体图形
   // ...
 });
 
 // 为画布绑定点击监听
-graph.on('click', (evt) => {
+graph.on("click", (evt) => {
   // ...
 });
 ```
@@ -60,10 +60,10 @@ const fn = (evt) => {
   // ...
 };
 // 为图上的所有节点绑定点击监听
-graph.on('node:tap', fn);
+graph.on("node:tap", fn);
 
 // 解除上面的点击监听事件，注意 fn 必须是同一个对象
-graph.off('node:tap', fn);
+graph.off("node:tap", fn);
 ```
 
 ### graph.off(eventName)
@@ -89,11 +89,11 @@ const fn2 = (evt) => {
   // ...
 };
 // 为图上的所有节点绑定点击监听
-graph.on('node:tap', fn1);
-graph.on('node:tap', fn2);
+graph.on("node:tap", fn1);
+graph.on("node:tap", fn2);
 
 // 解除上面的所有节点点击监听事件
-graph.off('node:tap');
+graph.off("node:tap");
 ```
 
 ### graph.off()
@@ -111,8 +111,8 @@ const fn2 = (evt) => {
   // ...
 };
 // 为图上的所有节点绑定点击监听
-graph.on('node:tap', fn1);
-graph.on('afteranimate', fn2);
+graph.on("node:tap", fn1);
+graph.on("afteranimate", fn2);
 
 // 解除图上所有监听事件
 graph.off();

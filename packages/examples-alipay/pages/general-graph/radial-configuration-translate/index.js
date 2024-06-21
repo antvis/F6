@@ -1,7 +1,7 @@
-import F6 from '@antv/f6';
-import { wrapContext } from '../../../common/utils/context';
-import data from './data';
-import radial from '@antv/f6/dist/extends/layout/radialLayout';
+import F6 from "@antv/f6";
+import { wrapContext } from "../../../common/utils/context";
+import data from "./data";
+import radial from "@antv/f6/dist/extends/layout/radialLayout";
 /**
  * Radial布局参数动态变化
  */
@@ -9,7 +9,7 @@ import radial from '@antv/f6/dist/extends/layout/radialLayout';
 Page({
   canvas: null,
   ctx: null,
-  renderer: '', // mini、mini-native等，F6需要，标记环境
+  renderer: "", // mini、mini-native等，F6需要，标记环境
   isCanvasInit: false, // canvas是否准备好了
   graph: null,
 
@@ -18,12 +18,13 @@ Page({
     height: 600,
     pixelRatio: 2,
     forceMini: false,
-    description: 'Radial layout, focusNode =  = 0, unitRadius = 50, preventOverlap: false',
+    description:
+      "Radial layout, focusNode =  = 0, unitRadius = 50, preventOverlap: false",
   },
 
   onLoad() {
     // 注册布局
-    F6.registerLayout('radial', radial);
+    F6.registerLayout("radial", radial);
     // 同步获取window的宽高
     const { windowWidth, windowHeight, pixelRatio } = my.getSystemInfoSync();
 
@@ -69,10 +70,10 @@ Page({
       pixelRatio,
       fitView: true,
       modes: {
-        default: ['drag-canvas', 'drag-node'],
+        default: ["drag-canvas", "drag-node"],
       },
       layout: {
-        type: 'radial',
+        type: "radial",
         unitRadius: 50,
       },
       animate: true,
@@ -82,8 +83,8 @@ Page({
       defaultEdge: {
         style: {
           endArrow: {
-            path: 'M 0,0 L 8,4 L 8,-4 Z',
-            fill: '#e2e2e2',
+            path: "M 0,0 L 8,4 L 8,-4 Z",
+            fill: "#e2e2e2",
           },
         },
       },
@@ -95,14 +96,15 @@ Page({
 
     layoutConfigTranslation();
 
-    setInterval(function() {
+    setInterval(function () {
       layoutConfigTranslation();
     }, 7000);
 
     function layoutConfigTranslation() {
-      setTimeout(function() {
+      setTimeout(function () {
         me.setData({
-          description: 'Radial layout, focusNode =  = 0, unitRadius = 50, preventOverlap: true',
+          description:
+            "Radial layout, focusNode =  = 0, unitRadius = 50, preventOverlap: true",
         });
         me.graph.updateLayout({
           preventOverlap: true,
@@ -110,39 +112,43 @@ Page({
         });
       }, 1000);
 
-      setTimeout(function() {
+      setTimeout(function () {
         me.setData({
-          description: 'Radial layout, focusNode =  = 0, unitRadius = 80, preventOverlap: true',
+          description:
+            "Radial layout, focusNode =  = 0, unitRadius = 80, preventOverlap: true",
         });
         me.graph.updateLayout({
           unitRadius: 80,
         });
       }, 2500);
 
-      setTimeout(function() {
+      setTimeout(function () {
         me.setData({
-          description: 'Radial layout, focusNode =  = 10, unitRadius = 80, preventOverlap: true',
+          description:
+            "Radial layout, focusNode =  = 10, unitRadius = 80, preventOverlap: true",
         });
         me.graph.updateLayout({
-          focusNode: '10',
+          focusNode: "10",
         });
       }, 4000);
 
-      setTimeout(function() {
+      setTimeout(function () {
         me.setData({
-          description: 'Radial layout, focusNode =  = 20, unitRadius = 80, preventOverlap: true',
+          description:
+            "Radial layout, focusNode =  = 20, unitRadius = 80, preventOverlap: true",
         });
         me.graph.updateLayout({
-          focusNode: '20',
+          focusNode: "20",
         });
       }, 5500);
 
-      setTimeout(function() {
+      setTimeout(function () {
         me.setData({
-          description: 'Radial layout, focusNode =  = 0, unitRadius = 50, preventOverlap: false',
+          description:
+            "Radial layout, focusNode =  = 0, unitRadius = 50, preventOverlap: false",
         });
         me.graph.updateLayout({
-          focusNode: '0',
+          focusNode: "0",
           preventOverlap: false,
           unitRadius: 50,
         });

@@ -6,7 +6,7 @@ const pixelRatio = 2;
 F6.registerBehavior("double-finger-drag-canvas", {
   getEvents: function getEvents() {
     return {
-      "canvas:drag": "onWheel"
+      "canvas:drag": "onWheel",
     };
   },
   onWheel: function onWheel(ev) {
@@ -23,7 +23,7 @@ F6.registerBehavior("double-finger-drag-canvas", {
 
       graph.zoomTo(ratio, {
         x: point.x,
-        y: point.y
+        y: point.y,
       });
     } else {
       const x = ev.deltaX || ev.movementX;
@@ -32,7 +32,7 @@ F6.registerBehavior("double-finger-drag-canvas", {
     }
 
     ev.preventDefault();
-  }
+  },
 });
 const graph = new F6.Graph({
   width,
@@ -41,11 +41,11 @@ const graph = new F6.Graph({
   fitView: true,
   fitViewPadding: 60,
   modes: {
-    default: ["double-finger-drag-canvas"]
+    default: ["double-finger-drag-canvas"],
   },
   layout: {
-    type: "force"
-  }
+    type: "force",
+  },
 });
 graph.get("canvas").set("localRefresh", false);
 graph.data(data);

@@ -1,6 +1,6 @@
-import React, { useEffect } from 'react';
-import F6 from '../../src';
-import { TimeBar } from '@antv/f6-plugin';
+import React, { useEffect } from "react";
+import F6 from "../../src";
+import { TimeBar } from "@antv/f6-plugin";
 
 export default () => {
   const ref = React.useRef(null);
@@ -38,7 +38,7 @@ export default () => {
     y: 0,
     width,
     padding: 0,
-    type: 'simple',
+    type: "simple",
     data: timeBarData,
   });
 
@@ -53,7 +53,7 @@ export default () => {
         fitView: true,
         localRefresh: false,
         modes: {
-          default: ['drag-canvas', 'drag-node'],
+          default: ["drag-canvas", "drag-node"],
         },
         animate: false,
         defaultNode: {
@@ -62,7 +62,7 @@ export default () => {
         plugins: [timebar],
       } as any);
 
-      graph.get('canvas').set('localRefresh', false);
+      graph.get("canvas").set("localRefresh", false);
       graph.data(data);
       graph.render();
       graph.fitView();

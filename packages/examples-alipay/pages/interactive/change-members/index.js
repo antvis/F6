@@ -1,7 +1,7 @@
-import F6 from '@antv/f6';
-import { wrapContext } from '../../../common/utils/context';
-import data from './data';
-import grid from '@antv/f6/dist/extends/layout/gridLayout';
+import F6 from "@antv/f6";
+import { wrapContext } from "../../../common/utils/context";
+import data from "./data";
+import grid from "@antv/f6/dist/extends/layout/gridLayout";
 
 /**
  * changeMembers：修改包裹内部成员
@@ -10,7 +10,7 @@ import grid from '@antv/f6/dist/extends/layout/gridLayout';
 Page({
   canvas: null,
   ctx: null,
-  renderer: '', // mini、mini-native等，F6需要，标记环境
+  renderer: "", // mini、mini-native等，F6需要，标记环境
   isCanvasInit: false, // canvas是否准备好了
   graph: null,
 
@@ -19,14 +19,14 @@ Page({
     height: 600,
     pixelRatio: 2,
     forceMini: false,
-    discription: 'Wait for the layout to complete...',
+    discription: "Wait for the layout to complete...",
   },
 
   onLoad() {
     // 同步获取window的宽高
     const { windowWidth, windowHeight, pixelRatio } = my.getSystemInfoSync();
 
-    F6.registerLayout('grid', grid);
+    F6.registerLayout("grid", grid);
 
     this.setData({
       width: windowWidth,
@@ -71,35 +71,39 @@ Page({
       fitView: true,
       fitViewPadding: 50,
       modes: {
-        default: ['drag-canvas', 'zoom-canvas', 'drag-node'],
+        default: ["drag-canvas", "zoom-canvas", "drag-node"],
       },
       layout: {
-        type: 'grid',
+        type: "grid",
       },
     });
 
     const hull1 = this.graph.createHull({
-      id: 'hull1',
-      type: 'smooth-convex',
+      id: "hull1",
+      type: "smooth-convex",
       padding: 15,
-      members: this.graph.getNodes().filter((node) => node.getModel().group === 1),
+      members: this.graph
+        .getNodes()
+        .filter((node) => node.getModel().group === 1),
     });
     const hull2 = this.graph.createHull({
-      id: 'hull2',
-      members: this.graph.getNodes().filter((node) => node.getModel().group === 2),
+      id: "hull2",
+      members: this.graph
+        .getNodes()
+        .filter((node) => node.getModel().group === 2),
       padding: 15,
-      type: 'bubble',
+      type: "bubble",
       style: {
-        fill: 'pink',
-        stroke: 'red',
+        fill: "pink",
+        stroke: "red",
       },
-      update: 'drag',
+      update: "drag",
     });
 
-    this.graph.on('canvas:contextmenu', (ev) => {
+    this.graph.on("canvas:contextmenu", (ev) => {
       ev.preventDefault();
       ev.stopPropagation();
-      const item = this.graph.addItem('node', {
+      const item = this.graph.addItem("node", {
         x: ev.x,
         y: ev.y,
         id: Math.random(),
@@ -108,13 +112,16 @@ Page({
       hull2.addMember(item);
     });
 
-    this.graph.on('afterupdateitem', (e) => {
-      if (hull1.members.indexOf(e.item) > -1 || hull1.nonMembers.indexOf(e.item) > -1) {
+    this.graph.on("afterupdateitem", (e) => {
+      if (
+        hull1.members.indexOf(e.item) > -1 ||
+        hull1.nonMembers.indexOf(e.item) > -1
+      ) {
         hull1.updateData(hull1.members);
       }
     });
 
-    this.graph.on('node:dragend', (e) => {
+    this.graph.on("node:dragend", (e) => {
       const { item } = e;
       const memberIdx = hull2.members.indexOf(item);
       if (memberIdx > -1) {

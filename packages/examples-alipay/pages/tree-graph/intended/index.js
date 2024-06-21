@@ -1,8 +1,8 @@
-import F6 from '@antv/f6';
-import TreeGraph from '@antv/f6/dist/extends/graph/treeGraph';
-import { wrapContext } from '../../../common/utils/context';
+import F6 from "@antv/f6";
+import TreeGraph from "@antv/f6/dist/extends/graph/treeGraph";
+import { wrapContext } from "../../../common/utils/context";
 
-import data from './data';
+import data from "./data";
 
 /**
  * 缩进树-子节点两侧分布
@@ -11,7 +11,7 @@ import data from './data';
 Page({
   canvas: null,
   ctx: null,
-  renderer: '', // mini、mini-native等，F6需要，标记环境
+  renderer: "", // mini、mini-native等，F6需要，标记环境
   isCanvasInit: false, // canvas是否准备好了
   graph: null,
 
@@ -24,7 +24,7 @@ Page({
 
   onLoad() {
     // 注册自定义树，节点等
-    F6.registerGraph('TreeGraph', TreeGraph);
+    F6.registerGraph("TreeGraph", TreeGraph);
 
     // 同步获取window的宽高
     const { windowWidth, windowHeight, pixelRatio } = my.getSystemInfoSync();
@@ -71,7 +71,7 @@ Page({
       pixelRatio,
       fitView: true,
       modes: {
-        default: ['drag-canvas'],
+        default: ["drag-canvas"],
       },
       defaultNode: {
         size: 26,
@@ -81,11 +81,11 @@ Page({
         ],
       },
       defaultEdge: {
-        type: 'cubic-horizontal',
+        type: "cubic-horizontal",
       },
       layout: {
-        type: 'indented',
-        direction: 'H',
+        type: "indented",
+        direction: "H",
         indent: 80,
         getHeight: () => {
           return 10;
@@ -94,22 +94,22 @@ Page({
           return 10;
         },
         getSide: (d) => {
-          if (d.id === 'Regression' || d.id === 'Classification') return 'left';
-          return 'right';
+          if (d.id === "Regression" || d.id === "Classification") return "left";
+          return "right";
         },
       },
     });
     let centerX = 0;
     this.graph.node(function (node) {
-      if (node.id === 'Modeling Methods') {
+      if (node.id === "Modeling Methods") {
         centerX = node.x;
       }
 
-      let pos = '';
+      let pos = "";
       if (node.children && node.children.length > 0) {
-        pos = 'left';
-      } else if (node.x > centerX) pos = 'right';
-      else pos = 'left';
+        pos = "left";
+      } else if (node.x > centerX) pos = "right";
+      else pos = "left";
       return {
         label: node.id,
         labelCfg: {

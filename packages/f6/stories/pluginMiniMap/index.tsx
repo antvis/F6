@@ -1,7 +1,7 @@
-import React, { useEffect } from 'react';
-import F6 from '../../src';
-import { MiniMap } from "@antv/f6-plugin/src"
-import data from './data';
+import React, { useEffect } from "react";
+import F6 from "../../src";
+import { MiniMap } from "@antv/f6-plugin/src";
+import data from "./data";
 
 const miniMap = new MiniMap();
 
@@ -19,28 +19,28 @@ export default () => {
         height,
         linkCenter: true,
         layout: {
-          type: 'dagre',
-          rankdir: 'LR',
-          align: 'DL',
+          type: "dagre",
+          rankdir: "LR",
+          align: "DL",
           nodesepFunc: () => 1,
           ranksepFunc: () => 1,
         },
         defaultNode: {
           size: [80, 40],
-          type: 'rect',
+          type: "rect",
           style: {
-            fill: '#DEE9FF',
-            stroke: '#5B8FF9',
+            fill: "#DEE9FF",
+            stroke: "#5B8FF9",
           },
         },
         defaultEdge: {
           style: {
-            stroke: '#b5b5b5',
+            stroke: "#b5b5b5",
             lineAppendWidth: 3,
           },
         },
         modes: {
-          default: ['drag-canvas', 'zoom-canvas'],
+          default: ["drag-canvas", "zoom-canvas"],
         },
         plugins: [miniMap],
       });
@@ -52,12 +52,12 @@ export default () => {
       console.log(e);
     };
 
-    ref.current.addEventListener('wheel', handleZoom);
+    ref.current.addEventListener("wheel", handleZoom);
 
     return () => {
-      ref.current.removeEventListener('wheel', handleZoom)
+      ref.current.removeEventListener("wheel", handleZoom);
     };
   }, []);
 
-  return <div ref={ref} ></div>;
-}
+  return <div ref={ref}></div>;
+};

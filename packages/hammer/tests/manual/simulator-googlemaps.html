@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
   <head lang="en">
     <meta
@@ -32,17 +32,17 @@
       Simulator.events.touch.fakeSupport();
 
       var el, map;
-      var container = document.getElementById('maps');
+      var container = document.getElementById("maps");
       var program = [
-        ['pan', ['deltaX', 'deltaY']],
-        ['pinch', ['scale']],
-        ['tap', ['pos']],
-        ['swipe', ['deltaX', 'deltaY']],
-        ['pinch', ['pos', 'scale']],
-        ['pan', ['pos']],
-        ['rotate', ['pos', 'rotation']],
-        ['doubleTap', ['pos']],
-        ['pinchRotate', ['pos', 'scale', 'rotation']],
+        ["pan", ["deltaX", "deltaY"]],
+        ["pinch", ["scale"]],
+        ["tap", ["pos"]],
+        ["swipe", ["deltaX", "deltaY"]],
+        ["pinch", ["pos", "scale"]],
+        ["pan", ["pos"]],
+        ["rotate", ["pos", "rotation"]],
+        ["doubleTap", ["pos"]],
+        ["pinchRotate", ["pos", "scale", "rotation"]],
       ];
 
       function randomRange(min, max) {
@@ -56,14 +56,14 @@
       function gestureOption(name) {
         var max = map.getDiv().offsetWidth * 0.9;
         switch (name) {
-          case 'deltaY':
-          case 'deltaX':
+          case "deltaY":
+          case "deltaX":
             return randomRangeInt(10, max * 0.5);
-          case 'pos':
+          case "pos":
             return [randomRangeInt(10, max), randomRangeInt(10, max)];
-          case 'scale':
+          case "scale":
             return randomRange(0.2, 2);
-          case 'rotation':
+          case "rotation":
             return randomRange(-180, 180);
         }
       }
@@ -95,7 +95,7 @@
         });
 
         // collect the target element
-        google.maps.event.addListenerOnce(map, 'idle', function () {
+        google.maps.event.addListenerOnce(map, "idle", function () {
           el = container.childNodes[0].childNodes[0];
           startSimulator();
         });

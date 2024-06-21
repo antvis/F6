@@ -1,6 +1,6 @@
-import F6 from '@antv/f6';
-import { wrapContext } from '../../../common/utils/context';
-import data from './data';
+import F6 from "@antv/f6";
+import { wrapContext } from "../../../common/utils/context";
+import data from "./data";
 /**
  * donut
  */
@@ -8,7 +8,7 @@ import data from './data';
 Page({
   canvas: null,
   ctx: null,
-  renderer: '', // mini、mini-native等，F6需要，标记环境
+  renderer: "", // mini、mini-native等，F6需要，标记环境
   isCanvasInit: false, // canvas是否准备好了
   graph: null,
 
@@ -66,13 +66,13 @@ Page({
       fitView: true,
       fitCenter: true,
       fitViewPadding: 60,
-      
+
       modes: {
-        default: ['drag-canvas', 'drag-node'],
+        default: ["drag-canvas", "drag-node"],
       },
       defaultNode: {
         /* node type, the priority is lower than the type in the node data */
-        type: 'donut',
+        type: "donut",
         /* node size */
         size: 60,
         /* style for the keyShape */
@@ -83,7 +83,7 @@ Page({
         // },
         labelCfg: {
           /* label's position, options: center, top, bottom, left, right */
-          position: 'bottom',
+          position: "bottom",
           /* label's offset to the keyShape, 4 by default */
           //   offset: 12,
           /* label's style */
@@ -134,11 +134,11 @@ Page({
     this.graph.fitView();
 
     // 监听
-    this.graph.on('node:tap', (evt) => {
+    this.graph.on("node:tap", (evt) => {
       const { item } = evt;
-      this.graph.setItemState(item, 'selected', true);
+      this.graph.setItemState(item, "selected", true);
     });
-    this.graph.on('canvas:tap', () => {
+    this.graph.on("canvas:tap", () => {
       this.graph.getNodes().forEach((node) => {
         this.graph.clearItemStates(node);
       });

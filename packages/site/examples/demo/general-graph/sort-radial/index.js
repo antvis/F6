@@ -12,7 +12,7 @@ const graph = new F6.Graph({
   fitView: true,
   fitViewPadding: 30,
   modes: {
-    default: ["drag-canvas", "drag-node"]
+    default: ["drag-canvas", "drag-node"],
   },
   layout: {
     type: "radial",
@@ -22,17 +22,17 @@ const graph = new F6.Graph({
     preventOverlap: true,
     nodeSize: 30,
     sortBy: "sortAttr2",
-    sortStrength: 50
+    sortStrength: 50,
   },
   animate: true,
   defaultEdge: {
     style: {
       endArrow: {
         path: "M 0,0 L 8,4 L 8,-4 Z",
-        fill: "#e2e2e2"
-      }
-    }
-  }
+        fill: "#e2e2e2",
+      },
+    },
+  },
 });
 graph.data(data);
 graph.render();

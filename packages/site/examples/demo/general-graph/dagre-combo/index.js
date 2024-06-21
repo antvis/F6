@@ -14,31 +14,39 @@ const graph = new F6.Graph({
   animate: true,
   groupByTypes: false,
   modes: {
-    default: ["drag-combo", "drag-node", "drag-canvas", {
-      type: "collapse-expand-combo",
-      relayout: false
-    }]
+    default: [
+      "drag-combo",
+      "drag-node",
+      "drag-canvas",
+      {
+        type: "collapse-expand-combo",
+        relayout: false,
+      },
+    ],
   },
   layout: {
     type: "dagre",
     sortByCombo: false,
     ranksep: 10,
-    nodesep: 10
+    nodesep: 10,
   },
   defaultNode: {
     size: [60, 30],
     type: "rect",
-    anchorPoints: [[0.5, 0], [0.5, 1]]
+    anchorPoints: [
+      [0.5, 0],
+      [0.5, 1],
+    ],
   },
   defaultEdge: {
-    type: "line"
+    type: "line",
   },
   defaultCombo: {
     type: "rect",
     style: {
-      fillOpacity: 0.1
-    }
-  }
+      fillOpacity: 0.1,
+    },
+  },
 });
 graph.data(data);
 graph.render();

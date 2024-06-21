@@ -1,7 +1,7 @@
-import F6 from '@antv/f6-wx';
+import F6 from "@antv/f6-wx";
 
-import data from './data';
-import circular from '@antv/f6-wx/extends/layout/circularLayout';
+import data from "./data";
+import circular from "@antv/f6-wx/extends/layout/circularLayout";
 /**
  * 分割环形布局
  */
@@ -9,7 +9,7 @@ import circular from '@antv/f6-wx/extends/layout/circularLayout';
 Page({
   canvas: null,
   ctx: null,
-  renderer: '', // mini、mini-native等，F6需要，标记环境
+  renderer: "", // mini、mini-native等，F6需要，标记环境
   isCanvasInit: false, // canvas是否准备好了
   graph: null,
 
@@ -22,7 +22,7 @@ Page({
 
   onLoad() {
     // 注册布局
-    F6.registerLayout('circular', circular);
+    F6.registerLayout("circular", circular);
 
     // 同步获取window的宽高
     const { windowWidth, windowHeight, pixelRatio } = wx.getSystemInfoSync();
@@ -69,10 +69,10 @@ Page({
       pixelRatio,
       fitView: true,
       modes: {
-        default: ['drag-canvas', 'drag-node'],
+        default: ["drag-canvas", "drag-node"],
       },
       layout: {
-        type: 'circular',
+        type: "circular",
         divisions: 5,
         radius: 200,
         startAngle: Math.PI / 4,
@@ -85,8 +85,8 @@ Page({
       defaultEdge: {
         style: {
           endArrow: {
-            path: 'M 0,0 L 8,4 L 8,-4 Z',
-            fill: '#e2e2e2',
+            path: "M 0,0 L 8,4 L 8,-4 Z",
+            fill: "#e2e2e2",
           },
         },
       },

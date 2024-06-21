@@ -48,7 +48,7 @@ changeData(data);
 ### 完整代码
 
 ```html
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />

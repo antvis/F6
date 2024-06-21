@@ -4,15 +4,13 @@ import Force from "@antv/f6/dist/extends/layout/forceLayout";
 const width = 375;
 const height = 600;
 const pixelRatio = 2;
-const {
-  nodes
-} = data;
+const { nodes } = data;
 nodes.forEach(function (node, i) {
   if (i <= 16 && i !== 12) {
     if (!node.style) {
       node.style = {
         fill: "#F6C3B7",
-        stroke: "#E8684A"
+        stroke: "#E8684A",
       };
     } else {
       node.style.fill = "lightsteelblue";
@@ -26,27 +24,25 @@ const graph = new F6.Graph({
   fitView: true,
   fitViewPadding: 40,
   modes: {
-    default: ["drag-node"]
+    default: ["drag-node"],
   },
   defaultNode: {
     size: 20,
     style: {
       fill: "#C6E5FF",
-      stroke: "#5B8FF9"
-    }
+      stroke: "#5B8FF9",
+    },
   },
   defaultEdge: {
     size: 1,
-    color: "#e2e2e2"
-  }
+    color: "#e2e2e2",
+  },
 });
 graph.data(data);
 graph.render();
 graph.fitView();
 setTimeout(() => {
-  const {
-    edges
-  } = data;
+  const { edges } = data;
   const newNodes = [];
   const newEdges = [];
   const newNodeMap = new Map();
@@ -62,7 +58,10 @@ setTimeout(() => {
     const sourceId = edge.source;
     const targetId = edge.target;
 
-    if (newNodeMap.get(sourceId) !== undefined && newNodeMap.get(targetId) !== undefined) {
+    if (
+      newNodeMap.get(sourceId) !== undefined &&
+      newNodeMap.get(targetId) !== undefined
+    ) {
       newEdges.push(edge);
     }
   });
@@ -73,11 +72,11 @@ setTimeout(() => {
     nodeSize: 20,
     tick: () => {
       graph.refreshPositions();
-    }
+    },
   });
   subForceLayout.init({
     nodes: newNodes,
-    edges: newEdges
+    edges: newEdges,
   });
   subForceLayout.execute();
 }, 1000);

@@ -1,5 +1,5 @@
-import { INPUT_START, INPUT_END, INPUT_CANCEL } from './input-consts';
-import computeInputData from './compute-input-data';
+import { INPUT_START, INPUT_END, INPUT_CANCEL } from "./input-consts";
+import computeInputData from "./compute-input-data";
 
 /**
  * @private
@@ -32,7 +32,7 @@ export default function inputHandler(manager, eventType, input) {
   computeInputData(manager, input);
 
   // emit secret event
-  manager.emit('hammer.input', input);
+  manager.emit("hammer.input", input);
 
   manager.recognize(input);
   manager.session.prevInput = input;

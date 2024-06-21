@@ -1,6 +1,6 @@
-import F6 from '@antv/f6';
-import { wrapContext } from '../../../common/utils/context';
-import data from './data';
+import F6 from "@antv/f6";
+import { wrapContext } from "../../../common/utils/context";
+import data from "./data";
 
 /**
  * node#node
@@ -10,10 +10,10 @@ const { Util } = F6;
 
 // // Scale Animation
 F6.registerNode(
-  'circle-animate',
+  "circle-animate",
   {
     afterDraw(cfg, group) {
-      const shape = group.get('children')[0];
+      const shape = group.get("children")[0];
       shape.animate(
         (ratio) => {
           const diff = ratio <= 0.5 ? ratio * 10 : (1 - ratio) * 10;
@@ -24,21 +24,21 @@ F6.registerNode(
         {
           repeat: true,
           duration: 3000,
-          easing: 'easeCubic',
+          easing: "easeCubic",
         },
       );
     },
   },
-  'circle',
+  "circle",
 );
 
 // Background Animation
 F6.registerNode(
-  'background-animate',
+  "background-animate",
   {
     afterDraw(cfg, group) {
       const r = cfg.size / 2;
-      const back1 = group.addShape('circle', {
+      const back1 = group.addShape("circle", {
         zIndex: -3,
         attrs: {
           x: 0,
@@ -47,9 +47,9 @@ F6.registerNode(
           fill: cfg.color,
           opacity: 0.6,
         },
-        name: 'back1-shape',
+        name: "back1-shape",
       });
-      const back2 = group.addShape('circle', {
+      const back2 = group.addShape("circle", {
         zIndex: -2,
         attrs: {
           x: 0,
@@ -58,9 +58,9 @@ F6.registerNode(
           fill: cfg.color,
           opacity: 0.6,
         },
-        name: 'back2-shape',
+        name: "back2-shape",
       });
-      const back3 = group.addShape('circle', {
+      const back3 = group.addShape("circle", {
         zIndex: -1,
         attrs: {
           x: 0,
@@ -69,7 +69,7 @@ F6.registerNode(
           fill: cfg.color,
           opacity: 0.6,
         },
-        name: 'back3-shape',
+        name: "back3-shape",
       });
       group.sort(); // Sort according to the zIndex
       back1.animate(
@@ -80,7 +80,7 @@ F6.registerNode(
         },
         {
           duration: 3000,
-          easing: 'easeCubic',
+          easing: "easeCubic",
           delay: 0,
           repeat: true, // repeat
         },
@@ -93,7 +93,7 @@ F6.registerNode(
         },
         {
           duration: 3000,
-          easing: 'easeCubic',
+          easing: "easeCubic",
           delay: 1000,
           repeat: true, // repeat
         },
@@ -106,25 +106,25 @@ F6.registerNode(
         },
         {
           duration: 3000,
-          easing: 'easeCubic',
+          easing: "easeCubic",
           delay: 2000,
           repeat: true, // repeat
         },
       ); // 3s delay
     },
   },
-  'circle',
+  "circle",
 );
 
 // // Image animation
 F6.registerNode(
-  'inner-animate',
+  "inner-animate",
   {
     afterDraw(cfg, group) {
       const { size } = cfg;
       const width = size[0] - 12;
       const height = size[1] - 12;
-      const image = group.addShape('image', {
+      const image = group.addShape("image", {
         attrs: {
           x: -width / 2,
           y: -height / 2,
@@ -132,13 +132,13 @@ F6.registerNode(
           height,
           img: cfg.img,
         },
-        name: 'image-shape',
+        name: "image-shape",
       });
       image.animate(
         (ratio) => {
           const toMatrix = Util.transform(
             [1, 0, 0, 0, 1, 0, 0, 0, 1],
-            [['r', ratio * Math.PI * 2]],
+            [["r", ratio * Math.PI * 2]],
           );
           return {
             matrix: toMatrix,
@@ -147,18 +147,18 @@ F6.registerNode(
         {
           repeat: true,
           duration: 3000,
-          easing: 'easeCubic',
+          easing: "easeCubic",
         },
       );
     },
   },
-  'rect',
+  "rect",
 );
 
 Page({
   canvas: null,
   ctx: null,
-  renderer: '', // mini、mini-native等，F6需要，标记环境
+  renderer: "", // mini、mini-native等，F6需要，标记环境
   isCanvasInit: false, // canvas是否准备好了
   graph: null,
 
@@ -214,17 +214,17 @@ Page({
       height,
       pixelRatio,
       fitView: true,
-      
+
       defaultNode: {
         style: {
-          fill: '#DEE9FF',
-          stroke: '#5B8FF9',
+          fill: "#DEE9FF",
+          stroke: "#5B8FF9",
         },
       },
       defaultEdge: {
         style: {
           lineWidth: 1,
-          stroke: '#b5b5b5',
+          stroke: "#b5b5b5",
         },
       },
     });

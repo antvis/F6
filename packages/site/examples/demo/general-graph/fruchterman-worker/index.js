@@ -12,21 +12,21 @@ const graph = new F6.Graph({
   pixelRatio,
   fitView: true,
   modes: {
-    default: ["drag-canvas", "drag-node"]
+    default: ["drag-canvas", "drag-node"],
   },
   layout: {
     type: "fruchterman",
     maxIteration: 8000,
     gravity: 1,
-    workerEnabled: true
+    workerEnabled: true,
   },
   animate: true,
   defaultNode: {
-    size: 10
+    size: 10,
   },
   defaultEdge: {
-    size: 1
-  }
+    size: 1,
+  },
 });
 graph.on("afterlayout", () => {});
 graph.data(data);

@@ -32,11 +32,11 @@ Item 是 F6 中绘图元素实例，目前包含节点和边的实例。对于�
 
 ```javascript
 const model = {
-  id: 'node',
-  type: 'rect',
-  label: 'node',
+  id: "node",
+  type: "rect",
+  label: "node",
   style: {
-    fill: 'red',
+    fill: "red",
   },
 };
 
@@ -64,9 +64,9 @@ item.refresh();
 
 **参数**
 
-| 名称 | 类型 | 是否必选 | 描述 |
-| --- | --- | --- | --- |
-| cfg | Object | true | 元素配置项，包括 `x`、`y` 属性，如果参数中无 `x`、`y` 属性，则更新时使用数据项中的值。 |
+| 名称 | 类型   | 是否必选 | 描述                                                                                   |
+| ---- | ------ | -------- | -------------------------------------------------------------------------------------- |
+| cfg  | Object | true     | 元素配置项，包括 `x`、`y` 属性，如果参数中无 `x`、`y` 属性，则更新时使用数据项中的值。 |
 
 **用法**
 
@@ -79,8 +79,8 @@ const cfg = {
 item.updatePosition(cfg);
 
 const cfg1 = {
-  name: 'abc',
-  dept: 'antv',
+  name: "abc",
+  dept: "antv",
 };
 // 由于 cfg 中不存在 x 与 y，下面才做将会使用 item.getModel() 中的 x、y 坐标值
 item.updatePosition(cfg1);
@@ -141,7 +141,7 @@ item.getBBox();
 const group = item.getContainer();
 
 // 等价于
-const group = item.get('group');
+const group = item.get("group");
 ```
 
 ### item.getKeyShape()
@@ -160,7 +160,7 @@ const group = item.get('group');
 const keyShape = item.getKeyShape();
 
 // 等价于
-const keyShape = item.get('keyShape');
+const keyShape = item.get("keyShape");
 ```
 
 ### item.getModel()
@@ -179,7 +179,7 @@ const keyShape = item.get('keyShape');
 const model = item.getModel();
 
 // 等价于
-const model = item.get('model');
+const model = item.get("model");
 ```
 
 ### item.getType()
@@ -198,7 +198,7 @@ const model = item.get('model');
 const type = item.getType();
 
 // 等价于
-const type = item.get('type');
+const type = item.get("type");
 ```
 
 ### item.enableCapture(enable)
@@ -323,8 +323,8 @@ item.toBack();
 **用法**
 
 ```javascript
-item.setState('selected', true);
-item.setState('actived', false);
+item.setState("selected", true);
+item.setState("actived", false);
 ```
 
 ### item.clearStates(states)
@@ -341,10 +341,10 @@ item.setState('actived', false);
 
 ```javascript
 // 清除 'selected' 状态
-item.clearStates('selected');
+item.clearStates("selected");
 
 // 清除 'active' 与 'hover' 状态
-item.clearStates(['actived', 'hover']);
+item.clearStates(["actived", "hover"]);
 ```
 
 ### item.getStates()
@@ -382,7 +382,7 @@ const states = item.getStates();
 
 ```javascript
 // 获取元素的 'hover' 状态值
-const state = item.hasState('hover');
+const state = item.hasState("hover");
 ```
 
 ## 样式
@@ -406,7 +406,7 @@ const state = item.hasState('hover');
 
 ```javascript
 // 获取元素的指定状态的样式
-const style = item.getStateStyle('selected');
+const style = item.getStateStyle("selected");
 ```
 
 ### item.getOriginStyle()

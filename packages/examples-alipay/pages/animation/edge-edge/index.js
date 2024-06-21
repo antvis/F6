@@ -1,17 +1,17 @@
-import F6 from '@antv/f6';
-import { wrapContext } from '../../../common/utils/context';
-import data from './data';
+import F6 from "@antv/f6";
+import { wrapContext } from "../../../common/utils/context";
+import data from "./data";
 
 /**
  * edge#edge
  */
 const lineDash = [4, 2, 1, 2];
 F6.registerEdge(
-  'line-dash',
+  "line-dash",
   {
     afterDraw(cfg, group) {
       // get the first shape in the group, it is the edge's path here=
-      const shape = group.get('children')[0];
+      const shape = group.get("children")[0];
       let index = 0;
       // Define the animation
       shape.animate(
@@ -34,13 +34,13 @@ F6.registerEdge(
       );
     },
   },
-  'cubic', // extend the built-in edge 'cubic'
+  "cubic", // extend the built-in edge 'cubic'
 );
 
 Page({
   canvas: null,
   ctx: null,
-  renderer: '', // mini、mini-native等，F6需要，标记环境
+  renderer: "", // mini、mini-native等，F6需要，标记环境
   isCanvasInit: false, // canvas是否准备好了
   graph: null,
 
@@ -97,10 +97,10 @@ Page({
       pixelRatio,
       fitView: true,
       defaultEdge: {
-        type: 'line-dash',
+        type: "line-dash",
         style: {
           lineWidth: 2,
-          stroke: '#bae7ff',
+          stroke: "#bae7ff",
         },
       },
     });

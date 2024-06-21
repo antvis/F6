@@ -12,8 +12,8 @@ F6.registerNode("file-node", {
         x: 10,
         y: -12,
         fill: "#fff",
-        stroke: null
-      }
+        stroke: null,
+      },
     });
     let isLeaf = false;
 
@@ -24,9 +24,9 @@ F6.registerNode("file-node", {
           x: 4,
           y: -2,
           r: 4,
-          fill: "#666"
+          fill: "#666",
         },
-        name: "marker-shape"
+        name: "marker-shape",
       });
     } else if (cfg.children && cfg.children.length > 0) {
       group.addShape("marker", {
@@ -35,9 +35,9 @@ F6.registerNode("file-node", {
           x: 4,
           y: -2,
           r: 4,
-          fill: "#666"
+          fill: "#666",
         },
-        name: "marker-shape"
+        name: "marker-shape",
       });
     } else {
       isLeaf = true;
@@ -51,9 +51,14 @@ F6.registerNode("file-node", {
         fill: "#666",
         fontSize: 16,
         textAlign: "left",
-        fontFamily: typeof window !== "undefined" ? window.getComputedStyle(document.body, null).getPropertyValue("font-family") || "Arial, sans-serif" : "Arial, sans-serif"
+        fontFamily:
+          typeof window !== "undefined"
+            ? window
+                .getComputedStyle(document.body, null)
+                .getPropertyValue("font-family") || "Arial, sans-serif"
+            : "Arial, sans-serif",
       },
-      name: "text-shape"
+      name: "text-shape",
     });
     const bbox = shape.getBBox();
     let backRectW = bbox.width;
@@ -67,25 +72,29 @@ F6.registerNode("file-node", {
     keyShape.attr({
       width: backRectW,
       height: bbox.height + 4,
-      x: backRectX
+      x: backRectX,
     });
     return keyShape;
-  }
+  },
 });
-F6.registerEdge("step-line", {
-  getControlPoints: function getControlPoints(cfg) {
-    const {
-      startPoint
-    } = cfg;
-    const {
-      endPoint
-    } = cfg;
-    return [startPoint, {
-      x: startPoint.x,
-      y: endPoint.y
-    }, endPoint];
-  }
-}, "polyline");
+F6.registerEdge(
+  "step-line",
+  {
+    getControlPoints: function getControlPoints(cfg) {
+      const { startPoint } = cfg;
+      const { endPoint } = cfg;
+      return [
+        startPoint,
+        {
+          x: startPoint.x,
+          y: endPoint.y,
+        },
+        endPoint,
+      ];
+    },
+  },
+  "polyline",
+);
 const graph = new F6.TreeGraph({
   width,
   height,
@@ -93,20 +102,24 @@ const graph = new F6.TreeGraph({
   pixelRatio,
   fitView: true,
   modes: {
-    default: [{
-      type: "collapse-expand",
-      animate: false,
-      onChange: function onChange(item, collapsed) {
-        const model = item.getModel();
-        model.collapsed = collapsed;
-        return true;
-      }
-    }, "drag-canvas", "zoom-canvas"]
+    default: [
+      {
+        type: "collapse-expand",
+        animate: false,
+        onChange: function onChange(item, collapsed) {
+          const model = item.getModel();
+          model.collapsed = collapsed;
+          return true;
+        },
+      },
+      "drag-canvas",
+      "zoom-canvas",
+    ],
   },
   defaultEdge: {
     style: {
-      stroke: "#A3B1BF"
-    }
+      stroke: "#A3B1BF",
+    },
   },
   layout: {
     type: "indented",
@@ -118,8 +131,8 @@ const graph = new F6.TreeGraph({
     },
     getWidth: function getWidth() {
       return 16;
-    }
-  }
+    },
+  },
 });
 let centerX = 0;
 graph.node(function (node) {
@@ -131,25 +144,26 @@ graph.node(function (node) {
 
   if (node.children && node.children.length > 0) {
     position_value = "left";
-  } else if (node.x > centerX) position_value = "right";else position_value = "left";
+  } else if (node.x > centerX) position_value = "right";
+  else position_value = "left";
 
   return {
     label: node.id,
     labelCfg: {
       offset: 5,
-      position: position_value
-    }
+      position: position_value,
+    },
   };
 });
-graph.node(node => {
+graph.node((node) => {
   return {
     type: "file-node",
-    label: node.name
+    label: node.name,
   };
 });
 graph.edge(() => {
   return {
-    type: "step-line"
+    type: "step-line",
   };
 });
 graph.data(data);

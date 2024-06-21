@@ -17,13 +17,13 @@ order: 2
 
 ```javascript
 // 获取 group
-const group = graph.get('group');
+const group = graph.get("group");
 
 // 获取 canvas 实例
-const canvas = graph.get('canvas');
+const canvas = graph.get("canvas");
 
 // 获取 autoPaint 值
-const autoPaint = graph.get('autoPaint');
+const autoPaint = graph.get("autoPaint");
 ```
 
 ### graph.set(key, val)
@@ -41,13 +41,13 @@ const autoPaint = graph.get('autoPaint');
 
 ```javascript
 // 设置 capture 值为 false
-graph.set('capture', false);
+graph.set("capture", false);
 
 // 设置 customGroup 值为 group
-graph.set('customGroup', group);
+graph.set("customGroup", group);
 
 // 设置 nodeIdList 值为数组
-graph.set('nodeIdList', [1, 3, 5]);
+graph.set("nodeIdList", [1, 3, 5]);
 ```
 
 ### graph.getContainer()

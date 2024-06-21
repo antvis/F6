@@ -1,6 +1,6 @@
-import F6 from '@antv/f6-wx';
+import F6 from "@antv/f6-wx";
 
-import data from './data';
+import data from "./data";
 
 /**
  * fix-item:缩放画布时固定元素
@@ -9,7 +9,7 @@ import data from './data';
 Page({
   canvas: null,
   ctx: null,
-  renderer: '', // mini、mini-native等，F6需要，标记环境
+  renderer: "", // mini、mini-native等，F6需要，标记环境
   isCanvasInit: false, // canvas是否准备好了
   graph: null,
 
@@ -22,7 +22,7 @@ Page({
       fixAll: true,
       fixLabel: false,
       fixLineWidth: false,
-      fixState: 'yourStateName', // 'selected' by default
+      fixState: "yourStateName", // 'selected' by default
     },
   },
 
@@ -33,33 +33,33 @@ Page({
     this.graph.setMode(mode);
     // 添加模式
     switch (mode) {
-      case 'all':
+      case "all":
         this.setData({
           fixSelectedItems: {
             fixAll: true,
             fixLabel: false,
             fixLineWidth: false,
-            fixState: 'yourStateName',
+            fixState: "yourStateName",
           },
         });
         break;
-      case 'font':
+      case "font":
         this.setData({
           fixSelectedItems: {
             fixAll: false,
             fixLabel: true,
             fixLineWidth: false,
-            fixState: 'yourStateName',
+            fixState: "yourStateName",
           },
         });
         break;
-      case 'lineWidth':
+      case "lineWidth":
         this.setData({
           fixSelectedItems: {
             fixAll: false,
             fixLabel: false,
             fixLineWidth: true,
-            fixState: 'yourStateName',
+            fixState: "yourStateName",
           },
         });
         break;
@@ -102,7 +102,7 @@ Page({
 
   updateChart() {
     const { width, height, pixelRatio, fixSelectedItems } = this.data;
-    console.log('update', fixSelectedItems);
+    console.log("update", fixSelectedItems);
 
     // 创建F6实例
     this.graph = new F6.Graph({
@@ -115,10 +115,10 @@ Page({
       fitViewPadding: 60,
       modes: {
         default: [
-          'drag-canvas',
-          'drag-node',
+          "drag-canvas",
+          "drag-node",
           {
-            type: 'zoom-canvas',
+            type: "zoom-canvas",
             fixSelectedItems,
           },
         ],
@@ -127,45 +127,45 @@ Page({
         size: [10, 10],
         style: {
           lineWidth: 2,
-          fill: '#DEE9FF',
-          stroke: '#5B8FF9',
+          fill: "#DEE9FF",
+          stroke: "#5B8FF9",
         },
       },
       defaultEdge: {
         size: 1,
         style: {
-          stroke: '#e2e2e2',
+          stroke: "#e2e2e2",
           lineAppendWidth: 2,
         },
       },
       nodeStateStyles: {
         yourStateName: {
-          stroke: '#f00',
+          stroke: "#f00",
           lineWidth: 3,
         },
       },
       edgeStateStyles: {
         yourStateName: {
-          stroke: '#f00',
+          stroke: "#f00",
           lineWidth: 3,
         },
       },
     });
 
     // 监听
-    this.graph.on('node:tap', (e) => {
-      this.graph.setItemState(e.item, 'yourStateName', true);
+    this.graph.on("node:tap", (e) => {
+      this.graph.setItemState(e.item, "yourStateName", true);
     });
-    this.graph.on('edge:tap', (e) => {
-      this.graph.setItemState(e.item, 'yourStateName', true);
+    this.graph.on("edge:tap", (e) => {
+      this.graph.setItemState(e.item, "yourStateName", true);
     });
 
-    this.graph.on('canvas:tap', () => {
-      this.graph.findAllByState('node', 'yourStateName').forEach((node) => {
-        this.graph.setItemState(node, 'yourStateName', false);
+    this.graph.on("canvas:tap", () => {
+      this.graph.findAllByState("node", "yourStateName").forEach((node) => {
+        this.graph.setItemState(node, "yourStateName", false);
       });
-      this.graph.findAllByState('edge', 'yourStateName').forEach((edge) => {
-        this.graph.setItemState(edge, 'yourStateName', false);
+      this.graph.findAllByState("edge", "yourStateName").forEach((edge) => {
+        this.graph.setItemState(edge, "yourStateName", false);
       });
     });
 

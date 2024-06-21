@@ -1,5 +1,9 @@
-import { parseAttr } from '../parser/attr-parser';
-import { isSelectorMatchDom, selectorToArr, walkDomSelector } from '../utils/index';
+import { parseAttr } from "../parser/attr-parser";
+import {
+  isSelectorMatchDom,
+  selectorToArr,
+  walkDomSelector,
+} from "../utils/index";
 
 export class StyleNode {
   dom = null;
@@ -9,34 +13,34 @@ export class StyleNode {
 }
 
 const defaultStyle = {
-  'font-family': 'serif',
+  "font-family": "serif",
 };
 
 const inheritAttr = [
-  'font',
-  'fontFamily',
-  'fontWeight',
-  'fontSize',
-  'fontVariant',
-  'fontStretch',
-  'textIndent',
-  'textAlign',
-  'textShadow',
-  'lineHeight',
-  'color',
-  'direction',
-  'wordSpacing',
-  'letterSpacing',
-  'textTransform',
-  'captionSide',
-  'borderCollapse',
-  'emptyCells',
-  'listStyleType',
-  'listStyleImage',
-  'listStylePosition',
-  'listStyle',
-  'visibility',
-  'cursor',
+  "font",
+  "fontFamily",
+  "fontWeight",
+  "fontSize",
+  "fontVariant",
+  "fontStretch",
+  "textIndent",
+  "textAlign",
+  "textShadow",
+  "lineHeight",
+  "color",
+  "direction",
+  "wordSpacing",
+  "letterSpacing",
+  "textTransform",
+  "captionSide",
+  "borderCollapse",
+  "emptyCells",
+  "listStyleType",
+  "listStyleImage",
+  "listStylePosition",
+  "listStyle",
+  "visibility",
+  "cursor",
 ];
 
 class StyleParser {
@@ -63,11 +67,11 @@ class StyleParser {
     const rulesHash = this.rulesHash;
     for (let rule of rules.stylesheet.rules) {
       // 处理keyframe等
-      if (rule.type !== 'rule') continue;
+      if (rule.type !== "rule") continue;
       for (let selector of rule.selectors) {
         const keySeletor = this.genKeySelector(selector);
         switch (keySeletor[0]) {
-          case '#':
+          case "#":
             const key = keySeletor.slice(1);
             rulesHash.ids[key] = [
               ...(rulesHash.ids[key] || []),
@@ -78,7 +82,7 @@ class StyleParser {
               },
             ];
             break;
-          case '.':
+          case ".":
             const classKey = keySeletor.slice(1);
             rulesHash.classes[classKey] = [
               ...(rulesHash.classes[classKey] || []),
@@ -126,7 +130,7 @@ class StyleParser {
   genSpecificity(selector) {
     const idCount = selector.match(/#\w+/g)?.length || 0;
     const classCount = selector.match(/\.\w+/g)?.length || 0;
-    const arr = selector.split(/\s+|#|\./).filter((s) => s !== '');
+    const arr = selector.split(/\s+|#|\./).filter((s) => s !== "");
     const tagCount = arr.length - idCount - classCount;
     return idCount * 100 + classCount * 10 + tagCount;
   }
@@ -161,13 +165,13 @@ class StyleParser {
     const filteredRules = [];
     walkDomSelector(dom, (keyName, selector) => {
       switch (keyName) {
-        case 'id':
+        case "id":
           filteredRules.push(...(this.rulesHash.ids[selector] || []));
           break;
-        case 'class':
+        case "class":
           filteredRules.push(...(this.rulesHash.classes[selector] || []));
           break;
-        case 'tagName':
+        case "tagName":
           filteredRules.push(...(this.rulesHash.tagNames[selector] || []));
         default:
           break;
@@ -206,25 +210,28 @@ class StyleParser {
     finaleRules.sort((a, b) => a.specificity - b.specificity);
 
     // 按顺序合并style，高优先级覆盖
-    const finalStyle = finaleRules.reduce((prev, cur) => Object.assign(prev, cur.style), {
-      ...defaultStyle,
-    });
+    const finalStyle = finaleRules.reduce(
+      (prev, cur) => Object.assign(prev, cur.style),
+      {
+        ...defaultStyle,
+      },
+    );
 
     // 解析属性值/属性转驼峰
     let jsStyle = {};
     for (let [key, value] of Object.entries(finalStyle)) {
       const camel = key
-        .split('-')
+        .split("-")
         .map((s, index) => {
           if (index > 0) {
             return `${s[0].toUpperCase()}${s.slice(1)}`;
           }
           return s;
         })
-        .join('');
+        .join("");
 
       const parsedValue = parseAttr(key, value);
-      if (typeof parsedValue === 'object') {
+      if (typeof parsedValue === "object") {
         jsStyle = { ...jsStyle, ...parsedValue };
       } else {
         jsStyle[camel] = parsedValue;
@@ -234,7 +241,7 @@ class StyleParser {
     if (parentStyle) {
       // 处理继承属性
       for (let [key, value] of Object.entries(jsStyle)) {
-        if (value === 'inherit' && inheritAttr.includes(key)) {
+        if (value === "inherit" && inheritAttr.includes(key)) {
           delete jsStyle[key];
           if (parentStyle[key] !== undefined) {
             jsStyle[key] = parentStyle[key];

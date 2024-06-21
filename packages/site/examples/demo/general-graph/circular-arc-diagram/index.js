@@ -5,7 +5,18 @@ const width = 375;
 const height = 600;
 const pixelRatio = 2;
 F6.registerLayout("mds", mds);
-const colors = ["rgb(91, 143, 249)", "rgb(90, 216, 166)", "rgb(93, 112, 146)", "rgb(246, 189, 22)", "rgb(232, 104, 74)", "rgb(109, 200, 236)", "rgb(146, 112, 202)", "rgb(255, 157, 77)", "rgb(38, 154, 153)", "rgb(227, 137, 163)"];
+const colors = [
+  "rgb(91, 143, 249)",
+  "rgb(90, 216, 166)",
+  "rgb(93, 112, 146)",
+  "rgb(246, 189, 22)",
+  "rgb(232, 104, 74)",
+  "rgb(109, 200, 236)",
+  "rgb(146, 112, 202)",
+  "rgb(255, 157, 77)",
+  "rgb(38, 154, 153)",
+  "rgb(227, 137, 163)",
+];
 const graph = new F6.Graph({
   width,
   height,
@@ -13,52 +24,51 @@ const graph = new F6.Graph({
   linkCenter: true,
   fitView: true,
   modes: {
-    default: [{
-      type: "edge-tooltip",
-      formatText: function formatText(model) {
-        const text = `source: ${model.sourceName}<br/> target: ${model.targetName}`;
-        return text;
-      }
-    }]
+    default: [
+      {
+        type: "edge-tooltip",
+        formatText: function formatText(model) {
+          const text = `source: ${model.sourceName}<br/> target: ${model.targetName}`;
+          return text;
+        },
+      },
+    ],
   },
   defaultNode: {
     style: {
       opacity: 0.8,
       lineWidth: 1,
-      stroke: "#999"
-    }
+      stroke: "#999",
+    },
   },
   defaultEdge: {
     size: 1,
     color: "#e2e2e2",
     style: {
       opacity: 0.6,
-      lineAppendWidth: 3
-    }
-  }
+      lineAppendWidth: 3,
+    },
+  },
 });
 
 function scaleNodeProp(nodes, propName, refPropName, dataRange, outRange) {
   const outLength = outRange[1] - outRange[0];
   const dataLength = dataRange[1] - dataRange[0];
   nodes.forEach(function (n) {
-    n[propName] = (n[refPropName] - dataRange[0]) * outLength / dataLength + outRange[0];
+    n[propName] =
+      ((n[refPropName] - dataRange[0]) * outLength) / dataLength + outRange[0];
   });
 }
 
 const origin = [width / 2, height / 2];
 const radius = width < height ? width / 3 : height / 3;
-const {
-  edges
-} = data;
-const {
-  nodes
-} = data;
+const { edges } = data;
+const { nodes } = data;
 const nodeMap = new Map();
 const clusterMap = new Map();
 let clusterId = 0;
 const n = nodes.length;
-const angleSep = Math.PI * 2 / n;
+const angleSep = (Math.PI * 2) / n;
 nodes.forEach(function (node, i) {
   const angle = i * angleSep;
   node.x = radius * Math.cos(angle) + origin[0];
@@ -77,7 +87,7 @@ nodes.forEach(function (node, i) {
     node.style.fill = colors[id % colors.length];
   } else {
     node.style = {
-      fill: colors[id % colors.length]
+      fill: colors[id % colors.length],
     };
   }
 
@@ -87,18 +97,20 @@ nodes.forEach(function (node, i) {
     style: {
       rotate: angle,
       rotateCenter: "lefttop",
-      textAlign: "start"
-    }
+      textAlign: "start",
+    },
   };
 });
-edges.forEach(edge => {
+edges.forEach((edge) => {
   edge.type = "quadratic";
   const source = nodeMap.get(edge.source);
   const target = nodeMap.get(edge.target);
-  edge.controlPoints = [{
-    x: origin[0],
-    y: origin[1]
-  }];
+  edge.controlPoints = [
+    {
+      x: origin[0],
+      y: origin[1],
+    },
+  ];
   edge.color = source.style.fill;
   edge.sourceName = source.name;
   edge.targetName = target.name;

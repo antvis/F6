@@ -11,18 +11,18 @@ const graph = new F6.Graph({
   pixelRatio,
   fitView: true,
   modes: {
-    default: ["zoom-canvas", "drag-canvas", "drag-node"]
+    default: ["zoom-canvas", "drag-canvas", "drag-node"],
   },
   layout: {
     type: "grid",
     begin: [20, 20],
     width: width - 20,
-    height: height - 20
+    height: height - 20,
   },
   animate: true,
   defaultNode: {
-    size: 20
-  }
+    size: 20,
+  },
 });
 graph.data(data);
 graph.render();

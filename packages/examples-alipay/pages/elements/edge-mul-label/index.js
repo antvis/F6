@@ -1,6 +1,6 @@
-import F6 from '@antv/f6';
-import { wrapContext } from '../../../common/utils/context';
-import data from './data';
+import F6 from "@antv/f6";
+import { wrapContext } from "../../../common/utils/context";
+import data from "./data";
 /**
  * 多标签边
  */
@@ -8,7 +8,7 @@ import data from './data';
 Page({
   canvas: null,
   ctx: null,
-  renderer: '', // mini、mini-native等，F6需要，标记环境
+  renderer: "", // mini、mini-native等，F6需要，标记环境
   isCanvasInit: false, // canvas是否准备好了
   graph: null,
 
@@ -23,53 +23,54 @@ Page({
     // 同步获取window的宽高
     const { windowWidth, windowHeight, pixelRatio } = my.getSystemInfoSync();
 
-    F6.registerEdge('multipleLabelsEdge', {
+    F6.registerEdge("multipleLabelsEdge", {
       options: {
         style: {
-          stroke: '#000',
+          stroke: "#000",
         },
       },
       labelAutoRotate: true,
       draw(cfg, group) {
         const { startPoint } = cfg;
         const { endPoint } = cfg;
-        const stroke = (cfg.style && cfg.style.stroke) || this.options.style.stroke;
+        const stroke =
+          (cfg.style && cfg.style.stroke) || this.options.style.stroke;
 
-        const shape = group.addShape('path', {
+        const shape = group.addShape("path", {
           attrs: {
             stroke,
             path: [
-              ['M', startPoint.x, startPoint.y],
-              ['L', endPoint.x, endPoint.y],
+              ["M", startPoint.x, startPoint.y],
+              ["L", endPoint.x, endPoint.y],
             ],
           },
-          name: 'path-shape',
+          name: "path-shape",
         });
         if (cfg.label && cfg.label.length) {
           // the left label
-          group.addShape('text', {
+          group.addShape("text", {
             attrs: {
               text: cfg.label[0],
-              fill: '#595959',
-              textAlign: 'start',
-              textBaseline: 'middle',
+              fill: "#595959",
+              textAlign: "start",
+              textBaseline: "middle",
               x: startPoint.x,
               y: startPoint.y - 10,
             },
-            name: 'left-text-shape',
+            name: "left-text-shape",
           });
           if (cfg.label.length > 1) {
             // the right label
-            group.addShape('text', {
+            group.addShape("text", {
               attrs: {
                 text: cfg.label[1],
-                fill: '#595959',
-                textAlign: 'end',
-                textBaseline: 'middle',
+                fill: "#595959",
+                textAlign: "end",
+                textBaseline: "middle",
                 x: endPoint.x,
                 y: endPoint.y - 10,
               },
-              name: 'right-text-shape',
+              name: "right-text-shape",
             });
           }
         }
@@ -124,18 +125,18 @@ Page({
       modes: {
         default: [
           {
-            type: 'drag-node',
+            type: "drag-node",
             delegate: false,
           },
-          'drag-canvas',
+          "drag-canvas",
           {
-            type: 'zoom-canvas',
+            type: "zoom-canvas",
             sensitivity: 0.5,
           },
         ],
       },
       defaultNode: {
-        type: 'circle',
+        type: "circle",
         size: [50],
         linkPoints: {
           left: true,
@@ -143,9 +144,9 @@ Page({
         },
       },
       defaultEdge: {
-        type: 'multipleLabelsEdge',
+        type: "multipleLabelsEdge",
         style: {
-          stroke: '#F6BD16',
+          stroke: "#F6BD16",
         },
       },
     });

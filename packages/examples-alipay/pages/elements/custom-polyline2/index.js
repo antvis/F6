@@ -1,6 +1,6 @@
-import F6 from '@antv/f6';
-import { wrapContext } from '../../../common/utils/context';
-import data from './data';
+import F6 from "@antv/f6";
+import { wrapContext } from "../../../common/utils/context";
+import data from "./data";
 /**
  * customPolyline2
  */
@@ -8,7 +8,7 @@ import data from './data';
 Page({
   canvas: null,
   ctx: null,
-  renderer: '', // mini、mini-native等，F6需要，标记环境
+  renderer: "", // mini、mini-native等，F6需要，标记环境
   isCanvasInit: false, // canvas是否准备好了
   graph: null,
 
@@ -23,35 +23,36 @@ Page({
     // 同步获取window的宽高
     const { windowWidth, windowHeight, pixelRatio } = my.getSystemInfoSync();
 
-    F6.registerEdge('line-arrow', {
+    F6.registerEdge("line-arrow", {
       options: {
         style: {
-          stroke: '#ccc',
+          stroke: "#ccc",
         },
       },
       draw: function draw(cfg, group) {
         const { startPoint } = cfg;
         const { endPoint } = cfg;
 
-        const stroke = (cfg.style && cfg.style.stroke) || this.options.style.stroke;
+        const stroke =
+          (cfg.style && cfg.style.stroke) || this.options.style.stroke;
         const startArrow = (cfg.style && cfg.style.startArrow) || undefined;
         const endArrow = (cfg.style && cfg.style.endArrow) || undefined;
 
-        const keyShape = group.addShape('path', {
+        const keyShape = group.addShape("path", {
           attrs: {
             path: [
-              ['M', startPoint.x, startPoint.y],
-              ['L', endPoint.x / 3 + (2 / 3) * startPoint.x, startPoint.y],
-              ['L', endPoint.x / 3 + (2 / 3) * startPoint.x, endPoint.y],
-              ['L', endPoint.x, endPoint.y],
+              ["M", startPoint.x, startPoint.y],
+              ["L", endPoint.x / 3 + (2 / 3) * startPoint.x, startPoint.y],
+              ["L", endPoint.x / 3 + (2 / 3) * startPoint.x, endPoint.y],
+              ["L", endPoint.x, endPoint.y],
             ],
             stroke,
             lineWidth: 1,
             startArrow,
             endArrow,
           },
-          className: 'edge-shape',
-          name: 'edge-shape',
+          className: "edge-shape",
+          name: "edge-shape",
         });
         return keyShape;
       },
@@ -101,33 +102,33 @@ Page({
       fitCenter: true,
       modes: {
         // behavior
-        default: ['drag-node', 'drag-canvas'],
+        default: ["drag-node", "drag-canvas"],
       },
       defaultNode: {
-        type: 'circle',
+        type: "circle",
         style: {
-          fill: '#DEE9FF',
-          stroke: '#5B8FF9',
+          fill: "#DEE9FF",
+          stroke: "#5B8FF9",
         },
         linkPoints: {
           left: true,
           right: true,
-          fill: '#fff',
-          stroke: '#1890FF',
+          fill: "#fff",
+          stroke: "#1890FF",
           size: 3,
         },
       },
       defaultEdge: {
-        type: 'line-arrow',
+        type: "line-arrow",
         style: {
-          stroke: '#F6BD16',
+          stroke: "#F6BD16",
           startArrow: {
-            path: 'M 0,0 L 12,6 L 9,0 L 12,-6 Z',
-            fill: '#F6BD16',
+            path: "M 0,0 L 12,6 L 9,0 L 12,-6 Z",
+            fill: "#F6BD16",
           },
           endArrow: {
-            path: 'M 0,0 L 12,6 L 9,0 L 12,-6 Z',
-            fill: '#F6BD16',
+            path: "M 0,0 L 12,6 L 9,0 L 12,-6 Z",
+            fill: "#F6BD16",
           },
         },
       },

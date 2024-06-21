@@ -1,7 +1,7 @@
-import { createSegmentNode } from '@antv/f6-ui';
-import { ShapeStyle } from '@antv/f6-core';
-import { dispatch } from '../../dispatcher';
-import { SLIDER_PAUSE, SLIDER_PLAY } from '../../utils/const';
+import { createSegmentNode } from "@antv/f6-ui";
+import { ShapeStyle } from "@antv/f6-core";
+import { dispatch } from "../../dispatcher";
+import { SLIDER_PAUSE, SLIDER_PLAY } from "../../utils/const";
 
 function createPlayBtn(style: ShapeStyle) {
   const { radius = 15, fill } = style || {};
@@ -55,18 +55,18 @@ function createPlayBtn(style: ShapeStyle) {
     }
   `;
   const node = createSegmentNode(html, css);
-  const startNode = node.query('.start');
-  const pauseNode = node.query('.pause');
+  const startNode = node.query(".start");
+  const pauseNode = node.query(".pause");
 
   let isPause = true;
   function update() {
-    startNode.setStyle('display', isPause ? 'flex' : 'none');
-    pauseNode.setStyle('display', isPause ? 'none' : 'flex');
+    startNode.setStyle("display", isPause ? "flex" : "none");
+    pauseNode.setStyle("display", isPause ? "none" : "flex");
   }
 
   update();
 
-  node.on('tap', () => {
+  node.on("tap", () => {
     dispatch(isPause ? SLIDER_PLAY : SLIDER_PAUSE);
     isPause = !isPause;
     update();

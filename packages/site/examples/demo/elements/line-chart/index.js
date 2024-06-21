@@ -15,16 +15,16 @@ F6.registerNode("circleLine", {
         attrs: {
           x: 0,
           y: 0,
-          r: refR += refInc,
+          r: (refR += refInc),
           stroke: "#bae7ff",
-          lineDash: [4, 4]
+          lineDash: [4, 4],
         },
-        name: "circle-shape"
+        name: "circle-shape",
       });
     }
 
-    const everyIncAngle = 2 * Math.PI * (360 / 5 / 5) / 360;
-    cfg.details.forEach(cat => {
+    const everyIncAngle = (2 * Math.PI * (360 / 5 / 5)) / 360;
+    cfg.details.forEach((cat) => {
       const postions = [];
       cat.values.forEach((item, index) => {
         const r = baseR + item;
@@ -40,13 +40,13 @@ F6.registerNode("circleLine", {
           postions.push([xPos_, yPos_]);
         }
       });
-      const pathArrayL = postions.map(item => ["L", ...item]);
+      const pathArrayL = postions.map((item) => ["L", ...item]);
       group.addShape("path", {
         attrs: {
           path: [["M", 0, 0], ...pathArrayL, ["Z"]],
-          stroke: cat.color
+          stroke: cat.color,
         },
-        name: "path-shape"
+        name: "path-shape",
       });
       postions.forEach((pos, index) => {
         if (index !== 5) {
@@ -57,25 +57,31 @@ F6.registerNode("circleLine", {
               r: 2,
               fill: "black",
               stroke: cat.color,
-              cursor: "pointer"
+              cursor: "pointer",
             },
-            name: "circle-shape"
+            name: "circle-shape",
           });
           littleCircle.on("mouseenter", function () {
-            littleCircle.animate({
-              r: 5
-            }, {
-              repeat: false,
-              duration: 200
-            });
+            littleCircle.animate(
+              {
+                r: 5,
+              },
+              {
+                repeat: false,
+                duration: 200,
+              },
+            );
           });
           littleCircle.on("mouseleave", function () {
-            littleCircle.animate({
-              r: 2
-            }, {
-              repeat: false,
-              duration: 200
-            });
+            littleCircle.animate(
+              {
+                r: 2,
+              },
+              {
+                repeat: false,
+                duration: 200,
+              },
+            );
           });
           littleCircle.set("name", "littleCircle");
         }
@@ -87,9 +93,9 @@ F6.registerNode("circleLine", {
         y: 0,
         r: baseR,
         fill: cfg.centerColor,
-        stroke: "darkgray"
+        stroke: "darkgray",
       },
-      name: "circle-shape"
+      name: "circle-shape",
     });
 
     if (cfg.label) {
@@ -101,22 +107,21 @@ F6.registerNode("circleLine", {
           textBaseline: "middle",
           text: cfg.label,
           fill: "white",
-          fontStyle: "bold"
+          fontStyle: "bold",
         },
-        name: "text-shape"
+        name: "text-shape",
       });
     }
 
     return group;
-  }
-
+  },
 });
 const graph = new F6.Graph({
   width,
   height,
   pixelRatio,
   fitView: true,
-  fitCenter: true
+  fitCenter: true,
 });
 graph.data(data);
 graph.render();

@@ -1,7 +1,7 @@
-import F6 from '@antv/f6-wx';
-import TreeGraph from '@antv/f6-wx/extends/graph/treeGraph';
+import F6 from "@antv/f6-wx";
+import TreeGraph from "@antv/f6-wx/extends/graph/treeGraph";
 
-import data from './data.js';
+import data from "./data.js";
 
 /**
  * drag-subtree:拖拽子树改变结构
@@ -10,7 +10,7 @@ import data from './data.js';
 Page({
   canvas: null,
   ctx: null, // 延迟获取的2d context
-  renderer: '', // mini、mini-native等，F6需要，标记环境
+  renderer: "", // mini、mini-native等，F6需要，标记环境
   isCanvasInit: false, // canvas是否准备好了
   graph: null,
 
@@ -20,25 +20,25 @@ Page({
     pixelRatio: 1,
     forceMini: false,
     discription:
-      'Click a node to collapse the siblings with same cluster, and click again to expand',
+      "Click a node to collapse the siblings with same cluster, and click again to expand",
   },
 
   onLoad() {
     // 注册自定义树，节点等
-    F6.registerGraph('TreeGraph', TreeGraph);
+    F6.registerGraph("TreeGraph", TreeGraph);
 
     // custom the collapse-sibling behavior
-    F6.registerBehavior('collapse-slibing', {
+    F6.registerBehavior("collapse-slibing", {
       getEvents() {
         return {
-          'node:click': 'onClick',
+          "node:click": "onClick",
         };
       },
       onClick(evt) {
         const { item } = evt;
         const model = item.getModel();
         const { cluster } = model;
-        const parentData = item.get('parent').getModel();
+        const parentData = item.get("parent").getModel();
         const me = this;
 
         if (model.collapsedSiblings) {
@@ -72,10 +72,14 @@ Page({
             aggregateNode.collapsedSiblings.push(remove);
             modelIdx = Math.min(i, modelIdx);
 
-            aggregateNode.children = (siblingData[i].children || []).concat(aggregateNode.children);
+            aggregateNode.children = (siblingData[i].children || []).concat(
+              aggregateNode.children,
+            );
           } else if (sibling.cluster === cluster && sibling.id !== model.id) {
             count++;
-            aggregateNode.children = (siblingData[i].children || []).concat(aggregateNode.children);
+            aggregateNode.children = (siblingData[i].children || []).concat(
+              aggregateNode.children,
+            );
             const remove = siblingData.splice(i, 1)[0];
             remove.idx = i;
             aggregateNode.collapsedSiblings.push(remove);
@@ -129,8 +133,13 @@ Page({
 
   updateChart() {
     const { width, height, pixelRatio } = this.data;
-    const colors = ['#5F95FF', '#61DDAA', '#65789B'];
-    const colorSets = F6.Util.getColorSetsBySubjectColors(colors, '#fff', 'default', '#777');
+    const colors = ["#5F95FF", "#61DDAA", "#65789B"];
+    const colorSets = F6.Util.getColorSetsBySubjectColors(
+      colors,
+      "#fff",
+      "default",
+      "#777",
+    );
 
     // 创建F6实例
     this.graph = new F6.TreeGraph({
@@ -141,11 +150,11 @@ Page({
       pixelRatio,
       fitView: true,
       modes: {
-        default: ['collapse-slibing', 'drag-canvas'],
+        default: ["collapse-slibing", "drag-canvas"],
       },
       layout: {
-        type: 'compactBox',
-        direction: 'LR',
+        type: "compactBox",
+        direction: "LR",
         defalutPosition: [],
         getId: function getId(d) {
           return d.id;
@@ -164,18 +173,18 @@ Page({
         },
       },
       defaultEdge: {
-        type: 'cubic-horizontal',
-        color: '#A3B1BF',
+        type: "cubic-horizontal",
+        color: "#A3B1BF",
       },
     });
 
     this.graph.node((node) => {
-      const colorSet = colorSets[+node.cluster.replace('c', '')];
+      const colorSet = colorSets[+node.cluster.replace("c", "")];
       return {
         size: node.size || 16,
         style: {
-          fill: colorSet.mainFill || '#DEE9FF',
-          stroke: colorSet.mainStroke || '#5B8FF9',
+          fill: colorSet.mainFill || "#DEE9FF",
+          stroke: colorSet.mainStroke || "#5B8FF9",
         },
       };
     });

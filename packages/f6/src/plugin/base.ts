@@ -1,6 +1,6 @@
-import { wrapBehavior, each, deepMix } from '@antv/util';
-import { IGraph } from '../interface/graph';
-import { IG6GraphEvent } from '@antv/f6-core';
+import { wrapBehavior, each, deepMix } from "@antv/util";
+import { IGraph } from "../interface/graph";
+import { IG6GraphEvent } from "@antv/f6-core";
 
 export interface IPluginBaseConfig {
   container?: HTMLDivElement | string | null;
@@ -43,7 +43,7 @@ export default abstract class PluginBase {
    */
   public initPlugin(graph: IGraph) {
     const self = this;
-    self.set('graph', graph);
+    self.set("graph", graph);
 
     const events = self.getEvents();
 
@@ -98,7 +98,7 @@ export default abstract class PluginBase {
    */
   public destroyPlugin() {
     this.destroy();
-    const graph = this.get('graph');
+    const graph = this.get("graph");
     const events = this._events;
     each(events, (v, k) => {
       graph.off(k, v);

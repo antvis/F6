@@ -6,15 +6,15 @@ import {
   Arrow,
   Marker,
   Shape,
-} from '@antv/f6-core';
-import { ICanvas, IGroup, IShape } from '@antv/g-base';
-import * as Algorithm from '@antv/algorithm';
-import Graph, { registerGraph as oRegisterGraph } from './graph/graph';
-import { Layout, Layouts, registerLayout, unRegisterLayout } from './layout';
-import Global from './global';
-import Util from './util';
-import './element';
-import './behavior';
+} from "@antv/f6-core";
+import { ICanvas, IGroup, IShape } from "@antv/g-base";
+import * as Algorithm from "@antv/algorithm";
+import Graph, { registerGraph as oRegisterGraph } from "./graph/graph";
+import { Layout, Layouts, registerLayout, unRegisterLayout } from "./layout";
+import Global from "./global";
+import Util from "./util";
+import "./element";
+import "./behavior";
 
 const F6 = {
   version: Global.version,
@@ -36,7 +36,11 @@ const F6 = {
 };
 
 function registerExtenderWrapper<T1, T2>(
-  registerExtender: (registerName: T1, registerFunction: T2, global: Object) => Object,
+  registerExtender: (
+    registerName: T1,
+    registerFunction: T2,
+    global: Object,
+  ) => Object,
 ): (registerName: T1, registerFunction: T2) => Object {
   return function (...args) {
     return registerExtender.apply(null, [...args, F6]);
@@ -47,9 +51,9 @@ const registerGraph = registerExtenderWrapper(oRegisterGraph);
 
 (F6 as any).registerGraph = registerGraph;
 
-export * from '@antv/f6-core';
-export * from './types';
-export * from './interface/graph';
+export * from "@antv/f6-core";
+export * from "./types";
+export * from "./interface/graph";
 
 export {
   Graph,

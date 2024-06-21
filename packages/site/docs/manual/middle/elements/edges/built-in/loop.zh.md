@@ -149,7 +149,7 @@ const graph = new F6.Graph({
   defaultEdge: {
     // ... 其他配置
     loopCfg: {
-      position: 'left',
+      position: "left",
       dist: 100,
       clockwise: false,
     },

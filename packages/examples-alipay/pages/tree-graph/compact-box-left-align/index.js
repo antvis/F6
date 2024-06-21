@@ -1,8 +1,8 @@
-import F6 from '@antv/f6';
-import TreeGraph from '@antv/f6/dist/extends/graph/treeGraph';
-import { wrapContext } from '../../../common/utils/context';
+import F6 from "@antv/f6";
+import TreeGraph from "@antv/f6/dist/extends/graph/treeGraph";
+import { wrapContext } from "../../../common/utils/context";
 
-import data from './data.js';
+import data from "./data.js";
 
 /**
  * 节点左右对齐的紧凑树
@@ -11,7 +11,7 @@ import data from './data.js';
 Page({
   canvas: null,
   ctx: null, // 延迟获取的2d context
-  renderer: '', // mini、mini-native等，F6需要，标记环境
+  renderer: "", // mini、mini-native等，F6需要，标记环境
   isCanvasInit: false, // canvas是否准备好了
   graph: null,
 
@@ -24,7 +24,7 @@ Page({
 
   onLoad() {
     // 注册自定义树，节点等
-    F6.registerGraph('TreeGraph', TreeGraph);
+    F6.registerGraph("TreeGraph", TreeGraph);
 
     // 同步获取window的宽高
     const { windowWidth, windowHeight, pixelRatio } = my.getSystemInfoSync();
@@ -60,10 +60,10 @@ Page({
 
   updateChart() {
     const fontSize = 15;
-    F6.registerNode('crect', {
+    F6.registerNode("crect", {
       draw: (cfg, group) => {
         const width = cfg.id.length * 10;
-        const rect = group.addShape('rect', {
+        const rect = group.addShape("rect", {
           attrs: {
             x: 0,
             y: -10,
@@ -73,34 +73,34 @@ Page({
             lineWidth: 0,
             opacity: 0,
           },
-          name: 'rect-shape',
+          name: "rect-shape",
           draggable: true,
         });
-        const label = group.addShape('text', {
+        const label = group.addShape("text", {
           attrs: {
             text: cfg.id,
-            fill: '#ccc',
+            fill: "#ccc",
             fontSize,
             x: 0,
             y: 0,
           },
-          name: 'label-shape',
+          name: "label-shape",
           draggable: true,
         });
         const bboxWidth = label.getBBox().width + 20;
         rect.attr({ width: bboxWidth });
 
-        group.addShape('path', {
+        group.addShape("path", {
           attrs: {
             lineWidth: 1,
-            fill: '#ccc',
-            stroke: '#ccc',
+            fill: "#ccc",
+            stroke: "#ccc",
             path: [
-              ['M', 0, 0],
-              ['L', bboxWidth, 0],
+              ["M", 0, 0],
+              ["L", bboxWidth, 0],
             ],
           },
-          name: 'path-shape',
+          name: "path-shape",
           draggable: true,
         });
 
@@ -126,20 +126,20 @@ Page({
       pixelRatio,
       fitView: true,
       modes: {
-        default: ['collapse-expand', 'drag-canvas', 'zoom-canvas'],
+        default: ["collapse-expand", "drag-canvas", "zoom-canvas"],
       },
       defaultNode: {
-        type: 'crect',
+        type: "crect",
       },
       defaultEdge: {
-        type: 'cubic-horizontal',
+        type: "cubic-horizontal",
         style: {
-          stroke: '#A3B1BF',
+          stroke: "#A3B1BF",
         },
       },
       layout: {
-        type: 'compactBox',
-        direction: 'LR',
+        type: "compactBox",
+        direction: "LR",
         getId: function getId(d) {
           return d.id;
         },

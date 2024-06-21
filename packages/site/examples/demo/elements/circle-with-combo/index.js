@@ -12,26 +12,29 @@ const graph = new F6.Graph({
   fitCenter: true,
   groupByTypes: false,
   modes: {
-    default: ["drag-canvas", "drag-node", "drag-combo", "collapse-expand-combo"]
+    default: [
+      "drag-canvas",
+      "drag-node",
+      "drag-combo",
+      "collapse-expand-combo",
+    ],
   },
   defaultCombo: {
     type: "circle",
     labelCfg: {
-      position: "top"
-    }
-  }
+      position: "top",
+    },
+  },
 });
 graph.data(data);
 graph.render();
 graph.fitView();
-graph.on("edge:tap", evt => {
-  const {
-    item
-  } = evt;
+graph.on("edge:tap", (evt) => {
+  const { item } = evt;
   graph.setItemState(item, "selected", true);
 });
 graph.on("canvas:tap", () => {
-  graph.getEdges().forEach(edge => {
+  graph.getEdges().forEach((edge) => {
     graph.clearItemStates(edge);
   });
 });

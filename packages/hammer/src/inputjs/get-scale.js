@@ -1,5 +1,5 @@
-import { PROPS_CLIENT_XY } from './input-consts';
-import getDistance from './get-distance';
+import { PROPS_CLIENT_XY } from "./input-consts";
+import getDistance from "./get-distance";
 /**
  * @private
  * calculate the scale factor between two pointersets

@@ -1,6 +1,6 @@
-import F6 from '@antv/f6-wx';
-import data from './data';
-import { EdgeFilterLens } from '@antv/f6-plugin/f6Plugin';
+import F6 from "@antv/f6-wx";
+import data from "./data";
+import { EdgeFilterLens } from "@antv/f6-plugin/f6Plugin";
 
 /**
  * basic-arc-diagram
@@ -8,7 +8,7 @@ import { EdgeFilterLens } from '@antv/f6-plugin/f6Plugin';
 Page({
   canvas: null,
   ctx: null,
-  renderer: '', // mini、mini-native等，F6需要，标记环境
+  renderer: "", // mini、mini-native等，F6需要，标记环境
   isCanvasInit: false, // canvas是否准备好了
   graph: null,
 
@@ -56,16 +56,16 @@ Page({
   updateChart() {
     const { width, height, pixelRatio } = this.data;
     data.edges.forEach((edge) => {
-      edge.color = '#aaa';
+      edge.color = "#aaa";
       edge.size = 2;
       edge.style = {
         opacity: 0.7,
       };
-      edge.label = 'a';
+      edge.label = "a";
     });
     const filterConfigs = {
-      trigger: 'drag',
-      showLabel: 'edge',
+      trigger: "drag",
+      showLabel: "edge",
       r: 60,
     };
     const filterLens = new EdgeFilterLens(filterConfigs);
@@ -79,24 +79,24 @@ Page({
       height,
       fitView: true,
       modes: {
-        default: ['drag-canvas', 'zoom-canvas', 'drag-node'],
+        default: ["drag-canvas", "zoom-canvas", "drag-node"],
       },
       plugins: [filterLens],
       defaultEdge: {
         labelCfg: {
           autoRotate: true,
           style: {
-            stroke: '#fff',
+            stroke: "#fff",
             lineWidth: 2,
           },
         },
       },
       defaultNode: {
         size: 15,
-        color: '#5B8FF9',
+        color: "#5B8FF9",
         style: {
           lineWidth: 2,
-          fill: '#C6E5FF',
+          fill: "#C6E5FF",
         },
       },
     });
@@ -108,7 +108,7 @@ Page({
         .getContainer()
         .getChildren()
         .forEach((shape) => {
-          if (shape.get('type') === 'text') shape.set('visible', false);
+          if (shape.get("type") === "text") shape.set("visible", false);
         });
     });
   },

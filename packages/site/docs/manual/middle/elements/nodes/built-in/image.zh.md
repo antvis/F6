@@ -90,29 +90,29 @@ size: 200,
   }
 ```
 
-| 名称 | 含义 | 类型 | 备注 |
-| --- | --- | --- | --- | --- |
-| **img** | **图片 URL 地址** | **String** | **image 节点特有** |
-| size | 图片大小 | Number | Array | `size` 为单个值时，表示宽高相等 |
-| label | 标签文本内容 | String |  |
-| labelCfg | 标签文本配置项 | Object | 支持 [节点通用标签配置](/zh/docs/manual/middle/elements/nodes/defaultNode/#标签文本-label-及其配置-labelcfg)。 |
-| **clipCfg** | **裁剪图片的配置项** | **Object** | **默认不裁剪，image 节点特有** |
+| 名称        | 含义                 | 类型       | 备注                                                                                                           |
+| ----------- | -------------------- | ---------- | -------------------------------------------------------------------------------------------------------------- | ------------------------------- |
+| **img**     | **图片 URL 地址**    | **String** | **image 节点特有**                                                                                             |
+| size        | 图片大小             | Number     | Array                                                                                                          | `size` 为单个值时，表示宽高相等 |
+| label       | 标签文本内容         | String     |                                                                                                                |
+| labelCfg    | 标签文本配置项       | Object     | 支持 [节点通用标签配置](/zh/docs/manual/middle/elements/nodes/defaultNode/#标签文本-label-及其配置-labelcfg)。 |
+| **clipCfg** | **裁剪图片的配置项** | **Object** | **默认不裁剪，image 节点特有**                                                                                 |
 
 ### 剪裁
 
 `clipCfg`
 
-| 名称 | 含义 | 类型 | 备注 |
-| --- | --- | --- | --- |
-| type | 裁剪的图片形状 | String | 支持 `'circle'`、`'rect'`、`'ellipse'` |
-| x | 裁剪图形的 x 坐标 | Number | 默认为 0，类型为 `'circle'`、`'rect'`、`'ellipse'` 时生效 |
-| y | 裁剪图形的 y 坐标 | Number | 默认为 0，类型为 `'circle'`、`'rect'`、`'ellipse'` 时生效 |
-| show | 是否启用裁剪功能 | Boolean | 默认不裁剪，值为 `false` |
-| r | 剪裁圆形的半径 | Number | 剪裁 type 为  `'circle'` 时生效 |
-| width | 剪裁矩形的宽度 | Number | 剪裁 type 为 `'rect'` 时生效 |
-| height | 剪裁矩形的长度 | Number | 剪裁 type 为 `'rect'` 时生效 |
-| rx | 剪裁椭圆的长轴半径 | Number | 剪裁 type 为 `'ellipse'` 时生效 |
-| ry | 剪裁椭圆的短轴半径 | Number | 剪裁 type 为 `'ellipse'` 时生效 |
+| 名称   | 含义               | 类型    | 备注                                                      |
+| ------ | ------------------ | ------- | --------------------------------------------------------- |
+| type   | 裁剪的图片形状     | String  | 支持 `'circle'`、`'rect'`、`'ellipse'`                    |
+| x      | 裁剪图形的 x 坐标  | Number  | 默认为 0，类型为 `'circle'`、`'rect'`、`'ellipse'` 时生效 |
+| y      | 裁剪图形的 y 坐标  | Number  | 默认为 0，类型为 `'circle'`、`'rect'`、`'ellipse'` 时生效 |
+| show   | 是否启用裁剪功能   | Boolean | 默认不裁剪，值为 `false`                                  |
+| r      | 剪裁圆形的半径     | Number  | 剪裁 type 为  `'circle'` 时生效                           |
+| width  | 剪裁矩形的宽度     | Number  | 剪裁 type 为 `'rect'` 时生效                              |
+| height | 剪裁矩形的长度     | Number  | 剪裁 type 为 `'rect'` 时生效                              |
+| rx     | 剪裁椭圆的长轴半径 | Number  | 剪裁 type 为 `'ellipse'` 时生效                           |
+| ry     | 剪裁椭圆的短轴半径 | Number  | 剪裁 type 为 `'ellipse'` 时生效                           |
 
 所有的裁剪类型都提供了默认值。下面代码演示在实例化图时全局配置 `clipCfg` 的最简形式：
 

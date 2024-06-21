@@ -40,7 +40,7 @@ const graph = new F6.Graph({
 默认时 graph 会使用 `default` 模式 ，可以拖动和缩放画布，当需要点击选中节点时，可以通过  `graph.setMode('edit')`  来切换到 `edit` 的 Mode 。
 
 ```javascript
-graph.setMode('edit');
+graph.setMode("edit");
 ```
 
 此时 graph 便支持了点击选中节点，`default` 模式下的拖拽画布 `'drag-canvas'`、放缩画布行为 `'zoom-canvas'` 失效。
@@ -57,36 +57,40 @@ graph.setMode('edit');
 
 ```javascript
 // 向 default 模式中添加名为 drag-canvas 的行为，并使用行为的默认配置
-graph.addBehaviors('drag-canvas', 'default');
+graph.addBehaviors("drag-canvas", "default");
 
 // 从 default 模式中移除名为 drag-canvas 的行为
-graph.removeBehaviors('drag-canvas', 'default');
+graph.removeBehaviors("drag-canvas", "default");
 
 // 向 edit 模式中添加名为 drag-canvas 的行为，并定义个性化配置
 graph.addBehaviors(
   {
-    type: 'drag-canvas',
-    direction: 'x',
+    type: "drag-canvas",
+    direction: "x",
   },
-  'edit',
+  "edit",
 );
 
 // 从 edit 模式中移除名为 drag-canvas 的行为
-graph.removeBehaviors('drag-canvas', 'edit');
+graph.removeBehaviors("drag-canvas", "edit");
 
 // 一次向 default 模式中添加多个行为
-graph.addBehaviors(['drag-canvas', 'zoom-canvas'], 'default');
+graph.addBehaviors(["drag-canvas", "zoom-canvas"], "default");
 
 // 一次从 default 模式中移除多个行为
-graph.removeBehaviors(['drag-canvas', 'zoom-canvas'], 'default');
+graph.removeBehaviors(["drag-canvas", "zoom-canvas"], "default");
 
 // --------
 
 // 更新 'default' 模式下的 behavior 'zoom-canvas'
-graph.updateBehavior('zoom-canvas', { sensitivity: 1.5, enableOptimize: true}, 'default');
+graph.updateBehavior(
+  "zoom-canvas",
+  { sensitivity: 1.5, enableOptimize: true },
+  "default",
+);
 
 // 更新 'select' 模式下的 behavior 'click-select'
-graph.updateBehavior('click-select', { trigger: 'ctrl' }, 'select');
+graph.updateBehavior("click-select", { trigger: "ctrl" }, "select");
 ```
 
 ## 相关阅读

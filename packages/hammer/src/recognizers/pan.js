@@ -1,4 +1,4 @@
-import AttrRecognizer from './attribute';
+import AttrRecognizer from "./attribute";
 import {
   DIRECTION_ALL,
   DIRECTION_HORIZONTAL,
@@ -8,13 +8,13 @@ import {
   DIRECTION_DOWN,
   DIRECTION_LEFT,
   DIRECTION_RIGHT,
-} from '../inputjs/input-consts';
-import { STATE_BEGAN } from '../recognizerjs/recognizer-consts';
+} from "../inputjs/input-consts";
+import { STATE_BEGAN } from "../recognizerjs/recognizer-consts";
 import {
   TOUCH_ACTION_PAN_X,
   TOUCH_ACTION_PAN_Y,
-} from '../touchactionjs/touchaction-Consts';
-import directionStr from '../recognizerjs/direction-str';
+} from "../touchactionjs/touchaction-Consts";
+import directionStr from "../recognizerjs/direction-str";
 
 /**
  * @private
@@ -94,7 +94,7 @@ export default class PanRecognizer extends AttrRecognizer {
 }
 
 PanRecognizer.prototype.defaults = {
-  event: 'pan',
+  event: "pan",
   threshold: 10,
   pointers: 1,
   direction: DIRECTION_ALL,

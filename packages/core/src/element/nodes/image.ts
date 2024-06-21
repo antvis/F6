@@ -1,19 +1,19 @@
-import { IGroup, IShape } from '@antv/g-base';
-import Shape from '../shape';
-import { NodeConfig, Item } from '../../types';
+import { IGroup, IShape } from "@antv/g-base";
+import Shape from "../shape";
+import { NodeConfig, Item } from "../../types";
 
 /**
  * 基本的图片，可以添加文本，默认文本在图片的下面
  */
 Shape.registerNode(
-  'image',
+  "image",
   {
     options: {
-      img: 'https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*eD7nT6tmYgAAAAAAAAAAAABkARQnAQ',
+      img: "https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*eD7nT6tmYgAAAAAAAAAAAABkARQnAQ",
       size: 200,
       clipCfg: {
         show: false,
-        type: 'circle',
+        type: "circle",
         // circle
         r: 50,
         // ellipse
@@ -31,12 +31,12 @@ Shape.registerNode(
         ],
         // path
         path: [
-          ['M', 25, 25],
-          ['L', 50, 25],
-          ['A', 12.5, 12.5, 0, 1, 1, 50, 50],
-          ['A', 12.5, 12.5, 0, 1, 0, 50, 50],
-          ['L', 25, 75],
-          ['Z'],
+          ["M", 25, 25],
+          ["L", 50, 25],
+          ["A", 12.5, 12.5, 0, 1, 1, 50, 50],
+          ["A", 12.5, 12.5, 0, 1, 0, 50, 50],
+          ["L", 25, 75],
+          ["Z"],
         ],
         // 坐标
         x: 0,
@@ -47,8 +47,8 @@ Shape.registerNode(
         // },
       },
     },
-    shapeType: 'image',
-    labelPosition: 'bottom',
+    shapeType: "image",
+    labelPosition: "bottom",
     drawShape(cfg: NodeConfig, group: IGroup): IShape {
       const { shapeType } = this; // || this.type，都已经加了 shapeType
       const style = this.getShapeStyle!(cfg);
@@ -70,10 +70,10 @@ Shape.registerNode(
       }
       // 支持 circle、rect、ellipse、Polygon 及自定义 path clip
       const { type, x, y, style } = clip;
-      if (type === 'circle') {
+      if (type === "circle") {
         const { r } = clip;
         shape.setClip({
-          type: 'circle',
+          type: "circle",
           attrs: {
             r,
             x,
@@ -81,12 +81,12 @@ Shape.registerNode(
             ...style,
           },
         });
-      } else if (type === 'rect') {
+      } else if (type === "rect") {
         const { width, height } = clip;
         const rectX = x - width / 2;
         const rectY = y - height / 2;
         shape.setClip({
-          type: 'rect',
+          type: "rect",
           attrs: {
             x: rectX,
             y: rectY,
@@ -95,10 +95,10 @@ Shape.registerNode(
             ...style,
           },
         });
-      } else if (type === 'ellipse') {
+      } else if (type === "ellipse") {
         const { rx, ry } = clip;
         shape.setClip({
-          type: 'ellipse',
+          type: "ellipse",
           attrs: {
             x,
             y,
@@ -107,19 +107,19 @@ Shape.registerNode(
             ...style,
           },
         });
-      } else if (type === 'polygon') {
+      } else if (type === "polygon") {
         const { points } = clip;
         shape.setClip({
-          type: 'polygon',
+          type: "polygon",
           attrs: {
             points,
             ...style,
           },
         });
-      } else if (type === 'path') {
+      } else if (type === "path") {
         const { path } = clip;
         shape.setClip({
-          type: 'path',
+          type: "path",
           attrs: {
             path,
             ...style,
@@ -151,12 +151,13 @@ Shape.registerNode(
       const group = item.getContainer();
       const shapeClassName = `${this.itemType}-shape`;
       const shape =
-        group.find((element) => element.get('className') === shapeClassName) || item.getKeyShape();
+        group.find((element) => element.get("className") === shapeClassName) ||
+        item.getKeyShape();
       const shapeStyle = this.getShapeStyle!(cfg);
       if (shape) {
         shape.attr(shapeStyle);
       }
     },
   },
-  'single-node',
+  "single-node",
 );

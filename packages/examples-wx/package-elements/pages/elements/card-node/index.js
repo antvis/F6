@@ -1,6 +1,6 @@
-import F6 from '@antv/f6-wx';
+import F6 from "@antv/f6-wx";
 
-import data from './data';
+import data from "./data";
 /**
  * card-node
  */
@@ -8,7 +8,7 @@ import data from './data';
 Page({
   canvas: null,
   ctx: null,
-  renderer: '', // mini、mini-native等，F6需要，标记环境
+  renderer: "", // mini、mini-native等，F6需要，标记环境
   isCanvasInit: false, // canvas是否准备好了
   graph: null,
 
@@ -56,17 +56,17 @@ Page({
   updateChart() {
     const { width, height, pixelRatio } = this.data;
     const ICON_MAP = {
-      a: 'https://gw.alipayobjects.com/mdn/rms_8fd2eb/afts/img/A*0HC-SawWYUoAAAAAAAAAAABkARQnAQ',
-      b: 'https://gw.alipayobjects.com/mdn/rms_8fd2eb/afts/img/A*sxK0RJ1UhNkAAAAAAAAAAABkARQnAQ',
+      a: "https://gw.alipayobjects.com/mdn/rms_8fd2eb/afts/img/A*0HC-SawWYUoAAAAAAAAAAABkARQnAQ",
+      b: "https://gw.alipayobjects.com/mdn/rms_8fd2eb/afts/img/A*sxK0RJ1UhNkAAAAAAAAAAABkARQnAQ",
     };
 
     F6.registerNode(
-      'card-node',
+      "card-node",
       {
         drawShape: function drawShape(cfg, group) {
-          const color = cfg.error ? '#F4664A' : '#30BF78';
+          const color = cfg.error ? "#F4664A" : "#30BF78";
           const r = 2;
-          const shape = group.addShape('rect', {
+          const shape = group.addShape("rect", {
             attrs: {
               x: 0,
               y: 0,
@@ -75,11 +75,11 @@ Page({
               stroke: color,
               radius: r,
             },
-            name: 'main-box',
+            name: "main-box",
             draggable: true,
           });
 
-          group.addShape('rect', {
+          group.addShape("rect", {
             attrs: {
               x: 0,
               y: 0,
@@ -88,75 +88,75 @@ Page({
               fill: color,
               radius: [r, r, 0, 0],
             },
-            name: 'title-box',
+            name: "title-box",
             draggable: true,
           });
 
           // left icon
-          group.addShape('image', {
+          group.addShape("image", {
             attrs: {
               x: 4,
               y: 2,
               height: 16,
               width: 16,
-              cursor: 'pointer',
-              img: ICON_MAP[cfg.nodeType || 'app'],
+              cursor: "pointer",
+              img: ICON_MAP[cfg.nodeType || "app"],
             },
-            name: 'node-icon',
+            name: "node-icon",
           });
 
           // title text
-          group.addShape('text', {
+          group.addShape("text", {
             attrs: {
-              textBaseline: 'top',
+              textBaseline: "top",
               y: 2,
               x: 24,
               lineHeight: 20,
               text: cfg.title,
-              fill: '#fff',
+              fill: "#fff",
             },
-            name: 'title',
+            name: "title",
           });
 
           if (cfg.nodeLevel > 0) {
-            group.addShape('marker', {
+            group.addShape("marker", {
               attrs: {
                 x: 184,
                 y: 30,
                 r: 6,
-                cursor: 'pointer',
+                cursor: "pointer",
                 symbol: cfg.collapse ? F6.Marker.expand : F6.Marker.collapse,
-                stroke: '#666',
+                stroke: "#666",
                 lineWidth: 1,
               },
-              name: 'collapse-icon',
+              name: "collapse-icon",
             });
           }
 
           // The content list
           cfg.panels.forEach((item, index) => {
             // name text
-            group.addShape('text', {
+            group.addShape("text", {
               attrs: {
-                textBaseline: 'top',
+                textBaseline: "top",
                 y: 25,
                 x: 24 + index * 60,
                 lineHeight: 20,
                 text: item.title,
-                fill: 'rgba(0,0,0, 0.4)',
+                fill: "rgba(0,0,0, 0.4)",
               },
               name: `index-title-${index}`,
             });
 
             // value text
-            group.addShape('text', {
+            group.addShape("text", {
               attrs: {
-                textBaseline: 'top',
+                textBaseline: "top",
                 y: 42,
                 x: 24 + index * 60,
                 lineHeight: 20,
                 text: item.value,
-                fill: '#595959',
+                fill: "#595959",
               },
               name: `index-title-${index}`,
             });
@@ -164,7 +164,7 @@ Page({
           return shape;
         },
       },
-      'single-node',
+      "single-node",
     );
 
     // 创建F6实例
@@ -179,10 +179,10 @@ Page({
       fitViewPadding: 60,
       fitCenter: true,
       modes: {
-        default: ['drag-canvas', 'drag-node'],
+        default: ["drag-canvas", "drag-node"],
       },
       defaultNode: {
-        type: 'card-node',
+        type: "card-node",
       },
       extra: {
         createImage: this.canvas && this.canvas.createImage,

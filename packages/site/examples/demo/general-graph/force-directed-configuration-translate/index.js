@@ -12,17 +12,17 @@ const graph = new F6.Graph({
   pixelRatio,
   fitView: true,
   modes: {
-    default: ["drag-canvas", "drag-node"]
+    default: ["drag-canvas", "drag-node"],
   },
   layout: {
     type: "force",
     linkDistance: 50,
-    center: [width / 2, height / 2]
+    center: [width / 2, height / 2],
   },
   animate: true,
   defaultNode: {
-    size: 20
-  }
+    size: 20,
+  },
 });
 graph.data(data);
 graph.render();
@@ -35,21 +35,21 @@ setInterval(() => {
 function layoutConfigTranslation() {
   setTimeout(() => {
     my.setData({
-      desc: "Force layout, linkDistance = 100, preventOverlap: true"
+      desc: "Force layout, linkDistance = 100, preventOverlap: true",
     });
     my.graph.updateLayout({
       linkDistance: 100,
       preventOverlap: true,
-      nodeSize: 20
+      nodeSize: 20,
     });
   }, 2500);
   setTimeout(() => {
     my.setData({
-      desc: "Force layout, linkDistance = 50, preventOverlap: false"
+      desc: "Force layout, linkDistance = 50, preventOverlap: false",
     });
     my.graph.updateLayout({
       linkDistance: 50,
-      preventOverlap: false
+      preventOverlap: false,
     });
   }, 5000);
 }

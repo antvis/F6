@@ -1,6 +1,6 @@
-import F6 from '@antv/f6-wx';
+import F6 from "@antv/f6-wx";
 
-import data from './data';
+import data from "./data";
 /**
  * line-chart
  */
@@ -8,7 +8,7 @@ import data from './data';
 Page({
   canvas: null,
   ctx: null,
-  renderer: '', // mini、mini-native等，F6需要，标记环境
+  renderer: "", // mini、mini-native等，F6需要，标记环境
   isCanvasInit: false, // canvas是否准备好了
   graph: null,
 
@@ -22,7 +22,7 @@ Page({
   onLoad() {
     // 同步获取window的宽高
     const { windowWidth, windowHeight, pixelRatio } = wx.getSystemInfoSync();
-    F6.registerNode('circleLine', {
+    F6.registerNode("circleLine", {
       draw(cfg, group) {
         const baseR = 30;
         let nowAngle = 0;
@@ -31,15 +31,15 @@ Page({
         let refR = baseR;
         const refInc = 10;
         for (let i = 0; i < 5; i++) {
-          group.addShape('circle', {
+          group.addShape("circle", {
             attrs: {
               x: 0,
               y: 0,
               r: (refR += refInc),
-              stroke: '#bae7ff',
+              stroke: "#bae7ff",
               lineDash: [4, 4],
             },
-            name: 'circle-shape',
+            name: "circle-shape",
           });
         }
 
@@ -60,36 +60,36 @@ Page({
               postions.push([xPos_, yPos_]);
             }
           });
-          const pathArrayL = postions.map((item) => ['L', ...item]);
+          const pathArrayL = postions.map((item) => ["L", ...item]);
           // add the connecting line
-          group.addShape('path', {
+          group.addShape("path", {
             attrs: {
               path: [
-                ['M', 0, 0], // the top vertex
+                ["M", 0, 0], // the top vertex
                 ...pathArrayL,
-                ['Z'], // close the path
+                ["Z"], // close the path
               ],
               stroke: cat.color,
             },
-            name: 'path-shape',
+            name: "path-shape",
           });
 
           postions.forEach((pos, index) => {
             if (index !== 5) {
-              const littleCircle = group.addShape('circle', {
+              const littleCircle = group.addShape("circle", {
                 // attrs: style
                 attrs: {
                   x: pos[0],
                   y: pos[1],
                   r: 2,
-                  fill: 'black',
+                  fill: "black",
                   stroke: cat.color,
-                  cursor: 'pointer',
+                  cursor: "pointer",
                 },
-                name: 'circle-shape',
+                name: "circle-shape",
               });
               // 加上交互动画
-              littleCircle.on('mouseenter', () => {
+              littleCircle.on("mouseenter", () => {
                 littleCircle.animate(
                   {
                     r: 5,
@@ -100,7 +100,7 @@ Page({
                   },
                 );
               });
-              littleCircle.on('mouseleave', () => {
+              littleCircle.on("mouseleave", () => {
                 littleCircle.animate(
                   {
                     r: 2,
@@ -112,34 +112,34 @@ Page({
                 );
               });
               // set the name
-              littleCircle.set('name', 'littleCircle');
+              littleCircle.set("name", "littleCircle");
             }
           });
         });
 
         // add a circle with the same color with the background color
-        group.addShape('circle', {
+        group.addShape("circle", {
           attrs: {
             x: 0,
             y: 0,
             r: baseR,
             fill: cfg.centerColor,
-            stroke: 'darkgray',
+            stroke: "darkgray",
           },
-          name: 'circle-shape',
+          name: "circle-shape",
         });
         if (cfg.label) {
-          group.addShape('text', {
+          group.addShape("text", {
             attrs: {
               x: 0, // 居中
               y: 0,
-              textAlign: 'center',
-              textBaseline: 'middle',
+              textAlign: "center",
+              textBaseline: "middle",
               text: cfg.label,
-              fill: 'white',
-              fontStyle: 'bold',
+              fill: "white",
+              fontStyle: "bold",
             },
-            name: 'text-shape',
+            name: "text-shape",
           });
         }
         return group;

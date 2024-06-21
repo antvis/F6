@@ -1,6 +1,6 @@
-import F6 from '@antv/f6-wx';
+import F6 from "@antv/f6-wx";
 
-import data from './data';
+import data from "./data";
 
 /**
  * hide-item
@@ -9,7 +9,7 @@ import data from './data';
 Page({
   canvas: null,
   ctx: null,
-  renderer: '', // mini、mini-native等，F6需要，标记环境
+  renderer: "", // mini、mini-native等，F6需要，标记环境
   isCanvasInit: false, // canvas是否准备好了
   graph: null,
 
@@ -67,13 +67,13 @@ Page({
       fitViewPadding: 60,
       modes: {
         default: [
-          'drag-node',
+          "drag-node",
           {
-            type: 'drag-canvas',
+            type: "drag-canvas",
             enableOptimize: true, // enable the optimize to hide the shapes beside nodes' keyShape
           },
           {
-            type: 'zoom-canvas',
+            type: "zoom-canvas",
             enableOptimize: true, // enable the optimize to hide the shapes beside nodes' keyShape
           },
         ],
@@ -82,26 +82,26 @@ Page({
         size: [10, 10],
         style: {
           lineWidth: 2,
-          fill: '#DEE9FF',
-          stroke: '#5B8FF9',
+          fill: "#DEE9FF",
+          stroke: "#5B8FF9",
         },
       },
       defaultEdge: {
         size: 1,
         style: {
-          stroke: '#e2e2e2',
+          stroke: "#e2e2e2",
           lineAppendWidth: 2,
         },
       },
       nodeStateStyles: {
         yourStateName: {
-          stroke: '#f00',
+          stroke: "#f00",
           lineWidth: 3,
         },
       },
       edgeStateStyles: {
         yourStateName: {
-          stroke: '#f00',
+          stroke: "#f00",
           lineWidth: 3,
         },
       },

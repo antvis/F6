@@ -1,6 +1,6 @@
-import { G6Event, IG6GraphEvent } from '@antv/f6-core';
-import { IGraph } from '../interface/graph';
-import Util from '../util';
+import { G6Event, IG6GraphEvent } from "@antv/f6-core";
+import { IGraph } from "../interface/graph";
+import Util from "../util";
 
 const { cloneEvent, isNaN } = Util;
 
@@ -10,7 +10,7 @@ const DRAG_OFFSET = 10;
 export default {
   getDefaultCfg(): object {
     return {
-      direction: 'both',
+      direction: "both",
       enableOptimize: false,
       // drag-canvas 可拖动的扩展范围，默认为 0，即最多可以拖动一屏的位置
       // 当设置的值大于 0 时，即拖动可以超过一屏
@@ -22,9 +22,9 @@ export default {
   },
   getEvents(): { [key in G6Event]?: string } {
     return {
-      dragstart: 'onDragStart',
-      drag: 'onDragMove',
-      dragend: 'onDragEnd',
+      dragstart: "onDragStart",
+      drag: "onDragMove",
+      dragend: "onDragEnd",
     };
   },
   updateViewport(e: IG6GraphEvent) {
@@ -38,18 +38,18 @@ export default {
     let dx = clientX - origin.x;
     let dy = clientY - origin.y;
 
-    if (this.get('direction') === 'x') {
+    if (this.get("direction") === "x") {
       dy = 0;
-    } else if (this.get('direction') === 'y') {
+    } else if (this.get("direction") === "y") {
       dx = 0;
     }
     this.origin = {
       x: clientX,
       y: clientY,
     };
-    const width = this.graph.get('width');
-    const height = this.graph.get('height');
-    const graphCanvasBBox = this.graph.get('canvas').getCanvasBBox();
+    const width = this.graph.get("width");
+    const height = this.graph.get("height");
+    const graphCanvasBBox = this.graph.get("canvas").getCanvasBBox();
 
     if (
       (graphCanvasBBox.minX <= width + this.scalableRange &&
@@ -88,21 +88,27 @@ export default {
       const graph: IGraph = this.graph;
       const edges = graph.getEdges();
       for (let i = 0, len = edges.length; i < len; i++) {
-        const shapes = edges[i].get('group').get('children');
+        const shapes = edges[i].get("group").get("children");
         if (!shapes) continue;
         shapes.forEach((shape) => {
-          shape.set('ori-visibility', shape.get('ori-visibility') || shape.get('visible'));
+          shape.set(
+            "ori-visibility",
+            shape.get("ori-visibility") || shape.get("visible"),
+          );
           shape.hide();
         });
       }
       const nodes = graph.getNodes();
       for (let j = 0, nodeLen = nodes.length; j < nodeLen; j++) {
         const container = nodes[j].getContainer();
-        const children = container.get('children');
+        const children = container.get("children");
         for (const child of children) {
-          const isKeyShape = child.get('isKeyShape');
+          const isKeyShape = child.get("isKeyShape");
           if (!isKeyShape) {
-            child.set('ori-visibility', child.get('ori-visibility') || child.get('visible'));
+            child.set(
+              "ori-visibility",
+              child.get("ori-visibility") || child.get("visible"),
+            );
             child.hide();
           }
         }
@@ -122,11 +128,14 @@ export default {
     }
 
     if (!this.dragging) {
-      if (abs(this.origin.x - e.clientX) + abs(this.origin.y - e.clientY) < DRAG_OFFSET) {
+      if (
+        abs(this.origin.x - e.clientX) + abs(this.origin.y - e.clientY) <
+        DRAG_OFFSET
+      ) {
         return;
       }
       if (this.shouldBegin.call(this, e)) {
-        e.type = 'dragstart';
+        e.type = "dragstart";
         this.dragging = true;
       }
     }
@@ -141,21 +150,21 @@ export default {
       // 拖动结束后显示所有的边
       const edges = graph.getEdges();
       for (let i = 0, len = edges.length; i < len; i++) {
-        const shapes = edges[i].get('group').get('children');
+        const shapes = edges[i].get("group").get("children");
         if (!shapes) continue;
         shapes.forEach((shape) => {
-          const oriVis = shape.get('ori-visibility');
+          const oriVis = shape.get("ori-visibility");
           if (oriVis) shape.show();
         });
       }
       const nodes = graph.getNodes();
       for (let j = 0, nodeLen = nodes.length; j < nodeLen; j++) {
         const container = nodes[j].getContainer();
-        const children = container.get('children');
+        const children = container.get("children");
         for (const child of children) {
-          const isKeyShape = child.get('isKeyShape');
+          const isKeyShape = child.get("isKeyShape");
           if (!isKeyShape) {
-            const oriVis = child.get('ori-visibility');
+            const oriVis = child.get("ori-visibility");
             if (oriVis) child.show();
           }
         }
@@ -172,7 +181,7 @@ export default {
     if (this.shouldEnd.call(this, e)) {
       this.updateViewport(e);
     }
-    e.type = 'dragend';
+    e.type = "dragend";
     // graph.emit('canvas:dragend', e);
     this.endDrag();
   },

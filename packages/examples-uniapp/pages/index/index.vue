@@ -15,11 +15,11 @@
 </template>
 
 <script>
-import F6Canvas from '../../components/canvas/canvas.vue';
-import F6 from 'f6';
+import F6Canvas from "../../components/canvas/canvas.vue";
+import F6 from "f6";
 export default {
   components: {
-    'f6-canvas': F6Canvas,
+    "f6-canvas": F6Canvas,
   },
   data() {
     return {
@@ -34,29 +34,29 @@ export default {
       this.graph && this.graph.emitEvent(e);
     },
     onCanvasInit({ ctx, rect, container, renderer }) {
-      console.log('canvas init ready', ctx, rect, container, renderer);
-	  const {width, height, pixelRatio} = this;
+      console.log("canvas init ready", ctx, rect, container, renderer);
+      const { width, height, pixelRatio } = this;
       this.graph = new F6.Graph({
         container: container,
         context: ctx,
         renderer,
         width,
         height,
-		pixelRatio,
+        pixelRatio,
         modes: {
-          default: ['drag-canvas', 'zoom-canvas'],
+          default: ["drag-canvas", "zoom-canvas"],
         },
       });
       const data = {
         // 点集
         nodes: [
           {
-            id: 'node1', // String，该节点存在则必须，节点的唯一标识
+            id: "node1", // String，该节点存在则必须，节点的唯一标识
             x: 100, // Number，可选，节点位置的 x 值
             y: 200, // Number，可选，节点位置的 y 值
           },
           {
-            id: 'node2', // String，该节点存在则必须，节点的唯一标识
+            id: "node2", // String，该节点存在则必须，节点的唯一标识
             x: 300, // Number，可选，节点位置的 x 值
             y: 200, // Number，可选，节点位置的 y 值
           },
@@ -64,8 +64,8 @@ export default {
         // 边集
         edges: [
           {
-            source: 'node1', // String，必须，起始点 id
-            target: 'node2', // String，必须，目标点 id
+            source: "node1", // String，必须，起始点 id
+            target: "node2", // String，必须，目标点 id
           },
         ],
       };

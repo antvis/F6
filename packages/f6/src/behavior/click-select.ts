@@ -1,20 +1,20 @@
-import { each } from '@antv/util';
-import { G6Event, IG6GraphEvent } from '@antv/f6-core';
+import { each } from "@antv/util";
+import { G6Event, IG6GraphEvent } from "@antv/f6-core";
 
 export default {
   getDefaultCfg(): object {
     return {
       multiple: true,
-      selectedState: 'selected',
+      selectedState: "selected",
     };
   },
   getEvents(): { [key in G6Event]?: string } {
     const self = this as any;
 
     return {
-      'node:tap': 'onClick',
-      'combo:tap': 'onClick',
-      'canvas:tap': 'onCanvasClick',
+      "node:tap": "onClick",
+      "combo:tap": "onClick",
+      "canvas:tap": "onCanvasClick",
     };
   },
   onClick(evt: IG6GraphEvent) {
@@ -44,9 +44,9 @@ export default {
       if (shouldUpdate.call(self, evt)) {
         graph.setItemState(item, self.selectedState, false);
       }
-      const selectedNodes = graph.findAllByState('node', self.selectedState);
-      const selectedCombos = graph.findAllByState('combo', self.selectedState);
-      graph.emit('nodeselectchange', {
+      const selectedNodes = graph.findAllByState("node", self.selectedState);
+      const selectedCombos = graph.findAllByState("combo", self.selectedState);
+      graph.emit("nodeselectchange", {
         target: item,
         selectedItems: {
           nodes: selectedNodes,
@@ -58,9 +58,9 @@ export default {
       if (shouldUpdate.call(self, evt)) {
         graph.setItemState(item, self.selectedState, true);
       }
-      const selectedNodes = graph.findAllByState('node', self.selectedState);
-      const selectedCombos = graph.findAllByState('combo', self.selectedState);
-      graph.emit('nodeselectchange', {
+      const selectedNodes = graph.findAllByState("node", self.selectedState);
+      const selectedCombos = graph.findAllByState("combo", self.selectedState);
+      graph.emit("nodeselectchange", {
         target: item,
         selectedItems: {
           nodes: selectedNodes,
@@ -72,16 +72,16 @@ export default {
   },
   onCanvasClick() {
     const { graph } = this;
-    const selected = graph.findAllByState('node', this.selectedState);
+    const selected = graph.findAllByState("node", this.selectedState);
     each(selected, (node) => {
       graph.setItemState(node, this.selectedState, false);
     });
 
-    const selectedCombos = graph.findAllByState('combo', this.selectedState);
+    const selectedCombos = graph.findAllByState("combo", this.selectedState);
     each(selectedCombos, (combo) => {
       graph.setItemState(combo, this.selectedState, false);
     });
-    graph.emit('nodeselectchange', {
+    graph.emit("nodeselectchange", {
       selectedItems: { nodes: [], edges: [], combos: [] },
       select: false,
     });

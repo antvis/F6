@@ -1,4 +1,4 @@
-const path = require('path');
+const path = require("path");
 
 exports.onCreateWebpackConfig = ({ getConfig }) => {
   const config = getConfig();
@@ -7,7 +7,7 @@ exports.onCreateWebpackConfig = ({ getConfig }) => {
     test: /\.glsl$/,
     use: [
       {
-        loader: 'raw-loader',
+        loader: "raw-loader",
         options: {
           esModule: false,
         },
@@ -18,9 +18,9 @@ exports.onCreateWebpackConfig = ({ getConfig }) => {
   config.module.rules.push({
     test: /\.worker\.ts$/,
     use: {
-      loader: 'worker-loader',
+      loader: "worker-loader",
     },
   });
 
-  config.resolve.extensions.push('.glsl');
+  config.resolve.extensions.push(".glsl");
 };

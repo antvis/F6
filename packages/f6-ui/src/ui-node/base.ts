@@ -1,5 +1,5 @@
-import { isSelectorMatchDom, reflowAttrs } from '../utils/index';
-import { computeLayout } from '../utils/ui';
+import { isSelectorMatchDom, reflowAttrs } from "../utils/index";
+import { computeLayout } from "../utils/ui";
 export default abstract class UIBaseNode {
   styleNode = null;
   gNode = null;
@@ -84,21 +84,27 @@ export default abstract class UIBaseNode {
     this.gNode?.remove();
     if (parent) {
       parent.children.splice(1, parent.children.indexOf(this));
-      parent.styleNode?.children.splice(1, parent.children.indexOf(this.styleNode));
+      parent.styleNode?.children.splice(
+        1,
+        parent.children.indexOf(this.styleNode),
+      );
       if (this.isMounted) parent.reflow();
     }
     if (this.isMounted) this.unmount();
   }
 
   query(selector) {
-    if (typeof selector !== 'string') return;
-    const arr = selector.split(/\s+/g).filter((s) => s !== '');
+    if (typeof selector !== "string") return;
+    const arr = selector.split(/\s+/g).filter((s) => s !== "");
     const stack: any = [[this, arr]];
     while (stack.length) {
       const [uiNode, selectorArr] = stack.shift();
       for (const child of uiNode.children) {
         let rest = [];
-        if (child.styleNode && isSelectorMatchDom(child.styleNode.dom, selectorArr[0])) {
+        if (
+          child.styleNode &&
+          isSelectorMatchDom(child.styleNode.dom, selectorArr[0])
+        ) {
           if (selectorArr.slice(1).length === 0) {
             return child;
           } else {
@@ -113,15 +119,18 @@ export default abstract class UIBaseNode {
   }
 
   queryAll(selector) {
-    if (typeof selector !== 'string') return;
-    const arr = selector.split(/\s+/g).filter((s) => s !== '');
+    if (typeof selector !== "string") return;
+    const arr = selector.split(/\s+/g).filter((s) => s !== "");
     const result = [];
     const stack: any = [[this, arr, result]];
     while (stack.length) {
       const [uiNode, selectorArr, result] = stack.shift();
       for (const child of uiNode.children) {
         let rest = [];
-        if (child.styleNode && isSelectorMatchDom(child.styleNode.dom, selectorArr[0])) {
+        if (
+          child.styleNode &&
+          isSelectorMatchDom(child.styleNode.dom, selectorArr[0])
+        ) {
           if (selectorArr.slice(1).length === 0) {
             result.push(child);
             rest = [selectorArr[0]];
@@ -149,7 +158,7 @@ export default abstract class UIBaseNode {
     if (!this.parentGNode) return;
 
     // 上浮到absolute或根节点
-    if (this.style?.position !== 'absolute' && this.parent) {
+    if (this.style?.position !== "absolute" && this.parent) {
       this.parent.reflow();
       return;
     }
@@ -172,7 +181,7 @@ export default abstract class UIBaseNode {
       return;
     }
 
-    if (this.style?.display === 'none') {
+    if (this.style?.display === "none") {
       this.isDisplay = false;
       return;
     }
@@ -182,8 +191,8 @@ export default abstract class UIBaseNode {
 
     this.draw(this.parentGNode);
     this.isMounted = true;
-    this.gNode.set('uiNode', this);
-    this.gNode.on('*', this.trigger);
+    this.gNode.set("uiNode", this);
+    this.gNode.on("*", this.trigger);
 
     this.children.forEach((child) => child.mount());
     this.didMount();
@@ -206,7 +215,7 @@ export default abstract class UIBaseNode {
     }
     // if (!this.shouldUpdate(this._prevAttrs, this._prevStyle)) return;
     // 处理display的情况
-    if (this.style?.display === 'none') {
+    if (this.style?.display === "none") {
       this.isDisplay = false;
       this.gNode?.remove(false);
       return false;
@@ -216,7 +225,11 @@ export default abstract class UIBaseNode {
       this.isDisplay = true;
       this.parentGNode?.add(this.gNode);
     }
-    const should = this.shouldUpdate(this._prevAttrs, this._prevStyle, this._prevLayout);
+    const should = this.shouldUpdate(
+      this._prevAttrs,
+      this._prevStyle,
+      this._prevLayout,
+    );
     should && this.draw();
     this.children.forEach((child) => child.render());
     should && this.didUpdate();
@@ -270,7 +283,7 @@ export default abstract class UIBaseNode {
   }
 
   setText(text) {
-    const textNode = this.query('text');
+    const textNode = this.query("text");
     if (textNode && textNode.styleNode && textNode.styleNode.dom) {
       textNode.styleNode.dom.text = text;
       textNode.render();
@@ -279,11 +292,11 @@ export default abstract class UIBaseNode {
 
   trigger = (e) => {
     let shape = e.target;
-    while (shape && !shape.get('uiNode')) {
-      shape = shape.get('parent');
+    while (shape && !shape.get("uiNode")) {
+      shape = shape.get("parent");
     }
     e.targetGNode = shape || null;
-    e.uiNode = shape?.get('uiNode') ?? null;
+    e.uiNode = shape?.get("uiNode") ?? null;
     this.events[e.type]?.forEach((fn) => fn(e, this));
   };
 

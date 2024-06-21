@@ -25,7 +25,7 @@ const graph = new F6.Graph({
   animate: true, // Boolean，切换布局时是否使用动画过度，默认为 false
   animateCfg: {
     duration: 500, // Number，一次动画的时长
-    easing: 'linearEasing', // String，动画函数
+    easing: "linearEasing", // String，动画函数
   },
 });
 ```
@@ -60,11 +60,11 @@ const graph = new F6.Graph({
 ```javascript
 // 放大、变小动画
 F6.registerNode(
-  'circle-animate',
+  "circle-animate",
   {
     afterDraw(cfg, group) {
       // 获取该节点上的第一个图形
-      const shape = group.get('children')[0];
+      const shape = group.get("children")[0];
       // 该图形的动画
       shape.animate(
         (ratio) => {
@@ -82,12 +82,12 @@ F6.registerNode(
           // 动画重复
           repeat: true,
           duration: 3000,
-          easing: 'easeCubic',
+          easing: "easeCubic",
         },
       ); // 一次动画持续的时长为 3000，动画效果为 'easeCubic'
     },
   },
-  'circle',
+  "circle",
 ); // 该自定义节点继承了内置节点 'circle'，除了被复写的 afterDraw 方法外，其他按照 'circle' 里的函数执行。
 ```
 
@@ -101,7 +101,7 @@ F6.registerNode(
 
 ```javascript
 F6.registerNode(
-  'background-animate',
+  "background-animate",
   {
     afterDraw(cfg, group) {
       let r = cfg.size / 2;
@@ -109,7 +109,7 @@ F6.registerNode(
         r = cfg.size[0] / 2;
       }
       // 第一个背景圆
-      const back1 = group.addShape('circle', {
+      const back1 = group.addShape("circle", {
         zIndex: -3,
         attrs: {
           x: 0,
@@ -119,33 +119,33 @@ F6.registerNode(
           opacity: 0.6,
         },
         // must be assigned in F6. it can be any value you want
-        name: 'circle-shape1',
+        name: "circle-shape1",
       });
       // 第二个背景圆
-      const back2 = group.addShape('circle', {
+      const back2 = group.addShape("circle", {
         zIndex: -2,
         attrs: {
           x: 0,
           y: 0,
           r,
-          fill: 'blue', // 为了显示清晰，随意设置了颜色
+          fill: "blue", // 为了显示清晰，随意设置了颜色
           opacity: 0.6,
         },
         // must be assigned in F6. it can be any value you want
-        name: 'circle-shape2',
+        name: "circle-shape2",
       });
       // 第三个背景圆
-      const back3 = group.addShape('circle', {
+      const back3 = group.addShape("circle", {
         zIndex: -1,
         attrs: {
           x: 0,
           y: 0,
           r,
-          fill: 'green',
+          fill: "green",
           opacity: 0.6,
         },
         // must be assigned in F6. it can be any value you want
-        name: 'circle-shape3',
+        name: "circle-shape3",
       });
       group.sort(); // 排序，根据 zIndex 排序
 
@@ -158,7 +158,7 @@ F6.registerNode(
         {
           repeat: true, // 循环
           duration: 3000,
-          easing: 'easeCubic',
+          easing: "easeCubic",
           delay: 0, // 无延迟
         },
       );
@@ -172,7 +172,7 @@ F6.registerNode(
         {
           repeat: true, // 循环
           duration: 3000,
-          easing: 'easeCubic',
+          easing: "easeCubic",
           delay: 1000, // 1 秒延迟
         },
       ); // 1 秒延迟
@@ -186,13 +186,13 @@ F6.registerNode(
         {
           repeat: true, // 循环
           duration: 3000,
-          easing: 'easeCubic',
+          easing: "easeCubic",
           delay: 2000, // 2 秒延迟
         },
       );
     },
   },
-  'circle',
+  "circle",
 );
 ```
 
@@ -204,14 +204,14 @@ F6.registerNode(
 
 ```javascript
 F6.registerNode(
-  'inner-animate',
+  "inner-animate",
   {
     afterDraw(cfg, group) {
       const size = cfg.size;
       const width = size[0] - 12;
       const height = size[1] - 12;
       // 添加图片 shape
-      const image = group.addShape('image', {
+      const image = group.addShape("image", {
         attrs: {
           x: -width / 2,
           y: -height / 2,
@@ -220,7 +220,7 @@ F6.registerNode(
           img: cfg.img,
         },
         // must be assigned in F6. it can be any value you want
-        name: 'image-shape',
+        name: "image-shape",
       });
       // 该图片 shape 的动画
       image.animate(
@@ -230,7 +230,7 @@ F6.registerNode(
           // 当前矩阵
           const matrix = Util.mat3.create();
           // 目标矩阵
-          const toMatrix = Util.transform(matrix, [['r', ratio * Math.PI * 2]]);
+          const toMatrix = Util.transform(matrix, [["r", ratio * Math.PI * 2]]);
           // 返回这一帧需要的参数集，本例中只有目标矩阵
           return {
             matrix: toMatrix,
@@ -239,12 +239,12 @@ F6.registerNode(
         {
           repeat: true, // 动画重复
           duration: 3000,
-          easing: 'easeCubic',
+          easing: "easeCubic",
         },
       );
     },
   },
-  'rect',
+  "rect",
 );
 ```
 
@@ -270,24 +270,24 @@ F6.registerNode(
 
 ```javascript
 F6.registerEdge(
-  'circle-running',
+  "circle-running",
   {
     afterDraw(cfg, group) {
       // 获得当前边的第一个图形，这里是边本身的 path
-      const shape = group.get('children')[0];
+      const shape = group.get("children")[0];
       // 边 path 的起点位置
       const startPoint = shape.getPoint(0);
 
       // 添加红色 circle 图形
-      const circle = group.addShape('circle', {
+      const circle = group.addShape("circle", {
         attrs: {
           x: startPoint.x,
           y: startPoint.y,
-          fill: 'red',
+          fill: "red",
           r: 3,
         },
         // must be assigned in F6. it can be any value you want
-        name: 'circle-shape',
+        name: "circle-shape",
       });
 
       // 对红色圆点添加动画
@@ -309,7 +309,7 @@ F6.registerEdge(
       ); // 一次动画的时间长度
     },
   },
-  'cubic',
+  "cubic",
 ); // 该自定义边继承内置三阶贝塞尔曲线 cubic
 ```
 
@@ -323,11 +323,11 @@ F6.registerEdge(
 // lineDash 的差值，可以在后面提供 util 方法自动计算
 const lineDash = [4, 2, 1, 2];
 F6.registerEdge(
-  'line-dash',
+  "line-dash",
   {
     afterDraw(cfg, group) {
       // 获得该边的第一个图形，这里是边的 path
-      const shape = group.get('children')[0];
+      const shape = group.get("children")[0];
       let index = 0;
       // 边 path 图形的动画
       shape.animate(
@@ -350,7 +350,7 @@ F6.registerEdge(
       );
     },
   },
-  'cubic',
+  "cubic",
 ); // 该自定义边继承了内置三阶贝塞尔曲线边 cubic
 ```
 
@@ -362,10 +362,10 @@ F6.registerEdge(
 
 ```javascript
 F6.registerEdge(
-  'line-growth',
+  "line-growth",
   {
     afterDraw(cfg, group) {
-      const shape = group.get('children')[0];
+      const shape = group.get("children")[0];
       const length = group.getTotalLength();
       shape.animate(
         (ratio) => {
@@ -383,7 +383,7 @@ F6.registerEdge(
       );
     },
   },
-  'cubic',
+  "cubic",
 ); // 该自定义边继承了内置三阶贝塞尔曲线边 cubic
 ```
 
@@ -406,13 +406,13 @@ const lineDash = [4, 2, 1, 2];
 
 // 注册名为 'can-running' 的边
 F6.registerEdge(
-  'can-running',
+  "can-running",
   {
     // 复写setState方法
     setState(name, value, item) {
-      const shape = item.get('keyShape');
+      const shape = item.get("keyShape");
       // 监听 running 状态
-      if (name === 'running') {
+      if (name === "running") {
         // running 状态为 true 时
         if (value) {
           let index = 0; // 边 path 图形的动画
@@ -439,32 +439,32 @@ F6.registerEdge(
           // 结束动画
           shape.stopAnimate();
           // 清空 lineDash
-          shape.attr('lineDash', null);
+          shape.attr("lineDash", null);
         }
       }
     },
   },
-  'cubic-horizontal',
+  "cubic-horizontal",
 ); // 该自定义边继承了内置横向三阶贝塞尔曲线边 cubic-horizontal
 
 // 监听节点的 tap 事件
-graph.on('node:tap', (ev) => {
+graph.on("node:tap", (ev) => {
   // 获得当前鼠标操作的目标节点
   const node = ev.item;
   // 获得目标节点的所有相关边
   const edges = node.getEdges();
   // 将所有相关边的 running 状态置为 true，此时将会触发自定义节点的 setState 函数
-  edges.forEach((edge) => graph.setItemState(edge, 'running', true));
+  edges.forEach((edge) => graph.setItemState(edge, "running", true));
 });
 
 // 监听节点的 dbltap 事件
-graph.on('node:dbltap', (ev) => {
+graph.on("node:dbltap", (ev) => {
   // 获得当前鼠标操作的目标节点
   const node = ev.item;
   // 获得目标节点的所有相关边
   const edges = node.getEdges();
   // 将所有相关边的 running 状态置为 false，此时将会触发自定义节点的 setState 函数
-  edges.forEach((edge) => graph.setItemState(edge, 'running', false));
+  edges.forEach((edge) => graph.setItemState(edge, "running", false));
 });
 
 // graph.data(data);

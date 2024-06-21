@@ -10,28 +10,28 @@ order: 11
 F6 内置的 `drag-canvas` 不区分节点是否锁定，全部一视同仁。绝大数情况下，这种行为是完全没问题的，但某些业务可能会要求锁定的节点，拖动画布时也不能移动，对于这种情况，可以通过重新定义拖动画布的 Behavior 来实现。
 
 ```javascript
-import F6 from '@antv/g6';
+import F6 from "@antv/g6";
 const Util = F6.Util;
 const abs = Math.abs;
 const DRAG_OFFSET = 10;
 const body = document.body;
 const ALLOW_EVENTS = [16, 17, 18];
 
-F6.registerBehavior('drag-canvas-exclude-lockedNode', {
+F6.registerBehavior("drag-canvas-exclude-lockedNode", {
   getDefaultCfg() {
     return {
-      direction: 'both',
+      direction: "both",
     };
   },
   getEvents() {
     return {
-      'canvas:mousedown': 'onMouseDown',
-      'canvas:mousemove': 'onMouseMove',
-      'canvas:mouseup': 'onTap',
-      'canvas:tap': 'onTap',
-      'canvas:mouseleave': 'onOutOfRange',
-      keyup: 'onKeyUp',
-      keydown: 'onKeyDown',
+      "canvas:mousedown": "onMouseDown",
+      "canvas:mousemove": "onMouseMove",
+      "canvas:mouseup": "onTap",
+      "canvas:tap": "onTap",
+      "canvas:mouseleave": "onOutOfRange",
+      keyup: "onKeyUp",
+      keydown: "onKeyDown",
     };
   },
   updateViewport(e) {
@@ -43,9 +43,9 @@ F6.registerBehavior('drag-canvas-exclude-lockedNode', {
     }
     let dx = clientX - origin.x;
     let dy = clientY - origin.y;
-    if (this.get('direction') === 'x') {
+    if (this.get("direction") === "x") {
       dy = 0;
-    } else if (this.get('direction') === 'y') {
+    } else if (this.get("direction") === "y") {
       dx = 0;
     }
     this.origin = {
@@ -53,9 +53,9 @@ F6.registerBehavior('drag-canvas-exclude-lockedNode', {
       y: clientY,
     };
     // 和内置 drag-canvas 不同的地方是在这里
-    const lockedNodes = this.graph.findAll('node', (node) => !node.hasLocked());
+    const lockedNodes = this.graph.findAll("node", (node) => !node.hasLocked());
     lockedNodes.forEach((node) => {
-      node.get('group').translate(dx, dy);
+      node.get("group").translate(dx, dy);
     });
     this.graph.paint();
   },
@@ -78,18 +78,21 @@ F6.registerBehavior('drag-canvas-exclude-lockedNode', {
       return;
     }
     if (this.origin && !this.dragging) {
-      if (abs(this.origin.x - e.clientX) + abs(this.origin.y - e.clientY) < DRAG_OFFSET) {
+      if (
+        abs(this.origin.x - e.clientX) + abs(this.origin.y - e.clientY) <
+        DRAG_OFFSET
+      ) {
         return;
       }
       if (this.shouldBegin.call(this, e)) {
-        e.type = 'dragstart';
-        graph.emit('canvas:dragstart', e);
+        e.type = "dragstart";
+        graph.emit("canvas:dragstart", e);
         this.dragging = true;
       }
     }
     if (this.dragging) {
-      e.type = 'drag';
-      graph.emit('canvas:drag', e);
+      e.type = "drag";
+      graph.emit("canvas:drag", e);
     }
     if (this.shouldUpdate.call(this, e)) {
       this.updateViewport(e);
@@ -109,8 +112,8 @@ F6.registerBehavior('drag-canvas-exclude-lockedNode', {
     if (this.shouldEnd.call(this, e)) {
       this.updateViewport(e);
     }
-    e.type = 'dragend';
-    graph.emit('canvas:dragend', e);
+    e.type = "dragend";
+    graph.emit("canvas:dragend", e);
     this.endDrag();
   },
   endDrag() {
@@ -120,7 +123,7 @@ F6.registerBehavior('drag-canvas-exclude-lockedNode', {
       // 终止时需要判断此时是否在监听画布外的 mouseup 事件，若有则解绑
       const fn = this.fn;
       if (fn) {
-        body.removeEventListener('mouseup', fn, false);
+        body.removeEventListener("mouseup", fn, false);
         this.fn = null;
       }
     }
@@ -128,14 +131,14 @@ F6.registerBehavior('drag-canvas-exclude-lockedNode', {
   onOutOfRange(e) {
     if (this.dragging) {
       const self = this;
-      const canvasElement = self.graph.get('canvas').get('el');
+      const canvasElement = self.graph.get("canvas").get("el");
       const fn = (ev) => {
         if (ev.target !== canvasElement) {
           self.onTap(e);
         }
       };
       this.fn = fn;
-      body.addEventListener('mouseup', fn, false);
+      body.addEventListener("mouseup", fn, false);
     }
   },
   onKeyDown(e) {
@@ -162,7 +165,7 @@ F6.registerBehavior('drag-canvas-exclude-lockedNode', {
 ```javascript
 const DELTA = 0.05;
 
-F6.registerBehavior('zoom-canvas-exclude-lockedNode', {
+F6.registerBehavior("zoom-canvas-exclude-lockedNode", {
   getDefaultCfg() {
     return {
       sensitivity: 2,
@@ -172,7 +175,7 @@ F6.registerBehavior('zoom-canvas-exclude-lockedNode', {
   },
   getEvents() {
     return {
-      wheel: 'onWheel',
+      wheel: "onWheel",
     };
   },
   onWheel(e) {
@@ -181,9 +184,9 @@ F6.registerBehavior('zoom-canvas-exclude-lockedNode', {
       return;
     }
     const graph = this.graph;
-    const canvas = graph.get('canvas');
+    const canvas = graph.get("canvas");
     const point = canvas.getPointByClient(e.clientX, e.clientY);
-    const sensitivity = this.get('sensitivity');
+    const sensitivity = this.get("sensitivity");
     let ratio = graph.getZoom();
     // 兼容 IE、Firefox 及 Chrome
     if (e.wheelDelta < 0) {
@@ -192,23 +195,23 @@ F6.registerBehavior('zoom-canvas-exclude-lockedNode', {
       ratio = 1 + DELTA * sensitivity;
     }
     const zoom = ratio * graph.getZoom();
-    if (zoom > this.get('maxZoom') || zoom < this.get('minZoom')) {
+    if (zoom > this.get("maxZoom") || zoom < this.get("minZoom")) {
       return;
     }
     graph.zoom(ratio, { x: point.x, y: point.y });
-    const lockedNodes = this.graph.findAll('node', (node) => !node.hasLocked());
+    const lockedNodes = this.graph.findAll("node", (node) => !node.hasLocked());
     lockedNodes.forEach((node) => {
-      const matrix = Util.clone(node.get('group').getMatrix());
+      const matrix = Util.clone(node.get("group").getMatrix());
       const center = node.getModel();
       matrix = Util.transform(matrix, [
-        ['t', -center.x, -center.y],
-        ['s', ratio, ratio],
-        ['t', center.x, center.y],
+        ["t", -center.x, -center.y],
+        ["s", ratio, ratio],
+        ["t", center.x, center.y],
       ]);
-      node.get('group').setMatrix(matrix);
+      node.get("group").setMatrix(matrix);
     });
     graph.paint();
-    graph.emit('wheelzoom', e);
+    graph.emit("wheelzoom", e);
   },
 });
 ```

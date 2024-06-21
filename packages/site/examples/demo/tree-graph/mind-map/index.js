@@ -11,21 +11,28 @@ const graph = new F6.TreeGraph({
   pixelRatio,
   fitView: true,
   modes: {
-    default: [{
-      type: "collapse-expand",
-      onChange: function onChange(item, collapsed) {
-        const model = item.getModel();
-        model.collapsed = collapsed;
-        return true;
-      }
-    }, "drag-canvas", "zoom-canvas"]
+    default: [
+      {
+        type: "collapse-expand",
+        onChange: function onChange(item, collapsed) {
+          const model = item.getModel();
+          model.collapsed = collapsed;
+          return true;
+        },
+      },
+      "drag-canvas",
+      "zoom-canvas",
+    ],
   },
   defaultNode: {
     size: 26,
-    anchorPoints: [[0, 0.5], [1, 0.5]]
+    anchorPoints: [
+      [0, 0.5],
+      [1, 0.5],
+    ],
   },
   defaultEdge: {
-    type: "cubic-horizontal"
+    type: "cubic-horizontal",
   },
   layout: {
     type: "mindmap",
@@ -41,8 +48,8 @@ const graph = new F6.TreeGraph({
     },
     getHGap: function getHGap() {
       return 50;
-    }
-  }
+    },
+  },
 });
 let centerX = 0;
 graph.node(function (node) {
@@ -54,14 +61,15 @@ graph.node(function (node) {
 
   if (node.children && node.children.length > 0) {
     position_value = "left";
-  } else if (node.x > centerX) position_value = "right";else position_value = "left";
+  } else if (node.x > centerX) position_value = "right";
+  else position_value = "left";
 
   return {
     label: node.id,
     labelCfg: {
       offset: 5,
-      position: position_value
-    }
+      position: position_value,
+    },
   };
 });
 graph.data(data);

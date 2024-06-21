@@ -1,9 +1,9 @@
 export default {
   triangle: (width: number = 10, length: number = 15, d: number = 0) => {
     const begin = d * 2;
-    const path = `M ${begin},0 L ${begin + length},-${width / 2} L ${begin + length},${
-      width / 2
-    } Z`;
+    const path = `M ${begin},0 L ${begin + length},-${width / 2} L ${
+      begin + length
+    },${width / 2} Z`;
     return path;
   },
   vee: (width: number = 15, length: number = 20, d: number = 0) => {
@@ -45,9 +45,9 @@ export default {
   ) => {
     const begin = d * 2;
     const rectBegin = begin + tLength + gap;
-    const path = `M ${begin},0 L ${begin + tLength},-${tWidth / 2} L ${begin + tLength},${
-      tWidth / 2
-    } Z
+    const path = `M ${begin},0 L ${begin + tLength},-${tWidth / 2} L ${
+      begin + tLength
+    },${tWidth / 2} Z
             M ${rectBegin}, -${rWidth / 2}
             L ${rectBegin + rLength} -${rWidth / 2}
             L ${rectBegin + rLength} ${rWidth / 2}

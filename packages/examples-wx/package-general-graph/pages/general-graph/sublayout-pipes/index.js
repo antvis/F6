@@ -1,7 +1,7 @@
-import F6 from '@antv/f6-wx';
-import { Legend } from '@antv/f6-plugin/f6Plugin';
+import F6 from "@antv/f6-wx";
+import { Legend } from "@antv/f6-plugin/f6Plugin";
 
-import { data, legendData } from './data';
+import { data, legendData } from "./data";
 /**
  * sublayout-pipes
  */
@@ -9,7 +9,7 @@ import { data, legendData } from './data';
 Page({
   canvas: null,
   ctx: null,
-  renderer: '', // mini、mini-native等，F6需要，标记环境
+  renderer: "", // mini、mini-native等，F6需要，标记环境
   isCanvasInit: false, // canvas是否准备好了
   graph: null,
 
@@ -60,44 +60,44 @@ Page({
     // 新建F6.legend实例
     const legend = new Legend({
       data: legendData,
-      align: 'center',
-      layout: 'horizontal', // vertical
-      position: 'bottom-left',
+      align: "center",
+      layout: "horizontal", // vertical
+      position: "bottom-left",
       vertiSep: 12,
       horiSep: 24,
       offsetY: -24,
       padding: [4, 16, 8, 16],
       containerStyle: {
-        fill: '#ccc',
+        fill: "#ccc",
         lineWidth: 1,
       },
-      title: 'Legend',
+      title: "Legend",
       titleConfig: {
-        position: 'left',
+        position: "left",
         offsetX: 0,
         offsetY: 12,
       },
       filter: {
         enable: true,
         multiple: true,
-        trigger: 'click',
-        graphActiveState: 'activeByLegend',
-        graphInactiveState: 'inactiveByLegend',
+        trigger: "click",
+        graphActiveState: "activeByLegend",
+        graphInactiveState: "inactiveByLegend",
         filterFunctions: {
           a: (d) => {
-            if (d.cluster === 'a') return true;
+            if (d.cluster === "a") return true;
             return false;
           },
           b: (d) => {
-            if (d.cluster === 'b') return true;
+            if (d.cluster === "b") return true;
             return false;
           },
           c: (d) => {
-            if (d.cluster === 'c') return true;
+            if (d.cluster === "c") return true;
             return false;
           },
           d: (d) => {
-            if (d.cluster === 'd') return true;
+            if (d.cluster === "d") return true;
             return false;
           },
         },
@@ -114,7 +114,7 @@ Page({
       fitView: true,
       fitViewPadding: 40,
       modes: {
-        default: ['drag-canvas', 'drag-node'],
+        default: ["drag-canvas", "drag-node"],
       },
       plugins: [legend],
       animate: true,
@@ -122,7 +122,7 @@ Page({
         activeByLegend: {
           lineWidth: 5,
           strokeOpacity: 0.5,
-          stroke: '#f00',
+          stroke: "#f00",
         },
         inactiveByLegend: {
           opacity: 0.5,
@@ -131,25 +131,25 @@ Page({
       layout: {
         pipes: [
           {
-            type: 'circular',
+            type: "circular",
             nodesFilter: (node) => +node.id <= 6,
             center: [(width / 5) * 4 - 30, height / 2],
             radius: width / 10,
           },
           {
-            type: 'circular',
+            type: "circular",
             nodesFilter: (node) => +node.id >= 7 && +node.id <= 10,
             center: [width / 20 + 30, (height / 3) * 2],
             radius: width / 20,
           },
           {
-            type: 'circular',
+            type: "circular",
             nodesFilter: (node) => +node.id >= 11 && +node.id <= 16,
             center: [width / 20 + 30, height / 3],
             radius: width / 20,
           },
           {
-            type: 'grid',
+            type: "grid",
             nodesFilter: (node) => +node.id > 16,
             begin: [width / 10 + 50, 20],
             width: (width / 5) * 3 - 100,

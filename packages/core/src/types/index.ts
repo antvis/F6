@@ -1,11 +1,18 @@
 /* eslint @typescript-eslint/no-use-before-define: 0 */
-import { IGroup, Event as GraphEvent, BBox, AnimateCfg, ICanvas, IShape } from '@antv/g-base';
-import Node from '../item/node';
-import { IAbstractGraph } from '../interface/graph';
-import { IEdge, INode, ICombo } from '../interface/item';
-import { ILabelConfig } from '../interface/shape';
+import {
+  IGroup,
+  Event as GraphEvent,
+  BBox,
+  AnimateCfg,
+  ICanvas,
+  IShape,
+} from "@antv/g-base";
+import Node from "../item/node";
+import { IAbstractGraph } from "../interface/graph";
+import { IEdge, INode, ICombo } from "../interface/item";
+import { ILabelConfig } from "../interface/shape";
 
-export * from '../interface';
+export * from "../interface";
 
 // Node Edge Combo 实例
 export type Item = INode | IEdge | ICombo;
@@ -106,7 +113,7 @@ export interface IEllipse extends IPoint {
   ry: number;
 }
 
-export type SourceTarget = 'source' | 'target';
+export type SourceTarget = "source" | "target";
 
 // 自环边配置
 export type LoopConfig = Partial<{
@@ -146,7 +153,7 @@ export interface ModeOption {
   selectedState?: string;
   onlyChangeComboSize?: boolean;
   includeEdges?: boolean;
-  direction?: 'x' | 'y';
+  direction?: "x" | "y";
   scalableRange?: number;
   offset?: number;
   sensitivity?: number;
@@ -162,7 +169,7 @@ export interface ModeOption {
   functionParams?: any[];
   relayout?: boolean;
   brushStyle?: object;
-  zoomKey?: 'shift' | 'ctrl' | 'alt' | 'control';
+  zoomKey?: "shift" | "ctrl" | "alt" | "control";
   shouldUpdate?: (e: IG6GraphEvent) => boolean;
   shouldBegin?: (e: IG6GraphEvent) => boolean;
   shouldEnd?: (e: IG6GraphEvent) => boolean;
@@ -344,7 +351,7 @@ export interface GraphOptions {
 
 export type LabelStyle = Partial<{
   rotate: number;
-  textAlign: 'center' | 'start' | 'end' | 'left' | 'right';
+  textAlign: "center" | "start" | "end" | "left" | "right";
   angle: number;
   x: number;
   y: number;
@@ -352,8 +359,8 @@ export type LabelStyle = Partial<{
   stroke: string | null;
   opacity: number;
   fontSize: number;
-  fontStyle: 'normal' | 'italic' | 'oblique';
-  fontWeight?: 'normal' | 'bold' | 'bolder' | 'lighter' | number;
+  fontStyle: "normal" | "italic" | "oblique";
+  fontWeight?: "normal" | "bold" | "bolder" | "lighter" | number;
   fill: string | null;
   rotateCenter: string;
   lineWidth: number;
@@ -362,7 +369,13 @@ export type LabelStyle = Partial<{
   shadowOffsetX?: number;
   shadowOffsetY?: number;
   position: string;
-  textBaseline: 'top' | 'middle' | 'bottom' | 'hanging' | 'alphabetic' | 'ideographic';
+  textBaseline:
+    | "top"
+    | "middle"
+    | "bottom"
+    | "hanging"
+    | "alphabetic"
+    | "ideographic";
   offset: number;
   background?: {
     fill?: string;
@@ -374,14 +387,14 @@ export type LabelStyle = Partial<{
 }>;
 
 export type Easeing =
-  | 'easeLinear'
-  | 'easePolyIn'
-  | 'easePolyOut'
-  | 'easePolyInOut'
-  | 'easeQuad'
-  | 'easeQuadIn'
-  | 'easeQuadOut'
-  | 'easeQuadInOut'
+  | "easeLinear"
+  | "easePolyIn"
+  | "easePolyOut"
+  | "easePolyInOut"
+  | "easeQuad"
+  | "easeQuadIn"
+  | "easeQuadOut"
+  | "easeQuadInOut"
   | string;
 
 export interface ModelConfig extends ModelStyle {
@@ -412,7 +425,7 @@ export interface TreeGraphData {
   y?: number;
   children?: TreeGraphData[];
   data?: ModelConfig;
-  side?: 'left' | 'right';
+  side?: "left" | "right";
   depth?: number;
   collapsed?: boolean;
   style?:
@@ -500,7 +513,7 @@ export interface ComboTree {
   depth?: number;
   parentId?: string;
   removed?: boolean;
-  itemType?: 'node' | 'combo';
+  itemType?: "node" | "combo";
   [key: string]: unknown;
 }
 
@@ -565,7 +578,12 @@ export interface GraphAnimateConfig extends AnimateCfg {
   /**
    * 回调函数，用于自定义节点运动路径。
    */
-  onFrame?: (item: Item, ratio: number, data?: GraphData, originAttrs?: ShapeStyle) => unknown;
+  onFrame?: (
+    item: Item,
+    ratio: number,
+    data?: GraphData,
+    originAttrs?: ShapeStyle,
+  ) => unknown;
 }
 
 export interface GroupNodeIds {
@@ -575,146 +593,146 @@ export interface GroupNodeIds {
 // Behavior type file
 export enum G6Event {
   // common events
-  CLICK = 'click',
-  DBLCLICK = 'dblclick',
-  TAP = 'tap',
-  DBLTAP = 'dbltap',
-  DRAGSTART = 'dragstart',
-  DRAGEND = 'dragend',
-  DRAG = 'drag',
-  DRAGENTER = 'dragenter',
-  DRAGLEAVE = 'dragleave',
-  DRAGOVER = 'dragover',
-  DRAGOUT = 'dragout',
-  DDROP = 'drop',
-  PINCHSTART = 'pinchstart',
-  PINCHMOVE = 'pinchmove',
-  PANSTART = 'panstart',
-  PANMOVE = 'panmove',
-  PANEND = 'panend',
-  PRESS = 'press',
-  ACTION_END = 'actionend',
+  CLICK = "click",
+  DBLCLICK = "dblclick",
+  TAP = "tap",
+  DBLTAP = "dbltap",
+  DRAGSTART = "dragstart",
+  DRAGEND = "dragend",
+  DRAG = "drag",
+  DRAGENTER = "dragenter",
+  DRAGLEAVE = "dragleave",
+  DRAGOVER = "dragover",
+  DRAGOUT = "dragout",
+  DDROP = "drop",
+  PINCHSTART = "pinchstart",
+  PINCHMOVE = "pinchmove",
+  PANSTART = "panstart",
+  PANMOVE = "panmove",
+  PANEND = "panend",
+  PRESS = "press",
+  ACTION_END = "actionend",
 
   // touch events
-  TOUCHSTART = 'touchstart',
-  TOUCHMOVE = 'touchmove',
-  TOUCHEND = 'touchend',
-  CANVAS_TOUCHSTART = 'canvas:touchstart',
-  CANVAS_TOUCHMOVE = 'canvas:touchmove',
-  CANVAS_TOUCHEND = 'canvas:touchend',
-  NODE_TOUCHSTART = 'node:touchstart',
-  NODE_TOUCHMOVE = 'node:touchmove',
-  NODE_TOUCHEND = 'node:touchend',
-  COMBO_TOUCHSTART = 'combo:touchstart',
-  COMBO_TOUCHMOVE = 'combo:touchmove',
-  COMBO_TOUCHEND = 'combo:touchend',
-  EDGE_TOUCHSTART = 'edge:touchstart',
-  EDGE_TOUCHMOVE = 'edge:touchmove',
-  EDGE_TOUCHEND = 'edge:touchend',
+  TOUCHSTART = "touchstart",
+  TOUCHMOVE = "touchmove",
+  TOUCHEND = "touchend",
+  CANVAS_TOUCHSTART = "canvas:touchstart",
+  CANVAS_TOUCHMOVE = "canvas:touchmove",
+  CANVAS_TOUCHEND = "canvas:touchend",
+  NODE_TOUCHSTART = "node:touchstart",
+  NODE_TOUCHMOVE = "node:touchmove",
+  NODE_TOUCHEND = "node:touchend",
+  COMBO_TOUCHSTART = "combo:touchstart",
+  COMBO_TOUCHMOVE = "combo:touchmove",
+  COMBO_TOUCHEND = "combo:touchend",
+  EDGE_TOUCHSTART = "edge:touchstart",
+  EDGE_TOUCHMOVE = "edge:touchmove",
+  EDGE_TOUCHEND = "edge:touchend",
 
   // node events
-  NODE_CLICK = 'node:click',
-  NODE_DBLCLICK = 'node:dblclick',
-  NODE_DROP = 'node:drop',
-  NODE_DRAGOVER = 'node:dragover',
-  NODE_DRAGENTER = 'node:dragenter',
-  NODE_DRAGLEAVE = 'node:dragleave',
-  NODE_DRAGSTART = 'node:dragstart',
-  NODE_DRAG = 'node:drag',
-  NODE_DRAGEND = 'node:dragend',
-  NODE_TAP = 'node:tap',
-  NODE_DBLTAP = 'node:dbltap',
-  NODE_PANSTART = 'node:panstart',
-  NODE_PANMOVE = 'node:panmove',
-  NODE_PANEND = 'node:panend',
-  NODE_PRESS = 'node:press',
+  NODE_CLICK = "node:click",
+  NODE_DBLCLICK = "node:dblclick",
+  NODE_DROP = "node:drop",
+  NODE_DRAGOVER = "node:dragover",
+  NODE_DRAGENTER = "node:dragenter",
+  NODE_DRAGLEAVE = "node:dragleave",
+  NODE_DRAGSTART = "node:dragstart",
+  NODE_DRAG = "node:drag",
+  NODE_DRAGEND = "node:dragend",
+  NODE_TAP = "node:tap",
+  NODE_DBLTAP = "node:dbltap",
+  NODE_PANSTART = "node:panstart",
+  NODE_PANMOVE = "node:panmove",
+  NODE_PANEND = "node:panend",
+  NODE_PRESS = "node:press",
 
   // combo, extends from nodes
-  COMBO_CLICK = 'combo:click',
-  COMBO_DBLCLICK = 'combo:dblclick',
-  COMBO_DROP = 'combo:drop',
-  COMBO_DRAGOVER = 'combo:dragover',
-  COMBO_DRAGENTER = 'combo:dragenter',
-  COMBO_DRAGLEAVE = 'combo:dragleave',
-  COMBO_DRAGSTART = 'combo:dragstart',
-  COMBO_DRAG = 'combo:drag',
-  COMBO_DRAGEND = 'combo:dragend',
-  COMBO_TAP = 'combo:tap',
-  COMBO_DBLTAP = 'combo:dbltap',
-  COMBO_PANSTART = 'combo:panstart',
-  COMBO_PANMOVE = 'combo:panmove',
-  COMBO_PANEND = 'combo:panend',
-  COMBO_PRESS = 'combo:press',
+  COMBO_CLICK = "combo:click",
+  COMBO_DBLCLICK = "combo:dblclick",
+  COMBO_DROP = "combo:drop",
+  COMBO_DRAGOVER = "combo:dragover",
+  COMBO_DRAGENTER = "combo:dragenter",
+  COMBO_DRAGLEAVE = "combo:dragleave",
+  COMBO_DRAGSTART = "combo:dragstart",
+  COMBO_DRAG = "combo:drag",
+  COMBO_DRAGEND = "combo:dragend",
+  COMBO_TAP = "combo:tap",
+  COMBO_DBLTAP = "combo:dbltap",
+  COMBO_PANSTART = "combo:panstart",
+  COMBO_PANMOVE = "combo:panmove",
+  COMBO_PANEND = "combo:panend",
+  COMBO_PRESS = "combo:press",
 
   // edge events
-  EDGE_CLICK = 'edge:click',
-  EDGE_DBLCLICK = 'edge:dblclick',
-  EDGE_DROP = 'edge:drop',
-  EDGE_DRAGOVER = 'edge:dragover',
-  EDGE_DRAGENTER = 'edge:dragenter',
-  EDGE_DRAGLEAVE = 'edge:dragleave',
-  EDGE_TAP = 'edge:tap',
-  EDGE_DBLTAP = 'edge:dbltap',
-  EDGE_PRESS = 'edge:press',
+  EDGE_CLICK = "edge:click",
+  EDGE_DBLCLICK = "edge:dblclick",
+  EDGE_DROP = "edge:drop",
+  EDGE_DRAGOVER = "edge:dragover",
+  EDGE_DRAGENTER = "edge:dragenter",
+  EDGE_DRAGLEAVE = "edge:dragleave",
+  EDGE_TAP = "edge:tap",
+  EDGE_DBLTAP = "edge:dbltap",
+  EDGE_PRESS = "edge:press",
 
   // canvas events
-  CANVAS_CLICK = 'canvas:click',
-  CANVAS_DBLCLICK = 'canvas:dblclick',
-  CANVAS_DROP = 'canvas:drop',
-  CANVAS_DRAGENTER = 'canvas:dragenter',
-  CANVAS_DRAGLEAVE = 'canvas:dragleave',
-  CANVAS_DRAGSTART = 'canvas:dragstart',
-  CANVAS_DRAG = 'canvas:drag',
-  CANVAS_DRAGEND = 'canvas:dragend',
-  CANVAS_TAP = 'canvas:tap',
-  CANVAS_DBLTAP = 'canvas:dbltap',
-  CANVAS_PANSTART = 'canvas:panstart',
-  CANVAS_PANMOVE = 'canvas:panmove',
-  CANVAS_PANEND = 'canvas:panend',
-  CANVAS_PRESS = 'canvas:press',
+  CANVAS_CLICK = "canvas:click",
+  CANVAS_DBLCLICK = "canvas:dblclick",
+  CANVAS_DROP = "canvas:drop",
+  CANVAS_DRAGENTER = "canvas:dragenter",
+  CANVAS_DRAGLEAVE = "canvas:dragleave",
+  CANVAS_DRAGSTART = "canvas:dragstart",
+  CANVAS_DRAG = "canvas:drag",
+  CANVAS_DRAGEND = "canvas:dragend",
+  CANVAS_TAP = "canvas:tap",
+  CANVAS_DBLTAP = "canvas:dbltap",
+  CANVAS_PANSTART = "canvas:panstart",
+  CANVAS_PANMOVE = "canvas:panmove",
+  CANVAS_PANEND = "canvas:panend",
+  CANVAS_PRESS = "canvas:press",
 
   // timing events
-  BEFORERENDER = 'beforerender',
-  AFTERRENDER = 'afterrender',
-  BEFOREADDITEM = 'beforeadditem',
-  AFTERADDITEM = 'afteradditem',
-  BEFOREREMOVEITEM = 'beforeremoveitem',
-  AFTERREMOVEITEM = 'afterremoveitem',
-  BEFOREUPDATEITEM = 'beforeupdateitem',
-  AFTERUPDATEITEM = 'afterupdateitem',
-  BEFOREITEMVISIBILITYCHANGE = 'beforeitemvisibilitychange',
-  AFTERITEMVISIBILITYCHANGE = 'afteritemvisibilitychange',
-  BEFOREITEMSTATECHANGE = 'beforeitemstatechange',
-  AFTERITEMSTATECHANGE = 'afteritemstatechange',
-  BEFOREITEMREFRESH = 'beforeitemrefresh',
-  AFTERITEMREFRESH = 'afteritemrefresh',
-  BEFOREITEMSTATESCLEAR = 'beforeitemstatesclear',
-  AFTERITEMSTATESCLEAR = 'afteritemstatesclear',
-  BEFOREMODECHANGE = 'beforemodechange',
-  AFTERMODECHANGE = 'aftermodechange',
-  BEFORELAYOUT = 'beforelayout',
-  AFTERLAYOUT = 'afterlayout',
-  BEFORECREATEEDGE = 'beforecreateedge',
-  AFTERCREATEEDGE = 'aftercreateedge',
-  BEFOREGRAPHREFRESHPOSITION = 'beforegraphrefreshposition',
-  AFTERGRAPHREFRESHPOSITION = 'aftergraphrefreshposition',
-  BEFOREGRAPHREFRESH = 'beforegraphrefresh',
-  AFTERGRAPHREFRESH = 'aftergraphrefresh',
-  BEFOREANIMATE = 'beforeanimate',
-  AFTERANIMATE = 'afteranimate',
-  BEFOREPAINT = 'beforepaint',
-  AFTERPAINT = 'afterpaint',
-  BEFORECOLLAPSEEXPANDCOMBO = 'beforecollapseexpandcombo',
-  AFTERCOLLAPSEEXPANDCOMBO = 'aftercollapseexpandcombo',
+  BEFORERENDER = "beforerender",
+  AFTERRENDER = "afterrender",
+  BEFOREADDITEM = "beforeadditem",
+  AFTERADDITEM = "afteradditem",
+  BEFOREREMOVEITEM = "beforeremoveitem",
+  AFTERREMOVEITEM = "afterremoveitem",
+  BEFOREUPDATEITEM = "beforeupdateitem",
+  AFTERUPDATEITEM = "afterupdateitem",
+  BEFOREITEMVISIBILITYCHANGE = "beforeitemvisibilitychange",
+  AFTERITEMVISIBILITYCHANGE = "afteritemvisibilitychange",
+  BEFOREITEMSTATECHANGE = "beforeitemstatechange",
+  AFTERITEMSTATECHANGE = "afteritemstatechange",
+  BEFOREITEMREFRESH = "beforeitemrefresh",
+  AFTERITEMREFRESH = "afteritemrefresh",
+  BEFOREITEMSTATESCLEAR = "beforeitemstatesclear",
+  AFTERITEMSTATESCLEAR = "afteritemstatesclear",
+  BEFOREMODECHANGE = "beforemodechange",
+  AFTERMODECHANGE = "aftermodechange",
+  BEFORELAYOUT = "beforelayout",
+  AFTERLAYOUT = "afterlayout",
+  BEFORECREATEEDGE = "beforecreateedge",
+  AFTERCREATEEDGE = "aftercreateedge",
+  BEFOREGRAPHREFRESHPOSITION = "beforegraphrefreshposition",
+  AFTERGRAPHREFRESHPOSITION = "aftergraphrefreshposition",
+  BEFOREGRAPHREFRESH = "beforegraphrefresh",
+  AFTERGRAPHREFRESH = "aftergraphrefresh",
+  BEFOREANIMATE = "beforeanimate",
+  AFTERANIMATE = "afteranimate",
+  BEFOREPAINT = "beforepaint",
+  AFTERPAINT = "afterpaint",
+  BEFORECOLLAPSEEXPANDCOMBO = "beforecollapseexpandcombo",
+  AFTERCOLLAPSEEXPANDCOMBO = "aftercollapseexpandcombo",
 
-  GRAPHSTATECHANGE = 'graphstatechange',
-  AFTERACTIVATERELATIONS = 'afteractivaterelations',
-  NODESELECTCHANGE = 'nodeselectchange',
-  TOOLTIPCHANGE = 'tooltipchange',
-  WHEELZOOM = 'wheelzoom',
-  VIEWPORTCHANGE = 'viewportchange',
-  DRAGNODEEND = 'dragnodeend',
-  STACKCHANGE = 'stackchange',
+  GRAPHSTATECHANGE = "graphstatechange",
+  AFTERACTIVATERELATIONS = "afteractivaterelations",
+  NODESELECTCHANGE = "nodeselectchange",
+  TOOLTIPCHANGE = "tooltipchange",
+  WHEELZOOM = "wheelzoom",
+  VIEWPORTCHANGE = "viewportchange",
+  DRAGNODEEND = "dragnodeend",
+  STACKCHANGE = "stackchange",
 }
 
 export type DefaultBehaviorType = IG6GraphEvent | string | number | object;
@@ -735,7 +753,7 @@ export interface BehaviorOption {
 export type IEvent = Record<G6Event, string>;
 
 // eslint-disable-next-line @typescript-eslint/naming-convention
-export type ITEM_TYPE = 'node' | 'edge' | 'combo' | 'vedge';
+export type ITEM_TYPE = "node" | "edge" | "combo" | "vedge";
 
 export type NodeIdxMap = {
   [key: string]: number;
@@ -755,7 +773,11 @@ export interface Indexable<T> {
 export interface IAlgorithmCallbacks {
   enter?: (param: { current: INode; previous: INode }) => void;
   leave?: (param: { current: INode; previous?: INode }) => void;
-  allowTraversal?: (param: { previous?: INode; current?: INode; next: INode }) => boolean;
+  allowTraversal?: (param: {
+    previous?: INode;
+    current?: INode;
+    next: INode;
+  }) => boolean;
 }
 
 // 栈中数据格式
@@ -780,7 +802,7 @@ export interface BubblesetCfg {
   nonMemberInfluenceFactor?: number; // nonMember influence factor
 }
 
-export type TimeBarType = 'trend' | 'simple' | 'tick';
+export type TimeBarType = "trend" | "simple" | "tick";
 
 export interface HullCfg {
   id: string;

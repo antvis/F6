@@ -5,7 +5,7 @@ Component({
   properties: {
     style: {
       type: String,
-      value: '',
+      value: "",
     },
     width: {
       type: Number,
@@ -42,13 +42,13 @@ Component({
   ready: function ready() {
     const query = wx.createSelectorQuery().in(this);
     query
-      .select('#f6-canvas')
+      .select("#f6-canvas")
       .fields({
         node: true,
         size: true,
       })
       .exec((ret) => {
-        console.log('ret', ret);
+        console.log("ret", ret);
         var canvas = ret[0].node;
         const finalPixelRatio = this.data.finalPixelRatio;
         canvas.width = this.data.width * finalPixelRatio;
@@ -59,14 +59,14 @@ Component({
           left: canvas._left,
           top: canvas._top,
         };
-        console.log('rect', this.rect);
-        this.ctx = canvas.getContext('2d');
+        console.log("rect", this.rect);
+        this.ctx = canvas.getContext("2d");
 
-        this.triggerEvent('onInit', {
+        this.triggerEvent("onInit", {
           ctx: this.ctx,
           rect: this.rect,
           canvas: canvas,
-          renderer: 'mini-native',
+          renderer: "mini-native",
         });
       });
   },
@@ -85,7 +85,7 @@ Component({
         modifyEvent(e.changedTouches[i]);
       }
 
-      this.triggerEvent('onTouchEvent', e);
+      this.triggerEvent("onTouchEvent", e);
     },
   },
 });

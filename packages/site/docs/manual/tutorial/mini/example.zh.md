@@ -80,25 +80,25 @@ const initData = {
   // 点集
   nodes: [
     {
-      id: 'node1', // 节点的唯一标识
+      id: "node1", // 节点的唯一标识
       x: 100, // 节点横坐标
       y: 200, // 节点纵坐标
-      label: '起始点', // 节点文本
+      label: "起始点", // 节点文本
     },
     {
-      id: 'node2',
+      id: "node2",
       x: 300,
       y: 200,
-      label: '目标点',
+      label: "目标点",
     },
   ],
   // 边集
   edges: [
     // 表示一条从 node1 节点连接到 node2 节点的边
     {
-      source: 'node1', // 起始点 id
-      target: 'node2', // 目标点 id
-      label: '我是连线', // 边的文本
+      source: "node1", // 起始点 id
+      target: "node2", // 目标点 id
+      label: "我是连线", // 边的文本
     },
   ],
 };
@@ -117,7 +117,7 @@ const initData = {
 ```javascript
 const graph = new F6.Graph({
   container: null, // 如果为小程序，则传null或者不传
-  renderer: 'mini', // renderer 目前支持`mini`和`mini-native`两个值，可以通过onCanvasInit回调获取
+  renderer: "mini", // renderer 目前支持`mini`和`mini-native`两个值，可以通过onCanvasInit回调获取
   context: ctx, // 由于小程序中无法直接获取canvas的context，所以需要从外部传入
   width: 800, // Number，必须，图的宽度
   height: 500, // Number，必须，图的高度
@@ -189,15 +189,15 @@ const graph = new F6.Graph({
 
 本文使用到的配置以及后续 Tutorial 将会使用到到常用配置如下：
 
-| 配置项 | 类型 | 选项 / 示例 | 默认 | 说明 |
-| --- | --- | --- | --- | --- |
-| fitView | Boolean | true / false | false | 是否将图适配到画布大小，可以防止超出画布或留白太多。 |
-| fitViewPadding | Number / Array | 20 / [ 20, 40, 50, 20 ] | 0 | 画布上的四周留白宽度。 |
-| animate | Boolean | true / false | false | 是否启用图的动画。 |
-| modes | Object | {<br />  default: [ 'drag-node', 'drag-canvas' ]<br />} | null | 图上行为模式的集合。由于比较复杂，按需参见：[F6 中的 Mode](/zh/docs/manual/middle/states/mode) 教程。 |
-| defaultNode | Object | {<br />  type: 'circle',<br />  color: '#000',<br />  style: {<br />    ......<br />  }<br />} | null | 节点默认的属性，包括节点的一般属性和样式属性（style）。 |
-| defaultEdge | Object | {<br />  type: 'polyline',<br />  color: '#000',<br />  style: {<br />    ......<br />  }<br />} | null | 边默认的属性，包括边的一般属性和样式属性（style）。 |
-| nodeStateStyles | Object | {<br />  hover: {<br />    ......<br />  },<br />  select: {<br />    ......<br />  }<br />} | null | 节点在除默认状态外，其他状态下的样式属性（style）。例如鼠标放置（hover）、选中（select）等状态。 |
-| edgeStateStyles | Object | {<br />  hover: {<br />    ......<br />  },<br />  select: {<br />    ......<br />  }<br />} | null | 边在除默认状态外，其他状态下的样式属性（style）。例如鼠标放置（hover）、选中（select）等状态。 |
+| 配置项          | 类型           | 选项 / 示例                                                                                      | 默认  | 说明                                                                                                  |
+| --------------- | -------------- | ------------------------------------------------------------------------------------------------ | ----- | ----------------------------------------------------------------------------------------------------- |
+| fitView         | Boolean        | true / false                                                                                     | false | 是否将图适配到画布大小，可以防止超出画布或留白太多。                                                  |
+| fitViewPadding  | Number / Array | 20 / [ 20, 40, 50, 20 ]                                                                          | 0     | 画布上的四周留白宽度。                                                                                |
+| animate         | Boolean        | true / false                                                                                     | false | 是否启用图的动画。                                                                                    |
+| modes           | Object         | {<br />  default: [ 'drag-node', 'drag-canvas' ]<br />}                                          | null  | 图上行为模式的集合。由于比较复杂，按需参见：[F6 中的 Mode](/zh/docs/manual/middle/states/mode) 教程。 |
+| defaultNode     | Object         | {<br />  type: 'circle',<br />  color: '#000',<br />  style: {<br />    ......<br />  }<br />}   | null  | 节点默认的属性，包括节点的一般属性和样式属性（style）。                                               |
+| defaultEdge     | Object         | {<br />  type: 'polyline',<br />  color: '#000',<br />  style: {<br />    ......<br />  }<br />} | null  | 边默认的属性，包括边的一般属性和样式属性（style）。                                                   |
+| nodeStateStyles | Object         | {<br />  hover: {<br />    ......<br />  },<br />  select: {<br />    ......<br />  }<br />}     | null  | 节点在除默认状态外，其他状态下的样式属性（style）。例如鼠标放置（hover）、选中（select）等状态。      |
+| edgeStateStyles | Object         | {<br />  hover: {<br />    ......<br />  },<br />  select: {<br />    ......<br />  }<br />}     | null  | 边在除默认状态外，其他状态下的样式属性（style）。例如鼠标放置（hover）、选中（select）等状态。        |
 
 <span style="background-color: rgb(251, 233, 231); color: rgb(139, 53, 56)"><strong>⚠️ 注意:</strong></span><br />若需更换数据，请替换  `'https://gw.alipayobjects.com/os/basement_prod/6cae02ab-4c29-44b2-b1fd-4005688febcb.json'`  为新的数据文件地址。

@@ -11,29 +11,36 @@ const graph = new F6.TreeGraph({
   pixelRatio,
   fitView: true,
   modes: {
-    default: ["drag-canvas", "zoom-canvas", {
-      type: "drag-node",
-      enableDelegate: true
-    }]
+    default: [
+      "drag-canvas",
+      "zoom-canvas",
+      {
+        type: "drag-node",
+        enableDelegate: true,
+      },
+    ],
   },
   defaultNode: {
     size: [26, 26],
-    anchorPoints: [[0, 0.5], [1, 0.5]],
+    anchorPoints: [
+      [0, 0.5],
+      [1, 0.5],
+    ],
     style: {
       fill: "#C6E5FF",
-      stroke: "#5B8FF9"
-    }
+      stroke: "#5B8FF9",
+    },
   },
   defaultEdge: {
     type: "cubic-horizontal",
     style: {
-      stroke: "#A3B1BF"
-    }
+      stroke: "#A3B1BF",
+    },
   },
   nodeStateStyles: {
     closest: {
-      fill: "#f00"
-    }
+      fill: "#f00",
+    },
   },
   layout: {
     type: "compactBox",
@@ -52,35 +59,34 @@ const graph = new F6.TreeGraph({
     },
     getHGap: function getHGap() {
       return 100;
-    }
-  }
+    },
+  },
 });
 graph.node(function (node) {
   return {
     label: node.id,
     labelCfg: {
       offset: 10,
-      position: node.children && node.children.length > 0 ? "left" : "right"
-    }
+      position: node.children && node.children.length > 0 ? "left" : "right",
+    },
   };
 });
 let minDisNode;
 graph.on("node:dragstart", () => {
   minDisNode = undefined;
 });
-graph.on("node:drag", e => {
+graph.on("node:drag", (e) => {
   minDisNode = undefined;
-  const {
-    item
-  } = e;
+  const { item } = e;
   const model = item.getModel();
   const nodes = graph.getNodes();
   let minDis = Infinity;
-  nodes.forEach(inode => {
+  nodes.forEach((inode) => {
     graph.setItemState(inode, "closest", false);
     const node = inode.getModel();
     if (node.id === model.id) return;
-    const dis = (node.x - e.x) * (node.x - e.x) + (node.y - e.y) * (node.y - e.y);
+    const dis =
+      (node.x - e.x) * (node.x - e.x) + (node.y - e.y) * (node.y - e.y);
 
     if (dis < minDis) {
       minDis = dis;
@@ -88,22 +94,21 @@ graph.on("node:drag", e => {
     }
   });
   console.log("minDis", minDis, minDisNode);
-  if (minDis < 2000) graph.setItemState(minDisNode, "closest", true);else minDisNode = undefined;
+  if (minDis < 2000) graph.setItemState(minDisNode, "closest", true);
+  else minDisNode = undefined;
 });
-graph.on("node:dragend", e => {
+graph.on("node:dragend", (e) => {
   if (!minDisNode) {
     return;
   }
 
-  const {
-    item
-  } = e;
+  const { item } = e;
   const id = item.getID();
   const data = graph.findDataById(id);
   let isDescent = false;
   const minDisNodeId = minDisNode.getID();
   console.log("dragend", minDisNodeId, isDescent, data, id);
-  F6.Util.traverseTree(data, d => {
+  F6.Util.traverseTree(data, (d) => {
     if (d.id === minDisNodeId) isDescent = true;
   });
 
@@ -116,10 +121,11 @@ graph.on("node:dragend", e => {
   setTimeout(() => {
     const newParentData = graph.findDataById(minDisNodeId);
     let newChildren = newParentData.children;
-    if (newChildren) newChildren.push(data);else newChildren = [data];
+    if (newChildren) newChildren.push(data);
+    else newChildren = [data];
     me.graph.updateChildren(newChildren, minDisNodeId);
     me.setData({
-      discription: "Success."
+      discription: "Success.",
     });
   }, 600);
 });

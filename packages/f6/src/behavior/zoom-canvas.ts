@@ -1,4 +1,4 @@
-import { G6Event } from '@antv/f6-core';
+import { G6Event } from "@antv/f6-core";
 
 export default {
   firstScale: null,
@@ -14,22 +14,22 @@ export default {
         fixAll: false,
         fixLineWidth: false,
         fixLabel: false,
-        fixState: 'selected',
+        fixState: "selected",
       },
     };
   },
   getEvents(): { [key in G6Event]?: string } {
     const { fixSelectedItems } = this;
 
-    if (!fixSelectedItems.fixState) fixSelectedItems.fixState = 'selected';
+    if (!fixSelectedItems.fixState) fixSelectedItems.fixState = "selected";
     if (fixSelectedItems.fixAll) {
       fixSelectedItems.fixLineWidth = true;
       fixSelectedItems.fixLabel = true;
     }
 
     return {
-      pinchstart: 'onPinch',
-      pinchmove: 'onPinch',
+      pinchstart: "onPinch",
+      pinchmove: "onPinch",
     };
   },
   onPinch(evt) {
@@ -39,11 +39,12 @@ export default {
     const pointers = evt.originalEvent.pointers;
     if (pointers.length < 2) return;
 
-    if (evt.type === 'pinchstart') {
+    if (evt.type === "pinchstart") {
       this.firstScale = this.graph.getZoom();
     }
 
-    const scale = evt.originalEvent.scale || evt.originalEvent.srcEvent.extra.scale;
+    const scale =
+      evt.originalEvent.scale || evt.originalEvent.srcEvent.extra.scale;
 
     // 应用到画布上的缩放比例
     const zoom = this.firstScale * scale;
@@ -51,18 +52,21 @@ export default {
     // 缓存当前的缩放比例
     this.currentScale = zoom;
 
-    const minZoom = this.get('minZoom') || this.graph.get('minZoom');
-    const maxZoom = this.get('maxZoom') || this.graph.get('maxZoom');
+    const minZoom = this.get("minZoom") || this.graph.get("minZoom");
+    const maxZoom = this.get("maxZoom") || this.graph.get("maxZoom");
 
     if (zoom > maxZoom || zoom < minZoom) {
       return;
     }
-    const canvas = this.graph.get('canvas');
+    const canvas = this.graph.get("canvas");
 
     const posA = { x: pointers[0].clientX, y: pointers[0].clientY };
     const posB = { x: pointers[1].clientX, y: pointers[1].clientY };
     // 缩放点放中间
-    const point = canvas.getPointByClient((posA.x + posB.x) / 2, (posA.y + posB.y) / 2);
+    const point = canvas.getPointByClient(
+      (posA.x + posB.x) / 2,
+      (posA.y + posB.y) / 2,
+    );
     this.graph.zoomTo(zoom, { x: point.x, y: point.y });
   },
 };

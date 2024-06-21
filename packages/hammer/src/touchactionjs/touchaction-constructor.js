@@ -4,15 +4,15 @@ import {
   TOUCH_ACTION_NONE,
   TOUCH_ACTION_PAN_X,
   TOUCH_ACTION_PAN_Y,
-} from './touchaction-Consts';
+} from "./touchaction-Consts";
 import {
   DIRECTION_VERTICAL,
   DIRECTION_HORIZONTAL,
-} from '../inputjs/input-consts';
-import each from '../utils/each';
-import boolOrFn from '../utils/bool-or-fn';
-import inStr from '../utils/in-str';
-import cleanTouchActions from './clean-touch-actions';
+} from "../inputjs/input-consts";
+import each from "../utils/each";
+import boolOrFn from "../utils/bool-or-fn";
+import inStr from "../utils/in-str";
+import cleanTouchActions from "./clean-touch-actions";
 
 /**
  * @private
@@ -62,7 +62,7 @@ export default class TouchAction {
         actions = actions.concat(recognizer.getTouchAction());
       }
     });
-    return cleanTouchActions(actions.join(' '));
+    return cleanTouchActions(actions.join(" "));
   }
 
   /**

@@ -1,8 +1,8 @@
-import F6 from '@antv/f6';
-import TreeGraph from '@antv/f6/dist/extends/graph/treeGraph';
-import { wrapContext } from '../../../common/utils/context';
+import F6 from "@antv/f6";
+import TreeGraph from "@antv/f6/dist/extends/graph/treeGraph";
+import { wrapContext } from "../../../common/utils/context";
 
-import data_ from './data.js';
+import data_ from "./data.js";
 
 /**
  * 至上而下的紧凑树
@@ -11,7 +11,7 @@ import data_ from './data.js';
 Page({
   canvas: null,
   ctx: null, // 延迟获取的2d context
-  renderer: '', // mini、mini-native等，F6需要，标记环境
+  renderer: "", // mini、mini-native等，F6需要，标记环境
   isCanvasInit: false, // canvas是否准备好了
   graph: null,
 
@@ -24,7 +24,7 @@ Page({
 
   onLoad() {
     // 注册自定义树，节点等
-    F6.registerGraph('TreeGraph', TreeGraph);
+    F6.registerGraph("TreeGraph", TreeGraph);
 
     // 同步获取window的宽高
     const { windowWidth, windowHeight, pixelRatio } = my.getSystemInfoSync();
@@ -74,15 +74,15 @@ Page({
       modes: {
         default: [
           {
-            type: 'collapse-expand',
+            type: "collapse-expand",
             onChange: function onChange(item, collapsed) {
               const data = item.getModel();
               data.collapsed = collapsed;
               return true;
             },
           },
-          'drag-canvas',
-          'zoom-canvas',
+          "drag-canvas",
+          "zoom-canvas",
         ],
       },
       defaultNode: {
@@ -93,11 +93,11 @@ Page({
         ],
       },
       defaultEdge: {
-        type: 'cubic-vertical',
+        type: "cubic-vertical",
       },
       layout: {
-        type: 'compactBox',
-        direction: 'TB',
+        type: "compactBox",
+        direction: "TB",
         getId: function getId(d) {
           return d.id;
         },
@@ -117,10 +117,10 @@ Page({
     });
 
     this.graph.node(function (node) {
-      let position = 'right';
+      let position = "right";
       let rotate = 0;
       if (!node.children) {
-        position = 'bottom';
+        position = "bottom";
         rotate = Math.PI / 2;
       }
       return {
@@ -130,7 +130,7 @@ Page({
           offset: 5,
           style: {
             rotate,
-            textAlign: 'start',
+            textAlign: "start",
           },
         },
       };

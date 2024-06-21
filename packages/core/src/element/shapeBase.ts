@@ -2,19 +2,33 @@
  * @fileOverview 自定义节点和边的过程中，发现大量重复代码
  * @author dxq613@gmail.com
  */
-import { IGroup, IShape, IElement } from '@antv/g-base';
-import { ShapeOptions, ILabelConfig } from '../interface/shape';
-import { IPoint, Item, LabelStyle, ShapeStyle, ModelConfig, EdgeConfig } from '../types';
-import Global from '../global';
-import { ext } from '@antv/matrix-util';
-import { deepMix, each, mix, isBoolean, isPlainObject, clone } from '@antv/util';
-import { cloneBesidesImg } from '../util/graphic';
+import { IGroup, IShape, IElement } from "@antv/g-base";
+import { ShapeOptions, ILabelConfig } from "../interface/shape";
+import {
+  IPoint,
+  Item,
+  LabelStyle,
+  ShapeStyle,
+  ModelConfig,
+  EdgeConfig,
+} from "../types";
+import Global from "../global";
+import { ext } from "@antv/matrix-util";
+import {
+  deepMix,
+  each,
+  mix,
+  isBoolean,
+  isPlainObject,
+  clone,
+} from "@antv/util";
+import { cloneBesidesImg } from "../util/graphic";
 
 const transform = ext.transform;
 
-const CLS_SHAPE_SUFFIX = '-shape';
-const CLS_LABEL_SUFFIX = '-label';
-const ARROWS = ['startArrow', 'endArrow'];
+const CLS_SHAPE_SUFFIX = "-shape";
+const CLS_LABEL_SUFFIX = "-label";
+const ARROWS = ["startArrow", "endArrow"];
 const SHAPE_DEFAULT_ATTRS = {
   lineWidth: 1,
   stroke: undefined,
@@ -35,7 +49,7 @@ const SHAPE_DEFAULT_ATTRS = {
 };
 const PATH_SHAPE_DEFAULT_ATTRS = {
   lineWidth: 1,
-  stroke: '#000',
+  stroke: "#000",
   lineDash: undefined,
   startArrow: false,
   endArrow: false,
@@ -53,17 +67,17 @@ const SHAPES_DEFAULT_ATTRS = {
   combo: SHAPE_DEFAULT_ATTRS,
 };
 
-export const CLS_LABEL_BG_SUFFIX = '-label-bg';
+export const CLS_LABEL_BG_SUFFIX = "-label-bg";
 
 // 单个 shape 带有一个 label，共用这段代码
 export const shapeBase: ShapeOptions = {
   // 默认样式及配置
   options: {},
-  itemType: '', // node, edge, combo 等
+  itemType: "", // node, edge, combo 等
   /**
    * 形状的类型，例如 circle，ellipse，polyline...
    */
-  type: '',
+  type: "",
   getCustomConfig(cfg: ModelConfig): ModelConfig {
     return {};
   },
@@ -74,19 +88,21 @@ export const shapeBase: ShapeOptions = {
         labelCfg: {
           style: {
             fontFamily:
-              typeof window !== 'undefined' && window.getComputedStyle
-                ? window.getComputedStyle(document.body, null).getPropertyValue('font-family') ||
-                  'Arial, sans-serif'
-                : 'Arial, sans-serif',
+              typeof window !== "undefined" && window.getComputedStyle
+                ? window
+                    .getComputedStyle(document.body, null)
+                    .getPropertyValue("font-family") || "Arial, sans-serif"
+                : "Arial, sans-serif",
           },
         },
         descriptionCfg: {
           style: {
             fontFamily:
-              typeof window !== 'undefined' && window.getComputedStyle
-                ? window.getComputedStyle(document.body, null).getPropertyValue('font-family') ||
-                  'Arial, sans-serif'
-                : 'Arial, sans-serif',
+              typeof window !== "undefined" && window.getComputedStyle
+                ? window
+                    .getComputedStyle(document.body, null)
+                    .getPropertyValue("font-family") || "Arial, sans-serif"
+                : "Arial, sans-serif",
           },
         },
       },
@@ -104,10 +120,10 @@ export const shapeBase: ShapeOptions = {
    */
   draw(cfg: ModelConfig, group: IGroup): IShape {
     const shape: IShape = this.drawShape!(cfg, group);
-    shape.set('className', this.itemType + CLS_SHAPE_SUFFIX);
+    shape.set("className", this.itemType + CLS_SHAPE_SUFFIX);
     if (cfg.label) {
       const label = this.drawLabel!(cfg, group);
-      label.set('className', this.itemType + CLS_LABEL_SUFFIX);
+      label.set("className", this.itemType + CLS_LABEL_SUFFIX);
     }
     return shape;
   },
@@ -128,11 +144,11 @@ export const shapeBase: ShapeOptions = {
     const labelStyle = this.getLabelStyle!(cfg, labelCfg, group);
     const rotate = labelStyle.rotate;
     delete labelStyle.rotate;
-    const label = group.addShape('text', {
+    const label = group.addShape("text", {
       attrs: labelStyle,
       draggable: true,
-      className: 'text-shape',
-      name: 'text-shape',
+      className: "text-shape",
+      name: "text-shape",
     });
     if (rotate) {
       const labelBBox = label.getBBox();
@@ -142,40 +158,40 @@ export const shapeBase: ShapeOptions = {
       }
       if (labelStyle.rotateCenter) {
         switch (labelStyle.rotateCenter) {
-          case 'center':
+          case "center":
             labelMatrix = transform(labelMatrix, [
-              ['t', -labelBBox.width / 2, -labelBBox.height / 2],
-              ['r', rotate],
-              ['t', labelBBox.width / 2, labelBBox.height / 2],
+              ["t", -labelBBox.width / 2, -labelBBox.height / 2],
+              ["r", rotate],
+              ["t", labelBBox.width / 2, labelBBox.height / 2],
             ]);
             break;
-          case 'lefttop':
+          case "lefttop":
             labelMatrix = transform(labelMatrix, [
-              ['t', -labelStyle.x!, -labelStyle.y!],
-              ['r', rotate],
-              ['t', labelStyle.x, labelStyle.y],
+              ["t", -labelStyle.x!, -labelStyle.y!],
+              ["r", rotate],
+              ["t", labelStyle.x, labelStyle.y],
             ]);
             break;
-          case 'leftcenter':
+          case "leftcenter":
             labelMatrix = transform(labelMatrix, [
-              ['t', -labelStyle.x!, -labelStyle.y! - labelBBox.height / 2],
-              ['r', rotate],
-              ['t', labelStyle.x, labelStyle.y! + labelBBox.height / 2],
+              ["t", -labelStyle.x!, -labelStyle.y! - labelBBox.height / 2],
+              ["r", rotate],
+              ["t", labelStyle.x, labelStyle.y! + labelBBox.height / 2],
             ]);
             break;
           default:
             labelMatrix = transform(labelMatrix, [
-              ['t', -labelBBox.width / 2, -labelBBox.height / 2],
-              ['r', rotate],
-              ['t', labelBBox.width / 2, labelBBox.height / 2],
+              ["t", -labelBBox.width / 2, -labelBBox.height / 2],
+              ["r", rotate],
+              ["t", labelBBox.width / 2, labelBBox.height / 2],
             ]);
             break;
         }
       } else {
         labelMatrix = transform(labelMatrix, [
-          ['t', -labelStyle.x!, -labelStyle.y! - labelBBox.height / 2],
-          ['r', rotate],
-          ['t', labelStyle.x, labelStyle.y! + labelBBox.height / 2],
+          ["t", -labelStyle.x!, -labelStyle.y! - labelBBox.height / 2],
+          ["r", rotate],
+          ["t", labelStyle.x, labelStyle.y! + labelBBox.height / 2],
         ]);
       }
       label.setMatrix(labelMatrix);
@@ -183,7 +199,7 @@ export const shapeBase: ShapeOptions = {
     if (labelStyle.background) {
       const rect = this.drawLabelBg(cfg, group, label);
       const labelBgClassname = this.itemType + CLS_LABEL_BG_SUFFIX;
-      rect.set('classname', labelBgClassname);
+      rect.set("classname", labelBgClassname);
       label.toFront();
     }
     return label;
@@ -192,10 +208,17 @@ export const shapeBase: ShapeOptions = {
     const { labelCfg: defaultLabelCfg } = this.options as ModelConfig;
     const labelCfg = mix({}, defaultLabelCfg, cfg.labelCfg) as ILabelConfig;
     const style = this.getLabelBgStyleByPosition(label, cfg, labelCfg, group);
-    const rect = group.addShape('rect', { name: 'text-bg-shape', attrs: style });
+    const rect = group.addShape("rect", {
+      name: "text-bg-shape",
+      attrs: style,
+    });
     return rect;
   },
-  getLabelStyleByPosition(cfg: ModelConfig, labelCfg?: ILabelConfig, group?: IGroup): LabelStyle {
+  getLabelStyleByPosition(
+    cfg: ModelConfig,
+    labelCfg?: ILabelConfig,
+    group?: IGroup,
+  ): LabelStyle {
     return { text: cfg.label as string };
   },
   getLabelBgStyleByPosition(
@@ -213,11 +236,21 @@ export const shapeBase: ShapeOptions = {
    * @param labelCfg 文本的配置项
    * @param group 父容器，label 的定位可能与图形相关
    */
-  getLabelStyle(cfg: ModelConfig, labelCfg: ILabelConfig, group: IGroup): LabelStyle {
+  getLabelStyle(
+    cfg: ModelConfig,
+    labelCfg: ILabelConfig,
+    group: IGroup,
+  ): LabelStyle {
     const calculateStyle = this.getLabelStyleByPosition!(cfg, labelCfg, group);
     const attrName = `${this.itemType}Label`; // 取 nodeLabel，edgeLabel 的配置项
-    const defaultStyle = (Global as any)[attrName] ? (Global as any)[attrName].style : null;
-    const labelStyle = { ...defaultStyle, ...calculateStyle, ...labelCfg.style };
+    const defaultStyle = (Global as any)[attrName]
+      ? (Global as any)[attrName].style
+      : null;
+    const labelStyle = {
+      ...defaultStyle,
+      ...calculateStyle,
+      ...labelCfg.style,
+    };
     return labelStyle;
   },
 
@@ -246,7 +279,7 @@ export const shapeBase: ShapeOptions = {
       const style = shapeStyle[key];
       if (isPlainObject(style)) {
         // 更新图元素样式，支持更新子元素
-        const subShape = group.find((element) => element.get('name') === key);
+        const subShape = group.find((element) => element.get("name") === key);
         if (subShape) {
           subShape.attr(style);
         }
@@ -262,16 +295,20 @@ export const shapeBase: ShapeOptions = {
     const group = item.getContainer();
     const { labelCfg: defaultLabelCfg } = this.getOptions({}) as ModelConfig;
     const labelClassName = this.itemType + CLS_LABEL_SUFFIX;
-    const label = group.find((element) => element.get('className') === labelClassName);
+    const label = group.find(
+      (element) => element.get("className") === labelClassName,
+    );
     const labelBgClassname = this.itemType + CLS_LABEL_BG_SUFFIX;
-    let labelBg = group.find((element) => element.get('classname') === labelBgClassname);
+    let labelBg = group.find(
+      (element) => element.get("classname") === labelBgClassname,
+    );
     // 防止 cfg.label = "" 的情况
-    if (cfg.label || cfg.label === '') {
+    if (cfg.label || cfg.label === "") {
       // 若传入的新配置中有 label，（用户没传入但原先有 label，label 也会有值）
       if (!label) {
         // 若原先不存在 label，则绘制一个新的 label
         const newLabel = this.drawLabel!(cfg, group);
-        newLabel.set('className', labelClassName);
+        newLabel.set("className", labelClassName);
       } else {
         // 若原先存在 label，则更新样式。与 getLabelStyle 不同在于这里需要融合当前 label 的样式
         // 用于融合 style 以外的属性：position, offset, ...
@@ -280,10 +317,19 @@ export const shapeBase: ShapeOptions = {
           currentLabelCfg = item.getModel().labelCfg;
         }
         // 这里不能去掉
-        const labelCfg = deepMix({}, defaultLabelCfg, currentLabelCfg, cfg.labelCfg);
+        const labelCfg = deepMix(
+          {},
+          defaultLabelCfg,
+          currentLabelCfg,
+          cfg.labelCfg,
+        );
 
         // 获取位置信息
-        const calculateStyle = (this as any).getLabelStyleByPosition(cfg, labelCfg, group);
+        const calculateStyle = (this as any).getLabelStyleByPosition(
+          cfg,
+          labelCfg,
+          group,
+        );
 
         // 取 nodeLabel，edgeLabel 的配置项
         const cfgStyle = cfg.labelCfg ? cfg.labelCfg.style : undefined;
@@ -299,9 +345,9 @@ export const shapeBase: ShapeOptions = {
           // if G 4.x define the rotateAtStart, use it directly instead of using the following codes
           let rotateMatrix = [1, 0, 0, 0, 1, 0, 0, 0, 1];
           rotateMatrix = transform(rotateMatrix, [
-            ['t', -labelStyle.x, -labelStyle.y],
-            ['r', rotate],
-            ['t', labelStyle.x, labelStyle.y],
+            ["t", -labelStyle.x, -labelStyle.y],
+            ["r", rotate],
+            ["t", labelStyle.x, labelStyle.y],
           ]);
           label.resetMatrix();
           label.attr({ ...labelStyle, matrix: rotateMatrix });
@@ -313,7 +359,7 @@ export const shapeBase: ShapeOptions = {
         if (!labelBg) {
           if (labelStyle.background) {
             labelBg = this.drawLabelBg(cfg, group, label);
-            labelBg.set('classname', labelBgClassname);
+            labelBg.set("classname", labelBgClassname);
             label.toFront();
           }
         } else if (labelStyle.background) {
@@ -328,9 +374,9 @@ export const shapeBase: ShapeOptions = {
           if (rotate) {
             let bgRotateMatrix = [1, 0, 0, 0, 1, 0, 0, 0, 1];
             bgRotateMatrix = transform(bgRotateMatrix, [
-              ['t', -labelBgStyle.x, -labelBgStyle.y],
-              ['r', rotate],
-              ['t', labelBgStyle.x, labelBgStyle.y],
+              ["t", -labelBgStyle.x, -labelBgStyle.y],
+              ["r", rotate],
+              ["t", labelBgStyle.x, labelBgStyle.y],
             ]);
             labelBgStyle.matrix = bgRotateMatrix;
           }
@@ -353,7 +399,7 @@ export const shapeBase: ShapeOptions = {
    * @param  {G6.Item} item 节点
    */
   setState(name: string, value: string | boolean, item: Item) {
-    const shape: IShape = item.get('keyShape');
+    const shape: IShape = item.get("keyShape");
     if (!shape || shape.destroyed) return;
 
     const type = item.getType();
@@ -376,7 +422,7 @@ export const shapeBase: ShapeOptions = {
 
     // 从图元素现有的样式中删除本次要取消的 states 中存在的属性值。使用对象检索更快
     const keptAttrs: any = { x: 1, y: 1, cx: 1, cy: 1 };
-    if (type === 'combo') {
+    if (type === "combo") {
       keptAttrs.r = 1;
       keptAttrs.width = 1;
       keptAttrs.height = 1;
@@ -387,7 +433,7 @@ export const shapeBase: ShapeOptions = {
       for (const key in styles) {
         const style = styles[key];
         if (isPlainObject(style) && !ARROWS.includes(key)) {
-          const subShape = group.find((element) => element.get('name') === key);
+          const subShape = group.find((element) => element.get("name") === key);
           if (subShape) {
             subShape.attr(style);
           }
@@ -404,18 +450,22 @@ export const shapeBase: ShapeOptions = {
 
       const model = item.getModel();
       // 原始样式
-      const originStyle = mix({}, model.style, cloneBesidesImg(item.getOriginStyle()));
+      const originStyle = mix(
+        {},
+        model.style,
+        cloneBesidesImg(item.getOriginStyle()),
+      );
 
-      const keyShapeName = shape.get('name');
+      const keyShapeName = shape.get("name");
 
       // cloning  shape.attr(), keys.forEach to avoid cloning the img attr, which leads to maximum clone heap #2383
       // const keyShapeStyles = clone(shape.attr())
       const shapeAttrs = shape.attr();
       const keyShapeStyles = {};
       Object.keys(shapeAttrs).forEach((key) => {
-        if (key === 'img') return;
+        if (key === "img") return;
         const attr = shapeAttrs[key];
-        if (attr && typeof attr === 'object') {
+        if (attr && typeof attr === "object") {
           keyShapeStyles[key] = clone(attr);
         } else {
           keyShapeStyles[key] = attr;
@@ -429,17 +479,23 @@ export const shapeBase: ShapeOptions = {
       for (const p in styles) {
         const style = styles[p];
         if (isPlainObject(style) && !ARROWS.includes(p)) {
-          const subShape = group.find((element) => element.get('name') === p);
+          const subShape = group.find((element) => element.get("name") === p);
           if (subShape) {
             const subShapeStyles = clone(subShape.attr());
             each(style, (v, key) => {
-              if (p === keyShapeName && keyShapeStyles[key] && !keptAttrs[key]) {
+              if (
+                p === keyShapeName &&
+                keyShapeStyles[key] &&
+                !keptAttrs[key]
+              ) {
                 delete keyShapeStyles[key];
-                const value = originStyle[p][key] || SHAPES_DEFAULT_ATTRS[type][key];
+                const value =
+                  originStyle[p][key] || SHAPES_DEFAULT_ATTRS[type][key];
                 shape.attr(key, value);
               } else if (subShapeStyles[key] || subShapeStyles[key] === 0) {
                 delete subShapeStyles[key];
-                const value = originStyle[p][key] || SHAPES_DEFAULT_ATTRS[type][key];
+                const value =
+                  originStyle[p][key] || SHAPES_DEFAULT_ATTRS[type][key];
                 subShape.attr(key, value);
               }
             });
@@ -450,7 +506,9 @@ export const shapeBase: ShapeOptions = {
             delete keyShapeStyles[p];
             const value =
               originStyle[p] ||
-              (originStyle[keyShapeName] ? originStyle[keyShapeName][p] : undefined) ||
+              (originStyle[keyShapeName]
+                ? originStyle[keyShapeName][p]
+                : undefined) ||
               SHAPES_DEFAULT_ATTRS[type][p];
             shape.attr(p, value);
           }
@@ -485,16 +543,23 @@ export const shapeBase: ShapeOptions = {
       }
 
       const originstyles = {};
-      deepMix(originstyles, originStyle, filtetDisableStatesStyle, enableStatesStyle);
+      deepMix(
+        originstyles,
+        originStyle,
+        filtetDisableStatesStyle,
+        enableStatesStyle,
+      );
       let keyShapeSetted = false;
 
       for (const originKey in originstyles) {
         const style = originstyles[originKey];
         if (isPlainObject(style) && !ARROWS.includes(originKey)) {
-          const subShape = group.find((element) => element.get('name') === originKey);
+          const subShape = group.find(
+            (element) => element.get("name") === originKey,
+          );
           if (subShape) {
             if (originKey === keyShapeName) {
-              if (type === 'combo') {
+              if (type === "combo") {
                 delete (style as any).r;
                 delete (style as any).width;
                 delete (style as any).height;
@@ -506,7 +571,7 @@ export const shapeBase: ShapeOptions = {
         } else if (!keyShapeSetted) {
           const value = style || SHAPES_DEFAULT_ATTRS[type][originKey];
           // 当更新 combo 状态时，当不存在 keyShapeName 时候，则认为是设置到 keyShape 上面的
-          if (type === 'combo') {
+          if (type === "combo") {
             if (!keyShapeName) {
               shape.attr({
                 [originKey]: value,
@@ -538,7 +603,7 @@ export const shapeBase: ShapeOptions = {
       ? model.stateStyles[name]
       : stateStyles && stateStyles[name];
 
-    if (type === 'combo') {
+    if (type === "combo") {
       return clone(modelStateStyle);
     }
     return mix({}, style, modelStateStyle);

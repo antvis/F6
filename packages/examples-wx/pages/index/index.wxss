@@ -1,4 +1,4 @@
-.index{
+.index {
   position: relative;
   overflow-x: hidden;
 }
@@ -48,7 +48,7 @@
   font-size: 17px;
 
   transform: translateY(-50%);
-  transition: .3s;
+  transition: 0.3s;
 }
 .navigator-box-show {
   opacity: 1;
@@ -120,13 +120,12 @@
 .kind-list-item:first-child {
   margin-top: 0;
 }
-.kind-list-text{
+.kind-list-text {
   margin-right: 15px;
 }
 .kind-list-en-text {
   color: gray;
   flex: 1;
-
 }
 .kind-list-img {
   /* width: 30px;
@@ -138,12 +137,12 @@
   padding-bottom: 10px;
   display: flex;
   align-items: flex-start;
-  border-bottom: 1px solid rgba(0,0,0,.1);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 
-  transition: opacity .3s;
+  transition: opacity 0.3s;
 }
 .kind-list-item-hd-show {
-  opacity: .2;
+  opacity: 0.2;
 }
 .kind-list-item-bd {
   height: 0;

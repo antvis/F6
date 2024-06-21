@@ -21,11 +21,11 @@ order: 7
 
 ```javascript
 // 布尔状态 'selected'
-graph.setItemState('node1', 'selected', true);
+graph.setItemState("node1", "selected", true);
 
 // 多值状态 'body'
-graph.setItemState('node1', 'body', 'health');
-graph.setItemState('node2', 'body', 'ill');
+graph.setItemState("node1", "body", "health");
+graph.setItemState("node2", "body", "ill");
 ```
 
 ### graph.clearItemStates(item, states)
@@ -43,10 +43,10 @@ graph.setItemState('node2', 'body', 'ill');
 
 ```javascript
 // 清除单个状态
-graph.clearItemStates(node, 'a');
+graph.clearItemStates(node, "a");
 
 // 清除多个状态
-graph.clearItemStates(node, ['a', 'b']);
+graph.clearItemStates(node, ["a", "b"]);
 
 // 清除所有
 graph.clearItemStates(node);
@@ -67,5 +67,5 @@ graph.clearItemStates(node);
 
 ```javascript
 // 将 node 的 a 状态调整为优先级最高
-graph.priorityState(node, 'a');
+graph.priorityState(node, "a");
 ```

@@ -1,11 +1,11 @@
 Component({
   data: {
     supportNative: !!my._createCanvas,
-    waterStyle: '',
+    waterStyle: "",
     finalPixelRatio: 1,
   },
   props: {
-    style: '',
+    style: "",
     width: 100,
     height: 100,
     forceMini: false,
@@ -56,18 +56,18 @@ Component({
             this.props.onError && this.props.onError(ret);
           }
           if (this.data.supportNative && !this.props.forceMini) {
-            console.log('native support');
+            console.log("native support");
             my._createCanvas({
               id: canvasId,
               success: (canvas) => {
-                this.ctx = canvas.getContext('2d');
-                this.props.onInit(this.ctx, ret[0], canvas, 'mini-native');
+                this.ctx = canvas.getContext("2d");
+                this.props.onInit(this.ctx, ret[0], canvas, "mini-native");
               },
             });
           } else {
-            console.log('web support');
+            console.log("web support");
             this.ctx = my.createCanvasContext(canvasId);
-            this.props.onInit(this.ctx, ret[0], null, 'mini');
+            this.props.onInit(this.ctx, ret[0], null, "mini");
           }
         });
       if (this.props.waterMarker && this.props.forceMini) {

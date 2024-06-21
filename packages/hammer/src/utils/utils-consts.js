@@ -1,4 +1,4 @@
-const TYPE_FUNCTION = 'function';
+const TYPE_FUNCTION = "function";
 
 const { round, abs } = Math;
 const { now } = Date;

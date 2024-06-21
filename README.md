@@ -1,6 +1,6 @@
 # F6：移动端图可视化引擎
 
-![](https://gw.alipayobjects.com/mdn/rms_5c3b4a/afts/img/A*KV1pSIPeJPAAAAAAAAAAAAAAARQnAQ) [![travis-ci](https://img.shields.io/travis/antvis/f6.svg)](https://travis-ci.org/antvis/f6) [![codecov](https://codecov.io/gh/antvis/f6/branch/master/graph/badge.svg)](https://codecov.io/gh/antvis/f6) ![typescript](https://img.shields.io/badge/language-typescript-red.svg) ![MIT](https://img.shields.io/badge/license-MIT-000000.svg) [![npm package](https://img.shields.io/npm/v/@antv/f6.svg)](https://www.npmjs.com/package/@antv/f6) [![NPM downloads](http://img.shields.io/npm/dm/@antv/f6.svg)](https://npmjs.org/package/@antv/f6) [![Percentage of issues still open](http://isitmaintained.com/badge/open/antvis/f6.svg)](http://isitmaintained.com/project/antvis/f6 'Percentage of issues still open')
+![](https://gw.alipayobjects.com/mdn/rms_5c3b4a/afts/img/A*KV1pSIPeJPAAAAAAAAAAAAAAARQnAQ) [![travis-ci](https://img.shields.io/travis/antvis/f6.svg)](https://travis-ci.org/antvis/f6) [![codecov](https://codecov.io/gh/antvis/f6/branch/master/graph/badge.svg)](https://codecov.io/gh/antvis/f6) ![typescript](https://img.shields.io/badge/language-typescript-red.svg) ![MIT](https://img.shields.io/badge/license-MIT-000000.svg) [![npm package](https://img.shields.io/npm/v/@antv/f6.svg)](https://www.npmjs.com/package/@antv/f6) [![NPM downloads](http://img.shields.io/npm/dm/@antv/f6.svg)](https://npmjs.org/package/@antv/f6) [![Percentage of issues still open](http://isitmaintained.com/badge/open/antvis/f6.svg)](http://isitmaintained.com/project/antvis/f6 "Percentage of issues still open")
 
 [English](./README-en-US.md) | 简体中文
 
@@ -37,13 +37,13 @@ $ npm install @antv/f6
 - <a href='https://herbox-embed.alipay.com/p/f6/demo' target='_blank'>demo</a>
 
 ```js
-import F6 from '@antv/f6';
-import graphData from './data';
-import dagreLayout from '@antv/f6/dist/extends/layout/dagreLayout';
-import TreeGraph from '@antv/f6/dist/extends/graph/treeGraph';
+import F6 from "@antv/f6";
+import graphData from "./data";
+import dagreLayout from "@antv/f6/dist/extends/layout/dagreLayout";
+import TreeGraph from "@antv/f6/dist/extends/graph/treeGraph";
 
-F6.registerLayout('dagreLayout', dagreLayout);
-F6.registerGraph('TreeGraph', TreeGraph);
+F6.registerLayout("dagreLayout", dagreLayout);
+F6.registerGraph("TreeGraph", TreeGraph);
 
 Page({
   data: {
@@ -67,14 +67,14 @@ Page({
       height: this.data.height,
       linkCenter: true,
       modes: {
-        default: ['drag-canvas', 'zoom-canvas'],
+        default: ["drag-canvas", "zoom-canvas"],
       },
       defaultNode: {
         size: 40,
       },
       layout: {
-        type: 'compactBox',
-        direction: 'RL',
+        type: "compactBox",
+        direction: "RL",
         getId: function getId(d) {
           return d.id;
         },

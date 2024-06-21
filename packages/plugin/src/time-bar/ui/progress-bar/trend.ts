@@ -1,9 +1,9 @@
-import { createSegmentNode } from '@antv/f6-ui';
-import bindDragEvents from '../slider/slider-logic';
-import createSimpleSlider from '../slider/simple-slider';
-import createTrendSlider from '../slider/trend-slider';
-import createTiker from '../slider/slide-ticker';
-import { subscribe } from '../../dispatcher';
+import { createSegmentNode } from "@antv/f6-ui";
+import bindDragEvents from "../slider/slider-logic";
+import createSimpleSlider from "../slider/simple-slider";
+import createTrendSlider from "../slider/trend-slider";
+import createTiker from "../slider/slide-ticker";
+import { subscribe } from "../../dispatcher";
 import {
   CONTROL_NEXT,
   CONTROL_PREV,
@@ -12,9 +12,14 @@ import {
   SLIDER_PLAY,
   SLIDER_START,
   SPEED_CHANGE,
-} from '../../utils/const';
+} from "../../utils/const";
 
-export function createSimpleProgressBar({ data = [], width, slider, sliderTick }) {
+export function createSimpleProgressBar({
+  data = [],
+  width,
+  slider,
+  sliderTick,
+}) {
   // 创建slider
   const nodes = createSimpleSlider(slider);
 
@@ -32,7 +37,13 @@ export function createSimpleProgressBar({ data = [], width, slider, sliderTick }
   return progressBar;
 }
 
-export function createTrendProgressBar({ data, width, slider, sliderTick, trend }) {
+export function createTrendProgressBar({
+  data,
+  width,
+  slider,
+  sliderTick,
+  trend,
+}) {
   // 创建slider
   const nodes = createTrendSlider({ slider, trend });
   // 创建progressBar

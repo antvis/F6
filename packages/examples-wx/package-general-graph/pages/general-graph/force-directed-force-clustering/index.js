@@ -1,7 +1,7 @@
-import F6 from '@antv/f6-wx';
+import F6 from "@antv/f6-wx";
 
-import getData from './data';
-import force from '@antv/f6-wx/extends/layout/forceLayout';
+import getData from "./data";
+import force from "@antv/f6-wx/extends/layout/forceLayout";
 
 /**
  * 力导向布局聚类
@@ -10,7 +10,7 @@ import force from '@antv/f6-wx/extends/layout/forceLayout';
 Page({
   canvas: null,
   ctx: null,
-  renderer: '', // mini、mini-native等，F6需要，标记环境
+  renderer: "", // mini、mini-native等，F6需要，标记环境
   isCanvasInit: false, // canvas是否准备好了
   graph: null,
 
@@ -22,7 +22,7 @@ Page({
   },
 
   onLoad() {
-    F6.registerLayout('force', force);
+    F6.registerLayout("force", force);
     // 同步获取window的宽高
     const { windowWidth, windowHeight, pixelRatio } = wx.getSystemInfoSync();
 
@@ -69,7 +69,7 @@ Page({
       pixelRatio,
       fitView: true,
       layout: {
-        type: 'force',
+        type: "force",
         clustering: true,
         clusterNodeStrength: -5,
         clusterEdgeDistance: 200,
@@ -82,15 +82,15 @@ Page({
         size: 15,
       },
       modes: {
-        default: ['zoom-canvas', 'drag-canvas', 'drag-node'],
+        default: ["zoom-canvas", "drag-canvas", "drag-node"],
       },
     });
     const colorMap = {
-      2012: '#BDD2FD',
-      2013: '#BDEFDB',
-      2014: '#F6C3B7',
-      2015: '#FFD8B8',
-      2016: '#D3C6EA',
+      2012: "#BDD2FD",
+      2013: "#BDEFDB",
+      2014: "#F6C3B7",
+      2015: "#FFD8B8",
+      2016: "#D3C6EA",
     };
 
     this.graph.data(data);

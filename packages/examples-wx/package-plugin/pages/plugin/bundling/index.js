@@ -1,9 +1,9 @@
-import data from './data';
-import F6 from '@antv/f6-wx';
-import CircularLayout from '@antv/f6-wx/extends/layout/circularLayout';
-import { Bundling } from '@antv/f6-plugin/f6Plugin';
+import data from "./data";
+import F6 from "@antv/f6-wx";
+import CircularLayout from "@antv/f6-wx/extends/layout/circularLayout";
+import { Bundling } from "@antv/f6-plugin/f6Plugin";
 
-F6.registerLayout('circular', CircularLayout);
+F6.registerLayout("circular", CircularLayout);
 
 /**
  * basic-arc-diagram
@@ -11,7 +11,7 @@ F6.registerLayout('circular', CircularLayout);
 Page({
   canvas: null,
   ctx: null,
-  renderer: '', // mini、mini-native等，F6需要，标记环境
+  renderer: "", // mini、mini-native等，F6需要，标记环境
   isCanvasInit: false, // canvas是否准备好了
   graph: null,
 
@@ -74,10 +74,10 @@ Page({
       linkCenter: true,
       fitView: true,
       modes: {
-        default: ['zoom-canvas', 'drag-canvas'],
+        default: ["zoom-canvas", "drag-canvas"],
       },
       layout: {
-        type: 'circular',
+        type: "circular",
         center: [width / 2, height / 2],
         radius: height / 2.5,
         ordering: null,
@@ -85,11 +85,11 @@ Page({
       plugins: [edgeBundling],
       defaultNode: {
         size: [20, 20],
-        color: 'steelblue',
+        color: "steelblue",
       },
       defaultEdge: {
         size: 1,
-        color: '#999',
+        color: "#999",
       },
     });
 

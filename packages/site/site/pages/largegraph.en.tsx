@@ -1,3 +1,3 @@
-import LargeGraph from './largegraph.zh';
+import LargeGraph from "./largegraph.zh";
 
 export default LargeGraph;

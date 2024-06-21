@@ -1,4 +1,4 @@
-import { ShapeStyle } from '@antv/f6-core';
+import { ShapeStyle } from "@antv/f6-core";
 
 export type SliderOption = Partial<{
   readonly width?: number;

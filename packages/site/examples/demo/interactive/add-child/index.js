@@ -10,7 +10,7 @@ const graph = new F6.TreeGraph({
   height,
   pixelRatio,
   modes: {
-    default: ["collapse-expand", "drag-canvas"]
+    default: ["collapse-expand", "drag-canvas"],
   },
   fitView: true,
   layout: {
@@ -31,52 +31,54 @@ const graph = new F6.TreeGraph({
     },
     getHGap: function getHGap() {
       return 100;
-    }
-  }
+    },
+  },
 });
 graph.node(function (node) {
   return {
     size: 16,
-    anchorPoints: [[0, 0.5], [1, 0.5]],
+    anchorPoints: [
+      [0, 0.5],
+      [1, 0.5],
+    ],
     style: {
       fill: "#DEE9FF",
-      stroke: "#5B8FF9"
+      stroke: "#5B8FF9",
     },
     label: node.id,
     labelCfg: {
-      position: node.children && node.children.length > 0 ? "left" : "right"
-    }
+      position: node.children && node.children.length > 0 ? "left" : "right",
+    },
   };
 });
 graph.edge(function () {
   return {
     type: "cubic-horizontal",
-    color: "#A3B1BF"
+    color: "#A3B1BF",
   };
 });
 graph.data(data);
 graph.render();
 graph.fitView();
 let count = 0;
-graph.on("node:tap", evt => {
-  const {
-    item
-  } = evt;
+graph.on("node:tap", (evt) => {
+  const { item } = evt;
   const nodeId = item.get("id");
   const model = item.getModel();
-  const {
-    children
-  } = model;
+  const { children } = model;
 
   if (!children || children.length === 0) {
     const childData = {
       id: `child-data-${count}`,
       type: "rect",
-      children: [{
-        id: `x-${count}`
-      }, {
-        id: `y-${count}`
-      }]
+      children: [
+        {
+          id: `x-${count}`,
+        },
+        {
+          id: `y-${count}`,
+        },
+      ],
     };
     graph.addChild(childData, nodeId);
     count++;

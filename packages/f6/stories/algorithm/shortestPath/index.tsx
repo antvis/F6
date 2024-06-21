@@ -1,7 +1,7 @@
-import React, { useEffect } from 'react';
-import F6, { Algorithm } from '@antv/f6';
-import force from '@antv/f6/dist/extends/layout/forceLayout';
-import data from './data';
+import React, { useEffect } from "react";
+import F6, { Algorithm } from "@antv/f6";
+import force from "@antv/f6/dist/extends/layout/forceLayout";
+import data from "./data";
 
 export default () => {
   const ref = React.useRef(null);
@@ -9,7 +9,7 @@ export default () => {
   const width = window.innerWidth - 32;
   let graph = null;
   // 注册布局
-  F6.registerLayout('force', force);
+  F6.registerLayout("force", force);
 
   useEffect(() => {
     if (!graph) {
@@ -21,11 +21,11 @@ export default () => {
         fitView: true,
         localRefresh: false,
         modes: {
-          default: ['click-select', 'drag-canvas', 'drag-node'],
+          default: ["click-select", "drag-canvas", "drag-node"],
         },
 
         layout: {
-          type: 'force',
+          type: "force",
           alphaDecay: 0,
         },
 
@@ -36,8 +36,8 @@ export default () => {
         defaultEdge: {
           style: {
             endArrow: {
-              path: 'M 0,0 L 8,4 L 8,-4 Z',
-              fill: '#e2e2e2',
+              path: "M 0,0 L 8,4 L 8,-4 Z",
+              fill: "#e2e2e2",
             },
           },
         },
@@ -59,22 +59,26 @@ export default () => {
         });
       };
 
-      graph.on('node:tap', (e) => {
-        const selectedNodes = graph.findAllByState('node', 'selected');
+      graph.on("node:tap", (e) => {
+        const selectedNodes = graph.findAllByState("node", "selected");
         if (selectedNodes.length !== 2) {
           return;
         }
         // 清除状态
         clearStates();
         // path 为其中一条最短路径
-        const { path } = findShortestPath(data, selectedNodes[0].getID(), selectedNodes[1].getID());
+        const { path } = findShortestPath(
+          data,
+          selectedNodes[0].getID(),
+          selectedNodes[1].getID(),
+        );
 
         const pathNodeMap = {};
         // 高亮节点
         path.forEach((id) => {
           const pathNode = graph.findById(id);
           pathNode.toFront();
-          graph.setItemState(pathNode, 'highlight', true);
+          graph.setItemState(pathNode, "highlight", true);
           pathNodeMap[id] = true;
         });
         // 高亮边，置灰非路径中边
@@ -86,15 +90,15 @@ export default () => {
           const targetInPathIdx = path.indexOf(target);
           if (sourceInPathIdx === -1 || targetInPathIdx === -1) return;
           if (Math.abs(sourceInPathIdx - targetInPathIdx) === 1) {
-            graph.setItemState(edge, 'highlight', true);
+            graph.setItemState(edge, "highlight", true);
           } else {
-            graph.setItemState(edge, 'inactive', true);
+            graph.setItemState(edge, "inactive", true);
           }
         });
         // 置灰非路径中节点
         graph.getNodes().forEach((node) => {
           if (!pathNodeMap[node.getID()]) {
-            graph.setItemState(node, 'inactive', true);
+            graph.setItemState(node, "inactive", true);
           }
         });
       });

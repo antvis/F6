@@ -11,11 +11,11 @@ const graph = new F6.Graph({
   pixelRatio,
   fitView: true,
   layout: {
-    type: "force"
+    type: "force",
   },
   defaultNode: {
-    size: 15
-  }
+    size: 15,
+  },
 });
 const data = getData();
 graph.data({
@@ -23,7 +23,7 @@ graph.data({
   edges: data.edges.map(function (edge, i) {
     edge.id = `edge${i}`;
     return Object.assign({}, edge);
-  })
+  }),
 });
 
 function refreshDragedNodePosition(e) {

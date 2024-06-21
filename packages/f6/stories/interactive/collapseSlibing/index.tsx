@@ -1,22 +1,22 @@
-import React, { useEffect } from 'react';
-import F6 from '../../../src';
-import TreeGraph from '../../../src/extends/graph/treeGraph';
-import data from './data';
+import React, { useEffect } from "react";
+import F6 from "../../../src";
+import TreeGraph from "../../../src/extends/graph/treeGraph";
+import data from "./data";
 
-F6.registerGraph('TreeGraph', TreeGraph);
+F6.registerGraph("TreeGraph", TreeGraph);
 
 // custom the collapse-sibling behavior
-F6.registerBehavior('collapse-slibing', {
+F6.registerBehavior("collapse-slibing", {
   getEvents() {
     return {
-      'node:tap': 'onTap',
+      "node:tap": "onTap",
     };
   },
   onTap(evt) {
     const { item } = evt;
     const model = item.getModel();
     const { cluster } = model;
-    const parentData = item.get('parent').getModel();
+    const parentData = item.get("parent").getModel();
     const me = this;
 
     if (model.collapsedSiblings) {
@@ -50,10 +50,14 @@ F6.registerBehavior('collapse-slibing', {
         aggregateNode.collapsedSiblings.push(remove);
         modelIdx = Math.min(i, modelIdx);
 
-        aggregateNode.children = (siblingData[i].children || []).concat(aggregateNode.children);
+        aggregateNode.children = (siblingData[i].children || []).concat(
+          aggregateNode.children,
+        );
       } else if (sibling.cluster === cluster && sibling.id !== model.id) {
         count++;
-        aggregateNode.children = (siblingData[i].children || []).concat(aggregateNode.children);
+        aggregateNode.children = (siblingData[i].children || []).concat(
+          aggregateNode.children,
+        );
         const remove = siblingData.splice(i, 1)[0];
         remove.idx = i;
         aggregateNode.collapsedSiblings.push(remove);
@@ -81,8 +85,13 @@ export default () => {
 
   useEffect(() => {
     if (!graph) {
-      const colors = ['#5F95FF', '#61DDAA', '#65789B'];
-      const colorSets = F6.Util.getColorSetsBySubjectColors(colors, '#fff', 'default', '#777');
+      const colors = ["#5F95FF", "#61DDAA", "#65789B"];
+      const colorSets = F6.Util.getColorSetsBySubjectColors(
+        colors,
+        "#fff",
+        "default",
+        "#777",
+      );
 
       // 创建F6实例
       graph = new F6.TreeGraph({
@@ -92,11 +101,11 @@ export default () => {
         pixelRatio: 2,
         fitView: true,
         modes: {
-          default: ['collapse-slibing', 'drag-canvas'],
+          default: ["collapse-slibing", "drag-canvas"],
         },
         layout: {
-          type: 'compactBox',
-          direction: 'LR',
+          type: "compactBox",
+          direction: "LR",
           defalutPosition: [],
           getId: function getId(d) {
             return d.id;
@@ -115,18 +124,18 @@ export default () => {
           },
         },
         defaultEdge: {
-          type: 'cubic-horizontal',
-          color: '#A3B1BF',
+          type: "cubic-horizontal",
+          color: "#A3B1BF",
         },
       });
 
       graph.node(function (node) {
-        const colorSet = colorSets[+node.cluster.replace('c', '')];
+        const colorSet = colorSets[+node.cluster.replace("c", "")];
         return {
           size: node.size || 16,
           style: {
-            fill: colorSet.mainFill || '#DEE9FF',
-            stroke: colorSet.mainStroke || '#5B8FF9',
+            fill: colorSet.mainFill || "#DEE9FF",
+            stroke: colorSet.mainStroke || "#5B8FF9",
           },
         };
       });

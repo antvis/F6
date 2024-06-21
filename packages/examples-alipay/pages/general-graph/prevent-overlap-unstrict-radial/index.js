@@ -1,7 +1,7 @@
-import F6 from '@antv/f6';
-import { wrapContext } from '../../../common/utils/context';
-import data from './data';
-import radial from '@antv/f6/dist/extends/layout/radialLayout';
+import F6 from "@antv/f6";
+import { wrapContext } from "../../../common/utils/context";
+import data from "./data";
+import radial from "@antv/f6/dist/extends/layout/radialLayout";
 /**
  * 防止节点重叠的非严格辐射布局
  */
@@ -9,7 +9,7 @@ import radial from '@antv/f6/dist/extends/layout/radialLayout';
 Page({
   canvas: null,
   ctx: null,
-  renderer: '', // mini、mini-native等，F6需要，标记环境
+  renderer: "", // mini、mini-native等，F6需要，标记环境
   isCanvasInit: false, // canvas是否准备好了
   graph: null,
 
@@ -22,7 +22,7 @@ Page({
 
   onLoad() {
     // 注册布局
-    F6.registerLayout('radial', radial);
+    F6.registerLayout("radial", radial);
     // 同步获取window的宽高
     const { windowWidth, windowHeight, pixelRatio } = my.getSystemInfoSync();
 
@@ -68,10 +68,10 @@ Page({
       pixelRatio,
       fitView: true,
       modes: {
-        default: ['drag-canvas', 'drag-node'],
+        default: ["drag-canvas", "drag-node"],
       },
       layout: {
-        type: 'radial',
+        type: "radial",
         unitRadius: 70,
         preventOverlap: true,
         strictRadial: false,
@@ -83,8 +83,8 @@ Page({
       defaultEdge: {
         style: {
           endArrow: {
-            path: 'M 0,0 L 8,4 L 8,-4 Z',
-            fill: '#e2e2e2',
+            path: "M 0,0 L 8,4 L 8,-4 Z",
+            fill: "#e2e2e2",
           },
         },
       },

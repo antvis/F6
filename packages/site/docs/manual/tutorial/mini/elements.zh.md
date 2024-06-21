@@ -93,15 +93,15 @@ const graph = new F6.Graph({
     // ...                 // 节点的其他配置
     // 节点样式配置
     style: {
-      fill: 'steelblue', // 节点填充色
-      stroke: '#666', // 节点描边色
+      fill: "steelblue", // 节点填充色
+      stroke: "#666", // 节点描边色
       lineWidth: 1, // 节点描边粗细
     },
     // 节点上的标签文本配置
     labelCfg: {
       // 节点上的标签文本样式配置
       style: {
-        fill: '#fff', // 节点标签文字颜色
+        fill: "#fff", // 节点标签文字颜色
       },
     },
   },
@@ -111,7 +111,7 @@ const graph = new F6.Graph({
     // 边样式配置
     style: {
       opacity: 0.6, // 边透明度
-      stroke: 'grey', // 边描边颜色
+      stroke: "grey", // 边描边颜色
     },
     // 边上的标签文本配置
     labelCfg: {
@@ -134,17 +134,17 @@ nodes.forEach((node) => {
   switch (
     node.class // 根据节点数据中的 class 属性配置图形
   ) {
-    case 'c0': {
-      node.type = 'circle'; // class = 'c0' 时节点图形为 circle
+    case "c0": {
+      node.type = "circle"; // class = 'c0' 时节点图形为 circle
       break;
     }
-    case 'c1': {
-      node.type = 'rect'; // class = 'c1' 时节点图形为 rect
+    case "c1": {
+      node.type = "rect"; // class = 'c1' 时节点图形为 rect
       node.size = [35, 20]; // class = 'c1' 时节点大小
       break;
     }
-    case 'c2': {
-      node.type = 'ellipse'; // class = 'c2' 时节点图形为 ellipse
+    case "c2": {
+      node.type = "ellipse"; // class = 'c2' 时节点图形为 ellipse
       node.size = [35, 20]; // class = 'c2' 时节点大小
       break;
     }
@@ -210,7 +210,7 @@ edges.forEach((edge) => {
   edge.style.lineWidth = edge.weight; // 边的粗细映射边数据中的 weight 属性数值
   // 移到此处
   edge.style.opacity = 0.6;
-  edge.style.stroke = 'grey';
+  edge.style.stroke = "grey";
 });
 
 graph.data(remoteData);

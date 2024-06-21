@@ -1,5 +1,5 @@
 /* eslint @typescript-eslint/no-use-before-define: 0 */
-import { IGroup, Point } from '@antv/g-base';
+import { IGroup, Point } from "@antv/g-base";
 import {
   IBBox,
   IPoint,
@@ -14,7 +14,7 @@ import {
   ComboConfig,
   ITEM_TYPE,
   TreeGraphData,
-} from '../types';
+} from "../types";
 
 // item 的配置项
 export type IItemBaseConfig = Partial<{
@@ -26,7 +26,7 @@ export type IItemBaseConfig = Partial<{
   /**
    * 类型
    */
-  type: 'item' | 'node' | 'edge' | 'combo' | 'vedge';
+  type: "item" | "node" | "edge" | "combo" | "vedge";
 
   /**
    * data model
@@ -304,7 +304,7 @@ export interface INode extends IItemBase {
    * @returns {INode[]}
    * @memberof INode
    */
-  getNeighbors: (type?: 'source' | 'target' | undefined) => INode[];
+  getNeighbors: (type?: "source" | "target" | undefined) => INode[];
 }
 
 export interface ICombo extends INode {

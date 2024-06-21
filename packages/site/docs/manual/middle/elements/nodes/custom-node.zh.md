@@ -25,7 +25,7 @@ F6 中自定义节点的 API 如下：
 
 ```javascript
 F6.registerNode(
-  'nodeName',
+  "nodeName",
   {
     options: {
       style: {},
@@ -107,16 +107,16 @@ F6.registerNode(
 <span style="background-color: rgb(251, 233, 231); color: rgb(139, 53, 56)"> &nbsp;&nbsp;<strong>⚠️ 注意:</strong></span> 从下面代码可以看出，自定义节点中所有通过 `addShape` 增加的图形的坐标都是**相对于节点自身的子坐标系**，即 `(0, 0)` 是该节点的中心。如 `'text'` 图形的 `x` 和 `y` 均为 0，代表该图形相对于该节点居中；`'path'` 图形 `path` 属性中的坐标也是以 `(0, 0)` 为原点计算的。换句话说，在**自定义节点时不需要感知相对于画布的节点坐标**，节点坐标由该节点所在 group 的矩阵控制。
 
 ```javascript
-F6.registerNode('diamond', {
+F6.registerNode("diamond", {
   draw(cfg, group) {
     // 如果 cfg 中定义了 style 需要同这里的属性进行融合
-    const keyShape = group.addShape('path', {
+    const keyShape = group.addShape("path", {
       attrs: {
         path: this.getPath(cfg), // 根据配置获取路径
         stroke: cfg.color, // 颜色应用到描边上，如果应用到填充，则使用 fill: cfg.color
       },
       // must be assigned in F6. it can be any value you want
-      name: 'path-shape',
+      name: "path-shape",
       // 设置 draggable 以允许响应图拽事件
       draggable: true,
     });
@@ -125,18 +125,18 @@ F6.registerNode('diamond', {
       // 如果需要复杂的文本配置项，可以通过 labeCfg 传入
       // const style = (cfg.labelCfg && cfg.labelCfg.style) || {};
       // style.text = cfg.label;
-      const label = group.addShape('text', {
+      const label = group.addShape("text", {
         // attrs: style
         attrs: {
           x: 0, // 居中
           y: 0,
-          textAlign: 'center',
-          textBaseline: 'middle',
+          textAlign: "center",
+          textBaseline: "middle",
           text: cfg.label,
-          fill: '#666',
+          fill: "#666",
         },
         // must be assigned in F6. it can be any value you want
-        name: 'text-shape',
+        name: "text-shape",
         // 设置 draggable 以允许响应图拽事件
         draggable: true,
       });
@@ -152,11 +152,11 @@ F6.registerNode('diamond', {
     // 4     2
     //  \ 3 /
     const path = [
-      ['M', 0, 0 - height / 2], // 上部顶点
-      ['L', width / 2, 0], // 右侧顶点
-      ['L', 0, height / 2], // 下部顶点
-      ['L', -width / 2, 0], // 左侧顶点
-      ['Z'], // 封闭
+      ["M", 0, 0 - height / 2], // 上部顶点
+      ["L", width / 2, 0], // 右侧顶点
+      ["L", 0, height / 2], // 下部顶点
+      ["L", -width / 2, 0], // 左侧顶点
+      ["Z"], // 封闭
     ];
     return path;
   },
@@ -201,7 +201,7 @@ graph.render();
 下面代码仅更新了 diamond 的关键图形的路径和颜色。
 
 ```javascript
-F6.registerNode('diamond', {
+F6.registerNode("diamond", {
   draw(cfg, group) {
     // ... // 见前面代码
   },
@@ -210,7 +210,7 @@ F6.registerNode('diamond', {
   },
   update(cfg, node) {
     const group = node.getContainer(); // 获取容器
-    const shape = group.get('children')[0]; // 按照添加的顺序
+    const shape = group.get("children")[0]; // 按照添加的顺序
     const style = {
       path: this.getPath(cfg),
       stroke: cfg.color,
@@ -232,7 +232,7 @@ F6 中已经[内置了一些节点](/zh/docs/manual/middle/elements/nodes/defaul
 
 ```javascript
 F6.registerNode(
-  'diamond',
+  "diamond",
   {
     draw(cfg, group) {
       const size = this.getSize(cfg); // 转换成 [width, height] 的模式
@@ -243,11 +243,11 @@ F6.registerNode(
       // 4     2
       //  \ 3 /
       const path = [
-        ['M', 0, 0 - height / 2], // 上部顶点
-        ['L', width / 2, 0], // 右侧顶点
-        ['L', 0, height / 2], // 下部顶点
-        ['L', -width / 2, 0], // 左侧顶点
-        ['Z'], // 封闭
+        ["M", 0, 0 - height / 2], // 上部顶点
+        ["L", width / 2, 0], // 右侧顶点
+        ["L", 0, height / 2], // 下部顶点
+        ["L", -width / 2, 0], // 左侧顶点
+        ["Z"], // 封闭
       ];
       const style = F6.Util.mix(
         {},
@@ -258,19 +258,19 @@ F6.registerNode(
         cfg.style,
       );
       // 增加一个 path 图形作为 keyShape
-      const keyShape = group.addShape('path', {
+      const keyShape = group.addShape("path", {
         attrs: {
           ...style,
         },
         draggable: true,
-        name: 'diamond-keyShape',
+        name: "diamond-keyShape",
       });
       // 返回 keyShape
       return keyShape;
     },
   },
   // 注意这里继承了 'single-node'
-  'single-node',
+  "single-node",
 );
 ```
 
@@ -351,7 +351,7 @@ F6.registerNode('inner-animate', {
 const data = {
   nodes: [
     {
-      id: 'node1',
+      id: "node1",
       x: 100,
       y: 100,
       anchorPoints: [
@@ -371,7 +371,7 @@ const data = {
 
 ```javascript
 F6.registerNode(
-  'diamond',
+  "diamond",
   {
     //... // 其他方法
     getAnchorPoints() {
@@ -381,7 +381,7 @@ F6.registerNode(
       ];
     },
   },
-  'rect',
+  "rect",
 );
 ```
 
@@ -402,28 +402,28 @@ F6.registerNode(
 ```javascript
 // 基于 rect 扩展出新的图形
 F6.registerNode(
-  'custom',
+  "custom",
   {
     // 响应状态变化
     setState(name, value, item) {
       const group = item.getContainer();
-      const shape = group.get('children')[0]; // 顺序根据 draw 时确定
-      if (name === 'selected') {
+      const shape = group.get("children")[0]; // 顺序根据 draw 时确定
+      if (name === "selected") {
         if (value) {
-          shape.attr('fill', 'red');
+          shape.attr("fill", "red");
         } else {
-          shape.attr('fill', 'white');
+          shape.attr("fill", "white");
         }
       }
     },
   },
-  'rect',
+  "rect",
 );
 
 // 点击时选中，再点击时取消
-graph.on('node:tap', (ev) => {
+graph.on("node:tap", (ev) => {
   const node = ev.item;
-  graph.setItemState(node, 'selected', !node.hasState('selected')); // 切换选中
+  graph.setItemState(node, "selected", !node.hasState("selected")); // 切换选中
 });
 ```
 
@@ -431,13 +431,13 @@ F6 并未限定节点的状态，只要你在 `setState` 方法中进行处理�
 
 ```javascript
 F6.registerNode(
-  'custom',
+  "custom",
   {
     // 响应状态变化
     setState(name, value, item) {
       const group = item.getContainer();
-      const shape = group.get('children')[0]; // 顺序根据 draw 时确定
-      if (name === 'running') {
+      const shape = group.get("children")[0]; // 顺序根据 draw 时确定
+      if (name === "running") {
         if (value) {
           shape.animate(
             {
@@ -450,22 +450,22 @@ F6.registerNode(
           );
         } else {
           shape.stopAnimate();
-          shape.attr('r', 10);
+          shape.attr("r", 10);
         }
       }
     },
   },
-  'circle',
+  "circle",
 );
 
-graph.on('node:tap', (ev) => {
+graph.on("node:tap", (ev) => {
   const node = ev.item;
-  graph.setItemState(node, 'running', true);
+  graph.setItemState(node, "running", true);
 });
 
-graph.on('node:dbltap', (ev) => {
+graph.on("node:dbltap", (ev) => {
   const node = ev.item;
-  graph.setItemState(node, 'running', false);
+  graph.setItemState(node, "running", false);
 });
 ```
 
@@ -492,7 +492,7 @@ F6.registerNode(
           cfg.size[0] - 5
         }px; height: ${cfg.size[1] - 5}px; display: flex;">
           <div style="height: 100%; width: 33%; background-color: #CDDDFD">
-            <img alt="img" style="line-height: 100%; padding-top: 6px; padding-left: 8px;" src="https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*Q_FQT6nwEC8AAAAAAAAAAABkARQnAQ" width="20" height="20" />  
+            <img alt="img" style="line-height: 100%; padding-top: 6px; padding-left: 8px;" src="https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*Q_FQT6nwEC8AAAAAAAAAAABkARQnAQ" width="20" height="20" />
           </div>
           <span style="margin:auto; padding:auto; color: #5B8FF9">${cfg.label}</span>
         </div>
@@ -550,7 +550,7 @@ F6.registerNode(
           cfg.size[0] - 5
         }px; height: ${cfg.size[1] - 5}px; display: flex;">
           <div style="height: 100%; width: 33%; background-color: #CDDDFD">
-            <img alt="img" style="line-height: 100%; padding-top: 6px; padding-left: 8px;" src="https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*Q_FQT6nwEC8AAAAAAAAAAABkARQnAQ" width="20" height="20" />  
+            <img alt="img" style="line-height: 100%; padding-top: 6px; padding-left: 8px;" src="https://gw.alipayobjects.com/mdn/rms_f8c6a0/afts/img/A*Q_FQT6nwEC8AAAAAAAAAAABkARQnAQ" width="20" height="20" />
           </div>
           <span style="margin:auto; padding:auto; color: #5B8FF9">${cfg.label}</span>
         </div>

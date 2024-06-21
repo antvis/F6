@@ -17,7 +17,7 @@ order: 0
 F6 上所有的事件都需要在 graph 上监听。
 
 ```javascript
-graph.on('click', (ev) => {
+graph.on("click", (ev) => {
   const shape = ev.target;
   const item = ev.item;
   if (item) {
@@ -25,7 +25,7 @@ graph.on('click', (ev) => {
   }
 });
 
-graph.on('node:tap', (ev) => {
+graph.on("node:tap", (ev) => {
   const shape = ev.target;
   const node = ev.item;
 });

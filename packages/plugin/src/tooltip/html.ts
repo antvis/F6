@@ -1,4 +1,4 @@
-export default function getHtml(content = '') {
+export default function getHtml(content = "") {
   return `
   <root> 
     ${content}

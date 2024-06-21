@@ -1,96 +1,96 @@
-import Graph from '../../implement-graph';
-import G6 from '../../../../src';
-import { GraphData } from '../../../../src/types';
+import Graph from "../../implement-graph";
+import G6 from "../../../../src";
+import { GraphData } from "../../../../src/types";
 
-const div = document.createElement('div');
-div.id = 'graph-spec';
+const div = document.createElement("div");
+div.id = "graph-spec";
 document.body.appendChild(div);
 
-describe('marker test', () => {
+describe("marker test", () => {
   const data: GraphData = {
     nodes: [
       {
-        id: '1',
+        id: "1",
         x: 100,
         y: 100,
       },
       {
-        id: '2',
+        id: "2",
         x: 200,
         y: 200,
       },
     ],
     edges: [
       {
-        source: '1',
-        target: '2',
+        source: "1",
+        target: "2",
       },
     ],
   };
 
-  it('collapse and expand arrow ', () => {
+  it("collapse and expand arrow ", () => {
     G6.registerNode(
-      'marker-node',
+      "marker-node",
       {
         afterDraw: (cfg, group) => {
-          group.addShape('marker', {
+          group.addShape("marker", {
             attrs: {
               x: 20,
               y: 0,
               r: 6,
               symbol: G6.Marker.collapse,
-              stroke: '#666',
-              fill: '#fff',
+              stroke: "#666",
+              fill: "#fff",
               lineWidth: 1,
             },
-            name: 'collapse-icon',
+            name: "collapse-icon",
           });
-          group.addShape('marker', {
+          group.addShape("marker", {
             attrs: {
               x: -20,
               y: 0,
               r: 6,
               symbol: G6.Marker.expand,
-              stroke: '#666',
-              fill: '#fff',
+              stroke: "#666",
+              fill: "#fff",
               lineWidth: 1,
             },
-            name: 'collapse-icon',
+            name: "collapse-icon",
           });
-          group.addShape('marker', {
+          group.addShape("marker", {
             attrs: {
               x: 0,
               y: -20,
               r: 6,
               symbol: G6.Marker.downTriangle,
-              stroke: '#666',
-              fill: '#fff',
+              stroke: "#666",
+              fill: "#fff",
               lineWidth: 1,
             },
-            name: 'collapse-icon',
+            name: "collapse-icon",
           });
-          group.addShape('marker', {
+          group.addShape("marker", {
             attrs: {
               x: 0,
               y: 20,
               r: 6,
               symbol: G6.Marker.upTriangle,
-              stroke: '#666',
-              fill: '#fff',
+              stroke: "#666",
+              fill: "#fff",
               lineWidth: 1,
             },
-            name: 'collapse-icon',
+            name: "collapse-icon",
           });
         },
       },
-      'circle',
+      "circle",
     );
     const cfg = {
       container: div,
       width: 500,
       height: 500,
       defaultNode: {
-        type: 'marker-node',
+        type: "marker-node",
         style: {
           r: 20,
         },

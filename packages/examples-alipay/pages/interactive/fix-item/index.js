@@ -1,6 +1,6 @@
-import F6 from '@antv/f6';
-import { wrapContext } from '../../../common/utils/context';
-import data from './data';
+import F6 from "@antv/f6";
+import { wrapContext } from "../../../common/utils/context";
+import data from "./data";
 
 /**
  * fixItem:缩放画布时固定元素
@@ -9,7 +9,7 @@ import data from './data';
 Page({
   canvas: null,
   ctx: null,
-  renderer: '', // mini、mini-native等，F6需要，标记环境
+  renderer: "", // mini、mini-native等，F6需要，标记环境
   isCanvasInit: false, // canvas是否准备好了
   graph: null,
 
@@ -18,20 +18,28 @@ Page({
     height: 600,
     pixelRatio: 2,
     forceMini: false,
-    currentMode: 'Fix all', // 按钮的显示
+    currentMode: "Fix all", // 按钮的显示
     fixSelectedItems: {
       fixAll: true,
       fixLabel: false,
       fixLineWidth: false,
-      fixState: 'yourStateName', // 'selected' by default
+      fixState: "yourStateName", // 'selected' by default
     },
   },
   // 选项框
   openOne() {
-    const modeList = ['Fix all', 'Fix fontSize of label', 'Fix lineWidth of label'];
+    const modeList = [
+      "Fix all",
+      "Fix fontSize of label",
+      "Fix lineWidth of label",
+    ];
     my.optionsSelect({
-      title: '模式选择',
-      optionsOne: ['Fix all', 'Fix fontSize of label', 'Fix lineWidth of label'], // 按钮的选项
+      title: "模式选择",
+      optionsOne: [
+        "Fix all",
+        "Fix fontSize of label",
+        "Fix lineWidth of label",
+      ], // 按钮的选项
       selectedOneIndex: 0, // 默认选项的索引下标
       success: (res) => {
         // my.alert({
@@ -52,7 +60,7 @@ Page({
                 fixAll: true,
                 fixLabel: false,
                 fixLineWidth: false,
-                fixState: 'yourStateName',
+                fixState: "yourStateName",
               },
             });
             // this.fixSelectedItems.fixAll = true;
@@ -63,7 +71,7 @@ Page({
                 fixAll: false,
                 fixLabel: true,
                 fixLineWidth: false,
-                fixState: 'yourStateName',
+                fixState: "yourStateName",
               },
             });
             // this.fixSelectedItems.fixLabel = true;
@@ -74,7 +82,7 @@ Page({
                 fixAll: false,
                 fixLabel: false,
                 fixLineWidth: true,
-                fixState: 'yourStateName',
+                fixState: "yourStateName",
               },
             });
             // this.fixSelectedItems.fixLineWidth = true;
@@ -122,7 +130,7 @@ Page({
 
   updateChart() {
     const { width, height, pixelRatio, fixSelectedItems } = this.data;
-    console.log('update', fixSelectedItems);
+    console.log("update", fixSelectedItems);
 
     // 创建F6实例
     this.graph = new F6.Graph({
@@ -136,10 +144,10 @@ Page({
       fitViewPadding: 60,
       modes: {
         default: [
-          'drag-canvas',
-          'drag-node',
+          "drag-canvas",
+          "drag-node",
           {
-            type: 'zoom-canvas',
+            type: "zoom-canvas",
             fixSelectedItems,
           },
         ],
@@ -148,45 +156,45 @@ Page({
         size: [10, 10],
         style: {
           lineWidth: 2,
-          fill: '#DEE9FF',
-          stroke: '#5B8FF9',
+          fill: "#DEE9FF",
+          stroke: "#5B8FF9",
         },
       },
       defaultEdge: {
         size: 1,
         style: {
-          stroke: '#e2e2e2',
+          stroke: "#e2e2e2",
           lineAppendWidth: 2,
         },
       },
       nodeStateStyles: {
         yourStateName: {
-          stroke: '#f00',
+          stroke: "#f00",
           lineWidth: 3,
         },
       },
       edgeStateStyles: {
         yourStateName: {
-          stroke: '#f00',
+          stroke: "#f00",
           lineWidth: 3,
         },
       },
     });
 
     // 监听
-    this.graph.on('node:tap', (e) => {
-      this.graph.setItemState(e.item, 'yourStateName', true);
+    this.graph.on("node:tap", (e) => {
+      this.graph.setItemState(e.item, "yourStateName", true);
     });
-    this.graph.on('edge:tap', (e) => {
-      this.graph.setItemState(e.item, 'yourStateName', true);
+    this.graph.on("edge:tap", (e) => {
+      this.graph.setItemState(e.item, "yourStateName", true);
     });
 
-    this.graph.on('canvas:tap', () => {
-      this.graph.findAllByState('node', 'yourStateName').forEach((node) => {
-        this.graph.setItemState(node, 'yourStateName', false);
+    this.graph.on("canvas:tap", () => {
+      this.graph.findAllByState("node", "yourStateName").forEach((node) => {
+        this.graph.setItemState(node, "yourStateName", false);
       });
-      this.graph.findAllByState('edge', 'yourStateName').forEach((edge) => {
-        this.graph.setItemState(edge, 'yourStateName', false);
+      this.graph.findAllByState("edge", "yourStateName").forEach((edge) => {
+        this.graph.setItemState(edge, "yourStateName", false);
       });
     });
 

@@ -11,12 +11,12 @@ const graph = new F6.Graph({
   height,
   linkCenter: true,
   defaultNode: {
-    size: 30
+    size: 30,
   },
   modes: {
-    default: ["drag-canvas", "zoom-canvas", "drag-node"]
+    default: ["drag-canvas", "zoom-canvas", "drag-node"],
   },
-  plugins: [snapLine]
+  plugins: [snapLine],
 });
 graph.data(data);
 graph.render();

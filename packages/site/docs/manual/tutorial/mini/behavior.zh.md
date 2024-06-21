@@ -38,7 +38,7 @@ Mode 是 F6 交互行为的管理机制，一个 mode 是多种行为 Behavior �
 const graph = new F6.Graph({
   // ...                                          // 其他配置项
   modes: {
-    default: ['drag-canvas', 'zoom-canvas', 'drag-node'], // 允许拖拽画布、放缩画布、拖拽节点
+    default: ["drag-canvas", "zoom-canvas", "drag-node"], // 允许拖拽画布、放缩画布、拖拽节点
   },
 });
 ```
@@ -80,7 +80,7 @@ const graph = new F6.Graph({
   nodeStateStyles: {
     // 点击节点，即 tap 状态为 true 时的样式
     tap: {
-      stroke: '#000',
+      stroke: "#000",
       lineWidth: 3,
     },
   },
@@ -88,7 +88,7 @@ const graph = new F6.Graph({
   edgeStateStyles: {
     // 点击边，即 tap 状态为 true 时的样式
     tap: {
-      stroke: 'steelblue',
+      stroke: "steelblue",
     },
   },
 });
@@ -100,7 +100,7 @@ F6 中所有元素监听都挂载在图实例上，如下代码中的 `graph` �
 
 ```javascript
 // 在图实例 graph 上监听
-graph.on('元素类型:事件名', (e) => {
+graph.on("元素类型:事件名", (e) => {
   // do something
 });
 ```
@@ -109,25 +109,25 @@ graph.on('元素类型:事件名', (e) => {
 
 ```javascript
 // 点击节点
-graph.on('node:tap', (e) => {
+graph.on("node:tap", (e) => {
   // 先将所有当前是 tap 状态的节点置为非 tap 状态
-  const tapNodes = graph.findAllByState('node', 'tap');
+  const tapNodes = graph.findAllByState("node", "tap");
   tapNodes.forEach((cn) => {
-    graph.setItemState(cn, 'tap', false);
+    graph.setItemState(cn, "tap", false);
   });
   const nodeItem = e.item; // 获取被点击的节点元素对象
-  graph.setItemState(nodeItem, 'tap', true); // 设置当前节点的 tap 状态为 true
+  graph.setItemState(nodeItem, "tap", true); // 设置当前节点的 tap 状态为 true
 });
 
 // 点击边
-graph.on('edge-shape:tap', (e) => {
+graph.on("edge-shape:tap", (e) => {
   // 先将所有当前是 tap 状态的边置为非 tap 状态
-  const tapEdges = graph.findAllByState('edge', 'tap');
+  const tapEdges = graph.findAllByState("edge", "tap");
   tapEdges.forEach((ce) => {
-    graph.setItemState(ce, 'tap', false);
+    graph.setItemState(ce, "tap", false);
   });
   const edgeItem = e.item; // 获取被点击的边元素对象
-  graph.setItemState(edgeItem, 'tap', true); // 设置当前边的 tap 状态为 true
+  graph.setItemState(edgeItem, "tap", true); // 设置当前边的 tap 状态为 true
 });
 ```
 

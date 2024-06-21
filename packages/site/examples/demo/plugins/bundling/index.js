@@ -7,7 +7,7 @@ const height = 600;
 const pixelRatio = 2;
 F6.registerLayout("circular", CircularLayout);
 const edgeBundling = new Bundling({
-  bundleThreshold: 0.1
+  bundleThreshold: 0.1,
 });
 const graph = new F6.Graph({
   pixelRatio,
@@ -16,23 +16,23 @@ const graph = new F6.Graph({
   linkCenter: true,
   fitView: true,
   modes: {
-    default: ["zoom-canvas", "drag-canvas"]
+    default: ["zoom-canvas", "drag-canvas"],
   },
   layout: {
     type: "circular",
     center: [width / 2, height / 2],
     radius: height / 2.5,
-    ordering: null
+    ordering: null,
   },
   plugins: [edgeBundling],
   defaultNode: {
     size: [20, 20],
-    color: "steelblue"
+    color: "steelblue",
   },
   defaultEdge: {
     size: 1,
-    color: "#999"
-  }
+    color: "#999",
+  },
 });
 graph.data(data);
 graph.render();

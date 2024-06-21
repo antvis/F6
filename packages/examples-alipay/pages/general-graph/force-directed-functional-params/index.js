@@ -1,7 +1,7 @@
-import F6 from '@antv/f6';
-import { wrapContext } from '../../../common/utils/context';
-import getData from './data';
-import force from '@antv/f6/dist/extends/layout/forceLayout';
+import F6 from "@antv/f6";
+import { wrapContext } from "../../../common/utils/context";
+import getData from "./data";
+import force from "@antv/f6/dist/extends/layout/forceLayout";
 
 /**
  * 定制不同节点的参数
@@ -10,7 +10,7 @@ import force from '@antv/f6/dist/extends/layout/forceLayout';
 Page({
   canvas: null,
   ctx: null,
-  renderer: '', // mini、mini-native等，F6需要，标记环境
+  renderer: "", // mini、mini-native等，F6需要，标记环境
   isCanvasInit: false, // canvas是否准备好了
   graph: null,
 
@@ -22,7 +22,7 @@ Page({
   },
 
   onLoad() {
-    F6.registerLayout('force', force);
+    F6.registerLayout("force", force);
     // 同步获取window的宽高
     const { windowWidth, windowHeight, pixelRatio } = my.getSystemInfoSync();
 
@@ -60,7 +60,7 @@ Page({
     const data = getData();
 
     function refreshDragedNodePosition(e) {
-      const model = e.item.get('model');
+      const model = e.item.get("model");
       model.fx = e.x;
       model.fy = e.y;
     }
@@ -74,10 +74,10 @@ Page({
       pixelRatio,
       fitView: true,
       layout: {
-        type: 'force',
+        type: "force",
         preventOverlap: true,
         linkDistance: (d) => {
-          if (d.source.id === 'node0') {
+          if (d.source.id === "node0") {
             return 100;
           }
           return 30;
@@ -89,39 +89,43 @@ Page({
           return -10;
         },
         edgeStrength: (d) => {
-          if (d.source.id === 'node1' || d.source.id === 'node2' || d.source.id === 'node3') {
+          if (
+            d.source.id === "node1" ||
+            d.source.id === "node2" ||
+            d.source.id === "node3"
+          ) {
             return 0.7;
           }
           return 0.1;
         },
       },
       defaultNode: {
-        color: '#5B8FF9',
+        color: "#5B8FF9",
       },
       modes: {
-        default: ['drag-canvas'],
+        default: ["drag-canvas"],
       },
     });
 
     const { nodes } = data;
     this.graph.data({
       nodes,
-      edges: data.edges.map(function(edge, i) {
+      edges: data.edges.map(function (edge, i) {
         edge.id = `edge${i}`;
         return Object.assign({}, edge);
       }),
     });
 
-    this.graph.on('node:dragstart', function(e) {
+    this.graph.on("node:dragstart", function (e) {
       this.graph.layout();
       refreshDragedNodePosition(e);
     });
-    this.graph.on('node:drag', function(e) {
+    this.graph.on("node:drag", function (e) {
       refreshDragedNodePosition(e);
     });
-    this.graph.on('node:dragend', function(e) {
-      e.item.get('model').fx = null;
-      e.item.get('model').fy = null;
+    this.graph.on("node:dragend", function (e) {
+      e.item.get("model").fx = null;
+      e.item.get("model").fy = null;
     });
 
     this.graph.render();

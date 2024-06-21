@@ -1,6 +1,6 @@
-import F6 from '@antv/f6';
-import { wrapContext } from '../../../common/utils/context';
-import data from './data';
+import F6 from "@antv/f6";
+import { wrapContext } from "../../../common/utils/context";
+import data from "./data";
 /**
  * areaChart
  */
@@ -8,7 +8,7 @@ import data from './data';
 Page({
   canvas: null,
   ctx: null,
-  renderer: '', // mini、mini-native等，F6需要，标记环境
+  renderer: "", // mini、mini-native等，F6需要，标记环境
   isCanvasInit: false, // canvas是否准备好了
   graph: null,
 
@@ -22,7 +22,7 @@ Page({
   onLoad() {
     // 同步获取window的宽高
     const { windowWidth, windowHeight, pixelRatio } = my.getSystemInfoSync();
-    F6.registerNode('area', {
+    F6.registerNode("area", {
       draw(cfg, group) {
         const baseR = 30;
 
@@ -30,15 +30,15 @@ Page({
         let refR = baseR;
         const refInc = 10;
         for (let i = 0; i < 6; i++) {
-          group.addShape('circle', {
+          group.addShape("circle", {
             attrs: {
               x: 0,
               y: 0,
               r: (refR += refInc),
-              stroke: '#bae7ff',
+              stroke: "#bae7ff",
               lineDash: [4, 4],
             },
-            name: 'circle-shape',
+            name: "circle-shape",
           });
         }
         const everyIncAngle = (2 * Math.PI * (360 / 5)) / 360;
@@ -54,18 +54,18 @@ Page({
           allRs.push(oneRs);
         });
         const strokeColors = [
-          'rgba(91, 143, 249,1)',
-          'rgba(90, 216, 166,1)',
-          'rgba(246, 189, 22,1)',
-          'rgba(232, 104, 74,1)',
-          'rgba(255, 157, 77,1)',
+          "rgba(91, 143, 249,1)",
+          "rgba(90, 216, 166,1)",
+          "rgba(246, 189, 22,1)",
+          "rgba(232, 104, 74,1)",
+          "rgba(255, 157, 77,1)",
         ];
         const fillColors = [
-          'rgba(91, 143, 249,0.5)',
-          'rgba(90, 216, 166,0.5)',
-          'rgba(246, 189, 22,0.5)',
-          'rgba(232, 104, 74,0.5)',
-          'rgba(255, 157, 77,0.5)',
+          "rgba(91, 143, 249,0.5)",
+          "rgba(90, 216, 166,0.5)",
+          "rgba(246, 189, 22,0.5)",
+          "rgba(232, 104, 74,0.5)",
+          "rgba(255, 157, 77,0.5)",
         ];
 
         allRs.reverse().forEach((Rs, index) => {
@@ -79,21 +79,21 @@ Page({
           });
           const Ls = poss.map((p, i) => {
             if (i === 0) {
-              return ['M', ...p];
+              return ["M", ...p];
             }
-            return ['L', ...p];
+            return ["L", ...p];
           });
 
-          group.addShape('path', {
+          group.addShape("path", {
             attrs: {
               path: [
                 ...Ls,
-                ['Z'], // close the path
+                ["Z"], // close the path
               ],
               stroke: strokeColors[index],
               fill: fillColors[index],
             },
-            name: 'path-shape1',
+            name: "path-shape1",
           });
         });
         let nowAngle2 = 0;
@@ -103,46 +103,46 @@ Page({
           const xPos = r * Math.cos(nowAngle2);
           const yPos = r * Math.sin(nowAngle2);
 
-          group.addShape('path', {
+          group.addShape("path", {
             attrs: {
               path: [
-                ['M', 0, 0],
-                ['L', xPos, yPos],
+                ["M", 0, 0],
+                ["L", xPos, yPos],
               ],
               lineDash: [4, 4],
-              stroke: 'darkgray',
+              stroke: "darkgray",
             },
-            name: 'path-shape2',
+            name: "path-shape2",
           });
           nowAngle2 += everyIncAngleCat;
         }
 
         // add a circle with the same filling color with background
-        group.addShape('circle', {
+        group.addShape("circle", {
           // attrs: style
           attrs: {
             x: 0, // 居中
             y: 0,
             r: baseR,
             fill: cfg.centerColor,
-            stroke: 'darkgray',
+            stroke: "darkgray",
           },
-          name: 'circle-shape',
+          name: "circle-shape",
         });
 
         if (cfg.label) {
-          group.addShape('text', {
+          group.addShape("text", {
             // attrs: style
             attrs: {
               x: 0,
               y: 0,
-              textAlign: 'center',
-              textBaseline: 'middle',
+              textAlign: "center",
+              textBaseline: "middle",
               text: cfg.label,
-              fill: 'white',
-              fontStyle: 'bold',
+              fill: "white",
+              fontStyle: "bold",
             },
-            name: 'text-shape',
+            name: "text-shape",
           });
         }
         return group;

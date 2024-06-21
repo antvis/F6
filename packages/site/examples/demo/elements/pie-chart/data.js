@@ -1,7 +1,7 @@
 export default {
   nodes: [
     {
-      id: 'pie1',
+      id: "pie1",
       size: 80,
       inDegree: 80,
       degree: 360,
@@ -9,7 +9,7 @@ export default {
       y: 150,
     },
     {
-      id: 'pie2',
+      id: "pie2",
       size: 80,
       inDegree: 280,
       degree: 360,
@@ -19,8 +19,8 @@ export default {
   ],
   edges: [
     {
-      source: 'pie1',
-      target: 'pie2',
+      source: "pie1",
+      target: "pie2",
     },
   ],
 };

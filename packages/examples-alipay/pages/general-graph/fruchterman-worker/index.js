@@ -1,7 +1,7 @@
-import F6 from '@antv/f6';
-import { wrapContext } from '../../../common/utils/context';
-import getData from './data';
-import fruchtermanLayout from '@antv/f6/dist/extends/layout/fruchtermanLayout';
+import F6 from "@antv/f6";
+import { wrapContext } from "../../../common/utils/context";
+import getData from "./data";
+import fruchtermanLayout from "@antv/f6/dist/extends/layout/fruchtermanLayout";
 /**
  * fruchterman 使用WebWorker
  */
@@ -9,7 +9,7 @@ import fruchtermanLayout from '@antv/f6/dist/extends/layout/fruchtermanLayout';
 Page({
   canvas: null,
   ctx: null,
-  renderer: '', // mini、mini-native等，F6需要，标记环境
+  renderer: "", // mini、mini-native等，F6需要，标记环境
   isCanvasInit: false, // canvas是否准备好了
   graph: null,
 
@@ -19,12 +19,12 @@ Page({
     pixelRatio: 2,
     forceMini: false,
     description:
-      'Doing layout... web-worker is enabled in this demo, so the layout will not block the page.',
+      "Doing layout... web-worker is enabled in this demo, so the layout will not block the page.",
   },
 
   onLoad() {
     // 注册布局
-    F6.registerLayout('fruchterman', fruchtermanLayout);
+    F6.registerLayout("fruchterman", fruchtermanLayout);
 
     // 同步获取window的宽高
     const { windowWidth, windowHeight, pixelRatio } = my.getSystemInfoSync();
@@ -72,10 +72,10 @@ Page({
       pixelRatio,
       fitView: true,
       modes: {
-        default: ['drag-canvas', 'drag-node'],
+        default: ["drag-canvas", "drag-node"],
       },
       layout: {
-        type: 'fruchterman',
+        type: "fruchterman",
         maxIteration: 8000,
         gravity: 1,
         workerEnabled: true,
@@ -89,9 +89,9 @@ Page({
       },
     });
 
-    this.graph.on('afterlayout', () => {
+    this.graph.on("afterlayout", () => {
       this.setData({
-        description: 'Done!',
+        description: "Done!",
       });
     });
 

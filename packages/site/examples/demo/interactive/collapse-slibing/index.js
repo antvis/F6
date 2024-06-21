@@ -8,27 +8,21 @@ F6.registerGraph("TreeGraph", TreeGraph);
 F6.registerBehavior("collapse-slibing", {
   getEvents() {
     return {
-      "node:click": "onClick"
+      "node:click": "onClick",
     };
   },
 
   onClick(evt) {
-    const {
-      item
-    } = evt;
+    const { item } = evt;
     const model = item.getModel();
-    const {
-      cluster
-    } = model;
+    const { cluster } = model;
     const parentData = item.get("parent").getModel();
     const me = this;
 
     if (model.collapsedSiblings) {
       graph.removeChild(model.id);
       setTimeout(() => {
-        const {
-          children
-        } = parentData;
+        const { children } = parentData;
 
         for (let i = model.collapsedSiblings.length - 1; i >= 0; i--) {
           const add = model.collapsedSiblings[i];
@@ -48,7 +42,7 @@ F6.registerBehavior("collapse-slibing", {
       id: `aggregate-node-${model.id}`,
       children: [],
       cluster,
-      collapsedSiblings: []
+      collapsedSiblings: [],
     };
     let modelIdx = siblingData.length - 1;
 
@@ -60,10 +54,14 @@ F6.registerBehavior("collapse-slibing", {
         remove.idx = i;
         aggregateNode.collapsedSiblings.push(remove);
         modelIdx = Math.min(i, modelIdx);
-        aggregateNode.children = (siblingData[i].children || []).concat(aggregateNode.children);
+        aggregateNode.children = (siblingData[i].children || []).concat(
+          aggregateNode.children,
+        );
       } else if (sibling.cluster === cluster && sibling.id !== model.id) {
         count++;
-        aggregateNode.children = (siblingData[i].children || []).concat(aggregateNode.children);
+        aggregateNode.children = (siblingData[i].children || []).concat(
+          aggregateNode.children,
+        );
         const remove = siblingData.splice(i, 1)[0];
         remove.idx = i;
         aggregateNode.collapsedSiblings.push(remove);
@@ -79,8 +77,7 @@ F6.registerBehavior("collapse-slibing", {
     setTimeout(() => {
       me.graph.updateChildren(siblingData, parentData.id);
     }, 550);
-  }
-
+  },
 });
 const graph = new F6.TreeGraph({
   width,
@@ -88,7 +85,7 @@ const graph = new F6.TreeGraph({
   pixelRatio,
   fitView: true,
   modes: {
-    default: ["collapse-slibing", "drag-canvas"]
+    default: ["collapse-slibing", "drag-canvas"],
   },
   layout: {
     type: "compactBox",
@@ -108,12 +105,12 @@ const graph = new F6.TreeGraph({
     },
     getHGap: function getHGap() {
       return 50;
-    }
+    },
   },
   defaultEdge: {
     type: "cubic-horizontal",
-    color: "#A3B1BF"
-  }
+    color: "#A3B1BF",
+  },
 });
 graph.node(function (node) {
   const colorSet = colorSets[+node.cluster.replace("c", "")];
@@ -121,8 +118,8 @@ graph.node(function (node) {
     size: node.size || 16,
     style: {
       fill: colorSet.mainFill || "#DEE9FF",
-      stroke: colorSet.mainStroke || "#5B8FF9"
-    }
+      stroke: colorSet.mainStroke || "#5B8FF9",
+    },
   };
 });
 graph.data(data);

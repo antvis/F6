@@ -1,6 +1,6 @@
-import { Point, IGroup } from '@antv/g-base';
-import { mat3, vec3, ext, vec2 } from '@antv/matrix-util';
-import { isArray, each } from '@antv/util';
+import { Point, IGroup } from "@antv/g-base";
+import { mat3, vec3, ext, vec2 } from "@antv/matrix-util";
+import { isArray, each } from "@antv/util";
 import {
   GraphData,
   ICircle,
@@ -12,7 +12,7 @@ import {
   IBBox,
   Item,
   IPoint,
-} from '../types';
+} from "../types";
 
 const transform = ext.transform;
 
@@ -36,7 +36,8 @@ export const compare = (attributeName: string) => {
  * @param   {number}       max    最大值
  * @return  {boolean}      bool   布尔
  */
-const isBetween = (value: number, min: number, max: number) => value >= min && value <= max;
+const isBetween = (value: number, min: number, max: number) =>
+  value >= min && value <= max;
 
 /**
  * 获取两条线段的交点
@@ -46,7 +47,12 @@ const isBetween = (value: number, min: number, max: number) => value >= min && v
  * @param  {Point}  p3 第二条线段终点
  * @return {Point}  交点
  */
-export const getLineIntersect = (p0: Point, p1: Point, p2: Point, p3: Point): Point | null => {
+export const getLineIntersect = (
+  p0: Point,
+  p1: Point,
+  p2: Point,
+  p3: Point,
+): Point | null => {
   const tolerance = 0.0001;
 
   const E: Point = {
@@ -84,7 +90,10 @@ export const getLineIntersect = (p0: Point, p1: Point, p2: Point, p3: Point): Po
  * @param  {Point} point point
  * @return {PointPoint} rst;
  */
-export const getRectIntersectByPoint = (rect: IRect, point: Point): Point | null => {
+export const getRectIntersectByPoint = (
+  rect: IRect,
+  point: Point,
+): Point | null => {
   const { x, y, width, height } = rect;
   const cx = x + width / 2;
   const cy = y + height / 2;
@@ -129,7 +138,10 @@ export const getRectIntersectByPoint = (rect: IRect, point: Point): Point | null
  * @param {Point} point 点 x,y
  * @return {Point} applied point
  */
-export const getCircleIntersectByPoint = (circle: ICircle, point: Point): Point | null => {
+export const getCircleIntersectByPoint = (
+  circle: ICircle,
+  point: Point,
+): Point | null => {
   const { x: cx, y: cy, r } = circle;
   const { x, y } = point;
 
@@ -154,7 +166,10 @@ export const getCircleIntersectByPoint = (circle: ICircle, point: Point): Point 
  * @param {Object} point 点 x,y
  * @return {object} applied point
  */
-export const getEllipseIntersectByPoint = (ellipse: IEllipse, point: Point): Point => {
+export const getEllipseIntersectByPoint = (
+  ellipse: IEllipse,
+  point: Point,
+): Point => {
   const a = ellipse.rx;
   const b = ellipse.ry;
   const cx = ellipse.x;
@@ -182,7 +197,11 @@ export const getEllipseIntersectByPoint = (ellipse: IEllipse, point: Point): Poi
  * @param  {number} tag     could be 0 or 1
  * @return {Point} transformed point
  */
-export const applyMatrix = (point: Point, matrix: Matrix, tag: 0 | 1 = 1): Point => {
+export const applyMatrix = (
+  point: Point,
+  matrix: Matrix,
+  tag: 0 | 1 = 1,
+): Point => {
   const vector: vec3 = [point.x, point.y, tag];
   if (!matrix || isNaN(matrix[0])) {
     matrix = [1, 0, 0, 0, 1, 0, 0, 0, 1];
@@ -203,7 +222,11 @@ export const applyMatrix = (point: Point, matrix: Matrix, tag: 0 | 1 = 1): Point
  * @param  {number} tag     could be 0 or 1
  * @return {object} transformed point
  */
-export const invertMatrix = (point: Point, matrix: Matrix, tag: 0 | 1 = 1): Point => {
+export const invertMatrix = (
+  point: Point,
+  matrix: Matrix,
+  tag: 0 | 1 = 1,
+): Point => {
   if (!matrix || isNaN(matrix[0])) {
     matrix = [1, 0, 0, 0, 1, 0, 0, 0, 1];
   }
@@ -227,7 +250,11 @@ export const invertMatrix = (point: Point, matrix: Matrix, tag: 0 | 1 = 1): Poin
  * @param p2 second coordinate
  * @param p3 three coordinate
  */
-export const getCircleCenterByPoints = (p1: Point, p2: Point, p3: Point): Point => {
+export const getCircleCenterByPoints = (
+  p1: Point,
+  p2: Point,
+  p3: Point,
+): Point => {
   const a = p1.x - p2.x;
   const b = p1.y - p2.y;
   const c = p1.x - p3.x;
@@ -317,7 +344,7 @@ export const getAdjMatrix = (data: GraphData, directed: boolean): Matrix[] => {
   } = {};
 
   if (!nodes) {
-    throw new Error('invalid nodes data!');
+    throw new Error("invalid nodes data!");
   }
   if (nodes) {
     nodes.forEach((node, i) => {
@@ -365,7 +392,7 @@ export const move = (group: IGroup, point: Point) => {
   const vx = point.x - bbox.minX;
   const vy = point.y - bbox.minY;
 
-  const movedMatrix = transform(matrix, [['t', vx, vy]]);
+  const movedMatrix = transform(matrix, [["t", vx, vy]]);
   group.setMatrix(movedMatrix);
 };
 
@@ -389,7 +416,9 @@ export const scale = (group: IGroup, ratio: number | number[]) => {
     scaleXY = [ratio[0], ratio[0]];
   }
 
-  matrix = transform(matrix, [['s', (scaleXY as number[])[0], (scaleXY as number[])[1]]]);
+  matrix = transform(matrix, [
+    ["s", (scaleXY as number[])[0], (scaleXY as number[])[1]],
+  ]);
 
   group.setMatrix(matrix);
 };
@@ -404,12 +433,16 @@ export const rotate = (group: IGroup, angle: number) => {
   if (!matrix) {
     matrix = [1, 0, 0, 0, 1, 0, 0, 0, 1];
   }
-  matrix = transform(matrix, [['r', angle]]);
+  matrix = transform(matrix, [["r", angle]]);
 
   group.setMatrix(matrix);
 };
 
-export const getDegree = (n: number, nodeIdxMap: NodeIdxMap, edges: EdgeConfig[]): number[] => {
+export const getDegree = (
+  n: number,
+  nodeIdxMap: NodeIdxMap,
+  edges: EdgeConfig[],
+): number[] => {
   const degrees: number[] = [];
   for (let i = 0; i < n; i++) {
     degrees[i] = 0;
@@ -506,7 +539,10 @@ const lineIntersectPolygon = (lines, line) => {
  * @param points1 polygon1的顶点数组
  * @param points2 polygon2的顶点数组
  */
-export const isPolygonsIntersect = (points1: number[][], points2: number[][]): boolean => {
+export const isPolygonsIntersect = (
+  points1: number[][],
+  points2: number[][],
+): boolean => {
   type BBox = Partial<IBBox>;
   const getBBox = (points): BBox => {
     const xArr = points.map((p) => p[0]);
@@ -647,9 +683,12 @@ export const getBBoxBoundLine = (bbox: IBBox, direction: string) => {
  * 计算两条线段相交时，相交点对第一条线段上的分割比例
  */
 const fractionAlongLineA = (la: Line, lb: Line) => {
-  const uaT = (lb.x2 - lb.x1) * (la.y1 - lb.y1) - (lb.y2 - lb.y1) * (la.x1 - lb.x1);
-  const ubT = (la.x2 - la.x1) * (la.y1 - lb.y1) - (la.y2 - la.y1) * (la.x1 - lb.x1);
-  const uB = (lb.y2 - lb.y1) * (la.x2 - la.x1) - (lb.x2 - lb.x1) * (la.y2 - la.y1);
+  const uaT =
+    (lb.x2 - lb.x1) * (la.y1 - lb.y1) - (lb.y2 - lb.y1) * (la.x1 - lb.x1);
+  const ubT =
+    (la.x2 - la.x1) * (la.y1 - lb.y1) - (la.y2 - la.y1) * (la.x1 - lb.x1);
+  const uB =
+    (lb.y2 - lb.y1) * (la.x2 - la.x1) - (lb.x2 - lb.x1) * (la.y2 - la.y1);
   if (uB) {
     const ua = uaT / uB;
     const ub = ubT / uB;
@@ -660,8 +699,11 @@ const fractionAlongLineA = (la: Line, lb: Line) => {
   return Number.POSITIVE_INFINITY;
 };
 
-export const itemIntersectByLine = (item: Item, line: Line): [IPoint[], number] => {
-  const directions = ['top', 'left', 'bottom', 'right'];
+export const itemIntersectByLine = (
+  item: Item,
+  line: Line,
+): [IPoint[], number] => {
+  const directions = ["top", "left", "bottom", "right"];
   const bbox = item.getBBox();
   let countIntersections = 0;
   const intersections = [];
@@ -682,7 +724,7 @@ export const itemIntersectByLine = (item: Item, line: Line): [IPoint[], number] 
 };
 
 export const fractionToLine = (item: Item, line: Line) => {
-  const directions = ['top', 'left', 'bottom', 'right'];
+  const directions = ["top", "left", "bottom", "right"];
   const bbox = item.getBBox();
   let minDistance = Number.POSITIVE_INFINITY;
   let countIntersections = 0;
@@ -777,8 +819,14 @@ export const pointRectSquareDist = (point: Point, rect: IRect) => {
   if (isRight && !isTop && !isBottom) {
     return (rect.x + rect.width - point.x) ** 2;
   }
-  const dx = Math.min(Math.abs(rect.x - point.x), Math.abs(rect.x + rect.width - point.x));
-  const dy = Math.min(Math.abs(rect.y - point.y), Math.abs(rect.y + rect.height - point.y));
+  const dx = Math.min(
+    Math.abs(rect.x - point.x),
+    Math.abs(rect.x + rect.width - point.x),
+  );
+  const dy = Math.min(
+    Math.abs(rect.y - point.y),
+    Math.abs(rect.y + rect.height - point.y),
+  );
   return dx * dx + dy * dy;
 };
 

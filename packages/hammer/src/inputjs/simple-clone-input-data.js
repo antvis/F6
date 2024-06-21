@@ -1,5 +1,5 @@
-import { now, round } from '../utils/utils-consts';
-import getCenter from './get-center';
+import { now, round } from "../utils/utils-consts";
+import getCenter from "./get-center";
 
 /**
  * @private

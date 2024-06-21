@@ -1,6 +1,6 @@
-import { MiniMap } from '@antv/f6-plugin';
-import data from './data';
-import F6 from '@antv/f6';
+import { MiniMap } from "@antv/f6-plugin";
+import data from "./data";
+import F6 from "@antv/f6";
 
 Page({
   data: {
@@ -13,7 +13,13 @@ Page({
   onLoad() {
     // 同步获取window的宽高
     const sys = my.getSystemInfoSync();
-    const { windowWidth, screenHeight,titleBarHeight,statusBarHeight, pixelRatio } = sys;
+    const {
+      windowWidth,
+      screenHeight,
+      titleBarHeight,
+      statusBarHeight,
+      pixelRatio,
+    } = sys;
     this.setData({
       width: windowWidth,
       height: screenHeight - titleBarHeight - statusBarHeight,
@@ -42,11 +48,11 @@ Page({
           .custom-viewport {
             border:1 solid blue;
           }
-        `
-      }
+        `;
+      },
     });
     const { width, height, pixelRatio } = this.data;
-    console.log('------->', ctx, rect, canvas, renderer);
+    console.log("------->", ctx, rect, canvas, renderer);
     this.graph = new F6.Graph({
       context: ctx,
       width,
@@ -58,7 +64,7 @@ Page({
         size: 30,
       },
       modes: {
-        default: ['drag-canvas', 'zoom-canvas', 'drag-node'],
+        default: ["drag-canvas", "zoom-canvas", "drag-node"],
       },
       plugins: [miniMap],
     });
@@ -66,7 +72,7 @@ Page({
     this.graph.render();
 
     // 目前在使用plugin时,需要关闭局部刷新
-    this.graph.get('canvas').set('localRefresh', false);
+    this.graph.get("canvas").set("localRefresh", false);
   },
 
   /**

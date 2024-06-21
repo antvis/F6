@@ -3,10 +3,10 @@
  * @Description: 收起和展开 Combo
  */
 
-import { G6Event, IG6GraphEvent } from '@antv/f6-core';
+import { G6Event, IG6GraphEvent } from "@antv/f6-core";
 
-const DEFAULT_TRIGGER = 'dblclick';
-const ALLOW_EVENTS = ['click', 'dblclick'];
+const DEFAULT_TRIGGER = "dblclick";
+const ALLOW_EVENTS = ["click", "dblclick"];
 export default {
   getDefaultCfg(): object {
     return {
@@ -27,21 +27,21 @@ export default {
       );
     }
     return {
-      [`combo:${trigger}`]: 'onComboClick',
+      [`combo:${trigger}`]: "onComboClick",
     };
   },
   onComboClick(evt: IG6GraphEvent) {
     const { item } = evt;
     const { graph, relayout } = this;
 
-    if (!item || item.destroyed || item.getType() !== 'combo') return;
+    if (!item || item.destroyed || item.getType() !== "combo") return;
     const model = item.getModel();
     const comboId = model.id;
     if (!comboId) {
       return;
     }
     graph.collapseExpandCombo(comboId);
-    if (relayout && graph.get('layout')) graph.layout();
+    if (relayout && graph.get("layout")) graph.layout();
     else graph.refreshPositions();
   },
 };

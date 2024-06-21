@@ -1,5 +1,5 @@
-import { createSegmentNode } from '@antv/f6-ui';
-import { dispatch, subscribe } from '../../dispatcher';
+import { createSegmentNode } from "@antv/f6-ui";
+import { dispatch, subscribe } from "../../dispatcher";
 import {
   CONTROL_NEXT,
   CONTROL_PREV,
@@ -14,14 +14,19 @@ import {
   SLIDER_START,
   SLIDER_END,
   SPEED_CHANGE,
-} from '../../utils/const';
-import { throttle } from '@antv/util';
-import { createPlayer } from '../../utils/player';
-import { TimeBarTickContext } from '../../type/tick';
+} from "../../utils/const";
+import { throttle } from "@antv/util";
+import { createPlayer } from "../../utils/player";
+import { TimeBarTickContext } from "../../type/tick";
 
 const createTickProgressBar = function (option) {
   const { data } = option;
-  const { start = SLIDER_START, end = SLIDER_END, width, padding } = option.tick;
+  const {
+    start = SLIDER_START,
+    end = SLIDER_END,
+    width,
+    padding,
+  } = option.tick;
   console.log(option);
   const selectedTickStyle = Object.assign(
     {},
@@ -41,7 +46,7 @@ const createTickProgressBar = function (option) {
   // 整个bar的宽度
   context.width = width;
 
-  context.padding = padding || '10 0';
+  context.padding = padding || "10 0";
   // 高亮
   context.selectedFill = selectedTickStyle.fill;
   // 默认
@@ -49,11 +54,20 @@ const createTickProgressBar = function (option) {
   // 每个刻度的间隔
   context.gap = PROGRESS_TICK.gap;
   // 每个刻度的高度
-  context.tickBoxHeight = option?.tick?.tickBoxHeight || PROGRESS_TICK.tickBoxHeight;
+  context.tickBoxHeight =
+    option?.tick?.tickBoxHeight || PROGRESS_TICK.tickBoxHeight;
   // 刻度下面的线的样式
-  context.lineStyle = Object.assign({}, PROGRESS_TICK_LINE_STYLE, option?.tick?.tickLineStyle);
+  context.lineStyle = Object.assign(
+    {},
+    PROGRESS_TICK_LINE_STYLE,
+    option?.tick?.tickLineStyle,
+  );
   // 刻度下面文本样式
-  context.textStyle = Object.assign({}, PROGRESS_TICK_TEXT_STYLE, option?.tick?.tickLabelStyle);
+  context.textStyle = Object.assign(
+    {},
+    PROGRESS_TICK_TEXT_STYLE,
+    option?.tick?.tickLabelStyle,
+  );
   // 每个刻度的宽度
   context.tickWidth = width / data.length;
   // 每个文本宽度相当于多少个刻度，用来布局文本
@@ -62,7 +76,7 @@ const createTickProgressBar = function (option) {
   context.end = end;
   context.selects = [];
   const node = createTickProgressBarNode(context);
-  context.tickBoxs = node.queryAll('.tick-box');
+  context.tickBoxs = node.queryAll(".tick-box");
 
   initPlayer(context);
 
@@ -99,10 +113,10 @@ function createTickProgressBarNode(context) {
                 <shape class='line' type='rect'/>
                 <div class='text'>${cur.date}</div>
               </div>`
-              : ''
+              : ""
           }
         </div>`);
-    }, '')}
+    }, "")}
   </div>
 `;
   const css = `
@@ -173,25 +187,25 @@ function bindEvents(node, context) {
     leading: true,
   });
 
-  node.on('panstart', (e) => {
+  node.on("panstart", (e) => {
     isStart = false;
     if (!e.uiNode) return;
-    if (e.uiNode.getAttribute('class') === 'tick-box') {
+    if (e.uiNode.getAttribute("class") === "tick-box") {
       isStart = true;
       startX = e.clientX;
-      startLeft = e.uiNode.getAttribute('disFromStart');
+      startLeft = e.uiNode.getAttribute("disFromStart");
       clearAllSelect(context);
     }
   });
 
-  node.on('panmove', (e) => {
+  node.on("panmove", (e) => {
     if (!isStart) return;
     const delta = e.clientX - startX;
     selectThrottle(startLeft, startLeft + delta, context);
   });
 
-  node.on('tap', (e) => {
-    if (e.uiNode && e.uiNode.getAttribute('class') === 'tick-box') {
+  node.on("tap", (e) => {
+    if (e.uiNode && e.uiNode.getAttribute("class") === "tick-box") {
       selectSingle(e.uiNode, context);
     }
   });
@@ -227,10 +241,10 @@ function select(start, end, context) {
   context.tickBoxs.forEach((tickBox) => {
     if (context.selects.includes(tickBox)) return;
     if (
-      tickBox.getAttribute('disFromStart') >= min &&
-      tickBox.getAttribute('disFromStart') <= max
+      tickBox.getAttribute("disFromStart") >= min &&
+      tickBox.getAttribute("disFromStart") <= max
     ) {
-      tickBox.setStyle('backgroundColor', context.selectedFill);
+      tickBox.setStyle("backgroundColor", context.selectedFill);
       context.selects.push(tickBox);
     }
   });
@@ -238,8 +252,10 @@ function select(start, end, context) {
   if (context.selects.length > 0) {
     dispatch(RANGE_CHANGE, {
       value: [
-        context.selects[0].getAttribute('disFromStart') / context.width,
-        context.selects[context.selects.length - 1].getAttribute('disFromStart') / context.width,
+        context.selects[0].getAttribute("disFromStart") / context.width,
+        context.selects[context.selects.length - 1].getAttribute(
+          "disFromStart",
+        ) / context.width,
       ],
     });
   }
@@ -248,7 +264,7 @@ function select(start, end, context) {
 // 清除选中
 function clearAllSelect(context) {
   context.selects.forEach((box) => {
-    box.setStyle('backgroundColor', context.unSelectFill);
+    box.setStyle("backgroundColor", context.unSelectFill);
   });
   context.selects = [];
 }
@@ -257,14 +273,14 @@ function clearAllSelect(context) {
 function selectSingle(tickBox, context) {
   clearAllSelect(context);
   context.selects.push(tickBox);
-  context.start = context.end = tickBox.getAttribute('disFromStart');
+  context.start = context.end = tickBox.getAttribute("disFromStart");
   dispatch(RANGE_CHANGE, {
     value: [
-      tickBox.getAttribute('disFromStart') / context.width,
-      tickBox.getAttribute('disFromStart') / context.width,
+      tickBox.getAttribute("disFromStart") / context.width,
+      tickBox.getAttribute("disFromStart") / context.width,
     ],
   });
-  tickBox.setStyle('backgroundColor', context.selectedFill);
+  tickBox.setStyle("backgroundColor", context.selectedFill);
 }
 
 export default createTickProgressBar;

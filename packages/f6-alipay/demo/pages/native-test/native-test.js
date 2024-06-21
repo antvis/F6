@@ -1,18 +1,18 @@
-import F6 from '../../../../f6';
+import F6 from "../../../../f6";
 
 const data = {
   nodes: [
-    { id: 'node0', size: 50 },
-    { id: 'node1', size: 30 },
-    { id: 'node2', size: 30 },
-    { id: 'node3', size: 30 },
+    { id: "node0", size: 50 },
+    { id: "node1", size: 30 },
+    { id: "node2", size: 30 },
+    { id: "node3", size: 30 },
   ],
   edges: [
-    { source: 'node0', target: 'node1' },
-    { source: 'node0', target: 'node2' },
-    { source: 'node0', target: 'node3' },
-    { source: 'node1', target: 'node3' },
-    { source: 'node2', target: 'node3' },
+    { source: "node0", target: "node1" },
+    { source: "node0", target: "node2" },
+    { source: "node0", target: "node3" },
+    { source: "node1", target: "node3" },
+    { source: "node2", target: "node3" },
   ],
 };
 
@@ -36,14 +36,14 @@ Page({
       width: this.data.width,
       height: this.data.height,
       defaultNode: {
-        color: '#5B8FF9',
+        color: "#5B8FF9",
       },
       modes: {
-        default: ['drag-canvas', 'drag-node', 'zoom-canvas'],
+        default: ["drag-canvas", "drag-node", "zoom-canvas"],
       },
       extra: {
-        createImage: canvas && canvas.createImage
-      }
+        createImage: canvas && canvas.createImage,
+      },
     });
     const { nodes } = data;
     this.graph.data({
@@ -63,15 +63,14 @@ Page({
         height: 34 / 2,
         rotate: 30,
       },
-    }
-    const waterURL = 'https://gw.alipayobjects.com/zos/bmw-prod/8088a9d7-e5b0-42f2-b6b2-27c823043993.svg'
+    };
+    const waterURL =
+      "https://gw.alipayobjects.com/zos/bmw-prod/8088a9d7-e5b0-42f2-b6b2-27c823043993.svg";
     this.graph.render();
-    const waterCanvas = my.createOffscreenCanvas()
-    this.graph.setImageWaterMarker(waterURL, waterConfig, waterCanvas)
-
+    const waterCanvas = my.createOffscreenCanvas();
+    this.graph.setImageWaterMarker(waterURL, waterConfig, waterCanvas);
   },
   onTouch(e) {
     this.graph.emitEvent(e);
   },
 });
-

@@ -18,32 +18,32 @@ const graph = new F6.Graph({
     color: "#5B8FF9",
     style: {
       fill: "#9EC9FF",
-      lineWidth: 3
+      lineWidth: 3,
     },
     labelCfg: {
       style: {
         fill: "#000",
-        fontSize: 14
-      }
-    }
+        fontSize: 14,
+      },
+    },
   },
   defaultEdge: {
     type: "quadratic",
     labelCfg: {
-      autoRotate: true
-    }
+      autoRotate: true,
+    },
   },
   modes: {
-    default: ["drag-canvas", "drag-node"]
+    default: ["drag-canvas", "drag-node"],
   },
   nodeStateStyles: {
     hover: {
-      fillOpacity: 0.8
+      fillOpacity: 0.8,
     },
     selected: {
-      lineWidth: 5
-    }
-  }
+      lineWidth: 5,
+    },
+  },
 });
 graph.data(data);
 graph.render();

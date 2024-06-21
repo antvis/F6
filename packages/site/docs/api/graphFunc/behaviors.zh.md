@@ -18,16 +18,16 @@ order: 10
 
 ```javascript
 // 将单个 Behavior 添加到单个模式（默认的 default 模式）中
-graph.addBehaviors('click-select', 'default');
+graph.addBehaviors("click-select", "default");
 
 // 将多个 Behavior 添加到单个模式（默认的 default 模式）中
-graph.addBehaviors(['brush-select', 'click-select'], 'default');
+graph.addBehaviors(["brush-select", "click-select"], "default");
 
 // 将单个 Behavior 添加到多个模式中
-graph.addBehaviors('brush-select', ['default', 'select']);
+graph.addBehaviors("brush-select", ["default", "select"]);
 
 // 将多个 Behavior 添加到多个模式中
-graph.addBehaviors(['brush-select', 'click-select'], ['default', 'select']);
+graph.addBehaviors(["brush-select", "click-select"], ["default", "select"]);
 ```
 
 ### graph.removeBehaviors(behaviors, modes)
@@ -45,16 +45,16 @@ graph.addBehaviors(['brush-select', 'click-select'], ['default', 'select']);
 
 ```javascript
 // 从单个模式中移除单个 Behavior
-graph.removeBehaviors('click-select', 'default');
+graph.removeBehaviors("click-select", "default");
 
 // 从单个模式中移除多个 Behavior
-graph.removeBehaviors(['brush-select', 'click-select'], 'default');
+graph.removeBehaviors(["brush-select", "click-select"], "default");
 
 // 从多个模式中移除单个 Behavior
-graph.removeBehaviors('brush-select', ['default', 'select']);
+graph.removeBehaviors("brush-select", ["default", "select"]);
 
 // 从多个模式中移除多个 Behavior
-graph.removeBehaviors(['brush-select', 'click-select'], ['default', 'select']);
+graph.removeBehaviors(["brush-select", "click-select"], ["default", "select"]);
 ```
 
 ### graph.updateBehavior(behavior, mode)
@@ -63,11 +63,11 @@ graph.removeBehaviors(['brush-select', 'click-select'], ['default', 'select']);
 
 **参数**
 
-| 名称      | 类型           | 是否必选 | 描述             |
-| --------- | -------------- | -------- | ----------------------------------------- |
-| behavior | string | true     | 需要更新的 behavior 类型名 |
-| newCfg   | object | true     | 新的配置项                   |
-| mode     | string | false    | 需要修改的 behavior 所在的模式名称，默认为 'default'     |
+| 名称     | 类型   | 是否必选 | 描述                                                 |
+| -------- | ------ | -------- | ---------------------------------------------------- |
+| behavior | string | true     | 需要更新的 behavior 类型名                           |
+| newCfg   | object | true     | 新的配置项                                           |
+| mode     | string | false    | 需要修改的 behavior 所在的模式名称，默认为 'default' |
 
 **用法**
 
@@ -89,4 +89,3 @@ graph.updateBehavior('zoom-canvas', { sensitivity: 1.5, enableOptimize: true}, '
 // 更新 'select' 模式下的 behavior 'click-select'
 graph.updateBehavior('click-select', { trigger: 'ctrl' }, 'select');
 ```
-

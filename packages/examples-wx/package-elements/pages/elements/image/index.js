@@ -1,6 +1,6 @@
-import F6 from '@antv/f6-wx';
+import F6 from "@antv/f6-wx";
 
-import data from './data';
+import data from "./data";
 /**
  * image
  */
@@ -8,7 +8,7 @@ import data from './data';
 Page({
   canvas: null,
   ctx: null,
-  renderer: '', // mini、mini-native等，F6需要，标记环境
+  renderer: "", // mini、mini-native等，F6需要，标记环境
   isCanvasInit: false, // canvas是否准备好了
   graph: null,
 
@@ -68,18 +68,18 @@ Page({
       fitViewPadding: 60,
       fitCenter: true,
       modes: {
-        default: ['drag-canvas', 'drag-node'],
+        default: ["drag-canvas", "drag-node"],
       },
       extra: {
         createImage: this.canvas && this.canvas.createImage,
       },
       defaultNode: {
-        type: 'image',
+        type: "image",
         size: [260, 80],
         clipCfg: {
           show: false,
           // Clip type options: circle, ellipse, rect, path
-          type: 'circle',
+          type: "circle",
           // circle
           r: 30,
           // clip style

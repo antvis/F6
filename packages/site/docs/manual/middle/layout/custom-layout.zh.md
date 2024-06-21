@@ -63,31 +63,31 @@ Layout.registerLayout = function(type, {
 ```javascript
 const data = {
   nodes: [
-    { id: '0', label: 'A', cluster: 'part1' },
-    { id: '1', label: 'B', cluster: 'part1' },
-    { id: '2', label: 'C', cluster: 'part1' },
-    { id: '3', label: 'D', cluster: 'part1' },
-    { id: '4', label: 'E', cluster: 'part1' },
-    { id: '5', label: 'F', cluster: 'part1' },
-    { id: '6', label: 'a', cluster: 'part2' },
-    { id: '7', label: 'b', cluster: 'part2' },
-    { id: '8', label: 'c', cluster: 'part2' },
-    { id: '9', label: 'd', cluster: 'part2' },
+    { id: "0", label: "A", cluster: "part1" },
+    { id: "1", label: "B", cluster: "part1" },
+    { id: "2", label: "C", cluster: "part1" },
+    { id: "3", label: "D", cluster: "part1" },
+    { id: "4", label: "E", cluster: "part1" },
+    { id: "5", label: "F", cluster: "part1" },
+    { id: "6", label: "a", cluster: "part2" },
+    { id: "7", label: "b", cluster: "part2" },
+    { id: "8", label: "c", cluster: "part2" },
+    { id: "9", label: "d", cluster: "part2" },
   ],
   edges: [
-    { source: '0', target: '6' },
-    { source: '0', target: '7' },
-    { source: '0', target: '9' },
-    { source: '1', target: '6' },
-    { source: '1', target: '9' },
-    { source: '1', target: '7' },
-    { source: '2', target: '8' },
-    { source: '2', target: '9' },
-    { source: '2', target: '6' },
-    { source: '3', target: '8' },
-    { source: '4', target: '6' },
-    { source: '4', target: '7' },
-    { source: '5', target: '9' },
+    { source: "0", target: "6" },
+    { source: "0", target: "7" },
+    { source: "0", target: "9" },
+    { source: "1", target: "6" },
+    { source: "1", target: "9" },
+    { source: "1", target: "7" },
+    { source: "2", target: "8" },
+    { source: "2", target: "9" },
+    { source: "2", target: "6" },
+    { source: "3", target: "8" },
+    { source: "4", target: "6" },
+    { source: "4", target: "7" },
+    { source: "5", target: "9" },
   ],
 };
 ```
@@ -108,14 +108,14 @@ const data = {
 下面代码展示了自定义名为  `'bigraph-layout'` 的二分图布局，完整代码参见：<a href='/zh/docs/examples/net/layoutMechanism#customBigraph' target='_blank'>自定义布局-二分图</a>。使用该布局的方式与使用内置布局方式相同，都是在实例化图时将其配置到 `layout` 配置项中，详见：[一般图布局](/zh/docs/manual/middle/layout/graph-layout)。
 
 ```javascript
-F6.registerLayout('bigraph-layout', {
+F6.registerLayout("bigraph-layout", {
   // 默认参数
   getDefaultCfg: function getDefaultCfg() {
     return {
       center: [0, 0], // 布局的中心
       biSep: 100, // 两部分的间距
       nodeSep: 20, // 同一部分的节点间距
-      direction: 'horizontal', // 两部分的分布方向
+      direction: "horizontal", // 两部分的分布方向
       nodeSize: 20, // 节点大小
     };
   },
@@ -129,7 +129,7 @@ F6.registerLayout('bigraph-layout', {
     var part1Pos = 0,
       part2Pos = 0;
     // 若指定为横向分布
-    if (self.direction === 'horizontal') {
+    if (self.direction === "horizontal") {
       part1Pos = center[0] - biSep / 2;
       part2Pos = center[0] + biSep / 2;
     }
@@ -141,7 +141,7 @@ F6.registerLayout('bigraph-layout', {
     var part2NodeMap = new Map();
     // separate the nodes and init the positions
     nodes.forEach(function (node, i) {
-      if (node.cluster === 'part1') {
+      if (node.cluster === "part1") {
         part1Nodes.push(node);
         part1NodeMap.set(node.id, i);
       } else {
@@ -195,14 +195,17 @@ F6.registerLayout('bigraph-layout', {
     });
 
     // 放置节点
-    var hLength = part1Nodes.length > part2Nodes.length ? part1Nodes.length : part2Nodes.length;
+    var hLength =
+      part1Nodes.length > part2Nodes.length
+        ? part1Nodes.length
+        : part2Nodes.length;
     var height = hLength * (nodeSep + nodeSize);
     var begin = center[1] - height / 2;
-    if (self.direction === 'vertical') {
+    if (self.direction === "vertical") {
       begin = center[0] - height / 2;
     }
     part1Nodes.forEach(function (p1n, i) {
-      if (self.direction === 'horizontal') {
+      if (self.direction === "horizontal") {
         p1n.x = part1Pos;
         p1n.y = begin + i * (nodeSep + nodeSize);
       } else {
@@ -211,7 +214,7 @@ F6.registerLayout('bigraph-layout', {
       }
     });
     part2Nodes.forEach(function (p2n, i) {
-      if (self.direction === 'horizontal') {
+      if (self.direction === "horizontal") {
         p2n.x = part2Pos;
         p2n.y = begin + i * (nodeSep + nodeSize);
       } else {

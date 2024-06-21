@@ -20,7 +20,7 @@ order: 1
 **Step 2:** 在需要用的 F6 的 JS 文件中导入：
 
 ```javascript
-import F6 from '@antv/f6';
+import F6 from "@antv/f6";
 ```
 
 <span style="background-color: rgb(251, 233, 231); color: rgb(139, 53, 56)"><strong>⚠️ 注意:</strong></span>
@@ -148,12 +148,12 @@ const data = {
   // 点集
   nodes: [
     {
-      id: 'node1', // String，该节点存在则必须，节点的唯一标识
+      id: "node1", // String，该节点存在则必须，节点的唯一标识
       x: 100, // Number，可选，节点位置的 x 值
       y: 200, // Number，可选，节点位置的 y 值
     },
     {
-      id: 'node2', // String，该节点存在则必须，节点的唯一标识
+      id: "node2", // String，该节点存在则必须，节点的唯一标识
       x: 300, // Number，可选，节点位置的 x 值
       y: 200, // Number，可选，节点位置的 y 值
     },
@@ -161,8 +161,8 @@ const data = {
   // 边集
   edges: [
     {
-      source: 'node1', // String，必须，起始点 id
-      target: 'node2', // String，必须，目标点 id
+      source: "node1", // String，必须，起始点 id
+      target: "node2", // String，必须，目标点 id
     },
   ],
 };
@@ -183,7 +183,7 @@ const data = {
 ```javascript
 const graph = new F6.Graph({
   container: null, // 如果为小程序，则传null或者不传
-  renderer: 'mini', // renderer 目前支持`mini`和`mini-native`两个值，可以通过onCanvasInit回调获取
+  renderer: "mini", // renderer 目前支持`mini`和`mini-native`两个值，可以通过onCanvasInit回调获取
   context: ctx, // 由于小程序中无法直接获取canvas的context，所以需要从外部传入
   width: 800, // Number，必须，图的宽度
   height: 500, // Number，必须，图的高度

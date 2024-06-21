@@ -18,7 +18,7 @@ F6 提供了一系列[内置 Combo](/zh/docs/manual/middle/elements/combos/defau
 
 ```javascript
 F6.registerCombo(
-  'comboName',
+  "comboName",
   {
     /**
      * 绘制 Combo 中的图形。不需要为默认的 label 增加图形，父类方法会自动增加 label
@@ -94,7 +94,7 @@ F6.registerCombo(
 
 ```javascript
 F6.registerCombo(
-  'cRect',
+  "cRect",
   {
     drawShape: function drawShape(cfg, group) {
       const self = this;
@@ -103,7 +103,7 @@ F6.registerCombo(
       // 获取样式配置，style.width 与 style.height 对应 rect Combo 位置说明图中的 width 与 height
       const style = self.getShapeStyle(cfg);
       // 绘制一个矩形作为 keyShape，与 'rect' Combo 的 keyShape 一致
-      const rect = group.addShape('rect', {
+      const rect = group.addShape("rect", {
         attrs: {
           ...style,
           x: -style.width / 2 - (cfg.padding[3] - cfg.padding[1]) / 2,
@@ -112,13 +112,13 @@ F6.registerCombo(
           height: style.height,
         },
         draggable: true,
-        name: 'combo-keyShape',
+        name: "combo-keyShape",
       });
       // 增加右侧圆
-      group.addShape('circle', {
+      group.addShape("circle", {
         attrs: {
           ...style,
-          fill: '#fff',
+          fill: "#fff",
           opacity: 1,
           // cfg.style.width 与 cfg.style.heigth 对应 rect Combo 位置说明图中的 innerWdth 与 innerHeight
           x: cfg.style.width / 2 + cfg.padding[1],
@@ -126,15 +126,17 @@ F6.registerCombo(
           r: 5,
         },
         draggable: true,
-        name: 'combo-circle-shape',
+        name: "combo-circle-shape",
       });
       return rect;
     },
     // 定义新增的右侧圆的位置更新逻辑
     afterUpdate: function afterUpdate(cfg, combo) {
-      const group = combo.get('group');
+      const group = combo.get("group");
       // 在该 Combo 的图形分组根据 name 找到右侧圆图形
-      const circle = group.find((ele) => ele.get('name') === 'combo-circle-shape');
+      const circle = group.find(
+        (ele) => ele.get("name") === "combo-circle-shape",
+      );
       // 更新右侧圆位置
       circle.attr({
         // cfg.style.width 与 cfg.style.heigth 对应 rect Combo 位置说明图中的 innerWdth 与 innerHeight
@@ -143,7 +145,7 @@ F6.registerCombo(
       });
     },
   },
-  'rect',
+  "rect",
 );
 ```
 
@@ -210,27 +212,27 @@ graph.render();
 // 定义下面需要使用的 symbol
 const collapseIcon = (x, y, r) => {
   return [
-    ['M', x - r, y],
-    ['a', r, r, 0, 1, 0, r * 2, 0],
-    ['a', r, r, 0, 1, 0, -r * 2, 0],
-    ['M', x - r + 4, y],
-    ['L', x - r + 2 * r - 4, y],
+    ["M", x - r, y],
+    ["a", r, r, 0, 1, 0, r * 2, 0],
+    ["a", r, r, 0, 1, 0, -r * 2, 0],
+    ["M", x - r + 4, y],
+    ["L", x - r + 2 * r - 4, y],
   ];
 };
 const expandIcon = (x, y, r) => {
   return [
-    ['M', x - r, y],
-    ['a', r, r, 0, 1, 0, r * 2, 0],
-    ['a', r, r, 0, 1, 0, -r * 2, 0],
-    ['M', x - r + 4, y],
-    ['L', x - r + 2 * r - 4, y],
-    ['M', x - r + r, y - r + 4],
-    ['L', x, y + r - 4],
+    ["M", x - r, y],
+    ["a", r, r, 0, 1, 0, r * 2, 0],
+    ["a", r, r, 0, 1, 0, -r * 2, 0],
+    ["M", x - r + 4, y],
+    ["L", x - r + 2 * r - 4, y],
+    ["M", x - r + r, y - r + 4],
+    ["L", x, y + r - 4],
   ];
 };
 
 F6.registerCombo(
-  'cCircle',
+  "cCircle",
   {
     drawShape: function draw(cfg, group) {
       const self = this;
@@ -238,7 +240,7 @@ F6.registerCombo(
       // 对应 Circle Combo 位置说明图中的 R
       const style = self.getShapeStyle(cfg);
       // 绘制一个 circle 作为 keyShape，与 'circle' Combo 的 keyShape 一致
-      const circle = group.addShape('circle', {
+      const circle = group.addShape("circle", {
         attrs: {
           ...style,
           x: 0,
@@ -246,13 +248,13 @@ F6.registerCombo(
           r: style.r,
         },
         draggable: true,
-        name: 'combo-keyShape',
+        name: "combo-keyShape",
       });
       // 增加下方 marker
-      const marker = group.addShape('marker', {
+      const marker = group.addShape("marker", {
         attrs: {
           ...style,
-          fill: '#fff',
+          fill: "#fff",
           opacity: 1,
           x: 0,
           y: style.r,
@@ -260,7 +262,7 @@ F6.registerCombo(
           symbol: collapseIcon,
         },
         draggable: true,
-        name: 'combo-marker-shape',
+        name: "combo-marker-shape",
       });
 
       return circle;
@@ -270,9 +272,11 @@ F6.registerCombo(
       const self = this;
       // 获取样式配置，style.r 是加上了 padding 的半径
       // 对应 Circle Combo 位置说明图中的 R    const style = self.getShapeStyle(cfg);
-      const group = combo.get('group');
+      const group = combo.get("group");
       // 在该 Combo 的图形分组根据 name 找到下方 marker
-      const marker = group.find((ele) => ele.get('name') === 'combo-marker-shape');
+      const marker = group.find(
+        (ele) => ele.get("name") === "combo-marker-shape",
+      );
       // 更新 marker
       marker.attr({
         x: 0,
@@ -282,7 +286,7 @@ F6.registerCombo(
       });
     },
   },
-  'circle',
+  "circle",
 );
 ```
 
@@ -337,12 +341,12 @@ graph.render();
 
 ```javascript
 // collapse/expand when click the marker
-graph.on('combo:tap', (e) => {
-  if (e.target.get('name') === 'combo-marker-shape') {
+graph.on("combo:tap", (e) => {
+  if (e.target.get("name") === "combo-marker-shape") {
     // Collapse or expand the combo
     graph.collapseExpandCombo(e.item);
 
-    if (graph.get('layout')) graph.layout();
+    if (graph.get("layout")) graph.layout();
     // If there is a layout configured on the graph, relayout
     else graph.refreshPositions(); // Refresh positions for items otherwise
   }

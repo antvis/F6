@@ -1,7 +1,7 @@
-import F6 from '@antv/f6';
-import { wrapContext } from '../../../common/utils/context';
-import data from './data';
-import circular from '@antv/f6/dist/extends/layout/circularLayout';
+import F6 from "@antv/f6";
+import { wrapContext } from "../../../common/utils/context";
+import data from "./data";
+import circular from "@antv/f6/dist/extends/layout/circularLayout";
 /**
  * Circular布局参数动态变化
  */
@@ -9,7 +9,7 @@ import circular from '@antv/f6/dist/extends/layout/circularLayout';
 Page({
   canvas: null,
   ctx: null,
-  renderer: '', // mini、mini-native等，F6需要，标记环境
+  renderer: "", // mini、mini-native等，F6需要，标记环境
   isCanvasInit: false, // canvas是否准备好了
   graph: null,
 
@@ -18,12 +18,13 @@ Page({
     height: 600,
     pixelRatio: 2,
     forceMini: false,
-    discription: 'Circular layout with radius: take full use of the canvas, ordering: topology',
+    discription:
+      "Circular layout with radius: take full use of the canvas, ordering: topology",
   },
 
   onLoad() {
     // 注册布局
-    F6.registerLayout('circular', circular);
+    F6.registerLayout("circular", circular);
 
     // 同步获取window的宽高
     const { windowWidth, windowHeight, pixelRatio } = my.getSystemInfoSync();
@@ -70,10 +71,10 @@ Page({
       pixelRatio,
       fitView: true,
       modes: {
-        default: ['drag-canvas', 'drag-node'],
+        default: ["drag-canvas", "drag-node"],
       },
       layout: {
-        type: 'circular',
+        type: "circular",
       },
       animate: true,
       defaultNode: {
@@ -82,8 +83,8 @@ Page({
       defaultEdge: {
         style: {
           endArrow: {
-            path: 'M 0,0 L 8,4 L 8,-4 Z',
-            fill: '#e2e2e2',
+            path: "M 0,0 L 8,4 L 8,-4 Z",
+            fill: "#e2e2e2",
           },
         },
       },
@@ -96,27 +97,29 @@ Page({
 
     layoutConfigTranslation();
 
-    setInterval(function() {
+    setInterval(function () {
       layoutConfigTranslation();
     }, 11500);
 
     function layoutConfigTranslation() {
-      setTimeout(function() {
+      setTimeout(function () {
         me.setData({
-          discription: 'Circular layout, radius = 200, divisions = 5, ordering: degree',
+          discription:
+            "Circular layout, radius = 200, divisions = 5, ordering: degree",
         });
         me.graph.updateLayout({
           radius: 200,
           startAngle: Math.PI / 4,
           endAngle: Math.PI,
           divisions: 5,
-          ordering: 'degree',
+          ordering: "degree",
         });
       }, 1000);
 
-      setTimeout(function() {
+      setTimeout(function () {
         me.setData({
-          discription: 'Circular layout, radius = 200, divisions = 3, ordering: degree',
+          discription:
+            "Circular layout, radius = 200, divisions = 3, ordering: degree",
         });
         me.graph.updateLayout({
           startAngle: Math.PI / 4,
@@ -125,9 +128,10 @@ Page({
         });
       }, 2500);
 
-      setTimeout(function() {
+      setTimeout(function () {
         me.setData({
-          discription: 'Circular layout, radius = 200, divisions = 8, ordering: degree',
+          discription:
+            "Circular layout, radius = 200, divisions = 8, ordering: degree",
         });
         me.graph.updateLayout({
           radius: 200,
@@ -137,10 +141,10 @@ Page({
         });
       }, 4000);
 
-      setTimeout(function() {
+      setTimeout(function () {
         me.setData({
           discription:
-            'Circular layout, radius = 10～300(spiral), endAngle: PI, divisions = 1, ordering: degree',
+            "Circular layout, radius = 10～300(spiral), endAngle: PI, divisions = 1, ordering: degree",
         });
         me.graph.updateLayout({
           radius: null,
@@ -152,32 +156,32 @@ Page({
         });
       }, 5500);
 
-      setTimeout(function() {
+      setTimeout(function () {
         me.setData({
           discription:
-            'Circular layout, radius = 10～300(spiral),endAngle: 2 * PI, divisions= 1, ordering: degree',
+            "Circular layout, radius = 10～300(spiral),endAngle: 2 * PI, divisions= 1, ordering: degree",
         });
         me.graph.updateLayout({
           endAngle: 2 * Math.PI,
         });
       }, 7000);
 
-      setTimeout(function() {
+      setTimeout(function () {
         me.setData({
-          discription: 'Circular layout, radius = 200, ordering: degree',
+          discription: "Circular layout, radius = 200, ordering: degree",
         });
         me.graph.updateLayout({
           radius: 200,
         });
       }, 8500);
 
-      setTimeout(function() {
+      setTimeout(function () {
         me.setData({
-          discription: 'Circular layout, radius = 200, ordering: topology',
+          discription: "Circular layout, radius = 200, ordering: topology",
         });
         me.graph.updateLayout({
           radius: 200,
-          ordering: 'topology',
+          ordering: "topology",
         });
       }, 10000);
     }

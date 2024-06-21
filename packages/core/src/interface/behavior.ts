@@ -1,6 +1,12 @@
-import { Event as GraphEvent, ICanvas } from '@antv/g-base';
-import { G6Event, IG6GraphEvent, IShapeBase, Item, BehaviorOption } from '../types';
-import { IAbstractGraph } from './graph';
+import { Event as GraphEvent, ICanvas } from "@antv/g-base";
+import {
+  G6Event,
+  IG6GraphEvent,
+  IShapeBase,
+  Item,
+  BehaviorOption,
+} from "../types";
+import { IAbstractGraph } from "./graph";
 
 export interface IBehavior {
   registerBehavior: (type: string, behavior: BehaviorOption) => void;

@@ -1,13 +1,13 @@
-import ifUndefined from './utils/if-undefined';
-import { TOUCH_ACTION_COMPUTE } from './touchactionjs/touchaction-Consts';
-import { DIRECTION_HORIZONTAL } from './inputjs/input-consts';
-import RotateRecognizer from './recognizers/rotate';
-import PinchRecognizer from './recognizers/pinch';
-import SwipeRecognizer from './recognizers/swipe';
-import PanRecognizer from './recognizers/pan';
-import TapRecognizer from './recognizers/tap';
-import PressRecognizer from './recognizers/press';
-import Manager from './manager';
+import ifUndefined from "./utils/if-undefined";
+import { TOUCH_ACTION_COMPUTE } from "./touchactionjs/touchaction-Consts";
+import { DIRECTION_HORIZONTAL } from "./inputjs/input-consts";
+import RotateRecognizer from "./recognizers/rotate";
+import PinchRecognizer from "./recognizers/pinch";
+import SwipeRecognizer from "./recognizers/swipe";
+import PanRecognizer from "./recognizers/pan";
+import TapRecognizer from "./recognizers/tap";
+import PressRecognizer from "./recognizers/press";
+import Manager from "./manager";
 
 /**
  * @private
@@ -18,7 +18,10 @@ import Manager from './manager';
 export default class Hammer {
   constructor(options) {
     options = options || {};
-    options.recognizers = ifUndefined(options.recognizers, Hammer.defaults.preset);
+    options.recognizers = ifUndefined(
+      options.recognizers,
+      Hammer.defaults.preset,
+    );
     return new Manager(options);
   }
 }
@@ -71,11 +74,11 @@ Hammer.defaults = {
   preset: [
     // RecognizerClass, options, [recognizeWith, ...], [requireFailure, ...]
     [RotateRecognizer, { enable: false }],
-    [PinchRecognizer, { enable: false }, ['rotate']],
+    [PinchRecognizer, { enable: false }, ["rotate"]],
     [SwipeRecognizer, { direction: DIRECTION_HORIZONTAL }],
-    [PanRecognizer, { direction: DIRECTION_HORIZONTAL }, ['swipe']],
+    [PanRecognizer, { direction: DIRECTION_HORIZONTAL }, ["swipe"]],
     [TapRecognizer],
-    [TapRecognizer, { event: 'doubletap', taps: 2 }, ['tap']],
+    [TapRecognizer, { event: "doubletap", taps: 2 }, ["tap"]],
     [PressRecognizer],
   ],
 };

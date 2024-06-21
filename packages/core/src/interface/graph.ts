@@ -1,6 +1,6 @@
-import EventEmitter from '@antv/event-emitter';
-import { IGroup, Point } from '@antv/g-base';
-import Graph from '../graph/graph';
+import EventEmitter from "@antv/event-emitter";
+import { IGroup, Point } from "@antv/g-base";
+import Graph from "../graph/graph";
 import {
   EdgeConfig,
   GraphData,
@@ -19,10 +19,10 @@ import {
   StackData,
   HullCfg,
   IG6GraphEvent,
-} from '../types';
-import { IEdge, INode, ICombo } from './item';
-import Hull from '../item/hull';
-import { Stack } from '@antv/algorithm';
+} from "../types";
+import { IEdge, INode, ICombo } from "./item";
+import Hull from "../item/hull";
+import { Stack } from "@antv/algorithm";
 
 export interface IAbstractGraph extends EventEmitter {
   getDefaultCfg: () => Partial<GraphOptions>;
@@ -166,7 +166,11 @@ export interface IAbstractGraph extends EventEmitter {
    * @param {boolean} animate 是否带有动画地移动
    * @param {GraphAnimateConfig} animateCfg 若带有动画，动画的配置项
    */
-  focusItem: (item: Item | string, animate?: boolean, animateCfg?: GraphAnimateConfig) => void;
+  focusItem: (
+    item: Item | string,
+    animate?: boolean,
+    animateCfg?: GraphAnimateConfig,
+  ) => void;
 
   /**
    * 调整视口适应视图
@@ -217,9 +221,17 @@ export interface IAbstractGraph extends EventEmitter {
    * @param {EdgeConfig | NodeConfig} cfg 需要更新的数据
    * @param {boolean} stack 本次操作是否入栈，默认为 true
    */
-  updateItem: (item: Item | string, cfg: Partial<NodeConfig> | EdgeConfig, stack?: boolean) => void;
+  updateItem: (
+    item: Item | string,
+    cfg: Partial<NodeConfig> | EdgeConfig,
+    stack?: boolean,
+  ) => void;
 
-  update: (item: Item | string, cfg: Partial<NodeConfig> | EdgeConfig, stack?: boolean) => void;
+  update: (
+    item: Item | string,
+    cfg: Partial<NodeConfig> | EdgeConfig,
+    stack?: boolean,
+  ) => void;
 
   /**
    * 更新 Combo 结构，例如移动子树等
@@ -251,7 +263,11 @@ export interface IAbstractGraph extends EventEmitter {
    * @param {string} state 状态名称
    * @param {boolean} value 是否启用状态或状态值
    */
-  setItemState: (item: Item | string, state: string, value: string | boolean) => void;
+  setItemState: (
+    item: Item | string,
+    state: string,
+    value: string | boolean,
+  ) => void;
 
   /**
    * 将指定状态的优先级提升为最高优先级
@@ -308,7 +324,10 @@ export interface IAbstractGraph extends EventEmitter {
    * @returns {INode[]}
    * @memberof IAbstractGraph
    */
-  getNeighbors: (node: string | INode, type?: 'source' | 'target' | undefined) => INode[];
+  getNeighbors: (
+    node: string | INode,
+    type?: "source" | "target" | undefined,
+  ) => INode[];
 
   /**
    * 获取 node 的度数
@@ -320,14 +339,17 @@ export interface IAbstractGraph extends EventEmitter {
    */
   getNodeDegree: (
     node: string | INode,
-    type?: 'in' | 'out' | 'total' | 'all' | undefined,
+    type?: "in" | "out" | "total" | "all" | undefined,
     refresh?: boolean,
   ) => Number | Object;
   /**
    * 获取指定 combo 中所有的节点
    * @param comboId Combo ID 或 combo 实例
    */
-  getComboChildren: (combo: string | ICombo) => { nodes: INode[]; combos: ICombo[] };
+  getComboChildren: (combo: string | ICombo) => {
+    nodes: INode[];
+    combos: ICombo[];
+  };
 
   /**
    * 获取当前视口伸缩比例
@@ -356,7 +378,10 @@ export interface IAbstractGraph extends EventEmitter {
    * @param {string | string[]} modes 添加到对应的模式
    * @return {Graph} Graph
    */
-  addBehaviors: (behaviors: string | ModeOption | ModeType[], modes: string | string[]) => Graph;
+  addBehaviors: (
+    behaviors: string | ModeOption | ModeType[],
+    modes: string | string[],
+  ) => Graph;
 
   /**
    * 移除行为
@@ -364,7 +389,10 @@ export interface IAbstractGraph extends EventEmitter {
    * @param {string | string[]} modes 从指定的模式中移除
    * @return {Graph} Graph
    */
-  removeBehaviors: (behaviors: string | ModeOption | ModeType[], modes: string | string[]) => Graph;
+  removeBehaviors: (
+    behaviors: string | ModeOption | ModeType[],
+    modes: string | string[],
+  ) => Graph;
 
   /**
    * 更新行为参数
@@ -471,7 +499,10 @@ export interface IAbstractGraph extends EventEmitter {
    * @param {string} fn 指定规则
    * @return {array} 元素实例
    */
-  findAll: <T extends Item>(type: ITEM_TYPE, fn: (item: T, index?: number) => boolean) => T[];
+  findAll: <T extends Item>(
+    type: ITEM_TYPE,
+    fn: (item: T, index?: number) => boolean,
+  ) => T[];
 
   /**
    * 查找所有处于指定状态的元素
@@ -546,7 +577,11 @@ export interface IAbstractGraph extends EventEmitter {
    * @param data 入栈的数据
    * @param stackType 入栈的类型
    */
-  pushStack: (action?: string, data?: unknown, stackType?: 'redo' | 'undo') => void;
+  pushStack: (
+    action?: string,
+    data?: unknown,
+    stackType?: "redo" | "undo",
+  ) => void;
 
   /**
    * 根据节点的 bbox 更新 combo 及其祖先 combos 的绘制，包括 combos 的位置和范围
@@ -572,7 +607,10 @@ export interface IAbstractGraph extends EventEmitter {
    * @returns {Matrix} 最短路径矩阵
    * @memberof IAbstractGraph
    */
-  getShortestPathMatrix: (cache: boolean, directed?: boolean) => Number | Object;
+  getShortestPathMatrix: (
+    cache: boolean,
+    directed?: boolean,
+  ) => Number | Object;
 
   /**
    * 创建凸包或凹包轮廓
@@ -605,7 +643,11 @@ export interface IAbstractGraph extends EventEmitter {
   /**
    * 重新定义监听函数，复写参数类型
    */
-  on: <T = IG6GraphEvent>(eventName: string, callback: (e: T) => void, once?: boolean) => this;
+  on: <T = IG6GraphEvent>(
+    eventName: string,
+    callback: (e: T) => void,
+    once?: boolean,
+  ) => this;
   /**
    * 销毁画布
    */

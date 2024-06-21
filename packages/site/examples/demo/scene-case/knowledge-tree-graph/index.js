@@ -12,17 +12,11 @@ const BaseConfig = {
   countMarginLeft: 0,
   itemPadding: 16,
   nameMarginLeft: 4,
-  rootPadding: 18
+  rootPadding: 18,
 };
 F6.registerNode("treeNode", {
   draw: (cfg, group) => {
-    const {
-      label,
-      collapsed,
-      selected,
-      children,
-      depth
-    } = cfg;
+    const { label, collapsed, selected, children, depth } = cfg;
     const rootNode = depth === 0;
     const hasChildren = children && children.length !== 0;
     const {
@@ -30,7 +24,7 @@ F6.registerNode("treeNode", {
       countMarginLeft,
       itemPadding,
       nameMarginLeft,
-      rootPadding
+      rootPadding,
     } = BaseConfig;
     let width = 0;
     const height = 28;
@@ -43,10 +37,10 @@ F6.registerNode("treeNode", {
         y,
         textAlign: "left",
         textBaseline: "top",
-        fontFamily: "PingFangSC-Regular"
+        fontFamily: "PingFangSC-Regular",
       },
       cursor: "pointer",
-      name: "name-text-shape"
+      name: "name-text-shape",
     });
     const textWidth = text.getBBox().width;
     width = textWidth + itemPadding + nameMarginLeft;
@@ -62,7 +56,7 @@ F6.registerNode("treeNode", {
       y,
       width,
       height,
-      radius: 4
+      radius: 4,
     };
 
     if (rootNode && selected) {
@@ -72,17 +66,20 @@ F6.registerNode("treeNode", {
 
     const keyShape = group.addShape("rect", {
       attrs: keyShapeAttrs,
-      name: "root-key-shape-rect-shape"
+      name: "root-key-shape-rect-shape",
     });
 
     if (!rootNode) {
       group.addShape("path", {
         attrs: {
-          path: [["M", x - 1, 0], ["L", width, 0]],
+          path: [
+            ["M", x - 1, 0],
+            ["L", width, 0],
+          ],
           stroke: "#AAB7C4",
-          lineWidth: 1
+          lineWidth: 1,
         },
-        name: "node-path-shape"
+        name: "node-path-shape",
       });
     }
 
@@ -98,9 +95,9 @@ F6.registerNode("treeNode", {
           height,
           radius: 14,
           fill: "#e8f7ff",
-          cursor: "pointer"
+          cursor: "pointer",
         },
-        name: "main-shape"
+        name: "main-shape",
       });
     }
 
@@ -121,9 +118,9 @@ F6.registerNode("treeNode", {
           fill: nameColor,
           fontSize: 12,
           fontFamily: "PingFangSC-Regular",
-          cursor: "pointer"
+          cursor: "pointer",
         },
-        name: "root-text-shape"
+        name: "root-text-shape",
       });
     } else {
       group.addShape("text", {
@@ -136,9 +133,9 @@ F6.registerNode("treeNode", {
           fill: nameColor,
           fontSize: 12,
           fontFamily: "PingFangSC-Regular",
-          cursor: "pointer"
+          cursor: "pointer",
         },
-        name: "not-root-text-shape"
+        name: "not-root-text-shape",
       });
     }
 
@@ -155,9 +152,9 @@ F6.registerNode("treeNode", {
           x: childCountX,
           y: childCountY,
           radius: 6,
-          cursor: "pointer"
+          cursor: "pointer",
         },
-        name: "child-count-rect-shape"
+        name: "child-count-rect-shape",
       });
       group.addShape("text", {
         attrs: {
@@ -168,33 +165,40 @@ F6.registerNode("treeNode", {
           fontSize: 10,
           width: childCountWidth,
           textAlign: "center",
-          cursor: "pointer"
+          cursor: "pointer",
         },
-        name: "child-count-text-shape"
+        name: "child-count-text-shape",
       });
     }
 
     return keyShape;
-  }
+  },
 });
 F6.registerEdge("smooth", {
   draw(cfg, group) {
-    const {
-      startPoint,
-      endPoint
-    } = cfg;
+    const { startPoint, endPoint } = cfg;
     const hgap = Math.abs(endPoint.x - startPoint.x);
-    const path = [["M", startPoint.x, startPoint.y], ["C", startPoint.x + hgap / 4, startPoint.y, endPoint.x - hgap / 2, endPoint.y, endPoint.x, endPoint.y]];
+    const path = [
+      ["M", startPoint.x, startPoint.y],
+      [
+        "C",
+        startPoint.x + hgap / 4,
+        startPoint.y,
+        endPoint.x - hgap / 2,
+        endPoint.y,
+        endPoint.x,
+        endPoint.y,
+      ],
+    ];
     const shape = group.addShape("path", {
       attrs: {
         stroke: "#AAB7C4",
-        path
+        path,
       },
-      name: "smooth-path-shape"
+      name: "smooth-path-shape",
     });
     return shape;
-  }
-
+  },
 });
 const graph = new F6.TreeGraph({
   width,
@@ -203,16 +207,23 @@ const graph = new F6.TreeGraph({
   fitView: true,
   fitViewPadding: 60,
   modes: {
-    default: [{
-      type: "collapse-expand"
-    }, "drag-canvas", "zoom-canvas"]
+    default: [
+      {
+        type: "collapse-expand",
+      },
+      "drag-canvas",
+      "zoom-canvas",
+    ],
   },
   defaultNode: {
     type: "treeNode",
-    anchorPoints: [[0, 0.5], [1, 0.5]]
+    anchorPoints: [
+      [0, 0.5],
+      [1, 0.5],
+    ],
   },
   defaultEdge: {
-    type: "smooth"
+    type: "smooth",
   },
   layout: {
     type: "compactBox",
@@ -224,8 +235,16 @@ const graph = new F6.TreeGraph({
       return 16;
     },
     getWidth: function getWidth(d) {
-      const labelWidth = F6.Util.getTextSize(d.label, BaseConfig.nameFontSize)[0];
-      const width_ = BaseConfig.itemPadding + BaseConfig.nameMarginLeft + labelWidth + BaseConfig.rootPadding + BaseConfig.childCountWidth;
+      const labelWidth = F6.Util.getTextSize(
+        d.label,
+        BaseConfig.nameFontSize,
+      )[0];
+      const width_ =
+        BaseConfig.itemPadding +
+        BaseConfig.nameMarginLeft +
+        labelWidth +
+        BaseConfig.rootPadding +
+        BaseConfig.childCountWidth;
       return width_;
     },
     getVGap: function getVGap() {
@@ -233,8 +252,8 @@ const graph = new F6.TreeGraph({
     },
     getHGap: function getHGap() {
       return 30;
-    }
-  }
+    },
+  },
 });
 graph.data(data);
 graph.render();

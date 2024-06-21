@@ -1,10 +1,10 @@
-import { AbstractLayout, GraphData } from '@antv/f6-core';
-import { Layout } from '../../layout';
-import { mix, clone } from '@antv/util';
+import { AbstractLayout, GraphData } from "@antv/f6-core";
+import { Layout } from "../../layout";
+import { mix, clone } from "@antv/util";
 
-import { IGraph } from '../../interface/graph';
+import { IGraph } from "../../interface/graph";
 
-const LayoutPipesAdjustNames = ['force', 'grid', 'circular'];
+const LayoutPipesAdjustNames = ["force", "grid", "circular"];
 export default class LayoutController extends AbstractLayout {
   public graph: IGraph;
 
@@ -13,7 +13,7 @@ export default class LayoutController extends AbstractLayout {
   constructor(graph: IGraph) {
     super(graph);
     this.graph = graph;
-    this.layoutCfg = graph.get('layout') || {};
+    this.layoutCfg = graph.get("layout") || {};
     this.layoutType = this.getLayoutType();
   }
 
@@ -29,15 +29,19 @@ export default class LayoutController extends AbstractLayout {
     }
     this.data = this.setDataFromGraph();
 
-    graph.emit('beforelayout');
+    graph.emit("beforelayout");
 
     let start = Promise.resolve();
     if (layoutMethods.length === 1) {
-      start = start.then(() => this.updateLayoutMethod(layoutMethods[0], layoutCfg));
+      start = start.then(() =>
+        this.updateLayoutMethod(layoutMethods[0], layoutCfg),
+      );
     } else {
       layoutMethods?.forEach((layoutMethod, index) => {
         const currentCfg = layoutCfg.pipes[index];
-        start = start.then(() => this.updateLayoutMethod(layoutMethod, currentCfg));
+        start = start.then(() =>
+          this.updateLayoutMethod(layoutMethod, currentCfg),
+        );
       });
     }
     this.data = this.setDataFromGraph();
@@ -47,7 +51,7 @@ export default class LayoutController extends AbstractLayout {
         if (layoutCfg.onAllLayoutEnd) layoutCfg.onAllLayoutEnd();
       })
       .catch((error) => {
-        console.warn('layout failed', error);
+        console.warn("layout failed", error);
       });
   }
 
@@ -64,8 +68,8 @@ export default class LayoutController extends AbstractLayout {
     if (!nodes) {
       return false;
     }
-    const width = graph.get('width');
-    const height = graph.get('height');
+    const width = graph.get("width");
+    const height = graph.get("height");
     const layoutCfg: any = {};
     Object.assign(
       layoutCfg,
@@ -80,7 +84,7 @@ export default class LayoutController extends AbstractLayout {
 
     this.destoryLayoutMethods();
 
-    graph.emit('beforelayout');
+    graph.emit("beforelayout");
     this.initPositions(layoutCfg.center, nodes);
     // init hidden ndoes
     this.initPositions(layoutCfg.center, hiddenNodes);
@@ -107,7 +111,7 @@ export default class LayoutController extends AbstractLayout {
         }
 
         // 触发 afterlayout
-        graph.emit('afterlayout');
+        graph.emit("afterlayout");
       };
     }
 
@@ -129,7 +133,7 @@ export default class LayoutController extends AbstractLayout {
         if (success) success();
       })
       .catch((error) => {
-        console.warn('graph layout failed,', error);
+        console.warn("graph layout failed,", error);
       });
 
     return false;
@@ -142,11 +146,14 @@ export default class LayoutController extends AbstractLayout {
 
       // 每个布局方法都需要注册
       layoutCfg.onLayoutEnd = () => {
-        graph.emit('aftersublayout', { type: layoutType });
+        graph.emit("aftersublayout", { type: layoutType });
         reslove();
       };
 
-      const isForce = layoutType === 'force' || layoutType === 'g6force' || layoutType === 'gForce';
+      const isForce =
+        layoutType === "force" ||
+        layoutType === "g6force" ||
+        layoutType === "gForce";
       if (isForce) {
         const { onTick } = layoutCfg;
         const tick = () => {
@@ -156,8 +163,8 @@ export default class LayoutController extends AbstractLayout {
           graph.refreshPositions();
         };
         layoutCfg.tick = tick;
-      } else if (layoutCfg.type === 'comboForce') {
-        layoutCfg.comboTrees = graph.get('comboTrees');
+      } else if (layoutCfg.type === "comboForce") {
+        layoutCfg.comboTrees = graph.get("comboTrees");
       }
 
       let enableTick = false;
@@ -166,7 +173,9 @@ export default class LayoutController extends AbstractLayout {
       try {
         layoutMethod = new Layout(layoutCfg);
       } catch (e) {
-        console.warn(`The layout method: '${layoutType}' does not exist! Please specify it first.`);
+        console.warn(
+          `The layout method: '${layoutType}' does not exist! Please specify it first.`,
+        );
         reject();
       }
 
@@ -187,9 +196,10 @@ export default class LayoutController extends AbstractLayout {
       layoutMethod.init(layoutData);
       // 若存在节点没有位置信息，且没有设置 layout，在 initPositions 中 random 给出了所有节点的位置，不需要再次执行 random 布局
       // 所有节点都有位置信息，且指定了 layout，则执行布局（代表不是第一次进行布局）
-      graph.emit('beforesublayout', { type: layoutType });
+      graph.emit("beforesublayout", { type: layoutType });
       layoutMethod.execute();
-      if (layoutMethod.isCustomLayout && layoutCfg.onLayoutEnd) layoutCfg.onLayoutEnd();
+      if (layoutMethod.isCustomLayout && layoutCfg.onLayoutEnd)
+        layoutCfg.onLayoutEnd();
       this.layoutMethods.push(layoutMethod);
     });
   }
@@ -201,16 +211,17 @@ export default class LayoutController extends AbstractLayout {
 
       // 每个布局方法都需要注册
       layoutCfg.onLayoutEnd = () => {
-        graph.emit('aftersublayout', { type: layoutType });
+        graph.emit("aftersublayout", { type: layoutType });
         reslove();
       };
 
       const layoutData = this.filterLayoutData(this.data, layoutCfg);
       layoutMethod.init(layoutData);
       layoutMethod.updateCfg(layoutCfg);
-      graph.emit('beforesublayout', { type: layoutType });
+      graph.emit("beforesublayout", { type: layoutType });
       layoutMethod.execute();
-      if (layoutMethod.isCustomLayout && layoutCfg.onLayoutEnd) layoutCfg.onLayoutEnd();
+      if (layoutMethod.isCustomLayout && layoutCfg.onLayoutEnd)
+        layoutCfg.onLayoutEnd();
     });
   }
 
@@ -260,7 +271,7 @@ export default class LayoutController extends AbstractLayout {
     this.destoryLayoutMethods();
     this.destroyed = true;
 
-    this.graph.set('layout', undefined);
+    this.graph.set("layout", undefined);
     this.layoutCfg = undefined;
     this.layoutType = undefined;
     this.layoutMethods = undefined;
