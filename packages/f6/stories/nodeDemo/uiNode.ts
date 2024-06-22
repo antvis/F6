@@ -1,4 +1,4 @@
-import { createUI } from "../../../f6-ui/lib";
+import { createUI } from "@antv/f6-ui";
 
 export default {
   draw(cfg, group) {

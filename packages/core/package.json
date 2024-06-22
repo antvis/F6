@@ -21,8 +21,9 @@
   },
   "license": "MIT",
   "author": "https://github.com/orgs/antvis/people",
-  "main": "lib/index.js",
-  "module": "es/index.js",
+  "main": "dist/cjs/index.cjs.js",
+  "module": "dist/esm/index.es.js",
+  "unpkg": "dist/umd/index.umd.js",
   "types": "lib/index.d.ts",
   "files": [
     "package.json",
@@ -33,11 +34,8 @@
     "README.md"
   ],
   "scripts": {
-    "build": "npm run clean && npm run build:commonjs && npm run build:esm && npm run build:umd",
-    "build:commonjs": "swc src -d lib --config-file ../../.swcrc --source-maps",
-    "build:esm": "swc src -d esm --config-file ../../.swcrc --source-maps -C module.type=\"es6\"",
-    "build:umd": "webpack --env moduleType=umd --config ../../webpack.config.js",
-    "clean": "rimraf es esm lib dist"
+    "build": "vite build",
+    "clean": "rimraf dist"
   },
   "dependencies": {
     "@antv/algorithm": "^0.1.8",
@@ -46,10 +44,16 @@
     "@antv/g-base": "^0.5.9",
     "@antv/g-math": "^0.1.1",
     "@antv/g-mobile": "^0.0.13",
-    "@antv/matrix-util": "^3.1.0-beta.2",
+    "@antv/matrix-util": "^3.0.4",
     "@antv/path-util": "^2.0.3",
     "@antv/util": "~2.0.5",
     "ml-matrix": "^6.5.0",
-    "tslib": "^2.1.0"
+    "tslib": "^2.1.0",
+    "vite": "~5.3.1",
+    "@vitejs/plugin-react": "~4.3.1"
+  },
+  "devDependencies": {
+    "vite": "~5.3.1",
+    "@vitejs/plugin-react": "~4.3.1"
   }
 }

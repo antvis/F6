@@ -25,9 +25,10 @@
     "LICENSE",
     "README.md"
   ],
-  "main": "lib/index.js",
-  "module": "es/index.js",
-  "browser": "dist/f6UI.js",
+  "main": "dist/cjs/index.cjs.js",
+  "module": "dist/esm/index.es.js",
+  "unpkg": "dist/umd/index.umd.js",
+  "browser": "dist/umd/index.umd.js",
   "miniprogram": "dist",
   "types": "lib/index.d.ts",
   "bugs": {
@@ -35,14 +36,16 @@
   },
   "homepage": "https://github.com/antvis/F6#readme",
   "scripts": {
-    "clean": "rimraf es esm lib dist",
-    "build:commonjs": "swc src -d lib --config-file ../../.swcrc --source-maps",
-    "build:esm": "swc src -d esm --config-file ../../.swcrc --source-maps -C module.type=\"es6\"",
-    "build:umd": "webpack --env moduleType=umd --config ../../webpack.config.js",
-    "build": "npm run clean && npm run build:commonjs && npm run build:esm && npm run build:umd"
+    "clean": "rimraf dist",
+    "build": "vite build"
   },
   "dependencies": {
+    "@antv/g-base": "~0.5.16",
     "@antv/g-mobile": "^0.0.13",
     "css-layout": "1.1.1"
+  },
+  "devDependencies": {
+    "vite": "~5.3.1",
+    "@vitejs/plugin-react": "~4.3.1"
   }
 }
