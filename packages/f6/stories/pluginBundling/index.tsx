@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import F6 from "../../src";
 import data from "./data";
 import { Bundling } from "@antv/f6-plugin";
-import CircularLayout from "@antv/f6/dist/extends/layout/circularLayout";
+import CircularLayout from "@antv/f6/src/extends/layout/circularLayout";
 
 F6.registerLayout("circular", CircularLayout);
 

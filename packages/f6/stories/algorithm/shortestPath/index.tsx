@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import F6, { Algorithm } from "@antv/f6";
-import force from "@antv/f6/dist/extends/layout/forceLayout";
+import force from "@antv/f6/src/extends/layout/forceLayout";
 import data from "./data";
 
 export default () => {

@@ -67,9 +67,9 @@ export {
   Marker,
   Shape,
   // 对外暴露 G-Base 的几个类型定义
-  ICanvas,
-  IGroup,
-  IShape,
+  // ICanvas,
+  // IGroup,
+  // IShape,
 };
 
 export default F6;

@@ -2,11 +2,10 @@
   "name": "@antv/f6-hammerjs",
   "title": "Hammer.JS for F6",
   "description": "A javascript library for multi-touch gestures",
-  "version": "0.0.1",
-  "main": "lib/index.js",
-  "unpkg": "dist/hammer.min.js",
-  "module": "es/index.js",
-  "browser": "dist/hammer.min.js",
+  "version": "0.0.2",
+  "main": "dist/cjs/index.cjs.js",
+  "module": "dist/esm/index.es.js",
+  "unpkg": "dist/umd/index.umd.js",
   "license": "MIT",
   "keywords": [
     "touch",
@@ -23,26 +22,14 @@
   "bugs": {
     "url": "https://github.com/antvis/f6/issues"
   },
-  "dependencies": {},
-  "devDependencies": {
-    "@babel/cli": "^7.12.10",
-    "@babel/core": "^7.12.10",
-    "@babel/preset-env": "^7.12.11",
-    "babel-loader": "^8.2.2",
-    "babel-plugin-external-helpers": "^6.22.0",
-    "lodash": "^4.17.20",
-    "npm-run-all": "^4.1.5",
-    "webpack": "^5.17.0",
-    "webpack-cli": "^4.4.0"
-  },
-  "engines": {
-    "node": ">=0.8.0"
+  "dependencies": {
+    "lodash": "^4.17.20"
   },
   "scripts": {
-    "clean": "rimraf es esm lib dist",
-    "build:commonjs": "swc src -d lib --config-file ../../.swcrc --source-maps",
-    "build:esm": "swc src -d esm --config-file ../../.swcrc --source-maps -C module.type=\"es6\"",
-    "build:umd": "webpack --env moduleType=umd --config ../../webpack.config.js",
-    "build": "npm run clean && npm run build:commonjs && npm run build:esm && npm run build:umd"
+    "clean": "rimraf dist",
+    "build": "vite build"
+  },
+  "devDependencies": {
+    "vite": "~5.3.1"
   }
 }
