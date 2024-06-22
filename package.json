@@ -14,8 +14,6 @@
   ],
   "scripts": {
     "build:site": "cd ./packages/site && npm run start",
-    "analysis": "cd ./packages/f6 && npm run analysis",
-    "start:demos": "npm run build && cd ./packages/f6 && npm run demos",
     "prettier": "prettier --write '**/*.{js,jsx,tsx,ts,less,md,json}'",
     "pretty-quick": "pretty-quick",
     "clean:modules": "rimraf node_modules",
