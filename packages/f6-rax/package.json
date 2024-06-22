@@ -3,7 +3,8 @@
   "version": "0.0.1",
   "description": "rax F6组件，支持H5和小程序端",
   "main": "lib/index.js",
-  "module": "es/index.js",
+  "module": "dist/esm/index.es.js",
+  "unpkg": "dist/umd/index.umd.js",
   "miniappConfig": {
     "main": "lib/miniapp/index",
     "main:wechat": "lib/wechat-miniprogram/index"
@@ -37,10 +38,8 @@
     "@uni/system-info": "^1.0.8",
     "rax-text": "^2.0.0",
     "rax-view": "^2.0.0",
+    "rax": "^1.1.0",
     "universal-env": "^3.0.0"
-  },
-  "peerDependencies": {
-    "rax": "^1.1.0"
   },
   "devDependencies": {
     "@iceworks/spec": "^1.0.0",
@@ -48,7 +47,6 @@
     "build-plugin-component": "^1.0.0",
     "build-scripts": "^1.1.1",
     "driver-universal": "^3.1.0",
-    "rax": "^1.1.0",
     "rax-test-renderer": "^1.0.0",
     "stylelint": "^13.7.2"
   },

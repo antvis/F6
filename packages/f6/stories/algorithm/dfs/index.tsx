@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import F6, { Algorithm } from "@antv/f6";
-import dagreLayout from "@antv/f6/dist/extends/layout/dagreLayout";
+import dagreLayout from "@antv/f6/src/extends/layout/dagreLayout";
 
 import data from "./data";
 

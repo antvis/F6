@@ -29,16 +29,6 @@ export default () => {
       graph.data(data);
       graph.render();
     }
-
-    const handleZoom = (e) => {
-      console.log(e);
-    };
-
-    ref.current.addEventListener("wheel", handleZoom);
-
-    return () => {
-      ref.current.removeEventListener("wheel", handleZoom);
-    };
   }, []);
 
   return <div ref={ref}></div>;

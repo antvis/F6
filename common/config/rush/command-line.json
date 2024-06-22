@@ -185,6 +185,16 @@
 
       // This will invoke common/autoinstallers/rush-prettier/node_modules/.bin/pretty-quick
       "shellCommand": "pretty-quick --staged"
+    },
+    {
+      "commandKind": "bulk",
+      "name": "storybook",
+      "summary": "Run Storybook for all projects",
+      "description": "Run Storybook for all projects",
+      "enableParallelism": true,
+      "ignoreDependencyOrder": true,
+      "safeForSimultaneousRushProcesses": true,
+      "shellCommand": "npm run storybook"
     }
   ],
 

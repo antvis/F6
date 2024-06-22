@@ -1,4 +1,3 @@
-import { TEST_ELEMENT } from "../utils/utils-consts";
 import getTouchActionProps from "./get-touchaction-props";
 
 // magical touchAction value
