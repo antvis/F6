@@ -403,10 +403,6 @@
       "projectFolder": "packages/core"
     },
     {
-      "packageName": "@antv/f6-hammerjs",
-      "projectFolder": "packages/hammer"
-    },
-    {
       "packageName": "@antv/f6-element",
       "projectFolder": "packages/element"
     },
@@ -437,6 +433,10 @@
     {
       "packageName": "@antv/f6-rax",
       "projectFolder": "packages/f6-rax"
+    },
+    {
+      "packageName": "@antv/f6-hammerjs",
+      "projectFolder": "packages/hammer"
     }
   ],
   "ensureConsistentVersions": false

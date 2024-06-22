@@ -58,6 +58,35 @@ import hasParent from "./utils/has-parent";
 // this prevents errors when Hammer is loaded in the presence of an AMD
 //  style loader but by script tag, not by the loader.
 
+export {
+  INPUT_START,
+  INPUT_MOVE,
+  INPUT_END,
+  INPUT_CANCEL,
+  STATE_POSSIBLE,
+  STATE_BEGAN,
+  STATE_CHANGED,
+  STATE_ENDED,
+  STATE_RECOGNIZED,
+  STATE_CANCELLED,
+  STATE_FAILED,
+  DIRECTION_NONE,
+  DIRECTION_LEFT,
+  DIRECTION_RIGHT,
+  DIRECTION_UP,
+  DIRECTION_DOWN,
+  DIRECTION_HORIZONTAL,
+  DIRECTION_VERTICAL,
+  DIRECTION_ALL,
+  Manager,
+  Input,
+  TouchAction,
+  TouchInput,
+  PointerEventInput,
+  Recognizer,
+  AttrRecognizer,
+};
+
 export default assign(Hammer, {
   INPUT_START,
   INPUT_MOVE,
