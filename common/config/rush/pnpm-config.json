@@ -194,6 +194,7 @@
    * PNPM documentation: https://pnpm.io/package_json#pnpmoverrides
    */
   "globalOverrides": {
+    "@antv/f6-hammerjs": "^0.0.2"
     // "example1": "^1.0.0",
     // "example2": "npm:@company/example2@^1.0.0"
   },
