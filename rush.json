@@ -416,7 +416,8 @@
     },
     {
       "packageName": "@antv/f6",
-      "projectFolder": "packages/f6"
+      "projectFolder": "packages/f6",
+      "decoupledLocalDependencies": ["@antv/f6-hammerjs"]
     },
     {
       "packageName": "@antv/f6-site",
