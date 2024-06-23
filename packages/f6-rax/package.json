@@ -19,12 +19,10 @@
     "Rax",
     "rax-component"
   ],
-  "engines": {
-    "npm": ">=3.0.0"
-  },
   "scripts": {
     "start": "build-scripts start",
-    "build": "build-scripts build",
+    "build": "",
+    "build:rax": "build-scripts build",
     "eslint": "eslint --ext .js,.jsx,.ts,.tsx ./",
     "eslint:fix": "npm run eslint -- --fix",
     "stylelint": "stylelint \"**/*.{css,scss,less}\"",

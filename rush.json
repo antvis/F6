@@ -420,7 +420,8 @@
     },
     {
       "packageName": "@antv/f6-site",
-      "projectFolder": "packages/site"
+      "projectFolder": "packages/site",
+      "decoupledLocalDependencies": ["@antv/f6", "@antv/f6-alipay"]
     },
     {
       "packageName": "@antv/f6-alipay",
@@ -432,7 +433,12 @@
     },
     {
       "packageName": "@antv/f6-rax",
-      "projectFolder": "packages/f6-rax"
+      "projectFolder": "packages/f6-rax",
+      "decoupledLocalDependencies": [
+        "@antv/f6",
+        "@antv/f6-alipay",
+        "@antv/f6-hammerjs"
+      ]
     },
     {
       "packageName": "@antv/f6-hammerjs",
