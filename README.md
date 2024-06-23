@@ -1,8 +1,6 @@
 # F6: A Mobile Graph Visualization Framework in TypeScript.
 
 ![](https://gw.alipayobjects.com/mdn/rms_5c3b4a/afts/img/A*KV1pSIPeJPAAAAAAAAAAAAAAARQnAQ)
-[![travis-ci](https://img.shields.io/travis/antvis/f6/master.svg)](https://travis-ci.org/antvis/f6)
-[![codecov](https://codecov.io/gh/antvis/f6/branch/master/graph/badge.svg)](https://codecov.io/gh/antvis/f6)
 ![typescript](https://img.shields.io/badge/language-typescript-red.svg)
 ![MIT](https://img.shields.io/badge/license-MIT-000000.svg)
 [![npm package](https://img.shields.io/npm/v/@antv/f6.svg)](https://www.npmjs.com/package/@antv/f6)
