@@ -116,24 +116,17 @@ Page({
 ## 如何开发
 
 ```bash
-$ npm install
+$ npm install -g @microsoft/rush
 
-# lerna bootstrap for multiple packages
-$ npm run bootstrap
+# update dependencies
+$ rush update
 
 # build the packages
-$ npm run build:all
+$ rush build
 
-# if you wanna watch one of the packages, e.g. packages/core
-$ cd ./packages/core
-$ npm run watch
+# demo
+$ cd packages/f6 && rushx storybook
 
-# run test case
-$ npm test
-
-# run test case in watch mode
-npm test -- --watch ./tests/unit/algorithm/find-path-spec
-DEBUG_MODE=1 npm test -- --watch ./tests/unit/algorithm/find-path-spec
 ```
 
 更详细的内容请参考 [快速上手](https://f6.antv.vision/zh/docs/manual/getting-started) 文档。
