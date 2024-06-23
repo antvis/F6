@@ -25,7 +25,7 @@
   "license": "MIT",
   "author": "https://github.com/orgs/antvis/people",
   "scripts": {
-    "build": "npm run site:build",
+    "build": "",
     "site:build": "npm run site:clean && GATSBY=true gatsby build --prefix-paths",
     "site:clean": "gatsby clean",
     "site:develop": "GATSBY=true gatsby develop --open",
