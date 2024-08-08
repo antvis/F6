@@ -17,7 +17,9 @@
     "prettier": "prettier --write '**/*.{js,jsx,tsx,ts,less,md,json}'",
     "pretty-quick": "pretty-quick",
     "clean:modules": "rimraf node_modules",
-    "prepare": "simple-git-hooks"
+    "prepare": "simple-git-hooks",
+    "update": "rush update",
+    "build": "rush build"
   },
   "lint-staged": {
     "*.{js,jsx,tsx,ts,less,md,json}": [
