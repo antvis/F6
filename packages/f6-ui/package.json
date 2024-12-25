@@ -45,7 +45,7 @@
     "css-layout": "1.1.1"
   },
   "devDependencies": {
-    "vite": "~5.3.1",
+    "vite": "^6.0.5",
     "@vitejs/plugin-react": "~4.3.1"
   }
 }

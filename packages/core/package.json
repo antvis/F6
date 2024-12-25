@@ -1,6 +1,7 @@
 {
   "name": "@antv/f6-core",
   "version": "0.0.2",
+  "type": "module",
   "description": "A Graph Visualization Framework in JavaScript",
   "keywords": [
     "antv",
@@ -53,7 +54,7 @@
     "@vitejs/plugin-react": "~4.3.1"
   },
   "devDependencies": {
-    "vite": "~5.3.1",
+    "vite": "^6.0.5",
     "@vitejs/plugin-react": "~4.3.1",
     "jest": "~29.7.0",
     "@types/jest": "~29.5.12",
