@@ -19,8 +19,6 @@ class Edge extends Drawable {
   constructor({
     startNode,
     endNode,
-    startPoint = ConnectionPoint.RIGHT,
-    endPoint = ConnectionPoint.LEFT,
     lineStyle = LineStyle.SOLID,
     lineWidth = 2,
     color = "#000000",
@@ -29,8 +27,6 @@ class Edge extends Drawable {
     super();
     this.startNode = startNode;
     this.endNode = endNode;
-    this.startPoint = startPoint;
-    this.endPoint = endPoint;
     this.lineStyle = lineStyle;
     this.lineWidth = lineWidth;
     this.color = color;
