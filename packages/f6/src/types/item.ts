@@ -46,9 +46,9 @@ export interface LabelStyle {
   shadowBlur?: number;
   shadowOffsetX?: number;
   shadowOffsetY?: number;
-  position?: string;
+  position?: 'relative' | 'absolute';
   textBaseline?: 'top' | 'middle' | 'bottom' | 'hanging' | 'alphabetic' | 'ideographic';
-  offset?: number;
+  // offset?: number;
   background?: {
     fill?: string;
     stroke?: string;

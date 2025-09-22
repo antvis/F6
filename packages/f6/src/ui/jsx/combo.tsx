@@ -55,8 +55,9 @@ export class Combo extends Node {
 
   getBBox = () => {
     const { combo } = this.props;
-    if (!combo) return;
-    let matrix = calcMatrix(this.getNodeRoot());
+    const noodRoot = this.getNodeRoot();
+    if (!combo || !noodRoot) return;
+    const matrix = calcMatrix(noodRoot);
     return calculateBBox(calcBBox(this.getKeyShape()), matrix);
   };
 

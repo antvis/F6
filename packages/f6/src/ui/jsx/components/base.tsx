@@ -44,7 +44,8 @@ export abstract class BaseElement<T extends ModelConfig> extends Component {
     const calculateStyle = this.getLabelStyleByPosition!(cfg, labelCfg, group);
     const attrName = `${this.itemType}Label`; // 取 nodeLabel，edgeLabel 的配置项
     const defaultStyle = (Global as any)[attrName] ? (Global as any)[attrName].style : null;
-    const labelStyle = { ...defaultStyle, ...calculateStyle, ...labelCfg.style };
+    const cfgStyle = cfg.style || { x: cfg.x, y: cfg.y };
+    const labelStyle = { ...defaultStyle, ...calculateStyle, ...cfgStyle };
     return labelStyle;
   }
 

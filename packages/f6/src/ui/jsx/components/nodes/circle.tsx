@@ -55,14 +55,14 @@ export class SimpleCircle extends BaseNode {
       stroke: cfg.color,
     };
     // 如果设置了color，则覆盖默认的stroke属性
-    const style = deepMix({}, defaultStyle, strokeStyle);
+    const { x, y, ...otherStyle } = deepMix({}, defaultStyle, strokeStyle);
     const size = this.getSize!(cfg);
     const r = size[0] / 2;
     const styles = {
-      x: 0,
-      y: 0,
+      cx: cfg.x,
+      cy: cfg.y,
       r,
-      ...style,
+      ...otherStyle,
     };
     return styles;
   }

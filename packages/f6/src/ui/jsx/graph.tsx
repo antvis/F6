@@ -6,6 +6,8 @@ import { GraphRoot } from './graphRoot';
 export class Graph extends Component {
   willMount(): void {
     const graph = new RootStore(this.context.root, this.context.canvas);
+    // @ts-ignore
+    window.__graph = graph;
     this.context.f6Context = new F6Context(graph);
   }
 

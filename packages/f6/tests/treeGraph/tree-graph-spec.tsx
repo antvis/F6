@@ -5,7 +5,7 @@ import data from './data';
 describe('F6 TreeGraph', () => {
   it('TreeGraph render', () => {
     const container = createContainer('TreeGraph');
-    const context = Util.createContext(container, 500, 500);
+    const context = Util.createContext(container, 500, 500) as CanvasRenderingContext2D;
 
     const { props } = (
       <Canvas context={context} pixelRatio={1} width={300} height={500}>

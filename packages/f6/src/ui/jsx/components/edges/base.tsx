@@ -326,13 +326,11 @@ export class BaseEdge extends BaseElement<EdgeConfig> {
       defaultLabelCfg,
       cfg.labelCfg,
     );
-    const labelStyle = this.getLabelStyle!(cfg, labelCfg, this.getRootShape());
-    const rotate = labelStyle.rotate;
-    delete labelStyle.rotate;
+    const { rotate, text, ...otherStyles } = this.getLabelStyle!(cfg, labelCfg, this.getRootShape());
 
-    if (!labelStyle.text) return null;
+    if (!text) return null;
 
-    return <text style={labelStyle} ref={this.labelRef}></text>;
+    return <text style={{ ...otherStyles, text }} ref={this.labelRef}></text>;
   }
 
   renderShape(cfg, states) {

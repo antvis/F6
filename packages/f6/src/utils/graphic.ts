@@ -34,10 +34,8 @@ export const getBBox = (keyShapebbox, groupMatrix): IBBox => {
     y: keyShapebbox.maxY,
   };
   // 根据父元素变换矩阵
-  if (groupMatrix) {
-    if (!groupMatrix) {
-      groupMatrix = [1, 0, 0, 0, 1, 0, 0, 0, 1];
-    }
+  if (!groupMatrix) {
+    groupMatrix = [1, 0, 0, 0, 1, 0, 0, 0, 1];
     leftTop = applyMatrix(leftTop, groupMatrix);
     rightBottom = applyMatrix(rightBottom, groupMatrix);
   }

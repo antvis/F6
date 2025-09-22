@@ -4,7 +4,7 @@ import data from './data';
 
 describe('item edge api', () => {
   const container = createContainer('Graph');
-  const context = Util.createContext(container, 500, 500);
+  const context = Util.createContext(container, 500, 500) as CanvasRenderingContext2D;
   registerLayout('dagre', DagreLayout);
   let graph;
   let { props } = (

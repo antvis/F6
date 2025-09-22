@@ -234,16 +234,17 @@ export class BaseNode extends BaseElement<NodeConfig> {
 
   renderIcon(cfg) {
     const { icon } = this.getOptions(cfg) as NodeConfig;
-    if (!icon || !icon.show || !icon.img) return null;
-    const { width: w, height: h } = icon;
+    const { show, img, width, height, offset, ...otherAttrs } = icon || {};
+    if (!show || !img) return null;
     return (
       <image
         style={{
-          ...icon,
-          x: -w! / 2,
-          y: -h! / 2,
+          ...otherAttrs,
+          img,
+          x: -width! / 2,
+          y: -height! / 2,
         }}
-      ></image>
+      />
     );
   }
 
@@ -281,7 +282,7 @@ export class BaseNode extends BaseElement<NodeConfig> {
               ...styles,
               cx: -width / 2,
               cy: 0,
-              pointEvents: 'none',
+              // pointEvents: 'none',
             }}
           />
         )}
@@ -291,7 +292,7 @@ export class BaseNode extends BaseElement<NodeConfig> {
               ...styles,
               cx: width / 2,
               cy: 0,
-              pointEvents: 'none',
+              // pointEvents: 'none',
             }}
           />
         )}
@@ -301,7 +302,7 @@ export class BaseNode extends BaseElement<NodeConfig> {
               ...styles,
               cx: 0,
               cy: -height / 2,
-              pointEvents: 'none',
+              // pointEvents: 'none',
             }}
           />
         )}
@@ -311,7 +312,7 @@ export class BaseNode extends BaseElement<NodeConfig> {
               ...styles,
               cx: 0,
               cy: height / 2,
-              pointEvents: 'none',
+              // pointEvents: 'none',
             }}
           />
         )}

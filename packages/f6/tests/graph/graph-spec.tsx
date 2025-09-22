@@ -5,7 +5,7 @@ import dargeData from '../data/dagreData';
 
 describe('graph', () => {
   const container = createContainer('Graph');
-  const context = Util.createContext(container, 500, 500);
+  const context = Util.createContext(container, 500, 500) as CanvasRenderingContext2D;
   let { props } = (
     <Canvas context={context} pixelRatio={2}>
       <Graph data={data}></Graph>
@@ -43,7 +43,7 @@ describe('graph', () => {
           layout={{
             type: 'dagre',
           }}
-        ></Graph>
+        />
       </Canvas>
     ));
     await canvas.update(props);

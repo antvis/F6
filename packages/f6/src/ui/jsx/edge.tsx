@@ -1,5 +1,5 @@
 import { Component, jsx } from '@antv/f-engine';
-import { isNil } from '@antv/g';
+import { isNil } from '@antv/util';
 import { IPoint, NodeConfig } from '../../types';
 import { getEdge } from './components/edges';
 
@@ -73,7 +73,7 @@ export class Edge extends Component {
    * @returns
    */
   getPrePoint = (name: SourceTarget, controlPoints: IPoint[]): NodeConfig | IPoint => {
-    if (controlPoints && controlPoints.length) {
+    if (!!controlPoints?.length) {
       const index = name === 'source' ? 0 : controlPoints.length - 1;
       return controlPoints[index];
     }

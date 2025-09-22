@@ -1,4 +1,4 @@
-import { jsx } from '@antv/f-engine';
+import { jsx, RectStyleProps } from '@antv/f-engine';
 import { mix } from '@antv/util';
 import Global from '../../../../global';
 import { BaseNode } from './base';
@@ -78,7 +78,7 @@ export class SimpleRect extends BaseNode {
   }
 
   renderShape(node, states) {
-    const style = this.getShapeStyle(node);
+    const style = this.getShapeStyle(node) as RectStyleProps;
 
     return <rect style={style} ref={this.keyShapeRef} />;
   }

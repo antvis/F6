@@ -18,16 +18,6 @@ export class Canvas extends FCanvas {
       container,
     };
 
-    super({
-      ...props,
-      ...cfg,
-    });
-    const { width: canvasWidth, height: canvasHeight } = this.getCanvasConfig();
-
-    this.setContext({
-      width: canvasWidth,
-      height: canvasHeight,
-      pixelRatio,
-    });
+    super({ ...props, ...cfg });
   }
 }

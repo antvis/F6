@@ -24,7 +24,6 @@ export class Item<T extends BaseItemModel> {
         showItem: action,
         updateItem: action,
       },
-      { proxy: false },
     );
   }
 

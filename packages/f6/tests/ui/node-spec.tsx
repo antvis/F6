@@ -4,7 +4,7 @@ import data from './data';
 
 describe('graph properties', () => {
   const container = createContainer('Graph');
-  const context = Util.createContext(container, 500, 500);
+  const context = Util.createContext(container, 500, 500) as CanvasRenderingContext2D;
   let graph;
   let { props } = (
     <Canvas context={context} pixelRatio={2}>

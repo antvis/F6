@@ -35,7 +35,7 @@ export type ShapeStyle = Partial<{
   shadowOffsetX: number;
   shadowOffsetY: number;
   cursor: string;
-  position: string;
+  position: "absolute" | "relative";
   fontSize: number;
 
   keepVisualSize: boolean;

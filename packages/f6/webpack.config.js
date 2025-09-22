@@ -84,17 +84,17 @@ module.exports = {
       //     },
       //   ],
       // },
-      // {
-      //   test: /\.js$/,
-      //   include: /node_modules/,
-      //   use: {
-      //     loader: 'babel-loader',
-      //     options: {
-      //       // babelrc: true,
-      //       presets: ['@babel/preset-env'],
-      //     },
-      //   },
-      // },
+      {
+        test: /\.js$/,
+        include: /node_modules/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            // babelrc: true,
+            presets: ['@babel/preset-env'],
+          },
+        },
+      },
       {
         test: /\.ts$/,
         use: {

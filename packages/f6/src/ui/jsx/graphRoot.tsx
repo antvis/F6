@@ -294,8 +294,6 @@ export class GraphRoot extends Component {
             })}
           </Fragment>
         )}
-
-        <Fragment></Fragment>
       </Fragment>
     );
   }
